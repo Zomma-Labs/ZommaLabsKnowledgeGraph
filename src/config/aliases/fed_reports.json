@@ -1,0 +1,16 @@
+[
+  {
+    "uri": "https://www.federalreserve.gov/monetarypolicy/beigebook/BeigeBook",
+    "label": "The Beige Book",
+    "definition": "The Summary of Commentary on Current Economic Conditions by Federal Reserve District. It is published eight times a year.",
+    "synonyms": ["Beige Book", "Summary of Commentary on Current Economic Conditions", "Fed Redbook"],
+    "fibo_class": "fibo-fnd-arr-rpts:PeriodicReport" 
+  },
+  {
+    "uri": "https://www.federalreserve.gov/monetarypolicy/fomc/Tealbook",
+    "label": "The Tealbook",
+    "definition": "Report to the FOMC on Economic Conditions and Monetary Policy.",
+    "synonyms": ["Tealbook", "Greenbook", "Bluebook"],
+    "fibo_class": "fibo-fnd-arr-rpts:PeriodicReport"
+  }
+]

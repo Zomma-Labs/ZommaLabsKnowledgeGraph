@@ -64,4 +64,3 @@ class RelationshipDefinition(BaseModel):
 class RelationshipClassification(BaseModel):
     relationship: RelationshipType = Field(..., description="The classified relationship type.")
     confidence: float = Field(..., description="Confidence score between 0 and 1.")
-    reasoning: str = Field(..., description="Reasoning for the classification.")

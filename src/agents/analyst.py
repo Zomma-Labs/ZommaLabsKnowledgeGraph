@@ -6,9 +6,11 @@ from src.util.llm_client import get_llm
 from src.util.vector_store import VectorStore
 from src.schemas.relationship import RelationshipType, RelationshipDefinition, RelationshipClassification
 
+from qdrant_client import QdrantClient
+
 class AnalystAgent:
-    def __init__(self):
-        self.vector_store = VectorStore()
+    def __init__(self, client: Optional[QdrantClient] = None):
+        self.vector_store = VectorStore(client=client)
         self.llm = get_llm()
         self.max_retries = 3
 
@@ -42,7 +44,8 @@ class AnalystAgent:
     def _generate_initial_description(self, fact: str) -> str:
         prompt = (
             f"Analyze the following fact and describe the relationship between the entities in detail. "
-            f"Focus on the nature of the action (verb) and the type of interaction.\n\n"
+            f"Focus on the nature of the action (verb) and the type of interaction.\n"
+            f"KEEP IT CONCISE (max 2 sentences).\n\n"
             f"Fact: {fact}\n\n"
             f"Description:"
         )
@@ -62,7 +65,6 @@ class AnalystAgent:
         class Decision(BaseModel):
             selected_relationship: Optional[RelationshipType] = Field(None, description="The selected relationship if a good match is found.")
             confidence: float = Field(..., description="Confidence score (0-1).")
-            reasoning: str = Field(..., description="Reasoning for the selection or refinement.")
             refined_query: Optional[str] = Field(None, description="A refined search query if no good match is found.")
 
         structured_llm = self.llm.with_structured_output(Decision)
@@ -77,8 +79,7 @@ class AnalystAgent:
             f"1. Evaluate if any of the candidates accurately describe the relationship in the fact.\n"
             f"2. If a good match is found (confidence > 0.8), select it.\n"
             f"3. If NO good match is found, provide a 'refined_query' that might better retrieve the correct relationship. "
-            f"The refined query should be a better description of the relationship.\n"
-            f"4. Provide reasoning for your decision."
+            f"The refined query should be a better description of the relationship."
         )
 
         result = structured_llm.invoke(prompt)
@@ -86,11 +87,10 @@ class AnalystAgent:
         if result.selected_relationship and result.confidence > 0.7: # Threshold
             return RelationshipClassification(
                 relationship=result.selected_relationship,
-                confidence=result.confidence,
-                reasoning=result.reasoning
+                confidence=result.confidence
             )
         elif result.refined_query:
             return result.refined_query
         else:
             # Fallback if model doesn't select or refine (shouldn't happen with strict schema, but good to handle)
-            return result.reasoning # Or some default behavior
+            return "No classification made." # Or some default behavior

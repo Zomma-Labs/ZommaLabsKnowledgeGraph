@@ -13,11 +13,16 @@ class AtomicFact(BaseModel):
             "4. PRESERVE NUANCE: Keep descriptive adjectives like 'undercutting' or 'declining' as they appear in text."
         )
     )
-    entities: List[str] = Field(
-        ..., 
+    subject: str = Field(
+        ...,
+        description="The entity performing the action (e.g., 'Apple', 'The Federal Reserve')."
+    )
+    object: Optional[str] = Field(
+        None,
         description=(
-            "List of specific Named Entities (Companies, People, Locations) involved in this fact. "
-            "Keep names raw as they appear in text."
+            "The entity or concept receiving the action. "
+            "If a specific entity is involved (e.g., 'Microsoft'), use it. "
+            "If no specific entity is found, extract the key Financial/Economic Concept (e.g., 'Revenue', 'Inflation')."
         )
     )
     date_context: Optional[str] = Field(

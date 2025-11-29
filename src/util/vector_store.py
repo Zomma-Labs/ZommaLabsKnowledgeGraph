@@ -9,15 +9,19 @@ from src.schemas.relationship import RelationshipDefinition, RelationshipType
 load_dotenv()
 
 class VectorStore:
-    def __init__(self, collection_name: str = "relationships", path: str = "qdrant_data"):
+    def __init__(self, collection_name: str = "relationships", path: str = "qdrant_relationships", client: Optional[QdrantClient] = None):
         """
         Initialize the VectorStore with Qdrant and VoyageAI.
         
         Args:
             collection_name: Name of the Qdrant collection.
             path: Path to the Qdrant data directory (for local mode).
+            client: Optional existing QdrantClient instance.
         """
-        self.client = QdrantClient(path=path)
+        if client:
+            self.client = client
+        else:
+            self.client = QdrantClient(path=path)
         self.collection_name = collection_name
         # Ensure VOYAGE_API_KEY is set in environment
         self.voyage_client = voyageai.Client() 
