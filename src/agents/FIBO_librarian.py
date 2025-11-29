@@ -12,13 +12,16 @@ from rapidfuzz import process, fuzz
 from src.util.llm_client import get_embeddings
 
 # Reuse configuration (should ideally be in settings.py)
-QDRANT_PATH = "./qdrant_data"
+QDRANT_PATH = "./qdrant_fibo"
 COLLECTION_NAME = "fibo_entities"
 
 class FIBOLibrarian:
-    def __init__(self):
+    def __init__(self, client: Optional[QdrantClient] = None):
         print("📚 Initializing FIBO Librarian...")
-        self.client = QdrantClient(path=QDRANT_PATH)
+        if client:
+            self.client = client
+        else:
+            self.client = QdrantClient(path=QDRANT_PATH)
         self.embeddings = get_embeddings()
         
         # Load "Ground Truth" labels for Fuzzy Search

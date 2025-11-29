@@ -32,7 +32,7 @@ DEPENDENCIES:
 import os
 from typing import List
 from langchain_core.messages import BaseMessage
-from schemas.atomic_fact import AtomicFact, AtomicFactList
+from src.schemas.atomic_fact import AtomicFact, AtomicFactList
 from src.util.llm_client import get_llm
 
 def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
@@ -52,7 +52,9 @@ def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
         "Make every fact standalone in time.\n"
         "3. ATOMICITY: Each fact must be a single, simple sentence. Split compound sentences.\n"
         "4. PRESERVE DETAILS: Do not summarize away important numbers, metrics, or specific adjectives.\n"
-        "5. KEY CONCEPTS: Extract high-level financial/economic concepts (e.g., 'Inflation', 'Rates').\n\n"
+        "5. KEY CONCEPTS: Extract high-level financial/economic concepts (e.g., 'Inflation', 'Rates').\n"
+        "6. SUBJECT/OBJECT IDENTIFICATION: Identify the 'subject' (who did it) and 'object' (who received it). "
+        "If the object is not a specific entity, extract the key concept (e.g., 'Revenue') as the object.\n\n"
         f"METADATA:\n{metadata}"
     )
 

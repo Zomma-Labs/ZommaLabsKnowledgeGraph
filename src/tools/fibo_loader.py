@@ -11,45 +11,68 @@ USAGE:
 import rdflib
 import uuid
 import os
+import sys
+import json
+import glob
 from typing import List, Dict
+
+# Add project root to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, VectorParams, Distance
 from src.util.llm_client import get_embeddings
 
 # --- Configuration ---
-# --- Configuration ---
-# We stream these specific modules to build a "Fed-Aware" Knowledge Graph.
+FIBO_BASE = "https://spec.edmcouncil.org/fibo/ontology/master/latest"
+
 FIBO_URLS = [
-    # 1. THE ACTORS (Companies & Government)
-    # Essential for "Green Dot Bank" or "Department of Labor"
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/BE/LegalEntities/LegalPersons.ttl",
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/BE/Corporations/Corporations.ttl",
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/BE/GovernmentEntities/GovernmentEntities.ttl",
-    
-    # 2. THE REGULATORS (The Fed System)
-    # Essential for "Board of Governors", "District 12", "Central Bank"
-    # Note: USRegulatoryAgencies is critical for specific Fed Banks (NY Fed, SF Fed)
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/FBC/FunctionalEntities/RegulatoryAgencies.ttl",
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/FBC/FunctionalEntities/NorthAmericanEntities/USRegulatoryAgencies.ttl",
+    # --- 1. BUSINESS ENTITIES (The Actors) ---
+    f"{FIBO_BASE}/BE/LegalEntities/LegalPersons.ttl",
+    f"{FIBO_BASE}/BE/LegalEntities/CorporateBodies.ttl",
+    f"{FIBO_BASE}/BE/Corporations/Corporations.ttl",
+    f"{FIBO_BASE}/BE/GovernmentEntities/GovernmentEntities.ttl",
+    f"{FIBO_BASE}/BE/Partnerships/Partnerships.ttl",
+    f"{FIBO_BASE}/BE/Trusts/Trusts.ttl",
+    f"{FIBO_BASE}/BE/OwnershipAndControl/OwnershipParties.ttl",
 
-    # 3. THE ECONOMY (Macro Signals)
-    # Essential for "Inflation", "CPI", "Unemployment", "GDP"
-    # This is the single most important file for the Beige Book.
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/IND/EconomicIndicators/EconomicIndicators.ttl",
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/IND/InterestRates/InterestRates.ttl",
+    # --- 2. REGULATORS & AGENCIES (The Rules) ---
+    f"{FIBO_BASE}/FBC/FunctionalEntities/RegulatoryAgencies.ttl",
+    f"{FIBO_BASE}/FBC/FunctionalEntities/NorthAmericanEntities/USRegulatoryAgencies.ttl",
+    f"{FIBO_BASE}/FBC/FunctionalEntities/RegistrationAuthorities.ttl",
 
-    # 4. THE GEOGRAPHY (Districts & Regions)
-    # Essential for "New York Region", "Midwest", "Sunbelt"
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/FND/Places/Locations.ttl",
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/FND/Places/Addresses.ttl",
+    # --- 3. MACROECONOMICS (The Numbers) ---
+    f"{FIBO_BASE}/IND/EconomicIndicators/EconomicIndicators.ttl",
+    f"{FIBO_BASE}/IND/InterestRates/InterestRates.ttl",
+    f"{FIBO_BASE}/IND/ForeignExchange/ForeignExchange.ttl",
 
-    # 5. THE PRODUCTS (What they sell/buy)
-    # Essential for "Mortgage demand", "Commercial Loans", "Securities"
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/FBC/FinancialInstruments/FinancialInstruments.ttl",
-    "https://spec.edmcouncil.org/fibo/ontology/master/latest/LOAN/LoansGeneral/Loans.ttl", 
+    # --- 4. FINANCIAL INSTRUMENTS (The Assets) ---
+    f"{FIBO_BASE}/FBC/FinancialInstruments/FinancialInstruments.ttl",
+    f"{FIBO_BASE}/SEC/Equities/Equities.ttl",
+    f"{FIBO_BASE}/SEC/Debt/Bonds.ttl",
+    f"{FIBO_BASE}/LOAN/LoansGeneral/Loans.ttl",
+
+    # --- 5. FOUNDATIONS (Time & Place) ---
+    f"{FIBO_BASE}/FND/Places/Locations.ttl",
+    f"{FIBO_BASE}/FND/Places/Addresses.ttl",
+    f"{FIBO_BASE}/FND/AgentsAndPeople/Agents.ttl",
+    f"{FIBO_BASE}/FND/Agreements/Contracts.ttl",
+
+    # --- 6. DOCUMENTS & REPORTS (NEW - Crucial for "Beige Book") ---
+    # Defines "Report", "Publication", "Record".
+    # Without this, "Beige Book" is just a string. With this, it is a "Periodical".
+    f"{FIBO_BASE}/FND/Arrangements/Documents.ttl",
+    f"{FIBO_BASE}/FND/Arrangements/Reporting.ttl",
+
+    # --- 7. MARKETS & ANALYTICS (NEW - Crucial for "Economic Conditions") ---
+    # Defines "Market", "Situation", "Analysis", "Outlook".
+    # This allows you to resolve "Labor Market" to a specific concept.
+    f"{FIBO_BASE}/FBC/FunctionalEntities/Markets.ttl",
+    f"{FIBO_BASE}/FND/Utilities/Analytics.ttl",
+    f"{FIBO_BASE}/FND/DatesAndTimes/Occurrences.ttl", # Defines "Events" vs "Situations"
 ]
 
-QDRANT_PATH = "./qdrant_data"  # Local persistence
+QDRANT_PATH = "./qdrant_fibo"  # Local persistence
 COLLECTION_NAME = "fibo_entities"
 # Voyage finance-2 dimension is 1024
 VECTOR_SIZE = 1024 
@@ -98,6 +121,34 @@ def fetch_and_parse_fibo() -> List[Dict]:
     print(f"   found {len(concepts)} unique concepts.")
     return concepts
 
+def load_aliases() -> List[Dict]:
+    """Loads manual aliases from src/config/aliases/*.json"""
+    print("📂 Loading Manual Aliases...")
+    alias_files = glob.glob("src/config/aliases/*.json")
+    
+    aliases = []
+    for filepath in alias_files:
+        print(f"   - Reading {filepath}...")
+        try:
+            with open(filepath, 'r') as f:
+                data = json.load(f)
+                for item in data:
+                    # Construct search text including synonyms
+                    synonyms_str = ", ".join(item.get("synonyms", []))
+                    search_text = f"Term: {item['label']}\nSynonyms: {synonyms_str}\nDefinition: {item['definition']}"
+                    
+                    aliases.append({
+                        "uri": item["uri"],
+                        "label": item["label"],
+                        "definition": item["definition"],
+                        "search_text": search_text
+                    })
+        except Exception as e:
+            print(f"   ⚠️ Failed to load aliases from {filepath}: {e}")
+            
+    print(f"   ✅ Loaded {len(aliases)} manual aliases.")
+    return aliases
+
 def index_to_qdrant(concepts: List[Dict]):
     """Embeds text and pushes to Vector DB."""
     print("🧠 Generating Embeddings (this may take a moment)...")
@@ -139,9 +190,14 @@ def index_to_qdrant(concepts: List[Dict]):
         collection_name=COLLECTION_NAME,
         points=points
     )
-    print(f"   ✅ Successfully indexed {len(points)} FIBO concepts.")
+    print(f"   ✅ Successfully indexed {len(points)} concepts (FIBO + Aliases).")
 
 if __name__ == "__main__":
-    data = fetch_and_parse_fibo()
-    if data:
-        index_to_qdrant(data)
+    fibo_data = fetch_and_parse_fibo()
+    alias_data = load_aliases()
+    
+    # Combine datasets
+    all_concepts = fibo_data + alias_data
+    
+    if all_concepts:
+        index_to_qdrant(all_concepts)
