@@ -1,0 +1,386 @@
+[
+    {
+        "name": "ACQUIRED",
+        "description": "One entity purchasing another entity, typically involving the transfer of ownership and control. This includes mergers, acquisitions, and buying majority stakes.",
+        "examples": [
+            "Alphabet Inc. completed the purchase of the fitness tracker company Fitbit for $2.1 billion.",
+            "Salesforce signed a definitive agreement to buy Slack Technologies."
+        ]
+    },
+    {
+        "name": "SUED",
+        "description": "One entity initiating legal proceedings against another entity. This includes filing lawsuits, patent disputes, and other legal complaints.",
+        "examples": [
+            "Waymo filed a legal complaint against Uber alleging theft of trade secrets.",
+            "Epic Games took Apple to court over App Store fees and policies."
+        ]
+    },
+    {
+        "name": "PARTNERED",
+        "description": "Two or more entities agreeing to cooperate to advance their mutual interests. This includes strategic alliances, joint ventures, and collaboration agreements.",
+        "examples": [
+            "Microsoft and OpenAI announced a multi-year agreement to accelerate AI breakthroughs.",
+            "Starbucks and Spotify joined forces to create a music ecosystem for coffee shops."
+        ]
+    },
+    {
+        "name": "INVESTED",
+        "description": "One entity allocating capital to another entity with the expectation of a future financial return. This includes venture capital funding, equity stakes, and buying shares.",
+        "examples": [
+            "Berkshire Hathaway bought a significant stake in Snowflake prior to its IPO.",
+            "Andreessen Horowitz led the Series A funding round for the new crypto startup."
+        ]
+    },
+    {
+        "name": "DIVESTED",
+        "description": "One entity disposing of a business unit, subsidiary, or investment. This includes spin-offs, selling off assets, or reducing ownership stakes.",
+        "examples": [
+            "eBay spun off PayPal into a separate publicly traded company.",
+            "General Electric sold its biopharma business to Danaher Corporation."
+        ]
+    },
+    {
+        "name": "HIRED",
+        "description": "An entity employing a person, often an executive or key figure, from another entity or generally.",
+        "examples": [
+            "Uber appointed the former Expedia CEO as its new Chief Executive Officer.",
+            "Tesla recruited a top battery researcher from Dalhousie University."
+        ]
+    },
+    {
+        "name": "REGULATED",
+        "description": "A government or regulatory body imposing rules, fines, or restrictions on an entity. This includes antitrust actions, investigations, and compliance orders.",
+        "examples": [
+            "The European Commission fined Google for antitrust violations related to Android.",
+            "The SEC charged the crypto exchange with operating an unregistered securities offering."
+        ]
+    },
+    {
+        "name": "LAUNCHED_PRODUCT",
+        "description": "An entity introducing a new product or service to the market.",
+        "examples": [
+            "Apple unveiled the Vision Pro headset at its annual developer conference.",
+            "Amazon rolled out a new pharmacy service for Prime members."
+        ]
+    },
+    {
+        "name": "EXPANDED",
+        "description": "An entity increasing its operations, physical footprint, or market presence. This includes opening new offices, entering new countries, or increasing production capacity.",
+        "examples": [
+            "Tesla opened a new Gigafactory in Berlin to serve the European market.",
+            "Netflix launched its streaming service in 130 new countries simultaneously."
+        ]
+    },
+    {
+        "name": "CLOSED",
+        "description": "An entity shutting down operations, branches, or product lines. This includes store closures, discontinuing services, or ceasing business.",
+        "examples": [
+            "Google announced it would shut down its internal game development studios.",
+            "Macy's plans to close 125 department stores over the next three years."
+        ]
+    },
+    {
+        "name": "REPORTED_FINANCIALS",
+        "description": "An entity releasing its periodic financial results. This includes earnings reports, 10-Ks, 10-Qs, and revenue figures.",
+        "examples": [
+            "Nvidia reported Q3 revenue of $18.1 billion, beating analyst estimates.",
+            "Tesla posted a decline in gross margins for the fiscal year 2023."
+        ]
+    },
+    {
+        "name": "ISSUED_GUIDANCE",
+        "description": "An entity providing forward-looking projections about its future performance. This includes raising or lowering revenue forecasts or EPS targets.",
+        "examples": [
+            "Target warned of softer sales in the upcoming holiday quarter.",
+            "Microsoft raised its full-year revenue outlook citing strong cloud demand."
+        ]
+    },
+    {
+        "name": "DECLARED_DIVIDEND",
+        "description": "An entity announcing a payment to shareholders. This includes regular cash dividends, special dividends, or suspending dividends.",
+        "examples": [
+            "Ford declared a supplemental dividend of 18 cents per share.",
+            "Disney announced it would reinstate its cash dividend after a three-year pause."
+        ]
+    },
+    {
+        "name": "AUTHORIZED_BUYBACK",
+        "description": "An entity announcing a plan to repurchase its own shares. This includes share repurchase programs and ASRs.",
+        "examples": [
+            "Chevron announced a new $75 billion share buyback program.",
+            "Apple authorized an additional $90 billion for share repurchases."
+        ]
+    },
+    {
+        "name": "ISSUED_DEBT",
+        "description": "An entity raising capital by selling bonds or taking out loans. This includes notes offerings, credit facilities, and refinancing.",
+        "examples": [
+            "Oracle sold $10 billion in bonds to fund its acquisition of Cerner.",
+            "Coinbase raised $1 billion through a convertible notes offering."
+        ]
+    },
+    {
+        "name": "DEFAULTED",
+        "description": "An entity failing to meet its debt obligations. This includes missing interest payments or principal repayments.",
+        "examples": [
+            "Evergrande missed a crucial interest payment on its offshore bonds.",
+            "The country defaulted on its sovereign debt for the first time in a century."
+        ]
+    },
+    {
+        "name": "FILED_BANKRUPTCY",
+        "description": "An entity legally declaring inability to pay its debts. This includes Chapter 11 reorganization or Chapter 7 liquidation.",
+        "examples": [
+            "FTX filed for Chapter 11 bankruptcy protection in Delaware.",
+            "WeWork officially filed for bankruptcy after years of struggles."
+        ]
+    },
+    {
+        "name": "SETTLED_LEGAL_DISPUTE",
+        "description": "An entity resolving a legal dispute, usually by paying a sum of money, without admitting liability. This includes class action settlements.",
+        "examples": [
+            "Facebook agreed to pay $725 million to settle the Cambridge Analytica privacy lawsuit.",
+            "Juul settled thousands of lawsuits related to its marketing practices."
+        ]
+    },
+    {
+        "name": "GRANTED_PATENT",
+        "description": "An entity receiving official rights to an invention or intellectual property.",
+        "examples": [
+            "IBM was granted a patent for a quantum computing processor.",
+            "Apple received a patent for a foldable iPhone display mechanism."
+        ]
+    },
+    {
+        "name": "RECALLED_PRODUCT",
+        "description": "An entity requesting the return of a product due to safety concerns or defects.",
+        "examples": [
+            "Toyota recalled 1 million vehicles due to a potential airbag defect.",
+            "Peloton recalled its Tread+ treadmill following safety reports."
+        ]
+    },
+    {
+        "name": "EXPERIENCED_DATA_BREACH",
+        "description": "An entity suffering a security incident where sensitive data was accessed without authorization.",
+        "examples": [
+            "T-Mobile revealed a data breach affecting 37 million customer accounts.",
+            "MGM Resorts suffered a cyberattack that disrupted its operations for days."
+        ]
+    },
+    {
+        "name": "EXECUTIVE_RESIGNATION",
+        "description": "A key executive or board member stepping down from their position.",
+        "examples": [
+            "Jeff Bezos stepped down as CEO of Amazon to become Executive Chairman.",
+            "The CFO resigned unexpectedly citing personal reasons."
+        ]
+    },
+    {
+        "name": "ANALYST_RATING_CHANGE",
+        "description": "An external financial analyst changing their investment recommendation or price target for an entity.",
+        "examples": [
+            "Goldman Sachs upgraded Netflix to 'Buy' from 'Neutral'.",
+            "Morgan Stanley downgraded the chipmaker citing inventory concerns."
+        ]
+    },
+    {
+        "name": "RAISED_POLICY_RATE",
+        "description": "A central bank increasing its benchmark interest rate to curb inflation or cool the economy.",
+        "examples": [
+            "The Federal Reserve raised the federal funds rate by 25 basis points.",
+            "The European Central Bank hiked rates to combat soaring inflation."
+        ]
+    },
+    {
+        "name": "LOWERED_POLICY_RATE",
+        "description": "A central bank decreasing its benchmark interest rate to stimulate economic growth.",
+        "examples": [
+            "The Bank of England cut interest rates to support the post-Brexit economy.",
+            "The PBOC lowered its loan prime rate to boost the property sector."
+        ]
+    },
+    {
+        "name": "REPORTED_ECONOMIC_DATA",
+        "description": "A government agency or organization releasing key economic indicators such as GDP, CPI, unemployment, or retail sales.",
+        "examples": [
+            "The Bureau of Labor Statistics reported that the US economy added 336,000 jobs in September.",
+            "China reported a 4.5% GDP growth in the first quarter."
+        ]
+    },
+    {
+        "name": "IMPOSED_SANCTIONS",
+        "description": "A government or international body applying commercial and financial penalties against a targeted entity or country.",
+        "examples": [
+            "The US imposed new sanctions on several Russian banks.",
+            "The EU announced trade restrictions on companies aiding the conflict."
+        ]
+    },
+    {
+        "name": "ESTABLISHED_SUBSIDIARY",
+        "description": "An entity creating a new separate legal entity to handle specific operations, often in a new region or sector.",
+        "examples": [
+            "Alphabet established Waymo as a standalone subsidiary for self-driving technology.",
+            "Alibaba set up a new logistics subsidiary to handle international shipping."
+        ]
+    },
+    {
+        "name": "INTEGRATED_SUBSIDIARY",
+        "description": "An entity merging a subsidiary back into the parent company or consolidating operations.",
+        "examples": [
+            "Microsoft integrated its Nuance acquisition into its healthcare division.",
+            "Disney consolidated its streaming services under a single media division."
+        ]
+    },
+    {
+        "name": "SPUN_OFF",
+        "description": "An entity creating an independent company from an existing division or subsidiary, distributing shares to existing shareholders.",
+        "examples": [
+            "Johnson & Johnson spun off its consumer health business as Kenvue.",
+            "Daimler spun off its truck division into a separate listed company."
+        ]
+    },
+    {
+        "name": "REPORTED_WAGE_PRESSURE_EASING",
+        "description": "A report stating that the rate of wage growth is slowing down or that pressure to raise wages has diminished. A key inflation signal.",
+        "examples": [
+            "Contacts noted that wage pressures were easing as the supply of labor improved.",
+            "Firms reported that wage growth had moderated back to pre-pandemic levels."
+        ]
+    },
+    {
+        "name": "REPORTED_WAGE_PRESSURE_RISING",
+        "description": "A report stating that businesses are facing increasing pressure to raise wages to attract or retain talent.",
+        "examples": [
+            "Manufacturers reported continued upward pressure on wages due to skilled labor shortages.",
+            "Service firms raised starting wages significantly to compete for workers."
+        ]
+    },
+    {
+        "name": "REPORTED_LABOR_MARKET_SOFTENING",
+        "description": "A report indicating that hiring has slowed, turnover has decreased, or it has become easier to find workers.",
+        "examples": [
+            "Hiring activity slowed across the district as firms became more cautious.",
+            "Contacts reported that it was easier to fill open positions than in previous months."
+        ]
+    },
+    {
+        "name": "REPORTED_PRICING_POWER_EROSION",
+        "description": "A report stating that businesses are unable to pass on higher costs to consumers due to pushback or competition.",
+        "examples": [
+            "Retailers noted that customers were becoming more price-sensitive, limiting their ability to raise prices.",
+            "Firms reported that they had to absorb higher input costs as pricing power eroded."
+        ]
+    },
+    {
+        "name": "REPORTED_CONSUMER_TRADING_DOWN",
+        "description": "A report indicating that consumers are shifting purchases to cheaper alternatives or discount brands. A classic recessionary signal.",
+        "examples": [
+            "Grocery stores reported that shoppers were trading down to private-label brands.",
+            "Discretionary spending shifted towards lower-cost entertainment options."
+        ]
+    },
+    {
+        "name": "REPORTED_CREDIT_QUALITY_DETERIORATION",
+        "description": "A report indicating a rise in delinquencies, defaults, or a decline in the creditworthiness of borrowers.",
+        "examples": [
+            "Banks reported a slight uptick in delinquencies for subprime auto loans.",
+            "Credit card delinquency rates rose above pre-pandemic levels."
+        ]
+    },
+    {
+        "name": "REPORTED_LENDING_STANDARDS_TIGHTENING",
+        "description": "A report stating that banks are making it harder to get loans by increasing requirements or reducing limits.",
+        "examples": [
+            "Lenders tightened standards for commercial real estate loans due to valuation concerns.",
+            "Banks reported stricter collateral requirements for business loans."
+        ]
+    },
+    {
+        "name": "REPORTED_CRE_DISTRESS",
+        "description": "A report highlighting specific stress in the Commercial Real Estate (CRE) sector, such as high vacancies or valuation drops.",
+        "examples": [
+            "Office vacancy rates remained high, leading to distress in the downtown CRE market.",
+            "Contacts reported difficulty refinancing maturing office building loans."
+        ]
+    },
+    {
+        "name": "REPORTED_INVENTORY_BUILDUP",
+        "description": "A report stating that businesses have more inventory than desired, often leading to discounting.",
+        "examples": [
+            "Retailers reported excess inventory in apparel and home goods.",
+            "Manufacturers noted an unintended buildup of finished goods as demand slowed."
+        ]
+    },
+    {
+        "name": "REPORTED_CAPEX_DELAY",
+        "description": "A report stating that businesses are postponing or cancelling planned capital expenditures due to uncertainty or high interest rates.",
+        "examples": [
+            "Many firms reported pausing construction projects due to high financing costs.",
+            "Capital spending plans were scaled back amid economic uncertainty."
+        ]
+    },
+    {
+        "name": "REPORTED_OUTLOOK_UNCERTAINTY",
+        "description": "A report stating that business confidence has waned or that the future economic outlook has become more uncertain.",
+        "examples": [
+            "Contacts expressed increased pessimism about the economic outlook for the next six months.",
+            "Uncertainty regarding the election caused firms to delay strategic decisions."
+        ]
+    },
+    {
+        "name": "REPORTED_ECONOMIC_ACTIVITY",
+        "description": "General statements about the overall speed or health of the economy (e.g., growth, stagnation, recession).",
+        "examples": [
+            "Economic activity was little changed.",
+            "The pace of growth decelerated."
+        ]
+    },
+    {
+        "name": "REPORTED_LABOR_CONDITIONS",
+        "description": "Statements regarding employment levels, hiring difficulties, turnover, or labor supply.",
+        "examples": [
+            "Hiring was flat.",
+            "Firms reported difficulty finding skilled workers."
+        ]
+    },
+    {
+        "name": "REPORTED_WAGE_TRENDS",
+        "description": "Specific reporting on salary changes, wage pressures, or compensation costs. (Distinct from general labor conditions).",
+        "examples": [
+            "Wage growth moderated.",
+            "Starting salaries rose 10%."
+        ]
+    },
+    {
+        "name": "REPORTED_PRICE_PRESSURES",
+        "description": "Statements regarding inflation, input costs, or selling prices.",
+        "examples": [
+            "Input costs rose due to tariffs.",
+            "Selling prices held steady."
+        ]
+    },
+    {
+        "name": "REPORTED_CONSUMER_SPENDING",
+        "description": "Trends in retail, tourism, hospitality, and general consumer demand.",
+        "examples": [
+            "Retailers noted softer demand for discretionary items.",
+            "Tourism activity exceeded expectations."
+        ]
+    },
+    {
+        "name": "REPORTED_CREDIT_CONDITIONS",
+        "description": "Banking sector reports on loan volume, credit quality, delinquency, or lending standards.",
+        "examples": [
+            "Loan demand fell due to high rates.",
+            "Credit quality remained healthy."
+        ]
+    },
+    {
+        "name": "REPORTED_REAL_ESTATE",
+        "description": "Specifics on commercial or residential real estate markets, construction, and leasing.",
+        "examples": [
+            "Commercial office vacancy rates remained high.",
+            "Home sales were flat."
+        ]
+    }
+]
