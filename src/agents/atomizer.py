@@ -62,8 +62,49 @@ def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
         ("system", system_prompt),
         ("human", chunk_text)
     ])
+    
+    facts = response.atomic_facts
 
-    return response.atomic_facts
+    # --- REFLEXION LOOP ---
+    try:
+        from src.agents.graph_enhancer import GraphEnhancer
+        enhancer = GraphEnhancer()
+        
+        # Check for missed facts / concept promotion
+        missed_facts = enhancer.reflexion_check(chunk_text, facts)
+        
+        if missed_facts:
+            print(f"   ✨ Reflexion found {len(missed_facts)} potential improvements.")
+            
+            # We need to structure these missed facts into AtomicFact objects
+            # We can reuse the same structured_llm and system_prompt, 
+            # but we pass the missed facts as the "human" input to force extraction.
+            missed_facts_str = "\n".join(missed_facts)
+            reflexion_prompt = (
+                f"CONTEXT:\n{chunk_text}\n\n"
+                f"The following facts were identified as missing or needing improvement (Concept -> Entity promotion).\n"
+                f"Please structure them into Atomic Facts:\n\n{missed_facts_str}"
+            )
+            
+            reflexion_response = structured_llm.invoke([
+                ("system", system_prompt),
+                ("human", reflexion_prompt)
+            ])
+            
+            if reflexion_response.atomic_facts:
+                facts.extend(reflexion_response.atomic_facts)
+                print(f"   ✅ Added {len(reflexion_response.atomic_facts)} facts from Reflexion.")
+                
+    except Exception as e:
+        print(f"   ⚠️ Reflexion step failed: {e}")
+
+    # Deduplicate facts based on the 'fact' string
+    unique_facts = {}
+    for f in facts:
+        if f.fact not in unique_facts:
+            unique_facts[f.fact] = f
+    
+    return list(unique_facts.values())
 
 if __name__ == "__main__":
     pass

@@ -8,12 +8,18 @@ import asyncio
 import json
 from typing import Dict
 from src.workflows.main_pipeline import app
+from src.scripts.setup_graph_index import setup_index
 
 # Path to saved chunks
 CHUNKS_DIR = "src/chunker/SAVED"
 
 async def main():
     print("🚀 Starting Pipeline Run...")
+    
+    # Ensure Vector Indices Exist
+    print("\n⚙️ Setting up Vector Indices...")
+    setup_index()
+    print("✅ Indices Ready.\n")
     
     # 1. Load Chunks
     # We'll look for .jsonl files in the SAVED directory
