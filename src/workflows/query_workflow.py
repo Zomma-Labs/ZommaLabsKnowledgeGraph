@@ -22,7 +22,7 @@ class PlanExecuteState(TypedDict):
 class PlanExecuteWorkflow:
     def __init__(self):
         self.llm = get_llm()
-        self.tools = [lookup_entity, lookup_relationship, execute_cypher, search_graph_text]
+        self.tools = [lookup_entity, lookup_relationship, execute_cypher]
         
         # The Executor is a standard ReAct agent
         self.executor_agent = create_react_agent(self.llm, self.tools)
@@ -37,16 +37,31 @@ class PlanExecuteWorkflow:
             steps: List[str] = Field(description="List of steps to answer the user's question.")
             
         planner_prompt = ChatPromptTemplate.from_template(
-            """For the given objective, come up with a simple step-by-step plan.
-            This plan should involve looking up entities, finding relationship types, and then executing Cypher queries.
+            """For the given objective, create a step-by-step plan to "crawl" the knowledge graph and find the answer.
             
             Objective: {objective}
             
             Tools available:
-            - lookup_entity(query): Resolves names to FIBO URIs.
-            - lookup_relationship(description): Finds schema relationship types.
-            - execute_cypher(query): Runs Cypher.
-            - search_graph_text(keywords): Searches for text in facts (e.g. "wage pressures"). Use this FIRST if the query is about a general topic.
+            - lookup_entity(query): Finds existing entities in the graph by name. Returns Name and URI.
+            - lookup_relationship(description): Finds schema relationship types. Use this to understand how to traverse.
+            - execute_cypher(query): Runs Cypher queries. THIS IS YOUR MAIN TOOL FOR CRAWLING.
+            
+            Constraints:
+            - DO NOT plan to search the internet, external websites, or other datasets.
+            - ONLY use the provided tools to query the Neo4j Knowledge Graph.
+            - If you need information, you must find it in the graph.
+            
+            Strategy:
+            1. Identify key entities in the request and find their URIs using `lookup_entity`.
+            2. Identify the `fact_type` (relationship type) using `lookup_relationship`.
+            3. Construct a Cypher query using the **Fact-as-Node** pattern:
+               `MATCH (e:Entity {{uri: '...'}})-[:PERFORMED|TARGET]-(f:FactNode {{fact_type: '...'}}) RETURN f.content`
+            4. Crawl by traversing from FactNodes to other Entities or causally linked FactNodes.
+            
+            Example Plan:
+            1. Find URI for "Inflation".
+            2. Look up fact types for "increasing".
+            3. Query: `MATCH (e:Entity {{uri: '...'}})-[:PERFORMED|TARGET]-(f:FactNode)-[:TARGET|PERFORMED]-(other) WHERE f.fact_type = 'REPORTED_PRICE_PRESSURES' RETURN f.content, other.name`.
             """
         )
         planner = planner_prompt | self.llm.with_structured_output(Plan)
@@ -65,20 +80,32 @@ class PlanExecuteWorkflow:
         # Provide context from past steps
         context = "\n".join([f"Step: {step}\nResult: {result}" for step, result in state["past_steps"]])
         
-        prompt = f"""You are executing the following task: {task}
+        prompt = f"""You are an intelligent graph crawler. Your goal is to execute the following task by exploring the Knowledge Graph.
+        
+        Task: {task}
         
         Context from previous steps:
         {context}
         
-        Use your tools to complete this task. Return the result of your work.
+        Use your tools to explore. 
+        - Always start by finding existing entity URIs using `lookup_entity`.
+        - Use `lookup_relationship` to find the correct `fact_type` (e.g., `REPORTED_WAGE_PRESSURE`).
         
-        IMPORTANT SCHEMA RULES:
-        1. Nodes are ONLY labeled as `Entity` or `Concept`. Do NOT use other labels like `Person`, `Company`, etc.
-        2. Relationships must be one of the types returned by `lookup_relationship`.
-        3. RELATIONSHIP TYPES MUST BE ALL CAPS (e.g., `REPORTED_WAGE_PRESSURE_RISING`, not `Reported_Wage_Pressure_Rising`).
-        4. `Entity` nodes have `uri` and `name` properties.
-        5. Relationships have `fact`, `date`, and `confidence` properties.
-        6. When searching for text in facts, check `r.fact`.
+        IMPORTANT SCHEMA RULES (Fact-as-Node Pattern):
+        1. The graph uses a **Hypergraph** model. Relationships are NOT direct edges between entities.
+        2. **Nodes**: `Entity` (has `name`, `uri`), `FactNode` (has `content`, `fact_type`).
+        3. **Structure**: `(Entity)-[:PERFORMED]->(FactNode)-[:TARGET]->(Entity)`.
+        4. **Causality**: `(FactNode)-[:CAUSES]->(FactNode)`.
+        
+        HOW TO QUERY:
+        - To find facts about an entity: 
+          `MATCH (e:Entity {{uri: $uri}})-[:PERFORMED|TARGET]-(f:FactNode) RETURN f.fact_type, f.content`
+        - To find specific relationships:
+          `MATCH (e:Entity {{uri: $uri}})-[:PERFORMED]-(f:FactNode {{fact_type: 'REPORTED_WAGE_TRENDS'}})-[:TARGET]-(target) RETURN target.name, f.content`
+        
+        Constraints:
+        - DO NOT guess relationship types like `[:REPORTED_...]`. These are `fact_type` properties on `FactNode`s!
+        - The only edge types are `PERFORMED`, `TARGET`, `MENTIONED_IN`, `CAUSES`.
         """
         
         # Run the ReAct agent for this single step
@@ -107,6 +134,11 @@ class PlanExecuteWorkflow:
             
             Past Steps and Results:
             {past_steps}
+            
+            Constraints:
+            - DO NOT plan to search the internet, external websites, or other datasets.
+            - ONLY use the provided tools to query the Neo4j Knowledge Graph.
+            - If you cannot find the answer in the graph, state that information is missing in the graph.
             
             Update the plan. Remove completed steps. Add new steps if needed (e.g., if a lookup failed, try a different query).
             If you have enough information to answer the user's objective, provide the 'response'.
