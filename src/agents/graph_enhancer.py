@@ -60,13 +60,13 @@ class GraphEnhancer:
             print(f"Reflexion failed: {e}")
             return []
 
-    def find_graph_candidates(self, entity_name: str, top_k: int = 5) -> List[Dict]:
+    def find_graph_candidates(self, entity_name: str, group_id: str, top_k: int = 5) -> List[Dict]:
         """
         Performs a vector search on the Neo4j graph to find similar entities.
         """
         try:
             vector = self.embeddings.embed_query(entity_name)
-            results = self.neo4j.vector_search("entity_embeddings", vector, top_k)
+            results = self.neo4j.vector_search("entity_embeddings", vector, top_k, filters={"group_id": group_id})
             
             candidates = []
             for record in results:

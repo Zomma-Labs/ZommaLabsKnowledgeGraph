@@ -12237,3 +12237,491 @@ S: urn:uuid:6cebbefd-cdaa-48e1-a562-b995e338f92b (Outlooks) -> O: urn:uuid:0ac67
 ✅ Linked Subject: urn:uuid:6cebbefd-cdaa-48e1-a562-b995e338f92b
 ✅ Linked Object: urn:uuid:0ac67c34-7cec-436a-9cc1-6fae326d1cdb
 ✅ Linked Provenance
+
+--- Assembling Fact: released... ---
+S: urn:test:apple (Apple) -> O: urn:test:iphone15 (iPhone 15)
+✅ Embedding generated.
+
+--- Assembling Fact: released... ---
+S: urn:test:tesla (Tesla) -> O: urn:test:cybertruck (Cybertruck)
+✅ Embedding generated.
+
+--- Assembling Fact: released... ---
+S: urn:test:apple (Apple) -> O: urn:test:iphone15 (iPhone 15)
+✅ Embedding generated.
+✅ Node created: fbb76384-3008-4825-806d-3454f5740724
+✅ Linked Subject: urn:test:apple
+✅ Linked Object: urn:test:iphone15
+✅ Linked Provenance
+
+--- Assembling Fact: released... ---
+S: urn:test:apple (Apple) -> O: urn:test:iphone15 (iPhone 15)
+✅ Embedding generated.
+✅ Node created: 244fff4c-ff16-4258-b97a-b1841ef59ba4
+✅ Linked Subject: urn:test:apple
+✅ Linked Object: urn:test:iphone15
+✅ Linked Provenance
+
+--- Assembling Fact: released... ---
+S: urn:test:tesla (Tesla) -> O: urn:test:cybertruck (Cybertruck)
+✅ Embedding generated.
+✅ Node created: 75e30810-0fcd-40c0-a93b-553ee10cb55b
+✅ Linked Subject: urn:test:tesla
+✅ Linked Object: urn:test:cybertruck
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book summarizes commentary on current ec... ---
+S: urn:uuid:7a31e3f6-42df-449c-b472-22bf6f2126f4 (The Federal Reserve System) -> O: urn:uuid:7947ac3a-a4e1-489a-a533-48ce57187c1a (Economic Conditions)
+✅ Embedding generated.
+✅ Node created: 31ce678c-ffa4-4206-ba98-1a03392eb905
+✅ Linked Subject: urn:uuid:7a31e3f6-42df-449c-b472-22bf6f2126f4
+✅ Linked Object: urn:uuid:7947ac3a-a4e1-489a-a533-48ce57187c1a
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book is published by the Federal Reserve... ---
+S: urn:uuid:d3ca9a63-484e-4bba-a43e-0a2fb0912291 (The Beige Book) -> O: urn:uuid:b8970462-c80e-4dfc-add7-01ec1c28602d (Federal Reserve System)
+✅ Embedding generated.
+✅ Node created: 881ab757-511c-4c19-b4ea-3946234c214a
+✅ Linked Subject: urn:uuid:d3ca9a63-484e-4bba-a43e-0a2fb0912291
+✅ Linked Object: urn:uuid:b8970462-c80e-4dfc-add7-01ec1c28602d
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book summarizes commentary on current ec... ---
+S: urn:uuid:ffa0ecc4-b635-4589-8527-a0fd37f544be (The Federal Reserve System) -> O: urn:uuid:58ee9234-408d-4f20-8181-acdc923a956f (Economic Conditions)
+✅ Embedding generated.
+✅ Linked Subject: urn:uuid:ffa0ecc4-b635-4589-8527-a0fd37f544be
+✅ Linked Object: urn:uuid:58ee9234-408d-4f20-8181-acdc923a956f
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book is published by the Federal Reserve... ---
+S: urn:uuid:b13f0400-ad2a-4b44-a445-4c1b3a26adda (The Beige Book) -> O: urn:uuid:c1c75390-8023-4299-8671-ad212b03f835 (Federal Reserve System)
+✅ Embedding generated.
+✅ Linked Subject: urn:uuid:b13f0400-ad2a-4b44-a445-4c1b3a26adda
+✅ Linked Object: urn:uuid:c1c75390-8023-4299-8671-ad212b03f835
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book is a Federal Reserve System publica... ---
+S: urn:uuid:c1c4ea9b-1302-47a3-b60a-92a830c9c8db (The Beige Book) -> O: urn:uuid:cd2665d2-fbe8-4ef3-ba80-d9cfa5a46709 (Federal Reserve System publication)
+✅ Embedding generated.
+✅ Linked Subject: urn:uuid:c1c4ea9b-1302-47a3-b60a-92a830c9c8db
+✅ Linked Object: urn:uuid:cd2665d2-fbe8-4ef3-ba80-d9cfa5a46709
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book characterizes regional economic con... ---
+S: urn:uuid:5b54079e-7459-43b6-b441-429368f7b914 (The Beige Book) -> O: urn:uuid:66a9e4e0-8b3c-4a76-8a08-52f1ae9f4f92 (regional economic conditions and prospects)
+✅ Embedding generated.
+✅ Node created: dc068585-fdcb-4f93-97a5-eb8bb6ed8e10
+✅ Linked Subject: urn:uuid:5b54079e-7459-43b6-b441-429368f7b914
+✅ Linked Object: urn:uuid:66a9e4e0-8b3c-4a76-8a08-52f1ae9f4f92
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book gathers information directly from e... ---
+S: urn:uuid:577995aa-415e-4815-a5f9-d6417e0fd680 (The Beige Book) -> O: urn:uuid:ee8394bc-3a1e-4f83-8b75-af157478fb03 (District's sources)
+✅ Embedding generated.
+✅ Node created: 0b898d29-fa3f-4fdb-9518-b0bb662fe9eb
+✅ Linked Subject: urn:uuid:577995aa-415e-4815-a5f9-d6417e0fd680
+✅ Linked Object: urn:uuid:ee8394bc-3a1e-4f83-8b75-af157478fb03
+✅ Linked Provenance
+
+--- Assembling Fact: Reports are published eight times per year.... ---
+S: urn:uuid:4c184de0-3f68-4755-85cc-7d683a988630 (Reports) -> O: urn:uuid:aee1f53f-24fe-45fd-a587-06e657d7fd80 (publication frequency)
+✅ Embedding generated.
+✅ Node created: e2b528af-2d58-4c8c-97fd-4726dc7f25f2
+✅ Linked Subject: urn:uuid:4c184de0-3f68-4755-85cc-7d683a988630
+✅ Linked Object: urn:uuid:aee1f53f-24fe-45fd-a587-06e657d7fd80
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book is published eight times per year.... ---
+S: urn:uuid:105c6052-6ac0-42e4-bf8e-ae92257686aa (The Beige Book) -> O: None (None)
+✅ Embedding generated.
+✅ Node created: fe7cdb9c-0c5f-4606-83a3-6ce6bf4c58b9
+✅ Linked Subject: urn:uuid:105c6052-6ac0-42e4-bf8e-ae92257686aa
+✅ Linked Provenance
+
+--- Assembling Fact: The purpose of the Beige Book is to characterize t... ---
+S: urn:uuid:cc60a101-22d7-4a2c-9239-59876e194ce1 (The Beige Book) -> O: urn:uuid:14418019-ba51-4874-a29a-12ef793cbbb9 (Economic Conditions)
+✅ Embedding generated.
+✅ Node created: 4bb88e33-fdb8-4e83-ab2b-b12d40a6f941
+✅ Linked Subject: urn:uuid:cc60a101-22d7-4a2c-9239-59876e194ce1
+✅ Linked Object: urn:uuid:14418019-ba51-4874-a29a-12ef793cbbb9
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book collects information from a wide ra... ---
+S: urn:uuid:de53dcc3-98d1-44c5-baae-efcd3aaa9dd2 (The Beige Book) -> O: urn:uuid:db07282f-98bb-4929-885f-824509f962ad (Information Collection)
+✅ Embedding generated.
+✅ Node created: 340cccb8-4751-42de-ac26-050a28e33d13
+✅ Linked Subject: urn:uuid:de53dcc3-98d1-44c5-baae-efcd3aaa9dd2
+✅ Linked Object: urn:uuid:db07282f-98bb-4929-885f-824509f962ad
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book can complement other forms of regio... ---
+S: urn:uuid:5653c408-9e59-4c3a-98ff-6581adb5d85c (The Beige Book) -> O: urn:uuid:843277c1-a93e-4c8e-9826-d93babbc70cd (Regional Information Gathering)
+✅ Embedding generated.
+✅ Node created: 2f752238-cad3-4411-8e92-67fad1fe512d
+✅ Linked Subject: urn:uuid:5653c408-9e59-4c3a-98ff-6581adb5d85c
+✅ Linked Object: urn:uuid:843277c1-a93e-4c8e-9826-d93babbc70cd
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book is not a commentary on the views of... ---
+S: urn:uuid:9a0305fa-d304-4001-bfe9-3f82fc1f4127 (The Beige Book) -> O: urn:uuid:08642d1f-a133-4139-ac12-f5c64c679930 (Commentary)
+✅ Embedding generated.
+✅ Node created: af2737d5-dce3-4b10-951b-ebcc4a89e9dd
+✅ Linked Subject: urn:uuid:9a0305fa-d304-4001-bfe9-3f82fc1f4127
+✅ Linked Object: urn:uuid:08642d1f-a133-4139-ac12-f5c64c679930
+✅ Linked Provenance
+
+--- Assembling Fact: The Beige Book is intended to characterize the cha... ---
+S: urn:uuid:074a2ac8-a2d4-43c9-8ce9-964372800b05 (The Beige Book) -> O: urn:uuid:944c19a6-bfe5-4d28-be4a-dea9bdfbf7cd (Economic Conditions)
+✅ Embedding generated.
+✅ Linked Subject: urn:uuid:074a2ac8-a2d4-43c9-8ce9-964372800b05
+✅ Linked Object: urn:uuid:944c19a6-bfe5-4d28-be4a-dea9bdfbf7cd
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway is an American multinational co... ---
+S: urn:uuid:d7e80e27-5a20-4ec4-b31b-2967397b5dc4 (Berkshire Hathaway) -> O: urn:uuid:8624fde9-a9b8-4ada-aa00-f874ba5af5fe (Omaha, Nebraska)
+✅ Embedding generated.
+✅ Node created: 418040e4-5660-47f1-9c56-f32113dd1079
+✅ Linked Subject: urn:uuid:d7e80e27-5a20-4ec4-b31b-2967397b5dc4
+✅ Linked Object: urn:uuid:8624fde9-a9b8-4ada-aa00-f874ba5af5fe
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway originally started as a manufac... ---
+S: urn:uuid:7a8b8799-4eca-4652-97cc-e2acbe4f5a56 (Berkshire Hathaway) -> O: urn:uuid:518268ab-7f09-4514-9ded-1ddea836b785 (Manufacturer)
+✅ Embedding generated.
+✅ Node created: a70dba46-b2a9-4c8f-a707-1e1529ef604f
+✅ Linked Subject: urn:uuid:7a8b8799-4eca-4652-97cc-e2acbe4f5a56
+✅ Linked Object: urn:uuid:518268ab-7f09-4514-9ded-1ddea836b785
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway transitioned into a conglomerat... ---
+S: urn:uuid:0f84e664-a227-4c7e-96ef-f5f5094c345b (Berkshire Hathaway) -> O: urn:uuid:7d69fc27-37a4-4867-b1af-9ce04c050611 (Conglomerate)
+✅ Embedding generated.
+✅ Node created: da616d2d-3889-4689-b2c1-c351ee76b804
+✅ Linked Subject: urn:uuid:0f84e664-a227-4c7e-96ef-f5f5094c345b
+✅ Linked Object: urn:uuid:7d69fc27-37a4-4867-b1af-9ce04c050611
+✅ Linked Provenance
+
+--- Assembling Fact: Warren Buffett has been the chairman of Berkshire ... ---
+S: urn:uuid:8b58bf36-60de-4c08-81bc-f37fb7b18145 (Warren Buffett) -> O: urn:uuid:4f26c45d-aa68-4cc1-8f9a-b54171a610c2 (Chairman of Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: 36255a1f-4173-4d6b-b67c-4187de47b134
+✅ Linked Subject: urn:uuid:8b58bf36-60de-4c08-81bc-f37fb7b18145
+✅ Linked Object: urn:uuid:4f26c45d-aa68-4cc1-8f9a-b54171a610c2
+✅ Linked Provenance
+
+--- Assembling Fact: Charlie Munger has been the vice chairman of Berks... ---
+S: urn:uuid:0bd89b79-9ee3-40d4-a0d9-3e4441736dc2 (Charlie Munger) -> O: urn:uuid:e4216f63-496b-4489-8b98-fe8004962bf1 (Vice Chairman of Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: ce00802d-d215-4b8f-ab95-0bb3575b0a42
+✅ Linked Subject: urn:uuid:0bd89b79-9ee3-40d4-a0d9-3e4441736dc2
+✅ Linked Object: urn:uuid:e4216f63-496b-4489-8b98-fe8004962bf1
+✅ Linked Provenance
+
+--- Assembling Fact: Greg Abel now oversees most of Berkshire Hathaway.... ---
+S: urn:uuid:6fc0e905-9b06-4981-b307-59dd420cf87d (Greg Abel) -> O: urn:uuid:006a2dc5-bdc8-4449-8dc8-5f74d5475f0f (Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: 37cc2b77-b565-46e5-ad12-6f99c90df3eb
+✅ Linked Subject: urn:uuid:6fc0e905-9b06-4981-b307-59dd420cf87d
+✅ Linked Object: urn:uuid:006a2dc5-bdc8-4449-8dc8-5f74d5475f0f
+✅ Linked Provenance
+
+--- Assembling Fact: Warren Buffett personally owns 38.4% of the Class ... ---
+S: urn:uuid:e641d56c-598c-48d4-9f29-c2f92d8ae3c8 (Warren Buffett) -> O: urn:uuid:6e0fd1b2-7213-4ae1-bfe0-60ca565a063b (Class A voting shares of Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: 659c7deb-d1ac-4d21-b22e-d8a60099b713
+✅ Linked Subject: urn:uuid:e641d56c-598c-48d4-9f29-c2f92d8ae3c8
+✅ Linked Object: urn:uuid:6e0fd1b2-7213-4ae1-bfe0-60ca565a063b
+✅ Linked Provenance
+
+--- Assembling Fact: Warren Buffett's ownership of Class A voting share... ---
+S: urn:uuid:35331078-3c1b-4646-b38c-b10a08c5296e (Warren Buffett) -> O: urn:uuid:e1e10329-022c-4441-abcb-b4d882e0924d (Overall economic interest in Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: 47156cd8-2838-41cd-9c2d-6570f17844b7
+✅ Linked Subject: urn:uuid:35331078-3c1b-4646-b38c-b10a08c5296e
+✅ Linked Object: urn:uuid:e1e10329-022c-4441-abcb-b4d882e0924d
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway is often compared to an investm... ---
+S: urn:uuid:664a9359-c749-4f99-a36b-fd37712f9b64 (Berkshire Hathaway) -> O: urn:uuid:c3b6e029-7c19-4dea-ad15-eda42c55261a (Investment fund)
+✅ Embedding generated.
+✅ Node created: 2b651075-18c0-4696-9d1e-1a585862ec26
+✅ Linked Subject: urn:uuid:664a9359-c749-4f99-a36b-fd37712f9b64
+✅ Linked Object: urn:uuid:c3b6e029-7c19-4dea-ad15-eda42c55261a
+✅ Linked Provenance
+
+--- Assembling Fact: Warren Buffett gained control of Berkshire Hathawa... ---
+S: urn:uuid:4492a1d7-f759-40da-9af1-86089c46f56c (Warren Buffett) -> O: urn:uuid:d8a0f26f-8f90-49e6-a3c0-d3c0e6762126 (Control of Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: bcb87888-58bf-45e6-9407-205dcb4664a1
+✅ Linked Subject: urn:uuid:4492a1d7-f759-40da-9af1-86089c46f56c
+✅ Linked Object: urn:uuid:d8a0f26f-8f90-49e6-a3c0-d3c0e6762126
+✅ Linked Provenance
+
+--- Assembling Fact: Warren Buffett is the CEO of Berkshire Hathaway.... ---
+S: urn:uuid:c8cac7c4-d812-432f-970b-04ebf8e9d4f7 (Warren Buffett) -> O: urn:uuid:38b1e5b0-c359-4b01-8060-9b2b4d6c92d1 (Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: 2b9b79fb-f80d-4032-930d-e57f16054a2c
+✅ Linked Subject: urn:uuid:c8cac7c4-d812-432f-970b-04ebf8e9d4f7
+✅ Linked Object: urn:uuid:38b1e5b0-c359-4b01-8060-9b2b4d6c92d1
+✅ Linked Provenance
+
+--- Assembling Fact: Greg Abel is named as Warren Buffett's successor.... ---
+S: urn:uuid:6767df6b-9bcf-4c83-8114-0f7e7fc2967b (Greg Abel) -> O: urn:uuid:3bfa99ba-d0c6-4f07-9d49-a211d92ded5b (Warren Buffett)
+✅ Embedding generated.
+✅ Node created: bc270a86-2db9-4935-b262-93b082546397
+✅ Linked Subject: urn:uuid:6767df6b-9bcf-4c83-8114-0f7e7fc2967b
+✅ Linked Object: urn:uuid:3bfa99ba-d0c6-4f07-9d49-a211d92ded5b
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. is located at Blackstone P... ---
+S: urn:uuid:e7474892-f998-4da2-8d53-20ffebbd4e3a (Berkshire Hathaway Inc.) -> O: urn:uuid:80eb5739-d87d-4979-b21d-d157170305ca (Blackstone Plaza)
+✅ Embedding generated.
+✅ Node created: 21b359cf-3a86-4028-83fc-a8f8cc4a0ba0
+✅ Linked Subject: urn:uuid:e7474892-f998-4da2-8d53-20ffebbd4e3a
+✅ Linked Object: urn:uuid:80eb5739-d87d-4979-b21d-d157170305ca
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. is a public company.... ---
+S: urn:uuid:aef0eb38-9837-40ef-ac15-4ab115f098d3 (Berkshire Hathaway Inc.) -> O: urn:uuid:8f507a62-79e0-4a5b-8643-5c4aa3d70d48 (Public Company)
+✅ Embedding generated.
+✅ Node created: 41685942-d358-4dfb-9e90-0eaff09b7650
+✅ Linked Subject: urn:uuid:aef0eb38-9837-40ef-ac15-4ab115f098d3
+✅ Linked Object: urn:uuid:8f507a62-79e0-4a5b-8643-5c4aa3d70d48
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. is traded as NYSE: BRK.A (... ---
+S: urn:uuid:d9d903b9-d7cd-4a74-b668-a18832d74a82 (Berkshire Hathaway Inc.) -> O: urn:uuid:89b2b1bc-5d53-492c-8be2-4aa9ba9a2102 (NYSE: BRK.A (Class A))
+✅ Embedding generated.
+✅ Node created: 11bb53cd-dd5c-442d-9fcb-c348a9e57306
+✅ Linked Subject: urn:uuid:d9d903b9-d7cd-4a74-b668-a18832d74a82
+✅ Linked Object: urn:uuid:89b2b1bc-5d53-492c-8be2-4aa9ba9a2102
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. is traded as NYSE: BRK.B (... ---
+S: urn:uuid:f064b986-bb69-46a8-bc7b-ef1ee4dfc2f0 (Berkshire Hathaway Inc.) -> O: urn:uuid:e2334be9-7826-4ae4-9a23-e4b30af590ec (NYSE: BRK.B (Class B))
+✅ Embedding generated.
+✅ Node created: 870d78ff-1853-40a0-82d5-e712081be310
+✅ Linked Subject: urn:uuid:f064b986-bb69-46a8-bc7b-ef1ee4dfc2f0
+✅ Linked Object: urn:uuid:e2334be9-7826-4ae4-9a23-e4b30af590ec
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. is a component of the S&P ... ---
+S: urn:uuid:14f31a6a-ef45-468d-8f2e-ea164536d2dd (Berkshire Hathaway Inc.) -> O: urn:uuid:0dbe3bae-d760-42de-8a6d-45d33dafbb6a (S&P 100)
+✅ Embedding generated.
+✅ Node created: ab321bc8-93c0-4c4f-a521-674d55e81db9
+✅ Linked Subject: urn:uuid:14f31a6a-ef45-468d-8f2e-ea164536d2dd
+✅ Linked Object: urn:uuid:0dbe3bae-d760-42de-8a6d-45d33dafbb6a
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. is a component of the S&P ... ---
+S: urn:uuid:cb73c164-3435-4a19-b44a-d27598cb7952 (Berkshire Hathaway Inc.) -> O: urn:uuid:36885725-ec24-41df-b91c-92a7cf13f2d4 (S&P 500)
+✅ Embedding generated.
+✅ Node created: 359b5c28-1f2d-4daf-8c66-5ac4fc2467d8
+✅ Linked Subject: urn:uuid:cb73c164-3435-4a19-b44a-d27598cb7952
+✅ Linked Object: urn:uuid:36885725-ec24-41df-b91c-92a7cf13f2d4
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. has the ISIN US0846707026.... ---
+S: urn:uuid:d4ca9640-497a-4f1a-a25c-29395818e5ff (Berkshire Hathaway Inc.) -> O: urn:uuid:ecea07f4-7755-40c6-b186-8c9d9a521cd7 (US0846707026)
+✅ Embedding generated.
+✅ Node created: bbe67955-1268-40c2-8e6c-46863a8a32ee
+✅ Linked Subject: urn:uuid:d4ca9640-497a-4f1a-a25c-29395818e5ff
+✅ Linked Object: urn:uuid:ecea07f4-7755-40c6-b186-8c9d9a521cd7
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. operates in the conglomera... ---
+S: urn:uuid:2f9a4d7d-870b-4960-bddf-e552154855bb (Berkshire Hathaway Inc.) -> O: urn:uuid:99b371e9-c7b1-4db8-9207-956f25159d2c (Conglomerate)
+✅ Embedding generated.
+✅ Node created: 932269f3-c7b8-48b3-9c05-fa3965851c86
+✅ Linked Subject: urn:uuid:2f9a4d7d-870b-4960-bddf-e552154855bb
+✅ Linked Object: urn:uuid:99b371e9-c7b1-4db8-9207-956f25159d2c
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. was preceded by Valley Fal... ---
+S: urn:uuid:767c7932-fa8d-4871-9812-42322d19d84e (Berkshire Hathaway Inc.) -> O: urn:uuid:224d2879-6702-48e3-8814-116464545f1e (Valley Falls Company)
+✅ Embedding generated.
+✅ Node created: f8f289fa-2de7-4e9a-820d-6cbba1a188e6
+✅ Linked Subject: urn:uuid:767c7932-fa8d-4871-9812-42322d19d84e
+✅ Linked Object: urn:uuid:224d2879-6702-48e3-8814-116464545f1e
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. was preceded by Berkshire ... ---
+S: urn:uuid:944cfe4b-60ba-463b-89ef-51c1f1017e1e (Berkshire Hathaway Inc.) -> O: urn:uuid:11f6c2df-5617-4895-a21f-7c6e7a907b6b (Berkshire Fine Spinning Associates)
+✅ Embedding generated.
+✅ Node created: 49fc5625-014a-4cf2-9bee-133524e44d55
+✅ Linked Subject: urn:uuid:944cfe4b-60ba-463b-89ef-51c1f1017e1e
+✅ Linked Object: urn:uuid:11f6c2df-5617-4895-a21f-7c6e7a907b6b
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. was preceded by Hathaway M... ---
+S: urn:uuid:524e0013-bf3e-4701-9d30-9c627a85ab6d (Berkshire Hathaway Inc.) -> O: urn:uuid:b945a8c6-251f-4ccd-8ffe-d108e0c7aeed (Hathaway Manufacturing Company)
+✅ Embedding generated.
+✅ Node created: b6faa06f-d4e2-4e92-b1f1-9703951bea61
+✅ Linked Subject: urn:uuid:524e0013-bf3e-4701-9d30-9c627a85ab6d
+✅ Linked Object: urn:uuid:b945a8c6-251f-4ccd-8ffe-d108e0c7aeed
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. was founded in 1839.... ---
+S: urn:uuid:fbb79c0a-5909-4c3a-b501-70205fca7567 (Berkshire Hathaway Inc.) -> O: urn:uuid:da9d00bd-8abb-4255-9af4-1cdfeb464a59 (1839)
+✅ Embedding generated.
+✅ Node created: 7b5699ed-a298-4102-8c81-dc904c3702d0
+✅ Linked Subject: urn:uuid:fbb79c0a-5909-4c3a-b501-70205fca7567
+✅ Linked Object: urn:uuid:da9d00bd-8abb-4255-9af4-1cdfeb464a59
+✅ Linked Provenance
+
+--- Assembling Fact: Oliver Chace is the founder of Berkshire Hathaway ... ---
+S: urn:uuid:af758bb0-7c35-4cdf-922c-931109a0ef12 (Oliver Chace) -> O: urn:uuid:0d13592b-02bc-4702-b141-05f3c4c83bd9 (Berkshire Hathaway Inc.)
+✅ Embedding generated.
+✅ Node created: 59e914be-90d0-43bc-a1a3-d056c216284a
+✅ Linked Subject: urn:uuid:af758bb0-7c35-4cdf-922c-931109a0ef12
+✅ Linked Object: urn:uuid:0d13592b-02bc-4702-b141-05f3c4c83bd9
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. has its headquarters at Bl... ---
+S: urn:uuid:627d9842-3891-499b-bb2b-571918dd27dd (Berkshire Hathaway Inc.) -> O: urn:uuid:601b3385-862b-4b8e-ae7e-7227bb728f1f (Blackstone Plaza, Omaha, Nebraska, U.S.)
+✅ Embedding generated.
+✅ Linked Subject: urn:uuid:627d9842-3891-499b-bb2b-571918dd27dd
+✅ Linked Object: urn:uuid:601b3385-862b-4b8e-ae7e-7227bb728f1f
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. serves areas worldwide.... ---
+S: urn:uuid:31ec2df1-0a75-4ba2-bfa2-712c0b144d8a (Berkshire Hathaway Inc.) -> O: urn:uuid:86e4ae79-d80b-4197-8c69-d73f88b2e6ed (Worldwide)
+✅ Embedding generated.
+✅ Node created: 341ffc69-f039-4a05-9eb5-dbef13614aaa
+✅ Linked Subject: urn:uuid:31ec2df1-0a75-4ba2-bfa2-712c0b144d8a
+✅ Linked Object: urn:uuid:86e4ae79-d80b-4197-8c69-d73f88b2e6ed
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. is a component of the S&P ... ---
+S: urn:uuid:cbfa59ca-c149-43e9-a96a-48c5be2367a5 (Berkshire Hathaway Inc.) -> O: urn:uuid:0255cf07-0291-4ba6-8ccf-bf9d0ac81e75 (S&P 100)
+✅ Embedding generated.
+✅ Linked Subject: urn:uuid:cbfa59ca-c149-43e9-a96a-48c5be2367a5
+✅ Linked Object: urn:uuid:0255cf07-0291-4ba6-8ccf-bf9d0ac81e75
+✅ Linked Provenance
+
+--- Assembling Fact: Berkshire Hathaway Inc. is a component of the S&P ... ---
+S: urn:uuid:cec32be4-aca4-4182-841b-0f751364e13f (Berkshire Hathaway Inc.) -> O: urn:uuid:1110950b-a143-44a5-b4a7-81e6d597e8fb (S&P 500)
+✅ Embedding generated.
+✅ Linked Subject: urn:uuid:cec32be4-aca4-4182-841b-0f751364e13f
+✅ Linked Object: urn:uuid:1110950b-a143-44a5-b4a7-81e6d597e8fb
+✅ Linked Provenance
+
+--- Assembling Fact: In 2023, Berkshire Hathaway Inc.'s shareholder ret... ---
+S: urn:uuid:b18ad1ce-0246-47e8-9dea-2a2bf0fc0a1e (Berkshire Hathaway Inc.) -> O: urn:uuid:a1c19d4f-4f6c-43e9-9f72-173a0ada3422 (Shareholder Returns)
+✅ Embedding generated.
+✅ Node created: 474d05f1-26af-4eb0-a0de-5642734d7e2e
+✅ Linked Subject: urn:uuid:b18ad1ce-0246-47e8-9dea-2a2bf0fc0a1e
+✅ Linked Object: urn:uuid:a1c19d4f-4f6c-43e9-9f72-173a0ada3422
+✅ Linked Provenance
+
+--- Assembling Fact: In 2023, the S&P 500 had a CAGR of 10.2%.... ---
+S: urn:uuid:5dc347bc-a4dc-4c41-b7eb-729e5872daf4 (S&P 500) -> O: urn:uuid:cc81efd6-c015-46eb-8b75-569ec1db48db (CAGR)
+✅ Embedding generated.
+✅ Node created: 8e0ee5b6-7f64-47fa-84ae-88933d46393d
+✅ Linked Subject: urn:uuid:5dc347bc-a4dc-4c41-b7eb-729e5872daf4
+✅ Linked Object: urn:uuid:cc81efd6-c015-46eb-8b75-569ec1db48db
+✅ Linked Provenance
+
+--- Assembling Fact: In the 10 years ending in 2023, Berkshire Hathaway... ---
+S: urn:uuid:db88d62e-d862-494d-8b26-37c91bcd8f22 (Berkshire Hathaway) -> O: urn:uuid:02d3a854-8e16-42dc-a712-a57b9ac6e75d (CAGR)
+✅ Embedding generated.
+✅ Node created: e1044afd-77d4-4e09-8896-930f131b8a7e
+✅ Linked Subject: urn:uuid:db88d62e-d862-494d-8b26-37c91bcd8f22
+✅ Linked Object: urn:uuid:02d3a854-8e16-42dc-a712-a57b9ac6e75d
+✅ Linked Provenance
+
+--- Assembling Fact: In the 10 years ending in 2023, the S&P 500 produc... ---
+S: urn:uuid:42f6be04-cefd-4e0b-bde9-79f545f24276 (S&P 500) -> O: urn:uuid:69e521c5-c1fa-46c2-9797-dedfb444d6b5 (CAGR)
+✅ Embedding generated.
+✅ Node created: 19ebb0d1-92b8-4677-a144-5f1293d5eec0
+✅ Linked Subject: urn:uuid:42f6be04-cefd-4e0b-bde9-79f545f24276
+✅ Linked Object: urn:uuid:69e521c5-c1fa-46c2-9797-dedfb444d6b5
+✅ Linked Provenance
+
+--- Assembling Fact: From 1965 to 2023, Berkshire Hathaway's stock pric... ---
+S: urn:uuid:994f5c37-f302-47f6-b7a0-7a0a0c585bda (Berkshire Hathaway) -> O: urn:uuid:f7513f17-464f-41e8-8bdc-e796ff19b6e2 (Stock Price Performance)
+✅ Embedding generated.
+✅ Node created: 85972515-c75e-434d-bc98-f73ae3a20537
+✅ Linked Subject: urn:uuid:994f5c37-f302-47f6-b7a0-7a0a0c585bda
+✅ Linked Object: urn:uuid:f7513f17-464f-41e8-8bdc-e796ff19b6e2
+✅ Linked Provenance
+
+--- Assembling Fact: In 2024, Berkshire Hathaway's revenue was US$371.4... ---
+S: urn:uuid:d799f052-0223-4c6e-87aa-4e8aa64ccd6a (Berkshire Hathaway) -> O: urn:uuid:8d49a9f7-638e-466e-8f33-29cc6b6683a9 (Revenue)
+✅ Embedding generated.
+✅ Node created: 7436e89c-114c-46b8-8438-d0c7952a495a
+✅ Linked Subject: urn:uuid:d799f052-0223-4c6e-87aa-4e8aa64ccd6a
+✅ Linked Object: urn:uuid:8d49a9f7-638e-466e-8f33-29cc6b6683a9
+✅ Linked Provenance
+
+--- Assembling Fact: In 2024, Berkshire Hathaway's operating income was... ---
+S: urn:uuid:f1c209e1-11f5-4543-8d20-3b0ea0795d92 (Berkshire Hathaway) -> O: urn:uuid:0f0b3202-2531-468f-ba52-0bc39ffe8e8a (Operating Income)
+✅ Embedding generated.
+✅ Node created: 3057e405-0c41-4b1f-84f7-de843c452a1f
+✅ Linked Subject: urn:uuid:f1c209e1-11f5-4543-8d20-3b0ea0795d92
+✅ Linked Object: urn:uuid:0f0b3202-2531-468f-ba52-0bc39ffe8e8a
+✅ Linked Provenance
+
+--- Assembling Fact: In 2024, Berkshire Hathaway's net income was US$88... ---
+S: urn:uuid:9f46fdf2-e7e0-46f3-ba6b-c371241dd9d3 (Berkshire Hathaway) -> O: urn:uuid:f289159c-9ddc-4073-a80d-09d7ba5d0925 (Net Income)
+✅ Embedding generated.
+✅ Node created: 5874eadb-bcb3-481c-9b9a-2fdc729edf31
+✅ Linked Subject: urn:uuid:9f46fdf2-e7e0-46f3-ba6b-c371241dd9d3
+✅ Linked Object: urn:uuid:f289159c-9ddc-4073-a80d-09d7ba5d0925
+✅ Linked Provenance
+
+--- Assembling Fact: In 2024, Berkshire Hathaway's total assets were US... ---
+S: urn:uuid:f76ea661-f019-40cd-b6d5-b002f2963309 (Berkshire Hathaway) -> O: urn:uuid:07915bf8-51b8-49b8-83d4-6033a71969f8 (Total Assets)
+✅ Embedding generated.
+✅ Node created: b303b8e0-7e77-4728-a5ac-d36f71bf6b8a
+✅ Linked Subject: urn:uuid:f76ea661-f019-40cd-b6d5-b002f2963309
+✅ Linked Object: urn:uuid:07915bf8-51b8-49b8-83d4-6033a71969f8
+✅ Linked Provenance
+
+--- Assembling Fact: In 2024, Berkshire Hathaway's total equity was US$... ---
+S: urn:uuid:4d59025d-69d0-45d8-b0c5-c749df267118 (Berkshire Hathaway) -> O: urn:uuid:26f68a6e-93a3-440c-af3e-1b758db24361 (Total Equity)
+✅ Embedding generated.
+✅ Node created: 84b56696-368b-4b39-9ebf-85804a7bf640
+✅ Linked Subject: urn:uuid:4d59025d-69d0-45d8-b0c5-c749df267118
+✅ Linked Object: urn:uuid:26f68a6e-93a3-440c-af3e-1b758db24361
+✅ Linked Provenance
+
+--- Assembling Fact: Warren Buffett owns 14.3% of Berkshire Hathaway.... ---
+S: urn:uuid:644d0cb7-05fa-4604-a406-0247010ec62b (Warren Buffett) -> O: urn:uuid:43bf85ee-1f40-4d29-b052-96a20de28787 (Ownership)
+✅ Embedding generated.
+✅ Node created: 868f4139-d00c-42e4-8a08-c968afd00b26
+✅ Linked Subject: urn:uuid:644d0cb7-05fa-4604-a406-0247010ec62b
+✅ Linked Object: urn:uuid:43bf85ee-1f40-4d29-b052-96a20de28787
+✅ Linked Provenance
+
+--- Assembling Fact: In 2024, Berkshire Hathaway had 392,400 employees.... ---
+S: urn:uuid:a820a0c8-1257-4717-8804-43f2a082f2cd (Berkshire Hathaway) -> O: urn:uuid:4014a222-4f1b-42de-a511-c95c23496be1 (Number of Employees)
+✅ Embedding generated.
+✅ Node created: e93be67b-c4a8-414c-8365-f417958ad77a
+✅ Linked Subject: urn:uuid:a820a0c8-1257-4717-8804-43f2a082f2cd
+✅ Linked Object: urn:uuid:4014a222-4f1b-42de-a511-c95c23496be1
+✅ Linked Provenance
+
+--- Assembling Fact: Warren Buffett is the chairman and CEO of Berkshir... ---
+S: urn:uuid:b31f4836-93de-435d-ad3a-c336b054ad78 (Warren Buffett) -> O: urn:uuid:021e71ec-590b-466a-a250-39cdd8650022 (Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: 7e215454-77df-4400-9da6-d70645a29569
+✅ Linked Subject: urn:uuid:b31f4836-93de-435d-ad3a-c336b054ad78
+✅ Linked Object: urn:uuid:021e71ec-590b-466a-a250-39cdd8650022
+✅ Linked Provenance
+
+--- Assembling Fact: Greg Abel is the vice chairman, Non-insurance of B... ---
+S: urn:uuid:03cfad98-db25-4406-92e9-204a093a6cfd (Greg Abel) -> O: urn:uuid:0ee04676-a23a-4551-b1b5-742ed54b054a (Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: 6d52f195-cd98-46a0-a7b0-bc47ea7b43ed
+✅ Linked Subject: urn:uuid:03cfad98-db25-4406-92e9-204a093a6cfd
+✅ Linked Object: urn:uuid:0ee04676-a23a-4551-b1b5-742ed54b054a
+✅ Linked Provenance
+
+--- Assembling Fact: Ajit Jain is the vice chairman, Insurance of Berks... ---
+S: urn:uuid:cf80a953-0ac9-4de4-b201-a44344012cde (Ajit Jain) -> O: urn:uuid:1229b92f-7feb-43e7-b891-4ac3e67880bb (Berkshire Hathaway)
+✅ Embedding generated.
+✅ Node created: a8964a27-1b3a-4ce4-ab9f-29ed8c99b8e2
+✅ Linked Subject: urn:uuid:cf80a953-0ac9-4de4-b201-a44344012cde
+✅ Linked Object: urn:uuid:1229b92f-7feb-43e7-b891-4ac3e67880bb
+✅ Linked Provenance

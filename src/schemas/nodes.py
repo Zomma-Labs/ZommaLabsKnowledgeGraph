@@ -16,7 +16,7 @@ class EpisodeType(str, Enum):
 class Node(BaseModel):
     uuid: str = Field(default_factory=lambda: str(uuid4()))
     name: str = Field(default="")
-    group_id: str = Field(description='partition of the graph', default="default")
+    group_id: str = Field(description='Tenant/User ID - CRITICAL for security')
     labels: list[str] = Field(default_factory=list)
     created_at: datetime = Field(default_factory=utc_now)
 
@@ -27,6 +27,16 @@ class EpisodicNode(Node):
     source_description: str = Field(default="")
     content: str = Field(description='raw episode data')
     valid_at: datetime = Field(default_factory=utc_now)
+
+# --- The Document (Source Container) ---
+class DocumentNode(Node):
+    """
+    Represents the parent document for EpisodicNodes.
+    Ensures all chunks from the same document are connected.
+    """
+    file_type: str = Field(default="text")
+    metadata: dict[str, Any] = Field(default_factory=dict)
+    document_date: datetime = Field(default_factory=utc_now, description="When the document was written/created")
 
 # --- The Entity (Noun) ---
 class EntityNode(Node):

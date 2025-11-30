@@ -17,6 +17,7 @@ from src.tools.neo4j_client import Neo4jClient
 class GraphState(TypedDict):
     chunk_text: str
     metadata: Dict[str, Any]
+    group_id: str # Tenant ID
     episodic_uuid: str # New field for Provenance
     atomic_facts: List[AtomicFact]
     resolved_entities: List[Dict[str, Any]]
@@ -38,18 +39,57 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
     
     # Create EpisodicNode in Neo4j
     episode_uuid = str(uuid.uuid4())
+    group_id = state.get("group_id")
+    if not group_id:
+        # Fallback or Error? For now, we'll try to get it from metadata or raise error
+        group_id = state["metadata"].get("group_id", "default_tenant")
+        print(f"⚠️ No group_id in state, using: {group_id}")
     
+    # Extract Document Info
+    doc_name = state["metadata"].get("filename") or state["metadata"].get("source_id") or "Unknown Document"
+    file_type = state["metadata"].get("file_type", "text")
+    
+    # We use a single transaction to ensure atomicity
     cypher = """
-    MERGE (e:EpisodicNode {uuid: $uuid})
+    MERGE (d:DocumentNode {name: $doc_name, group_id: $group_id})
+    ON CREATE SET 
+        d.uuid = $doc_uuid,
+        d.created_at = datetime(),
+        d.document_date = datetime(),
+        d.file_type = $file_type,
+        d.metadata = $metadata
+        
+    MERGE (e:EpisodicNode {uuid: $episode_uuid, group_id: $group_id})
     ON CREATE SET 
         e.content = $content,
         e.source = 'text',
         e.created_at = datetime()
+        
+    MERGE (e)-[:BELONGS_TO]->(d)
     """
-    neo4j_client.query(cypher, {"uuid": episode_uuid, "content": chunk_text})
-    print(f"   Created EpisodicNode: {episode_uuid}")
     
-    return {"episodic_uuid": episode_uuid}
+    # Generate a UUID for the document just in case it's new (used in ON CREATE)
+    doc_uuid_candidate = str(uuid.uuid4())
+    
+    # Filter metadata to be JSON serializable if needed, or just pass it
+    # Neo4j driver handles dicts as maps usually
+    clean_metadata = {k: v for k, v in state["metadata"].items() if isinstance(v, (str, int, float, bool))}
+    import json
+    metadata_json = json.dumps(clean_metadata)
+
+    neo4j_client.query(cypher, {
+        "uuid": episode_uuid, # This was $uuid in the original query, but I changed it to $episode_uuid in my new query? No wait, I need to be careful with param names.
+        "episode_uuid": episode_uuid,
+        "content": chunk_text, 
+        "group_id": group_id,
+        "doc_name": doc_name,
+        "doc_uuid": doc_uuid_candidate,
+        "file_type": file_type,
+        "metadata": metadata_json
+    })
+    print(f"   Created EpisodicNode: {episode_uuid} linked to Document: {doc_name}")
+    
+    return {"episodic_uuid": episode_uuid, "group_id": group_id}
 
 def atomize_node(state: GraphState) -> Dict[str, Any]:
     print("---ATOMIZER---")
@@ -79,7 +119,8 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
                 return res['uri'], res['label']
                 
             # 2. Graph Deduplication
-            candidates = enhancer.find_graph_candidates(name)
+            group_id = state.get("group_id", "default_tenant")
+            candidates = enhancer.find_graph_candidates(name, group_id=group_id)
             decision = enhancer.resolve_entity_against_graph(name, candidates)
             
             if decision['decision'] == 'MERGE' and decision['target_uuid']:
@@ -148,6 +189,7 @@ def assemble_node(state: GraphState) -> Dict[str, Any]:
     resolved = state["resolved_entities"]
     links = state["causal_links"]
     episode_uuid = state["episodic_uuid"]
+    group_id = state.get("group_id", "default_tenant")
     
     fact_uuids = []
     
@@ -165,6 +207,7 @@ def assemble_node(state: GraphState) -> Dict[str, Any]:
                 object_uri=res["object_uri"],
                 object_label=res["object_label"],
                 episode_uuid=episode_uuid,
+                group_id=group_id,
                 relationship_classification=rel
             )
             fact_uuids.append(uuid)
@@ -190,7 +233,8 @@ def assemble_node(state: GraphState) -> Dict[str, Any]:
                 assembler.link_causality(
                     cause_uuid=fact_uuids[cause_idx],
                     effect_uuid=fact_uuids[effect_idx],
-                    reasoning=link.reasoning
+                    reasoning=link.reasoning,
+                    group_id=group_id
                 )
             except Exception as e:
                 print(f"Error linking causality: {e}")
