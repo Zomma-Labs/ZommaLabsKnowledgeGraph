@@ -23,6 +23,7 @@ class GraphAssembler:
                            object_uri: Optional[str], 
                            object_label: Optional[str],
                            episode_uuid: str,
+                           group_id: str,
                            relationship_classification: Optional[RelationshipClassification] = None) -> str:
         """
         Creates a FactNode and links it to Subject, Object, and Episode.
@@ -51,7 +52,7 @@ class GraphAssembler:
         
         # 2. Semantic Deduplication (Vector Search)
         # We search for existing FactNodes with similar content
-        candidates = self.neo4j.vector_search("fact_embeddings", fact_embedding, top_k=1)
+        candidates = self.neo4j.vector_search("fact_embeddings", fact_embedding, top_k=1, filters={"group_id": group_id})
         
         fact_uuid = None
         
@@ -73,7 +74,7 @@ class GraphAssembler:
             fact_uuid = str(uuid.uuid4())
             
             cypher_create = """
-            MERGE (f:FactNode {uuid: $uuid})
+            MERGE (f:FactNode {uuid: $uuid, group_id: $group_id})
             ON CREATE SET 
                 f.content = $content,
                 f.embedding = $embedding,
@@ -84,6 +85,7 @@ class GraphAssembler:
             try:
                 self.neo4j.query(cypher_create, {
                     "uuid": fact_uuid,
+                    "group_id": group_id,
                     "content": fact_obj.fact,
                     "embedding": fact_embedding,
                     "fact_type": fact_type
@@ -99,18 +101,19 @@ class GraphAssembler:
         # 4. Link Structure (Subject -> Fact -> Object)
         
         cypher_link = """
-        MERGE (s:Entity {uri: $subj_uri})
+        MERGE (s:Entity {uri: $subj_uri, group_id: $group_id})
         ON CREATE SET s.name = $subj_label
         ON MATCH SET s.name = $subj_label // Update name if it changed or was missing
         WITH s
-        MATCH (f:FactNode {uuid: $fact_uuid})
+        MATCH (f:FactNode {uuid: $fact_uuid, group_id: $group_id})
         MERGE (s)-[:PERFORMED]->(f)
         """
         try:
             self.neo4j.query(cypher_link, {
                 "subj_uri": subject_uri, 
                 "subj_label": subject_label,
-                "fact_uuid": fact_uuid
+                "fact_uuid": fact_uuid,
+                "group_id": group_id
             })
             with open("assembler_debug.log", "a") as log:
                 log.write(f"✅ Linked Subject: {subject_uri}\n")
@@ -120,18 +123,19 @@ class GraphAssembler:
         
         if object_uri:
             cypher_link_obj = """
-            MERGE (o:Entity {uri: $obj_uri})
+            MERGE (o:Entity {uri: $obj_uri, group_id: $group_id})
             ON CREATE SET o.name = $obj_label
             ON MATCH SET o.name = $obj_label
             WITH o
-            MATCH (f:FactNode {uuid: $fact_uuid})
+            MATCH (f:FactNode {uuid: $fact_uuid, group_id: $group_id})
             MERGE (f)-[:TARGET]->(o)
             """
             try:
                 self.neo4j.query(cypher_link_obj, {
                     "obj_uri": object_uri, 
                     "obj_label": object_label,
-                    "fact_uuid": fact_uuid
+                    "fact_uuid": fact_uuid,
+                    "group_id": group_id
                 })
                 with open("assembler_debug.log", "a") as log:
                     log.write(f"✅ Linked Object: {object_uri}\n")
@@ -141,12 +145,12 @@ class GraphAssembler:
 
         # 5. Link Provenance (Fact -> Episode)
         cypher_prov = """
-        MATCH (e:EpisodicNode {uuid: $episode_uuid})
-        MATCH (f:FactNode {uuid: $fact_uuid})
+        MATCH (e:EpisodicNode {uuid: $episode_uuid, group_id: $group_id})
+        MATCH (f:FactNode {uuid: $fact_uuid, group_id: $group_id})
         MERGE (f)-[:MENTIONED_IN]->(e)
         """
         try:
-            self.neo4j.query(cypher_prov, {"episode_uuid": episode_uuid, "fact_uuid": fact_uuid})
+            self.neo4j.query(cypher_prov, {"episode_uuid": episode_uuid, "fact_uuid": fact_uuid, "group_id": group_id})
             with open("assembler_debug.log", "a") as log:
                 log.write(f"✅ Linked Provenance\n")
         except Exception as e:
@@ -155,20 +159,21 @@ class GraphAssembler:
         
         return fact_uuid
 
-    def link_causality(self, cause_uuid: str, effect_uuid: str, reasoning: str):
+    def link_causality(self, cause_uuid: str, effect_uuid: str, reasoning: str, group_id: str):
         """
         Creates a CAUSES edge between two FactNodes.
         """
         cypher = """
-        MATCH (c:FactNode {uuid: $cause_uuid})
-        MATCH (e:FactNode {uuid: $effect_uuid})
+        MATCH (c:FactNode {uuid: $cause_uuid, group_id: $group_id})
+        MATCH (e:FactNode {uuid: $effect_uuid, group_id: $group_id})
         MERGE (c)-[r:CAUSES]->(e)
         SET r.reasoning = $reasoning, r.created_at = datetime()
         """
         self.neo4j.query(cypher, {
             "cause_uuid": cause_uuid, 
             "effect_uuid": effect_uuid,
-            "reasoning": reasoning
+            "reasoning": reasoning,
+            "group_id": group_id
         })
         print(f"   🔗 Linked Causality: {cause_uuid} -> {effect_uuid}")
 

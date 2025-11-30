@@ -33,14 +33,23 @@ class Neo4jClient:
             print(f"❌ Failed to connect to Neo4j: {e}")
             return False
 
-    def vector_search(self, index_name: str, query_vector: list, top_k: int = 5) -> list:
+    def vector_search(self, index_name: str, query_vector: list, top_k: int = 5, filters: dict = None) -> list:
         """
-        Performs a vector search on the specified index.
+        Performs a vector search on the specified index with optional property filtering.
         Returns a list of records with 'node' and 'score'.
         """
+        # Build WHERE clause dynamically if filters are provided
+        where_clause = ""
+        if filters:
+            conditions = []
+            for key in filters:
+                conditions.append(f"node.{key} = ${key}")
+            where_clause = "WHERE " + " AND ".join(conditions)
+
         cypher = f"""
         CALL db.index.vector.queryNodes($index_name, $top_k, $query_vector)
         YIELD node, score
+        {where_clause}
         RETURN node, score
         """
         params = {
@@ -48,4 +57,7 @@ class Neo4jClient:
             "query_vector": query_vector,
             "top_k": top_k
         }
+        if filters:
+            params.update(filters)
+            
         return self.query(cypher, params)
