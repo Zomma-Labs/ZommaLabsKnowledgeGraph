@@ -382,5 +382,41 @@
             "Commercial office vacancy rates remained high.",
             "Home sales were flat."
         ]
+    },
+    {
+        "name": "CAUSED",
+        "description": "One event, action, or entity directly causing another event, state, or outcome. A fundamental cause-and-effect relationship.",
+        "examples": [
+            "The software update caused the system to crash.",
+            "High winds caused power outages across the region.",
+            "The CEO's comments caused the stock price to drop."
+        ]
+    },
+    {
+        "name": "EFFECTED_BY",
+        "description": "An event, state, or outcome that is the direct result of another event, action, or entity. The passive form of CAUSED.",
+        "examples": [
+            "The system crash was effected by the software update.",
+            "Power outages were effected by high winds.",
+            "The drop in stock price was effected by the CEO's comments."
+        ]
+    },
+    {
+        "name": "CONTRIBUTED_TO",
+        "description": "An event or factor that played a part in bringing about a result, but was not the sole cause.",
+        "examples": [
+            "Rising interest rates contributed to the slowdown in housing sales.",
+            "Supply chain disruptions contributed to the lower quarterly revenue.",
+            "Strong marketing contributed to the product's success."
+        ]
+    },
+    {
+        "name": "PREVENTED",
+        "description": "An action or event that stopped another event or outcome from happening.",
+        "examples": [
+            "The safety mechanism prevented a catastrophic failure.",
+            "Early intervention prevented the spread of the virus.",
+            "Regulatory hurdles prevented the merger from completing."
+        ]
     }
 ]

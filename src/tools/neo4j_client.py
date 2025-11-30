@@ -32,3 +32,20 @@ class Neo4jClient:
         except Exception as e:
             print(f"❌ Failed to connect to Neo4j: {e}")
             return False
+
+    def vector_search(self, index_name: str, query_vector: list, top_k: int = 5) -> list:
+        """
+        Performs a vector search on the specified index.
+        Returns a list of records with 'node' and 'score'.
+        """
+        cypher = f"""
+        CALL db.index.vector.queryNodes($index_name, $top_k, $query_vector)
+        YIELD node, score
+        RETURN node, score
+        """
+        params = {
+            "index_name": index_name,
+            "query_vector": query_vector,
+            "top_k": top_k
+        }
+        return self.query(cypher, params)

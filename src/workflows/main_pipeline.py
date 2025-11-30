@@ -1,41 +1,55 @@
 import asyncio
-from typing import List, Dict, Any, TypedDict, Annotated
+import uuid
+from typing import List, Dict, Any, TypedDict
 from langgraph.graph import StateGraph, END
-from langchain_core.messages import BaseMessage
-import operator
 
 from src.agents.atomizer import atomizer
 from src.agents.FIBO_librarian import FIBOLibrarian
 from src.agents.analyst import AnalystAgent
 from src.agents.graph_assembler import GraphAssembler
+from src.agents.graph_enhancer import GraphEnhancer
+from src.agents.causal_linker import CausalLinker
 from src.schemas.atomic_fact import AtomicFact
 from src.schemas.relationship import RelationshipClassification
+from src.tools.neo4j_client import Neo4jClient
 
 # Define the State
 class GraphState(TypedDict):
     chunk_text: str
     metadata: Dict[str, Any]
+    episodic_uuid: str # New field for Provenance
     atomic_facts: List[AtomicFact]
-    resolved_entities: List[Dict[str, Any]] # Aligned with atomic_facts
-    classified_relationships: List[RelationshipClassification] # Aligned with atomic_facts
+    resolved_entities: List[Dict[str, Any]]
+    classified_relationships: List[RelationshipClassification] # Kept for backward compatibility/analyst usage
+    causal_links: List[Any] # New field for Causal Linking
     errors: List[str]
 
-# Initialize Agents (Global or per-node? Better to init once if they have state/connections)
-# NOTE: In a real prod env, we might want to dependency inject these or init inside nodes if they are stateless.
-# Librarian has a Qdrant client, Analyst has a VectorStore, Assembler has Neo4j.
-# We'll init them lazily or globally. Let's init inside the node or a setup phase to avoid connection issues at import time?
-# For now, we'll instantiate them at the module level but be careful about connections.
-# Actually, let's instantiate them inside the nodes to be safe, or pass them in. 
-# But `atomizer` is a function. The others are classes.
-
-# Let's use a helper to get instances to avoid re-creating heavy clients every time if possible, 
-# but for this script, re-creation per run might be okay or we can use singletons.
-# The existing code for agents creates clients in __init__.
-
-# Init agents (they will use their own separate Qdrant paths)
+# Init agents
 librarian = FIBOLibrarian()
 analyst = AnalystAgent()
 assembler = GraphAssembler()
+enhancer = GraphEnhancer()
+causal_linker = CausalLinker()
+neo4j_client = Neo4jClient()
+
+def initialize_episode(state: GraphState) -> Dict[str, Any]:
+    print("---INITIALIZE EPISODE---")
+    chunk_text = state["chunk_text"]
+    
+    # Create EpisodicNode in Neo4j
+    episode_uuid = str(uuid.uuid4())
+    
+    cypher = """
+    MERGE (e:EpisodicNode {uuid: $uuid})
+    ON CREATE SET 
+        e.content = $content,
+        e.source = 'text',
+        e.created_at = datetime()
+    """
+    neo4j_client.query(cypher, {"uuid": episode_uuid, "content": chunk_text})
+    print(f"   Created EpisodicNode: {episode_uuid}")
+    
+    return {"episodic_uuid": episode_uuid}
 
 def atomize_node(state: GraphState) -> Dict[str, Any]:
     print("---ATOMIZER---")
@@ -49,26 +63,37 @@ def atomize_node(state: GraphState) -> Dict[str, Any]:
         return {"errors": [f"Atomizer Error: {str(e)}"]}
 
 async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
-    print("---PARALLEL RESOLUTION (SPLIT BRAIN)---")
+    print("---PARALLEL RESOLUTION---")
     facts = state["atomic_facts"]
     
-    # We need to process EACH fact.
-    # We will create tasks for all facts for both agents.
-    
-    # Wrapper for Librarian processing a single fact's subject/object
+    # Wrapper for Librarian processing
     def resolve_fact_entities(fact: AtomicFact) -> Dict[str, Any]:
-        # Resolve Subject
-        subj_res = librarian.resolve(fact.subject)
-        subj_uri = subj_res['uri'] if subj_res else None
-        subj_label = subj_res['label'] if subj_res else None
         
-        # Resolve Object (if it exists and is not just a concept, but Librarian tries anyway)
-        obj_uri = None
-        obj_label = None
-        if fact.object:
-            obj_res = librarian.resolve(fact.object)
-            obj_uri = obj_res['uri'] if obj_res else None
-            obj_label = obj_res['label'] if obj_res else None
+        def resolve_entity(name: str) -> tuple[str | None, str | None]:
+            if not name:
+                return None, None
+                
+            # 1. FIBO Resolution
+            res = librarian.resolve(name)
+            if res:
+                return res['uri'], res['label']
+                
+            # 2. Graph Deduplication
+            candidates = enhancer.find_graph_candidates(name)
+            decision = enhancer.resolve_entity_against_graph(name, candidates)
+            
+            if decision['decision'] == 'MERGE' and decision['target_uuid']:
+                return decision['target_uuid'], name
+            
+            # 3. New Entity
+            new_uuid = f"urn:uuid:{uuid.uuid4()}"
+            print(f"   🆕 Creating New Entity: {name}")
+            with open("new_entities.log", "a") as f:
+                f.write(f"{name}\n")
+            return new_uuid, name
+
+        subj_uri, subj_label = resolve_entity(fact.subject)
+        obj_uri, obj_label = resolve_entity(fact.object)
             
         return {
             "subject_uri": subj_uri, 
@@ -77,36 +102,24 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
             "object_label": obj_label
         }
 
-    # Wrapper for Analyst processing a single fact
+    # Wrapper for Analyst processing
     async def classify_fact_relationship(fact: AtomicFact) -> RelationshipClassification:
-        # Note: classify_relationship is synchronous in the current AnalystAgent implementation.
-        # We can run it in a thread pool to make it async-compatible if needed, 
-        # or just call it if it was async. 
-        # Since it calls LLMs (network bound), it *should* be async, but the code provided shows synchronous `invoke`.
-        # To get true parallelism with sync code, we need `asyncio.to_thread`.
-        
         # Construct a string representation for the analyst
         fact_str = f"{fact.subject} {fact.fact} {fact.object if fact.object else ''}"
         return await asyncio.to_thread(analyst.classify_relationship, fact_str)
 
-    # Prepare tasks
-    # We want to run Librarian and Analyst for ALL facts in parallel.
-    
-    # Librarian Tasks (one per fact)
-    # Note: Librarian.resolve is also synchronous in the provided code (uses Qdrant sync client).
-    # So we use to_thread there too.
-    
+    # Run resolution in parallel
     async def resolve_wrapper(fact):
         return await asyncio.to_thread(resolve_fact_entities, fact)
 
+    # Create tasks
     librarian_tasks = [resolve_wrapper(f) for f in facts]
     analyst_tasks = [classify_fact_relationship(f) for f in facts]
     
-    # Run everything concurrently!
-    # We gather all librarian results and all analyst results.
+    # Gather all results
     results = await asyncio.gather(*librarian_tasks, *analyst_tasks)
     
-    # Split results back
+    # Split results
     num_facts = len(facts)
     resolved_entities = results[:num_facts]
     classified_relationships = results[num_facts:]
@@ -116,48 +129,89 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
         "classified_relationships": classified_relationships
     }
 
+def causal_linking_node(state: GraphState) -> Dict[str, Any]:
+    print("---CAUSAL LINKING---")
+    facts = state["atomic_facts"]
+    chunk_text = state["chunk_text"]
+    
+    try:
+        links = causal_linker.extract_causality(facts, chunk_text)
+        print(f"   Found {len(links)} causal links.")
+        return {"causal_links": links}
+    except Exception as e:
+        print(f"Causal linking error: {e}")
+        return {"causal_links": []}
+
 def assemble_node(state: GraphState) -> Dict[str, Any]:
     print("---ASSEMBLER---")
     facts = state["atomic_facts"]
     resolved = state["resolved_entities"]
-    classified = state["classified_relationships"]
+    links = state["causal_links"]
+    episode_uuid = state["episodic_uuid"]
     
-    success_count = 0
+    fact_uuids = []
     
+    # 1. Create Fact Nodes
     for i in range(len(facts)):
         fact = facts[i]
         res = resolved[i]
-        rel = classified[i]
+        rel = state["classified_relationships"][i] if "classified_relationships" in state and i < len(state["classified_relationships"]) else None
         
-        if rel: # Only write if we have a relationship classification
+        try:
+            uuid = assembler.assemble_fact_node(
+                fact_obj=fact,
+                subject_uri=res["subject_uri"],
+                subject_label=res["subject_label"],
+                object_uri=res["object_uri"],
+                object_label=res["object_label"],
+                episode_uuid=episode_uuid,
+                relationship_classification=rel
+            )
+            fact_uuids.append(uuid)
+        except Exception as e:
+            error_msg = f"Error assembling fact {i}: {e}"
+            print(error_msg)
+            if "errors" not in state:
+                state["errors"] = []
+            state["errors"].append(error_msg)
+            fact_uuids.append(None) # Keep index alignment
+        
+    # 2. Link Causality
+    for link in links:
+        cause_idx = link.cause_index
+        effect_idx = link.effect_index
+        
+        if (0 <= cause_idx < len(fact_uuids) and 
+            0 <= effect_idx < len(fact_uuids) and
+            fact_uuids[cause_idx] and 
+            fact_uuids[effect_idx]):
+            
             try:
-                assembler.assemble_and_write(
-                    fact_obj=fact,
-                    subject_uri=res["subject_uri"],
-                    subject_label=res["subject_label"],
-                    object_uri=res["object_uri"],
-                    object_label=res["object_label"],
-                    relationship=rel
+                assembler.link_causality(
+                    cause_uuid=fact_uuids[cause_idx],
+                    effect_uuid=fact_uuids[effect_idx],
+                    reasoning=link.reasoning
                 )
-                success_count += 1
             except Exception as e:
-                print(f"Error assembling fact {i}: {e}")
-        else:
-            print(f"Skipping fact {i}: No relationship classified.")
-
-    return {} # No state update needed, side effect only
+                print(f"Error linking causality: {e}")
+            
+    return {}
 
 # Build the Graph
 workflow = StateGraph(GraphState)
 
+workflow.add_node("initialize_episode", initialize_episode)
 workflow.add_node("atomizer", atomize_node)
 workflow.add_node("parallel_resolution", parallel_resolution_node)
+workflow.add_node("causal_linking", causal_linking_node)
 workflow.add_node("assembler", assemble_node)
 
-workflow.set_entry_point("atomizer")
+workflow.set_entry_point("initialize_episode")
 
+workflow.add_edge("initialize_episode", "atomizer")
 workflow.add_edge("atomizer", "parallel_resolution")
-workflow.add_edge("parallel_resolution", "assembler")
+workflow.add_edge("parallel_resolution", "causal_linking")
+workflow.add_edge("causal_linking", "assembler")
 workflow.add_edge("assembler", END)
 
 app = workflow.compile()

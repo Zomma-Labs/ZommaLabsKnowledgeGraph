@@ -63,7 +63,7 @@ class FIBOLibrarian:
                 
         return label_map
 
-    def resolve(self, text: str, top_k: int = 5) -> Optional[Dict]:
+    def resolve(self, text: str, top_k: int = 5, threshold: float = 0.9) -> Optional[Dict]:
         """
         Resolves an entity name to the best matching FIBO concept.
         Returns the top match dictionary or None.
@@ -122,7 +122,13 @@ class FIBOLibrarian:
         if not sorted_candidates:
             return None
             
-        return sorted_candidates[0]
+        best_match = sorted_candidates[0]
+        
+        if best_match['score'] < threshold:
+            print(f"   ⚠️ Best match '{best_match['label']}' score {best_match['score']:.2f} < {threshold}. Rejecting.")
+            return None
+            
+        return best_match
 
     def _vector_search(self, text: str, k: int) -> List[Dict]:
         """Queries Qdrant for semantic matches."""
