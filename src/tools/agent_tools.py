@@ -12,19 +12,37 @@ _neo4j = Neo4jClient()
 @tool
 def lookup_entity(query: str) -> str:
     """
-    Resolves a company name, organization, or economic concept to its FIBO URI.
-    Use this to find the correct 'uri' to use in Cypher queries.
+    Finds an existing entity in the Knowledge Graph by name.
+    Use this to get the correct 'uri' for Cypher queries.
     
     Args:
         query: The name of the entity to look up (e.g., "Apple", "Wage Pressures").
         
     Returns:
-        A string describing the best match found, including URI and Label, or "No match found".
+        A list of matching entities found in the graph with their URIs.
     """
-    match = _librarian.resolve(query)
-    if match:
-        return f"Match found: Label='{match['label']}', URI='{match['uri']}', Score={match['score']:.2f}"
-    return "No match found in FIBO ontology."
+    # 1. Search the graph directly for existing nodes (Fuzzy/Contains match)
+    print(f"   🔍 Searching Graph for '{query}'...")
+    cypher = """
+    MATCH (n:Entity) 
+    WHERE toLower(n.name) CONTAINS toLower($query) 
+    RETURN n.name, n.uri 
+    LIMIT 5
+    """
+    try:
+        results = _neo4j.query(cypher, {"query": query})
+        if results:
+            output = f"Found {len(results)} existing nodes in the graph:\n"
+            for r in results:
+                output += f"- Name: '{r['n.name']}', URI: '{r['n.uri']}'\n"
+            return output
+    except Exception as e:
+        return f"Error searching graph: {e}"
+
+    # 2. If not found in graph, try FIBO (maybe it exists but under a different canonical name?)
+    # But strictly speaking, if it's not in the graph, we can't query it.
+    # So we just return no match.
+    return "No matching entities found in the existing Knowledge Graph."
 
 @tool
 def lookup_relationship(description: str) -> str:
