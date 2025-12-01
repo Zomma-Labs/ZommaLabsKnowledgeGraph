@@ -60,40 +60,88 @@ class GraphEnhancer:
             print(f"Reflexion failed: {e}")
             return []
 
-    def find_graph_candidates(self, entity_name: str, group_id: str, top_k: int = 5) -> List[Dict]:
+    def extract_entity_description(self, entity_name: str, context_text: str) -> str:
         """
-        Performs a vector search on the Neo4j graph to find similar entities.
+        Generates a brief 1-sentence description of what the entity IS in this context.
+        """
+        prompt = (
+            f"Based on the text below, provide a brief, 1-sentence description of what '{entity_name}' IS.\n"
+            f"Example: 'A multinational technology company.' or 'A type of fruit.'\n"
+            f"TEXT: {context_text}\n"
+            f"DESCRIPTION:"
+        )
+        try:
+            response = self.llm.invoke(prompt)
+            return response.content.strip()
+        except Exception as e:
+            print(f"Description extraction failed: {e}")
+            return "Entity"
+
+    def find_graph_candidates(self, entity_name: str, entity_description: str, group_id: str, top_k: int = 5) -> List[Dict]:
+        """
+        Finds candidates using Exact Match (Step 1) and Vector Search (Step 2).
+        """
+        candidates = []
+        seen_uuids = set()
+
+        # 1. Exact Name Match
+        cypher_exact = """
+        MATCH (n:Entity {name: $name, group_id: $group_id})
+        RETURN n.uuid as uuid, n.name as name, n.summary as summary, labels(n) as labels
+        LIMIT 1
         """
         try:
-            vector = self.embeddings.embed_query(entity_name)
+            exact_matches = self.neo4j.query(cypher_exact, {"name": entity_name, "group_id": group_id})
+            for match in exact_matches:
+                match['score'] = 1.0
+                candidates.append(match)
+                seen_uuids.add(match['uuid'])
+        except Exception as e:
+            print(f"Exact match query failed: {e}")
+
+        # 2. Vector Search (Fallback/Supplementary)
+        # Embed "Name: Description"
+        query_text = f"{entity_name}: {entity_description}"
+        try:
+            vector = self.embeddings.embed_query(query_text)
+            # Note: We are searching 'entity_embeddings' index. Ensure it exists.
             results = self.neo4j.vector_search("entity_embeddings", vector, top_k, filters={"group_id": group_id})
             
-            candidates = []
             for record in results:
                 node = record['node']
-                score = record['score']
-                candidates.append({
-                    "uuid": node.get("uri"), # Assuming URI is used as UUID/ID
-                    "name": node.get("name"),
-                    "labels": node.get("labels", []), # Neo4j python driver might return labels differently, but node object usually has them
-                    "score": score
-                })
+                uuid = node.get("uuid") or node.get("uri") # Handle potential schema variations
+                
+                if uuid not in seen_uuids:
+                    candidates.append({
+                        "uuid": uuid,
+                        "name": node.get("name"),
+                        "summary": node.get("summary", ""),
+                        "labels": node.get("labels", []),
+                        "score": record['score']
+                    })
+                    seen_uuids.add(uuid)
+                    
             return candidates
         except Exception as e:
             print(f"Graph candidate search failed: {e}")
-            return []
+            return candidates # Return whatever we found in exact match
 
-    def resolve_entity_against_graph(self, entity_name: str, candidates: List[Dict]) -> Dict[str, Any]:
+    def resolve_entity_against_graph(self, entity_name: str, entity_description: str, candidates: List[Dict]) -> Dict[str, Any]:
         """
         Uses LLM to decide whether to merge with a candidate or create a new node.
         """
         if not candidates:
             return {"decision": "CREATE_NEW", "target_uuid": None}
             
+        # Optimization: If we have an exact match (score=1.0), check if descriptions align
+        # But for safety, we still ask LLM unless it's overwhelmingly obvious?
+        # Actually, let's let the LLM decide even for exact matches to handle "Apple" (Fruit) vs "Apple" (Corp) collision if names are identical.
+        # Wait, if names are identical, exact match returns it. We need to know if it's the SAME entity.
+        
         structured_llm = self.llm.with_structured_output(EntityResolution)
         
         candidates_str = "\n".join([
-            f"- ID: {c['uuid']}, Name: {c['name']}, Score: {c['score']:.2f}" 
+            f"- ID: {c['uuid']}, Name: {c['name']}, Description: {c.get('summary', 'N/A')}, Score: {c['score']:.2f}" 
             for c in candidates
         ])
         
@@ -102,11 +150,16 @@ class GraphEnhancer:
             "Decide if the New Entity matches any of the Existing Graph Candidates.\n\n"
             "Rules:\n"
             "1. MERGE only if you are confident it is the SAME real-world entity.\n"
-            "2. If the name is similar but represents a different thing (e.g. 'Apple' vs 'Applebee's'), CREATE_NEW.\n"
-            "3. If the candidate list is empty or irrelevant, CREATE_NEW."
+            "2. Pay close attention to DESCRIPTIONS. 'Apple' (Tech Company) != 'Apple' (Fruit).\n"
+            "3. If the name is the same but the description implies a different entity, CREATE_NEW.\n"
+            "4. If the candidate list is empty or irrelevant, CREATE_NEW."
         )
         
-        prompt = f"NEW ENTITY: {entity_name}\n\nEXISTING CANDIDATES:\n{candidates_str}"
+        prompt = (
+            f"NEW ENTITY: {entity_name}\n"
+            f"DESCRIPTION: {entity_description}\n\n"
+            f"EXISTING CANDIDATES:\n{candidates_str}"
+        )
         
         try:
             response = structured_llm.invoke([

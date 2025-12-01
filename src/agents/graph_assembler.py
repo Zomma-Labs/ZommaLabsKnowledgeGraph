@@ -24,7 +24,9 @@ class GraphAssembler:
                            object_label: Optional[str],
                            episode_uuid: str,
                            group_id: str,
-                           relationship_classification: Optional[RelationshipClassification] = None) -> str:
+                           relationship_classification: Optional[RelationshipClassification] = None,
+                           subject_description: str = "",
+                           object_description: str = "") -> str:
         """
         Creates a FactNode and links it to Subject, Object, and Episode.
         Returns the UUID of the FactNode (either new or merged).
@@ -35,14 +37,14 @@ class GraphAssembler:
             log.write(f"\n--- Assembling Fact: {fact_obj.fact[:50]}... ---\n")
             log.write(f"S: {subject_uri} ({subject_label}) -> O: {object_uri} ({object_label})\n")
         
-        # 1. Generate Embedding
+        # 1. Generate Embedding for Fact
         try:
             fact_embedding = self.embeddings.embed_query(fact_obj.fact)
             with open("assembler_debug.log", "a") as log:
-                log.write("✅ Embedding generated.\n")
+                log.write("✅ Fact Embedding generated.\n")
         except Exception as e:
             with open("assembler_debug.log", "a") as log:
-                log.write(f"❌ Embedding failed: {e}\n")
+                log.write(f"❌ Fact Embedding failed: {e}\n")
             raise e
         
         # Determine Fact Type from Classification
@@ -100,10 +102,25 @@ class GraphAssembler:
         
         # 4. Link Structure (Subject -> Fact -> Object)
         
+        # Generate Subject Embedding
+        subj_embedding = None
+        if subject_label:
+            try:
+                subj_text = f"{subject_label}: {subject_description}" if subject_description else subject_label
+                subj_embedding = self.embeddings.embed_query(subj_text)
+            except Exception:
+                pass
+
         cypher_link = """
         MERGE (s:Entity {uri: $subj_uri, group_id: $group_id})
-        ON CREATE SET s.name = $subj_label
-        ON MATCH SET s.name = $subj_label // Update name if it changed or was missing
+        ON CREATE SET 
+            s.name = $subj_label,
+            s.summary = $subj_desc,
+            s.embedding = $subj_embedding
+        ON MATCH SET 
+            s.name = $subj_label, // Update name if it changed or was missing
+            s.summary = CASE WHEN s.summary IS NULL OR s.summary = "" THEN $subj_desc ELSE s.summary END,
+            s.embedding = CASE WHEN s.embedding IS NULL THEN $subj_embedding ELSE s.embedding END
         WITH s
         MATCH (f:FactNode {uuid: $fact_uuid, group_id: $group_id})
         MERGE (s)-[:PERFORMED]->(f)
@@ -112,6 +129,8 @@ class GraphAssembler:
             self.neo4j.query(cypher_link, {
                 "subj_uri": subject_uri, 
                 "subj_label": subject_label,
+                "subj_desc": subject_description,
+                "subj_embedding": subj_embedding,
                 "fact_uuid": fact_uuid,
                 "group_id": group_id
             })
@@ -122,10 +141,25 @@ class GraphAssembler:
                 log.write(f"❌ Link Subject failed: {e}\n")
         
         if object_uri:
+            # Generate Object Embedding
+            obj_embedding = None
+            if object_label:
+                try:
+                    obj_text = f"{object_label}: {object_description}" if object_description else object_label
+                    obj_embedding = self.embeddings.embed_query(obj_text)
+                except Exception:
+                    pass
+
             cypher_link_obj = """
             MERGE (o:Entity {uri: $obj_uri, group_id: $group_id})
-            ON CREATE SET o.name = $obj_label
-            ON MATCH SET o.name = $obj_label
+            ON CREATE SET 
+                o.name = $obj_label,
+                o.summary = $obj_desc,
+                o.embedding = $obj_embedding
+            ON MATCH SET 
+                o.name = $obj_label,
+                o.summary = CASE WHEN o.summary IS NULL OR o.summary = "" THEN $obj_desc ELSE o.summary END,
+                o.embedding = CASE WHEN o.embedding IS NULL THEN $obj_embedding ELSE o.embedding END
             WITH o
             MATCH (f:FactNode {uuid: $fact_uuid, group_id: $group_id})
             MERGE (f)-[:TARGET]->(o)
@@ -134,6 +168,8 @@ class GraphAssembler:
                 self.neo4j.query(cypher_link_obj, {
                     "obj_uri": object_uri, 
                     "obj_label": object_label,
+                    "obj_desc": object_description,
+                    "obj_embedding": obj_embedding,
                     "fact_uuid": fact_uuid,
                     "group_id": group_id
                 })
