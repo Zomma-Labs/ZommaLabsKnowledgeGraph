@@ -12725,3 +12725,43 @@ S: urn:uuid:cf80a953-0ac9-4de4-b201-a44344012cde (Ajit Jain) -> O: urn:uuid:1229
 ✅ Linked Subject: urn:uuid:cf80a953-0ac9-4de4-b201-a44344012cde
 ✅ Linked Object: urn:uuid:1229b92f-7feb-43e7-b891-4ac3e67880bb
 ✅ Linked Provenance
+
+--- Assembling Fact: Apple released the new iPhone 15.... ---
+S: urn:uuid:472ff28c-ab80-43e2-96b3-733af3eaf923 (Apple) -> O: urn:uuid:a0d017f6-ea65-4905-84ac-b974b7e4a33b (iPhone 15)
+✅ Fact Embedding generated.
+✅ Node created: c420104f-91eb-4733-93f9-253859d3a8fc
+✅ Linked Subject: urn:uuid:472ff28c-ab80-43e2-96b3-733af3eaf923
+✅ Linked Object: urn:uuid:a0d017f6-ea65-4905-84ac-b974b7e4a33b
+✅ Linked Provenance
+
+--- Assembling Fact: The apple is a tasty fruit.... ---
+S: urn:uuid:dfd0e6c7-4207-405d-845c-d438481dcee4 (The apple) -> O: urn:uuid:61b8777e-8073-4323-9238-c5ea0b958c10 (fruit)
+✅ Fact Embedding generated.
+✅ Node created: 142de663-a3fc-4136-ab3b-74d23f368ddc
+✅ Linked Subject: urn:uuid:dfd0e6c7-4207-405d-845c-d438481dcee4
+✅ Linked Object: urn:uuid:61b8777e-8073-4323-9238-c5ea0b958c10
+✅ Linked Provenance
+
+--- Assembling Fact: Apple posted record profits for the quarter.... ---
+S: urn:uuid:472ff28c-ab80-43e2-96b3-733af3eaf923 (Apple) -> O: urn:uuid:5905c0e1-c423-46ff-9bfc-984750cb2082 (Profits)
+✅ Fact Embedding generated.
+✅ Node created: 38c15ee7-337e-447d-9e5b-1dcb852e3ab6
+✅ Linked Subject: urn:uuid:472ff28c-ab80-43e2-96b3-733af3eaf923
+✅ Linked Object: urn:uuid:5905c0e1-c423-46ff-9bfc-984750cb2082
+✅ Linked Provenance
+
+--- Assembling Fact: Apple Hospitality REIT owns many hotels.... ---
+S: urn:uuid:0d7268d4-e68d-42e2-8e24-c0c7f00dfe71 (Apple Hospitality REIT) -> O: urn:uuid:0699d400-7621-4b94-857c-72360ab94d01 (many hotels)
+✅ Fact Embedding generated.
+✅ Node created: 908748ad-2ae3-4908-8159-f34d1f5f09cf
+✅ Linked Subject: urn:uuid:0d7268d4-e68d-42e2-8e24-c0c7f00dfe71
+✅ Linked Object: urn:uuid:0699d400-7621-4b94-857c-72360ab94d01
+✅ Linked Provenance
+
+--- Assembling Fact: Apple released the new iPhone 15.... ---
+S: urn:uuid:80cc4c90-8085-4fd6-aeac-8a67ee422a79 (Apple) -> O: urn:uuid:b865ef4b-a06f-4387-afdf-658e6fa7ed30 (iPhone 15)
+✅ Fact Embedding generated.
+✅ Node created: ba0a446e-23c5-473b-8b8a-7f6de16be018
+✅ Linked Subject: urn:uuid:80cc4c90-8085-4fd6-aeac-8a67ee422a79
+✅ Linked Object: urn:uuid:b865ef4b-a06f-4387-afdf-658e6fa7ed30
+✅ Linked Provenance

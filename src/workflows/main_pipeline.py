@@ -107,40 +107,48 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
     facts = state["atomic_facts"]
     
     # Wrapper for Librarian processing
+    # Wrapper for Librarian processing
     def resolve_fact_entities(fact: AtomicFact) -> Dict[str, Any]:
         
-        def resolve_entity(name: str) -> tuple[str | None, str | None]:
+        def resolve_entity(name: str, context: str) -> tuple[str | None, str | None, str]:
             if not name:
-                return None, None
+                return None, None, ""
+            
+            # 0. Extract Description
+            description = enhancer.extract_entity_description(name, context)
                 
-            # 1. FIBO Resolution
+            # 1. FIBO Resolution (Skip description check for FIBO? Maybe, but let's keep flow simple)
             res = librarian.resolve(name)
             if res:
-                return res['uri'], res['label']
+                return res['uri'], res['label'], description
                 
             # 2. Graph Deduplication
             group_id = state.get("group_id", "default_tenant")
-            candidates = enhancer.find_graph_candidates(name, group_id=group_id)
-            decision = enhancer.resolve_entity_against_graph(name, candidates)
+            # Pass description to find candidates
+            candidates = enhancer.find_graph_candidates(name, description, group_id=group_id)
+            # Pass description to resolve against graph
+            decision = enhancer.resolve_entity_against_graph(name, description, candidates)
             
             if decision['decision'] == 'MERGE' and decision['target_uuid']:
-                return decision['target_uuid'], name
+                return decision['target_uuid'], name, description
             
             # 3. New Entity
             new_uuid = f"urn:uuid:{uuid.uuid4()}"
-            print(f"   🆕 Creating New Entity: {name}")
+            print(f"   🆕 Creating New Entity: {name} ({description})")
             with open("new_entities.log", "a") as f:
-                f.write(f"{name}\n")
-            return new_uuid, name
+                f.write(f"{name} | {description}\n")
+            return new_uuid, name, description
 
-        subj_uri, subj_label = resolve_entity(fact.subject)
-        obj_uri, obj_label = resolve_entity(fact.object)
+        subj_uri, subj_label, subj_desc = resolve_entity(fact.subject, fact.fact)
+        obj_uri, obj_label, obj_desc = resolve_entity(fact.object, fact.fact)
             
         return {
             "subject_uri": subj_uri, 
             "subject_label": subj_label,
+            "subject_description": subj_desc,
             "object_uri": obj_uri,
-            "object_label": obj_label
+            "object_label": obj_label,
+            "object_description": obj_desc
         }
 
     # Wrapper for Analyst processing
@@ -208,7 +216,9 @@ def assemble_node(state: GraphState) -> Dict[str, Any]:
                 object_label=res["object_label"],
                 episode_uuid=episode_uuid,
                 group_id=group_id,
-                relationship_classification=rel
+                relationship_classification=rel,
+                subject_description=res.get("subject_description", ""),
+                object_description=res.get("object_description", "")
             )
             fact_uuids.append(uuid)
         except Exception as e:
