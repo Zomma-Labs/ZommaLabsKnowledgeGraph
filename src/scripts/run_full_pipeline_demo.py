@@ -18,7 +18,13 @@ async def run_demo():
         "Consequently, the company's stock price dropped by 5%. "
         "The outage was effected by a configuration error."
     )
-    metadata = {"doc_date": "2023-11-01", "chunk_id": "demo_causal", "section_header": "Incident Report"}
+    metadata = {
+        "doc_date": "2023-11-01", 
+        "chunk_id": "demo_causal", 
+        "section_header": "Incident Report",
+        "headings": ["2. Incident Report", "2.1 System Failure"], # Added headings
+        "group_id": "demo_tenant"
+    }
     
     print(f"\n📄 Input Text:\n{chunk_text}\n")
     
@@ -36,6 +42,22 @@ async def run_demo():
         print("\n--- 🔍 Inspecting Graph (Neo4j) ---")
         client = Neo4jClient()
         
+        # 0. Query Dimensional Star (Hubs)
+        print("\n🏗️ Dimensional Star Topology:")
+        cypher_star = """
+        MATCH (hub:SectionNode)
+        OPTIONAL MATCH (hub)-[:DISCUSSES]->(t:TopicNode)
+        OPTIONAL MATCH (hub)-[:REPRESENTS]->(e:EntityNode)
+        RETURN hub.header_path as Hub, collect(distinct t.name) as Topics, collect(distinct e.name) as Entities
+        """
+        stars = client.query(cypher_star)
+        for record in stars:
+            print(f"   ⭐ Hub: [{record['Hub']}]")
+            if record['Topics']:
+                print(f"      - Topics: {record['Topics']}")
+            if record['Entities']:
+                print(f"      - Entities: {record['Entities']}")
+
         # 1. Query Facts (Broad)
         cypher_facts = """
         MATCH (f:FactNode)

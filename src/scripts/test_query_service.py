@@ -13,11 +13,15 @@ def main():
         print(f"Failed to initialize QueryWorkflow: {e}")
         return
 
+    # questions = [
+    #     "What did contacts note about wage pressures?",
+    #     "How were office vacancy rates?",
+    #     "What did retailers say about customers?",
+    #     "What sectors had flat hiring?"
+    # ]
     questions = [
-        "What did contacts note about wage pressures?",
-        "How were office vacancy rates?",
-        "What did retailers say about customers?",
-        "What sectors had flat hiring?"
+        "What are the reported labor market conditions in Boston?",
+        "What are the reported labor market conditions in New York?",
     ]
     
     print("Testing Agentic Query Workflow with Beige Book Questions...")

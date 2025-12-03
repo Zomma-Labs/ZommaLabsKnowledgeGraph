@@ -2,6 +2,7 @@ import asyncio
 import uuid
 from typing import List, Dict, Any, TypedDict
 from langgraph.graph import StateGraph, END
+from rapidfuzz.distance import Levenshtein
 
 from src.agents.atomizer import atomizer
 from src.agents.FIBO_librarian import FIBOLibrarian
@@ -9,9 +10,12 @@ from src.agents.analyst import AnalystAgent
 from src.agents.graph_assembler import GraphAssembler
 from src.agents.graph_enhancer import GraphEnhancer
 from src.agents.causal_linker import CausalLinker
+from src.agents.header_analyzer import HeaderAnalyzer, DimensionType
 from src.schemas.atomic_fact import AtomicFact
 from src.schemas.relationship import RelationshipClassification
+from src.schemas.nodes import TopicNode
 from src.tools.neo4j_client import Neo4jClient
+from src.util.llm_client import get_embeddings
 
 # Define the State
 class GraphState(TypedDict):
@@ -31,26 +35,27 @@ analyst = AnalystAgent()
 assembler = GraphAssembler()
 enhancer = GraphEnhancer()
 causal_linker = CausalLinker()
+header_analyzer = HeaderAnalyzer() # New Agent
 neo4j_client = Neo4jClient()
+embeddings = get_embeddings()
 
 def initialize_episode(state: GraphState) -> Dict[str, Any]:
-    print("---INITIALIZE EPISODE---")
+    print("---INITIALIZE EPISODE (Dimensional Star)---")
     chunk_text = state["chunk_text"]
     
     # Create EpisodicNode in Neo4j
     episode_uuid = str(uuid.uuid4())
     group_id = state.get("group_id")
     if not group_id:
-        # Fallback or Error? For now, we'll try to get it from metadata or raise error
         group_id = state["metadata"].get("group_id", "default_tenant")
         print(f"⚠️ No group_id in state, using: {group_id}")
     
     # Extract Document Info
-    doc_name = state["metadata"].get("filename") or state["metadata"].get("source_id") or "Unknown Document"
+    doc_name = state["metadata"].get("doc_id") or state["metadata"].get("filename") or state["metadata"].get("source_id") or "Unknown Document"
     file_type = state["metadata"].get("file_type", "text")
     
-    # We use a single transaction to ensure atomicity
-    cypher = """
+    # 1. Create/Merge DocumentNode
+    cypher_doc = """
     MERGE (d:DocumentNode {name: $doc_name, group_id: $group_id})
     ON CREATE SET 
         d.uuid = $doc_uuid,
@@ -58,36 +63,200 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
         d.document_date = datetime(),
         d.file_type = $file_type,
         d.metadata = $metadata
+    RETURN d.uuid as doc_uuid
+    """
+    
+    doc_uuid_candidate = str(uuid.uuid4())
+    clean_metadata = {k: v for k, v in state["metadata"].items() if isinstance(v, (str, int, float, bool))}
+    import json
+    metadata_json = json.dumps(clean_metadata)
+
+    doc_result = neo4j_client.query(cypher_doc, {
+        "doc_name": doc_name,
+        "group_id": group_id,
+        "doc_uuid": doc_uuid_candidate,
+        "file_type": file_type,
+        "metadata": metadata_json
+    })
+    
+    doc_uuid = doc_result[0]['doc_uuid']
+    
+    # 2. Dimensional Star: Squash Hierarchy -> Context Hub
+    headings = state["metadata"].get("headings", [])
+    if not headings:
+        headings = state["metadata"].get("breadcrumbs", [])
+    
+    # Filter out "Body" and strip whitespace
+    headings = [h.strip() for h in headings if h.strip().lower() != "body"]
+    
+    # Define the Hub (SectionNode)
+    # If no headings, the Document itself is the hub (or we create a generic one)
+    # But typically we want a SectionNode even for top-level content
+    header_path = " > ".join(headings) if headings else "ROOT"
+    
+    # Embed the header path
+    try:
+        hub_embedding = embeddings.embed_query(header_path)
+    except Exception:
+        hub_embedding = None
         
+    hub_uuid_candidate = str(uuid.uuid4())
+    
+    # Create the Hub (SectionNode)
+    cypher_hub = """
+    MERGE (s:SectionNode {header_path: $header_path, doc_id: $doc_id, group_id: $group_id})
+    ON CREATE SET
+        s.uuid = $hub_uuid,
+        s.embedding = $embedding,
+        s.created_at = datetime()
+    RETURN s.uuid as hub_uuid
+    """
+    
+    hub_result = neo4j_client.query(cypher_hub, {
+        "header_path": header_path,
+        "doc_id": doc_name,
+        "group_id": group_id,
+        "hub_uuid": hub_uuid_candidate,
+        "embedding": hub_embedding
+    })
+    
+    hub_uuid = hub_result[0]['hub_uuid']
+    
+    # Link Hub -> Document
+    cypher_link_doc = """
+    MATCH (s:SectionNode {uuid: $hub_uuid})
+    MATCH (d:DocumentNode {uuid: $doc_uuid})
+    MERGE (s)-[:PART_OF]->(d)
+    MERGE (d)-[:TALKS_ABOUT]->(s)
+    """
+    neo4j_client.query(cypher_link_doc, {"hub_uuid": hub_uuid, "doc_uuid": doc_uuid})
+    
+    # 3. Analyze Dimensions & Link to Hub
+    if headings:
+        # Extract context
+        doc_filename = state["metadata"].get("filename", "")
+        doc_context = header_analyzer.extract_document_context(chunk_text, doc_filename)
+        print(f"   Document Context: {doc_context}")
+        
+        dimensions = header_analyzer.analyze_path(headings, document_context=doc_context)
+        print(f"   Dimensions found: {[d.value for d in dimensions]}")
+        
+        for dim in dimensions:
+            resolved_node_uuid = None
+            resolved_node_type = None
+            
+            # Resolution Logic (Standard Paradigm: FIBO -> Graph -> Create)
+            # 1. FIBO Resolution
+            # Use description to aid resolution
+            resolve_query = f"{dim.value} {dim.description}" if dim.description else dim.value
+            fibo_res = librarian.resolve(resolve_query)
+            
+            if fibo_res and fibo_res['score'] > 0.9:
+                print(f"     ✅ FIBO Match: {fibo_res['label']} ({fibo_res['score']:.2f})")
+                
+                target_label = "TopicNode" if dim.type == DimensionType.TOPIC else "EntityNode"
+                
+                cypher_merge_fibo = f"""
+                MERGE (n:{target_label} {{name: $name, group_id: $group_id}}) 
+                ON CREATE SET n.uuid = $uuid, n.embedding = $embedding, n.fibo_uri = $fibo_uri, n.fibo_id = $fibo_uri
+                RETURN n.uuid as node_uuid
+                """
+                
+                # Embed dimension value + description
+                try:
+                    text_to_embed = f"{dim.value}: {dim.description}" if dim.description else dim.value
+                    dim_embedding = embeddings.embed_query(text_to_embed)
+                except:
+                    dim_embedding = None
+
+                res = neo4j_client.query(cypher_merge_fibo, {
+                    "name": fibo_res['label'],
+                    "group_id": group_id,
+                    "uuid": str(uuid.uuid4()),
+                    "embedding": dim_embedding,
+                    "fibo_uri": fibo_res['uri']
+                })
+                resolved_node_uuid = res[0]['node_uuid']
+                resolved_node_type = target_label
+                
+            else:
+                # Graph Search / Create New
+                target_label = "TopicNode" if dim.type == DimensionType.TOPIC else "EntityNode"
+                
+                cypher_find = f"""
+                MATCH (n:{target_label} {{group_id: $group_id}})
+                WHERE n.name = $name
+                RETURN n.uuid as node_uuid
+                LIMIT 1
+                """
+                existing = neo4j_client.query(cypher_find, {"group_id": group_id, "name": dim.value})
+                
+                if existing:
+                    print(f"     🔄 Found existing {target_label}: {dim.value}")
+                    resolved_node_uuid = existing[0]['node_uuid']
+                    resolved_node_type = target_label
+                else:
+                    print(f"     🆕 Creating new {target_label}: {dim.value}")
+                    with open("new_topics_entities.log", "a") as f:
+                        f.write(f"[{target_label}] {dim.value}\n")
+                    
+                    try:
+                        text_to_embed = f"{dim.value}: {dim.description}" if dim.description else dim.value
+                        dim_embedding = embeddings.embed_query(text_to_embed)
+                    except:
+                        dim_embedding = None
+                        
+                    cypher_create_new = f"""
+                    MERGE (n:{target_label} {{name: $name, group_id: $group_id}})
+                    ON CREATE SET n.uuid = $uuid, n.embedding = $embedding, n.created_at = datetime()
+                    RETURN n.uuid as node_uuid
+                    """
+                    res = neo4j_client.query(cypher_create_new, {
+                        "name": dim.value,
+                        "group_id": group_id,
+                        "uuid": str(uuid.uuid4()),
+                        "embedding": dim_embedding
+                    })
+                    resolved_node_uuid = res[0]['node_uuid']
+                    resolved_node_type = target_label
+            
+            # Link Hub <-> Dimension (Bi-directional)
+            if resolved_node_uuid:
+                rel_to_dim = "DISCUSSES" if dim.type == DimensionType.TOPIC else "REPRESENTS"
+                rel_from_dim = "IS_DISCUSSED_IN" if dim.type == DimensionType.TOPIC else "IS_REPRESENTED_IN"
+                
+                cypher_link_star = f"""
+                MATCH (hub:SectionNode {{uuid: $hub_uuid}})
+                MATCH (dim:{resolved_node_type} {{uuid: $dim_uuid}})
+                MERGE (hub)-[:{rel_to_dim}]->(dim)
+                MERGE (dim)-[:{rel_from_dim}]->(hub)
+                """
+                neo4j_client.query(cypher_link_star, {
+                    "hub_uuid": hub_uuid,
+                    "dim_uuid": resolved_node_uuid
+                })
+
+    # 4. Create EpisodicNode and Link to Hub
+    cypher_episode = """
     MERGE (e:EpisodicNode {uuid: $episode_uuid, group_id: $group_id})
     ON CREATE SET 
         e.content = $content,
         e.source = 'text',
         e.created_at = datetime()
         
-    MERGE (e)-[:BELONGS_TO]->(d)
+    WITH e
+    MATCH (hub:SectionNode {uuid: $hub_uuid})
+    MERGE (hub)-[:CONTAINS]->(e)
     """
-    
-    # Generate a UUID for the document just in case it's new (used in ON CREATE)
-    doc_uuid_candidate = str(uuid.uuid4())
-    
-    # Filter metadata to be JSON serializable if needed, or just pass it
-    # Neo4j driver handles dicts as maps usually
-    clean_metadata = {k: v for k, v in state["metadata"].items() if isinstance(v, (str, int, float, bool))}
-    import json
-    metadata_json = json.dumps(clean_metadata)
 
-    neo4j_client.query(cypher, {
-        "uuid": episode_uuid, # This was $uuid in the original query, but I changed it to $episode_uuid in my new query? No wait, I need to be careful with param names.
+    neo4j_client.query(cypher_episode, {
         "episode_uuid": episode_uuid,
-        "content": chunk_text, 
         "group_id": group_id,
-        "doc_name": doc_name,
-        "doc_uuid": doc_uuid_candidate,
-        "file_type": file_type,
-        "metadata": metadata_json
+        "content": chunk_text,
+        "hub_uuid": hub_uuid
     })
-    print(f"   Created EpisodicNode: {episode_uuid} linked to Document: {doc_name}")
+    
+    print(f"   Created EpisodicNode: {episode_uuid} linked to Hub ({header_path})")
     
     return {"episodic_uuid": episode_uuid, "group_id": group_id}
 
