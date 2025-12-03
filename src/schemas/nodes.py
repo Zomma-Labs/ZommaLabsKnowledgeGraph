@@ -55,3 +55,23 @@ class FactNode(Node):
     fact_type: str = Field(default="statement")
     confidence: float = 1.0
     embedding: Optional[List[float]] = None # Critical for semantic deduplication
+
+# --- The Section (Hierarchy) ---
+class SectionNode(Node):
+    """
+    The Context Hub. Represents a thematic block within a file.
+    Example: "Regional Reports > New York > Labor Markets"
+    """
+    header_path: str = Field(description="Full breadcrumb path of the section")
+    doc_id: str = Field(description="ID of the parent document")
+    embedding: Optional[List[float]] = None
+
+# --- The Topic (Theme) ---
+class TopicNode(Node):
+    """
+    A Global Theme. Shared across all documents.
+    Example: "Inflation", "Labor Markets", "Risk".
+    """
+    name: str = Field(description="Normalized name of the topic")
+    fibo_id: Optional[str] = Field(default=None, description="FIBO Identifier if resolved")
+    embedding: Optional[List[float]] = None

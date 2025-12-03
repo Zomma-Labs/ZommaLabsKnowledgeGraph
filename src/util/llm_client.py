@@ -19,7 +19,7 @@ class LLMClient:
     def get_instance(cls) -> BaseChatModel:
         if cls._instance is None:
             # Default to gpt-4o as it is a strong default, configurable via env
-            model = os.getenv("LLM_MODEL", "gpt-4o-mini")
+            model = os.getenv("LLM_MODEL", "gpt-4.1-mini")
             
             if model.startswith("gemini"):
                 if not os.getenv("GOOGLE_API_KEY"):

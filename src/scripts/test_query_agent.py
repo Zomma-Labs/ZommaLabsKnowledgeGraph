@@ -36,11 +36,15 @@ if __name__ == "__main__":
     with open("test_results.md", "w") as f:
         f.write("# Query Agent Test Results\n\n")
 
+    # test_queries = [
+    #     "What are the reports on wage pressures?",
+    #     "How is the labor market performing in the New York district?",
+    #     "What sectors are seeing price increases?",
+    #     "Tell me about 'Specific Non-FIBO Entity' if it exists, or just 'wage pressures' again to test fallback."
+    # ]
     test_queries = [
-        "What are the reports on wage pressures?",
-        "How is the labor market performing in the New York district?",
-        "What sectors are seeing price increases?",
-        "Tell me about 'Specific Non-FIBO Entity' if it exists, or just 'wage pressures' again to test fallback."
+        "What are the reported labor market conditions in Boston?",
+        "What are the reported labor market conditions in New York?",
     ]
     
     for q in test_queries:

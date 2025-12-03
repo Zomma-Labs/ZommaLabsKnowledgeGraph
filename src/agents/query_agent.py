@@ -1,5 +1,6 @@
 from src.tools.neo4j_client import Neo4jClient
-from src.util.llm_client import get_llm
+from src.util.llm_client import get_embeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
 from src.schemas.relationship import RelationshipType
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -7,66 +8,148 @@ from langchain_core.output_parsers import StrOutputParser
 class QueryAgent:
     def __init__(self):
         self.neo4j = Neo4jClient()
-        self.llm = get_llm()
+        # Use Gemini 2.5 Flash as requested for speed and long context
+        self.llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+        self.embeddings = get_embeddings()
         
     def query_graph(self, user_query: str):
-        # 1. Generate Cypher
-        cypher_query = self._generate_cypher(user_query)
-        print(f"Generated Cypher: {cypher_query}")
+        print(f"🔎 Researching: {user_query}")
         
-        # 2. Execute Cypher
-        try:
-            results = self.neo4j.query(cypher_query)
-        except Exception as e:
-            return f"Error executing Cypher query: {e}"
+        # 1. Resolve Entities (Vector Search)
+        entities = self._resolve_entities(user_query)
+        if not entities:
+            return "I couldn't find any relevant entities in the Knowledge Graph to answer your question."
             
-        # 3. Synthesize Answer
-        return self._synthesize_answer(user_query, results)
-
-    def _generate_cypher(self, user_query: str) -> str:
-        # Construct prompt with schema
-        rel_types = [r.value for r in RelationshipType]
-        schema_desc = f"""
-        Nodes: 
-        - Entity (properties: uri, name)
-        - Concept (properties: uri, name)
+        print(f"   ✅ Identified {len(entities)} entities: {[e['name'] for e in entities]}")
         
-        Relationships:
-        - Types: {', '.join(rel_types)}
-        - Properties on relationships: fact (string), date (string), confidence (float)
-        
-        Pattern: (Entity)-[RELATIONSHIP]->(Entity|Concept)
-        """
-        
-        template = """You are a Neo4j Cypher expert. Convert the user's natural language query into a Cypher query.
-        Use the following schema:
-        {schema}
-        
-        IMPORTANT: 
-        - Return ONLY the Cypher query. No markdown, no explanations.
-        - Use case-insensitive matching for names if needed (e.g. toLower(n.name) CONTAINS ...).
-        - Always return relevant properties like s.name, r.fact, r.date, o.name.
-        
-        User Query: {query}
-        """
-        
-        prompt = ChatPromptTemplate.from_template(template)
-        chain = prompt | self.llm | StrOutputParser()
-        
-        response = chain.invoke({"schema": schema_desc, "query": user_query})
-        # Clean up response (remove markdown code blocks if any)
-        return response.replace("```cypher", "").replace("```", "").strip()
-
-    def _synthesize_answer(self, user_query: str, results: list) -> str:
-        if not results:
-            return "No information found in the knowledge graph matching your query."
+        # 2. Expand Context (Facts + Chunks)
+        context_data = self._expand_context(entities)
+        if not context_data['chunks']:
+            return "I found the entities, but there is no detailed information (chunks) available in the graph to answer your question."
             
-        template = """You are a helpful assistant. Answer the user's query based on the following results from the knowledge graph.
+        print(f"   ✅ Retrieved {len(context_data['facts'])} facts and {len(context_data['chunks'])} source chunks.")
         
-        User Query: {query}
+        # 3. Synthesize Answer (Deep Research)
+        return self._synthesize_answer(user_query, context_data)
+
+    def _resolve_entities(self, user_query: str) -> list:
+        """
+        Uses vector search to find relevant entities AND sections from the query.
+        """
+        # Embed the query
+        query_vector = self.embeddings.embed_query(user_query)
         
-        Graph Results:
-        {results}
+        entities = []
+        
+        # 1. Search in 'entity_embeddings' index
+        results_entities = self.neo4j.vector_search(
+            index_name="entity_embeddings",
+            query_vector=query_vector,
+            top_k=5 
+        )
+        for row in results_entities:
+            node = row['node']
+            node['type'] = 'Entity' # Tag it
+            score = row['score']
+            if score > 0.85: 
+                entities.append(node)
+
+        # 2. Search in 'section_embeddings' index
+        results_sections = self.neo4j.vector_search(
+            index_name="section_embeddings",
+            query_vector=query_vector,
+            top_k=3 # Top 3 sections
+        )
+        for row in results_sections:
+            node = row['node']
+            node['type'] = 'SectionNode' # Tag it
+            score = row['score']
+            if score > 0.82: # Slightly lower threshold for sections as they might be broader
+                entities.append(node)
+                
+        return entities
+
+    def _expand_context(self, entities: list) -> dict:
+        """
+        Retrieves facts and chunks. Handles both Entities and SectionNodes.
+        """
+        entity_names = [e['name'] for e in entities if e.get('type') == 'Entity']
+        section_uuids = [e['uuid'] for e in entities if e.get('type') == 'SectionNode']
+        
+        facts = []
+        chunks = {} 
+        
+        # 1. Entity Traversal
+        if entity_names:
+            cypher_entity = """
+            MATCH (e:Entity)-[:PERFORMED]->(f:FactNode)-[:MENTIONED_IN]->(ep:EpisodicNode)
+            WHERE e.name IN $names
+            RETURN f.content AS fact, f.fact_type AS type, ep.content AS chunk, ep.source AS source, ep.valid_at AS date
+            UNION
+            MATCH (f:FactNode)-[:MENTIONED_IN]->(ep:EpisodicNode)
+            WHERE any(word IN $names WHERE toLower(f.content) CONTAINS toLower(word))
+            RETURN f.content AS fact, f.fact_type AS type, ep.content AS chunk, ep.source AS source, ep.valid_at AS date
+            """
+            results_entity = self.neo4j.query(cypher_entity, {"names": entity_names})
+            for row in results_entity:
+                facts.append(f"[{row['type']}] {row['fact']}")
+                chunks[row['chunk']] = {
+                    "content": row['chunk'],
+                    "source": row['source'],
+                    "date": row['date']
+                }
+
+        # 2. Section Traversal (Hierarchical)
+        # Path: Section -> (Subsection)* -> Episode -> Fact
+        if section_uuids:
+            cypher_section = """
+            MATCH (root:SectionNode)
+            WHERE root.uuid IN $uuids
+            // Find all descendant sections (0 or more hops)
+            MATCH (root)<-[:SUBSECTION_OF*0..]-(child:SectionNode)
+            // Find episodes in these sections
+            MATCH (child)<-[:PART_OF]-(ep:EpisodicNode)
+            // Find facts in these episodes
+            MATCH (f:FactNode)-[:MENTIONED_IN]->(ep)
+            RETURN f.content AS fact, f.fact_type AS type, ep.content AS chunk, ep.source AS source, ep.valid_at AS date
+            """
+            results_section = self.neo4j.query(cypher_section, {"uuids": section_uuids})
+            for row in results_section:
+                facts.append(f"[{row['type']}] {row['fact']}")
+                chunks[row['chunk']] = {
+                    "content": row['chunk'],
+                    "source": row['source'],
+                    "date": row['date']
+                }
+            
+        return {
+            "facts": list(set(facts)), 
+            "chunks": list(chunks.values()) 
+        }
+
+    def _synthesize_answer(self, user_query: str, context: dict) -> str:
+        """
+        Uses Gemini to synthesize an answer from the raw chunks.
+        """
+        chunks_text = "\n\n".join([
+            f"--- SOURCE ({c['date']}) ---\n{c['content']}\n" 
+            for c in context['chunks']
+        ])
+        
+        template = """You are a specialized Research Agent. Your goal is to answer the user's question in depth using ONLY the provided source text.
+        
+        User Question: {query}
+        
+        --- SOURCE MATERIALS START ---
+        {chunks}
+        --- SOURCE MATERIALS END ---
+        
+        Instructions:
+        1. Answer the question comprehensively.
+        2. STRICTLY use ONLY the provided Source Materials. Do NOT use external knowledge.
+        3. If the answer is not in the sources, say "I cannot answer this based on the available information."
+        4. CITE YOUR SOURCES. When you use information, reference the specific details or context from the chunks.
+        5. Synthesize the facts into a cohesive narrative.
         
         Answer:
         """
@@ -74,4 +157,4 @@ class QueryAgent:
         prompt = ChatPromptTemplate.from_template(template)
         chain = prompt | self.llm | StrOutputParser()
         
-        return chain.invoke({"query": user_query, "results": str(results)})
+        return chain.invoke({"query": user_query, "chunks": chunks_text})
