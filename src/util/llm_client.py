@@ -14,7 +14,6 @@ load_dotenv()
 class LLMClient:
     _instance = None
 
-
     @classmethod
     def get_instance(cls) -> BaseChatModel:
         if cls._instance is None:
@@ -32,12 +31,11 @@ class LLMClient:
     @staticmethod
     def get_embeddings():
         """
-        Returns the embedding model instance.
+        Returns a NEW embedding model instance (non-singleton for testing).
         Defaults to Voyage AI (voyage-finance-2) as requested.
         """
         from langchain_voyageai import VoyageAIEmbeddings
-        
-        # Ensure VOYAGE_API_KEY is set in environment
+        # Each call creates a new client - testing if this affects rate limits
         return VoyageAIEmbeddings(model="voyage-finance-2")
 
 def get_llm() -> BaseChatModel:
