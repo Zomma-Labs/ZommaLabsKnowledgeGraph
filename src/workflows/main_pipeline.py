@@ -2,7 +2,6 @@ import asyncio
 import uuid
 from typing import List, Dict, Any, TypedDict
 from langgraph.graph import StateGraph, END
-from rapidfuzz.distance import Levenshtein
 
 from src.agents.atomizer import atomizer
 from src.agents.FIBO_librarian import FIBOLibrarian
@@ -14,8 +13,7 @@ from src.agents.header_analyzer import HeaderAnalyzer, DimensionType
 from src.schemas.atomic_fact import AtomicFact
 from src.schemas.relationship import RelationshipClassification
 from src.schemas.nodes import TopicNode
-from src.tools.neo4j_client import Neo4jClient
-from src.util.llm_client import get_embeddings
+from src.util.services import get_services
 
 # Define the State
 class GraphState(TypedDict):
@@ -29,15 +27,20 @@ class GraphState(TypedDict):
     causal_links: List[Any] # New field for Causal Linking
     errors: List[str]
 
-# Init agents
-librarian = FIBOLibrarian()
-analyst = AnalystAgent()
-assembler = GraphAssembler()
-enhancer = GraphEnhancer()
-causal_linker = CausalLinker()
-header_analyzer = HeaderAnalyzer() # New Agent
-neo4j_client = Neo4jClient()
-embeddings = get_embeddings()
+# Init shared services (singleton)
+services = get_services()
+
+# Init agents with shared services
+librarian = FIBOLibrarian(services=services)
+analyst = AnalystAgent(services=services)
+assembler = GraphAssembler(services=services)
+enhancer = GraphEnhancer(services=services)
+causal_linker = CausalLinker(services=services)
+header_analyzer = HeaderAnalyzer(services=services)
+
+# Use shared clients from services
+neo4j_client = services.neo4j
+embeddings = services.embeddings
 
 def initialize_episode(state: GraphState) -> Dict[str, Any]:
     print("---INITIALIZE EPISODE (Dimensional Star)---")
@@ -274,73 +277,83 @@ def atomize_node(state: GraphState) -> Dict[str, Any]:
 async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
     print("---PARALLEL RESOLUTION---")
     facts = state["atomic_facts"]
+    group_id = state.get("group_id", "default_tenant")
     
-    # Wrapper for Librarian processing
-    # Wrapper for Librarian processing
-    def resolve_fact_entities(fact: AtomicFact) -> Dict[str, Any]:
+    # Single entity resolution function (blocking, will be wrapped in asyncio.to_thread)
+    def resolve_single_entity(name: str, context: str) -> tuple[str | None, str | None, str]:
+        if not name:
+            return None, None, ""
         
-        def resolve_entity(name: str, context: str) -> tuple[str | None, str | None, str]:
-            if not name:
-                return None, None, ""
+        # 0. Extract Description
+        description = enhancer.extract_entity_description(name, context)
             
-            # 0. Extract Description
-            description = enhancer.extract_entity_description(name, context)
-                
-            # 1. FIBO Resolution (Skip description check for FIBO? Maybe, but let's keep flow simple)
-            res = librarian.resolve(name)
-            if res:
-                return res['uri'], res['label'], description
-                
-            # 2. Graph Deduplication
-            group_id = state.get("group_id", "default_tenant")
-            # Pass description to find candidates
-            candidates = enhancer.find_graph_candidates(name, description, group_id=group_id)
-            # Pass description to resolve against graph
-            decision = enhancer.resolve_entity_against_graph(name, description, candidates)
+        # 1. FIBO Resolution
+        res = librarian.resolve(name)
+        if res:
+            return res['uri'], res['label'], description
             
-            if decision['decision'] == 'MERGE' and decision['target_uuid']:
-                return decision['target_uuid'], name, description
-            
-            # 3. New Entity
-            new_uuid = f"urn:uuid:{uuid.uuid4()}"
-            print(f"   🆕 Creating New Entity: {name} ({description})")
-            with open("new_entities.log", "a") as f:
-                f.write(f"{name} | {description}\n")
-            return new_uuid, name, description
+        # 2. Graph Deduplication
+        candidates = enhancer.find_graph_candidates(name, description, group_id=group_id)
+        decision = enhancer.resolve_entity_against_graph(name, description, candidates)
+        
+        if decision['decision'] == 'MERGE' and decision['target_uuid']:
+            return decision['target_uuid'], name, description
+        
+        # 3. New Entity
+        new_uuid = f"urn:uuid:{uuid.uuid4()}"
+        print(f"   🆕 Creating New Entity: {name} ({description})")
+        return new_uuid, name, description
 
-        subj_uri, subj_label, subj_desc = resolve_entity(fact.subject, fact.fact)
-        obj_uri, obj_label, obj_desc = resolve_entity(fact.object, fact.fact)
-            
-        return {
+    # Async wrapper for a single entity
+    async def resolve_entity_async(name: str, context: str) -> tuple[str | None, str | None, str]:
+        return await asyncio.to_thread(resolve_single_entity, name, context)
+
+    # Wrapper for Analyst processing
+    async def classify_fact_relationship(fact: AtomicFact) -> RelationshipClassification:
+        fact_str = f"{fact.subject} {fact.fact} {fact.object if fact.object else ''}"
+        return await asyncio.to_thread(analyst.classify_relationship, fact_str)
+
+    # Build ALL tasks: subjects, objects, and relationships in one batch
+    # This maximizes parallelism by resolving everything at once
+    
+    entity_resolution_tasks = []
+    analyst_tasks = []
+    
+    for fact in facts:
+        # Create tasks for subject and object resolution (parallel within each fact)
+        entity_resolution_tasks.append(resolve_entity_async(fact.subject, fact.fact))
+        entity_resolution_tasks.append(resolve_entity_async(fact.object, fact.fact))
+        # Create task for relationship classification
+        analyst_tasks.append(classify_fact_relationship(fact))
+    
+    # Run ALL tasks in parallel (entity resolutions + relationship classifications)
+    all_tasks = entity_resolution_tasks + analyst_tasks
+    print(f"   🚀 Running {len(entity_resolution_tasks)} entity resolutions + {len(analyst_tasks)} classifications in parallel...")
+    
+    results = await asyncio.gather(*all_tasks)
+    
+    # Split results
+    num_entity_tasks = len(entity_resolution_tasks)
+    entity_results = results[:num_entity_tasks]
+    classified_relationships = results[num_entity_tasks:]
+    
+    # Reconstruct resolved_entities from paired subject/object results
+    resolved_entities = []
+    for i in range(len(facts)):
+        subj_idx = i * 2
+        obj_idx = i * 2 + 1
+        
+        subj_uri, subj_label, subj_desc = entity_results[subj_idx]
+        obj_uri, obj_label, obj_desc = entity_results[obj_idx]
+        
+        resolved_entities.append({
             "subject_uri": subj_uri, 
             "subject_label": subj_label,
             "subject_description": subj_desc,
             "object_uri": obj_uri,
             "object_label": obj_label,
             "object_description": obj_desc
-        }
-
-    # Wrapper for Analyst processing
-    async def classify_fact_relationship(fact: AtomicFact) -> RelationshipClassification:
-        # Construct a string representation for the analyst
-        fact_str = f"{fact.subject} {fact.fact} {fact.object if fact.object else ''}"
-        return await asyncio.to_thread(analyst.classify_relationship, fact_str)
-
-    # Run resolution in parallel
-    async def resolve_wrapper(fact):
-        return await asyncio.to_thread(resolve_fact_entities, fact)
-
-    # Create tasks
-    librarian_tasks = [resolve_wrapper(f) for f in facts]
-    analyst_tasks = [classify_fact_relationship(f) for f in facts]
-    
-    # Gather all results
-    results = await asyncio.gather(*librarian_tasks, *analyst_tasks)
-    
-    # Split results
-    num_facts = len(facts)
-    resolved_entities = results[:num_facts]
-    classified_relationships = results[num_facts:]
+        })
     
     return {
         "resolved_entities": resolved_entities,

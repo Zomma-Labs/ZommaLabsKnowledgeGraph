@@ -1,20 +1,25 @@
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, TYPE_CHECKING
 from pydantic import BaseModel, Field
 from src.schemas.atomic_fact import AtomicFact
 from src.schemas.nodes import FactNode, EntityNode, EpisodicNode
 from src.schemas.relationship import RelationshipClassification
 from src.tools.neo4j_client import Neo4jClient
-from src.util.llm_client import get_embeddings, get_llm
+
+if TYPE_CHECKING:
+    from src.util.services import Services
 
 class MergeDecision(BaseModel):
     should_merge: bool = Field(description="True if the new fact is semantically identical to the existing fact.")
     reasoning: str = Field(description="Reason for the decision.")
 
 class GraphAssembler:
-    def __init__(self):
-        self.neo4j = Neo4jClient()
-        self.embeddings = get_embeddings()
-        self.llm = get_llm()
+    def __init__(self, services: Optional["Services"] = None):
+        if services is None:
+            from src.util.services import get_services
+            services = get_services()
+        self.neo4j = services.neo4j
+        self.embeddings = services.embeddings
+        self.llm = services.llm
 
     def assemble_fact_node(self, 
                            fact_obj: AtomicFact, 

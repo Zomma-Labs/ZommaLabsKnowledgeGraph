@@ -1,7 +1,9 @@
-from typing import List
+from typing import List, Optional, TYPE_CHECKING
 from pydantic import BaseModel, Field
 from src.schemas.atomic_fact import AtomicFact
-from src.util.llm_client import get_llm
+
+if TYPE_CHECKING:
+    from src.util.services import Services
 
 class CausalPair(BaseModel):
     cause_index: int = Field(description="Index of the cause fact in the list (0-based)")
@@ -12,8 +14,11 @@ class CausalList(BaseModel):
     links: List[CausalPair]
 
 class CausalLinker:
-    def __init__(self):
-        self.llm = get_llm()
+    def __init__(self, services: Optional["Services"] = None):
+        if services is None:
+            from src.util.services import get_services
+            services = get_services()
+        self.llm = services.llm
 
     def extract_causality(self, facts: List[AtomicFact], text: str) -> List[CausalPair]:
         """

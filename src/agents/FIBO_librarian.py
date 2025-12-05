@@ -6,23 +6,24 @@ DESCRIPTION:
     2. Fuzzy Search (Typo/Exact Match) via RapidFuzz.
 """
 
-from typing import List, Dict, Optional, Tuple
-from qdrant_client import QdrantClient
+from typing import List, Dict, Optional, TYPE_CHECKING
 from rapidfuzz import process, fuzz
-from src.util.llm_client import get_embeddings
+
+if TYPE_CHECKING:
+    from src.util.services import Services
 
 # Reuse configuration (should ideally be in settings.py)
-QDRANT_PATH = "./qdrant_fibo"
 COLLECTION_NAME = "fibo_entities"
 
 class FIBOLibrarian:
-    def __init__(self, client: Optional[QdrantClient] = None):
+    def __init__(self, services: Optional["Services"] = None):
         print("📚 Initializing FIBO Librarian...")
-        if client:
-            self.client = client
-        else:
-            self.client = QdrantClient(path=QDRANT_PATH)
-        self.embeddings = get_embeddings()
+        if services is None:
+            from src.util.services import get_services
+            services = get_services()
+        
+        self.client = services.qdrant_fibo
+        self.embeddings = services.embeddings
         
         # Load "Ground Truth" labels for Fuzzy Search
         self.label_map = self._load_all_labels()

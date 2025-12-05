@@ -7,10 +7,12 @@ DESCRIPTION:
     3. Enrichment: Extracting attributes and summaries.
 """
 
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, TYPE_CHECKING
 from pydantic import BaseModel, Field
-from src.util.llm_client import get_llm, get_embeddings
 from src.tools.neo4j_client import Neo4jClient
+
+if TYPE_CHECKING:
+    from src.util.services import Services
 
 class MissedFacts(BaseModel):
     missed_facts: List[str] = Field(description="List of facts that were missed in the initial extraction.")
@@ -22,10 +24,13 @@ class EntityResolution(BaseModel):
     reasoning: str = Field(description="Reason for the decision.")
 
 class GraphEnhancer:
-    def __init__(self, neo4j_client: Optional[Neo4jClient] = None):
-        self.llm = get_llm()
-        self.embeddings = get_embeddings()
-        self.neo4j = neo4j_client or Neo4jClient()
+    def __init__(self, services: Optional["Services"] = None):
+        if services is None:
+            from src.util.services import get_services
+            services = get_services()
+        self.llm = services.llm
+        self.embeddings = services.embeddings
+        self.neo4j = services.neo4j
 
     def reflexion_check(self, chunk_text: str, existing_facts: List[Any]) -> List[str]:
         """

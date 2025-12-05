@@ -52,7 +52,7 @@ class PlanExecuteWorkflow:
             - If you need information, you must find it in the graph.
             
             Strategy:
-            1. Identify key entities in the request and find their URIs using `lookup_entity`.
+            1. Identify key entities in the request and find their URIs using `lookup_entity`. **Anticipate multiple matches** and plan to handle them (e.g., "Check all 'New York' entities").
             2. Identify the `fact_type` (relationship type) using `lookup_relationship`.
             3. Construct a Cypher query using the **Fact-as-Node** pattern:
                `MATCH (e:Entity {{uri: '...'}})-[:PERFORMED|TARGET]-(f:FactNode {{fact_type: '...'}}) RETURN f.content`
@@ -102,6 +102,15 @@ class PlanExecuteWorkflow:
           `MATCH (e:Entity {{uri: $uri}})-[:PERFORMED|TARGET]-(f:FactNode) RETURN f.fact_type, f.content`
         - To find specific relationships:
           `MATCH (e:Entity {{uri: $uri}})-[:PERFORMED]-(f:FactNode {{fact_type: 'REPORTED_WAGE_TRENDS'}})-[:TARGET]-(target) RETURN target.name, f.content`
+        
+        HANDLING MULTIPLE RESULTS:
+        - If `lookup_entity` returns multiple entities (e.g., "New York" matches "New York City", "New York State", "Federal Reserve Bank of New York"):
+            - **Do NOT** arbitrarily pick one.
+            - **Filter** them based on the context of the user's question.
+            - If multiple are relevant, **explore ALL of them** or construct a query that matches any of them (e.g., `WHERE e.uri IN [...]`).
+        - If a Cypher query returns many nodes:
+            - **Analyze** the results to find the ones that best answer the specific question.
+            - **Synthesize** information from multiple relevant nodes if needed.
         
         Constraints:
         - DO NOT guess relationship types like `[:REPORTED_...]`. These are `fact_type` properties on `FactNode`s!

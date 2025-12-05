@@ -1,17 +1,20 @@
 import json
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 from pydantic import BaseModel, Field
 
-from src.util.llm_client import get_llm
 from src.util.vector_store import VectorStore
 from src.schemas.relationship import RelationshipType, RelationshipDefinition, RelationshipClassification
 
-from qdrant_client import QdrantClient
+if TYPE_CHECKING:
+    from src.util.services import Services
 
 class AnalystAgent:
-    def __init__(self, client: Optional[QdrantClient] = None):
-        self.vector_store = VectorStore(client=client)
-        self.llm = get_llm()
+    def __init__(self, services: Optional["Services"] = None):
+        if services is None:
+            from src.util.services import get_services
+            services = get_services()
+        self.vector_store = VectorStore(client=services.qdrant_relationships)
+        self.llm = services.llm
         self.max_retries = 3
 
     def classify_relationship(self, fact: str) -> Optional[RelationshipClassification]:

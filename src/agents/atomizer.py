@@ -67,8 +67,12 @@ def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
 
     # --- REFLEXION LOOP ---
     try:
+        from src.util.services import get_services
+        services = get_services()
+        
+        # Use shared enhancer via services instead of creating new instance
         from src.agents.graph_enhancer import GraphEnhancer
-        enhancer = GraphEnhancer()
+        enhancer = GraphEnhancer(services=services)
         
         # Check for missed facts / concept promotion
         missed_facts = enhancer.reflexion_check(chunk_text, facts)

@@ -1,7 +1,9 @@
 from enum import Enum
-from typing import List, Union
+from typing import List, Union, Optional, TYPE_CHECKING
 from pydantic import BaseModel, Field
-from src.util.llm_client import get_llm
+
+if TYPE_CHECKING:
+    from src.util.services import Services
 
 class DimensionType(str, Enum):
     TOPIC = "TOPIC"
@@ -17,8 +19,11 @@ class HeaderAnalysisResult(BaseModel):
     dimensions: List[Dimension] = Field(description="List of extracted dimensions from the path")
 
 class HeaderAnalyzer:
-    def __init__(self):
-        self.llm = get_llm()
+    def __init__(self, services: Optional["Services"] = None):
+        if services is None:
+            from src.util.services import get_services
+            services = get_services()
+        self.llm = services.llm
         self.structured_llm = self.llm.with_structured_output(HeaderAnalysisResult)
 
     def extract_document_context(self, text_input: Union[str, List[str]], filename: str) -> str:
