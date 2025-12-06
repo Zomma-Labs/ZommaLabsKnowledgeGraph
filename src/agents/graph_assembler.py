@@ -2,7 +2,7 @@ from typing import List, Optional, Dict, Any, TYPE_CHECKING
 from pydantic import BaseModel, Field
 from src.schemas.atomic_fact import AtomicFact
 from src.schemas.nodes import FactNode, EntityNode, EpisodicNode
-from src.schemas.relationship import RelationshipClassification
+from src.schemas.relationship import RelationshipClassification, ACTIVE_TO_PASSIVE
 from src.tools.neo4j_client import Neo4jClient
 
 if TYPE_CHECKING:
@@ -31,7 +31,9 @@ class GraphAssembler:
                            group_id: str,
                            relationship_classification: Optional[RelationshipClassification] = None,
                            subject_description: str = "",
-                           object_description: str = "") -> str:
+                           object_description: str = "",
+                           subject_type: str = "Entity",
+                           object_type: str = "Entity") -> str:
         """
         Creates a FactNode and links it to Subject, Object, and Episode.
         Returns the UUID of the FactNode (either new or merged).
@@ -40,7 +42,7 @@ class GraphAssembler:
         # Debug Logging
         with open("assembler_debug.log", "a") as log:
             log.write(f"\n--- Assembling Fact: {fact_obj.fact[:50]}... ---\n")
-            log.write(f"S: {subject_uri} ({subject_label}) -> O: {object_uri} ({object_label})\n")
+            log.write(f"S: {subject_uri} ({subject_label}) [{subject_type}] -> O: {object_uri} ({object_label}) [{object_type}]\n")
         
         # 1. Generate Embedding for Fact
         try:
@@ -105,86 +107,8 @@ class GraphAssembler:
                     log.write(f"❌ Node creation failed: {e}\n")
                 raise e
         
-        # 4. Link Structure (Subject -> Fact -> Object)
-        
-        # Generate Subject Embedding
-        subj_embedding = None
-        if subject_label:
-            try:
-                subj_text = f"{subject_label}: {subject_description}" if subject_description else subject_label
-                subj_embedding = self.embeddings.embed_query(subj_text)
-            except Exception:
-                pass
-
-        cypher_link = """
-        MERGE (s:Entity {uri: $subj_uri, group_id: $group_id})
-        ON CREATE SET 
-            s.name = $subj_label,
-            s.summary = $subj_desc,
-            s.embedding = $subj_embedding
-        ON MATCH SET 
-            s.name = $subj_label, // Update name if it changed or was missing
-            s.summary = CASE WHEN s.summary IS NULL OR s.summary = "" THEN $subj_desc ELSE s.summary END,
-            s.embedding = CASE WHEN s.embedding IS NULL THEN $subj_embedding ELSE s.embedding END
-        WITH s
-        MATCH (f:FactNode {uuid: $fact_uuid, group_id: $group_id})
-        MERGE (s)-[:PERFORMED]->(f)
-        """
-        try:
-            self.neo4j.query(cypher_link, {
-                "subj_uri": subject_uri, 
-                "subj_label": subject_label,
-                "subj_desc": subject_description,
-                "subj_embedding": subj_embedding,
-                "fact_uuid": fact_uuid,
-                "group_id": group_id
-            })
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"✅ Linked Subject: {subject_uri}\n")
-        except Exception as e:
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"❌ Link Subject failed: {e}\n")
-        
-        if object_uri:
-            # Generate Object Embedding
-            obj_embedding = None
-            if object_label:
-                try:
-                    obj_text = f"{object_label}: {object_description}" if object_description else object_label
-                    obj_embedding = self.embeddings.embed_query(obj_text)
-                except Exception:
-                    pass
-
-            cypher_link_obj = """
-            MERGE (o:Entity {uri: $obj_uri, group_id: $group_id})
-            ON CREATE SET 
-                o.name = $obj_label,
-                o.summary = $obj_desc,
-                o.embedding = $obj_embedding
-            ON MATCH SET 
-                o.name = $obj_label,
-                o.summary = CASE WHEN o.summary IS NULL OR o.summary = "" THEN $obj_desc ELSE o.summary END,
-                o.embedding = CASE WHEN o.embedding IS NULL THEN $obj_embedding ELSE o.embedding END
-            WITH o
-            MATCH (f:FactNode {uuid: $fact_uuid, group_id: $group_id})
-            MERGE (f)-[:TARGET]->(o)
-            """
-            try:
-                self.neo4j.query(cypher_link_obj, {
-                    "obj_uri": object_uri, 
-                    "obj_label": object_label,
-                    "obj_desc": object_description,
-                    "obj_embedding": obj_embedding,
-                    "fact_uuid": fact_uuid,
-                    "group_id": group_id
-                })
-                with open("assembler_debug.log", "a") as log:
-                    log.write(f"✅ Linked Object: {object_uri}\n")
-            except Exception as e:
-                with open("assembler_debug.log", "a") as log:
-                    log.write(f"❌ Link Object failed: {e}\n")
-
-        # 5. Link Provenance (Fact -> Episode)
+        # 4. Link Provenance (Fact -> Episode)
+        # This keeps the FactNode grounded, even if not linked to entities directly
         cypher_prov = """
         MATCH (e:EpisodicNode {uuid: $episode_uuid, group_id: $group_id})
         MATCH (f:FactNode {uuid: $fact_uuid, group_id: $group_id})
@@ -198,6 +122,114 @@ class GraphAssembler:
             with open("assembler_debug.log", "a") as log:
                 log.write(f"❌ Link Provenance failed: {e}\n")
         
+        # 5. Link Structure (Subject -> Episode -> Object) with Semantic Edges
+        # Determine Edge Types
+        active_edge = "RELATED_TO"
+        passive_edge = "RELATED_TO_BY"
+        
+        if relationship_classification:
+            rel_type = relationship_classification.relationship
+            active_edge = rel_type.value
+            passive_edge = ACTIVE_TO_PASSIVE.get(rel_type, f"GOT_{active_edge}")
+            
+        
+        # Generate Subject Embedding
+        subj_embedding = None
+        if subject_label:
+            try:
+                subj_text = f"{subject_label}: {subject_description}" if subject_description else subject_label
+                subj_embedding = self.embeddings.embed_query(subj_text)
+            except Exception:
+                pass
+
+        # Link Subject -> [Active Edge] -> Episode
+        # Determine Node Label based on subject_type
+        subj_node_label = "TopicNode" if subject_type == "Topic" else "EntityNode"
+        
+        cypher_link_subj = f"""
+        MERGE (s:{subj_node_label} {{uri: $subj_uri, group_id: $group_id}})
+        ON CREATE SET 
+            s.name = $subj_label,
+            s.summary = $subj_desc,
+            s.embedding = $subj_embedding,
+            s.is_fibo = ($subj_uri STARTS WITH "http"),
+            s.uuid = randomUUID()
+        ON MATCH SET 
+            s.name = $subj_label,
+            s.summary = CASE WHEN s.summary IS NULL OR s.summary = "" THEN $subj_desc ELSE s.summary END,
+            s.embedding = CASE WHEN s.embedding IS NULL THEN $subj_embedding ELSE s.embedding END,
+            s.is_fibo = ($subj_uri STARTS WITH "http")
+        WITH s
+        MATCH (e:EpisodicNode {{uuid: $episode_uuid, group_id: $group_id}})
+        MERGE (s)-[r:{active_edge}]->(e)
+        SET r.fact_id = $fact_uuid, r.confidence = $confidence
+        """
+        try:
+            self.neo4j.query(cypher_link_subj, {
+                "subj_uri": subject_uri, 
+                "subj_label": subject_label,
+                "subj_desc": subject_description,
+                "subj_embedding": subj_embedding,
+                "episode_uuid": episode_uuid,
+                "fact_uuid": fact_uuid,
+                "confidence": relationship_classification.confidence if relationship_classification else 1.0,
+                "group_id": group_id
+            })
+            with open("assembler_debug.log", "a") as log:
+                log.write(f"✅ Linked Subject ({subj_node_label}, {active_edge}): {subject_uri} -> Episode\n")
+        except Exception as e:
+            with open("assembler_debug.log", "a") as log:
+                log.write(f"❌ Link Subject failed: {e}\n")
+        
+        # Link Episode -> [Passive Edge] -> Object
+        if object_uri:
+            # Generate Object Embedding
+            obj_embedding = None
+            if object_label:
+                try:
+                    obj_text = f"{object_label}: {object_description}" if object_description else object_label
+                    obj_embedding = self.embeddings.embed_query(obj_text)
+                except Exception:
+                    pass
+
+            # Determine Node Label based on object_type
+            obj_node_label = "TopicNode" if object_type == "Topic" else "EntityNode"
+            
+            cypher_link_obj = f"""
+            MERGE (o:{obj_node_label} {{uri: $obj_uri, group_id: $group_id}})
+            ON CREATE SET 
+                o.name = $obj_label,
+                o.summary = $obj_desc,
+                o.embedding = $obj_embedding,
+                o.is_fibo = ($obj_uri STARTS WITH "http"),
+                o.uuid = randomUUID()
+            ON MATCH SET 
+                o.name = $obj_label,
+                o.summary = CASE WHEN o.summary IS NULL OR o.summary = "" THEN $obj_desc ELSE o.summary END,
+                o.embedding = CASE WHEN o.embedding IS NULL THEN $obj_embedding ELSE o.embedding END,
+                o.is_fibo = ($obj_uri STARTS WITH "http")
+            WITH o
+            MATCH (e:EpisodicNode {{uuid: $episode_uuid, group_id: $group_id}})
+            MERGE (e)-[r:{passive_edge}]->(o)
+            SET r.fact_id = $fact_uuid, r.confidence = $confidence
+            """
+            try:
+                self.neo4j.query(cypher_link_obj, {
+                    "obj_uri": object_uri, 
+                    "obj_label": object_label,
+                    "obj_desc": object_description,
+                    "obj_embedding": obj_embedding,
+                    "episode_uuid": episode_uuid,
+                    "fact_uuid": fact_uuid,
+                    "confidence": relationship_classification.confidence if relationship_classification else 1.0,
+                    "group_id": group_id
+                })
+                with open("assembler_debug.log", "a") as log:
+                    log.write(f"✅ Linked Object ({obj_node_label}, {passive_edge}): Episode -> {object_uri}\n")
+            except Exception as e:
+                with open("assembler_debug.log", "a") as log:
+                    log.write(f"❌ Link Object failed: {e}\n")
+
         return fact_uuid
 
     def link_causality(self, cause_uuid: str, effect_uuid: str, reasoning: str, group_id: str):
@@ -217,6 +249,27 @@ class GraphAssembler:
             "group_id": group_id
         })
         print(f"   🔗 Linked Causality: {cause_uuid} -> {effect_uuid}")
+
+    def link_topic_to_episode(self, topic_uuid: str, episode_uuid: str, group_id: str):
+        """
+        Links a TopicNode to an EpisodicNode via [:ABOUT].
+        """
+        cypher = """
+        MATCH (t:TopicNode {uuid: $topic_uuid, group_id: $group_id})
+        MATCH (e:EpisodicNode {uuid: $episode_uuid, group_id: $group_id})
+        MERGE (t)-[:ABOUT]->(e)
+        """
+        try:
+            self.neo4j.query(cypher, {
+                "topic_uuid": topic_uuid,
+                "episode_uuid": episode_uuid,
+                "group_id": group_id
+            })
+            with open("assembler_debug.log", "a") as log:
+                log.write(f"✅ Linked Topic {topic_uuid} -> Episode\n")
+        except Exception as e:
+            with open("assembler_debug.log", "a") as log:
+                log.write(f"❌ Link Topic failed: {e}\n")
 
     def _verify_merge(self, new_fact: str, existing_fact: str) -> MergeDecision:
         structured_llm = self.llm.with_structured_output(MergeDecision)

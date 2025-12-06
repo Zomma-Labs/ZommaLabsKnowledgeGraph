@@ -17,6 +17,10 @@ class AtomicFact(BaseModel):
         ...,
         description="The entity performing the action (e.g., 'Apple', 'The Federal Reserve')."
     )
+    subject_type: str = Field(
+        "Entity",
+        description="The type of the subject. 'Entity' for specific actors (Companies, People), 'Topic' for concepts acting as subjects (e.g. 'Inflation' hurt earnings)."
+    )
     object: Optional[str] = Field(
         None,
         description=(
@@ -25,11 +29,15 @@ class AtomicFact(BaseModel):
             "If no specific entity is found, extract the key Financial/Economic Concept (e.g., 'Revenue', 'Inflation')."
         )
     )
+    object_type: str = Field(
+        "Entity",
+        description="The type of the object. 'Entity' for specific actors, 'Topic' for concepts."
+    )
     date_context: Optional[str] = Field(
         None,
         description="List of all distinct facts found. Order them chronologically if possible."
     )
-    key_concepts: Optional[List[str]] = Field(
+    topics: Optional[List[str]] = Field(
         default_factory=list,
         description="Financial or Economic concepts mentioned or alluded to in the fact. Some examples: 'Inflation', 'Economic Activity', 'Interest Rates'."
     )

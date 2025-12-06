@@ -1,16 +1,74 @@
 [
   {
-    "uri": "https://www.federalreserve.gov/monetarypolicy/beigebook/BeigeBook",
+    "uri": "https://custom.kg/fed/BeigeBook",
     "label": "The Beige Book",
     "definition": "The Summary of Commentary on Current Economic Conditions by Federal Reserve District. It is published eight times a year.",
-    "synonyms": ["Beige Book", "Summary of Commentary on Current Economic Conditions", "Fed Redbook"],
-    "fibo_class": "fibo-fnd-arr-rpts:PeriodicReport" 
+    "synonyms": [
+      "Beige Book",
+      "Summary of Commentary on Current Economic Conditions",
+      "Fed Redbook"
+    ],
+    "fibo_class": "fibo-fnd-arr-rpts:PeriodicReport"
   },
   {
-    "uri": "https://www.federalreserve.gov/monetarypolicy/fomc/Tealbook",
+    "uri": "https://custom.kg/fed/Tealbook",
     "label": "The Tealbook",
     "definition": "Report to the FOMC on Economic Conditions and Monetary Policy.",
-    "synonyms": ["Tealbook", "Greenbook", "Bluebook"],
+    "synonyms": [
+      "Tealbook",
+      "Greenbook",
+      "Bluebook"
+    ],
     "fibo_class": "fibo-fnd-arr-rpts:PeriodicReport"
+  },
+  {
+    "uri": "https://custom.kg/sec/10-K",
+    "label": "10-K",
+    "synonyms": [
+      "Annual Report",
+      "Form 10-K"
+    ],
+    "definition": "A comprehensive summary report of a company's financial performance that must be submitted annually to the Securities and Exchange Commission. It is more detailed than the annual report to shareholders.",
+    "fibo_class": "fibo-fnd-arr-rpts:PeriodicReport"
+  },
+  {
+    "uri": "https://custom.kg/sec/10-Q",
+    "label": "10-Q",
+    "synonyms": [
+      "Quarterly Report",
+      "Form 10-Q"
+    ],
+    "definition": "A comprehensive report of financial performance submitted quarterly to the SEC. It includes unaudited financial statements and provides a continuing view of the company's financial position during the year.",
+    "fibo_class": "fibo-fnd-arr-rpts:PeriodicReport"
+  },
+  {
+    "uri": "https://custom.kg/sec/8-K",
+    "label": "8-K",
+    "synonyms": [
+      "Current Report",
+      "Material Event Report"
+    ],
+    "definition": "A report of unscheduled material events or corporate changes at a company that could be of importance to the shareholders or the SEC, such as acquisitions, bankruptcy, or C-suite changes.",
+    "fibo_class": "fibo-fnd-arr-rpts:TransactionReport"
+  },
+  {
+    "uri": "https://custom.kg/sec/S-1",
+    "label": "S-1",
+    "synonyms": [
+      "IPO Prospectus",
+      "Registration Statement"
+    ],
+    "definition": "The initial registration form required by the SEC for US companies planning to go public (IPO).",
+    "fibo_class": "fibo-fnd-arr-docs:LegalDocument"
+  },
+  {
+    "uri": "https://custom.kg/fed/FOMCMinutes",
+    "label": "FOMC Minutes",
+    "synonyms": [
+      "Meeting Minutes",
+      "Fed Minutes"
+    ],
+    "definition": "The detailed record of the Federal Open Market Committee policy-setting meetings, released three weeks after the meeting. Traders scrutinize these for hawkish or dovish signals.",
+    "fibo_class": "fibo-fnd-arr-rpts:MeetingMinutes"
   }
 ]

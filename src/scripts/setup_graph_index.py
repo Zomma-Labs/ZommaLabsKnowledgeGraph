@@ -25,7 +25,7 @@ def setup_index():
     
     cypher = """
     CREATE VECTOR INDEX entity_embeddings IF NOT EXISTS
-    FOR (n:Entity)
+    FOR (n:EntityNode)
     ON (n.embedding)
     OPTIONS {indexConfig: {
       `vector.dimensions`: 1024,
@@ -38,6 +38,22 @@ def setup_index():
         print("✅ Vector Index 'entity_embeddings' created/verified.")
     except Exception as e:
         print(f"❌ Failed to create index: {e}")
+
+    print("Checking/Creating Vector Index 'topic_embeddings'...")
+    cypher_topic = """
+    CREATE VECTOR INDEX topic_embeddings IF NOT EXISTS
+    FOR (n:TopicNode)
+    ON (n.embedding)
+    OPTIONS {indexConfig: {
+      `vector.dimensions`: 1024,
+      `vector.similarity_function`: 'cosine'
+    }}
+    """
+    try:
+        client.query(cypher_topic)
+        print("✅ Vector Index 'topic_embeddings' created/verified.")
+    except Exception as e:
+        print(f"❌ Failed to create topic index: {e}")
 
     print("Checking/Creating Vector Index 'fact_embeddings'...")
     cypher_fact = """
@@ -55,22 +71,6 @@ def setup_index():
     except Exception as e:
         print(f"❌ Failed to create index: {e}")
 
-    print("Checking/Creating Vector Index 'section_embeddings'...")
-    cypher_section = """
-    CREATE VECTOR INDEX section_embeddings IF NOT EXISTS
-    FOR (n:SectionNode)
-    ON (n.embedding)
-    OPTIONS {indexConfig: {
-      `vector.dimensions`: 1024,
-      `vector.similarity_function`: 'cosine'
-    }}
-    """
-    try:
-        client.query(cypher_section)
-        print("✅ Vector Index 'section_embeddings' created/verified.")
-    except Exception as e:
-        print(f"❌ Failed to create index: {e}")
-        
     client.close()
 
 if __name__ == "__main__":

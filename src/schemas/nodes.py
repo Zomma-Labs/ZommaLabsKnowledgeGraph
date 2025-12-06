@@ -26,6 +26,7 @@ class EpisodicNode(Node):
     source: EpisodeType = Field(default=EpisodeType.text)
     source_description: str = Field(default="")
     content: str = Field(description='raw episode data')
+    header_path: str = Field(default="", description="Full breadcrumb path of the section")
     valid_at: datetime = Field(default_factory=utc_now)
 
 # --- The Document (Source Container) ---
@@ -57,14 +58,7 @@ class FactNode(Node):
     embedding: Optional[List[float]] = None # Critical for semantic deduplication
 
 # --- The Section (Hierarchy) ---
-class SectionNode(Node):
-    """
-    The Context Hub. Represents a thematic block within a file.
-    Example: "Regional Reports > New York > Labor Markets"
-    """
-    header_path: str = Field(description="Full breadcrumb path of the section")
-    doc_id: str = Field(description="ID of the parent document")
-    embedding: Optional[List[float]] = None
+
 
 # --- The Topic (Theme) ---
 class TopicNode(Node):
