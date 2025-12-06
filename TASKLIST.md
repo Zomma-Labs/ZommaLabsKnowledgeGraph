@@ -7,4 +7,4 @@
 7. [ ] Temporal extraction from documents
 8. [ ] Time based graphs
 9. [ ] Update accuracy on causal chains 
-10. [ ] Searching by FIBO entity (e.g. For all publically held companies whats ...)
+10. [ ] Searching by FIBO entity (e.g. For all **publically held companies** whats ...) -> **publicly held companies** resolves to FIBO entity and search by entity info with that.
