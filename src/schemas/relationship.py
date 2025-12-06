@@ -69,3 +69,76 @@ class RelationshipDefinition(BaseModel):
 class RelationshipClassification(BaseModel):
     relationship: RelationshipType = Field(..., description="The classified relationship type.")
     confidence: float = Field(..., description="Confidence score between 0 and 1.")
+
+# Active to Passive Mapping
+ACTIVE_TO_PASSIVE = {
+    # Corporate Actions
+    RelationshipType.ACQUIRED: "GOT_ACQUIRED",
+    RelationshipType.SUED: "GOT_SUED",
+    RelationshipType.PARTNERED: "PARTNERED_WITH",
+    RelationshipType.INVESTED: "RECEIVED_INVESTMENT",
+    RelationshipType.DIVESTED: "WAS_DIVESTED",
+    RelationshipType.HIRED: "WAS_HIRED",
+    RelationshipType.LAUNCHED_PRODUCT: "WAS_LAUNCHED",
+    RelationshipType.EXPANDED: "WAS_EXPANDED_INTO",
+    RelationshipType.CLOSED: "WAS_CLOSED",
+    
+    # Financial
+    RelationshipType.REPORTED_FINANCIALS: "FINANCIALS_REPORTED_BY",
+    RelationshipType.ISSUED_GUIDANCE: "GUIDANCE_ISSUED_BY",
+    RelationshipType.DECLARED_DIVIDEND: "DIVIDEND_DECLARED_BY",
+    RelationshipType.AUTHORIZED_BUYBACK: "BUYBACK_AUTHORIZED_BY",
+    RelationshipType.ISSUED_DEBT: "DEBT_ISSUED_BY",
+    RelationshipType.DEFAULTED: "DEFAULTED_ON",
+    RelationshipType.FILED_BANKRUPTCY: "BANKRUPTCY_FILED_BY",
+    
+    # Regulatory / Legal
+    RelationshipType.SETTLED_LEGAL_DISPUTE: "LEGAL_DISPUTE_SETTLED_BY",
+    RelationshipType.GRANTED_PATENT: "PATENT_GRANTED_To",
+    RelationshipType.RECALLED_PRODUCT: "PRODUCT_RECALLED_BY",
+    RelationshipType.EXPERIENCED_DATA_BREACH: "DATA_BREACH_EXPERIENCED_BY",
+    RelationshipType.REGULATED: "GOT_REGULATED",
+    
+    # Executive / Analyst
+    RelationshipType.EXECUTIVE_RESIGNATION: "RESIGNATION_FROM",
+    RelationshipType.ANALYST_RATING_CHANGE: "RATING_CHANGED_BY",
+    
+    # Macro
+    RelationshipType.RAISED_POLICY_RATE: "AFFECTED_BY_RATE_HIKE",
+    RelationshipType.LOWERED_POLICY_RATE: "AFFECTED_BY_RATE_CUT",
+    RelationshipType.REPORTED_ECONOMIC_DATA: "DATA_REPORTED_IN",
+    RelationshipType.IMPOSED_SANCTIONS: "SANCTIONED_BY",
+    
+    # Subsidiary
+    RelationshipType.ESTABLISHED_SUBSIDIARY: "ESTABLISHED_BY",
+    RelationshipType.INTEGRATED_SUBSIDIARY: "INTEGRATED_INTO",
+    RelationshipType.SPUN_OFF: "SPUN_OFF_FROM",
+    
+    # Beige Book (Signals usually apply to the region/topic, so passive might be vague)
+    # Using generic "SIGNALED_IN" pattern or specific
+    RelationshipType.REPORTED_WAGE_PRESSURE_EASING: "WAGE_PRESSURE_EASING_REPORTED_IN",
+    RelationshipType.REPORTED_WAGE_PRESSURE_RISING: "WAGE_PRESSURE_RISING_REPORTED_IN",
+    RelationshipType.REPORTED_LABOR_MARKET_SOFTENING: "LABOR_MARKET_SOFTENING_REPORTED_IN",
+    RelationshipType.REPORTED_PRICING_POWER_EROSION: "PRICING_POWER_EROSION_REPORTED_IN",
+    RelationshipType.REPORTED_CONSUMER_TRADING_DOWN: "CONSUMER_TRADING_DOWN_REPORTED_IN",
+    RelationshipType.REPORTED_CREDIT_QUALITY_DETERIORATION: "CREDIT_QUALITY_DETERIORATION_REPORTED_IN",
+    RelationshipType.REPORTED_LENDING_STANDARDS_TIGHTENING: "LENDING_STANDARDS_TIGHTENING_REPORTED_IN",
+    RelationshipType.REPORTED_CRE_DISTRESS: "CRE_DISTRESS_REPORTED_IN",
+    RelationshipType.REPORTED_INVENTORY_BUILDUP: "INVENTORY_BUILDUP_REPORTED_IN",
+    RelationshipType.REPORTED_CAPEX_DELAY: "CAPEX_DELAY_REPORTED_IN",
+    RelationshipType.REPORTED_OUTLOOK_UNCERTAINTY: "OUTLOOK_UNCERTAINTY_REPORTED_IN",
+    
+    RelationshipType.REPORTED_ECONOMIC_ACTIVITY: "ECONOMIC_ACTIVITY_REPORTED_IN",
+    RelationshipType.REPORTED_LABOR_CONDITIONS: "LABOR_CONDITIONS_REPORTED_IN",
+    RelationshipType.REPORTED_WAGE_TRENDS: "WAGE_TRENDS_REPORTED_IN",
+    RelationshipType.REPORTED_PRICE_PRESSURES: "PRICE_PRESSURES_REPORTED_IN",
+    RelationshipType.REPORTED_CONSUMER_SPENDING: "CONSUMER_SPENDING_REPORTED_IN",
+    RelationshipType.REPORTED_CREDIT_CONDITIONS: "CREDIT_CONDITIONS_REPORTED_IN",
+    RelationshipType.REPORTED_REAL_ESTATE: "REAL_ESTATE_REPORTED_IN",
+    
+    # Causal (These are usually Fact->Fact, but if Entity involved...)
+    RelationshipType.CAUSED: "CAUSED_BY",
+    RelationshipType.EFFECTED_BY: "EFFECT_OF",
+    RelationshipType.CONTRIBUTED_TO: "CONTRIBUTED_TO_BY",
+    RelationshipType.PREVENTED: "PREVENTED_BY",
+}

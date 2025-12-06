@@ -54,19 +54,6 @@ class QueryAgent:
             if score > 0.85: 
                 entities.append(node)
 
-        # 2. Search in 'section_embeddings' index
-        results_sections = self.neo4j.vector_search(
-            index_name="section_embeddings",
-            query_vector=query_vector,
-            top_k=3 # Top 3 sections
-        )
-        for row in results_sections:
-            node = row['node']
-            node['type'] = 'SectionNode' # Tag it
-            score = row['score']
-            if score > 0.82: # Slightly lower threshold for sections as they might be broader
-                entities.append(node)
-                
         return entities
 
     def _expand_context(self, entities: list) -> dict:
@@ -74,7 +61,6 @@ class QueryAgent:
         Retrieves facts and chunks. Handles both Entities and SectionNodes.
         """
         entity_names = [e['name'] for e in entities if e.get('type') == 'Entity']
-        section_uuids = [e['uuid'] for e in entities if e.get('type') == 'SectionNode']
         
         facts = []
         chunks = {} 
@@ -82,8 +68,9 @@ class QueryAgent:
         # 1. Entity Traversal
         if entity_names:
             cypher_entity = """
-            MATCH (e:Entity)-[:PERFORMED]->(f:FactNode)-[:MENTIONED_IN]->(ep:EpisodicNode)
+            MATCH (e:EntityNode)-[r]->(ep:EpisodicNode)
             WHERE e.name IN $names
+            OPTIONAL MATCH (f:FactNode)-[:MENTIONED_IN]->(ep)
             RETURN f.content AS fact, f.fact_type AS type, ep.content AS chunk, ep.source AS source, ep.valid_at AS date
             UNION
             MATCH (f:FactNode)-[:MENTIONED_IN]->(ep:EpisodicNode)
@@ -99,28 +86,7 @@ class QueryAgent:
                     "date": row['date']
                 }
 
-        # 2. Section Traversal (Hierarchical)
-        # Path: Section -> (Subsection)* -> Episode -> Fact
-        if section_uuids:
-            cypher_section = """
-            MATCH (root:SectionNode)
-            WHERE root.uuid IN $uuids
-            // Find all descendant sections (0 or more hops)
-            MATCH (root)<-[:SUBSECTION_OF*0..]-(child:SectionNode)
-            // Find episodes in these sections
-            MATCH (child)<-[:PART_OF]-(ep:EpisodicNode)
-            // Find facts in these episodes
-            MATCH (f:FactNode)-[:MENTIONED_IN]->(ep)
-            RETURN f.content AS fact, f.fact_type AS type, ep.content AS chunk, ep.source AS source, ep.valid_at AS date
-            """
-            results_section = self.neo4j.query(cypher_section, {"uuids": section_uuids})
-            for row in results_section:
-                facts.append(f"[{row['type']}] {row['fact']}")
-                chunks[row['chunk']] = {
-                    "content": row['chunk'],
-                    "source": row['source'],
-                    "date": row['date']
-                }
+
             
         return {
             "facts": list(set(facts)), 

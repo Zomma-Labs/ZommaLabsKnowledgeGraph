@@ -17,7 +17,6 @@ class LLMClient:
     @classmethod
     def get_instance(cls) -> BaseChatModel:
         if cls._instance is None:
-            # Default to gpt-4o as it is a strong default, configurable via env
             model = os.getenv("LLM_MODEL", "gpt-4.1-mini")
             
             if model.startswith("gemini"):

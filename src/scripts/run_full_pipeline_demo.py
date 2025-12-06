@@ -13,11 +13,10 @@ async def run_demo():
     print("--- 🚀 Running Full Pipeline Demo ---")
     
     # Complex Input Text
-    chunk_text = (
-        "The software update caused the system to crash. "
-        "Consequently, the company's stock price dropped by 5%. "
-        "The outage was effected by a configuration error."
-    )
+    chunk_text = """
+    Current economic conditions have deteriorated significantly. 
+    Inflation rose by 3% last quarter, causing the Federal Reserve to raise rates.
+    """
     metadata = {
         "doc_date": "2023-11-01", 
         "chunk_id": "demo_causal", 
@@ -42,36 +41,33 @@ async def run_demo():
         print("\n--- 🔍 Inspecting Graph (Neo4j) ---")
         client = Neo4jClient()
         
-        # 0. Query Dimensional Star (Hubs)
-        print("\n🏗️ Dimensional Star Topology:")
-        cypher_star = """
-        MATCH (hub:SectionNode)
-        OPTIONAL MATCH (hub)-[:DISCUSSES]->(t:TopicNode)
-        OPTIONAL MATCH (hub)-[:REPRESENTS]->(e:EntityNode)
-        RETURN hub.header_path as Hub, collect(distinct t.name) as Topics, collect(distinct e.name) as Entities
-        """
-        stars = client.query(cypher_star)
-        for record in stars:
-            print(f"   ⭐ Hub: [{record['Hub']}]")
-            if record['Topics']:
-                print(f"      - Topics: {record['Topics']}")
-            if record['Entities']:
-                print(f"      - Entities: {record['Entities']}")
 
-        # 1. Query Facts (Broad)
+
+        # 1. Query Entity-Chunk Relationships (The New V2 Way)
         cypher_facts = """
-        MATCH (f:FactNode)
-        OPTIONAL MATCH (s)-[:PERFORMED]->(f)
-        OPTIONAL MATCH (f)-[:TARGET]->(o)
-        RETURN s.name as Subject, f.content as Fact, f.fact_type as Type, o.name as Object, labels(s) as S_Labels, labels(o) as O_Labels
+        MATCH (s:EntityNode)-[r1]->(chunk:EpisodicNode)
+        OPTIONAL MATCH (chunk)-[r2]->(o:EntityNode)
+        WHERE r1.fact_id = r2.fact_id OR r2 is NULL
+        RETURN s.name as Subject, type(r1) as Action, chunk.content as Evidence, type(r2) as PassiveAction, o.name as Object
         """
         facts = client.query(cypher_facts)
-        print(f"\n📊 Found {len(facts)} Fact Nodes:")
+        print(f"\n📊 Found {len(facts)} Entity-Chunk-Entity Paths:")
         for record in facts:
-            subj = record['Subject'] or "UNKNOWN"
+            subj = record['Subject']
+            action = record['Action']
             obj = record['Object'] or "NONE"
-            print(f"   - [{subj}] --PERFORMED--> ({record['Fact']}) [Type: {record['Type']}] --TARGET--> [{obj}]")
-            print(f"     Labels: S={record['S_Labels']}, O={record['O_Labels']}")
+            passive = record['PassiveAction'] or "NONE"
+            print(f"   - [{subj}] --{action}--> (CHUNK) --{passive}--> [{obj}]")
+            
+        # 1.5 Query Topic Links
+        cypher_topics = """
+        MATCH (t:TopicNode)-[:ABOUT]->(chunk:EpisodicNode)
+        RETURN t.name as Topic, chunk.content as Chunk
+        """
+        topics = client.query(cypher_topics)
+        print(f"\n📊 Found {len(topics)} Topic-Chunk Links:")
+        for record in topics:
+            print(f"   - (Topic: {record['Topic']}) --ABOUT--> (CHUNK)")
             
         # 2. Query Causal Links
         cypher_causal = """

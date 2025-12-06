@@ -1,8 +1,8 @@
 """
-MODULE: FIBO Loader (The Librarian's Bookshelf)
+MODULE: FIBO Loader (The Librarian's Bookshelf - Complete Edition)
 DESCRIPTION: 
-    Parses FIBO RDF/Turtle files and indexes them into Qdrant.
-    It creates the 'Ground Truth' dictionary for the Entity Resolver.
+    Downloads the full FIBO Ontology (Master/Latest), parses ALL modules, 
+    and indexes them into Qdrant to create a comprehensive Ground Truth.
 
 USAGE:
     python src/tools/fibo_loader.py
@@ -14,7 +14,12 @@ import os
 import sys
 import json
 import glob
+import shutil
+import requests
+import zipfile
+import io
 from typing import List, Dict
+from tqdm import tqdm
 
 # Add project root to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
@@ -24,101 +29,154 @@ from qdrant_client.models import PointStruct, VectorParams, Distance
 from src.util.llm_client import get_embeddings
 
 # --- Configuration ---
-FIBO_BASE = "https://spec.edmcouncil.org/fibo/ontology/master/latest"
-
-FIBO_URLS = [
-    # --- 1. BUSINESS ENTITIES (The Actors) ---
-    f"{FIBO_BASE}/BE/LegalEntities/LegalPersons.ttl",
-    f"{FIBO_BASE}/BE/LegalEntities/CorporateBodies.ttl",
-    f"{FIBO_BASE}/BE/Corporations/Corporations.ttl",
-    f"{FIBO_BASE}/BE/GovernmentEntities/GovernmentEntities.ttl",
-    f"{FIBO_BASE}/BE/Partnerships/Partnerships.ttl",
-    f"{FIBO_BASE}/BE/Trusts/Trusts.ttl",
-    f"{FIBO_BASE}/BE/OwnershipAndControl/OwnershipParties.ttl",
-
-    # --- 2. REGULATORS & AGENCIES (The Rules) ---
-    f"{FIBO_BASE}/FBC/FunctionalEntities/RegulatoryAgencies.ttl",
-    f"{FIBO_BASE}/FBC/FunctionalEntities/NorthAmericanEntities/USRegulatoryAgencies.ttl",
-    f"{FIBO_BASE}/FBC/FunctionalEntities/RegistrationAuthorities.ttl",
-
-    # --- 3. MACROECONOMICS (The Numbers) ---
-    f"{FIBO_BASE}/IND/EconomicIndicators/EconomicIndicators.ttl",
-    f"{FIBO_BASE}/IND/InterestRates/InterestRates.ttl",
-    f"{FIBO_BASE}/IND/ForeignExchange/ForeignExchange.ttl",
-
-    # --- 4. FINANCIAL INSTRUMENTS (The Assets) ---
-    f"{FIBO_BASE}/FBC/FinancialInstruments/FinancialInstruments.ttl",
-    f"{FIBO_BASE}/SEC/Equities/Equities.ttl",
-    f"{FIBO_BASE}/SEC/Debt/Bonds.ttl",
-    f"{FIBO_BASE}/LOAN/LoansGeneral/Loans.ttl",
-
-    # --- 5. FOUNDATIONS (Time & Place) ---
-    f"{FIBO_BASE}/FND/Places/Locations.ttl",
-    f"{FIBO_BASE}/FND/Places/Addresses.ttl",
-    f"{FIBO_BASE}/FND/AgentsAndPeople/Agents.ttl",
-    f"{FIBO_BASE}/FND/Agreements/Contracts.ttl",
-
-    # --- 6. DOCUMENTS & REPORTS (NEW - Crucial for "Beige Book") ---
-    # Defines "Report", "Publication", "Record".
-    # Without this, "Beige Book" is just a string. With this, it is a "Periodical".
-    f"{FIBO_BASE}/FND/Arrangements/Documents.ttl",
-    f"{FIBO_BASE}/FND/Arrangements/Reporting.ttl",
-
-    # --- 7. MARKETS & ANALYTICS (NEW - Crucial for "Economic Conditions") ---
-    # Defines "Market", "Situation", "Analysis", "Outlook".
-    # This allows you to resolve "Labor Market" to a specific concept.
-    f"{FIBO_BASE}/FBC/FunctionalEntities/Markets.ttl",
-    f"{FIBO_BASE}/FND/Utilities/Analytics.ttl",
-    f"{FIBO_BASE}/FND/DatesAndTimes/Occurrences.ttl", # Defines "Events" vs "Situations"
-]
-
-QDRANT_PATH = "./qdrant_fibo"  # Local persistence
+# The official "Master" zip contains the entire ontology
+# GitHub Archive is more reliable than the spec site
+FIBO_ZIP_URL = "https://github.com/edmcouncil/fibo/archive/refs/heads/master.zip"
+DATA_DIR = "./data/fibo_source"
+QDRANT_PATH = "./qdrant_fibo"
 COLLECTION_NAME = "fibo_entities"
-# Voyage finance-2 dimension is 1024
-VECTOR_SIZE = 1024 
 
-def fetch_and_parse_fibo() -> List[Dict]:
-    """Parses RDF to extract Label, Definition, and URI."""
-    print("📚 Reading FIBO Ontology files...")
+# Limits
+VECTOR_SIZE = 1024  # Voyage finance-2
+BATCH_SIZE = 100    # Batch size for Embedding API and Qdrant Upsert
+
+def download_and_extract_fibo():
+    """Downloads the latest FIBO zip and extracts it locally."""
+    if os.path.exists(DATA_DIR):
+        print(f"📂 FIBO directory found at {DATA_DIR}. Skipping download.")
+        # Optional: Uncomment to force fresh download
+        # shutil.rmtree(DATA_DIR)
+        return
+
+    print(f"⬇️  Downloading FIBO from {FIBO_ZIP_URL}...")
+    try:
+        response = requests.get(FIBO_ZIP_URL)
+        response.raise_for_status()
+        
+        print("📦 Extracting archive...")
+        with zipfile.ZipFile(io.BytesIO(response.content)) as z:
+            z.extractall(DATA_DIR)
+        print(f"✅ Extracted to {DATA_DIR}")
+    except Exception as e:
+        print(f"❌ Failed to download/extract FIBO: {e}")
+        sys.exit(1)
+
+def parse_all_fibo_files() -> List[Dict]:
+    """Recursively finds and parses all .ttl files in the data directory."""
+    print("📚 Parsing RDF files with Domain Filtering...")
     g = rdflib.Graph()
     
-    for url in FIBO_URLS:
-        print(f"   - Fetching {url}...")
+    # Find all RDF files (Turtle .ttl or RDF/XML .rdf)
+    # The GitHub archive uses .rdf (XML) mostly.
+    all_files = glob.glob(f"{DATA_DIR}/**/*", recursive=True)
+    files = [f for f in all_files if f.endswith('.ttl') or f.endswith('.rdf')]
+    
+    print(f"   - Found {len(files)} ontology modules.")
+
+    for file_path in tqdm(files, desc="Parsing Ontology Files"):
         try:
-            g.parse(url, format="turtle")
+            # Detect format
+            fmt = "turtle" if file_path.endswith('.ttl') else "xml"
+            g.parse(file_path, format=fmt)
         except Exception as e:
-            print(f"   ⚠️ Failed to load {url}: {e}")
+            # pass silent for robustness
+            pass
 
-    print(f"   ✅ Loaded {len(g)} triples.")
+    print(f"   ✅ Loaded {len(g)} total triples.")
 
-    # SPARQL Query to get standardized terms
-    # We look for Classes (Concepts) and Named Individuals (Specific Entities if any)
+    # --- THE UPDATED QUERY ---
+    # We select the URI string so we can filter in Python (easier than complex SPARQL regex)
+    # Added: ?example for skos:example
     query = """
-        SELECT DISTINCT ?entity ?label ?definition
+        SELECT DISTINCT ?entity ?label ?definition ?example
         WHERE {
             ?entity a owl:Class .
             { ?entity rdfs:label ?label } UNION { ?entity skos:prefLabel ?label } .
             OPTIONAL { ?entity skos:definition ?definition } .
+            OPTIONAL { ?entity skos:example ?example } .
+            FILTER NOT EXISTS { ?entity owl:deprecated "true"^^xsd:boolean }
         }
     """
     
-    concepts = []
+    print("🕵️  Querying for Concepts...")
+    
+    # Map to aggregate examples (URI -> {label, def, examples: set})
+    concepts_map = {}
+    
+    # 🚫 BLOCKLIST: Namespaces that are too abstract for a Trader's KG
+    # 'Arrangements', 'Utilities', 'Relations' usually contain meta-logic
+    SKIP_PATTERNS = [
+        "/FND/Utilities/", 
+        "/FND/Relations/", 
+        "/FND/GoalsAndObjectives/",
+        # "/FND/Arrangements/" # Moved to ALLOWLIST
+    ]
+
+    # ✅ ALLOWLIST: FND modules we actually want
+    # We want 'Agents' (People/Orgs), 'Places' (Addresses), 'Dates' (Tenors)
+    # README implies we handle "Contracts" and "Legal" entities, so we keep Agreements.
+    KEEP_FND_PATTERNS = [
+        "/FND/AgentsAndPeople/",
+        "/FND/Places/",
+        "/FND/DatesAndTimes/",
+        "/FND/Law/",
+        "/FND/Organizations/",
+        "/FND/Agreements/", # Critical for Contracts/Legal
+        "/FND/Arrangements/" # Critical for Documents/Reporting (Beige Book)
+    ]
+
     for row in g.query(query):
         uri = str(row["entity"])
+        
+        # --- FILTERING LOGIC ---
+        
+        # 1. If it's a core financial module, KEEP IT
+        is_core_finance = any(x in uri for x in ["/SEC/", "/DER/", "/IND/", "/BE/", "/FBC/", "/LOAN/"])
+        
+        # 2. If it's Foundation (FND), only keep specific useful sub-modules
+        is_useful_foundation = any(x in uri for x in KEEP_FND_PATTERNS)
+        
+        # 3. Explicitly skip known noise
+        is_noise = any(x in uri for x in SKIP_PATTERNS)
+
+        # DECISION:
+        if is_noise:
+            continue
+        if not (is_core_finance or is_useful_foundation):
+            # Skip obscure abstract ontologies
+            continue
+            
         label = str(row["label"])
-        definition = str(row["definition"]) if row["definition"] else "Financial entity defined in FIBO."
+        definition = str(row["definition"]) if row["definition"] else ""
+        example = str(row["example"]) if row.get("example") else ""
         
-        # The "Rich Text" we will vector embed
-        search_text = f"Term: {label}\nDefinition: {definition}"
+        if uri not in concepts_map:
+            concepts_map[uri] = {
+                "label": label,
+                "definition": definition,
+                "examples": set()
+            }
         
+        if example:
+            concepts_map[uri]["examples"].add(example)
+
+    # Convert map to flat list for indexing
+    concepts = []
+    for uri, data in concepts_map.items():
+        ex_str = "; ".join(sorted(list(data["examples"])))
+        search_text = f"Term: {data['label']}\nDefinition: {data['definition']}"
+        if ex_str:
+            search_text += f"\nExamples: {ex_str}"
+            
         concepts.append({
             "uri": uri,
-            "label": label,
-            "definition": definition,
+            "label": data['label'],
+            "definition": data['definition'],
+            "examples": ex_str, # Store in payload too
             "search_text": search_text
         })
-    
-    print(f"   found {len(concepts)} unique concepts.")
+
+    print(f"   ✅ Extracted {len(concepts)} High-Value concepts (Filtered).")
     return concepts
 
 def load_aliases() -> List[Dict]:
@@ -128,12 +186,10 @@ def load_aliases() -> List[Dict]:
     
     aliases = []
     for filepath in alias_files:
-        print(f"   - Reading {filepath}...")
         try:
             with open(filepath, 'r') as f:
                 data = json.load(f)
                 for item in data:
-                    # Construct search text including synonyms
                     synonyms_str = ", ".join(item.get("synonyms", []))
                     search_text = f"Term: {item['label']}\nSynonyms: {synonyms_str}\nDefinition: {item['definition']}"
                     
@@ -146,58 +202,66 @@ def load_aliases() -> List[Dict]:
         except Exception as e:
             print(f"   ⚠️ Failed to load aliases from {filepath}: {e}")
             
-    print(f"   ✅ Loaded {len(aliases)} manual aliases.")
     return aliases
 
+def batch_process(data, batch_size):
+    """Yields successive n-sized chunks from data."""
+    for i in range(0, len(data), batch_size):
+        yield data[i:i + batch_size]
+
 def index_to_qdrant(concepts: List[Dict]):
-    """Embeds text and pushes to Vector DB."""
-    print("🧠 Generating Embeddings (this may take a moment)...")
+    """Embeds text and pushes to Vector DB in batches."""
+    print(f"🧠 Generating Embeddings & Indexing ({len(concepts)} items)...")
     
     embeddings = get_embeddings()
-    
-    # Batch embedding
-    texts = [c["search_text"] for c in concepts]
-    # embed_documents returns List[List[float]]
-    vectors = embeddings.embed_documents(texts)
-    
-    print("💾 Indexing to Qdrant...")
     client = QdrantClient(path=QDRANT_PATH)
     
-    # 1. Create Collection (if needed)
+    # 1. Ensure Collection Exists
     if not client.collection_exists(COLLECTION_NAME):
         client.create_collection(
             collection_name=COLLECTION_NAME,
             vectors_config=VectorParams(size=VECTOR_SIZE, distance=Distance.COSINE),
         )
     
-    # 2. Upload Points
-    points = []
-    for i, concept in enumerate(concepts):
-        points.append(PointStruct(
-            id=str(uuid.uuid5(uuid.NAMESPACE_URL, concept["uri"])), # Deterministic ID based on URI
-            vector=vectors[i],
-            payload={
-                "uri": concept["uri"],
-                "label": concept["label"],
-                "definition": concept["definition"]
-            }
-        ))
-    
-    # Upsert in batches (Qdrant handles batching, but good practice to know)
-    # Qdrant client handles batching automatically for upsert usually, but explicit is fine.
-    # For simplicity, we pass all points. If list is huge, chunk it.
-    client.upsert(
-        collection_name=COLLECTION_NAME,
-        points=points
-    )
-    print(f"   ✅ Successfully indexed {len(points)} concepts (FIBO + Aliases).")
+    # 2. Process in Batches
+    total = len(concepts)
+    for i, batch in enumerate(batch_process(concepts, BATCH_SIZE)):
+        # Generate Embeddings for Batch
+        texts = [c["search_text"] for c in batch]
+        try:
+            vectors = embeddings.embed_documents(texts)
+            
+            points = []
+            for j, concept in enumerate(batch):
+                points.append(PointStruct(
+                    id=str(uuid.uuid5(uuid.NAMESPACE_URL, concept["uri"])),
+                    vector=vectors[j],
+                    payload={
+                        "uri": concept["uri"],
+                        "label": concept["label"],
+                        "definition": concept["definition"],
+                        "examples": concept.get("examples", "")
+                    }
+                ))
+            
+            client.upsert(
+                collection_name=COLLECTION_NAME,
+                points=points
+            )
+            print(f"   Indexed batch {i+1} ({(i+1)*BATCH_SIZE}/{total})")
+            
+        except Exception as e:
+            print(f"   ❌ Batch failed: {e}")
+
+    print("✅ Indexing Complete.")
 
 if __name__ == "__main__":
-    fibo_data = fetch_and_parse_fibo()
+    download_and_extract_fibo()
+    fibo_data = parse_all_fibo_files()
     alias_data = load_aliases()
     
-    # Combine datasets
     all_concepts = fibo_data + alias_data
-    
     if all_concepts:
         index_to_qdrant(all_concepts)
+    else:
+        print("⚠️ No concepts found to index.")

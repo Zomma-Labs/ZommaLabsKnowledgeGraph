@@ -82,7 +82,7 @@ class GraphEnhancer:
             print(f"Description extraction failed: {e}")
             return "Entity"
 
-    def find_graph_candidates(self, entity_name: str, entity_description: str, group_id: str, top_k: int = 5) -> List[Dict]:
+    def find_graph_candidates(self, entity_name: str, entity_description: str, group_id: str, node_type: str = "Entity", top_k: int = 5) -> List[Dict]:
         """
         Finds candidates using Exact Match (Step 1) and Vector Search (Step 2).
         """
@@ -90,11 +90,27 @@ class GraphEnhancer:
         seen_uuids = set()
 
         # 1. Exact Name Match
-        cypher_exact = """
-        MATCH (n:Entity {name: $name, group_id: $group_id})
-        RETURN n.uuid as uuid, n.name as name, n.summary as summary, labels(n) as labels
+        label = "EntityNode" if node_type == "Entity" else "TopicNode"
+        cypher_exact = f"""
+        MATCH (n:{label} {{name: $name, group_id: $group_id}})
+        RETURN n.uuid as uuid, n.name as name, n.fibo_id as summary, labels(n) as labels
         LIMIT 1
         """
+        # Note: TopicNode uses fibo_id/fibo_uri, EntityNode uses summary. We accept either as 'summary' for display.
+        if node_type == "Topic":
+             cypher_exact = f"""
+            MATCH (n:TopicNode {{group_id: $group_id}})
+            WHERE toLower(n.name) = toLower($name)
+            RETURN n.uuid as uuid, n.name as name, n.fibo_id as summary, labels(n) as labels
+            LIMIT 1
+            """
+        else:
+             cypher_exact = f"""
+            MATCH (n:EntityNode {{group_id: $group_id}})
+            WHERE toLower(n.name) = toLower($name)
+            RETURN n.uuid as uuid, n.name as name, n.summary as summary, labels(n) as labels
+            LIMIT 1
+            """
         try:
             exact_matches = self.neo4j.query(cypher_exact, {"name": entity_name, "group_id": group_id})
             for match in exact_matches:
@@ -109,8 +125,8 @@ class GraphEnhancer:
         query_text = f"{entity_name}: {entity_description}"
         try:
             vector = self.embeddings.embed_query(query_text)
-            # Note: We are searching 'entity_embeddings' index. Ensure it exists.
-            results = self.neo4j.vector_search("entity_embeddings", vector, top_k, filters={"group_id": group_id})
+            index_name = "entity_embeddings" if node_type == "Entity" else "topic_embeddings"
+            results = self.neo4j.vector_search(index_name, vector, top_k, filters={"group_id": group_id})
             
             for record in results:
                 node = record['node']
