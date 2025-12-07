@@ -2,97 +2,119 @@
 MODULE: Entity Extractor
 SYSTEM: Financial-GraphRAG Ingestion Pipeline
 AUTHOR: ZommaLabs
-VERSION: 1.0.0
+VERSION: 2.0.0 (Context-Aware & Reflexion)
 
 DESCRIPTION:
     This module defines the `EntityExtractor` agent. 
     It takes a pre-decomposed "Atomic Propostion" (fact) and the ORIGINAL chunk context,
-    and extracts the structured entities (Subject, Object, Topics) involved.
+    PLUS the document header path, and extracts the structured entities (Subject, Object, Topics).
 
-    It uses the "Context-Aware" extraction pattern requested by the user:
-    "RESOLVE, EXTRACT THE ENTITIES in this fact... FOR HELP here is the chunk..."
+    It uses the "Context-Aware" extraction pattern:
+    "RESOLVE, EXTRACT THE ENTITIES in this fact... FOR HELP here is the chunk & header..."
+    
+    It returns a LIST of FinancialRelations, allowing it to split aggregate entities 
+    (e.g. "Contacts in a Few Districts" -> [Rel(District A), Rel(District B)]).
 
 INPUT:
     - `fact_text`: The distinct atomic fact string.
     - `chunk_text`: The full text of the chunk where the fact originated.
+    - `header_path`: The document structure/breadcrumbs.
 
 OUTPUT:
-    - `AtomicFact`: Fully populated object with Subject, Object, Topics.
+    - `List[FinancialRelation]`: List of extracted relations (Subject/Object/Topics).
 """
 
 from typing import List, Optional
-from pydantic import BaseModel, Field
-from src.schemas.atomic_fact import AtomicFact
+from src.schemas.financial_relation import FinancialRelation, FinancialRelationList
 from src.util.llm_client import get_llm
 
 class EntityExtractor:
     def __init__(self):
         self.llm = get_llm()
-        self.structured_llm = self.llm.with_structured_output(AtomicFact)
+        self.structured_llm = self.llm.with_structured_output(FinancialRelationList)
 
-    def extract(self, fact_text: str, chunk_text: str) -> AtomicFact:
+    def extract(self, fact_text: str, chunk_text: str, header_path: str = "") -> List[FinancialRelation]:
         """
-        Extracts entities from a fact using the chunk context.
+        Extracts entities from a fact using the chunk context and header path.
+        Returns a list of relations to support splitting aggregate entities.
         """
         prompt = (
-            f"RESOLVE, EXTRACT THE ENTITIES in this fact:\n"
-            f"\"{fact_text}\"\n\n"
+            f"HEADER: {header_path}\n"
+            f"CHUNK: \"{chunk_text}\"\n\n"
             
-            f"FOR HELP here is the chunk in which it is a part of:\n"
-            f"\"{chunk_text}\"\n\n"
+            f"FACT TO ANALYZE: \"{fact_text}\"\n\n"
             
-            f"USE THIS INFORMATION to be specific to the entities in the fact at hand.\n\n"
+            f"GOAL: Extract the detailed FINANCIAL RELATIONSHIPS from the FACT, "
+            f"resolving any generic terms using the HEADER and CHUNK context.\n\n"
             
             f"STRICT RULES:\n"
-            f"1. KEY CONCEPTS: Extract high-level financial/economic concepts (e.g., 'Inflation', 'Rates').\n"
-            f"2. SUBJECT/OBJECT IDENTIFICATION:\n"
-            f"   - DIFFERENTIATE between ENTITIES and TOPICS.\n"
-            f"   - 'Entity': Proper nouns, Companies, People (e.g., 'Apple').\n"
-            f"   - 'Topic': General concepts, economic states (e.g., 'Inflation').\n"
-            f"   - *CRITICAL*: If a concept performs an action (e.g. 'Inflation HURT earnings'), it is a SUBJECT with subject_type='Topic'.\n"
-            f"3. GENERIC CONTAINERS: Ignore terms like 'Reports', 'Table', 'Data'.\n"
-            f"4. FINANCIAL PRECISION & CANONICALIZATION:\n"
-            f"   - Act as a Financial Expert.\n"
-            f"   - CANONICALIZE TOPICS: 'Price Increases' -> 'Inflation', 'Level of Employment' -> 'Employment'.\n"
-            f"   - If no specific object exists, leave it null.\n"
+            f"1. CONTEXT AWARENESS: Use the HEADER (e.g. 'District 9 > Retail') "
+            f"to resolve generic terms like 'The District' or 'The Sector' to specific names.\n"
+            f"2. SPLITTING AGGREGATES: If the fact mentions 'Contacts in a few districts', "
+            f"and the context mentions specific districts (e.g. 'Minneapolis', 'Dallas'), "
+            f"create SEPARATE FinancialRelation entries for EACH implied entity.\n"
+            f"3. SUBJECT/OBJECT TYPES:\n"
+            f"   - 'Entity': Specific Companies, People, Locations (e.g. 'Apple', 'Minneapolis District').\n"
+            f"   - 'Topic': Concepts acting as agents (e.g. 'Inflation' hurt earnings).\n"
+            f"4. TOPICS: Extract key financial concepts alluded to (e.g. 'Inflation', 'Labor Market').\n"
+            f"5. DATE CONTEXT: If the text implies a specific time (e.g. 'Q3'), extract it.\n"
         )
-
+        
         try:
-            # We use invoke with a single string prompt because we are using structured output
-            # which usually handles the system/human mapping under the hood or accepts a string.
-            # But standard pattern is list of messages.
-            # Let's use a simple system/human split for clarity, though the user's prompt is one block.
-            # We will put the whole instruction in the system or human message?
-            # User's prompt looks like a command. Let's put it in Human message to be safe with context.
+            response = self.structured_llm.invoke([("human", prompt)])
+            relations = response.relations
             
-            response = self.structured_llm.invoke([
-                ("human", prompt)
-            ])
-            
-            # The structured LLM returns an AtomicFact object directly (if configured correctly)
-            # Depending on langchain version, it might verify fields.
-            # We need to manually inject the 'fact' field back into the object if the LLM hallucinates it or modifies it?
-            # Actually, AtomicFact has a 'fact' field. Ideally the LLM should just copy it back or we override it to be safe.
-            if response.fact != fact_text:
-                # Force the fact text to be the original proposition (to ensure exact match with upstream)
-                # But wait, maybe the LLM *refined* the fact text too?
-                # User's prompt says "RESOLVE... in this fact". It doesn't explicitly say "rewrite the fact".
-                # But AtomicFact schema says "RESOLVE PRONOUNS...". 
-                # Atomizer ALREADY did pronoun resolution.
-                # So we should trust the input fact_text mostly.
-                # Let's allow the LLM to return it, but generally we expect it to match.
-                pass
+            # --- REFLEXION STEP ---
+            # Check if we should split further or if we missed something obvious
+            # Only run if we have relations to check
+            if relations:
+                relations = self.reflexion_check(fact_text, chunk_text, header_path, relations)
                 
-            return response
-            
-        except Exception as e:
-            print(f"Prop extraction failed for '{fact_text[:20]}...': {e}")
-            # Fallback: Return a barebones AtomicFact
-            return AtomicFact(
-                fact=fact_text,
-                subject="Unknown",
-                subject_type="Entity"
-            )
+            return relations
 
-if __name__ == "__main__":
-    pass
+        except Exception as e:
+            print(f"Entity extraction failed for '{fact_text[:20]}...': {e}")
+            # Fallback: one generic relation
+            return [FinancialRelation(
+                subject="Unknown",
+                subject_type="Entity",
+                object=None
+            )]
+
+    def reflexion_check(self, fact_text: str, chunk_text: str, header_path: str, current_relations: List[FinancialRelation]) -> List[FinancialRelation]:
+        """
+        Reflects on the extraction to ensure no aggregate/ambiguous entities remain.
+        """
+        # Convert current extraction to string for prompt
+        current_summary = "\n".join([f"- Subj: {r.subject} ({r.subject_type}) -> Obj: {r.object}" for r in current_relations])
+        
+        reflexion_prompt = (
+            f"HEADER: {header_path}\n"
+            f"CHUNK: \"{chunk_text}\"\n"
+            f"FACT: \"{fact_text}\"\n\n"
+            
+            f"CURRENT EXTRACTION:\n{current_summary}\n\n"
+            
+            f"CRITIC TASKS:\n"
+            f"1. IDENTIFY AGGREGATES: Are there terms like 'Many Districts', 'Several Banks', 'Contacts' "
+            f"that are still generic but COULD be resolved to specific names from the Context?\n"
+            f"   - Example: 'Contacts reported' -> If context lists 'Retailers' and 'Manufacturers', split into two relations.\n"
+            f"2. SPECIFICITY CHECK: Did we resolve 'The District' to the specific district name from the Header?\n"
+            f"3. COMPLETENESS: Did we miss any distinct entity mentioned in the fact?\n\n"
+            
+            f"If changes are needed, return the IMPROVED list of FinancialRelations."
+            f"If the current extraction is already optimal, just return it as is."
+        )
+        
+        try:
+            response = self.structured_llm.invoke([("human", reflexion_prompt)])
+            if response.relations:
+                # Basic check: if count increased, or if values look different, we accept it.
+                # For now, trust the Reflector if it returns valid output.
+                # print(f"   ✨ Entity Reflexion updated {len(current_relations)} -> {len(response.relations)} relations.")
+                return response.relations
+        except Exception as e:
+            # If reflexion fails, return original
+            print(f"   ⚠️ Entity Reflexion failed: {e}")
+            
+        return current_relations
