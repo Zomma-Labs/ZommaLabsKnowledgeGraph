@@ -4,6 +4,7 @@ from typing import List, Dict, Any, TypedDict
 from langgraph.graph import StateGraph, END
 
 from src.agents.atomizer import atomizer
+from src.agents.entity_extractor import EntityExtractor
 from src.agents.FIBO_librarian import FIBOLibrarian
 from src.agents.analyst import AnalystAgent
 from src.agents.graph_assembler import GraphAssembler
@@ -22,6 +23,7 @@ class GraphState(TypedDict):
     metadata: Dict[str, Any]
     group_id: str # Tenant ID
     episodic_uuid: str # New field for Provenance
+    propositions: List[str] # Intermediate step
     atomic_facts: List[AtomicFact]
     resolved_entities: List[Dict[str, Any]]
     resolved_topics: List[Dict[str, Any]] # New field for topics
@@ -39,6 +41,7 @@ assembler = GraphAssembler(services=services)
 enhancer = GraphEnhancer(services=services)
 causal_linker = CausalLinker(services=services)
 header_analyzer = HeaderAnalyzer(services=services)
+entity_extractor = EntityExtractor() # New agent
 
 # Use shared clients from services
 neo4j_client = services.neo4j
@@ -238,15 +241,32 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
     return {"episodic_uuid": episode_uuid, "group_id": group_id}
 
 def atomize_node(state: GraphState) -> Dict[str, Any]:
-    print("---ATOMIZER---")
+    print("---ATOMIZER (Decomposition Only)---")
     chunk_text = state["chunk_text"]
     metadata = state["metadata"]
     
     try:
-        facts = atomizer(chunk_text, metadata)
-        return {"atomic_facts": facts}
+        props = atomizer(chunk_text, metadata)
+        print(f"   Decomposed into {len(props)} propositions.")
+        return {"propositions": props}
     except Exception as e:
         return {"errors": [f"Atomizer Error: {str(e)}"]}
+
+async def entity_extraction_node(state: GraphState) -> Dict[str, Any]:
+    print("---ENTITY EXTRACTION (Context-Aware)---")
+    propositions = state["propositions"]
+    chunk_text = state["chunk_text"]
+    
+    async def extract_async(prop: str) -> AtomicFact:
+        return await asyncio.to_thread(entity_extractor.extract, prop, chunk_text)
+    
+    try:
+        tasks = [extract_async(p) for p in propositions]
+        facts = await asyncio.gather(*tasks)
+        print(f"   Extracted entities from {len(facts)} facts.")
+        return {"atomic_facts": facts}
+    except Exception as e:
+        return {"errors": [f"Entity Extraction Error: {str(e)}"]}
 
 async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
     print("---PARALLEL RESOLUTION---")
@@ -576,6 +596,7 @@ workflow = StateGraph(GraphState)
 
 workflow.add_node("initialize_episode", initialize_episode)
 workflow.add_node("atomizer", atomize_node)
+workflow.add_node("entity_extraction", entity_extraction_node)
 workflow.add_node("parallel_resolution", parallel_resolution_node)
 workflow.add_node("causal_linking", causal_linking_node)
 workflow.add_node("assembler", assemble_node)
@@ -583,7 +604,8 @@ workflow.add_node("assembler", assemble_node)
 workflow.set_entry_point("initialize_episode")
 
 workflow.add_edge("initialize_episode", "atomizer")
-workflow.add_edge("atomizer", "parallel_resolution")
+workflow.add_edge("atomizer", "entity_extraction")
+workflow.add_edge("entity_extraction", "parallel_resolution")
 workflow.add_edge("parallel_resolution", "causal_linking")
 workflow.add_edge("causal_linking", "assembler")
 workflow.add_edge("assembler", END)

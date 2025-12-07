@@ -2,48 +2,47 @@
 MODULE: Atomizer
 SYSTEM: Financial-GraphRAG Ingestion Pipeline
 AUTHOR: ZommaLabs
-VERSION: 1.0.0 (Schema-on-Write Implementation)
+VERSION: 2.0.0 (Decomposition Only)
 
 DESCRIPTION:
-    This module defines the `Atomizer` agent. Its primary responsibility is to 
-    decompose large, unstructured text chunks (e.g., 10-K sections, Press Releases) into 
-    granular, self-contained "Propositions" (Atomic Facts).
+    This module defines the `Atomizer` agent. Its SOLE responsibility is to 
+    decompose large, unstructured text chunks into granular, self-contained 
+    "Propositions" (Atomic Facts).
 
-    Unlike simple chunking, this agent performs "De-contextualization":
-    1.  Resolves Coreferences: Replaces "he", "it", "the company" with specific names 
-        (e.g., "Warren Buffett", "Berkshire Hathaway").
-    2.  Temporal Grounding: Calculates specific dates for relative time terms 
-        (e.g., "A year later" -> "1963-01-01").
-    3.  Entity Spotting: Identifies key nouns for downstream FIBO resolution.
+    It performs "De-contextualization":
+    1.  Resolves Coreferences: Replaces "he", "it", "the company" with specific names.
+    2.  Temporal Grounding: Calculates specific dates for relative time terms.
+    3.  Atomicity: Splits compound sentences into simple statements.
 
 INPUT:
     - `chunk_text`: The raw string from the document.
     - `metadata`: Dict containing `doc_date`, `chunk_id`, and `section_header`.
 
 OUTPUT:
-    - `List[AtomicFact]`: A list of structured objects ready for Graph Assembly.
+    - `List[str]`: A list of standalone fact strings (Propositions).
 
 DEPENDENCIES:
-    - pydantic (Data Validation)
-    - langchain (LLM Integration)
-    - langgraph (StateGraph) 
+    - pydantic
+    - langchain
 """
 
-import os
 from typing import List
+from pydantic import BaseModel, Field
 from langchain_core.messages import BaseMessage
-from src.schemas.atomic_fact import AtomicFact, AtomicFactList
 from src.util.llm_client import get_llm
 
-def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
+class PropositionList(BaseModel):
+    propositions: List[str] = Field(description="List of atomic, de-contextualized fact strings.")
+
+def atomizer(chunk_text: str, metadata: dict) -> List[str]:
     """
-    This function takes a chunk of text and metadata as input and returns a list of atomic facts.
+    Decomposes a text chunk into a list of atomic propositions (strings).
     """
     llm = get_llm()
-    structured_llm = llm.with_structured_output(AtomicFactList)
+    structured_llm = llm.with_structured_output(PropositionList)
 
     system_prompt = (
-        "You are an expert Knowledge Graph Engineer. Your goal is to decompose the input text "
+        "You are an expert Text Decomposer. Your goal is to split the input text "
         "into a list of 'Atomic Facts' (Propositions).\n\n"
         "Follow these strict rules:\n"
         "1. DE-CONTEXTUALIZE: The input is a chunk from a larger document. You must resolve all pronouns "
@@ -52,19 +51,6 @@ def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
         "Make every fact standalone in time.\n"
         "3. ATOMICITY: Each fact must be a single, simple sentence. Split compound sentences.\n"
         "4. PRESERVE DETAILS: Do not summarize away important numbers, metrics, or specific adjectives.\n"
-        "5. KEY CONCEPTS: Extract high-level financial/economic concepts (e.g., 'Inflation', 'Rates').\n"
-        "6. SUBJECT/OBJECT IDENTIFICATION: Identify the 'subject' (who did it) and 'object' (who received it).\n"
-        "   - DIFFERENTIATE between ENTITIES and TOPICS for subjects and objects.\n"
-        "   - 'Entity': Proper nouns, Companies, People, Places, Organizations (e.g., 'Apple', 'Tim Cook').\n"
-        "   - 'Topic': General concepts, economic states, or abstract conditions (e.g., 'Inflation', 'Stock Price', 'Sales').\n"
-        "   *CRITICAL RULE*: If a concept performs an action (e.g., 'Inflation HURT earnings'), it is a SUBJECT, but set subject_type='Topic'.\n"
-        "   Do NOT classify concepts like 'Sales' or 'Inflation' as 'Entity' just because they are subjects.\n"
-        "7. FINANCIAL PRECISION & CANONICALIZATION:\n"
-        "   - ACT AS A FINANCIAL EXPERT. Extract entities/topics that a trader or analyst would search for.\n"
-        "   - CANONICALIZE TOPICS: Avoid verbose phrasing. Prefer standard financial terms.\n"
-        "     - BAD: 'Pace of Price Increases', 'Level of Employment', 'Rate of Inflation'\n"
-        "     - GOOD: 'Price Increases', 'Employment', 'Inflation'\n"
-        "   - If a phrase is just a metric of a core concept (e.g. 'Pace of...'), extract the CORE CONCEPT ('Price Increases').\n"
         f"METADATA:\n{metadata}"
     )
 
@@ -73,7 +59,7 @@ def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
         ("human", chunk_text)
     ])
     
-    facts = response.atomic_facts
+    facts = response.propositions
 
     # --- REFLEXION LOOP ---
     try:
@@ -85,19 +71,18 @@ def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
         enhancer = GraphEnhancer(services=services)
         
         # Check for missed facts / concept promotion
+        # Note: Enhancer expects List[Any], so strings are fine
         missed_facts = enhancer.reflexion_check(chunk_text, facts)
         
         if missed_facts:
             print(f"   ✨ Reflexion found {len(missed_facts)} potential improvements.")
             
-            # We need to structure these missed facts into AtomicFact objects
-            # We can reuse the same structured_llm and system_prompt, 
-            # but we pass the missed facts as the "human" input to force extraction.
+            # We need to structure these missed facts into PropositionList
             missed_facts_str = "\n".join(missed_facts)
             reflexion_prompt = (
                 f"CONTEXT:\n{chunk_text}\n\n"
-                f"The following facts were identified as missing or needing improvement (Concept -> Entity promotion).\n"
-                f"Please structure them into Atomic Facts:\n\n{missed_facts_str}"
+                f"The following facts were identified as missing or needing improvement.\n"
+                f"Please structure them into Atomic Propositions:\n\n{missed_facts_str}"
             )
             
             reflexion_response = structured_llm.invoke([
@@ -105,20 +90,17 @@ def atomizer(chunk_text: str, metadata: dict) -> List[AtomicFact]:
                 ("human", reflexion_prompt)
             ])
             
-            if reflexion_response.atomic_facts:
-                facts.extend(reflexion_response.atomic_facts)
-                print(f"   ✅ Added {len(reflexion_response.atomic_facts)} facts from Reflexion.")
+            if reflexion_response.propositions:
+                facts.extend(reflexion_response.propositions)
+                print(f"   ✅ Added {len(reflexion_response.propositions)} facts from Reflexion.")
                 
     except Exception as e:
         print(f"   ⚠️ Reflexion step failed: {e}")
 
-    # Deduplicate facts based on the 'fact' string
-    unique_facts = {}
-    for f in facts:
-        if f.fact not in unique_facts:
-            unique_facts[f.fact] = f
+    # Deduplicate facts based on the string value
+    unique_facts = list(set(facts))
     
-    return list(unique_facts.values())
+    return unique_facts
 
 if __name__ == "__main__":
     pass
