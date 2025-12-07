@@ -22,6 +22,7 @@ class GraphState(TypedDict):
     chunk_text: str
     metadata: Dict[str, Any]
     group_id: str # Tenant ID
+    header_path: str # Breadcrumbs for context
     episodic_uuid: str # New field for Provenance
     propositions: List[str] # Intermediate step
     atomic_facts: List[AtomicFact]
@@ -238,7 +239,7 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
                     "dim_uuid": resolved_node_uuid
                 })
     
-    return {"episodic_uuid": episode_uuid, "group_id": group_id}
+    return {"episodic_uuid": episode_uuid, "group_id": group_id, "header_path": header_path}
 
 def atomize_node(state: GraphState) -> Dict[str, Any]:
     print("---ATOMIZER (Decomposition Only)---")
@@ -257,15 +258,49 @@ async def entity_extraction_node(state: GraphState) -> Dict[str, Any]:
     propositions = state["propositions"]
     chunk_text = state["chunk_text"]
     
-    async def extract_async(prop: str) -> AtomicFact:
-        return await asyncio.to_thread(entity_extractor.extract, prop, chunk_text)
+    
+    # Get header path from state (or derive if missing)
+    header_path = state.get("header_path", "")
+    if not header_path:
+        # Fallback to metadata
+        headings = state["metadata"].get("headings", [])
+        if not headings:
+            headings = state["metadata"].get("breadcrumbs", [])
+        header_path = " > ".join([h.strip() for h in headings if h.strip().lower() != "body"])
+    
+    async def extract_async(prop: str) -> List[AtomicFact]:
+        # Extract returns List[FinancialRelation]
+        relations = await asyncio.to_thread(entity_extractor.extract, prop, chunk_text, header_path)
+        
+        # Convert relations back to AtomicFact (preserving the original prop text)
+        facts = []
+        for rel in relations:
+            # Create AtomicFact using the original 'prop' as the fact text
+            # and the extracted components from the relation
+            facts.append(AtomicFact(
+                fact=prop,
+                subject=rel.subject,
+                subject_type=rel.subject_type,
+                object=rel.object,
+                object_type=rel.object_type,
+                topics=rel.topics,
+                date_context=rel.date_context
+            ))
+        return facts
     
     try:
         tasks = [extract_async(p) for p in propositions]
-        facts = await asyncio.gather(*tasks)
-        print(f"   Extracted entities from {len(facts)} facts.")
-        return {"atomic_facts": facts}
+        # We get a List[List[AtomicFact]]
+        fact_lists = await asyncio.gather(*tasks)
+        
+        # Flatten
+        all_facts = [fact for sublist in fact_lists for fact in sublist]
+        
+        print(f"   Extracted {len(all_facts)} AtomicFacts from {len(propositions)} propositions.")
+        return {"atomic_facts": all_facts}
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return {"errors": [f"Entity Extraction Error: {str(e)}"]}
 
 async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
@@ -534,28 +569,33 @@ def assemble_node(state: GraphState) -> Dict[str, Any]:
             # Link Topics
             for topic in res_top:
                 if topic["uri"]: # Only link if we have a valid URI/UUID
-                    # Ensure Topic Node Exists (Assembler should handle this if we pass it, but for now we rely on the fact that
-                    # assembler doesn't create topics. Wait, resolution creates the UUID but doesn't create the node in DB if 'CREATE_NEW' hasn't happened yet?
-                    # The Resolution step just returns a UUID. The node creation happens in assembler usually.
-                    # BUT `assemble_fact_node` only creates Entities. 
-                    # We need to CREATE the Topic Node here if it doesn't exist?
-                    # Actually, `assemble_fact_node` creates Subject/Object nodes on the fly.
-                    # We need a `create_topic_node` method or do it directly.
-                    # Let's assume we need to Create/Merge the Topic Node first.
-                    
-                    # Hack: The 'resolve_single_entity' returns a UUID for 'CREATE_NEW' but doesn't write to DB.
-                    # So we must write it here.
-                    
+                    # Generate Topic Embedding
+                    topic_embedding = None
+                    try:
+                        t_text = f"{topic['label']}: {topic['description']}" if topic['description'] else topic['label']
+                        topic_embedding = embeddings.embed_query(t_text)
+                    except Exception:
+                        pass
+
                     cypher_topic_merge = """
                     MERGE (t:TopicNode {uuid: $topic_uuid, group_id: $group_id})
-                    ON CREATE SET t.name = $name, t.summary = $desc
+                    ON CREATE SET 
+                        t.name = $name, 
+                        t.summary = $desc,
+                        t.embedding = $embedding,
+                        t.is_fibo = ($topic_uuid STARTS WITH "http"),
+                        t.created_at = datetime()
+                    ON MATCH SET
+                        t.embedding = CASE WHEN t.embedding IS NULL THEN $embedding ELSE t.embedding END,
+                        t.summary = CASE WHEN t.summary IS NULL OR t.summary = "" THEN $desc ELSE t.summary END
                     RETURN t.uuid
                     """
                     neo4j_client.query(cypher_topic_merge, {
                         "topic_uuid": topic["uri"],
                         "group_id": group_id,
                         "name": topic["label"],
-                        "desc": topic["description"]
+                        "desc": topic["description"],
+                        "embedding": topic_embedding
                     })
                     
                     # Link to Episode
