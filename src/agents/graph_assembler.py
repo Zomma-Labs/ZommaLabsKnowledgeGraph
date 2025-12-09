@@ -23,15 +23,15 @@ class GraphAssembler:
 
     def assemble_fact_node(self, 
                            fact_obj: AtomicFact, 
-                           subject_uri: str, 
+                           subject_uuid: str, 
                            subject_label: str,
-                           object_uri: Optional[str], 
+                           object_uuid: Optional[str], 
                            object_label: Optional[str],
                            episode_uuid: str,
                            group_id: str,
                            relationship_classification: Optional[RelationshipClassification] = None,
-                           subject_description: str = "",
-                           object_description: str = "",
+                           subject_summary: str = "",
+                           object_summary: str = "",
                            subject_type: str = "Entity",
                            object_type: str = "Entity") -> str:
         """
@@ -42,7 +42,7 @@ class GraphAssembler:
         # Debug Logging
         with open("assembler_debug.log", "a") as log:
             log.write(f"\n--- Assembling Fact: {fact_obj.fact[:50]}... ---\n")
-            log.write(f"S: {subject_uri} ({subject_label}) [{subject_type}] -> O: {object_uri} ({object_label}) [{object_type}]\n")
+            log.write(f"S: {subject_uuid} ({subject_label}) [{subject_type}] -> O: {object_uuid} ({object_label}) [{object_type}]\n")
         
         # 1. Generate Embedding for Fact
         try:
@@ -137,7 +137,7 @@ class GraphAssembler:
         subj_embedding = None
         if subject_label:
             try:
-                subj_text = f"{subject_label}: {subject_description}" if subject_description else subject_label
+                subj_text = f"{subject_label}: {subject_summary}" if subject_summary else subject_label
                 subj_embedding = self.embeddings.embed_query(subj_text)
             except Exception:
                 pass
@@ -146,19 +146,23 @@ class GraphAssembler:
         # Determine Node Label based on subject_type
         subj_node_label = "TopicNode" if subject_type == "Topic" else "EntityNode"
         
+        # NOTE: Node should already exist from Resolution step. matching on UUID.
+        # We use MERGE for safety in case of async delays or failures, but strictly on UUID.
+        # But we don't want to create duplicates if it doesn't exist? Ideally MATCH.
+        # But main_pipeline ensures creation. Let's use MATCH.
+        # Actually, MERGE on UUID is safer if correct. MATCH might fail if race condition.
+        # Let's use MERGE (n {uuid: ...})
+        
         cypher_link_subj = f"""
-        MERGE (s:{subj_node_label} {{uri: $subj_uri, group_id: $group_id}})
+        MERGE (s:{subj_node_label} {{uuid: $subj_uuid, group_id: $group_id}})
         ON CREATE SET 
             s.name = $subj_label,
             s.summary = $subj_desc,
             s.embedding = $subj_embedding,
-            s.is_fibo = ($subj_uri STARTS WITH "http"),
-            s.uuid = randomUUID()
+            s.created_at = datetime()
         ON MATCH SET 
             s.name = $subj_label,
-            s.summary = CASE WHEN s.summary IS NULL OR s.summary = "" THEN $subj_desc ELSE s.summary END,
-            s.embedding = CASE WHEN s.embedding IS NULL THEN $subj_embedding ELSE s.embedding END,
-            s.is_fibo = ($subj_uri STARTS WITH "http")
+            s.summary = CASE WHEN s.summary IS NULL OR s.summary = "" THEN $subj_desc ELSE s.summary END
         WITH s
         MATCH (e:EpisodicNode {{uuid: $episode_uuid, group_id: $group_id}})
         MERGE (s)-[r:{active_edge}]->(e)
@@ -166,9 +170,9 @@ class GraphAssembler:
         """
         try:
             self.neo4j.query(cypher_link_subj, {
-                "subj_uri": subject_uri, 
+                "subj_uuid": subject_uuid, 
                 "subj_label": subject_label,
-                "subj_desc": subject_description,
+                "subj_desc": subject_summary,
                 "subj_embedding": subj_embedding,
                 "episode_uuid": episode_uuid,
                 "fact_uuid": fact_uuid,
@@ -182,12 +186,12 @@ class GraphAssembler:
                 log.write(f"❌ Link Subject failed: {e}\n")
         
         # Link Episode -> [Passive Edge] -> Object
-        if object_uri:
+        if object_uuid:
             # Generate Object Embedding
             obj_embedding = None
             if object_label:
                 try:
-                    obj_text = f"{object_label}: {object_description}" if object_description else object_label
+                    obj_text = f"{object_label}: {object_summary}" if object_summary else object_label
                     obj_embedding = self.embeddings.embed_query(obj_text)
                 except Exception:
                     pass
@@ -196,18 +200,15 @@ class GraphAssembler:
             obj_node_label = "TopicNode" if object_type == "Topic" else "EntityNode"
             
             cypher_link_obj = f"""
-            MERGE (o:{obj_node_label} {{uri: $obj_uri, group_id: $group_id}})
+            MERGE (o:{obj_node_label} {{uuid: $obj_uuid, group_id: $group_id}})
             ON CREATE SET 
                 o.name = $obj_label,
                 o.summary = $obj_desc,
                 o.embedding = $obj_embedding,
-                o.is_fibo = ($obj_uri STARTS WITH "http"),
-                o.uuid = randomUUID()
+                o.created_at = datetime()
             ON MATCH SET 
                 o.name = $obj_label,
-                o.summary = CASE WHEN o.summary IS NULL OR o.summary = "" THEN $obj_desc ELSE o.summary END,
-                o.embedding = CASE WHEN o.embedding IS NULL THEN $obj_embedding ELSE o.embedding END,
-                o.is_fibo = ($obj_uri STARTS WITH "http")
+                o.summary = CASE WHEN o.summary IS NULL OR o.summary = "" THEN $obj_desc ELSE o.summary END
             WITH o
             MATCH (e:EpisodicNode {{uuid: $episode_uuid, group_id: $group_id}})
             MERGE (e)-[r:{passive_edge}]->(o)
@@ -215,9 +216,9 @@ class GraphAssembler:
             """
             try:
                 self.neo4j.query(cypher_link_obj, {
-                    "obj_uri": object_uri, 
+                    "obj_uuid": object_uuid, 
                     "obj_label": object_label,
-                    "obj_desc": object_description,
+                    "obj_desc": object_summary,
                     "obj_embedding": obj_embedding,
                     "episode_uuid": episode_uuid,
                     "fact_uuid": fact_uuid,
@@ -225,7 +226,7 @@ class GraphAssembler:
                     "group_id": group_id
                 })
                 with open("assembler_debug.log", "a") as log:
-                    log.write(f"✅ Linked Object ({obj_node_label}, {passive_edge}): Episode -> {object_uri}\n")
+                    log.write(f"✅ Linked Object ({obj_node_label}, {passive_edge}): Episode -> {object_uuid}\n")
             except Exception as e:
                 with open("assembler_debug.log", "a") as log:
                     log.write(f"❌ Link Object failed: {e}\n")

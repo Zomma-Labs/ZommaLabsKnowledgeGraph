@@ -58,6 +58,11 @@ class EntityExtractor:
             f"   - 'Topic': Concepts acting as agents (e.g. 'Inflation' hurt earnings).\n"
             f"4. TOPICS: Extract key financial concepts alluded to (e.g. 'Inflation', 'Labor Market').\n"
             f"5. DATE CONTEXT: If the text implies a specific time (e.g. 'Q3'), extract it.\n"
+            f"6. TABLE ROW PROCESSING (If input is a table row):\n"
+            f"   - SCAN EVERY CELL: Check ALL values (including Note columns) for Named Entities (Company, Person, Location, Country). Extract them as ENTITIES.\n"
+            f"   - COLUMN CONTEXT: Use the COLUMN HEADER to inform the relationship type (e.g. Header 'Manager' -> Relation 'IS_MANAGER', 'Headquarters' -> 'LOCATED_IN').\n"
+            f"   - IGNORE QUANTITATIVE DATA: Do NOT extract raw numbers, prices, or dates as nodes. Leave them in the chunk text as evidence.\n"
+            f"   - NUMERIC HEADERS: If a column is purely numeric (e.g. 'Revenue'), extract the Column Name itself as a TOPIC node linked via 'ABOUT'.\n"
         )
         
         try:
@@ -100,7 +105,8 @@ class EntityExtractor:
             f"that are still generic but COULD be resolved to specific names from the Context?\n"
             f"   - Example: 'Contacts reported' -> If context lists 'Retailers' and 'Manufacturers', split into two relations.\n"
             f"2. SPECIFICITY CHECK: Did we resolve 'The District' to the specific district name from the Header?\n"
-            f"3. COMPLETENESS: Did we miss any distinct entity mentioned in the fact?\n\n"
+            f"3. COMPLETENESS: Did we miss any distinct entity mentioned in the fact?\n"
+            f"4. TABLE SANITY CHECK: Did we accidentally extract a raw number (e.g. '300,000') as an entity? If so, REMOVE IT.\n\n"
             
             f"If changes are needed, return the IMPROVED list of FinancialRelations."
             f"If the current extraction is already optimal, just return it as is."

@@ -133,6 +133,9 @@ class FIBOLibrarian:
 
     def _vector_search(self, text: str, k: int) -> List[Dict]:
         """Queries Qdrant for semantic matches."""
+        if not self.client.collection_exists(COLLECTION_NAME):
+             return []
+
         try:
             vector = self.embeddings.embed_query(text)
             # Use query_points as search might be deprecated/missing in this version
