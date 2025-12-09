@@ -24,7 +24,7 @@ async def main():
     # 1. Load Chunks
     # We'll look for .jsonl files in the SAVED directory
     # Filter for Beige Book only as requested
-    chunk_files = [f for f in os.listdir(CHUNKS_DIR) if f.endswith('.jsonl') and 'beigebook' in f.lower()]
+    chunk_files = [f for f in os.listdir(CHUNKS_DIR) if f.endswith('.jsonl') and ('alphabet' in f.lower() or 'berkshire' in f.lower() or 'largest' in f.lower())]
     
     if not chunk_files:
         print("❌ No chunk files found in src/chunker/SAVED")

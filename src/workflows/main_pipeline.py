@@ -148,6 +148,7 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
                 
                 target_label = "TopicNode" if dim.type == DimensionType.TOPIC else "EntityNode"
                 
+                
                 cypher_merge_fibo = f"""
                 MERGE (n:{target_label} {{name: $name, group_id: $group_id}}) 
                 ON CREATE SET n.uuid = $uuid, n.embedding = $embedding, n.fibo_uri = $fibo_uri, n.fibo_id = $fibo_uri
@@ -200,14 +201,20 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
                         
                     cypher_create_new = f"""
                     MERGE (n:{target_label} {{name: $name, group_id: $group_id}})
-                    ON CREATE SET n.uuid = $uuid, n.embedding = $embedding, n.created_at = datetime()
+                    ON CREATE SET 
+                        n.uuid = $uuid, 
+                        n.embedding = $embedding, 
+                        n.summary = $summary,
+                        n.is_fibo = false,
+                        n.created_at = datetime()
                     RETURN n.uuid as node_uuid
                     """
                     res = neo4j_client.query(cypher_create_new, {
                         "name": dim.value,
                         "group_id": group_id,
                         "uuid": str(uuid.uuid4()),
-                        "embedding": dim_embedding
+                        "embedding": dim_embedding,
+                        "summary": dim.description
                     })
                     resolved_node_uuid = res[0]['node_uuid']
                     resolved_node_type = target_label
@@ -346,28 +353,62 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
         if not name:
             return None, None, ""
         
-        # 0. Extract Description
-        description = enhancer.extract_entity_description(name, context)
+        # 0. Extract Summary
+        summary = enhancer.extract_entity_summary(name, context)
             
         # 1. FIBO Resolution
         res = librarian.resolve(name)
         if res:
-            return res['uri'], res['label'], description
+            # Materialize FIBO node to get UUID
+            fibo_uri = res['uri']
+            fibo_label = res['label']
             
-        # 2. Graph Deduplication
-        candidates = enhancer.find_graph_candidates(name, description, group_id=group_id, node_type=node_type)
-        decision = enhancer.resolve_entity_against_graph(name, description, candidates)
+            target_label = "TopicNode" if node_type == "Topic" else "EntityNode"
+            
+            # We must ensure this node exists and has a UUID
+            cypher_fibo = f"""
+            MERGE (n:{target_label} {{name: $name, group_id: $group_id}})
+            ON CREATE SET 
+                n.uuid = $uuid,
+                n.fibo_uri = $fibo_uri,
+                n.summary = $summary,
+                n.is_fibo = true,
+                n.created_at = datetime()
+            ON MATCH SET
+                n.fibo_uri = $fibo_uri,
+                n.is_fibo = true
+            RETURN n.uuid as node_uuid
+            """
+            try:
+                # Use a deterministic UUID for FIBO if we want? Or just random.
+                # If we merge on name only, we might merge with existing local entity.
+                # Ideally we merge on `fibo_uri` if it exists?
+                # But current schema merges on `name` within `group_id`.
+                # Let's stick to MERGE on name for now to avoid duplicates if name matches.
+                
+                fibo_node_res = neo4j_client.query(cypher_fibo, {
+                    "name": fibo_label,
+                    "group_id": group_id,
+                    "uuid": str(uuid.uuid4()),
+                    "fibo_uri": fibo_uri,
+                    "summary": summary
+                })
+                if fibo_node_res:
+                    return fibo_node_res[0]['node_uuid'], fibo_label, summary
+            except Exception as e:
+                print(f"FIBO materialization failed: {e}")
+            
+        # 2. Graph Deduplication (Semantic)
+        candidates = enhancer.find_graph_candidates(name, summary, group_id=group_id, node_type=node_type)
+        decision = enhancer.resolve_entity_against_graph(name, summary, candidates)
         
         if decision['decision'] == 'MERGE' and decision['target_uuid']:
-            return decision['target_uuid'], name, description
+            return decision['target_uuid'], name, summary
         
         # 3. New Entity - CREATE IMMEDIATELY (Atomic Write)
-        # We must write to DB now, so that subsequent threads (waiting on lock) see this node.
         
-        # CRITICAL: Generate Embedding (Name + Description) for Vector Index
-        # This fixes the "Duplicate" issue by enabling semantic search on the node.
-        # User Req: "term + definition of term"
-        embedding_text = f"{name}: {description}"
+        # Generator Embedding (Name + Summary)
+        embedding_text = f"{name}: {summary}"
         try:
             node_embedding = embeddings.embed_query(embedding_text)
         except Exception as e:
@@ -377,37 +418,35 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
         new_uuid = str(uuid.uuid4())
         print(f"   🆕 Creating New {node_type} (Atomic): {name}")
         
-        # Determine label
         label = "TopicNode" if node_type == "Topic" else "EntityNode"
         
-        # Updated Cypher to include embedding
+        # Create with UUID, NO URI
         cypher_atomic_create = f"""
         MERGE (n:{label} {{name: $name, group_id: $group_id}})
         ON CREATE SET 
             n.uuid = $uuid, 
-            n.description = $desc,
+            n.summary = $summary,
             n.embedding = $embedding,
             n.is_fibo = false,
             n.created_at = datetime()
         ON MATCH SET
             n.embedding = CASE WHEN n.embedding IS NULL THEN $embedding ELSE n.embedding END,
-            n.description = CASE WHEN n.description IS NULL OR n.description = "" THEN $desc ELSE n.description END
+            n.summary = CASE WHEN n.summary IS NULL OR n.summary = "" THEN $summary ELSE n.summary END
         RETURN n.uuid as node_uuid
         """
         
-        # Execute immediately
         try:
             neo4j_client.query(cypher_atomic_create, {
                 "name": name, 
                 "group_id": group_id,
                 "uuid": new_uuid,
-                "desc": description,
+                "summary": summary,
                 "embedding": node_embedding
             })
         except Exception as e:
             print(f"   ⚠️ Atomic Create Failed: {e}")
         
-        return new_uuid, name, description
+        return new_uuid, name, summary
 
     # Wrapper for Analyst processing
     async def classify_fact_relationship(fact: AtomicFact) -> RelationshipClassification:
@@ -471,45 +510,46 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
     resolved_topics_by_fact = [[] for _ in facts] # List of lists
     
     # Map results to a lookup dict
-    resolution_lookup = {} # (name, type) -> (uri, label, desc)
+    resolution_lookup = {} # (name, type) -> (uuid, label, summary)
     for idx, res in enumerate(resolution_results):
         key = task_idx_to_key[idx]
         resolution_lookup[key] = res
         
     # Re-assemble
     for (name, node_type), item_data in unique_items_to_resolve.items():
-        uri, label, desc = resolution_lookup[(name, node_type)]
+        # unpack new return values: uuid, label, summary
+        res_uuid, label, summary = resolution_lookup[(name, node_type)]
         
         for usage in item_data["original_indices"]:
             f_idx = usage["fact_idx"]
             role = usage["role"]
             
             if role == "subject":
-                resolved_entities[f_idx]["subject_uri"] = uri
+                resolved_entities[f_idx]["subject_uuid"] = res_uuid
                 resolved_entities[f_idx]["subject_label"] = label
-                resolved_entities[f_idx]["subject_description"] = desc
+                resolved_entities[f_idx]["subject_summary"] = summary
                 resolved_entities[f_idx]["subject_type"] = node_type
                 
             elif role == "object":
-                resolved_entities[f_idx]["object_uri"] = uri
+                resolved_entities[f_idx]["object_uuid"] = res_uuid
                 resolved_entities[f_idx]["object_label"] = label
-                resolved_entities[f_idx]["object_description"] = desc
+                resolved_entities[f_idx]["object_summary"] = summary
                 resolved_entities[f_idx]["object_type"] = node_type # Need to pass this to assembler
                 
             elif role == "topic_list":
                 # For topics, we append to the list for that fact
                 resolved_topics_by_fact[f_idx].append({
-                    "uri": uri,
+                    "uuid": res_uuid,
                     "label": label,
-                    "description": desc
+                    "summary": summary
                 })
 
     # Ensure Object fields are populated (None if no object)
     for i, fact in enumerate(facts):
         if not fact.object:
-            resolved_entities[i]["object_uri"] = None
+            resolved_entities[i]["object_uuid"] = None
             resolved_entities[i]["object_label"] = None
-            resolved_entities[i]["object_description"] = ""
+            resolved_entities[i]["object_summary"] = ""
             resolved_entities[i]["object_type"] = "Entity" # Default
 
     return {
@@ -549,65 +589,84 @@ def assemble_node(state: GraphState) -> Dict[str, Any]:
         res_top = resolved_tops[i]
         rel = state["classified_relationships"][i] if "classified_relationships" in state and i < len(state["classified_relationships"]) else None
         
-        try:
-            uuid = assembler.assemble_fact_node(
-                fact_obj=fact,
-                subject_uri=res_ent["subject_uri"],
-                subject_label=res_ent["subject_label"],
-                object_uri=res_ent["object_uri"],
-                object_label=res_ent["object_label"],
-                episode_uuid=episode_uuid,
-                group_id=group_id,
-                relationship_classification=rel,
-                subject_description=res_ent.get("subject_description", ""),
-                object_description=res_ent.get("object_description", ""),
-                subject_type=res_ent.get("subject_type", "Entity"),
-                object_type=res_ent.get("object_type", "Entity")
-            )
-            fact_uuids.append(uuid)
-            
-            # Link Topics
-            for topic in res_top:
-                if topic["uri"]: # Only link if we have a valid URI/UUID
-                    # Generate Topic Embedding
-                    topic_embedding = None
-                    try:
-                        t_text = f"{topic['label']}: {topic['description']}" if topic['description'] else topic['label']
-                        topic_embedding = embeddings.embed_query(t_text)
-                    except Exception:
-                        pass
+        # Retry logic for Rate Limiting
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                uuid = assembler.assemble_fact_node(
+                    fact_obj=fact,
+                    subject_uuid=res_ent["subject_uuid"],
+                    subject_label=res_ent["subject_label"],
+                    object_uuid=res_ent["object_uuid"],
+                    object_label=res_ent["object_label"],
+                    episode_uuid=episode_uuid,
+                    group_id=group_id,
+                    relationship_classification=rel,
+                    subject_summary=res_ent.get("subject_summary", ""),
+                    object_summary=res_ent.get("object_summary", ""),
+                    subject_type=res_ent.get("subject_type", "Entity"),
+                    object_type=res_ent.get("object_type", "Entity")
+                )
+                fact_uuids.append(uuid)
+                
+                # Link Topics
+                for topic in res_top:
+                    if topic["uuid"]: # Only link if we have a valid UUID
+                        # Generate Topic Embedding
+                        topic_embedding = None
+                        try:
+                            t_text = f"{topic['label']}: {topic['summary']}" if topic['summary'] else topic['label']
+                            topic_embedding = embeddings.embed_query(t_text)
+                        except Exception:
+                            pass
 
-                    cypher_topic_merge = """
-                    MERGE (t:TopicNode {uuid: $topic_uuid, group_id: $group_id})
-                    ON CREATE SET 
-                        t.name = $name, 
-                        t.summary = $desc,
-                        t.embedding = $embedding,
-                        t.is_fibo = ($topic_uuid STARTS WITH "http"),
-                        t.created_at = datetime()
-                    ON MATCH SET
-                        t.embedding = CASE WHEN t.embedding IS NULL THEN $embedding ELSE t.embedding END,
-                        t.summary = CASE WHEN t.summary IS NULL OR t.summary = "" THEN $desc ELSE t.summary END
-                    RETURN t.uuid
-                    """
-                    neo4j_client.query(cypher_topic_merge, {
-                        "topic_uuid": topic["uri"],
-                        "group_id": group_id,
-                        "name": topic["label"],
-                        "desc": topic["description"],
-                        "embedding": topic_embedding
-                    })
+                        cypher_topic_merge = """
+                        MERGE (t:TopicNode {uuid: $topic_uuid, group_id: $group_id})
+                        ON CREATE SET 
+                            t.name = $name, 
+                            t.summary = $summary,
+                            t.embedding = $embedding,
+                            t.is_fibo = false,
+                            t.created_at = datetime()
+                        ON MATCH SET
+                            t.embedding = CASE WHEN t.embedding IS NULL THEN $embedding ELSE t.embedding END,
+                            t.summary = CASE WHEN t.summary IS NULL OR t.summary = "" THEN $summary ELSE t.summary END
+                        RETURN t.uuid
+                        """
+                        neo4j_client.query(cypher_topic_merge, {
+                            "topic_uuid": topic["uuid"],
+                            "group_id": group_id,
+                            "name": topic["label"],
+                            "summary": topic["summary"],
+                            "embedding": topic_embedding
+                        })
+                        
+                        # Link to Episode
+                        assembler.link_topic_to_episode(topic["uuid"], episode_uuid, group_id)
+                
+                # If success, break retry loop
+                break
+
+            except Exception as e:
+                # Check for Rate Limit
+                if "requests per minute" in str(e).lower() and attempt < max_retries - 1:
+                    print(f"   ⚠️ Rate Limit hit for fact {i} (Attempt {attempt+1}/{max_retries}). Waiting 10s...")
                     
-                    # Link to Episode
-                    assembler.link_topic_to_episode(topic["uri"], episode_uuid, group_id)
-            
-        except Exception as e:
-            error_msg = f"Error assembling fact {i}: {e}"
-            print(error_msg)
-            if "errors" not in state:
-                state["errors"] = []
-            state["errors"].append(error_msg)
-            fact_uuids.append(None) # Keep index alignment
+                    ##### TEMP
+                    import time
+                    time.sleep(10)
+                    ##### TEMP
+                    
+                    continue # Retry
+                
+                # If other error or max retries exceeded
+                error_msg = f"Error assembling fact {i}: {e}"
+                print(error_msg)
+                if "errors" not in state:
+                    state["errors"] = []
+                state["errors"].append(error_msg)
+                fact_uuids.append(None) # Keep index alignment
+                break
         
     # 2. Link Causality
     for link in links:

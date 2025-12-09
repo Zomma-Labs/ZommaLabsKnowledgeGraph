@@ -65,24 +65,24 @@ class GraphEnhancer:
             print(f"Reflexion failed: {e}")
             return []
 
-    def extract_entity_description(self, entity_name: str, context_text: str) -> str:
+    def extract_entity_summary(self, entity_name: str, context_text: str) -> str:
         """
-        Generates a brief 1-sentence description of what the entity IS in this context.
+        Generates a brief 1-sentence summary/definition of what the entity IS in this context.
         """
         prompt = (
-            f"Based on the text below, provide a brief, 1-sentence description of what '{entity_name}' IS.\n"
+            f"Based on the text below, provide a brief, 1-sentence summary/definition of what '{entity_name}' IS.\n"
             f"Example: 'A multinational technology company.' or 'A type of fruit.'\n"
             f"TEXT: {context_text}\n"
-            f"DESCRIPTION:"
+            f"SUMMARY:"
         )
         try:
             response = self.llm.invoke(prompt)
             return response.content.strip()
         except Exception as e:
-            print(f"Description extraction failed: {e}")
+            print(f"Summary extraction failed: {e}")
             return "Entity"
 
-    def find_graph_candidates(self, entity_name: str, entity_description: str, group_id: str, node_type: str = "Entity", top_k: int = 5) -> List[Dict]:
+    def find_graph_candidates(self, entity_name: str, entity_summary: str, group_id: str, node_type: str = "Entity", top_k: int = 5) -> List[Dict]:
         """
         Finds candidates using Exact Match (Step 1) and Vector Search (Step 2).
         """
@@ -121,8 +121,8 @@ class GraphEnhancer:
             print(f"Exact match query failed: {e}")
 
         # 2. Vector Search (Fallback/Supplementary)
-        # Embed "Name: Description"
-        query_text = f"{entity_name}: {entity_description}"
+        # Embed "Name: Summary"
+        query_text = f"{entity_name}: {entity_summary}"
         try:
             vector = self.embeddings.embed_query(query_text)
             index_name = "entity_embeddings" if node_type == "Entity" else "topic_embeddings"
@@ -147,7 +147,7 @@ class GraphEnhancer:
             print(f"Graph candidate search failed: {e}")
             return candidates # Return whatever we found in exact match
 
-    def resolve_entity_against_graph(self, entity_name: str, entity_description: str, candidates: List[Dict]) -> Dict[str, Any]:
+    def resolve_entity_against_graph(self, entity_name: str, entity_summary: str, candidates: List[Dict]) -> Dict[str, Any]:
         """
         Uses LLM to decide whether to merge with a candidate or create a new node.
         """
@@ -178,7 +178,7 @@ class GraphEnhancer:
         
         prompt = (
             f"NEW ENTITY: {entity_name}\n"
-            f"DESCRIPTION: {entity_description}\n\n"
+            f"SUMMARY: {entity_summary}\n\n"
             f"EXISTING CANDIDATES:\n{candidates_str}"
         )
         
