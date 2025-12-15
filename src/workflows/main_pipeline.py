@@ -325,39 +325,38 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
         # NORMALIZE: Enforce Title Case to prevent "Tariff-related" vs "Tariff-Related"
         name = name.strip().title()
 
+        # 0. Extract Summary (Moved UP)
+        # We do this BEFORE locking so we can embed Name:Summary for the lock key (more specific)
+        summary = enhancer.extract_entity_summary(name, context)
+
         # 1. Generate Embedding for Lock (and downstream use)
-        # We need to run this in thread pool because it might block? usually embed_query is blocking in some libs
-        # But wait, services.embeddings is likely synchronos wrapper around API. 
-        # Actually it's better to do this once.
-        # Note: We use the name + context? No, just the name for locking similarity of nodes.
-        # But we want to support "Apple" (fruit) vs "Apple" (company).
-        # We should lock on the *Name* vector.
+        # We embed "Name: Summary" once and re-use it everywhere.
+        embedding_text = f"{name}: {summary}"
         try:
-             name_embedding = await asyncio.to_thread(embeddings.embed_query, name)
+             name_embedding = await asyncio.to_thread(embeddings.embed_query, embedding_text)
         except Exception:
              name_embedding = None
 
         if name_embedding:
              # Accelerate: Wait for similar ops
+             # Use the embedding of Name:Summary to finding similar concurrent tasks
              lock_id = await SimilarityLockManager.acquire_lock(name_embedding, name)
              try:
                  # Inside the lock, we do the full resolution (which checks DB updates from other threads)
-                 return await asyncio.to_thread(resolve_single_item, name, context, node_type)
+                 return await asyncio.to_thread(resolve_single_item, name, summary, name_embedding, node_type)
              finally:
                  await SimilarityLockManager.release_lock(lock_id)
         else:
              # Fallback if embedding fails
-             return await asyncio.to_thread(resolve_single_item, name, context, node_type)
+             return await asyncio.to_thread(resolve_single_item, name, summary, None, node_type)
 
-    def resolve_single_item(name: str, context: str, node_type: str) -> tuple[str | None, str | None, str]:
+    def resolve_single_item(name: str, summary: str, cached_embedding: List[float] | None, node_type: str) -> tuple[str | None, str | None, str]:
         if not name:
             return None, None, ""
         
-        # 0. Extract Summary
-        summary = enhancer.extract_entity_summary(name, context)
-            
-        # 1. FIBO Resolution
-        res = librarian.resolve(name)
+        # 1. FIBO Resolution (Pass cached embedding)
+        # We use the embedding of "Name: Summary" to help find the right concept if possible
+        res = librarian.resolve(name, cached_embedding=cached_embedding)
         if res:
             # Materialize FIBO node to get UUID
             fibo_uri = res['uri']
@@ -399,7 +398,8 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
                 print(f"FIBO materialization failed: {e}")
             
         # 2. Graph Deduplication (Semantic)
-        candidates = enhancer.find_graph_candidates(name, summary, group_id=group_id, node_type=node_type)
+        # Pass cached embedding
+        candidates = enhancer.find_graph_candidates(name, summary, group_id=group_id, node_type=node_type, cached_embedding=cached_embedding)
         decision = enhancer.resolve_entity_against_graph(name, summary, candidates)
         
         if decision['decision'] == 'MERGE' and decision['target_uuid']:
@@ -407,13 +407,18 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
         
         # 3. New Entity - CREATE IMMEDIATELY (Atomic Write)
         
-        # Generator Embedding (Name + Summary)
-        embedding_text = f"{name}: {summary}"
-        try:
-            node_embedding = embeddings.embed_query(embedding_text)
-        except Exception as e:
-            print(f"   ⚠️ Embedding Generation Failed: {e}")
-            node_embedding = None
+        # 3. New Entity - CREATE IMMEDIATELY (Atomic Write)
+        
+        # Use cached embedding (it was Name:Summary)
+        node_embedding = cached_embedding
+        
+        # If it was None for some reason, re-try or skip (it was tried in async wrapper)
+        if not node_embedding:
+             # One last try?
+             try:
+                 node_embedding = embeddings.embed_query(f"{name}: {summary}")
+             except:
+                 node_embedding = None
 
         new_uuid = str(uuid.uuid4())
         print(f"   🆕 Creating New {node_type} (Atomic): {name}")

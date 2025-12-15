@@ -165,8 +165,8 @@ class GraphAssembler:
             s.summary = CASE WHEN s.summary IS NULL OR s.summary = "" THEN $subj_desc ELSE s.summary END
         WITH s
         MATCH (e:EpisodicNode {{uuid: $episode_uuid, group_id: $group_id}})
-        MERGE (s)-[r:{active_edge}]->(e)
-        SET r.fact_id = $fact_uuid, r.confidence = $confidence
+        MERGE (s)-[r:{active_edge} {{fact_id: $fact_uuid}}]->(e)
+        SET r.confidence = $confidence
         """
         try:
             self.neo4j.query(cypher_link_subj, {
@@ -180,7 +180,7 @@ class GraphAssembler:
                 "group_id": group_id
             })
             with open("assembler_debug.log", "a") as log:
-                log.write(f"✅ Linked Subject ({subj_node_label}, {active_edge}): {subject_uri} -> Episode\n")
+                log.write(f"✅ Linked Subject ({subj_node_label}, {active_edge}): {subject_uuid} -> Episode\n")
         except Exception as e:
             with open("assembler_debug.log", "a") as log:
                 log.write(f"❌ Link Subject failed: {e}\n")
@@ -211,8 +211,8 @@ class GraphAssembler:
                 o.summary = CASE WHEN o.summary IS NULL OR o.summary = "" THEN $obj_desc ELSE o.summary END
             WITH o
             MATCH (e:EpisodicNode {{uuid: $episode_uuid, group_id: $group_id}})
-            MERGE (e)-[r:{passive_edge}]->(o)
-            SET r.fact_id = $fact_uuid, r.confidence = $confidence
+            MERGE (e)-[r:{passive_edge} {{fact_id: $fact_uuid}}]->(o)
+            SET r.confidence = $confidence
             """
             try:
                 self.neo4j.query(cypher_link_obj, {

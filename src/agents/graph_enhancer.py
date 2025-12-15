@@ -82,7 +82,7 @@ class GraphEnhancer:
             print(f"Summary extraction failed: {e}")
             return "Entity"
 
-    def find_graph_candidates(self, entity_name: str, entity_summary: str, group_id: str, node_type: str = "Entity", top_k: int = 5) -> List[Dict]:
+    def find_graph_candidates(self, entity_name: str, entity_summary: str, group_id: str, node_type: str = "Entity", top_k: int = 5, cached_embedding: Optional[List[float]] = None) -> List[Dict]:
         """
         Finds candidates using Exact Match (Step 1) and Vector Search (Step 2).
         """
@@ -124,7 +124,11 @@ class GraphEnhancer:
         # Embed "Name: Summary"
         query_text = f"{entity_name}: {entity_summary}"
         try:
-            vector = self.embeddings.embed_query(query_text)
+            if cached_embedding:
+                vector = cached_embedding
+            else:
+                vector = self.embeddings.embed_query(query_text)
+            
             index_name = "entity_embeddings" if node_type == "Entity" else "topic_embeddings"
             results = self.neo4j.vector_search(index_name, vector, top_k, filters={"group_id": group_id})
             

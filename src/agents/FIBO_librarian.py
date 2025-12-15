@@ -64,7 +64,7 @@ class FIBOLibrarian:
                 
         return label_map
 
-    def resolve(self, text: str, top_k: int = 5, threshold: float = 0.9) -> Optional[Dict]:
+    def resolve(self, text: str, top_k: int = 5, threshold: float = 0.9, cached_embedding: Optional[List[float]] = None) -> Optional[Dict]:
         """
         Resolves an entity name to the best matching FIBO concept.
         Returns the top match dictionary or None.
@@ -73,7 +73,7 @@ class FIBOLibrarian:
             return None
 
         # 1. Vector Search (Semantic)
-        vector_candidates = self._vector_search(text, k=top_k)
+        vector_candidates = self._vector_search(text, k=top_k, cached_vector=cached_embedding)
         
         # 2. Fuzzy Search (Lexical)
         fuzzy_candidates = self._fuzzy_search(text, k=top_k)
@@ -131,13 +131,17 @@ class FIBOLibrarian:
             
         return best_match
 
-    def _vector_search(self, text: str, k: int) -> List[Dict]:
+    def _vector_search(self, text: str, k: int, cached_vector: Optional[List[float]] = None) -> List[Dict]:
         """Queries Qdrant for semantic matches."""
         if not self.client.collection_exists(COLLECTION_NAME):
              return []
 
         try:
-            vector = self.embeddings.embed_query(text)
+            if cached_vector:
+                vector = cached_vector
+            else:
+                vector = self.embeddings.embed_query(text)
+            
             # Use query_points as search might be deprecated/missing in this version
             results = self.client.query_points(
                 collection_name=COLLECTION_NAME,
