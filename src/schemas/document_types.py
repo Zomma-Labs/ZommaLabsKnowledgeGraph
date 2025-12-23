@@ -78,6 +78,7 @@ class ChunkMetadata(TypedDict, total=False):
     table_headers: List[str]
     table_row: Dict[str, Any]
     table_label: Optional[str]
+    doc_date: Optional[str]
 
 
 class Chunk(BaseModel):

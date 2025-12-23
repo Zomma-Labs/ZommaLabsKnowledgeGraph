@@ -1,29 +1,42 @@
 import asyncio
-import numpy as np
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, ClassVar
 import uuid
+from scipy.spatial.distance import cosine as scipy_cosine_distance
 
 class SimilarityLockManager:
     """
     Manages locks based on vector similarity.
     Ensures that semantically similar terms are processed serially.
+    
+    NOTE: Class-level state is initialized lazily and thread-safely.
     """
-    _active_operations: List[Dict[str, Any]] = [] # List of {'vector': np.array, 'event': asyncio.Event, 'term': str}
-    _lock = asyncio.Lock() # Protects the _active_operations list itself
+    _active_operations: ClassVar[Optional[List[Dict[str, Any]]]] = None
+    _lock: ClassVar[Optional[asyncio.Lock]] = None
+    _initialized: ClassVar[bool] = False
+
+    @classmethod
+    def _ensure_initialized(cls) -> None:
+        """Thread-safe lazy initialization of class state."""
+        if not cls._initialized:
+            cls._active_operations = []
+            cls._lock = asyncio.Lock()
+            cls._initialized = True
 
     @staticmethod
     def cosine_similarity(v1: List[float], v2: List[float]) -> float:
-        """Calculates cosine similarity between two vectors."""
+        """
+        Calculates cosine similarity between two vectors using scipy's optimized C implementation.
+        Returns value between -1 and 1 (1 = identical, 0 = orthogonal, -1 = opposite).
+        """
         if not v1 or not v2:
             return 0.0
-        # Convert to numpy for speed if not already
-        a = np.array(v1)
-        b = np.array(v2)
-        norm_a = np.linalg.norm(a)
-        norm_b = np.linalg.norm(b)
-        if norm_a == 0 or norm_b == 0:
+        try:
+            # scipy.spatial.distance.cosine returns DISTANCE (1 - similarity)
+            # So we compute: similarity = 1 - distance
+            return 1.0 - scipy_cosine_distance(v1, v2)
+        except (ValueError, ZeroDivisionError):
+            # Handle zero-norm vectors
             return 0.0
-        return np.dot(a, b) / (norm_a * norm_b)
 
     @classmethod
     async def acquire_lock(cls, vector: List[float], term: str) -> str:
@@ -31,6 +44,8 @@ class SimilarityLockManager:
         Pauses if a semantically similar operation is already in progress.
         Returns a unique lock_id that MUST be used to release the lock.
         """
+        cls._ensure_initialized()
+        
         while True:
             # Check for conflicts
             conflict_event = None
@@ -64,6 +79,8 @@ class SimilarityLockManager:
         """
         Unregisters the operation by ID and triggers waiting tasks.
         """
+        cls._ensure_initialized()
+        
         async with cls._lock:
             # Find and remove by ID
             idx_to_remove = -1
@@ -78,3 +95,9 @@ class SimilarityLockManager:
             else:
                 print(f"CRITICAL WARNING: Attempted to release lock_id '{lock_id}' but it was not found active!")
 
+    @classmethod
+    def reset(cls) -> None:
+        """Reset class state. Useful for testing."""
+        cls._active_operations = None
+        cls._lock = None
+        cls._initialized = False

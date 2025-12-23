@@ -1,3 +1,5 @@
+import os
+import logging
 from typing import List, Optional, Dict, Any, TYPE_CHECKING
 from pydantic import BaseModel, Field
 from src.schemas.atomic_fact import AtomicFact
@@ -7,6 +9,10 @@ from src.tools.neo4j_client import Neo4jClient
 
 if TYPE_CHECKING:
     from src.util.services import Services
+
+# Configure logging for assembler
+logger = logging.getLogger(__name__)
+DEBUG_ASSEMBLER = os.getenv("DEBUG_ASSEMBLER", "false").lower() == "true"
 
 class MergeDecision(BaseModel):
     should_merge: bool = Field(description="True if the new fact is semantically identical to the existing fact.")
@@ -39,19 +45,18 @@ class GraphAssembler:
         Returns the UUID of the FactNode (either new or merged).
         """
         
-        # Debug Logging
-        with open("assembler_debug.log", "a") as log:
-            log.write(f"\n--- Assembling Fact: {fact_obj.fact[:50]}... ---\n")
-            log.write(f"S: {subject_uuid} ({subject_label}) [{subject_type}] -> O: {object_uuid} ({object_label}) [{object_type}]\n")
+        # Debug Logging (controlled by DEBUG_ASSEMBLER env var)
+        if DEBUG_ASSEMBLER:
+            logger.debug(f"Assembling Fact: {fact_obj.fact[:50]}...")
+            logger.debug(f"S: {subject_uuid} ({subject_label}) [{subject_type}] -> O: {object_uuid} ({object_label}) [{object_type}]")
         
         # 1. Generate Embedding for Fact
         try:
             fact_embedding = self.embeddings.embed_query(fact_obj.fact)
-            with open("assembler_debug.log", "a") as log:
-                log.write("✅ Fact Embedding generated.\n")
+            if DEBUG_ASSEMBLER:
+                logger.debug("✅ Fact Embedding generated.")
         except Exception as e:
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"❌ Fact Embedding failed: {e}\n")
+            logger.error(f"❌ Fact Embedding failed: {e}")
             raise e
         
         # Determine Fact Type from Classification
@@ -100,11 +105,10 @@ class GraphAssembler:
                     "fact_type": fact_type
                 })
                 print(f"   ✨ Created new FactNode ({fact_uuid}) [Type: {fact_type}]")
-                with open("assembler_debug.log", "a") as log:
-                    log.write(f"✅ Node created: {fact_uuid}\n")
+                if DEBUG_ASSEMBLER:
+                    logger.debug(f"✅ Node created: {fact_uuid}")
             except Exception as e:
-                with open("assembler_debug.log", "a") as log:
-                    log.write(f"❌ Node creation failed: {e}\n")
+                logger.error(f"❌ Node creation failed: {e}")
                 raise e
         
         # 4. Link Provenance (Fact -> Episode)
@@ -116,11 +120,10 @@ class GraphAssembler:
         """
         try:
             self.neo4j.query(cypher_prov, {"episode_uuid": episode_uuid, "fact_uuid": fact_uuid, "group_id": group_id})
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"✅ Linked Provenance\n")
+            if DEBUG_ASSEMBLER:
+                logger.debug("✅ Linked Provenance")
         except Exception as e:
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"❌ Link Provenance failed: {e}\n")
+            logger.error(f"❌ Link Provenance failed: {e}")
         
         # 5. Link Structure (Subject -> Episode -> Object) with Semantic Edges
         # Determine Edge Types
@@ -179,11 +182,10 @@ class GraphAssembler:
                 "confidence": relationship_classification.confidence if relationship_classification else 1.0,
                 "group_id": group_id
             })
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"✅ Linked Subject ({subj_node_label}, {active_edge}): {subject_uuid} -> Episode\n")
+            if DEBUG_ASSEMBLER:
+                logger.debug(f"✅ Linked Subject ({subj_node_label}, {active_edge}): {subject_uuid} -> Episode")
         except Exception as e:
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"❌ Link Subject failed: {e}\n")
+            logger.error(f"❌ Link Subject failed: {e}")
         
         # Link Episode -> [Passive Edge] -> Object
         if object_uuid:
@@ -225,11 +227,10 @@ class GraphAssembler:
                     "confidence": relationship_classification.confidence if relationship_classification else 1.0,
                     "group_id": group_id
                 })
-                with open("assembler_debug.log", "a") as log:
-                    log.write(f"✅ Linked Object ({obj_node_label}, {passive_edge}): Episode -> {object_uuid}\n")
+                if DEBUG_ASSEMBLER:
+                    logger.debug(f"✅ Linked Object ({obj_node_label}, {passive_edge}): Episode -> {object_uuid}")
             except Exception as e:
-                with open("assembler_debug.log", "a") as log:
-                    log.write(f"❌ Link Object failed: {e}\n")
+                logger.error(f"❌ Link Object failed: {e}")
 
         return fact_uuid
 
@@ -266,11 +267,10 @@ class GraphAssembler:
                 "episode_uuid": episode_uuid,
                 "group_id": group_id
             })
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"✅ Linked Topic {topic_uuid} -> Episode\n")
+            if DEBUG_ASSEMBLER:
+                logger.debug(f"✅ Linked Topic {topic_uuid} -> Episode")
         except Exception as e:
-            with open("assembler_debug.log", "a") as log:
-                log.write(f"❌ Link Topic failed: {e}\n")
+            logger.error(f"❌ Link Topic failed: {e}")
 
     def _verify_merge(self, new_fact: str, existing_fact: str) -> MergeDecision:
         structured_llm = self.llm.with_structured_output(MergeDecision)
