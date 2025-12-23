@@ -42,8 +42,8 @@ class PlanExecuteWorkflow:
             Objective: {objective}
             
             Tools available:
-            - lookup_entity(query): Finds existing entities in the graph by name. Returns Name and URI.
-            - lookup_relationship(description): Finds schema relationship types. Use this to understand how to traverse.
+            - lookup_entity(query): Finds existing entities in the graph by name. Returns Name and UUID.
+            - lookup_relationship(description): Finds schema relationship types (edge labels). Use this to understand how to traverse.
             - execute_cypher(query): Runs Cypher queries. THIS IS YOUR MAIN TOOL FOR CRAWLING.
             
             Constraints:
@@ -51,17 +51,32 @@ class PlanExecuteWorkflow:
             - ONLY use the provided tools to query the Neo4j Knowledge Graph.
             - If you need information, you must find it in the graph.
             
+            GRAPH SCHEMA (Hypergraph with EpisodicNode Hub):
+            - **EntityNode**: Named entities (companies, people, locations). Has `name`, `uuid`, `summary`.
+            - **TopicNode**: Thematic concepts (Inflation, Labor Market). Has `name`, `uuid`, `summary`.
+            - **EpisodicNode**: The central hub containing the raw text chunk. Has `uuid`, `content`, `header_path`.
+            - **FactNode**: Atomic facts extracted from chunks. Has `uuid`, `content`, `fact_type`.
+            
+            EDGE PATTERNS:
+            - `(EntityNode)-[SEMANTIC_EDGE {{fact_id: ...}}]->(EpisodicNode)-[PASSIVE_EDGE {{fact_id: ...}}]->(EntityNode)`
+            - Active edges: `INVESTED`, `REPORTED_WAGE_TRENDS`, `INCREASED`, etc.
+            - Passive edges: `GOT_INVESTED`, `GOT_REPORTED_WAGE_TRENDS`, etc.
+            - The `fact_id` property links active and passive edges through the same EpisodicNode.
+            - `(TopicNode)-[:ABOUT]->(EpisodicNode)` for topic associations.
+            - `(FactNode)-[:MENTIONED_IN]->(EpisodicNode)` for provenance.
+            - `(FactNode)-[:CAUSES]->(FactNode)` for causality.
+            
             Strategy:
-            1. Identify key entities in the request and find their URIs using `lookup_entity`. **Anticipate multiple matches** and plan to handle them (e.g., "Check all 'New York' entities").
-            2. Identify the `fact_type` (relationship type) using `lookup_relationship`.
-            3. Construct a Cypher query using the **Fact-as-Node** pattern:
-               `MATCH (e:Entity {{uri: '...'}})-[:PERFORMED|TARGET]-(f:FactNode {{fact_type: '...'}}) RETURN f.content`
-            4. Crawl by traversing from FactNodes to other Entities or causally linked FactNodes.
+            1. Identify key entities and find their UUIDs using `lookup_entity`. **Anticipate multiple matches**.
+            2. Identify edge types using `lookup_relationship` (e.g., "wage pressure" → `REPORTED_WAGE_TRENDS`).
+            3. Construct a Cypher query to traverse through EpisodicNode:
+               `MATCH (e:EntityNode {{name: '...'}})-[r1]->(ep:EpisodicNode)-[r2]->(target) WHERE r1.fact_id = r2.fact_id RETURN ...`
+            4. Retrieve the chunk content from EpisodicNode for evidence.
             
             Example Plan:
-            1. Find URI for "Inflation".
-            2. Look up fact types for "increasing".
-            3. Query: `MATCH (e:Entity {{uri: '...'}})-[:PERFORMED|TARGET]-(f:FactNode)-[:TARGET|PERFORMED]-(other) WHERE f.fact_type = 'REPORTED_PRICE_PRESSURES' RETURN f.content, other.name`.
+            1. Find UUID for "Minneapolis District".
+            2. Look up edge types for "wage pressure".
+            3. Query: `MATCH (e:EntityNode {{name: 'Minneapolis District'}})-[r:REPORTED_WAGE_TRENDS]->(ep:EpisodicNode) RETURN ep.content, ep.header_path`.
             """
         )
         planner = planner_prompt | self.llm.with_structured_output(Plan)
@@ -88,33 +103,47 @@ class PlanExecuteWorkflow:
         {context}
         
         Use your tools to explore. 
-        - Always start by finding existing entity URIs using `lookup_entity`.
-        - Use `lookup_relationship` to find the correct `fact_type` (e.g., `REPORTED_WAGE_PRESSURE`).
+        - Always start by finding existing entity names/UUIDs using `lookup_entity`.
+        - Use `lookup_relationship` to find the correct edge type (e.g., `REPORTED_WAGE_TRENDS`).
         
-        IMPORTANT SCHEMA RULES (Fact-as-Node Pattern):
-        1. The graph uses a **Hypergraph** model. Relationships are NOT direct edges between entities.
-        2. **Nodes**: `Entity` (has `name`, `uri`), `FactNode` (has `content`, `fact_type`).
-        3. **Structure**: `(Entity)-[:PERFORMED]->(FactNode)-[:TARGET]->(Entity)`.
-        4. **Causality**: `(FactNode)-[:CAUSES]->(FactNode)`.
+        IMPORTANT SCHEMA RULES (Hypergraph with EpisodicNode Hub):
+        1. The graph uses a **Hypergraph** model. Entities connect THROUGH an EpisodicNode (chunk), not directly.
+        2. **Node Types**:
+           - `EntityNode`: Named entities (has `name`, `uuid`, `summary`, `group_id`).
+           - `TopicNode`: Thematic concepts (has `name`, `uuid`, `summary`, `group_id`).
+           - `EpisodicNode`: The chunk hub (has `uuid`, `content`, `header_path`, `group_id`).
+           - `FactNode`: Atomic facts (has `uuid`, `content`, `fact_type`, `group_id`).
+        3. **Edge Structure**:
+           - `(EntityNode)-[ACTIVE_EDGE {{fact_id: $id}}]->(EpisodicNode)-[PASSIVE_EDGE {{fact_id: $id}}]->(EntityNode)`
+           - The `fact_id` property links the active and passive edges through the same chunk.
+           - Active edges are semantic verbs: `INVESTED`, `INCREASED`, `REPORTED_WAGE_TRENDS`, etc.
+           - Passive edges are prefixed: `GOT_INVESTED`, `GOT_INCREASED`, etc.
+        4. **Other Edges**:
+           - `(TopicNode)-[:ABOUT]->(EpisodicNode)` - Topic associations.
+           - `(FactNode)-[:MENTIONED_IN]->(EpisodicNode)` - Provenance.
+           - `(FactNode)-[:CAUSES]->(FactNode)` - Causality chains.
         
         HOW TO QUERY:
-        - To find facts about an entity: 
-          `MATCH (e:Entity {{uri: $uri}})-[:PERFORMED|TARGET]-(f:FactNode) RETURN f.fact_type, f.content`
-        - To find specific relationships:
-          `MATCH (e:Entity {{uri: $uri}})-[:PERFORMED]-(f:FactNode {{fact_type: 'REPORTED_WAGE_TRENDS'}})-[:TARGET]-(target) RETURN target.name, f.content`
+        - To find all relationships for an entity:
+          `MATCH (e:EntityNode {{name: $name}})-[r]->(ep:EpisodicNode) RETURN type(r) as edge_type, ep.content, ep.header_path`
+        - To find specific relationships with targets:
+          `MATCH (e:EntityNode {{name: $name}})-[r1:REPORTED_WAGE_TRENDS]->(ep:EpisodicNode)-[r2]->(target) WHERE r1.fact_id = r2.fact_id RETURN target.name, ep.content`
+        - To find chunks about a topic:
+          `MATCH (t:TopicNode {{name: $topic}})-[:ABOUT]->(ep:EpisodicNode) RETURN ep.content`
         
         HANDLING MULTIPLE RESULTS:
-        - If `lookup_entity` returns multiple entities (e.g., "New York" matches "New York City", "New York State", "Federal Reserve Bank of New York"):
+        - If `lookup_entity` returns multiple entities (e.g., "New York" matches multiple districts):
             - **Do NOT** arbitrarily pick one.
             - **Filter** them based on the context of the user's question.
-            - If multiple are relevant, **explore ALL of them** or construct a query that matches any of them (e.g., `WHERE e.uri IN [...]`).
+            - If multiple are relevant, **explore ALL of them** using `WHERE e.name IN [...]`.
         - If a Cypher query returns many nodes:
             - **Analyze** the results to find the ones that best answer the specific question.
-            - **Synthesize** information from multiple relevant nodes if needed.
+            - **Synthesize** information from multiple relevant EpisodicNode contents if needed.
         
         Constraints:
-        - DO NOT guess relationship types like `[:REPORTED_...]`. These are `fact_type` properties on `FactNode`s!
-        - The only edge types are `PERFORMED`, `TARGET`, `MENTIONED_IN`, `CAUSES`.
+        - Edge types ARE the relationship labels (e.g., `[:REPORTED_WAGE_TRENDS]`), NOT properties on FactNodes.
+        - Always traverse through EpisodicNode to find connected entities.
+        - Use `fact_id` matching when you need to find the target of a specific relationship.
         """
         
         # Run the ReAct agent for this single step

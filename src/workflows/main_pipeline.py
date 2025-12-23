@@ -1,5 +1,6 @@
 import asyncio
 import uuid
+from datetime import datetime
 from typing import List, Dict, Any, TypedDict
 from langgraph.graph import StateGraph, END
 
@@ -11,6 +12,8 @@ from src.agents.graph_assembler import GraphAssembler
 from src.agents.graph_enhancer import GraphEnhancer
 from src.agents.causal_linker import CausalLinker
 from src.agents.header_analyzer import HeaderAnalyzer, DimensionType
+from src.agents.temporal_extractor import TemporalExtractor
+from src.schemas.document_types import Chunk
 from src.schemas.atomic_fact import AtomicFact
 from src.schemas.relationship import RelationshipClassification
 from src.schemas.nodes import TopicNode
@@ -64,12 +67,23 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
     file_type = state["metadata"].get("file_type", "text")
     
     # 1. Create/Merge DocumentNode
+    
+    # Resolve Document Date
+    doc_date_str = state["metadata"].get("doc_date")
+    document_date = datetime.now() # Default to now
+    if doc_date_str:
+        try:
+            # Parse YYYY-MM-DD
+            document_date = datetime.strptime(doc_date_str, "%Y-%m-%d")
+        except ValueError:
+            print(f"⚠️ Could not parse doc_date: {doc_date_str}, using now()")
+
     cypher_doc = """
     MERGE (d:DocumentNode {name: $doc_name, group_id: $group_id})
     ON CREATE SET 
         d.uuid = $doc_uuid,
         d.created_at = datetime(),
-        d.document_date = datetime(),
+        d.document_date = $document_date,
         d.file_type = $file_type,
         d.metadata = $metadata
     RETURN d.uuid as doc_uuid
@@ -85,7 +99,8 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
         "group_id": group_id,
         "doc_uuid": doc_uuid_candidate,
         "file_type": file_type,
-        "metadata": metadata_json
+        "metadata": metadata_json,
+        "document_date": document_date
     })
     
     doc_uuid = doc_result[0]['doc_uuid']
@@ -715,3 +730,70 @@ workflow.add_edge("causal_linking", "assembler")
 workflow.add_edge("assembler", END)
 
 app = workflow.compile()
+
+
+async def ingest_document(chunks: List[Chunk], group_id: str) -> None:
+    """
+    High-level entry point to ingest an entire document.
+    
+    1. Runs Temporal Extractor on the full document context.
+    2. Runs the GraphRAG pipeline for each chunk in parallel (or batched).
+    """
+    print(f"--- 📥 Starting Ingestion for Document: {chunks[0].doc_id if chunks else 'Unknown'} ({len(chunks)} chunks) ---")
+    
+    if not chunks:
+        print("⚠️ No chunks to ingest.")
+        return
+
+    # 1. Temporal Extraction (Document Level)
+    print("⏳ Running Temporal Extraction...")
+    extractor = TemporalExtractor()
+    # Assume title is the filename or doc_id
+    title = chunks[0].metadata.get("origin_filename") or chunks[0].doc_id
+    
+    enriched_chunks = await asyncio.to_thread(extractor.enrich_chunks, chunks, title)
+    doc_date = enriched_chunks[0].metadata.get("doc_date") if enriched_chunks else None
+    print(f"   📅 Document Date Extracted: {doc_date}")
+    
+    # 2. Pipeline Execution (Chunk Level)
+    print("🚀 Dispatching chunks to pipeline...")
+    
+    async def process_chunk(chunk: Chunk):
+        inputs = {
+            "chunk_text": chunk.body,
+            "metadata": {
+                "doc_id": chunk.doc_id,
+                "filename": chunk.metadata.get("origin_filename") or f"{chunk.doc_id}.pdf",
+                "chunk_id": chunk.chunk_id,
+                "headings": list(chunk.breadcrumbs),
+                "breadcrumbs": list(chunk.breadcrumbs),
+                "group_id": group_id,
+                "doc_date": chunk.metadata.get("doc_date") # Passed from enrichment
+            }
+        }
+        try:
+            # Run the compiled graph
+            result = await app.ainvoke(inputs)
+            # Check for errors in result?
+            if result.get("errors"):
+                 print(f"❌ Error processing chunk {chunk.chunk_id}: {result['errors']}")
+            else:
+                 pass # Success silent
+        except Exception as e:
+            print(f"❌ Critical pipeline failure for chunk {chunk.chunk_id}: {e}")
+
+    # Run in parallel with semaphore if needed, for now all at once or batched?
+    # Python asyncio.gather might overwhelm if too many chunks.
+    # Let's use a semaphore.
+    semaphore = asyncio.Semaphore(5) # max 5 concurrent chunks
+    
+    async def sem_process(chunk):
+        async with semaphore:
+            await process_chunk(chunk)
+            
+    tasks = [sem_process(c) for c in enriched_chunks]
+    
+    # Run all
+    await asyncio.gather(*tasks)
+    
+    print(f"✅ Ingestion Complete for {chunks[0].doc_id}.")

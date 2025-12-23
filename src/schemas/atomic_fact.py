@@ -35,7 +35,7 @@ class AtomicFact(BaseModel):
     )
     date_context: Optional[str] = Field(
         None,
-        description="List of all distinct facts found. Order them chronologically if possible."
+        description="Temporal context for the fact, e.g., 'Q3 2024', 'In 1963', '1962'. Used to ground facts in time, you should always resolve things like 'A year later' or 'Last year' to a specific year."
     )
     topics: Optional[List[str]] = Field(
         default_factory=list,

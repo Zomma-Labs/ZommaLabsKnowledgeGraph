@@ -11,6 +11,7 @@ dependencies = [
     "langchain-openai>=1.1.0",
     "langchain-voyageai>=0.3.0",
     "langchain-google-genai>=1.0.0",
+    "langchain-xai>=0.2.0",
     "langgraph>=0.0.10",
     "neo4j>=6.0.3",
     "pydantic>=2.12.5",
@@ -19,4 +20,7 @@ dependencies = [
     "rapidfuzz>=3.14.3",
     "rdflib>=7.5.0",
     "typing-extensions>=4.15.0",
+    "fastmcp>=2.14.1",
+    "langchain-mcp-adapters>=0.1.0",
+    "langgraph-cli[inmem]>=0.2.0",
 ]
