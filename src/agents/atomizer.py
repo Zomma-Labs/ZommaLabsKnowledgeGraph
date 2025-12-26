@@ -26,10 +26,19 @@ DEPENDENCIES:
     - langchain
 """
 
+import os
 from typing import List
 from pydantic import BaseModel, Field
 from langchain_core.messages import BaseMessage
 from src.util.llm_client import get_llm
+
+# Control verbose output
+VERBOSE = os.getenv("VERBOSE", "false").lower() == "true"
+
+def log(msg: str):
+    """Print only if VERBOSE mode is enabled."""
+    if VERBOSE:
+        print(msg)
 
 class PropositionList(BaseModel):
     propositions: List[str] = Field(description="List of atomic, de-contextualized fact strings.")
@@ -44,13 +53,30 @@ def atomizer(chunk_text: str, metadata: dict) -> List[str]:
     system_prompt = (
         "You are an expert Text Decomposer. Your goal is to split the input text "
         "into a list of 'Atomic Facts' (Propositions).\n\n"
-        "Follow these strict rules:\n"
+        "Follow these strict rules:\n\n"
         "1. DE-CONTEXTUALIZE: The input is a chunk from a larger document. You must resolve all pronouns "
-        "(he, she, it, they, the company) to their specific names based on context or the provided metadata.\n"
+        "(he, she, it, they, the company) to their specific names based on context or the provided metadata.\n\n"
         "2. TEMPORAL GROUNDING: If the text says 'last year' and the document date is 2023, change it to '2022'. "
-        "Make every fact standalone in time.\n"
-        "3. ATOMICITY: Each fact must be a single, simple sentence. Split compound sentences.\n"
-        "4. PRESERVE DETAILS: Do not summarize away important numbers, metrics, or specific adjectives.\n"
+        "Make every fact standalone in time.\n\n"
+        "3. EXACT DATE PRESERVATION: When the text contains specific dates, preserve them EXACTLY:\n"
+        "   - Full dates: 'January 16, 2020' or 'September 1, 2017' must appear verbatim\n"
+        "   - Quarters: 'Q3 2023' stays as 'Q3 2023', not just '2023'\n"
+        "   - Month/Year: 'October 2020' stays as 'October 2020'\n"
+        "   - NEVER approximate or round dates. '2020' is NOT the same as 'January 16, 2020'\n\n"
+        "4. EVENT DISAMBIGUATION: When multiple dated events are mentioned, create SEPARATE facts for each:\n"
+        "   - BAD: 'Alphabet was created in 2015 and Google became an LLC in 2017'\n"
+        "   - GOOD: Two facts: 'Alphabet Inc. was created on October 2, 2015' AND 'Google was reorganized as an LLC on September 1, 2017'\n\n"
+        "5. ATOMICITY: Each fact must be a single, simple sentence. Split compound sentences.\n\n"
+        "6. PRESERVE DETAILS: Do not summarize away important information.\n\n"
+        "7. NUMERIC PRECISION - CRITICAL: Preserve ALL numeric details exactly as written:\n"
+        "   - Percentages: '7.25%', '6% of workforce', '0.34% equity stake'\n"
+        "   - Dollar amounts: '$7.5 million', '$70 billion', '$245 million'\n"
+        "   - Counts: '12,000 employees', '14,000 documents', '11 subsidiaries'\n"
+        "   - Rankings: 'second-highest', 'fourth company to reach $3 trillion'\n"
+        "   - Valuations: '$1 trillion market cap', '$2 trillion valuation'\n\n"
+        "8. LIST PRESERVATION: When text lists multiple items, create a fact that preserves the full list:\n"
+        "   - Input: 'Subsidiaries include Google, Waymo, Verily, and DeepMind'\n"
+        "   - Output: 'Alphabet Inc. subsidiaries include Google, Waymo, Verily, and DeepMind'\n\n"
         f"METADATA:\n{metadata}"
     )
 
@@ -75,7 +101,7 @@ def atomizer(chunk_text: str, metadata: dict) -> List[str]:
         missed_facts = enhancer.reflexion_check(chunk_text, facts)
         
         if missed_facts:
-            print(f"   ✨ Reflexion found {len(missed_facts)} potential improvements.")
+            log(f"   ✨ Reflexion found {len(missed_facts)} potential improvements.")
             
             # We need to structure these missed facts into PropositionList
             missed_facts_str = "\n".join(missed_facts)
@@ -92,7 +118,7 @@ def atomizer(chunk_text: str, metadata: dict) -> List[str]:
             
             if reflexion_response.propositions:
                 facts.extend(reflexion_response.propositions)
-                print(f"   ✅ Added {len(reflexion_response.propositions)} facts from Reflexion.")
+                log(f"   ✅ Added {len(reflexion_response.propositions)} facts from Reflexion.")
                 
     except Exception as e:
         print(f"   ⚠️ Reflexion step failed: {e}")

@@ -6,18 +6,27 @@ DESCRIPTION:
     2. Fuzzy Search (Typo/Exact Match) via RapidFuzz.
 """
 
+import os
 from typing import List, Dict, Optional, TYPE_CHECKING
 from rapidfuzz import process, fuzz
 
 if TYPE_CHECKING:
     from src.util.services import Services
 
+# Control verbose output
+VERBOSE = os.getenv("VERBOSE", "false").lower() == "true"
+
+def log(msg: str):
+    """Print only if VERBOSE mode is enabled."""
+    if VERBOSE:
+        print(msg)
+
 # Reuse configuration (should ideally be in settings.py)
 COLLECTION_NAME = "fibo_entities"
 
 class FIBOLibrarian:
     def __init__(self, services: Optional["Services"] = None):
-        print("📚 Initializing FIBO Librarian...")
+        log("📚 Initializing FIBO Librarian...")
         if services is None:
             from src.util.services import get_services
             services = get_services()
@@ -28,7 +37,7 @@ class FIBOLibrarian:
         # Load "Ground Truth" labels for Fuzzy Search
         self.label_map = self._load_all_labels()
         self.all_labels = list(self.label_map.keys())
-        print(f"   ✅ Loaded {len(self.all_labels)} entities for fuzzy matching.")
+        log(f"   ✅ Loaded {len(self.all_labels)} entities for fuzzy matching.")
 
     def _load_all_labels(self) -> Dict[str, str]:
         """
@@ -39,7 +48,7 @@ class FIBOLibrarian:
         
         # Check if collection exists
         if not self.client.collection_exists(COLLECTION_NAME):
-            print(f"   ⚠️ Collection '{COLLECTION_NAME}' not found. Run fibo_loader.py first.")
+            log(f"   ⚠️ Collection '{COLLECTION_NAME}' not found. Run fibo_loader.py first.")
             return {}
 
         # Scroll through all points
@@ -126,7 +135,7 @@ class FIBOLibrarian:
         best_match = sorted_candidates[0]
         
         if best_match['score'] < threshold:
-            print(f"   ⚠️ Best match '{best_match['label']}' score {best_match['score']:.2f} < {threshold}. Rejecting.")
+            log(f"   ⚠️ Best match '{best_match['label']}' score {best_match['score']:.2f} < {threshold}. Rejecting.")
             return None
             
         return best_match
@@ -188,11 +197,11 @@ if __name__ == "__main__":
     
     test_queries = ["Berkshire Hathway", "Apple Inc", "Investment Fund"]
     for q in test_queries:
-        print(f"\nQuery: {q}")
+        log(f"\nQuery: {q}")
         result = librarian.resolve(q)
         if result:
-            print(f"   ✅ Match: {result['label']} ({result['score']:.2f})")
-            print(f"      URI: {result['uri']}")
-            print(f"      Source: {result['source']}")
+            log(f"   ✅ Match: {result['label']} ({result['score']:.2f})")
+            log(f"      URI: {result['uri']}")
+            log(f"      Source: {result['source']}")
         else:
-            print("   ❌ No match found.")
+            log("   ❌ No match found.")

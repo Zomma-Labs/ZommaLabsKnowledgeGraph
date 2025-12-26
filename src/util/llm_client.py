@@ -17,7 +17,7 @@ class LLMClient:
     @classmethod
     def get_instance(cls) -> BaseChatModel:
         if cls._instance is None:
-            model = os.getenv("LLM_MODEL", "gpt-4.1-mini")
+            model = os.getenv("LLM_MODEL", "gemini-2.5-flash-lite")
             
             if model.startswith("gemini"):
                 if not os.getenv("GOOGLE_API_KEY"):
@@ -34,7 +34,6 @@ class LLMClient:
         Defaults to Voyage AI (voyage-finance-2) as requested.
         """
         from langchain_voyageai import VoyageAIEmbeddings
-        # Each call creates a new client - testing if this affects rate limits
         return VoyageAIEmbeddings(model="voyage-finance-2")
 
 def get_llm() -> BaseChatModel:
@@ -42,6 +41,13 @@ def get_llm() -> BaseChatModel:
     Helper function to get the singleton LLM instance.
     """
     return LLMClient.get_instance()
+
+def get_nano_llm() -> BaseChatModel:
+    """
+    Helper function to get a cheap, fast LLM for simple tasks.
+    Used for: entity summaries, simple extractions.
+    """
+    return ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", temperature=0)
 
 def get_embeddings():
     """

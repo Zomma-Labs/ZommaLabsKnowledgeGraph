@@ -1,0 +1,369 @@
+{
+    "metadata": {
+        "source": "Wikipedia - Alphabet Inc.",
+        "url": "https://en.wikipedia.org/wiki/Alphabet_Inc.",
+        "created_for": "Knowledge Graph Query Testing",
+        "total_questions": 50,
+        "question_types": [
+            "factual",
+            "temporal",
+            "relational",
+            "numerical",
+            "multi-hop",
+            "comparative",
+            "list-based"
+        ]
+    },
+    "qa_pairs": [
+        {
+            "id": 1,
+            "question": "What is Alphabet Inc.?",
+            "answer": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+            "type": "factual",
+            "difficulty": "easy"
+        },
+        {
+            "id": 2,
+            "question": "When was Alphabet Inc. created?",
+            "answer": "Alphabet Inc. was created on October 2, 2015.",
+            "type": "temporal",
+            "difficulty": "easy"
+        },
+        {
+            "id": 3,
+            "question": "Where is Alphabet Inc. headquartered?",
+            "answer": "Mountain View, California",
+            "type": "factual",
+            "difficulty": "easy"
+        },
+        {
+            "id": 4,
+            "question": "Who is the current CEO of Alphabet Inc.?",
+            "answer": "Sundar Pichai",
+            "type": "factual",
+            "difficulty": "easy"
+        },
+        {
+            "id": 5,
+            "question": "Who are the founders of Google (and later Alphabet)?",
+            "answer": "Larry Page and Sergey Brin",
+            "type": "factual",
+            "difficulty": "easy"
+        },
+        {
+            "id": 6,
+            "question": "What is the domain name used by Alphabet Inc.?",
+            "answer": "abc.xyz",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 7,
+            "question": "What are the ticker symbols for Alphabet on Nasdaq?",
+            "answer": "GOOGL and GOOG",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 8,
+            "question": "Who is the Chairman of Alphabet Inc.?",
+            "answer": "John L. Hennessy",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 9,
+            "question": "Who is the CFO of Alphabet Inc.?",
+            "answer": "Anat Ashkenazi",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 10,
+            "question": "Who is the President and Chief Investment Officer of Alphabet?",
+            "answer": "Ruth Porat",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 11,
+            "question": "When did Larry Page and Sergey Brin step down from their executive roles?",
+            "answer": "December 2019",
+            "type": "temporal",
+            "difficulty": "medium"
+        },
+        {
+            "id": 12,
+            "question": "When did Sundar Pichai become CEO of Alphabet?",
+            "answer": "December 2019",
+            "type": "temporal",
+            "difficulty": "medium"
+        },
+        {
+            "id": 13,
+            "question": "What was the primary reason for creating Alphabet Inc. as stated by the founders?",
+            "answer": "To make the core Google business cleaner and more accountable while allowing greater autonomy to group companies that operate in businesses other than Internet services.",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 14,
+            "question": "What company's management structure inspired Alphabet's organizational design?",
+            "answer": "Berkshire Hathaway",
+            "type": "factual",
+            "difficulty": "hard"
+        },
+        {
+            "id": 15,
+            "question": "Who revealed that Warren Buffett's Berkshire Hathaway inspired Alphabet's structure?",
+            "answer": "Eric Schmidt",
+            "type": "factual",
+            "difficulty": "hard"
+        },
+        {
+            "id": 16,
+            "question": "List the major subsidiaries of Alphabet mentioned in the article.",
+            "answer": "Google, X Development, Calico, Verily, Waymo, Google Fiber, CapitalG, GV, DeepMind, Intrinsic, Isomorphic Labs",
+            "type": "list-based",
+            "difficulty": "medium"
+        },
+        {
+            "id": 17,
+            "question": "What does XXVI Holdings refer to?",
+            "answer": "XXVI Holdings, Inc. (referring to the Roman numeral of 26, the number of letters in the alphabet) is a subsidiary that holds the equity of certain Alphabet companies so they can be valued and legally separated from Google.",
+            "type": "factual",
+            "difficulty": "hard"
+        },
+        {
+            "id": 18,
+            "question": "When was Google reorganized as a limited liability company (LLC)?",
+            "answer": "September 1, 2017",
+            "type": "temporal",
+            "difficulty": "hard"
+        },
+        {
+            "id": 19,
+            "question": "What subsidiaries were merged back into Google?",
+            "answer": "Nest Labs (merged in February 2018), Chronicle Security (merged in June 2019), and Sidewalk Labs (absorbed in 2021)",
+            "type": "list-based",
+            "difficulty": "hard"
+        },
+        {
+            "id": 20,
+            "question": "What subsidiary was shut down in January 2021?",
+            "answer": "Loon LLC",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 21,
+            "question": "What is the name of Alphabet's autonomous vehicle division?",
+            "answer": "Waymo",
+            "type": "factual",
+            "difficulty": "easy"
+        },
+        {
+            "id": 22,
+            "question": "Who are the largest institutional shareholders of Alphabet?",
+            "answer": "The Vanguard Group (7.25%), BlackRock (6.27%), and State Street Corporation (3.36%)",
+            "type": "list-based",
+            "difficulty": "medium"
+        },
+        {
+            "id": 23,
+            "question": "What percentage of shares do Larry Page and Sergey Brin each control?",
+            "answer": "Approximately 3% each",
+            "type": "numerical",
+            "difficulty": "medium"
+        },
+        {
+            "id": 24,
+            "question": "What is Alphabet's company motto?",
+            "answer": "Do the right thing",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 25,
+            "question": "What was Google's original motto that is still retained in Google's code of conduct?",
+            "answer": "Don't be evil",
+            "type": "factual",
+            "difficulty": "easy"
+        },
+        {
+            "id": 26,
+            "question": "Why did Larry Page say they chose the name 'Alphabet'?",
+            "answer": "Because it means a collection of letters that represent language, one of humanity's most important innovations, and is the core of how they index with Google search. Also because it means alpha-bet (Alpha is investment return above benchmark).",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 27,
+            "question": "What was the actual inspiration for the name Alphabet according to Eric Schmidt's 2018 talk?",
+            "answer": "The location of the then Google Hamburg office's street address: ABC-Straße",
+            "type": "factual",
+            "difficulty": "hard"
+        },
+        {
+            "id": 28,
+            "question": "Does Alphabet own the domain alphabet.com?",
+            "answer": "No, alphabet.com is owned by a fleet management division of BMW",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 29,
+            "question": "When did Alphabet reach a $1 trillion market value?",
+            "answer": "January 16, 2020",
+            "type": "temporal",
+            "difficulty": "medium"
+        },
+        {
+            "id": 30,
+            "question": "When did Alphabet reach a $2 trillion market valuation?",
+            "answer": "April 26, 2024",
+            "type": "temporal",
+            "difficulty": "medium"
+        },
+        {
+            "id": 31,
+            "question": "When did Alphabet reach a $3 trillion market valuation?",
+            "answer": "September 15, 2025",
+            "type": "temporal",
+            "difficulty": "medium"
+        },
+        {
+            "id": 32,
+            "question": "How many companies reached $3 trillion market cap before Alphabet?",
+            "answer": "Three companies: Nvidia, Microsoft, and Apple",
+            "type": "numerical",
+            "difficulty": "hard"
+        },
+        {
+            "id": 33,
+            "question": "How many employees did Alphabet lay off in January 2023?",
+            "answer": "Approximately 12,000 jobs, which was 6% of its global workforce",
+            "type": "numerical",
+            "difficulty": "medium"
+        },
+        {
+            "id": 34,
+            "question": "What percentage of Alphabet's 2017 revenues came from performance and brand advertising?",
+            "answer": "86%",
+            "type": "numerical",
+            "difficulty": "hard"
+        },
+        {
+            "id": 35,
+            "question": "What was Alphabet's R&D expenditure in 2022?",
+            "answer": "US$39.5 billion",
+            "type": "numerical",
+            "difficulty": "hard"
+        },
+        {
+            "id": 36,
+            "question": "What was Alphabet's ranking in R&D expenditure worldwide in 2022?",
+            "answer": "Second-highest expenditure on research and development worldwide",
+            "type": "factual",
+            "difficulty": "hard"
+        },
+        {
+            "id": 37,
+            "question": "What lawsuit did Alphabet file against Uber in 2017?",
+            "answer": "Alphabet sued Uber over technology similar to Alphabet's proprietary self-driving car technology, related to 14,000 documents believed to have been downloaded and stolen by a former Waymo engineer employed by Uber",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 38,
+            "question": "How was the Uber-Waymo lawsuit settled?",
+            "answer": "Uber agreed not to use the self-driving technology in dispute and provided Waymo with an equity stake of 0.34%, equating to around $245 million at the firm's early 2018 value",
+            "type": "factual",
+            "difficulty": "hard"
+        },
+        {
+            "id": 39,
+            "question": "What was the settlement amount for the Google+ privacy bug class action lawsuit?",
+            "answer": "$7.5 million in July 2020, with a payout to claimants of at least $5 each, with a maximum of $12 each",
+            "type": "numerical",
+            "difficulty": "hard"
+        },
+        {
+            "id": 40,
+            "question": "When did the United States Department of Justice file an antitrust lawsuit against Alphabet?",
+            "answer": "October 2020",
+            "type": "temporal",
+            "difficulty": "medium"
+        },
+        {
+            "id": 41,
+            "question": "When was Alphabet found guilty of violating antitrust law by a U.S. district court?",
+            "answer": "August 2024",
+            "type": "temporal",
+            "difficulty": "medium"
+        },
+        {
+            "id": 42,
+            "question": "What was the settlement amount for Alphabet's antitrust case with France in June 2021?",
+            "answer": "$270 million",
+            "type": "numerical",
+            "difficulty": "hard"
+        },
+        {
+            "id": 43,
+            "question": "What happened to Google's Russian subsidiary in 2022?",
+            "answer": "Russian authorities seized Google's Russian bank account in May 2022, forcing them to file for bankruptcy one month later due to the inability to pay vendors and staff",
+            "type": "factual",
+            "difficulty": "hard"
+        },
+        {
+            "id": 44,
+            "question": "What is the name of Alphabet's quantum computing chip unveiled in December 2024?",
+            "answer": "Willow",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 45,
+            "question": "What notable achievement did the Willow quantum chip accomplish?",
+            "answer": "It solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 46,
+            "question": "When did Alphabet announce its first-ever dividend payout?",
+            "answer": "April 2024 (announced alongside the $2 trillion market cap milestone)",
+            "type": "temporal",
+            "difficulty": "hard"
+        },
+        {
+            "id": 47,
+            "question": "What was the size of Alphabet's stock buyback program announced in April 2024?",
+            "answer": "$70 billion",
+            "type": "numerical",
+            "difficulty": "hard"
+        },
+        {
+            "id": 48,
+            "question": "What is Alphabet's ranking among the world's largest technology companies by revenue?",
+            "answer": "Third-largest, after Amazon and Apple",
+            "type": "factual",
+            "difficulty": "medium"
+        },
+        {
+            "id": 49,
+            "question": "When did Alphabet conduct a stock split?",
+            "answer": "Mid-2022",
+            "type": "temporal",
+            "difficulty": "medium"
+        },
+        {
+            "id": 50,
+            "question": "What are the main products/services that remain direct components of Google under Alphabet?",
+            "answer": "Android operating system, YouTube, and Google Search",
+            "type": "list-based",
+            "difficulty": "easy"
+        }
+    ]
+}

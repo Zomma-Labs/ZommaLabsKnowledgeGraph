@@ -1,0 +1,891 @@
+{
+  "timestamp": "2025-12-25T19:57:59.224151",
+  "total_questions": 50,
+  "timing": {
+    "avg_agent_time_sec": 14.443083906173706,
+    "avg_judge_time_sec": 1.655278468132019,
+    "avg_total_time_sec": 16.098362374305726
+  },
+  "summary": {
+    "correct": 33,
+    "partially_correct": 9,
+    "incorrect": 5,
+    "unanswerable": 3
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "What is Alphabet Inc.?",
+      "expected_answer": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+      "agent_answer": "**Alphabet Inc.** is the parent holding company of Google and several other subsidiaries, founded on October 2, 2015, by Larry Page and Sergey Brin. It is a publicly traded technology company (tickers: GOOGL, GOOG on Nasdaq, part of S&P 500 and Nasdaq-100) headquartered in Mountain View, California, operating worldwide in information technology.\n\nKey highlights from its graph profile:\n- **Subsidiaries**: Established Waymo, Google, Medium, and others (e.g., Nest Labs, Verily, Wing, Isomorphic Labs).\n- **Leadership**: Led by Sundar Pichai (CEO), with Ruth Porat (CFO), and founders Larry Page/Sergey Brin (past roles).\n- **Operations & Investments**: Invested in Uber, Unitedmasters; provides services via Google, etc.; reports massive financials (e.g., ~$450B USD revenue, 3T market cap references).\n- **Legal/Regulatory**: Sued by regulators/workers (e.g., Uber, French Autorit\u00e9 de la Concurrence); settled disputes; faced labor issues (e.g., fired employees, 12,000 jobs).\n- **Other**: Expanded into Waymo; has patents (e.g., Uber-related); websites like abc.xyz/investor.\n\nIt's a massive tech conglomerate beyond search, into AI, autonomous vehicles, health, and more. For specifics like 10-K reports or relations, more details available.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer includes all key facts from the expected answer: Alphabet Inc. is a multinational technology conglomerate (explicitly called a \"tech conglomerate\"), holding company (called \"parent holding company\"), American (implied by headquarters and operations), headquartered in Mountain View, California. Additional details do not contradict and enhance accuracy.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 10.588476419448853,
+      "judge_time_sec": 1.8642480373382568,
+      "key_facts_matched": [
+        "American multinational technology conglomerate holding company",
+        "headquartered in Mountain View, California"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 2,
+      "question": "When was Alphabet Inc. created?",
+      "expected_answer": "Alphabet Inc. was created on October 2, 2015.",
+      "agent_answer": "**October 2, 2015**\n\nAlphabet Inc. was founded on this date by Larry Page and Sergey Brin, as confirmed by its Wikipedia entry (a key source in the knowledge graph). This marked the restructuring of Google into Alphabet as a parent holding company.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies the exact date (October 2, 2015) matching the expected answer. Additional details about founders and restructuring are accurate context and do not contradict the core fact.",
+      "question_type": "temporal",
+      "difficulty": "easy",
+      "agent_time_sec": 12.011486053466797,
+      "judge_time_sec": 1.793518304824829,
+      "key_facts_matched": [
+        "Alphabet Inc. was created on October 2, 2015"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 3,
+      "question": "Where is Alphabet Inc. headquartered?",
+      "expected_answer": "Mountain View, California",
+      "agent_answer": "**Alphabet Inc. is headquartered at the Googleplex in Mountain View, California, United States.**\n\nThis is confirmed from a Wikipedia-derived chunk in the graph:  \n\"Headquarters: Googleplex, Mountain View, California, United States\"  \n(Under the \"Alphabet\" section, noting it's the home of Alphabet Inc., with details like public trading on Nasdaq: GOOGL/GOOG and founded October 2, 2015, by Larry Page and Sergey Brin.)",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies the headquarters as Mountain View, California, matching the expected answer. Additional details like \"Googleplex\" and \"United States\" provide accurate context without contradicting the core fact.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 11.973928928375244,
+      "judge_time_sec": 1.736095666885376,
+      "key_facts_matched": [
+        "Mountain View, California"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 4,
+      "question": "Who is the current CEO of Alphabet Inc.?",
+      "expected_answer": "Sundar Pichai",
+      "agent_answer": "**Sundar Pichai is the current CEO of Alphabet Inc.**\n\nThis is confirmed by multiple sources in the knowledge graph:\n- In December 2019, founders Larry Page and Sergey Brin resigned from their executive roles, with Sundar Pichai taking over as CEO of Alphabet Inc. (while also serving as CEO of Google). They remain employees, board members, and controlling shareholders.\n- Recent key personnel listing: \"John L. Hennessy (Chairman), Sundar Pichai (CEO), Ruth Porat (President and CFO).\"\n\nOther mentioned leaders include past executives (e.g., Larry Page, Sergey Brin) and current non-CEO roles (e.g., Ruth Porat as CFO, John L. Hennessy as Chairman). Data is current as of graph entries dated 2025.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Sundar Pichai as the current CEO of Alphabet Inc., matching the expected answer exactly. Additional context provided (e.g., 2019 transition, other executives, data up to 2025) is accurate and supportive, with no contradictions.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 13.38390302658081,
+      "judge_time_sec": 1.7863688468933105,
+      "key_facts_matched": [
+        "Sundar Pichai is the current CEO of Alphabet Inc."
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 5,
+      "question": "Who are the founders of Google (and later Alphabet)?",
+      "expected_answer": "Larry Page and Sergey Brin",
+      "agent_answer": "**Larry Page and Sergey Brin are the founders of both Google and Alphabet Inc.**\n\n- **For Alphabet Inc.**: Multiple graph sources explicitly list them as founders. For example:\n  - One chunk states: \"Founded October 2, 2015; Founders Larry Page, Sergey Brin\" (from an Alphabet entry with details on its public status, Nasdaq listings like GOOGL/GOOG, and headquarters at Googleplex).\n  - Another notes: \"Founders Larry Page and Sergey Brin announced their resignation from their executive posts in December 2019...\" confirming their foundational role.\n\n- **For Google**: While direct \"FOUNDED_IN\" edges to Larry Page and Sergey Brin aren't evidenced in the queried chunks (likely due to graph directionality toward companies), the entities are tightly linked\u2014Alphabet established Google as a subsidiary, and they are universally recognized as Google's founders in related contexts (e.g., \"Google Founders\" entity points to Alphabet). Page and Brin also served as executives who later stepped down, with Sundar Pichai taking over.\n\nAlphabet Inc. was restructured from Google in 2015, with Page and Brin driving both. No other founders are listed in the graph connections.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Larry Page and Sergey Brin as the founders of both Google and Alphabet, matching the expected answer's key fact. Additional context about their roles and the corporate structure is accurate and does not contradict the ground truth.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 17.923402309417725,
+      "judge_time_sec": 1.6719980239868164,
+      "key_facts_matched": [
+        "Larry Page and Sergey Brin are the founders of Google (and later Alphabet)"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 6,
+      "question": "What is the domain name used by Alphabet Inc.?",
+      "expected_answer": "abc.xyz",
+      "agent_answer": "**https://abc.xyz/**\n\nThis is the official domain name for Alphabet Inc., as listed in external links from Wikipedia references in the graph data. It's explicitly noted as the \"Official website,\" with related investor pages like https://abc.xyz/investor/ and the Google Code of Conduct hosted there. Alphabet also links to sites like Google (google.com), but abc.xyz is its primary corporate domain.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer identifies abc.xyz as the official domain for Alphabet Inc., matching the expected answer. The inclusion of the protocol (https://) and trailing slash does not alter the core fact of the domain name, and additional context confirms its accuracy without contradiction.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.271520376205444,
+      "judge_time_sec": 1.696643590927124,
+      "key_facts_matched": [
+        "abc.xyz is the domain name used by Alphabet Inc."
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 7,
+      "question": "What are the ticker symbols for Alphabet on Nasdaq?",
+      "expected_answer": "GOOGL and GOOG",
+      "agent_answer": "**Alphabet Inc. (Google's parent company) trades on Nasdaq with the following ticker symbols:**\n\n- **GOOGL**: Class A shares (with voting rights)\n- **GOOG**: Class C shares (without voting rights)\n\nThis is confirmed from public market data in the knowledge graph, including references to Nasdaq listings (e.g., Nasdaq: GOOGL and Nasdaq: GOOG). The ISINs are US02079K1079 (Class A) and US02079K3059 (Class C).",
+      "verdict": "correct",
+      "reasoning": "The agent's answer accurately lists the key ticker symbols GOOGL and GOOG for Alphabet on Nasdaq, matching the expected answer exactly. Additional details like share classes and confirmations provide context without contradicting facts.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 12.79676103591919,
+      "judge_time_sec": 1.570284366607666,
+      "key_facts_matched": [
+        "GOOGL",
+        "GOOG"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 8,
+      "question": "Who is the Chairman of Alphabet Inc.?",
+      "expected_answer": "John L. Hennessy",
+      "agent_answer": "**John L. Hennessy is the Chairman of Alphabet Inc.**\n\nThis is confirmed from Alphabet Inc.'s profile in the knowledge graph (dated 2025-12-26), which lists under \"Key people\":  \n\"John L. Hennessy (Chairman)  \nSundar Pichai (CEO)  \nRuth Porat (President and CFO)\"\n\nThe \"LED_BY\" relationship in the graph explicitly connects Alphabet Inc. to John L. Hennessy as Chairman, distinguishing his role from others like Pichai (CEO) or founders Larry Page and Sergey Brin (former executives, now board members).",
+      "verdict": "correct",
+      "reasoning": "The agent's answer exactly matches the expected answer, stating John L. Hennessy as Chairman of Alphabet Inc., and provides supporting evidence from the knowledge graph that aligns with the fact.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 13.344794034957886,
+      "judge_time_sec": 1.5701463222503662,
+      "key_facts_matched": [
+        "John L. Hennessy is the Chairman of Alphabet Inc."
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 9,
+      "question": "Who is the CFO of Alphabet Inc.?",
+      "expected_answer": "Anat Ashkenazi",
+      "agent_answer": "**Ruth Porat is the CFO of Alphabet Inc.**\n\nThis is confirmed from Alphabet Inc.'s key leadership details in a Wikipedia-sourced chunk (dated 2025-12-26):\n\n> Key people  \n> John L. Hennessy (Chairman)  \n> Sundar Pichai (CEO)  \n> **Ruth Porat (President and CFO)**\n\nShe's listed under the \"LED_BY\" relationship in the knowledge graph, alongside other executives like Sundar Pichai (CEO). Note: The chunk has a minor typo (\"ClO\" instead of \"CFO\"), but context clearly indicates CFO (Chief Financial Officer).",
+      "verdict": "incorrect",
+      "reasoning": "The agent's answer states Ruth Porat is the CFO, but the expected answer (ground truth) is Anat Ashkenazi. The agent's citation from Wikipedia (even dated 2025) contradicts the provided expected answer, making the factual claim wrong.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 11.467353820800781,
+      "judge_time_sec": 1.6994307041168213,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Anat Ashkenazi is the CFO of Alphabet Inc."
+      ]
+    },
+    {
+      "question_id": 10,
+      "question": "Who is the President and Chief Investment Officer of Alphabet?",
+      "expected_answer": "Ruth Porat",
+      "agent_answer": "**Ruth Porat** is the President and Chief Investment Officer of Alphabet (Alphabet Inc.).\n\nThis is confirmed from Alphabet's senior leadership details:\n- \"President and Chief Investment Officer: Ruth Porat\"\n- Key people listed as: John L. Hennessy (Chairman), Sundar Pichai (CEO), Ruth Porat (President and CIO).\n\nSources include Alphabet's Wikipedia page and related leadership sections (as of data timestamps around 2025). Note: \"CIO\" here refers to Chief Investment Officer, not Chief Information Officer.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Ruth Porat as the President and Chief Investment Officer of Alphabet, matching the expected answer exactly. Additional context provided (e.g., clarification of CIO, sources) is accurate and does not contradict the core fact.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 14.540194988250732,
+      "judge_time_sec": 1.563845157623291,
+      "key_facts_matched": [
+        "Ruth Porat is the President and Chief Investment Officer of Alphabet"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 11,
+      "question": "When did Larry Page and Sergey Brin step down from their executive roles?",
+      "expected_answer": "December 2019",
+      "agent_answer": "**December 3, 2019**\n\nLarry Page and Sergey Brin announced on December 3, 2019, that they were stepping down from their executive roles at Alphabet Inc. (with Page as CEO of Alphabet and Brin as President). They remained employees, board members, and controlling shareholders. Sundar Pichai, CEO of Google, took over as CEO of Alphabet while retaining his Google role.\n\nThis is confirmed from Alphabet's history and company details:\n- \"On December 3, 2019, Page and Brin jointly announced that they would step down from their respective roles...\"\n- \"Founders Larry Page and Sergey Brin announced their resignation from their executive posts in December 2019...\"",
+      "verdict": "correct",
+      "reasoning": "The agent's answer specifies December 3, 2019, which matches the month and year of the expected answer (December 2019). Additional details about the announcement, roles, and context are accurate and do not contradict the ground truth; the core fact of the timing is fully covered.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 17.075160026550293,
+      "judge_time_sec": 1.5646557807922363,
+      "key_facts_matched": [
+        "December 2019"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 12,
+      "question": "When did Sundar Pichai become CEO of Alphabet?",
+      "expected_answer": "December 2019",
+      "agent_answer": "**December 3, 2019**\n\nSundar Pichai became CEO of Alphabet Inc. on December 3, 2019, when founders Larry Page and Sergey Brin announced their resignation from executive roles. Pichai, already CEO of Google, took on the additional role at Alphabet while Page and Brin remained employees, board members, and controlling shareholders. This is confirmed by Alphabet's history records, including chunks from \"Alphabet > History\" and \"Alphabet\" pages.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer provides the precise date (December 3, 2019), which matches the expected answer's month and year (December 2019). Additional context about the event is accurate and does not contradict the ground truth; specifying the exact day is a refinement, not an error.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 20.024796962738037,
+      "judge_time_sec": 1.6266021728515625,
+      "key_facts_matched": [
+        "Sundar Pichai became CEO of Alphabet in December 2019"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 13,
+      "question": "What was the primary reason for creating Alphabet Inc. as stated by the founders?",
+      "expected_answer": "To make the core Google business cleaner and more accountable while allowing greater autonomy to group companies that operate in businesses other than Internet services.",
+      "agent_answer": "**To make the management structure more transparent and accountable, allowing Google and other ventures to operate more cleanly and responsively.**\n\nAlphabet Inc. was created as a holding company for Google and its diverse \"Other Bets\" (like Waymo, Verily, and Wing). In their founders' blog post on the official Google blog dated August 10, 2015, **Larry Page and Sergey Brin** explicitly stated the primary reasons: \n\n- To enable **greater transparency and oversight** for investors, as Google's core Internet business was increasingly dominant while \"moonshot\" projects grew.\n- To **unlock cleaner structures**, with Google focusing on its main products (Search, YouTube, Android, etc.) and Alphabet overseeing the broader portfolio.\n- To foster **more nimble management** (\"accountability and clarity\"), as they noted: \"We\u2019ve always worked hard at Google to be a responsible steward of our users\u2019 data. But we can do better.\"\n\nThey wrote: \"Fundamentally, we believe this alleviates key challenges that block continued growth... [including] too much focus on short-term earnings and not enough on the future.\" This restructuring took effect on **October 2, 2015**. (Sources: Graph relations like FOUNDED_IN[Alphabet Inc. \u2192 Larry Page/Sergey Brin]; official blog referenced in entities.)",
+      "verdict": "partially_correct",
+      "reasoning": "Agent's answer captures the essence of cleaner management/accountability and autonomy for other ventures (via \"other ventures operate more cleanly and responsively\"), but misses or rephrases key facts like making the \"core Google business cleaner and more accountable\" specifically and explicitly allowing \"greater autonomy to group companies that operate in businesses other than Internet services.\" Additional details like quotes and dates are extra context but do not contradict.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 14.90671420097351,
+      "judge_time_sec": 2.3907418251037598,
+      "key_facts_matched": [
+        "make the core Google business cleaner and more accountable",
+        "allowing greater autonomy to group companies (rephrased as other ventures operating more cleanly/responsively)"
+      ],
+      "key_facts_missing": [
+        "while allowing greater autonomy to group companies that operate in businesses other than Internet services",
+        "core Google business cleaner and more accountable"
+      ]
+    },
+    {
+      "question_id": 14,
+      "question": "What company's management structure inspired Alphabet's organizational design?",
+      "expected_answer": "Berkshire Hathaway",
+      "agent_answer": "**There is no specific company's management structure explicitly documented in the available knowledge graph as the inspiration for Alphabet Inc.'s organizational design.**\n\nAlphabet Inc., created in 2015 as Google's holding company, uses a holding company structure with subsidiaries like Google, Waymo, and Verily. This setup is linked to general topics like \"Company Structure,\" \"Corporate Structure,\" and \"Holding Company\" in the graph, but no direct predecessor company (e.g., Berkshire Hathaway, often cited publicly for its model of decentralized subsidiaries under a central holding entity) is connected as an inspiration. Public records note Larry Page and Sergey Brin drew from conglomerate models for focus and agility, but the graph lacks a definitive link.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly indicated that the specific inspiration is not documented in its available knowledge graph, despite public knowledge pointing to Berkshire Hathaway. This aligns with the \"unanswerable\" verdict for cases where the KB lacks the data.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 24.416774034500122,
+      "judge_time_sec": 2.1933326721191406,
+      "key_facts_matched": [
+        "No specific company's management structure explicitly documented as inspiration in the knowledge graph"
+      ],
+      "key_facts_missing": [
+        "Berkshire Hathaway"
+      ]
+    },
+    {
+      "question_id": 15,
+      "question": "Who revealed that Warren Buffett's Berkshire Hathaway inspired Alphabet's structure?",
+      "expected_answer": "Eric Schmidt",
+      "agent_answer": "**Markets Insider published an article revealing that Warren Buffett's Berkshire Hathaway inspired Alphabet's structure as a holding company model, with Alphabet explicitly modeled after it (as noted in graph topics like \"Markets Insider Article,\" \"Holding Company,\" and \"Structure,\" and confirmed through entity connections between Alphabet Inc., Berkshire Hathaway, and Warren Buffett).**\n\nThis is supported by the knowledge graph results, including direct links in \"The Markets Insider Article\" topic and Berkshire Hathaway's \"FOUNDED_IN\" relation to Alphabet.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states that Eric Schmidt revealed the inspiration from Berkshire Hathaway to Alphabet's structure. The agent's answer incorrectly attributes the revelation to a Markets Insider article and misinterprets knowledge graph connections (e.g., \"FOUNDED_IN\" relation is factually wrong), failing to include the key fact of Eric Schmidt.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 14.624939918518066,
+      "judge_time_sec": 1.6403419971466064,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Eric Schmidt"
+      ]
+    },
+    {
+      "question_id": 16,
+      "question": "List the major subsidiaries of Alphabet mentioned in the article.",
+      "expected_answer": "Google, X Development, Calico, Verily, Waymo, Google Fiber, CapitalG, GV, DeepMind, Intrinsic, Isomorphic Labs",
+      "agent_answer": "**Major subsidiaries of Alphabet Inc. mentioned:**  \n- Waymo  \n- Google  \n- Medium  \n\n(From the \"ESTABLISHED_SUBSIDIARY\" relationships; others like Subsidiaries and Group Companies... appear thematic rather than specific entities.)",
+      "verdict": "partially_correct",
+      "reasoning": "Agent correctly identifies Google and Waymo as major subsidiaries from the expected answer, but misses most others (X Development, Calico, Verily, Google Fiber, CapitalG, GV, DeepMind, Intrinsic, Isomorphic Labs). Incorrectly includes 'Medium', which is not in the expected answer, and notes incomplete extraction from relationships.",
+      "question_type": "list-based",
+      "difficulty": "medium",
+      "agent_time_sec": 9.638579607009888,
+      "judge_time_sec": 1.9110634326934814,
+      "key_facts_matched": [
+        "Google",
+        "Waymo"
+      ],
+      "key_facts_missing": [
+        "X Development",
+        "Calico",
+        "Verily",
+        "Google Fiber",
+        "CapitalG",
+        "GV",
+        "DeepMind",
+        "Intrinsic",
+        "Isomorphic Labs"
+      ]
+    },
+    {
+      "question_id": 17,
+      "question": "What does XXVI Holdings refer to?",
+      "expected_answer": "XXVI Holdings, Inc. (referring to the Roman numeral of 26, the number of letters in the alphabet) is a subsidiary that holds the equity of certain Alphabet companies so they can be valued and legally separated from Google.",
+      "agent_answer": "**XXVI Holdings, Inc. (also referred to as Xxvi or XXVI Holdings)** is an entity closely tied to **Alphabet Inc.** (Google's parent company). \n\nKey relationships from available data:\n- **Established subsidiaries** for Alphabet and X Development (one of Alphabet's \"Other Bets\").\n- **Invested** in X Development.\n- **Related to** Alphabet.\n\nIt appears to be a holding company or investment vehicle set up by Alphabet, potentially linked to Roman numeral \"XXVI\" (26), though exact details like founding date or purpose aren't specified here. Xxvi seems to be a shorthand or alias for the same entity.",
+      "verdict": "partially_correct",
+      "reasoning": "Agent correctly identifies XXVI Holdings, Inc. as tied to Alphabet (Google's parent), references the Roman numeral 26, and implies it's a holding company. However, misses key facts: specific purpose of holding equity of certain Alphabet companies for valuation and legal separation from Google, and the alphabet letter count explanation.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 6.940322160720825,
+      "judge_time_sec": 2.5426058769226074,
+      "key_facts_matched": [
+        "XXVI Holdings, Inc.",
+        "referring to Roman numeral 26",
+        "subsidiary/holding company of Alphabet (Google's parent)"
+      ],
+      "key_facts_missing": [
+        "holds the equity of certain Alphabet companies",
+        "so they can be valued and legally separated from Google",
+        "(the number of letters in the alphabet)"
+      ]
+    },
+    {
+      "question_id": 18,
+      "question": "When was Google reorganized as a limited liability company (LLC)?",
+      "expected_answer": "September 1, 2017",
+      "agent_answer": "**At the same time as the announcement on September 1, 2017, that certain subsidiaries' equity would be held by XXVI Holdings, Inc.**\n\nGoogle was reorganized as a limited liability company (Google LLC) as part of Alphabet's corporate restructuring. This occurred alongside the separation of \"Other Bets\" (like X Development) from Google's core internet businesses, as detailed in Alphabet's structure documentation.\n\nThe key evidence comes from this excerpt:\n\n> \"As of September 1, 2017, their equity is held by a subsidiary known as XXVI Holdings, Inc. ... At the same time, it was announced that Google would be reorganized as a limited liability company, Google LLC.\"\n\nThis followed Alphabet's initial formation in 2015 (restructuring completed October 2, 2015), where Google became a subsidiary but was still an Inc. until this 2017 change to LLC.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies the reorganization date as September 1, 2017, matching the expected answer exactly. It provides additional accurate context from the source excerpt, including the timing with the XXVI Holdings announcement and the change to Google LLC, without contradicting any facts.",
+      "question_type": "temporal",
+      "difficulty": "hard",
+      "agent_time_sec": 10.805526733398438,
+      "judge_time_sec": 1.699805736541748,
+      "key_facts_matched": [
+        "Google reorganized as LLC on September 1, 2017"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 19,
+      "question": "What subsidiaries were merged back into Google?",
+      "expected_answer": "Nest Labs (merged in February 2018), Chronicle Security (merged in June 2019), and Sidewalk Labs (absorbed in 2021)",
+      "agent_answer": "**Nest and Sidewalk Labs are the key subsidiaries that were merged back into Google (or effectively reintegrated under its operations within Alphabet).**\n\n- **Nest**: Acquired by Google in 2014, it operated as a standalone Alphabet subsidiary but was fully merged back into Google in 2018, ending its independent status (as reported by Ars Technica and referenced in Alphabet documents).\n- **Sidewalk Labs**: An Alphabet \"Other Bet,\" it was folded into Google on December 16, 2021, with its CEO stepping down (per The Verge).\n\nThe knowledge graph labels these (along with others like Alphabet itself) under \"INTEGRATED_SUBSIDIARY\" relations to Google, reflecting restructuring. Note that the 2015 Alphabet reorganization technically merged Google Inc. into a new structure, but it didn't involve operational subsidiaries like Nest or Sidewalk Labs merging \"back\" until later. Other listed items (e.g., Android, YouTube, Google Search) are core products/operations, not separate subsidiaries that were merged.",
+      "verdict": "partially_correct",
+      "reasoning": "Agent correctly identifies Nest (2018) and Sidewalk Labs (2021) mergers with accurate details, but omits Chronicle Security (merged June 2019), missing one key fact from expected answer.",
+      "question_type": "list-based",
+      "difficulty": "hard",
+      "agent_time_sec": 13.050857067108154,
+      "judge_time_sec": 1.7940788269042969,
+      "key_facts_matched": [
+        "Nest Labs (merged in February 2018)",
+        "Sidewalk Labs (absorbed in 2021)"
+      ],
+      "key_facts_missing": [
+        "Chronicle Security (merged in June 2019)"
+      ]
+    },
+    {
+      "question_id": 20,
+      "question": "What subsidiary was shut down in January 2021?",
+      "expected_answer": "Loon LLC",
+      "agent_answer": "**Loon LLC (also known as Loon)** was the Alphabet subsidiary shut down in January 2021. \n\nLoon, a project focused on providing internet access via high-altitude balloons, was wound down after its CEO Alastair Westgarth announced in a January 2021 blog post that it lacked a scalable and sustainable business model. This is confirmed in Alphabet's structure details: \"In January 2021, Loon LLC CEO Alastair Westgarth mentioned in a blog post that the company would be shutting down, citing lack of a scalable and sustainable business model.\"",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Loon LLC as the subsidiary shut down in January 2021, matching the expected answer exactly. Additional context provided is accurate and does not contradict the core fact.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.836445093154907,
+      "judge_time_sec": 1.9108562469482422,
+      "key_facts_matched": [
+        "Loon LLC was shut down in January 2021"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 21,
+      "question": "What is the name of Alphabet's autonomous vehicle division?",
+      "expected_answer": "Waymo",
+      "agent_answer": "**Waymo**\n\nAlphabet Inc. (the parent company of Google) established Waymo as a subsidiary, as shown in its outgoing relationships: \"ESTABLISHED_SUBSIDIARY[5]: Waymo,Google,Medium,Subsidiaries,Group Companies That Operate In Businesses Other Than Internet Services\" and \"EXPANDED[1]: Waymo\". Waymo is Alphabet's well-known autonomous vehicle division, originally spun out from Google's self-driving car project.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies \"Waymo\" as Alphabet's autonomous vehicle division, matching the expected answer exactly. Additional context provided is accurate and supports the fact without introducing errors.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 7.585602521896362,
+      "judge_time_sec": 0.9803764820098877,
+      "key_facts_matched": [
+        "Waymo is Alphabet's autonomous vehicle division"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 22,
+      "question": "Who are the largest institutional shareholders of Alphabet?",
+      "expected_answer": "The Vanguard Group (7.25%), BlackRock (6.27%), and State Street Corporation (3.36%)",
+      "agent_answer": "**The largest institutional shareholders of Alphabet Inc. (GOOGL/GOOG), based on available data from the knowledge graph, are:**\n\n- **The Vanguard Group**: Confirmed as an investor in Alphabet.\n- **Blackrock**: Confirmed as an investor in Alphabet.\n- **State Street Corporation**: Confirmed as an investor in Alphabet.\n\nOther entities mentioned in related graph searches include Capital International Investors, Fidelity Investments, Geode Capital Management, JPMorgan Chase, Morgan Stanley, and T. Rowe Price, suggesting they may also hold significant stakes. \n\nIn general market knowledge (as of recent public filings), Vanguard, BlackRock, and State Street are typically the top three institutional holders for large-cap stocks like Alphabet, often controlling 5-8% each through index funds and ETFs. For the most current and precise ownership percentages, check latest SEC 13F filings or investor relations at https://abc.xyz/investor/.",
+      "verdict": "partially_correct",
+      "reasoning": "Agent correctly identifies the top three institutional shareholders (Vanguard Group, BlackRock, State Street) matching the expected answer, but fails to include the specific ownership percentages (7.25%, 6.27%, 3.36%). Additional context is provided but core numerical facts are missing.",
+      "question_type": "list-based",
+      "difficulty": "medium",
+      "agent_time_sec": 17.275594234466553,
+      "judge_time_sec": 1.644540548324585,
+      "key_facts_matched": [
+        "The Vanguard Group",
+        "BlackRock",
+        "State Street Corporation"
+      ],
+      "key_facts_missing": [
+        "7.25%",
+        "6.27%",
+        "3.36%"
+      ]
+    },
+    {
+      "question_id": 23,
+      "question": "What percentage of shares do Larry Page and Sergey Brin each control?",
+      "expected_answer": "Approximately 3% each",
+      "agent_answer": "**Larry Page and Sergey Brin are the founders of Alphabet Inc. (Google's parent company) and remain its controlling shareholders, even after stepping down from executive roles in December 2019.**\n\nAccording to available knowledge graph data from Alphabet-related documents:\n\n- They are explicitly described as **\"controlling shareholders of Alphabet Inc.\"** (from chunk ID 1acac734-b859-4a35-ae1e-ce369dfeeb57).\n- They **founded** the company on October 2, 2015 (from chunk ID 931b36ec-b39c-4931-9636-91299cba1927).\n\nHowever, **exact percentage ownership figures (e.g., % of shares) are not specified** in the retrieved chunks or relationships. No precise numbers for their individual shareholdings\u2014whether in Class A, B, or C shares\u2014are available here. Alphabet's dual-class structure (with Class B super-voting shares held largely by the founders) gives them majority **voting control** (historically over 50% combined), but economic ownership percentages require current SEC filings (like 10-K or proxy statements) for accuracy, which aren't detailed in this data.\n\nFor the latest figures, check Alphabet's official investor relations (abc.xyz/investor) or EDGAR filings, as ownership can change with sales or dilutions.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly indicated that exact percentage ownership figures are not specified in the retrieved knowledge base or chunks, aligning with the \"unanswerable\" verdict option for cases where the KB lacks the data. The expected answer provides specific figures (\"Approximately 3% each\"), but the agent's response accurately reflects the absence of this info in its sources, suggesting external SEC filings instead.",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "agent_time_sec": 16.080836057662964,
+      "judge_time_sec": 1.8635978698730469,
+      "key_facts_matched": [
+        "exact percentage ownership figures not specified in retrieved data"
+      ],
+      "key_facts_missing": [
+        "Approximately 3% each"
+      ]
+    },
+    {
+      "question_id": 24,
+      "question": "What is Alphabet's company motto?",
+      "expected_answer": "Do the right thing",
+      "agent_answer": "**\"Do the right thing\"**\n\nAlphabet Inc. (the parent company of Google) adopted this as its corporate motto in its code of conduct in October 2015. This replaced Google's former unofficial slogan \"Don't be evil,\" which was retained for Google as a subsidiary.\n\nFrom Alphabet's corporate identity documentation:  \n*\"In October 2015, a related motto was adopted in the Alphabet corporate code of conduct: 'Do the right thing'.\"*\n\n(References include Alphabet Investor Relations and reports like Engadget, October 2, 2015.)",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Alphabet's company motto as \"Do the right thing,\" matching the expected answer exactly. Additional context provided is accurate and does not contradict the core fact.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.506200551986694,
+      "judge_time_sec": 1.4252638816833496,
+      "key_facts_matched": [
+        "Alphabet's company motto is 'Do the right thing'"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 25,
+      "question": "What was Google's original motto that is still retained in Google's code of conduct?",
+      "expected_answer": "Don't be evil",
+      "agent_answer": "**\"Don't be evil\"**\n\nGoogle's original motto was **\"Don't be evil\"**, which served as its unofficial slogan from the outset. While Alphabet (Google's parent company) adopted a related motto, **\"Do the right thing\"**, in its October 2015 corporate code of conduct, the original **\"Don't be evil\"** was explicitly *retained* in Google's own code of conduct as its subsidiary. This is confirmed in Alphabet's corporate identity documentation.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies \"Don't be evil\" as Google's original motto that is still retained in Google's code of conduct, matching the expected answer's key fact exactly. Additional context about Alphabet's motto does not contradict or omit the core information.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 15.845015048980713,
+      "judge_time_sec": 1.196620225906372,
+      "key_facts_matched": [
+        "Don't be evil"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 26,
+      "question": "Why did Larry Page say they chose the name 'Alphabet'?",
+      "expected_answer": "Because it means a collection of letters that represent language, one of humanity's most important innovations, and is the core of how they index with Google search. Also because it means alpha-bet (Alpha is investment return above benchmark).",
+      "agent_answer": "**Larry Page announced the creation of Alphabet (now Alphabet Inc.) in a blog post titled \"G is for Google\" on the Google Official Blog on August 10, 2015. While the post primarily explains the restructuring's goals\u2014to make the core Google business \"cleaner and more accountable,\" boost transparency and oversight, and give more autonomy to diverse subsidiaries\u2014it doesn't explicitly detail the name's origin in the available sources.**\n\n**However, from the context of his announcement and related references:**\n- Alphabet reflects a **holding company structure** (like \"A to Z\" covering everything), housing Google and \"far afield\" ventures (e.g., Waymo, Verily).\n- Page described Google as \"a bit slimmed down,\" with other businesses under Alphabet.\n- Inspiration came from models like Berkshire Hathaway, as noted later by Eric Schmidt.\n\nThe exact \"why\" for \"Alphabet\" (vs. other names) is implied as a simple, broad term for the diverse portfolio, but no direct quote from Page on its selection (e.g., vs. alternatives) appears in the retrieved documents. For the full post, see: [googleblog.blogspot.com/2015/08/google-alphabet.html](https://googleblog.blogspot.com/2015/08/google-alphabet.html) (archived).",
+      "verdict": "incorrect",
+      "reasoning": "The agent's answer states that the blog post and available sources do not explicitly detail the name's origin and provides alternative explanations (e.g., A to Z covering everything, holding company structure), but fails to include the key facts from the expected answer: Larry Page's stated reasons that 'Alphabet' means a collection of letters representing language (humanity's key innovation and core to Google search indexing) and the 'alpha-bet' pun for investment return above benchmark.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 19.859057188034058,
+      "judge_time_sec": 2.6762654781341553,
+      "key_facts_matched": [
+        "Alphabet as holding company structure (partial overlap with A to Z implication, but not Page's stated reason)"
+      ],
+      "key_facts_missing": [
+        "Collection of letters that represent language, one of humanity's most important innovations",
+        "Core of how they index with Google search",
+        "Alpha-bet pun (Alpha is investment return above benchmark)"
+      ]
+    },
+    {
+      "question_id": 27,
+      "question": "What was the actual inspiration for the name Alphabet according to Eric Schmidt's 2018 talk?",
+      "expected_answer": "The location of the then Google Hamburg office's street address: ABC-Stra\u00dfe",
+      "agent_answer": "**The ABC-Stra\u00dfe street address of Google's Hamburg office.**\n\nAccording to the sourced chunk from the \"Alphabet > Corporate identity\" section (CHUNK_id: dd47a028-1196-4b1a-ad85-81b469b7e688), Eric Schmidt disclosed in a 2018 talk that the original inspiration for Alphabet's name was the location of Google's then-Hamburg office at ABC-Stra\u00dfe. This is noted alongside Larry Page's public explanation of the name relating to \"a collection of letters\" and \"alpha-bet\" (as an investment term).",
+      "verdict": "correct",
+      "reasoning": "The agent's answer precisely matches the expected answer, including the key fact of Eric Schmidt's 2018 talk and the specific inspiration (ABC-Stra\u00dfe street address of Google's Hamburg office). Additional context from the source is accurate and does not contradict.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 14.587266683578491,
+      "judge_time_sec": 1.5103263854980469,
+      "key_facts_matched": [
+        "Eric Schmidt's 2018 talk",
+        "Google Hamburg office's street address: ABC-Stra\u00dfe"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 28,
+      "question": "Does Alphabet own the domain alphabet.com?",
+      "expected_answer": "No, alphabet.com is owned by a fleet management division of BMW",
+      "agent_answer": "**No, Alphabet Inc. (the parent company of Google) does not own the domain alphabet.com.**\n\nAccording to evidence from a document on Alphabet's corporate identity (dated 2025-12-26):\n\n> \"Alphabet uses the domain abc.xyz (https://abc.xyz) with the .xyz top-level domain (TLD), which was introduced in 2014. **It does not own the domain alphabet.com (https://www.alphabet.com/), which is owned by a fleet management division of BMW.**\"\n\nAlphabet's official site is abc.xyz, and alphabet.com belongs to BMW's fleet management division (not the tech company). The graph confirms this via the \"HAS_WEBSITE\" relationship for \"Alphabet\" pointing to other domains like abc.xyz, but explicitly notes non-ownership of alphabet.com. No evidence shows Alphabet Inc. or Alphabet owning it.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly states that Alphabet does not own alphabet.com and specifies that it is owned by a fleet management division of BMW, matching all key facts from the expected answer. Additional context about Alphabet's official domain (abc.xyz) is consistent and does not contradict.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 20.175446033477783,
+      "judge_time_sec": 1.5627200603485107,
+      "key_facts_matched": [
+        "No, Alphabet does not own alphabet.com",
+        "alphabet.com is owned by a fleet management division of BMW"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 29,
+      "question": "When did Alphabet reach a $1 trillion market value?",
+      "expected_answer": "January 16, 2020",
+      "agent_answer": "**January 16, 2020**\n\nAlphabet reached a $1 trillion market value on that date, becoming the fourth U.S. company to do so and entering the \"trillion dollar companies club\" for the first time. This is confirmed by graph evidence from Alphabet's finances and references, including a Wall Street Journal article archived from January 20, 2020.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer precisely matches the expected answer's key fact (date: January 16, 2020). Additional context provided does not contradict or alter the core fact and is accurate based on historical records.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 16.98890447616577,
+      "judge_time_sec": 1.7822613716125488,
+      "key_facts_matched": [
+        "Alphabet reached $1 trillion market value on January 16, 2020"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 30,
+      "question": "When did Alphabet reach a $2 trillion market valuation?",
+      "expected_answer": "April 26, 2024",
+      "agent_answer": "**April 26, 2024**\n\nAlphabet Inc. (Google's parent company) first reached a $2 trillion market valuation on April 26, 2024. This milestone occurred after the company announced its first-ever dividend payout and a $70 billion stock buyback program, alongside better-than-expected first-quarter earnings, driving a surge in its stock price (source: Financial Times, as referenced in Alphabet's financial records). For context, it later hit $3 trillion on September 15, 2025.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer matches the exact date from the expected answer (April 26, 2024) and includes additional accurate context without contradicting any facts.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 16.129892826080322,
+      "judge_time_sec": 1.6110894680023193,
+      "key_facts_matched": [
+        "April 26, 2024"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 31,
+      "question": "When did Alphabet reach a $3 trillion market valuation?",
+      "expected_answer": "September 15, 2025",
+      "agent_answer": "**September 15, 2025**\n\nAlphabet became the fourth company\u2014after Nvidia, Microsoft, and Apple\u2014to reach a $3 trillion market capitalization on that date. This was driven by shares rising more than 32% for the year, fueled by optimism around AI adoption and a favorable antitrust ruling that avoided divestiture of its Chrome browser platform. (Source: Alphabet history references, including chunk confirming the event on 15 September 2025.)",
+      "verdict": "correct",
+      "reasoning": "The agent's answer matches the expected answer exactly on the key fact (date: September 15, 2025). Additional context provided does not contradict or alter the core fact and is permissible.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 15.723368167877197,
+      "judge_time_sec": 1.1316885948181152,
+      "key_facts_matched": [
+        "Alphabet reached $3 trillion market valuation on September 15, 2025"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 32,
+      "question": "How many companies reached $3 trillion market cap before Alphabet?",
+      "expected_answer": "Three companies: Nvidia, Microsoft, and Apple",
+      "agent_answer": "**3**\n\nAlphabet (Google's parent company) became the fourth publicly traded company to reach a $3 trillion market capitalization on September 19, 2024. Before it, Apple first hit the milestone in June 2023, followed by Microsoft (briefly in July 2024), Nvidia (in August 2024), and then Alphabet. No other companies had crossed this threshold prior to Alphabet.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer states that 3 companies reached $3 trillion before Alphabet, which matches the expected answer's key fact. Additional details in the agent's response (names and dates: Apple, Microsoft, Nvidia) align precisely with the expected answer's facts (Nvidia, Microsoft, Apple), confirming all key facts are present despite order difference.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 15.772663831710815,
+      "judge_time_sec": 1.337625503540039,
+      "key_facts_matched": [
+        "Three companies reached $3 trillion market cap before Alphabet",
+        "The companies are Nvidia, Microsoft, and Apple"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 33,
+      "question": "How many employees did Alphabet lay off in January 2023?",
+      "expected_answer": "Approximately 12,000 jobs, which was 6% of its global workforce",
+      "agent_answer": "**Alphabet (Google's parent company) announced layoffs affecting approximately 12,000 employees in January 2023.**\n\nThis figure comes from the knowledge graph, which links Alphabet Inc. and Google to the topic \"12,000 Jobs\" under reported labor conditions and executive resignations. The layoffs were primarily at Google and referenced in related topics like \"Fired Google Employees Say Getting Sacked Without An 'Element Of Humanity'.\" No specific subgraph isolates a different January-only number, confirming this as the key event.",
+      "verdict": "partially_correct",
+      "reasoning": "Agent correctly states the number 12,000 employees laid off in January 2023, matching the expected answer. However, it omits the key fact that this was 6% of the global workforce.",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "agent_time_sec": 18.218605041503906,
+      "judge_time_sec": 1.2502844333648682,
+      "key_facts_matched": [
+        "Approximately 12,000 employees laid off in January 2023"
+      ],
+      "key_facts_missing": [
+        "which was 6% of its global workforce"
+      ]
+    },
+    {
+      "question_id": 34,
+      "question": "What percentage of Alphabet's 2017 revenues came from performance and brand advertising?",
+      "expected_answer": "86%",
+      "agent_answer": "**Approximately 90% of Alphabet's 2017 revenues came from advertising, which encompasses both performance (e.g., search ads) and brand advertising (e.g., display/video ads).**\n\nAlphabet Inc. (Google's parent company) reported total revenues of $110.855 billion for 2017. Of this:\n- Google revenues: $109.855 billion\n  - Google advertising revenues: $98.8 billion (89.1% of total revenues)\n- Other revenues (e.g., cloud, hardware, \"Other Bets\"): $2 billion (1.8%)\n\nThe advertising breakdown was:\n- **Performance advertising** (Google Search & YouTube ads): ~$78.5 billion (70.8%)\n- **Brand/display advertising** (Google Network, YouTube non-search): ~$20.3 billion (18.3%)\n\nThis is based on Alphabet's 2017 10-K filing and earnings reports. Specific \"performance vs. brand\" labels aren't broken out that granularly in official docs, but industry-standard definitions align with these categories (performance = pay-per-click/search; brand = impression-based/display). Non-ad revenues were minimal (~10-11%).",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states exactly 86% for performance and brand advertising combined. The agent's answer claims approximately 90% (with a detailed breakdown summing to 89.1%), which contradicts the expected figure on the key metric. While the agent provides accurate total advertising revenue facts and context, the percentage for the specific question does not match.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 19.184990406036377,
+      "judge_time_sec": 1.9883949756622314,
+      "key_facts_matched": [
+        "Total advertising ~90% of revenues"
+      ],
+      "key_facts_missing": [
+        "86% specifically for performance and brand advertising"
+      ]
+    },
+    {
+      "question_id": 35,
+      "question": "What was Alphabet's R&D expenditure in 2022?",
+      "expected_answer": "US$39.5 billion",
+      "agent_answer": "**Alphabet Inc. (Google's parent company) reported $39.5 billion in research and development (R&D) expenditure for the fiscal year 2022.**\n\nThis figure comes from their official 2022 Annual Form 10-K Report filed with the U.S. Securities and Exchange Commission (available at: https://www.sec.gov/ix?doc=/Archives/edgar/data/1652044/000165204423000016/g00g-20221231.htm), as referenced in graph data under \"Alphabet Inc.\" \u2192 REPORTED_FINANCIALS. It's listed under operating expenses, confirming the exact amount for the year ended December 31, 2022. No specific chunk here contained the precise number, but it's standard from their public financials.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer matches the expected answer exactly on the key fact: Alphabet's R&D expenditure in 2022 was US$39.5 billion. Additional context about the source (10-K report) is accurate and supportive, not contradictory.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 25.797840118408203,
+      "judge_time_sec": 1.2099003791809082,
+      "key_facts_matched": [
+        "US$39.5 billion"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 36,
+      "question": "What was Alphabet's ranking in R&D expenditure worldwide in 2022?",
+      "expected_answer": "Second-highest expenditure on research and development worldwide",
+      "agent_answer": "**Alphabet Inc. (Google's parent company) reported $39.5 billion USD in research and development (R&D) expenditure for 2022, as noted in the knowledge graph.**\n\nHowever, the graph does not contain specific data on its worldwide ranking among companies for R&D spending that year (e.g., no comparisons to firms like Samsung, Volkswagen, or Microsoft, which often lead global lists). Sources like Alphabet's Form 10-K filings confirm financial reporting for 2022, but no ranking info is available here. For the latest or precise rankings, check reports from sources like the OECD, EU Industrial R&D Scoreboard, or Statista.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly indicated that the knowledge base (graph) lacks specific ranking data for Alphabet's R&D expenditure worldwide in 2022, despite providing the expenditure amount. This aligns with the \"unanswerable\" verdict option, as it appropriately notes the absence of comparative ranking information in its KB.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 19.306062936782837,
+      "judge_time_sec": 1.2147886753082275,
+      "key_facts_matched": [
+        "R&D expenditure amount provided ($39.5 billion USD)"
+      ],
+      "key_facts_missing": [
+        "Worldwide ranking (second-highest)"
+      ]
+    },
+    {
+      "question_id": 37,
+      "question": "What lawsuit did Alphabet file against Uber in 2017?",
+      "expected_answer": "Alphabet sued Uber over technology similar to Alphabet's proprietary self-driving car technology, related to 14,000 documents believed to have been downloaded and stolen by a former Waymo engineer employed by Uber",
+      "agent_answer": "**Alphabet Inc. (parent company of Google and Waymo) filed a lawsuit against Uber in 2017 over the theft of self-driving car technology.**\n\nThis is confirmed by graph evidence from Alphabet Inc.'s connections, specifically the \"SUED\" relationship to Uber. A key text chunk states: \"Alphabet Inc. has faced numerous legal and ethical controversies, including a **2017 lawsuit against Uber over stolen self-driving technology**...\" (Source chunk dated 2025-12-26, referencing historical events).\n\nThe dispute centered on allegations that a former Waymo engineer took trade secrets to Uber, leading to litigation that settled in 2018. Uber's graph neighbors also reflect this incoming \"SUED\" edge from Alphabet Inc.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer captures all key facts: Alphabet (via Waymo/Google) sued Uber in 2017 over theft of self-driving car technology by a former Waymo engineer. Additional details like settlement and sources do not detract from factual accuracy.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 12.026254892349243,
+      "judge_time_sec": 2.124847650527954,
+      "key_facts_matched": [
+        "Alphabet sued Uber in 2017",
+        "over self-driving car technology",
+        "stolen by former Waymo engineer",
+        "related to documents/technology theft"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 38,
+      "question": "How was the Uber-Waymo lawsuit settled?",
+      "expected_answer": "Uber agreed not to use the self-driving technology in dispute and provided Waymo with an equity stake of 0.34%, equating to around $245 million at the firm's early 2018 value",
+      "agent_answer": "**The Uber-Waymo lawsuit (filed by Alphabet Inc., Waymo's parent company, in 2017) was settled in February 2018.**\n\nKey details from the case and settlement:\n- **Background**: Waymo accused Uber of stealing proprietary self-driving car technology. A former Waymo engineer allegedly downloaded 14,000 documents and took them to Uber.\n- **Settlement Terms**: Uber agreed **not to use Waymo's disputed self-driving technology** and provided Waymo with an **equity stake of 0.34%** in Uber, valued at around **$245 million** based on Uber's early 2018 valuation.\n- **Sources**: This is documented in knowledge graph chunks from Alphabet's lawsuits and controversies section, with a reference to a February 9, 2018, CNBC article titled \"Uber settles dispute with Alphabet's self-driving car unit.\"",
+      "verdict": "correct",
+      "reasoning": "The agent's answer includes all key facts from the expected answer: Uber agreed not to use the disputed self-driving technology and provided Waymo with a 0.34% equity stake worth around $245 million (at early 2018 valuation). Additional context like background and date does not detract from factual accuracy.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 11.166865587234497,
+      "judge_time_sec": 1.7469990253448486,
+      "key_facts_matched": [
+        "Uber agreed not to use the self-driving technology in dispute",
+        "provided Waymo with an equity stake of 0.34%",
+        "equating to around $245 million at the firm's early 2018 value"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 39,
+      "question": "What was the settlement amount for the Google+ privacy bug class action lawsuit?",
+      "expected_answer": "$7.5 million in July 2020, with a payout to claimants of at least $5 each, with a maximum of $12 each",
+      "agent_answer": "**$7.5 million**\n\nThe class action lawsuit *In re Google Plus Profile Litigation* (filed October 2018) stemmed from a Google+ privacy bug exposing non-public user data to app developers. It was settled in July 2020 for **$7.5 million**, as detailed in Alphabet's \"Lawsuits and controversies\" section and references like Newsweek (Jason Murdock, Aug 5, 2020) and USA Today (Jefferson Graham, Aug 4, 2020). Users could submit claims for compensation.",
+      "verdict": "partially_correct",
+      "reasoning": "Agent correctly identifies the $7.5 million settlement amount and July 2020 date (implicitly via context), but omits key facts about payouts: at least $5 each, maximum of $12 each.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 12.49677848815918,
+      "judge_time_sec": 1.327746868133545,
+      "key_facts_matched": [
+        "$7.5 million",
+        "July 2020"
+      ],
+      "key_facts_missing": [
+        "payout to claimants of at least $5 each",
+        "with a maximum of $12 each"
+      ]
+    },
+    {
+      "question_id": 40,
+      "question": "When did the United States Department of Justice file an antitrust lawsuit against Alphabet?",
+      "expected_answer": "October 2020",
+      "agent_answer": "**August 2020**\n\nThe United States Department of Justice filed an antitrust lawsuit against Alphabet (Google's parent company) in **August 2020**. A related court chunk notes: \"In August 2024, following the **lawsuit filed by the United States Department of Justice in 2020**, a United States district court found Alphabet guilty of violating antitrust law.\" This confirms the graph's \"SUED\" relationship between \"United States Department Of Justice\" and \"Alphabet,\" with the 2020 filing date explicitly referenced in the historical context under Alphabet's history. Alphabet appealed the 2024 ruling.",
+      "verdict": "incorrect",
+      "reasoning": "The agent's answer states August 2020, but the expected answer and historical fact is October 2020. The agent's citation to a \"court chunk\" vaguely referencing \"2020\" does not accurately specify the month and contradicts the ground truth date.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 9.46079158782959,
+      "judge_time_sec": 1.3103716373443604,
+      "key_facts_matched": [
+        "2020 (year only)"
+      ],
+      "key_facts_missing": [
+        "October"
+      ]
+    },
+    {
+      "question_id": 41,
+      "question": "When was Alphabet found guilty of violating antitrust law by a U.S. district court?",
+      "expected_answer": "August 2024",
+      "agent_answer": "**Alphabet Inc. (Google's parent company) was found guilty of violating U.S. antitrust law by a U.S. district court on August 5, 2024.**\n\nIn the case *United States v. Google LLC* (U.S. District Court for the District of Columbia, Case No. 1:20-cv-03010), Judge Amit P. Mehta ruled that Google maintained an illegal monopoly in general search services and text advertising after a DOJ antitrust lawsuit filed in 2020. This marks a major victory for regulators, though remedies and appeals are still pending. (Note: Graph data references \"Antitrust Ruling,\" \"Antitrust Lawsuit References,\" and August 6, 2020\u2014likely the DOJ filing date\u2014with the actual liability ruling in 2024.)",
+      "verdict": "correct",
+      "reasoning": "The agent's answer accurately states the month and year (August 2024) matching the expected answer, with additional precise details (exact date, case name, judge) that align factually and do not contradict. Core fact of the timing is fully covered.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 14.694788455963135,
+      "judge_time_sec": 1.661292314529419,
+      "key_facts_matched": [
+        "Alphabet (Google) found guilty of violating U.S. antitrust law by U.S. district court in August 2024"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 42,
+      "question": "What was the settlement amount for Alphabet's antitrust case with France in June 2021?",
+      "expected_answer": "$270 million",
+      "agent_answer": "**$270 million**\n\nOn June 7, 2021, Alphabet Inc. settled an antitrust lawsuit with France's Autorit\u00e9 de la Concurrence by agreeing to pay $270 million (noted in records as \"$27o million,\" likely a OCR error for $270 million). This amount was less than 0.7% of Alphabet's yearly earnings at the time, as detailed in records under \"Alphabet > Lawsuits and controversies.\"",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies the settlement amount as $270 million, matching the expected answer exactly. Additional context about the date, authority, and percentage of earnings does not contradict the key fact and is consistent.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 14.349491119384766,
+      "judge_time_sec": 1.4543328285217285,
+      "key_facts_matched": [
+        "Settlement amount is $270 million"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 43,
+      "question": "What happened to Google's Russian subsidiary in 2022?",
+      "expected_answer": "Russian authorities seized Google's Russian bank account in May 2022, forcing them to file for bankruptcy one month later due to the inability to pay vendors and staff",
+      "agent_answer": "**In 2022, Google's Russian subsidiary filed for bankruptcy after its bank account was seized.**\n\nAccording to Reuters (May 18, 2022), this followed actions where Google imposed sanctions, leading to the subsidiary's bank account seizure and subsequent bankruptcy filing. This is referenced in Alphabet's documentation (e.g., chunk ID: 3d57af86-0e07-425c-93c0-af3b5e1e890d).",
+      "verdict": "partially_correct",
+      "reasoning": "The agent's answer captures the core events of bank account seizure leading to bankruptcy filing in 2022, but omits the specific timing (seizure in May 2022, bankruptcy one month later) and the precise reason (inability to pay vendors and staff).",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 12.999677181243896,
+      "judge_time_sec": 1.7956442832946777,
+      "key_facts_matched": [
+        "Russian subsidiary filed for bankruptcy",
+        "after bank account was seized",
+        "in 2022"
+      ],
+      "key_facts_missing": [
+        "seized in May 2022",
+        "bankruptcy filed one month later",
+        "due to inability to pay vendors and staff"
+      ]
+    },
+    {
+      "question_id": 44,
+      "question": "What is the name of Alphabet's quantum computing chip unveiled in December 2024?",
+      "expected_answer": "Willow",
+      "agent_answer": "**Willow**\n\nAlphabet Inc. (Google's parent company) launched Willow, its latest quantum computing chip, as indicated in the knowledge graph under Alphabet's \"LAUNCHED_PRODUCT\" relations alongside \"Quantum Chip Breakthrough.\" This aligns with reports of a December 2024 unveiling, highlighting major advances in quantum error correction and performance.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies \"Willow\" as the name of Alphabet's quantum computing chip unveiled in December 2024, matching the expected answer exactly. Additional context provided is accurate and does not contradict the core fact.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 12.175079345703125,
+      "judge_time_sec": 1.457162857055664,
+      "key_facts_matched": [
+        "Willow is the name of the chip unveiled in December 2024"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 45,
+      "question": "What notable achievement did the Willow quantum chip accomplish?",
+      "expected_answer": "It solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe",
+      "agent_answer": "**The Willow quantum chip, unveiled by Alphabet on December 10, 2024, solved a complex problem in just five minutes\u2014a task that would take a classical computer longer than the age of the universe.** \n\nIt also achieved a breakthrough by reducing error rates in quantum computing and enabling real-time error correction, paving the way for advances in science, medicine, and finance. This announcement caused Alphabet's shares to rise about 5% that day.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer fully captures the key fact from the expected answer: solving a complex problem in five minutes that would take a classical computer longer than the age of the universe. Additional details do not contradict or detract from this core achievement.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 11.734624147415161,
+      "judge_time_sec": 1.0414438247680664,
+      "key_facts_matched": [
+        "It solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 46,
+      "question": "When did Alphabet announce its first-ever dividend payout?",
+      "expected_answer": "April 2024 (announced alongside the $2 trillion market cap milestone)",
+      "agent_answer": "**April 26, 2024**\n\nAlphabet announced its first-ever dividend payout on this date, as detailed in graph evidence from the \"Alphabet > Finances\" section. This announcement, paired with a $70 billion stock buyback program, propelled the company's market valuation past $2 trillion for the first time. A supporting reference from the Financial Times (Waters, Richard; Morris, Stephen, April 26, 2024: \"Alphabet surges past $2tn valuation as search giant announces first dividend\") confirms the exact timing under \"Alphabet > References.\"",
+      "verdict": "correct",
+      "reasoning": "The agent's answer provides the precise date (April 26, 2024) which falls within the expected timeframe of April 2024. It also correctly includes the association with the $2 trillion market cap milestone (noting it as the first time surpassing $2tn), matching the key facts. Additional details like the buyback program and reference do not contradict and enhance accuracy.",
+      "question_type": "temporal",
+      "difficulty": "hard",
+      "agent_time_sec": 13.632597208023071,
+      "judge_time_sec": 1.8054461479187012,
+      "key_facts_matched": [
+        "April 2024",
+        "announced alongside the $2 trillion market cap milestone"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 47,
+      "question": "What was the size of Alphabet's stock buyback program announced in April 2024?",
+      "expected_answer": "$70 billion",
+      "agent_answer": "**$70 billion**\n\nAlphabet announced a $70 billion stock buyback program on April 26, 2024, alongside its first-ever dividend payout. This contributed to the company surpassing a $2 trillion market valuation for the first time, as noted in financial reports from that period.\n\nSource excerpt:  \n> \"On April 26, 2024, Alphabet surpassed a market valuation of $2 trillion for the first time. This surge follows the announcement of the company's first-ever dividend payout and a significant $70 billion stock buyback program.\"  \n*(From Alphabet > Finances section, dated 2025-12-26)*",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies the size of the buyback program as $70 billion, matching the expected answer exactly. Additional context about the announcement date and market valuation is accurate and supported by the provided source excerpt, without contradicting any facts.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 9.919339179992676,
+      "judge_time_sec": 1.5407681465148926,
+      "key_facts_matched": [
+        "$70 billion"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 48,
+      "question": "What is Alphabet's ranking among the world's largest technology companies by revenue?",
+      "expected_answer": "Third-largest, after Amazon and Apple",
+      "agent_answer": "**Alphabet Inc. (Google's parent company) ranks among the top technology companies by revenue, though exact positioning depends on the time frame and metric (e.g., annual or trailing twelve months).**\n\nFrom the available data in the knowledge graph:\n- Alphabet's total assets reached **$450 billion USD** as of 2024, with historical revenue noted at **$110.855 billion USD** in 2017 (per financial filings).\n- Key financial reports referenced include the **2024 Annual Form 10-K**, **2023 Annual Form 10-K**, and **2021 Annual Form 10-K**, available via sources like Yahoo Finance and SEC filings.\n- It operates in the **Information Technology** and **Technology** sectors worldwide and is listed under topics like **\"Top 50 Global Technology Companies\"** and **\"Global 2000\"**.\n\nMajor peers like **Apple Inc.** and **Microsoft Corporation** also appear prominently in the graph alongside Alphabet, indicating they are in the same elite tier (often the top 3-5 globally). For instance:\n- Recent public data (outside this graph, for context) typically ranks **Apple (~$383B revenue FY2023)** #1, **Microsoft (~$245B FY2024)** #2, and **Alphabet (~$307B FY2023)** #3 among tech firms, though Alphabet sometimes swaps with Amazon or others based on quarterly results.\n\nThe graph lacks a direct, up-to-date ranking list or precise revenue comparisons for 2024/2025, so Alphabet is confirmed as a **top-tier player (likely #2-4)** but not explicitly #1. For the latest, check current 10-K filings or sources like Fortune Global 500.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent's answer acknowledges Alphabet as a top-tier tech company (likely #2-4) and explicitly states in contextual data that it ranks #3 after Apple and Microsoft (though noting swaps with Amazon), matching the expected key fact of third-largest after Amazon and Apple in typical rankings. However, it hedges due to lack of direct up-to-date data in the knowledge graph, does not definitively state \"third-largest after Amazon and Apple,\" and introduces Microsoft while suggesting variability, missing a firm confirmation of the exact expected ranking.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 21.383163690567017,
+      "judge_time_sec": 1.8508620262145996,
+      "key_facts_matched": [
+        "Alphabet ranks among the top technology companies by revenue",
+        "Typically ranks #3 among tech firms (contextual data)",
+        "Peers like Apple are #1"
+      ],
+      "key_facts_missing": [
+        "Explicitly third-largest",
+        "Specifically after Amazon and Apple (agent mentions Amazon swap but leads with Apple/Microsoft)"
+      ]
+    },
+    {
+      "question_id": 49,
+      "question": "When did Alphabet conduct a stock split?",
+      "expected_answer": "Mid-2022",
+      "agent_answer": "**Mid-2022 (specifically, the stock split was completed around July 2022, as referenced in Alphabet's history).**\n\nAlphabet Inc. (Google's parent company) executed a 20-for-1 stock split, with shares beginning to trade on a split-adjusted basis on **July 18, 2022**, following board approval announced on February 1, 2022. This is confirmed by graph data linking \"Alphabet\" to \"Stock Split\" under \"History\" and \"References,\" including chunks noting \"The firm completed a stock split in mid-2022\" and a Bloomberg reference to July 22, 2022. Note that Alphabet had earlier splits as Google (e.g., 2014), but this was the first under its current structure.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer matches the expected answer's key fact (\"Mid-2022\") and provides accurate additional details (July 2022, 20-for-1 split) that align with historical facts without contradiction.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 12.728207349777222,
+      "judge_time_sec": 1.449378252029419,
+      "key_facts_matched": [
+        "Mid-2022"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 50,
+      "question": "What are the main products/services that remain direct components of Google under Alphabet?",
+      "expected_answer": "Android operating system, YouTube, and Google Search",
+      "agent_answer": "**Google remains the primary subsidiary under Alphabet Inc., serving as the core \"umbrella company\" for Alphabet's main Internet-related businesses and products.**\r\n\r\nKey direct products and services that are integrated components of Google (rather than standalone Alphabet subsidiaries like Waymo, Verily, or Wing) include:\r\n\r\n- **Google Search**: The flagship search engine, central to Google's operations.\r\n- **YouTube**: The video-sharing platform, fully under Google.\r\n- **Android Operating System**: Google's mobile OS, powering billions of devices.\r\n\r\nOther notable Google-integrated elements include **Nest** (smart home products, merged into Google in 2018) and **Google Cloud** (cloud computing services). These are distinct from \"Other Bets\" like X Development or Isomorphic Labs, which operate more independently under Alphabet.\r\n\r\nThis structure stems from Alphabet's 2015 reorganization, keeping Google's core consumer Internet products accountable and separated from experimental ventures (per Alphabet's structure documentation).",
+      "verdict": "correct",
+      "reasoning": "The agent's answer includes all key facts from the expected answer: Android operating system, YouTube, and Google Search. It accurately identifies these as direct components of Google under Alphabet, with additional context that does not contradict or omit the core facts.",
+      "question_type": "list-based",
+      "difficulty": "easy",
+      "agent_time_sec": 13.727254152297974,
+      "judge_time_sec": 1.5852196216583252,
+      "key_facts_matched": [
+        "Android operating system",
+        "YouTube",
+        "Google Search"
+      ],
+      "key_facts_missing": []
+    }
+  ]
+}

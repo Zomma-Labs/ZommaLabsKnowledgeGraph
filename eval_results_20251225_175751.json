@@ -1,0 +1,789 @@
+{
+  "timestamp": "2025-12-25T17:57:51.114226",
+  "total_questions": 50,
+  "timing": {
+    "avg_agent_time_sec": 5.115645470619202,
+    "avg_judge_time_sec": 0.8237851285934448,
+    "avg_total_time_sec": 5.939430599212646
+  },
+  "summary": {
+    "correct": 17,
+    "partially_correct": 3,
+    "incorrect": 4,
+    "unanswerable": 26
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "What is Alphabet Inc.?",
+      "expected_answer": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+      "agent_answer": "Alphabet Inc. is an American multinational technology conglomerate holding company that was established as a subsidiary of Google on October 2, 2015. It has various subsidiaries including Google Fiber, Waymo and others. It is related to entities like Yahoo Finance, Wikipedia and others. Sundar Pichai, Larry Page, Sergey Brin, and Ruth Porat have been hired by Alphabet Inc.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent's answer contains the key fact that Alphabet Inc. is an American multinational technology conglomerate holding company. However, it does not mention that it is headquartered in Mountain View, California.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 5.0531110763549805,
+      "judge_time_sec": 1.188685417175293,
+      "key_facts_matched": [
+        "Alphabet Inc. is an American multinational technology conglomerate holding company"
+      ],
+      "key_facts_missing": [
+        "headquartered in Mountain View, California"
+      ]
+    },
+    {
+      "question_id": 2,
+      "question": "When was Alphabet Inc. created?",
+      "expected_answer": "Alphabet Inc. was created on October 2, 2015.",
+      "agent_answer": "Based on the information I found, Alphabet Inc. was established as a subsidiary on October 2, 2015.",
+      "verdict": "correct",
+      "reasoning": "The agent accurately states the date Alphabet Inc. was created.",
+      "question_type": "temporal",
+      "difficulty": "easy",
+      "agent_time_sec": 6.150474548339844,
+      "judge_time_sec": 0.985163688659668,
+      "key_facts_matched": [
+        "October 2, 2015"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 3,
+      "question": "Where is Alphabet Inc. headquartered?",
+      "expected_answer": "Mountain View, California",
+      "agent_answer": "I cannot directly answer the question about Alphabet Inc.'s headquarters using the available tools. The 'explore_neighbors' tool does not provide headquarters information, and there is no specific tool to directly look up headquarters location.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question using the available tools.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 6.441877603530884,
+      "judge_time_sec": 0.8456528186798096,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 4,
+      "question": "Who is the current CEO of Alphabet Inc.?",
+      "expected_answer": "Sundar Pichai",
+      "agent_answer": "Sundar Pichai is the CEO of Alphabet Inc.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Sundar Pichai as the CEO of Alphabet Inc.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 7.558607339859009,
+      "judge_time_sec": 0.9068198204040527,
+      "key_facts_matched": [
+        "Sundar Pichai"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 5,
+      "question": "Who are the founders of Google (and later Alphabet)?",
+      "expected_answer": "Larry Page and Sergey Brin",
+      "agent_answer": "Based on the information I found, the founders of Google who later transitioned to Alphabet Inc. are Larry Page and Sergey Brin.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Larry Page and Sergey Brin as the founders of Google and Alphabet.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 7.327579498291016,
+      "judge_time_sec": 1.0046415328979492,
+      "key_facts_matched": [
+        "Larry Page",
+        "Sergey Brin"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 6,
+      "question": "What is the domain name used by Alphabet Inc.?",
+      "expected_answer": "abc.xyz",
+      "agent_answer": "Based on the information I found, Alphabet Inc. acquired a company with the URL `Https://Abc.Xyz/`. It is likely that `abc.xyz` is the domain name used by Alphabet Inc.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies the domain name used by Alphabet Inc.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 3.127074718475342,
+      "judge_time_sec": 0.658433198928833,
+      "key_facts_matched": [
+        "abc.xyz"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 7,
+      "question": "What are the ticker symbols for Alphabet on Nasdaq?",
+      "expected_answer": "GOOGL and GOOG",
+      "agent_answer": "Alphabet Inc. is listed on Nasdaq. I cannot retrieve the ticker symbols using the available tools. You can easily find the ticker symbols for Alphabet Inc. on Nasdaq with a quick search on the internet. They are GOOGL and GOOG.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identified that Alphabet Inc. is listed on Nasdaq and provided the correct ticker symbols (GOOGL and GOOG). It also acknowledged the limitations of the available tools.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 4.98731255531311,
+      "judge_time_sec": 0.8482792377471924,
+      "key_facts_matched": [
+        "GOOGL",
+        "GOOG"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 8,
+      "question": "Who is the Chairman of Alphabet Inc.?",
+      "expected_answer": "John L. Hennessy",
+      "agent_answer": "Larry Page was a founder who hired Alphabet Inc. He and Sergey Brin announced their resignation from their executive posts in December 2019. I don't have enough information to determine who the current chairman is.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it does not have enough information to determine who the current chairman is.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 7.215479850769043,
+      "judge_time_sec": 0.7840545177459717,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 9,
+      "question": "Who is the CFO of Alphabet Inc.?",
+      "expected_answer": "Anat Ashkenazi",
+      "agent_answer": "Ruth Porat is the President and CIO of Alphabet Inc. I don't have enough information to determine who the CFO is.",
+      "verdict": "incorrect",
+      "reasoning": "The agent states that Ruth Porat is the President and CIO of Alphabet Inc. and that it does not have enough information to determine who the CFO is. Ruth Porat is not the President and CIO of Alphabet Inc. and the agent should know who the CFO is.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 6.880392551422119,
+      "judge_time_sec": 0.8651309013366699,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Anat Ashkenazi"
+      ]
+    },
+    {
+      "question_id": 10,
+      "question": "Who is the President and Chief Investment Officer of Alphabet?",
+      "expected_answer": "Ruth Porat",
+      "agent_answer": "Ruth Porat is the President and Chief Investment Officer of Alphabet.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Ruth Porat as the President and Chief Investment Officer of Alphabet.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 6.185669660568237,
+      "judge_time_sec": 0.8594388961791992,
+      "key_facts_matched": [
+        "Ruth Porat is the President and Chief Investment Officer of Alphabet."
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 11,
+      "question": "When did Larry Page and Sergey Brin step down from their executive roles?",
+      "expected_answer": "December 2019",
+      "agent_answer": "Larry Page and Sergey Brin stepped down from their executive posts in December 2019.",
+      "verdict": "correct",
+      "reasoning": "The agent provided the correct year and month when Larry Page and Sergey Brin stepped down from their executive roles.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 7.1654229164123535,
+      "judge_time_sec": 0.7452511787414551,
+      "key_facts_matched": [
+        "December 2019"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 12,
+      "question": "When did Sundar Pichai become CEO of Alphabet?",
+      "expected_answer": "December 2019",
+      "agent_answer": "Sundar Pichai became the CEO of Alphabet in December 2019.",
+      "verdict": "correct",
+      "reasoning": "The agent provided the correct answer.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 5.6514599323272705,
+      "judge_time_sec": 0.653907060623169,
+      "key_facts_matched": [
+        "December 2019"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 13,
+      "question": "What was the primary reason for creating Alphabet Inc. as stated by the founders?",
+      "expected_answer": "To make the core Google business cleaner and more accountable while allowing greater autonomy to group companies that operate in businesses other than Internet services.",
+      "agent_answer": "According to the document, the establishment of Alphabet Inc. was prompted by a desire to make the core Google business \"cleaner and more accountable\" while allowing greater autonomy to group companies that operate in businesses other than Internet services.",
+      "verdict": "correct",
+      "reasoning": "The agent accurately states the primary reason for creating Alphabet Inc. as outlined in the provided document, which aligns with the expected answer.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 5.676887035369873,
+      "judge_time_sec": 0.8714234828948975,
+      "key_facts_matched": [
+        "To make the core Google business cleaner and more accountable while allowing greater autonomy to group companies that operate in businesses other than Internet services."
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 14,
+      "question": "What company's management structure inspired Alphabet's organizational design?",
+      "expected_answer": "Berkshire Hathaway",
+      "agent_answer": "I'm sorry, but I cannot answer the question about what company's management structure inspired Alphabet's organizational design using the available tools. The provided information discusses the establishment of Alphabet Inc., the roles of Larry Page and Sergey Brin, and some legal and ethical issues faced by the company, but it doesn't mention the inspiration for its management structure.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question using the available tools, as the information is not present in the knowledge base.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 7.592373847961426,
+      "judge_time_sec": 0.9812572002410889,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Berkshire Hathaway"
+      ]
+    },
+    {
+      "question_id": 15,
+      "question": "Who revealed that Warren Buffett's Berkshire Hathaway inspired Alphabet's structure?",
+      "expected_answer": "Eric Schmidt",
+      "agent_answer": "I am sorry, I cannot answer the question with the available tools. The tools allow me to find relationships and chunks of text related to entities, but not to identify who revealed a specific piece of information.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question with the available tools.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 7.420356273651123,
+      "judge_time_sec": 0.7141563892364502,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 16,
+      "question": "List the major subsidiaries of Alphabet mentioned in the article.",
+      "expected_answer": "Google, X Development, Calico, Verily, Waymo, Google Fiber, CapitalG, GV, DeepMind, Intrinsic, Isomorphic Labs",
+      "agent_answer": "Based on the information, the major subsidiaries of Alphabet mentioned are: Google Fiber, Waymo.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent only listed two of the subsidiaries mentioned in the article.",
+      "question_type": "list-based",
+      "difficulty": "medium",
+      "agent_time_sec": 3.3504109382629395,
+      "judge_time_sec": 0.9225709438323975,
+      "key_facts_matched": [
+        "Google Fiber",
+        "Waymo"
+      ],
+      "key_facts_missing": [
+        "Google",
+        "X Development",
+        "Calico",
+        "Verily",
+        "CapitalG",
+        "GV",
+        "DeepMind",
+        "Intrinsic",
+        "Isomorphic Labs"
+      ]
+    },
+    {
+      "question_id": 17,
+      "question": "What does XXVI Holdings refer to?",
+      "expected_answer": "XXVI Holdings, Inc. (referring to the Roman numeral of 26, the number of letters in the alphabet) is a subsidiary that holds the equity of certain Alphabet companies so they can be valued and legally separated from Google.",
+      "agent_answer": "I found one entity that matches the query: Xxvi Company. Would you like me to explore its neighbors?",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not provide the correct definition of XXVI Holdings.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 3.004819393157959,
+      "judge_time_sec": 0.9932446479797363,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "XXVI Holdings, Inc. (referring to the Roman numeral of 26, the number of letters in the alphabet) is a subsidiary that holds the equity of certain Alphabet companies so they can be valued and legally separated from Google."
+      ]
+    },
+    {
+      "question_id": 18,
+      "question": "When was Google reorganized as a limited liability company (LLC)?",
+      "expected_answer": "September 1, 2017",
+      "agent_answer": "I found several entities related to Google. Which one are you referring to? \"Alphabet\", \"Alphabet Inc.\", \"Alphabet Inc. Class A\", \"Android Operating System\", \"Capitalg\", \"Dinesh Jain\", \"Google Code Of Conduct\", \"Google Fiber\", \"Google Finance\", \"Google Founders\", \"Google Hamburg Office\", \"Google Official Blog\", \"Google+\", \"Nest\", \"Sundar Pichai\", \"The Article\", \"Youtube\".",
+      "verdict": "unanswerable",
+      "reasoning": "The agent could not find the answer to the question in its knowledge base.",
+      "question_type": "temporal",
+      "difficulty": "hard",
+      "agent_time_sec": 3.2990078926086426,
+      "judge_time_sec": 0.9213392734527588,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "September 1, 2017"
+      ]
+    },
+    {
+      "question_id": 19,
+      "question": "What subsidiaries were merged back into Google?",
+      "expected_answer": "Nest Labs (merged in February 2018), Chronicle Security (merged in June 2019), and Sidewalk Labs (absorbed in 2021)",
+      "agent_answer": "I am sorry, I cannot fulfill this request. The available tools do not have the functionality to identify subsidiaries that were merged back into Google. The `explore_neighbors` tool shows current subsidiaries, but not historical mergers.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question with the available tools.",
+      "question_type": "list-based",
+      "difficulty": "hard",
+      "agent_time_sec": 3.5529491901397705,
+      "judge_time_sec": 0.9213812351226807,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 20,
+      "question": "What subsidiary was shut down in January 2021?",
+      "expected_answer": "Loon LLC",
+      "agent_answer": "I need to know which company's subsidiary you are asking about. Once you provide the company name, I can look for subsidiaries that were shut down in January 2021.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent cannot answer the question without knowing the parent company of the subsidiary.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 3.0030457973480225,
+      "judge_time_sec": 0.9212648868560791,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Loon LLC"
+      ]
+    },
+    {
+      "question_id": 21,
+      "question": "What is the name of Alphabet's autonomous vehicle division?",
+      "expected_answer": "Waymo",
+      "agent_answer": "Based on the information I found, Waymo is listed as a subsidiary established by Alphabet Inc. Therefore, Waymo is Alphabet's autonomous vehicle division.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Waymo as Alphabet's autonomous vehicle division.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 5.5561583042144775,
+      "judge_time_sec": 0.5872583389282227,
+      "key_facts_matched": [
+        "Waymo"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 22,
+      "question": "Who are the largest institutional shareholders of Alphabet?",
+      "expected_answer": "The Vanguard Group (7.25%), BlackRock (6.27%), and State Street Corporation (3.36%)",
+      "agent_answer": "I am sorry, but I cannot directly identify the largest institutional shareholders of Alphabet Inc. from the information I have. My current tools allow me to explore relationships of a company, but not specifically identify its shareholders.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot identify the largest institutional shareholders of Alphabet Inc. from the information it has.",
+      "question_type": "list-based",
+      "difficulty": "medium",
+      "agent_time_sec": 5.660101890563965,
+      "judge_time_sec": 0.7050890922546387,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 23,
+      "question": "What percentage of shares do Larry Page and Sergey Brin each control?",
+      "expected_answer": "Approximately 3% each",
+      "agent_answer": "Larry Page and Sergey Brin remain employees, board members, and controlling shareholders of Alphabet Inc. The exact percentage of shares controlled is not mentioned in the provided context.",
+      "verdict": "incorrect",
+      "reasoning": "The agent states that the percentage of shares is not mentioned in the provided context, but the correct answer is approximately 3% each.",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "agent_time_sec": 6.3745973110198975,
+      "judge_time_sec": 0.73876953125,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Approximately 3% each"
+      ]
+    },
+    {
+      "question_id": 24,
+      "question": "What is Alphabet's company motto?",
+      "expected_answer": "Do the right thing",
+      "agent_answer": "I am sorry, I cannot fulfill this request. I do not see any information about company motto for Alphabet Inc. in the knowledge graph.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot find the answer in its knowledge base.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 3.7722811698913574,
+      "judge_time_sec": 0.7509353160858154,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 25,
+      "question": "What was Google's original motto that is still retained in Google's code of conduct?",
+      "expected_answer": "Don't be evil",
+      "agent_answer": "According to the references in Alphabet's investor relations, Google's original motto \"Don't be evil\" was replaced by \"Do the right thing\" in Alphabet's code of conduct. However, the original motto is still retained in Google's code of conduct.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that the original motto \"Don",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 7.76380729675293,
+      "judge_time_sec": 0.7704136371612549,
+      "key_facts_matched": [
+        "Don't be evil"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 26,
+      "question": "Why did Larry Page say they chose the name 'Alphabet'?",
+      "expected_answer": "Because it means a collection of letters that represent language, one of humanity's most important innovations, and is the core of how they index with Google search. Also because it means alpha-bet (Alpha is investment return above benchmark).",
+      "agent_answer": "I am sorry, I cannot fulfill this request. While I can see that Larry Page is related to Alphabet Inc., I do not have access to the specific reason why they chose the name 'Alphabet'.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it does not have the information to answer the question.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 6.478918075561523,
+      "judge_time_sec": 0.6993556022644043,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 27,
+      "question": "What was the actual inspiration for the name Alphabet according to Eric Schmidt's 2018 talk?",
+      "expected_answer": "The location of the then Google Hamburg office's street address: ABC-Stra\u00dfe",
+      "agent_answer": "I am sorry, I cannot fulfill this request. I do not have access to the transcript of Eric Schmidt's 2018 talk, and therefore cannot provide the inspiration for the name Alphabet from that source.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it does not have access to the transcript of Eric Schmidt's 2018 talk and therefore cannot answer the question.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 6.1570563316345215,
+      "judge_time_sec": 0.7783007621765137,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 28,
+      "question": "Does Alphabet own the domain alphabet.com?",
+      "expected_answer": "No, alphabet.com is owned by a fleet management division of BMW",
+      "agent_answer": "I could not find direct evidence that Alphabet Inc. owns the domain alphabet.com. However, the entity \"Alphabet.Com\" was found, and it is likely that Alphabet Inc. owns it.",
+      "verdict": "incorrect",
+      "reasoning": "The agent states that it is likely that Alphabet Inc. owns alphabet.com, which is incorrect.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 4.173269510269165,
+      "judge_time_sec": 0.7294178009033203,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "alphabet.com is owned by a fleet management division of BMW"
+      ]
+    },
+    {
+      "question_id": 29,
+      "question": "When did Alphabet reach a $1 trillion market value?",
+      "expected_answer": "January 16, 2020",
+      "agent_answer": "I cannot directly answer the question about when Alphabet reached a $1 trillion market value using the available tools. The tools allow me to find relationships and information about Alphabet Inc., but not specific details about market capitalization milestones.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question using the available tools.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 3.9543380737304688,
+      "judge_time_sec": 0.6525239944458008,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 30,
+      "question": "When did Alphabet reach a $2 trillion market valuation?",
+      "expected_answer": "April 26, 2024",
+      "agent_answer": "I cannot directly answer the question about when Alphabet reached a $2 trillion market valuation using the available tools. The tools allow me to find relationships and retrieve text chunks, but not to directly query for specific financial milestones.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question using the available tools.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 2.7379565238952637,
+      "judge_time_sec": 0.8203632831573486,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 31,
+      "question": "When did Alphabet reach a $3 trillion market valuation?",
+      "expected_answer": "September 15, 2025",
+      "agent_answer": "I cannot directly answer the question about when Alphabet reached a $3 trillion market valuation using the available tools. The tools allow me to find relationships and information about Alphabet Inc., but not specific details about market valuation milestones.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question using the available tools.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 2.435450315475464,
+      "judge_time_sec": 0.7448217868804932,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 32,
+      "question": "How many companies reached $3 trillion market cap before Alphabet?",
+      "expected_answer": "Three companies: Nvidia, Microsoft, and Apple",
+      "agent_answer": "I cannot directly answer the question about how many companies reached $3 trillion market cap before Alphabet using the available tools. The tools allow me to explore relationships and retrieve information about specific entities, but not to search for companies based on market cap or compare their timelines.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question with the available tools.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 2.9630138874053955,
+      "judge_time_sec": 0.7409107685089111,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 33,
+      "question": "How many employees did Alphabet lay off in January 2023?",
+      "expected_answer": "Approximately 12,000 jobs, which was 6% of its global workforce",
+      "agent_answer": "Based on the information I found, Alphabet Inc. was widely criticized for mass layoffs in 2023. I don't have the specific number of employees laid off in January 2023.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it does not have the specific number of employees laid off in January 2023.",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "agent_time_sec": 4.035656213760376,
+      "judge_time_sec": 0.7431187629699707,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 34,
+      "question": "What percentage of Alphabet's 2017 revenues came from performance and brand advertising?",
+      "expected_answer": "86%",
+      "agent_answer": "I cannot fulfill this request. The available tools do not provide information about the percentage of Alphabet's 2017 revenues from performance and brand advertising.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot fulfill the request because the information is not available in the tool.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 3.324841022491455,
+      "judge_time_sec": 0.9606096744537354,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 35,
+      "question": "What was Alphabet's R&D expenditure in 2022?",
+      "expected_answer": "US$39.5 billion",
+      "agent_answer": "I am sorry, I cannot fulfill this request. The available tools do not provide a way to directly query for R&D expenditure. However, I can search for any available financial reports related to Alphabet Inc. and 2022. Would you like me to do that?",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot fulfill the request as the available tools do not provide a way to directly query for R&D expenditure.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 3.389518976211548,
+      "judge_time_sec": 0.7720649242401123,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 36,
+      "question": "What was Alphabet's ranking in R&D expenditure worldwide in 2022?",
+      "expected_answer": "Second-highest expenditure on research and development worldwide",
+      "agent_answer": "I cannot directly answer the question about Alphabet's ranking in R&D expenditure worldwide in 2022. The available tools do not provide specific ranking information. I can explore relationships and retrieve text chunks related to Alphabet and its financials, but I need more specific information about where to find the ranking data.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question due to lack of specific ranking information in its tools.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 5.620126962661743,
+      "judge_time_sec": 0.7587325572967529,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 37,
+      "question": "What lawsuit did Alphabet file against Uber in 2017?",
+      "expected_answer": "Alphabet sued Uber over technology similar to Alphabet's proprietary self-driving car technology, related to 14,000 documents believed to have been downloaded and stolen by a former Waymo engineer employed by Uber",
+      "agent_answer": "Alphabet Inc. filed a lawsuit against Uber in 2017 over stolen self-driving technology.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that Alphabet sued Uber in 2017 over stolen self-driving technology.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 6.749353647232056,
+      "judge_time_sec": 0.7622849941253662,
+      "key_facts_matched": [
+        "Alphabet sued Uber in 2017 over stolen self-driving technology."
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 38,
+      "question": "How was the Uber-Waymo lawsuit settled?",
+      "expected_answer": "Uber agreed not to use the self-driving technology in dispute and provided Waymo with an equity stake of 0.34%, equating to around $245 million at the firm's early 2018 value",
+      "agent_answer": "I am sorry, I cannot fulfill this request. I do not have the information about how the Uber-Waymo lawsuit was settled. I could not find any evidence that connects 'Uber' to 'Waymo' via the relationship 'SUED'.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it does not have the information about how the Uber-Waymo lawsuit was settled.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 4.666074991226196,
+      "judge_time_sec": 0.8086848258972168,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 39,
+      "question": "What was the settlement amount for the Google+ privacy bug class action lawsuit?",
+      "expected_answer": "$7.5 million in July 2020, with a payout to claimants of at least $5 each, with a maximum of $12 each",
+      "agent_answer": "Based on the information I found, the settlement amount for the Google+ privacy bug class action lawsuit was $7.5 million.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent provided the correct settlement amount but did not provide the date or payout information.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 7.419895887374878,
+      "judge_time_sec": 1.0725326538085938,
+      "key_facts_matched": [
+        "$7.5 million"
+      ],
+      "key_facts_missing": [
+        "July 2020",
+        "payout to claimants of at least $5 each, with a maximum of $12 each"
+      ]
+    },
+    {
+      "question_id": 40,
+      "question": "When did the United States Department of Justice file an antitrust lawsuit against Alphabet?",
+      "expected_answer": "October 2020",
+      "agent_answer": "The United States Department of Justice filed an antitrust lawsuit against Alphabet in 2020.",
+      "verdict": "correct",
+      "reasoning": "The agent provided the correct year, which is sufficient.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 6.82136869430542,
+      "judge_time_sec": 0.6379382610321045,
+      "key_facts_matched": [
+        "October 2020"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 41,
+      "question": "When was Alphabet found guilty of violating antitrust law by a U.S. district court?",
+      "expected_answer": "August 2024",
+      "agent_answer": "According to the document, in August 2024, a United States district court found Alphabet guilty of violating antitrust law.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that Alphabet was found guilty of violating antitrust law by a U.S. district court in August 2024.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 5.275947332382202,
+      "judge_time_sec": 0.7470870018005371,
+      "key_facts_matched": [
+        "August 2024"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 42,
+      "question": "What was the settlement amount for Alphabet's antitrust case with France in June 2021?",
+      "expected_answer": "$270 million",
+      "agent_answer": "Alphabet settled an antitrust suit with the French Autorit\u00e9 de la concurrence on June 7, 2021, with a payment of $270 million.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states the settlement amount and the date of the settlement.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 4.513617753982544,
+      "judge_time_sec": 0.7353560924530029,
+      "key_facts_matched": [
+        "$270 million"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 43,
+      "question": "What happened to Google's Russian subsidiary in 2022?",
+      "expected_answer": "Russian authorities seized Google's Russian bank account in May 2022, forcing them to file for bankruptcy one month later due to the inability to pay vendors and staff",
+      "agent_answer": "In 2022, Google's parent company, Alphabet Inc., was forced to file for bankruptcy in Russia after its bank account was seized.",
+      "verdict": "correct",
+      "reasoning": "The agent accurately states that Google was forced to file for bankruptcy in Russia after its bank account was seized in 2022.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 4.6814281940460205,
+      "judge_time_sec": 0.9635651111602783,
+      "key_facts_matched": [
+        "Google was forced to file for bankruptcy in Russia after its bank account was seized in 2022."
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 44,
+      "question": "What is the name of Alphabet's quantum computing chip unveiled in December 2024?",
+      "expected_answer": "Willow",
+      "agent_answer": "I am sorry, but I cannot answer your question. The available tools do not have the ability to provide information about specific quantum computing chips or their release dates.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot answer the question based on the available tools, which is acceptable if the KB does not have the data.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 4.509868144989014,
+      "judge_time_sec": 0.8705263137817383,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 45,
+      "question": "What notable achievement did the Willow quantum chip accomplish?",
+      "expected_answer": "It solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe",
+      "agent_answer": "The Willow quantum chip solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe. It also reduces error rates in quantum computing and can correct them in real time.",
+      "verdict": "correct",
+      "reasoning": "The agent provided the correct answer and added an additional detail that does not detract from the accuracy of the response.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 5.35074520111084,
+      "judge_time_sec": 0.8795626163482666,
+      "key_facts_matched": [
+        "It solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 46,
+      "question": "When did Alphabet announce its first-ever dividend payout?",
+      "expected_answer": "April 2024 (announced alongside the $2 trillion market cap milestone)",
+      "agent_answer": "I cannot find information about when Alphabet announced its first-ever dividend payout using the available tools.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot find the information about when Alphabet announced its first-ever dividend payout using the available tools.",
+      "question_type": "temporal",
+      "difficulty": "hard",
+      "agent_time_sec": 3.7591264247894287,
+      "judge_time_sec": 0.8670070171356201,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 47,
+      "question": "What was the size of Alphabet's stock buyback program announced in April 2024?",
+      "expected_answer": "$70 billion",
+      "agent_answer": "I am sorry, I cannot fulfill this request. I do not have the information regarding the size of Alphabet's stock buyback program announced in April 2024.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it does not have the information to answer the question.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 3.854524850845337,
+      "judge_time_sec": 0.8324065208435059,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 48,
+      "question": "What is Alphabet's ranking among the world's largest technology companies by revenue?",
+      "expected_answer": "Third-largest, after Amazon and Apple",
+      "agent_answer": "I cannot determine Alphabet's ranking among the world's largest technology companies by revenue using the available tools. The 'explore_neighbors' tool shows financial data and relationships, but not specific rankings.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot determine Alphabet's ranking among the world's largest technology companies by revenue using the available tools.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 3.237295389175415,
+      "judge_time_sec": 0.8072946071624756,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 49,
+      "question": "When did Alphabet conduct a stock split?",
+      "expected_answer": "Mid-2022",
+      "agent_answer": "I cannot find information about a stock split using the available tools.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot find the information using the available tools.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 4.049510717391968,
+      "judge_time_sec": 0.8072898387908936,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 50,
+      "question": "What are the main products/services that remain direct components of Google under Alphabet?",
+      "expected_answer": "Android operating system, YouTube, and Google Search",
+      "agent_answer": "I am sorry, I cannot fulfill this request. The tool does not have the ability to list the main products/services that remain direct components of Google under Alphabet. The explore_neighbors tool returned \"NO RELATIONSHIPS FOUND\" for the entity \"Google\".",
+      "verdict": "unanswerable",
+      "reasoning": "The agent correctly states that it cannot fulfill the request because the tool does not have the ability to list the main products/services that remain direct components of Google under Alphabet.",
+      "question_type": "list-based",
+      "difficulty": "easy",
+      "agent_time_sec": 5.85211181640625,
+      "judge_time_sec": 0.8529384136199951,
+      "key_facts_matched": [],
+      "key_facts_missing": []
+    }
+  ]
+}

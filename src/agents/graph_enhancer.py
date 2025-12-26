@@ -7,12 +7,21 @@ DESCRIPTION:
     3. Enrichment: Extracting attributes and summaries.
 """
 
+import os
 from typing import List, Dict, Any, Optional, TYPE_CHECKING
 from pydantic import BaseModel, Field
 from src.tools.neo4j_client import Neo4jClient
 
 if TYPE_CHECKING:
     from src.util.services import Services
+
+# Control verbose output
+VERBOSE = os.getenv("VERBOSE", "false").lower() == "true"
+
+def log(msg: str):
+    """Print only if VERBOSE mode is enabled."""
+    if VERBOSE:
+        print(msg)
 
 class MissedFacts(BaseModel):
     missed_facts: List[str] = Field(description="List of facts that were missed in the initial extraction.")
@@ -31,6 +40,10 @@ class GraphEnhancer:
         self.llm = services.llm
         self.embeddings = services.embeddings
         self.neo4j = services.neo4j
+
+        # Add cheap model for summaries
+        from src.util.llm_client import get_nano_llm
+        self.nano_llm = get_nano_llm()
 
     def reflexion_check(self, chunk_text: str, existing_facts: List[Any]) -> List[str]:
         """
@@ -76,11 +89,77 @@ class GraphEnhancer:
             f"SUMMARY:"
         )
         try:
-            response = self.llm.invoke(prompt)
+            response = self.nano_llm.invoke(prompt)
             return response.content.strip()
         except Exception as e:
             print(f"Summary extraction failed: {e}")
             return "Entity"
+
+    def batch_extract_summaries(self, entity_names: List[str], context_text: str, batch_size: int = 15) -> Dict[str, str]:
+        """
+        Extracts summaries for multiple entities in batches using a single LLM call per batch.
+
+        Args:
+            entity_names: List of entity names to summarize
+            context_text: The chunk text for context
+            batch_size: Max entities per batch (default 15)
+
+        Returns:
+            Dict mapping entity name to summary
+        """
+        from pydantic import BaseModel, Field
+
+        # Define structured output for batch summaries (using List instead of Dict for OpenAI compatibility)
+        class EntitySummary(BaseModel):
+            """Single entity summary."""
+            name: str = Field(description="Entity name")
+            summary: str = Field(description="1-sentence summary describing what this entity is")
+
+        class EntitySummaries(BaseModel):
+            """Collection of entity summaries."""
+            summaries: List[EntitySummary] = Field(
+                description="List of entity summaries"
+            )
+
+        all_summaries = {}
+
+        # Split into batches of size 15
+        for i in range(0, len(entity_names), batch_size):
+            batch = entity_names[i:i + batch_size]
+
+            # Create numbered list for prompt
+            entity_list = "\n".join([f"{idx+1}. {name}" for idx, name in enumerate(batch)])
+
+            prompt = (
+                f"Given the following context, provide a brief 1-sentence summary for EACH entity.\n"
+                f"The summary should describe what the entity IS with SPECIFIC identifying details.\n\n"
+                f"Guidelines:\n"
+                f"- For people: Include their role/title and organization if mentioned.\n"
+                f"- For organizations: Include their type and any parent/subsidiary relationship.\n"
+                f"- Avoid generic phrases like 'a person' or 'a company' - be specific based on context.\n"
+                f"- If the context doesn't provide details, use what's available.\n\n"
+                f"CONTEXT:\n{context_text}\n\n"
+                f"ENTITIES TO SUMMARIZE:\n{entity_list}\n\n"
+                f"Provide summaries for all entities listed above."
+            )
+
+            try:
+                structured_nano = self.nano_llm.with_structured_output(EntitySummaries)
+                response = structured_nano.invoke(prompt)
+
+                # Convert list to dict
+                for entity_summary in response.summaries:
+                    all_summaries[entity_summary.name] = entity_summary.summary
+
+                log(f"   ✅ Batch summarized {len(batch)} entities")
+
+            except Exception as e:
+                print(f"   ⚠️ Batch summary failed for batch {i//batch_size + 1}: {e}")
+                # Fallback: use generic summaries for this batch
+                for name in batch:
+                    all_summaries[name] = "Entity"
+
+        return all_summaries
 
     def find_graph_candidates(self, entity_name: str, entity_summary: str, group_id: str, node_type: str = "Entity", top_k: int = 5, cached_embedding: Optional[List[float]] = None) -> List[Dict]:
         """
@@ -93,15 +172,15 @@ class GraphEnhancer:
         label = "EntityNode" if node_type == "Entity" else "TopicNode"
         cypher_exact = f"""
         MATCH (n:{label} {{name: $name, group_id: $group_id}})
-        RETURN n.uuid as uuid, n.name as name, n.fibo_id as summary, labels(n) as labels
+        RETURN n.uuid as uuid, n.name as name, n.summary as summary, labels(n) as labels
         LIMIT 1
         """
-        # Note: TopicNode uses fibo_id/fibo_uri, EntityNode uses summary. We accept either as 'summary' for display.
+        # Both TopicNode and EntityNode use 'summary' for descriptions.
         if node_type == "Topic":
              cypher_exact = f"""
             MATCH (n:TopicNode {{group_id: $group_id}})
             WHERE toLower(n.name) = toLower($name)
-            RETURN n.uuid as uuid, n.name as name, n.fibo_id as summary, labels(n) as labels
+            RETURN n.uuid as uuid, n.name as name, n.summary as summary, labels(n) as labels
             LIMIT 1
             """
         else:
@@ -154,16 +233,13 @@ class GraphEnhancer:
     def resolve_entity_against_graph(self, entity_name: str, entity_summary: str, candidates: List[Dict]) -> Dict[str, Any]:
         """
         Uses LLM to decide whether to merge with a candidate or create a new node.
+        Uses OutputFixingParser to retry with format correction if initial parse fails.
         """
+        from langchain_core.output_parsers import PydanticOutputParser
+        from langchain_classic.output_parsers import OutputFixingParser
+        
         if not candidates:
             return {"decision": "CREATE_NEW", "target_uuid": None}
-            
-        # Optimization: If we have an exact match (score=1.0), check if descriptions align
-        # But for safety, we still ask LLM unless it's overwhelmingly obvious?
-        # Actually, let's let the LLM decide even for exact matches to handle "Apple" (Fruit) vs "Apple" (Corp) collision if names are identical.
-        # Wait, if names are identical, exact match returns it. We need to know if it's the SAME entity.
-        
-        structured_llm = self.llm.with_structured_output(EntityResolution)
         
         candidates_str = "\n".join([
             f"- ID: {c['uuid']}, Name: {c['name']}, Description: {c.get('summary', 'N/A')}, Score: {c['score']:.2f}" 
@@ -186,19 +262,48 @@ class GraphEnhancer:
             f"EXISTING CANDIDATES:\n{candidates_str}"
         )
         
+        # First attempt: use structured output with include_raw
         try:
-            response = structured_llm.invoke([
+            structured_llm = self.llm.with_structured_output(EntityResolution, include_raw=True)
+            result = structured_llm.invoke([
                 ("system", system_prompt),
                 ("human", prompt)
             ])
-            return {
-                "decision": response.decision,
-                "target_uuid": response.target_uuid,
-                "reasoning": response.reasoning
-            }
+            
+            # result is a dict with 'raw', 'parsed', and 'parsing_error' keys
+            parsed = result.get("parsed") if isinstance(result, dict) else result
+            raw = result.get("raw") if isinstance(result, dict) else None
+            parsing_error = result.get("parsing_error") if isinstance(result, dict) else None
+            
+            if parsed is not None:
+                return {
+                    "decision": parsed.decision,
+                    "target_uuid": parsed.target_uuid,
+                    "reasoning": parsed.reasoning
+                }
+            
+            # If parsed is None but we have raw, use OutputFixingParser
+            if raw is not None:
+                log(f"   🔄 Using OutputFixingParser for '{entity_name}'...")
+                raw_content = raw.content if hasattr(raw, 'content') else str(raw)
+                
+                # Create parser and fixing parser
+                pydantic_parser = PydanticOutputParser(pydantic_object=EntityResolution)
+                fixing_parser = OutputFixingParser.from_llm(parser=pydantic_parser, llm=self.llm)
+                
+                fixed_response = fixing_parser.parse(raw_content)
+                return {
+                    "decision": fixed_response.decision,
+                    "target_uuid": fixed_response.target_uuid,
+                    "reasoning": fixed_response.reasoning
+                }
+            
+            # Both failed
+            print(f"Resolution returned None for '{entity_name}', defaulting to CREATE_NEW")
+            return {"decision": "CREATE_NEW", "target_uuid": None}
+            
         except Exception as e:
-            print(f"Resolution failed: {e}")
-            # Default to new if LLM fails
+            print(f"Resolution failed for '{entity_name}': {e}")
             return {"decision": "CREATE_NEW", "target_uuid": None}
 
     def extract_attributes(self, entity_name: str, context_text: str) -> Dict[str, Any]:
@@ -209,7 +314,123 @@ class GraphEnhancer:
         # For now, we can just return a simple summary
         return {"summary": f"Entity extracted from: {context_text[:50]}..."}
 
+    def merge_summaries(self, entity_name: str, existing_summary: str, new_summary: str) -> str:
+        """
+        Merges two summaries for the same entity into a single, richer summary.
+        Called when an entity is deduplicated and both have summary information.
+
+        Args:
+            entity_name: The name of the entity
+            existing_summary: The summary already in the graph
+            new_summary: The new summary from current extraction
+
+        Returns:
+            A merged summary combining information from both
+        """
+        # Skip if either is empty/generic
+        if not existing_summary or existing_summary in ["Entity", "", None]:
+            return new_summary
+        if not new_summary or new_summary in ["Entity", "", None]:
+            return existing_summary
+        if existing_summary.lower() == new_summary.lower():
+            return existing_summary
+
+        prompt = (
+            f"Merge these two descriptions of '{entity_name}' into a single, comprehensive 1-2 sentence summary.\n"
+            f"Combine unique information from both. Remove redundancy. Keep it concise.\n\n"
+            f"Description 1: {existing_summary}\n"
+            f"Description 2: {new_summary}\n\n"
+            f"Merged summary:"
+        )
+
+        try:
+            response = self.nano_llm.invoke(prompt)
+            merged = response.content.strip()
+            # Sanity check: don't return something much longer than inputs combined
+            if len(merged) > len(existing_summary) + len(new_summary) + 50:
+                return existing_summary  # Fallback to existing
+            return merged
+        except Exception as e:
+            log(f"   ⚠️ Summary merge failed for '{entity_name}': {e}")
+            # Fallback: prefer the longer/more detailed summary
+            return existing_summary if len(existing_summary) >= len(new_summary) else new_summary
+
+    def batch_merge_summaries(self, merges: List[Dict[str, str]]) -> Dict[str, str]:
+        """
+        Batch merge multiple entity summaries in a single LLM call.
+
+        Args:
+            merges: List of dicts with 'name', 'existing', 'new' keys
+
+        Returns:
+            Dict mapping entity name to merged summary
+        """
+        from pydantic import BaseModel, Field
+
+        class MergedSummary(BaseModel):
+            name: str = Field(description="Entity name")
+            summary: str = Field(description="Merged 1-2 sentence summary")
+
+        class MergedSummaries(BaseModel):
+            summaries: List[MergedSummary]
+
+        # Filter out trivial cases
+        to_merge = []
+        results = {}
+
+        for m in merges:
+            existing = m.get('existing', '')
+            new = m.get('new', '')
+            name = m['name']
+
+            if not existing or existing in ["Entity", ""]:
+                results[name] = new
+            elif not new or new in ["Entity", ""]:
+                results[name] = existing
+            elif existing.lower() == new.lower():
+                results[name] = existing
+            else:
+                to_merge.append(m)
+
+        if not to_merge:
+            return results
+
+        # Build prompt for batch merge
+        merge_list = "\n".join([
+            f"{i+1}. {m['name']}:\n   A: {m['existing']}\n   B: {m['new']}"
+            for i, m in enumerate(to_merge)
+        ])
+
+        prompt = (
+            f"Merge each pair of descriptions into a single 1-2 sentence summary.\n"
+            f"Combine unique information. Remove redundancy. Be concise.\n\n"
+            f"{merge_list}\n\n"
+            f"Provide merged summaries for all entities."
+        )
+
+        try:
+            structured_nano = self.nano_llm.with_structured_output(MergedSummaries)
+            response = structured_nano.invoke(prompt)
+
+            for merged in response.summaries:
+                results[merged.name] = merged.summary
+
+            # Fill in any that weren't returned
+            for m in to_merge:
+                if m['name'] not in results:
+                    results[m['name']] = m['existing']
+
+            log(f"   ✅ Batch merged {len(to_merge)} summaries")
+
+        except Exception as e:
+            log(f"   ⚠️ Batch summary merge failed: {e}")
+            # Fallback: use existing summaries
+            for m in to_merge:
+                results[m['name']] = m['existing']
+
+        return results
+
 if __name__ == "__main__":
     # Test
     enhancer = GraphEnhancer()
-    print("GraphEnhancer initialized.")
+    log("GraphEnhancer initialized.")

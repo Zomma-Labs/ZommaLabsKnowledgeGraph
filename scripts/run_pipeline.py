@@ -24,7 +24,7 @@ async def main():
     # 1. Load Chunks
     # We'll look for .jsonl files in the SAVED directory
     # Filter for Beige Book only as requested
-    chunk_files = [f for f in os.listdir(CHUNKS_DIR) if f.endswith('.jsonl') and ('alphabet' in f.lower() or 'berkshire' in f.lower() or 'largest' in f.lower())]
+    chunk_files = [f for f in os.listdir(CHUNKS_DIR) if f.endswith('.jsonl') and 'alphabet' in f.lower()] #or 'berkshire' in f.lower() or 'largest' in f.lower())
     
     if not chunk_files:
         print("❌ No chunk files found in src/chunker/SAVED")
@@ -42,8 +42,8 @@ async def main():
             # Read line by line (each line is a chunk object)
             # Limit to first few chunks for testing to avoid huge costs/time
             for i, line in enumerate(f):
-                if i >= 39: # Limit to 3 chunks per file for test
-                    break
+                # if i >= 20: # Limit to 20 chunks per file for test
+                #     break
                 
                 chunk_data = json.loads(line)
                 
@@ -99,4 +99,9 @@ async def process_chunk(i: int, state: Dict):
         print(f"   ❌ Chunk {i} Failed: {e}")
 
 if __name__ == "__main__":
+    print("🚀 Starting Pipeline Run...")
+    import time
+    start_time = time.time()
     asyncio.run(main())
+    end_time = time.time()
+    print(f"Pipeline Run Completed in {end_time - start_time:.2f} seconds.")
