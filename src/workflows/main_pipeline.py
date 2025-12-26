@@ -1,16 +1,20 @@
 import asyncio
+import logging
+import os
+import time
 import uuid
 from datetime import datetime
 from typing import List, Dict, Any, TypedDict
 from langgraph.graph import StateGraph, END
+from langgraph.types import RetryPolicy
 
 from src.agents.atomizer import atomizer
 from src.agents.entity_extractor import EntityExtractor
-from src.agents.FIBO_librarian import FIBOLibrarian
+from src.agents.topic_librarian import TopicLibrarian
 from src.agents.analyst import AnalystAgent
 from src.agents.graph_assembler import GraphAssembler
 from src.agents.graph_enhancer import GraphEnhancer
-from src.agents.causal_linker import CausalLinker
+# from src.agents.causal_linker import CausalLinker  # Disabled for cost optimization
 from src.agents.header_analyzer import HeaderAnalyzer, DimensionType
 from src.agents.temporal_extractor import TemporalExtractor
 from src.schemas.document_types import Chunk
@@ -19,6 +23,15 @@ from src.schemas.relationship import RelationshipClassification
 from src.schemas.nodes import TopicNode
 from src.util.services import get_services
 from src.util.similarity_lock import SimilarityLockManager
+
+# Configure logging - set VERBOSE=true to enable detailed output
+VERBOSE = os.getenv("VERBOSE", "false").lower() == "true"
+logger = logging.getLogger(__name__)
+
+def log(msg: str):
+    """Print only if VERBOSE mode is enabled."""
+    if VERBOSE:
+        print(msg)
 
 # Define the State
 class GraphState(TypedDict):
@@ -39,11 +52,11 @@ class GraphState(TypedDict):
 services = get_services()
 
 # Init agents with shared services
-librarian = FIBOLibrarian(services=services)
+topic_librarian = TopicLibrarian(services=services)
 analyst = AnalystAgent(services=services)
 assembler = GraphAssembler(services=services)
 enhancer = GraphEnhancer(services=services)
-causal_linker = CausalLinker(services=services)
+# causal_linker = CausalLinker(services=services)  # Disabled for cost optimization
 header_analyzer = HeaderAnalyzer(services=services)
 entity_extractor = EntityExtractor() # New agent
 
@@ -51,8 +64,15 @@ entity_extractor = EntityExtractor() # New agent
 neo4j_client = services.neo4j
 embeddings = services.embeddings
 
+# Global lock for Neo4j transactions to prevent deadlocks across chunks
+# Precomputation (embeddings, LLM) runs in parallel; only the final TX is serialized
+
+neo4j_tx_lock = asyncio.Lock()
+
+llm_semaphore = asyncio.Semaphore(int(os.getenv("LLM_CONCURRENCY", "100")))
+
 def initialize_episode(state: GraphState) -> Dict[str, Any]:
-    print("---INITIALIZE EPISODE (Dimensional Star)---")
+    log("---INITIALIZE EPISODE (Dimensional Star)---")
     chunk_text = state["chunk_text"]
     
     # Create EpisodicNode in Neo4j
@@ -137,59 +157,55 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
         "doc_uuid": doc_uuid
     })
     
-    print(f"   Created EpisodicNode: {episode_uuid} (Header: {header_path})")
+    log(f"   Created EpisodicNode: {episode_uuid} (Header: {header_path})")
 
     # 4. Analyze Dimensions & Link to Episode (instead of Hub/SectionNode)
     if headings:
         # Extract context
         doc_filename = state["metadata"].get("filename", "")
         doc_context = header_analyzer.extract_document_context(chunk_text, doc_filename)
-        print(f"   Document Context: {doc_context}")
+        log(f"   Document Context: {doc_context}")
         
         dimensions = header_analyzer.analyze_path(headings, document_context=doc_context)
-        print(f"   Dimensions found: {[d.value for d in dimensions]}")
+        log(f"   Dimensions found: {[d.value for d in dimensions]}")
         
         for dim in dimensions:
             resolved_node_uuid = None
             resolved_node_type = None
-            
-            # Resolution Logic (Standard Paradigm: FIBO -> Graph -> Create)
-            # 1. FIBO Resolution
-            resolve_query = f"{dim.value} {dim.description}" if dim.description else dim.value
-            fibo_res = librarian.resolve(resolve_query)
-            
-            if fibo_res and fibo_res['score'] > 0.9:
-                print(f"     ✅ FIBO Match: {fibo_res['label']} ({fibo_res['score']:.2f})")
-                
-                target_label = "TopicNode" if dim.type == DimensionType.TOPIC else "EntityNode"
-                
-                
-                cypher_merge_fibo = f"""
-                MERGE (n:{target_label} {{name: $name, group_id: $group_id}}) 
-                ON CREATE SET n.uuid = $uuid, n.embedding = $embedding, n.fibo_uri = $fibo_uri, n.fibo_id = $fibo_uri
-                RETURN n.uuid as node_uuid
-                """
-                
-                # Embed dimension value + description
-                try:
-                    text_to_embed = f"{dim.value}: {dim.description}" if dim.description else dim.value
-                    dim_embedding = embeddings.embed_query(text_to_embed)
-                except:
-                    dim_embedding = None
 
-                res = neo4j_client.query(cypher_merge_fibo, {
-                    "name": fibo_res['label'],
-                    "group_id": group_id,
-                    "uuid": str(uuid.uuid4()),
-                    "embedding": dim_embedding,
-                    "fibo_uri": fibo_res['uri']
-                })
-                resolved_node_uuid = res[0]['node_uuid']
-                resolved_node_type = target_label
-                
-            else:
-                # Graph Search / Create New
-                target_label = "TopicNode" if dim.type == DimensionType.TOPIC else "EntityNode"
+            target_label = "TopicNode" if dim.type == DimensionType.TOPIC else "EntityNode"
+
+            # Resolution Logic: Topic Ontology for Topics, Graph Search for Entities
+            if dim.type == DimensionType.TOPIC:
+                # Use topic ontology for topics
+                topic_res = topic_librarian.resolve(dim.value)
+                if topic_res and topic_res['score'] > 0.70:
+                    log(f"     ✅ Topic Match: {topic_res['label']} ({topic_res['score']:.2f})")
+
+                    cypher_merge_topic = """
+                    MERGE (n:TopicNode {name: $name, group_id: $group_id})
+                    ON CREATE SET n.uuid = $uuid, n.embedding = $embedding, n.topic_uri = $topic_uri
+                    RETURN n.uuid as node_uuid
+                    """
+
+                    try:
+                        text_to_embed = f"{topic_res['label']}: {topic_res.get('definition', '')}"
+                        dim_embedding = embeddings.embed_query(text_to_embed)
+                    except:
+                        dim_embedding = None
+
+                    res = neo4j_client.query(cypher_merge_topic, {
+                        "name": topic_res['label'],
+                        "group_id": group_id,
+                        "uuid": str(uuid.uuid4()),
+                        "embedding": dim_embedding,
+                        "topic_uri": topic_res['uri']
+                    })
+                    resolved_node_uuid = res[0]['node_uuid']
+                    resolved_node_type = target_label
+
+            # For entities OR topics that didn't match ontology: Graph Search / Create New
+            if resolved_node_uuid is None:
                 
                 cypher_find = f"""
                 MATCH (n:{target_label} {{group_id: $group_id}})
@@ -200,11 +216,11 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
                 existing = neo4j_client.query(cypher_find, {"group_id": group_id, "name": dim.value})
                 
                 if existing:
-                    print(f"     🔄 Found existing {{target_label}}: {dim.value}")
+                    log(f"     🔄 Found existing {{target_label}}: {dim.value}")
                     resolved_node_uuid = existing[0]['node_uuid']
                     resolved_node_type = target_label
                 else:
-                    print(f"     🆕 Creating new {{target_label}}: {dim.value}")
+                    log(f"     🆕 Creating new {{target_label}}: {dim.value}")
                     # with open("new_topics_entities.log", "a") as f:
                     #     f.write(f"[{{target_label}}] {dim.value}\n")
                     
@@ -264,19 +280,19 @@ def initialize_episode(state: GraphState) -> Dict[str, Any]:
     return {"episodic_uuid": episode_uuid, "group_id": group_id, "header_path": header_path}
 
 def atomize_node(state: GraphState) -> Dict[str, Any]:
-    print("---ATOMIZER (Decomposition Only)---")
+    log("---ATOMIZER (Decomposition Only)---")
     chunk_text = state["chunk_text"]
     metadata = state["metadata"]
     
     try:
         props = atomizer(chunk_text, metadata)
-        print(f"   Decomposed into {len(props)} propositions.")
+        log(f"   Decomposed into {len(props)} propositions.")
         return {"propositions": props}
     except Exception as e:
         return {"errors": [f"Atomizer Error: {str(e)}"]}
 
 async def entity_extraction_node(state: GraphState) -> Dict[str, Any]:
-    print("---ENTITY EXTRACTION (Context-Aware)---")
+    log("---ENTITY EXTRACTION (Context-Aware)---")
     propositions = state["propositions"]
     chunk_text = state["chunk_text"]
     
@@ -291,8 +307,10 @@ async def entity_extraction_node(state: GraphState) -> Dict[str, Any]:
         header_path = " > ".join([h.strip() for h in headings if h.strip().lower() != "body"])
     
     async def extract_async(prop: str) -> List[AtomicFact]:
-        # Extract returns List[FinancialRelation]
-        relations = await asyncio.to_thread(entity_extractor.extract, prop, chunk_text, header_path)
+        # Use semaphore to limit concurrent LLM calls
+        async with llm_semaphore:
+            # Extract returns List[FinancialRelation]
+            relations = await asyncio.to_thread(entity_extractor.extract, prop, chunk_text, header_path)
         
         # Convert relations back to AtomicFact (preserving the original prop text)
         facts = []
@@ -305,6 +323,7 @@ async def entity_extraction_node(state: GraphState) -> Dict[str, Any]:
                 subject_type=rel.subject_type,
                 object=rel.object,
                 object_type=rel.object_type,
+                relationship_description=rel.relationship_description,
                 topics=rel.topics,
                 date_context=rel.date_context
             ))
@@ -318,7 +337,7 @@ async def entity_extraction_node(state: GraphState) -> Dict[str, Any]:
         # Flatten
         all_facts = [fact for sublist in fact_lists for fact in sublist]
         
-        print(f"   Extracted {len(all_facts)} AtomicFacts from {len(propositions)} propositions.")
+        log(f"   Extracted {len(all_facts)} AtomicFacts from {len(propositions)} propositions.")
         return {"atomic_facts": all_facts}
     except Exception as e:
         import traceback
@@ -326,128 +345,181 @@ async def entity_extraction_node(state: GraphState) -> Dict[str, Any]:
         return {"errors": [f"Entity Extraction Error: {str(e)}"]}
 
 async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
-    print("---PARALLEL RESOLUTION---")
+    log("---PARALLEL RESOLUTION---")
     facts = state["atomic_facts"]
+    chunk_text = state["chunk_text"]
     group_id = state.get("group_id", "default_tenant")
+
+    # ========================================
+    # PHASE 1: COLLECT ALL UNIQUE ENTITIES
+    # ========================================
+    unique_items_to_resolve = {} # (name, type) -> { "context": first_context, "original_indices": [...] }
+
+    for i, fact in enumerate(facts):
+        # Subject
+        subj_key = (fact.subject, fact.subject_type)
+        if subj_key not in unique_items_to_resolve:
+            unique_items_to_resolve[subj_key] = {"context": fact.fact, "original_indices": []}
+        unique_items_to_resolve[subj_key]["original_indices"].append({"fact_idx": i, "role": "subject"})
+
+        # Object
+        if fact.object:
+            obj_key = (fact.object, fact.object_type)
+            if obj_key not in unique_items_to_resolve:
+                unique_items_to_resolve[obj_key] = {"context": fact.fact, "original_indices": []}
+            unique_items_to_resolve[obj_key]["original_indices"].append({"fact_idx": i, "role": "object"})
+
+        # Topics - Validate against topic ontology before processing
+        if fact.topics:
+            # Validate each topic and log rejected ones for manual review
+            validated_topics = []
+            for raw_topic in fact.topics:
+                match = topic_librarian.resolve(raw_topic)
+                if match:
+                    validated_topics.append(match['label'])
+                else:
+                    # Log rejected topic for manual review
+                    with open("rejected_topics.log", "a") as f:
+                        f.write(f"{raw_topic}\t|\t{fact.fact[:100]}...\n")
+
+            for topic in validated_topics:
+                top_key = (topic, "Topic")
+                if top_key not in unique_items_to_resolve:
+                    unique_items_to_resolve[top_key] = {"context": fact.fact, "original_indices": []}
+                unique_items_to_resolve[top_key]["original_indices"].append({"fact_idx": i, "role": "topic_list", "topic_name": topic})
+
+    log(f"   Calculated {len(unique_items_to_resolve)} unique items to resolve from {len(facts)} facts.")
+
+    # ========================================
+    # PHASE 2: BATCH GENERATE ALL SUMMARIES
+    # ========================================
+    log(f"   🔄 Batch generating summaries...")
+    entity_names = [name for name, _ in unique_items_to_resolve.keys()]
+
+    # Use batch summarization (batches of 15)
+    summaries_dict = await asyncio.to_thread(
+        enhancer.batch_extract_summaries,
+        entity_names,
+        chunk_text,
+        batch_size=15
+    )
+
+    # ========================================
+    # PHASE 2.5: BATCH EMBED ALL ENTITY NAMES
+    # (Avoids rate limits by batching 128 texts per API call)
+    # ========================================
+    log(f"   📦 Batch embedding {len(unique_items_to_resolve)} entities...")
     
-    # helper for resolving a single entity/topic
+    # Collect all texts to embed
+    sorted_keys = list(unique_items_to_resolve.keys())
+    embedding_texts = []
+    for name, node_type in sorted_keys:
+        summary = summaries_dict.get(name, "Entity")
+        normalized_name = name.strip().title()
+        embedding_texts.append(f"{normalized_name}: {summary}")
+    
+    # Batch embed (128 per API call) with retry logic
+    BATCH_SIZE = 128
+    MAX_RETRIES = 3
+    all_entity_embeddings = []
+    
+    for batch_start in range(0, len(embedding_texts), BATCH_SIZE):
+        batch_end = min(batch_start + BATCH_SIZE, len(embedding_texts))
+        batch = embedding_texts[batch_start:batch_end]
+        
+        # Retry with exponential backoff
+        for attempt in range(MAX_RETRIES):
+            try:
+                batch_embeddings = embeddings.embed_documents(batch)
+                all_entity_embeddings.extend(batch_embeddings)
+                break  # Success!
+            except Exception as e:
+                error_str = str(e).lower()
+                if "rate limit" in error_str or "429" in error_str or "requests per minute" in error_str:
+                    if attempt < MAX_RETRIES - 1:
+                        wait_time = (2 ** attempt)  # 1s, 2s, 4s
+                        print(f"   ⏳ Rate limit hit, waiting {wait_time}s before retry {attempt + 2}/{MAX_RETRIES}...")
+                        time.sleep(wait_time)
+                        continue
+                print(f"   ⚠️ Batch embedding failed: {e}")
+                all_entity_embeddings.extend([None] * len(batch))
+                break
+    
+    # Create lookup: (name, node_type) -> embedding
+    entity_embedding_lookup = {}
+    for idx, key in enumerate(sorted_keys):
+        entity_embedding_lookup[key] = all_entity_embeddings[idx] if idx < len(all_entity_embeddings) else None
+    
+    log(f"   ✅ Batch embedded {len(all_entity_embeddings)} entities")
 
-    # helper for resolving a single entity/topic
-    async def resolve_item_async(name: str, context: str, node_type: str) -> tuple[str | None, str | None, str]:
+    # ========================================
+    # PHASE 3: PARALLEL RESOLUTION WITH PRE-COMPUTED EMBEDDINGS
+    # ========================================
+
+    async def resolve_item_async(name: str, node_type: str, summary: str, cached_embedding: List[float] | None) -> tuple[str | None, str | None, str]:
+        """Resolution with pre-computed summary AND embedding"""
         if not name:
-             return None, None, ""
+            return None, None, ""
 
-        # NORMALIZE: Enforce Title Case to prevent "Tariff-related" vs "Tariff-Related"
+        # Normalize
         name = name.strip().title()
 
-        # 0. Extract Summary (Moved UP)
-        # We do this BEFORE locking so we can embed Name:Summary for the lock key (more specific)
-        summary = enhancer.extract_entity_summary(name, context)
-
-        # 1. Generate Embedding for Lock (and downstream use)
-        # We embed "Name: Summary" once and re-use it everywhere.
-        embedding_text = f"{name}: {summary}"
-        try:
-             name_embedding = await asyncio.to_thread(embeddings.embed_query, embedding_text)
-        except Exception:
-             name_embedding = None
-
-        if name_embedding:
-             # Accelerate: Wait for similar ops
-             # Use the embedding of Name:Summary to finding similar concurrent tasks
-             lock_id = await SimilarityLockManager.acquire_lock(name_embedding, name)
-             try:
-                 # Inside the lock, we do the full resolution (which checks DB updates from other threads)
-                 return await asyncio.to_thread(resolve_single_item, name, summary, name_embedding, node_type)
-             finally:
-                 await SimilarityLockManager.release_lock(lock_id)
+        if cached_embedding:
+            lock_id = await SimilarityLockManager.acquire_lock(cached_embedding, name)
+            try:
+                return await asyncio.to_thread(resolve_single_item, name, summary, cached_embedding, node_type)
+            finally:
+                await SimilarityLockManager.release_lock(lock_id)
         else:
-             # Fallback if embedding fails
-             return await asyncio.to_thread(resolve_single_item, name, summary, None, node_type)
+            return await asyncio.to_thread(resolve_single_item, name, summary, None, node_type)
 
     def resolve_single_item(name: str, summary: str, cached_embedding: List[float] | None, node_type: str) -> tuple[str | None, str | None, str]:
         if not name:
             return None, None, ""
-        
-        # 1. FIBO Resolution (Pass cached embedding)
-        # We use the embedding of "Name: Summary" to help find the right concept if possible
-        res = librarian.resolve(name, cached_embedding=cached_embedding)
-        if res:
-            # Materialize FIBO node to get UUID
-            fibo_uri = res['uri']
-            fibo_label = res['label']
-            
-            target_label = "TopicNode" if node_type == "Topic" else "EntityNode"
-            
-            # We must ensure this node exists and has a UUID
-            cypher_fibo = f"""
-            MERGE (n:{target_label} {{name: $name, group_id: $group_id}})
-            ON CREATE SET 
-                n.uuid = $uuid,
-                n.fibo_uri = $fibo_uri,
-                n.summary = $summary,
-                n.is_fibo = true,
-                n.created_at = datetime()
-            ON MATCH SET
-                n.fibo_uri = $fibo_uri,
-                n.is_fibo = true
-            RETURN n.uuid as node_uuid
-            """
-            try:
-                # Use a deterministic UUID for FIBO if we want? Or just random.
-                # If we merge on name only, we might merge with existing local entity.
-                # Ideally we merge on `fibo_uri` if it exists?
-                # But current schema merges on `name` within `group_id`.
-                # Let's stick to MERGE on name for now to avoid duplicates if name matches.
-                
-                fibo_node_res = neo4j_client.query(cypher_fibo, {
-                    "name": fibo_label,
-                    "group_id": group_id,
-                    "uuid": str(uuid.uuid4()),
-                    "fibo_uri": fibo_uri,
-                    "summary": summary
-                })
-                if fibo_node_res:
-                    return fibo_node_res[0]['node_uuid'], fibo_label, summary
-            except Exception as e:
-                print(f"FIBO materialization failed: {e}")
-            
-        # 2. Graph Deduplication (Semantic)
+
+        # 1. Graph Deduplication (Semantic)
         # Pass cached embedding
         candidates = enhancer.find_graph_candidates(name, summary, group_id=group_id, node_type=node_type, cached_embedding=cached_embedding)
         decision = enhancer.resolve_entity_against_graph(name, summary, candidates)
-        
+
         if decision['decision'] == 'MERGE' and decision['target_uuid']:
+            # Merge summaries: combine existing entity's summary with new summary
+            existing_summary = ""
+            for c in candidates:
+                if c.get('uuid') == decision['target_uuid']:
+                    existing_summary = c.get('summary', '')
+                    break
+
+            if existing_summary and summary:
+                merged_summary = enhancer.merge_summaries(name, existing_summary, summary)
+                # Update the entity with merged summary
+                label = "TopicNode" if node_type == "Topic" else "EntityNode"
+                try:
+                    neo4j_client.query(f"""
+                        MATCH (n:{label} {{uuid: $uuid, group_id: $group_id}})
+                        SET n.summary = $summary
+                    """, {"uuid": decision['target_uuid'], "group_id": group_id, "summary": merged_summary})
+                except Exception as e:
+                    log(f"   ⚠️ Summary merge update failed: {e}")
+                return decision['target_uuid'], name, merged_summary
+
             return decision['target_uuid'], name, summary
         
-        # 3. New Entity - CREATE IMMEDIATELY (Atomic Write)
-        
-        # 3. New Entity - CREATE IMMEDIATELY (Atomic Write)
-        
-        # Use cached embedding (it was Name:Summary)
+        # 2. New Entity/Topic - CREATE IMMEDIATELY (Atomic Write)
+        # Use cached embedding (it was Name:Summary, already computed)
         node_embedding = cached_embedding
-        
-        # If it was None for some reason, re-try or skip (it was tried in async wrapper)
-        if not node_embedding:
-             # One last try?
-             try:
-                 node_embedding = embeddings.embed_query(f"{name}: {summary}")
-             except:
-                 node_embedding = None
 
         new_uuid = str(uuid.uuid4())
-        print(f"   🆕 Creating New {node_type} (Atomic): {name}")
-        
+        log(f"   🆕 Creating New {node_type} (Atomic): {name}")
+
         label = "TopicNode" if node_type == "Topic" else "EntityNode"
-        
-        # Create with UUID, NO URI
+
         cypher_atomic_create = f"""
         MERGE (n:{label} {{name: $name, group_id: $group_id}})
-        ON CREATE SET 
-            n.uuid = $uuid, 
+        ON CREATE SET
+            n.uuid = $uuid,
             n.summary = $summary,
             n.embedding = $embedding,
-            n.is_fibo = false,
             n.created_at = datetime()
         ON MATCH SET
             n.embedding = CASE WHEN n.embedding IS NULL THEN $embedding ELSE n.embedding END,
@@ -470,61 +542,43 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
 
     # Wrapper for Analyst processing
     async def classify_fact_relationship(fact: AtomicFact) -> RelationshipClassification:
-        fact_str = f"{fact.subject} {fact.fact} {fact.object if fact.object else ''}"
-        return await asyncio.to_thread(analyst.classify_relationship, fact_str)
+        # Use relationship_description for vector search (more focused than full fact text)
+        # Fallback to full fact if relationship_description is missing
+        if fact.relationship_description:
+            query_str = fact.relationship_description
+        else:
+            query_str = f"{fact.subject} {fact.fact} {fact.object if fact.object else ''}"
+        return await asyncio.to_thread(analyst.classify_relationship, query_str)
 
-    # 1. Deduplicate Items to Resolve
-    # Key: (name, type) -> List of fact indices/roles needing this resolution
-    # We use (name, type) because "Apple" (Entity) and "Apple" (Topic/Fruit) should typically be distinct if types differ,
-    # though our resolution logic might handle them similarly. Safest to respect the type from Atomizer.
-    unique_items_to_resolve = {} # (name, type) -> { "context": first_context, "original_indices": [...] }
-    
-    for i, fact in enumerate(facts):
-        # Subject
-        subj_key = (fact.subject, fact.subject_type)
-        if subj_key not in unique_items_to_resolve:
-            unique_items_to_resolve[subj_key] = {"context": fact.fact, "original_indices": []}
-        unique_items_to_resolve[subj_key]["original_indices"].append({"fact_idx": i, "role": "subject"})
-        
-        # Object
-        if fact.object:
-            obj_key = (fact.object, fact.object_type)
-            if obj_key not in unique_items_to_resolve:
-                unique_items_to_resolve[obj_key] = {"context": fact.fact, "original_indices": []}
-            unique_items_to_resolve[obj_key]["original_indices"].append({"fact_idx": i, "role": "object"})
-            
-        # Topics (Always Type=Topic)
-        if fact.topics:
-            for topic in fact.topics:
-                top_key = (topic, "Topic")
-                if top_key not in unique_items_to_resolve:
-                    unique_items_to_resolve[top_key] = {"context": fact.fact, "original_indices": []}
-                unique_items_to_resolve[top_key]["original_indices"].append({"fact_idx": i, "role": "topic_list", "topic_name": topic})
+    # ========================================
+    # PHASE 4: CREATE RESOLUTION & CLASSIFICATION TASKS
+    # ========================================
 
-    print(f"   Calculated {len(unique_items_to_resolve)} unique items to resolve from {len(facts)} facts.")
-
-    # 2. Create Resolution Tasks
     resolution_tasks = []
-    # We need to map task index back to the key to store results
     task_idx_to_key = {}
-    
-    sorted_keys = list(unique_items_to_resolve.keys())
+
     for idx, (name, node_type) in enumerate(sorted_keys):
-        context = unique_items_to_resolve[(name, node_type)]["context"]
-        resolution_tasks.append(resolve_item_async(name, context, node_type))
+        # Use pre-computed summary AND embedding
+        summary = summaries_dict.get(name, "Entity")  # Fallback if missing
+        cached_embedding = entity_embedding_lookup.get((name, node_type))
+        resolution_tasks.append(resolve_item_async(name, node_type, summary, cached_embedding))
         task_idx_to_key[idx] = (name, node_type)
-        
-    # 3. Create Classification Tasks
+
     classification_tasks = [classify_fact_relationship(fact) for fact in facts]
-    
-    # 4. Run Everything in Parallel
-    print(f"   🚀 Running {len(resolution_tasks)} resolution + {len(classification_tasks)} classification tasks...")
+
+    # ========================================
+    # PHASE 5: RUN EVERYTHING IN PARALLEL
+    # ========================================
+
+    log(f"   🚀 Running {len(resolution_tasks)} resolution + {len(classification_tasks)} classification tasks...")
     all_results = await asyncio.gather(*(resolution_tasks + classification_tasks))
-    
+
     resolution_results = all_results[:len(resolution_tasks)]
     classification_results = all_results[len(resolution_tasks):]
-    
-    # 5. Distribute Resolution Results back to Facts
+
+    # ========================================
+    # PHASE 6: DISTRIBUTE RESULTS BACK TO FACTS
+    # ========================================
     # Init structure
     resolved_entities = [{} for _ in facts] # List of dicts
     resolved_topics_by_fact = [[] for _ in facts] # List of lists
@@ -579,114 +633,87 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
     }
 
 def causal_linking_node(state: GraphState) -> Dict[str, Any]:
-    print("---CAUSAL LINKING---")
+    log("---CAUSAL LINKING---")
     facts = state["atomic_facts"]
     chunk_text = state["chunk_text"]
     
     try:
         links = causal_linker.extract_causality(facts, chunk_text)
-        print(f"   Found {len(links)} causal links.")
+        log(f"   Found {len(links)} causal links.")
         return {"causal_links": links}
     except Exception as e:
         print(f"Causal linking error: {e}")
         return {"causal_links": []}
 
-def assemble_node(state: GraphState) -> Dict[str, Any]:
-    print("---ASSEMBLER---")
+def _should_retry_assembler(error: Exception) -> bool:
+    """Retry on rate limits and Neo4j deadlocks."""
+    error_str = str(error).lower()
+    return "requests per minute" in error_str or "deadlockdetected" in error_str
+
+
+async def assemble_node(state: GraphState) -> Dict[str, Any]:
+    log("---ASSEMBLER---")
     facts = state["atomic_facts"]
     resolved_ents = state["resolved_entities"]
     resolved_tops = state.get("resolved_topics", [[] for _ in facts])
-    links = state["causal_links"]
+    links = state.get("causal_links", [])  # Default to empty list (causal linking disabled)
     episode_uuid = state["episodic_uuid"]
     group_id = state.get("group_id", "default_tenant")
     
     fact_uuids = []
-    
+
     # 1. Create Fact Nodes
+    # Prepare all facts_data for batch processing
+    facts_data = []
     for i in range(len(facts)):
         fact = facts[i]
         res_ent = resolved_ents[i]
         res_top = resolved_tops[i]
         rel = state["classified_relationships"][i] if "classified_relationships" in state and i < len(state["classified_relationships"]) else None
-        
-        # Retry logic for Rate Limiting
-        max_retries = 3
-        for attempt in range(max_retries):
-            try:
-                uuid = assembler.assemble_fact_node(
-                    fact_obj=fact,
-                    subject_uuid=res_ent["subject_uuid"],
-                    subject_label=res_ent["subject_label"],
-                    object_uuid=res_ent["object_uuid"],
-                    object_label=res_ent["object_label"],
-                    episode_uuid=episode_uuid,
-                    group_id=group_id,
-                    relationship_classification=rel,
-                    subject_summary=res_ent.get("subject_summary", ""),
-                    object_summary=res_ent.get("object_summary", ""),
-                    subject_type=res_ent.get("subject_type", "Entity"),
-                    object_type=res_ent.get("object_type", "Entity")
-                )
-                fact_uuids.append(uuid)
-                
-                # Link Topics
-                for topic in res_top:
-                    if topic["uuid"]: # Only link if we have a valid UUID
-                        # Generate Topic Embedding
-                        topic_embedding = None
-                        try:
-                            t_text = f"{topic['label']}: {topic['summary']}" if topic['summary'] else topic['label']
-                            topic_embedding = embeddings.embed_query(t_text)
-                        except Exception:
-                            pass
 
-                        cypher_topic_merge = """
-                        MERGE (t:TopicNode {uuid: $topic_uuid, group_id: $group_id})
-                        ON CREATE SET 
-                            t.name = $name, 
-                            t.summary = $summary,
-                            t.embedding = $embedding,
-                            t.is_fibo = false,
-                            t.created_at = datetime()
-                        ON MATCH SET
-                            t.embedding = CASE WHEN t.embedding IS NULL THEN $embedding ELSE t.embedding END,
-                            t.summary = CASE WHEN t.summary IS NULL OR t.summary = "" THEN $summary ELSE t.summary END
-                        RETURN t.uuid
-                        """
-                        neo4j_client.query(cypher_topic_merge, {
-                            "topic_uuid": topic["uuid"],
-                            "group_id": group_id,
-                            "name": topic["label"],
-                            "summary": topic["summary"],
-                            "embedding": topic_embedding
-                        })
-                        
-                        # Link to Episode
-                        assembler.link_topic_to_episode(topic["uuid"], episode_uuid, group_id)
-                
-                # If success, break retry loop
-                break
+        facts_data.append({
+            "fact_obj": fact,
+            "subject_uuid": res_ent["subject_uuid"],
+            "subject_label": res_ent["subject_label"],
+            "object_uuid": res_ent.get("object_uuid"),
+            "object_label": res_ent.get("object_label"),
+            "relationship_classification": rel,
+            "subject_summary": res_ent.get("subject_summary", ""),
+            "object_summary": res_ent.get("object_summary", ""),
+            "subject_type": res_ent.get("subject_type", "Entity"),
+            "object_type": res_ent.get("object_type", "Entity"),
+            "topics": res_top
+        })
 
-            except Exception as e:
-                # Check for Rate Limit
-                if "requests per minute" in str(e).lower() and attempt < max_retries - 1:
-                    print(f"   ⚠️ Rate Limit hit for fact {i} (Attempt {attempt+1}/{max_retries}). Waiting 10s...")
-                    
-                    ##### TEMP
-                    import time
-                    time.sleep(10)
-                    ##### TEMP
-                    
-                    continue # Retry
-                
-                # If other error or max retries exceeded
-                error_msg = f"Error assembling fact {i}: {e}"
-                print(error_msg)
-                if "errors" not in state:
-                    state["errors"] = []
-                state["errors"].append(error_msg)
-                fact_uuids.append(None) # Keep index alignment
-                break
+    # PHASE 1 & 2: Precompute embeddings + deduplication (runs in parallel across chunks)
+    precomputed = await asyncio.to_thread(
+        assembler.precompute_facts_batch,
+        facts_data,
+        group_id
+    )
+    
+    # PHASE 3: Execute Neo4j transaction (SERIALIZED via lock to prevent deadlocks)
+    # Transient errors (rate limit, deadlock) will bubble up for RetryPolicy to handle
+    try:
+        async with neo4j_tx_lock:
+            fact_uuids = await asyncio.to_thread(
+                assembler.execute_facts_batch,
+                precomputed,
+                facts_data,
+                episode_uuid,
+                group_id
+            )
+        log(f"   ✅ Successfully assembled {len([u for u in fact_uuids if u])}/{len(facts)} facts")
+
+    except Exception as e:
+        # Check if this is a transient error that RetryPolicy should handle
+        if _should_retry_assembler(e):
+            raise  # Let RetryPolicy handle it
+
+        # Non-transient error: handle gracefully
+        error_msg = f"Error in batch assembly: {e}"
+        print(error_msg)
+        return {"errors": state.get("errors", []) + [error_msg]}
         
     # 2. Link Causality
     for link in links:
@@ -717,16 +744,24 @@ workflow.add_node("initialize_episode", initialize_episode)
 workflow.add_node("atomizer", atomize_node)
 workflow.add_node("entity_extraction", entity_extraction_node)
 workflow.add_node("parallel_resolution", parallel_resolution_node)
-workflow.add_node("causal_linking", causal_linking_node)
-workflow.add_node("assembler", assemble_node)
+# workflow.add_node("causal_linking", causal_linking_node)  # Disabled for cost optimization
+workflow.add_node(
+    "assembler",
+    assemble_node,
+    retry_policy=RetryPolicy(
+        max_attempts=3,
+        initial_interval=1.0,
+        backoff_factor=2.0,
+        retry_on=_should_retry_assembler
+    )
+)
 
 workflow.set_entry_point("initialize_episode")
 
 workflow.add_edge("initialize_episode", "atomizer")
 workflow.add_edge("atomizer", "entity_extraction")
 workflow.add_edge("entity_extraction", "parallel_resolution")
-workflow.add_edge("parallel_resolution", "causal_linking")
-workflow.add_edge("causal_linking", "assembler")
+workflow.add_edge("parallel_resolution", "assembler")  # Direct edge, skipping causal_linking
 workflow.add_edge("assembler", END)
 
 app = workflow.compile()
@@ -746,17 +781,17 @@ async def ingest_document(chunks: List[Chunk], group_id: str) -> None:
         return
 
     # 1. Temporal Extraction (Document Level)
-    print("⏳ Running Temporal Extraction...")
+    log("⏳ Running Temporal Extraction...")
     extractor = TemporalExtractor()
     # Assume title is the filename or doc_id
     title = chunks[0].metadata.get("origin_filename") or chunks[0].doc_id
     
     enriched_chunks = await asyncio.to_thread(extractor.enrich_chunks, chunks, title)
     doc_date = enriched_chunks[0].metadata.get("doc_date") if enriched_chunks else None
-    print(f"   📅 Document Date Extracted: {doc_date}")
+    log(f"   📅 Document Date Extracted: {doc_date}")
     
     # 2. Pipeline Execution (Chunk Level)
-    print("🚀 Dispatching chunks to pipeline...")
+    log("🚀 Dispatching chunks to pipeline...")
     
     async def process_chunk(chunk: Chunk):
         inputs = {
@@ -796,4 +831,4 @@ async def ingest_document(chunks: List[Chunk], group_id: str) -> None:
     # Run all
     await asyncio.gather(*tasks)
     
-    print(f"✅ Ingestion Complete for {chunks[0].doc_id}.")
+    log(f"✅ Ingestion Complete for {chunks[0].doc_id}.")

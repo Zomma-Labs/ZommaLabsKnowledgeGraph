@@ -33,6 +33,10 @@ class AtomicFact(BaseModel):
         "Entity",
         description="The type of the object. 'Entity' for specific actors, 'Topic' for concepts."
     )
+    relationship_description: Optional[str] = Field(
+        None,
+        description="A short phrase (2-5 words) describing the action between subject and object. Examples: 'acquired', 'partnered with', 'filed lawsuit against'."
+    )
     date_context: Optional[str] = Field(
         None,
         description="Temporal context for the fact, e.g., 'Q3 2024', 'In 1963', '1962'. Used to ground facts in time, you should always resolve things like 'A year later' or 'Last year' to a specific year."

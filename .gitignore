@@ -14,6 +14,5 @@ wheels/
 
 # Log files
 *.log
-*.txt
 !README.txt
 !requirements.txt

@@ -1,4 +1,5 @@
 import json
+import os
 from typing import List, Optional, TYPE_CHECKING
 from pydantic import BaseModel, Field
 
@@ -8,6 +9,14 @@ from src.schemas.relationship import RelationshipType, RelationshipDefinition, R
 if TYPE_CHECKING:
     from src.util.services import Services
 
+# Control verbose output
+VERBOSE = os.getenv("VERBOSE", "false").lower() == "true"
+
+def log(msg: str):
+    """Print only if VERBOSE mode is enabled."""
+    if VERBOSE:
+        print(msg)
+
 class AnalystAgent:
     def __init__(self, services: Optional["Services"] = None):
         if services is None:
@@ -15,7 +24,7 @@ class AnalystAgent:
             services = get_services()
         self.vector_store = VectorStore(client=services.qdrant_relationships)
         self.llm = services.llm
-        self.max_retries = 3
+        self.max_retries = 1
 
     def classify_relationship(self, fact: str) -> Optional[RelationshipClassification]:
         """
@@ -26,7 +35,7 @@ class AnalystAgent:
         query = self._generate_initial_description(fact)
         
         for attempt in range(self.max_retries):
-            print(f"Attempt {attempt + 1}: Querying with '{query}'")
+            log(f"Attempt {attempt + 1}: Querying with '{query}'")
             
             # Step 2: Retrieve candidates
             candidates = self.vector_store.search_relationships(query, limit=20)
@@ -39,9 +48,9 @@ class AnalystAgent:
             else:
                 # Decision is a refined query string
                 query = decision
-                print(f"Refining query to: '{query}'")
+                log(f"Refining query to: '{query}'")
         
-        print("Max retries reached. Could not classify with high confidence.")
+        log("Max retries reached. Could not classify with high confidence.")
         return None
 
     def _generate_initial_description(self, fact: str) -> str:

@@ -22,9 +22,18 @@ class FinancialRelation(BaseModel):
         "Entity",
         description="The type of the object. 'Entity' for specific actors, 'Topic' for concepts."
     )
+    relationship_description: str = Field(
+        ...,
+        description=(
+            "A concise phrase describing the ACTION between subject and object. "
+            "Focus on the VERB, not the full sentence. Keep it to 2-5 words. "
+            "Examples: 'acquired', 'partnered with', 'filed lawsuit against', "
+            "'reported earnings of', 'appointed as CEO', 'expanded operations to'."
+        )
+    )
     date_context: Optional[str] = Field(
         None,
-        description="Specific timeframe for this relationship if inferred from context (e.g. '2023', 'Q3')."
+        description="Specific timeframe for this relationship. Preserve EXACT dates: 'January 16, 2020', 'September 1, 2017', 'Q3 2023', 'October 2020'."
     )
     topics: Optional[List[str]] = Field(
         default_factory=list,

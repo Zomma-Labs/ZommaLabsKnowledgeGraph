@@ -1,0 +1,416 @@
+[
+  {
+    "uri": "https://kg.zommalabs.com/topic/Inflation",
+    "label": "Inflation",
+    "definition": "A general increase in prices and fall in the purchasing value of money. Central banks target specific inflation rates as part of monetary policy.",
+    "synonyms": ["Price Increases", "Consumer Price Index", "CPI", "Inflationary Pressure", "Price Pressures"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Deflation",
+    "label": "Deflation",
+    "definition": "A decrease in the general price level of goods and services, often associated with economic contraction.",
+    "synonyms": ["Price Decreases", "Deflationary Pressure"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/GDP",
+    "label": "GDP",
+    "definition": "Gross Domestic Product - the total monetary value of all goods and services produced within a country's borders in a specific time period.",
+    "synonyms": ["Gross Domestic Product", "Economic Output", "Economic Growth"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Unemployment",
+    "label": "Unemployment",
+    "definition": "The state of being without a job while actively seeking employment. A key indicator of economic health.",
+    "synonyms": ["Joblessness", "Unemployment Rate", "Job Losses"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Employment",
+    "label": "Employment",
+    "definition": "The condition of having paid work. Employment levels indicate economic health and consumer spending capacity.",
+    "synonyms": ["Jobs", "Hiring", "Job Growth", "Labor Force Participation"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/InterestRates",
+    "label": "Interest Rates",
+    "definition": "The cost of borrowing money, typically set by central banks as a tool of monetary policy.",
+    "synonyms": ["Rates", "Fed Funds Rate", "Policy Rate", "Borrowing Costs", "Lending Rates"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/MonetaryPolicy",
+    "label": "Monetary Policy",
+    "definition": "Central bank actions to control money supply and interest rates to achieve macroeconomic objectives.",
+    "synonyms": ["Fed Policy", "Central Bank Policy", "Money Supply"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/FiscalPolicy",
+    "label": "Fiscal Policy",
+    "definition": "Government decisions about taxation and spending to influence economic conditions.",
+    "synonyms": ["Government Spending", "Tax Policy", "Budget Policy"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/LaborMarket",
+    "label": "Labor Market",
+    "definition": "The supply and demand dynamics for workers, including wages, employment rates, and workforce participation.",
+    "synonyms": ["Job Market", "Workforce", "Labor Conditions", "Labor Supply"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/WageGrowth",
+    "label": "Wage Growth",
+    "definition": "The rate at which employee compensation increases over time, a key inflation indicator.",
+    "synonyms": ["Wages", "Compensation", "Salary Increases", "Wage Pressures", "Wage Trends"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ConsumerSpending",
+    "label": "Consumer Spending",
+    "definition": "Expenditures by households on goods and services, comprising the majority of GDP in developed economies.",
+    "synonyms": ["Consumer Demand", "Retail Sales", "Household Spending", "Personal Consumption"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BusinessInvestment",
+    "label": "Business Investment",
+    "definition": "Capital expenditures by businesses on equipment, structures, and intellectual property.",
+    "synonyms": ["CapEx", "Capital Expenditure", "Corporate Investment", "Business Spending"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/HousingMarket",
+    "label": "Housing Market",
+    "definition": "The market for residential real estate, including home sales, prices, and construction.",
+    "synonyms": ["Real Estate", "Home Sales", "Residential Real Estate", "Housing Sector"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CommercialRealEstate",
+    "label": "Commercial Real Estate",
+    "definition": "Property used for business purposes including office buildings, retail spaces, and industrial facilities.",
+    "synonyms": ["CRE", "Office Real Estate", "Retail Real Estate", "Commercial Property"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CreditConditions",
+    "label": "Credit Conditions",
+    "definition": "The availability and terms of credit in the economy, including lending standards and credit spreads.",
+    "synonyms": ["Credit Markets", "Lending Conditions", "Credit Availability", "Borrowing Conditions"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CreditQuality",
+    "label": "Credit Quality",
+    "definition": "The assessment of a borrower's ability to repay debt, reflected in ratings and default rates.",
+    "synonyms": ["Credit Risk", "Default Risk", "Creditworthiness", "Credit Ratings"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BankLending",
+    "label": "Bank Lending",
+    "definition": "The extension of credit by financial institutions to businesses and consumers.",
+    "synonyms": ["Loan Growth", "Credit Extension", "Bank Loans", "Lending Standards"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Manufacturing",
+    "label": "Manufacturing",
+    "definition": "The production of goods using labor, machinery, and processing. A key indicator of industrial activity.",
+    "synonyms": ["Industrial Production", "Factory Output", "Manufacturing Activity"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/SupplyChain",
+    "label": "Supply Chain",
+    "definition": "The network of organizations, resources, and processes involved in producing and delivering products.",
+    "synonyms": ["Logistics", "Supply Chain Disruptions", "Shipping", "Inventory Management"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Inventory",
+    "label": "Inventory",
+    "definition": "Stock of goods held by businesses for production or sale.",
+    "synonyms": ["Inventories", "Stock Levels", "Inventory Buildup", "Inventory Management"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/TradeBalance",
+    "label": "Trade Balance",
+    "definition": "The difference between a country's exports and imports of goods and services.",
+    "synonyms": ["Trade Deficit", "Trade Surplus", "Net Exports", "International Trade"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Exports",
+    "label": "Exports",
+    "definition": "Goods and services sold to foreign countries.",
+    "synonyms": ["Foreign Sales", "International Sales", "Export Activity"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Imports",
+    "label": "Imports",
+    "definition": "Goods and services purchased from foreign countries.",
+    "synonyms": ["Foreign Purchases", "Import Activity"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CurrencyExchange",
+    "label": "Currency Exchange",
+    "definition": "The market for trading currencies, affecting international trade and investment flows.",
+    "synonyms": ["Foreign Exchange", "FX", "Dollar Strength", "Currency Markets"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/StockMarket",
+    "label": "Stock Market",
+    "definition": "Markets where shares of publicly traded companies are bought and sold.",
+    "synonyms": ["Equity Markets", "Stock Prices", "Market Performance", "Share Prices"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BondMarket",
+    "label": "Bond Market",
+    "definition": "Markets for debt securities issued by governments and corporations.",
+    "synonyms": ["Fixed Income", "Debt Markets", "Treasury Market", "Corporate Bonds"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/MarketVolatility",
+    "label": "Market Volatility",
+    "definition": "The degree of variation in trading prices over time, indicating market uncertainty.",
+    "synonyms": ["Volatility", "Market Swings", "Price Fluctuations", "VIX"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Revenue",
+    "label": "Revenue",
+    "definition": "Income generated from normal business operations, the top line of a company's income statement.",
+    "synonyms": ["Sales", "Top Line", "Income", "Turnover"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Profitability",
+    "label": "Profitability",
+    "definition": "A company's ability to generate earnings relative to its expenses and other costs.",
+    "synonyms": ["Profit", "Earnings", "Net Income", "Margins", "Bottom Line"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CostStructure",
+    "label": "Cost Structure",
+    "definition": "The types and relative proportions of fixed and variable costs in a business.",
+    "synonyms": ["Operating Costs", "Expenses", "Cost Management", "Cost Cutting"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/MarketShare",
+    "label": "Market Share",
+    "definition": "The portion of a market controlled by a particular company or product.",
+    "synonyms": ["Market Position", "Competitive Position", "Market Leadership"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Innovation",
+    "label": "Innovation",
+    "definition": "The introduction of new products, services, or processes that create value.",
+    "synonyms": ["R&D", "Research And Development", "New Products", "Technology Development"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Regulation",
+    "label": "Regulation",
+    "definition": "Government rules and requirements that govern business activities.",
+    "synonyms": ["Regulatory Environment", "Compliance", "Government Oversight", "Policy"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Antitrust",
+    "label": "Antitrust",
+    "definition": "Laws and regulations designed to promote competition and prevent monopolies.",
+    "synonyms": ["Competition Law", "Monopoly", "Market Dominance", "Anti-Competitive"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Taxation",
+    "label": "Taxation",
+    "definition": "Government levies on income, profits, transactions, and property.",
+    "synonyms": ["Taxes", "Tax Rate", "Corporate Tax", "Tax Policy"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ESG",
+    "label": "ESG",
+    "definition": "Environmental, Social, and Governance factors used to evaluate corporate sustainability.",
+    "synonyms": ["Sustainability", "Corporate Responsibility", "Environmental Impact", "Social Responsibility"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ClimateRisk",
+    "label": "Climate Risk",
+    "definition": "Financial risks arising from climate change, including physical and transition risks.",
+    "synonyms": ["Climate Change", "Environmental Risk", "Carbon Emissions", "Net Zero"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CorporateGovernance",
+    "label": "Corporate Governance",
+    "definition": "The system of rules, practices, and processes by which companies are directed and controlled.",
+    "synonyms": ["Governance", "Board Oversight", "Shareholder Rights", "Executive Compensation"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/MergersAndAcquisitions",
+    "label": "Mergers And Acquisitions",
+    "definition": "Transactions in which the ownership of companies or their operating units are transferred or combined.",
+    "synonyms": ["M&A", "Acquisitions", "Mergers", "Takeovers", "Deal Activity"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/IPO",
+    "label": "IPO",
+    "definition": "Initial Public Offering - the process of offering shares of a private company to the public.",
+    "synonyms": ["Initial Public Offering", "Going Public", "Public Listing"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ShareBuyback",
+    "label": "Share Buyback",
+    "definition": "A company repurchasing its own shares from the marketplace, returning capital to shareholders.",
+    "synonyms": ["Stock Repurchase", "Buyback", "Capital Return"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Dividend",
+    "label": "Dividend",
+    "definition": "A distribution of a portion of a company's earnings to its shareholders.",
+    "synonyms": ["Dividends", "Dividend Yield", "Payout", "Dividend Policy"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/DebtFinancing",
+    "label": "Debt Financing",
+    "definition": "Raising capital through borrowing, typically by issuing bonds or taking loans.",
+    "synonyms": ["Debt Issuance", "Bond Issuance", "Leverage", "Corporate Debt"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/EquityFinancing",
+    "label": "Equity Financing",
+    "definition": "Raising capital through the sale of shares.",
+    "synonyms": ["Stock Issuance", "Equity Raise", "Share Offering", "Secondary Offering"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Recession",
+    "label": "Recession",
+    "definition": "A significant decline in economic activity spread across the economy, lasting more than a few months.",
+    "synonyms": ["Economic Downturn", "Economic Contraction", "Slowdown"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/EconomicRecovery",
+    "label": "Economic Recovery",
+    "definition": "The phase of the business cycle following a recession, characterized by rising economic activity.",
+    "synonyms": ["Recovery", "Economic Expansion", "Growth Rebound"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/EconomicOutlook",
+    "label": "Economic Outlook",
+    "definition": "Expectations about future economic conditions and performance.",
+    "synonyms": ["Outlook", "Economic Forecast", "Forward Guidance", "Business Outlook"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ConsumerConfidence",
+    "label": "Consumer Confidence",
+    "definition": "A measure of consumer optimism about the state of the economy and their personal finances.",
+    "synonyms": ["Consumer Sentiment", "Consumer Expectations", "Household Confidence"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BusinessConfidence",
+    "label": "Business Confidence",
+    "definition": "A measure of business optimism about economic conditions and corporate performance.",
+    "synonyms": ["Business Sentiment", "CEO Confidence", "Business Expectations"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/EnergyPrices",
+    "label": "Energy Prices",
+    "definition": "The cost of energy commodities including oil, natural gas, and electricity.",
+    "synonyms": ["Oil Prices", "Gas Prices", "Energy Costs", "Fuel Prices"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Commodities",
+    "label": "Commodities",
+    "definition": "Raw materials or primary agricultural products that can be bought and sold.",
+    "synonyms": ["Raw Materials", "Commodity Prices", "Natural Resources"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/DigitalTransformation",
+    "label": "Digital Transformation",
+    "definition": "The integration of digital technology into all areas of business operations.",
+    "synonyms": ["Digitalization", "Technology Adoption", "Digital Strategy"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ArtificialIntelligence",
+    "label": "Artificial Intelligence",
+    "definition": "Computer systems able to perform tasks that normally require human intelligence.",
+    "synonyms": ["AI", "Machine Learning", "Deep Learning", "Generative AI"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CloudComputing",
+    "label": "Cloud Computing",
+    "definition": "The delivery of computing services over the internet.",
+    "synonyms": ["Cloud Services", "Cloud Infrastructure", "SaaS", "IaaS"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Cybersecurity",
+    "label": "Cybersecurity",
+    "definition": "The practice of protecting systems, networks, and programs from digital attacks.",
+    "synonyms": ["Data Security", "Information Security", "Cyber Threats", "Data Breach"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/DataPrivacy",
+    "label": "Data Privacy",
+    "definition": "The handling of personal and sensitive data in accordance with regulations and best practices.",
+    "synonyms": ["Privacy", "Data Protection", "GDPR", "User Privacy"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Geopolitics",
+    "label": "Geopolitics",
+    "definition": "The influence of geography on international politics and relations between nations.",
+    "synonyms": ["Geopolitical Risk", "International Relations", "Political Risk"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Sanctions",
+    "label": "Sanctions",
+    "definition": "Commercial and financial penalties applied by countries against targeted entities.",
+    "synonyms": ["Trade Sanctions", "Economic Sanctions", "Embargoes"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Tariffs",
+    "label": "Tariffs",
+    "definition": "Taxes imposed on imported goods and services.",
+    "synonyms": ["Import Duties", "Trade Barriers", "Customs Duties"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/EconomicActivity",
+    "label": "Economic Activity",
+    "definition": "The aggregate of all actions that involve the production, distribution, and consumption of goods and services.",
+    "synonyms": ["Business Activity", "Economic Conditions", "Activity Levels"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/PricingPower",
+    "label": "Pricing Power",
+    "definition": "A company's ability to raise prices without losing customers to competitors.",
+    "synonyms": ["Pricing Strategy", "Price Increases", "Margin Expansion"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/QuantitativeEasing",
+    "label": "Quantitative Easing",
+    "definition": "A monetary policy where a central bank purchases securities to increase money supply and encourage lending.",
+    "synonyms": ["QE", "Asset Purchases", "Balance Sheet Expansion"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/QuantitativeTightening",
+    "label": "Quantitative Tightening",
+    "definition": "The reduction of a central bank's balance sheet, typically by not reinvesting maturing securities.",
+    "synonyms": ["QT", "Balance Sheet Reduction", "Tapering"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/YieldCurve",
+    "label": "Yield Curve",
+    "definition": "A graph showing the relationship between interest rates and bond maturities.",
+    "synonyms": ["Term Structure", "Yield Curve Inversion", "Rate Spread"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Liquidity",
+    "label": "Liquidity",
+    "definition": "The ease with which assets can be converted to cash without affecting their market price.",
+    "synonyms": ["Market Liquidity", "Cash Position", "Liquidity Conditions"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Solvency",
+    "label": "Solvency",
+    "definition": "The ability of a company to meet its long-term financial obligations.",
+    "synonyms": ["Financial Health", "Capital Adequacy", "Balance Sheet Strength"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Bankruptcy",
+    "label": "Bankruptcy",
+    "definition": "Legal status of a person or entity that cannot repay debts to creditors.",
+    "synonyms": ["Insolvency", "Chapter 11", "Restructuring", "Default"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/RiskManagement",
+    "label": "Risk Management",
+    "definition": "The identification, assessment, and prioritization of risks followed by coordinated efforts to minimize their impact.",
+    "synonyms": ["Risk Assessment", "Risk Mitigation", "Enterprise Risk"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Transparency",
+    "label": "Transparency",
+    "definition": "The degree to which information is openly shared with stakeholders.",
+    "synonyms": ["Disclosure", "Information Transparency", "Open Communication"]
+  }
+]

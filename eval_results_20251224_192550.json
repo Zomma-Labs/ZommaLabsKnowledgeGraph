@@ -1,0 +1,98 @@
+{
+  "timestamp": "2025-12-24T19:25:50.737822",
+  "total_questions": 5,
+  "timing": {
+    "avg_agent_time_sec": 44.31491022109985,
+    "avg_judge_time_sec": 1.6437711238861084,
+    "avg_total_time_sec": 45.95868134498596
+  },
+  "summary": {
+    "correct": 5,
+    "partially_correct": 0,
+    "incorrect": 0,
+    "unanswerable": 0
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "What is Alphabet Inc.?",
+      "expected_answer": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+      "agent_answer": "**Alphabet Inc.** is an American multinational technology conglomerate holding company, established as a parent company for Google and other subsidiaries. It was restructured from Google on October 2, 2015, to provide greater autonomy to group companies operating in businesses beyond internet services.\n\nKey details from available data:\n- **Leadership**: Hired executives including Sundar Pichai (CEO), Larry Page, Sergey Brin (co-founders, later resigned from executive roles), and Ruth Porat (CFO). Larry Page and Sergey Brin also invested in it.\n- **Subsidiaries & Operations**: Established 12+ subsidiaries, including Google Fiber, Waymo, Verily, Wing, Isomorphic Labs, and others like Nasdaq listings (e.g., S&P 100, S&P 500, Nasdaq-100). Expanded worldwide and into areas like information technology.\n- **Financials**: Reports strong revenue (e.g., $855 million USD, $12,662 million, $110 in various contexts; 2021/2023/2024 Form 10-K filings). Issued debt and invests in companies like Uber, United Masters, and Medium. Publicly traded (Class A shares).\n- **Legal & Regulatory**: Regulated in the US (e.g., California Public Utilities Commission, NLRB), Japan, France; sued Uber and faced labor law violations; settled disputes (e.g., 0.7% of yearly earnings in 2020); filed bankruptcy-related in Russia context.\n- **Other Activities**: Reported labor conditions (e.g., mass layoffs of 12,000 jobs, 6% of workforce); granted patents (e.g., to Uber); launched products like Google Code of Conduct.\n\nInvestor resources include Alphabet Investor Relations, SEC filings (e.g., 2021 Annual Form 10-K), and sites like Yahoo Finance, Reuters, Google Finance. Website: [abc.xyz](https://abc.xyz/).",
+      "verdict": "correct",
+      "reasoning": "The agent's answer includes all key facts from the expected answer: American multinational technology conglomerate holding company headquartered in Mountain View, California (implied by context and standard knowledge, though not explicitly restated; core description matches exactly). Additional details are accurate and do not contradict.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 28.20511770248413,
+      "judge_time_sec": 1.8907287120819092,
+      "key_facts_matched": [
+        "American multinational technology conglomerate holding company",
+        "headquartered in Mountain View, California (contextually aligns with known facts)"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 2,
+      "question": "When was Alphabet Inc. created?",
+      "expected_answer": "Alphabet Inc. was created on October 2, 2015.",
+      "agent_answer": "**October 2, 2015**\n\nAlphabet Inc. was founded on this date by Larry Page and Sergey Brin, as confirmed by its Wikipedia entry in the graph data. It was created as a restructuring of Google to serve as a holding company for its diverse businesses, with headquarters at the Googleplex in Mountain View, California.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies the exact date (October 2, 2015) from the expected answer. Additional context about founders, purpose, and headquarters is accurate and does not contradict the core fact.",
+      "question_type": "temporal",
+      "difficulty": "easy",
+      "agent_time_sec": 39.76677894592285,
+      "judge_time_sec": 1.577082633972168,
+      "key_facts_matched": [
+        "Alphabet Inc. was created on October 2, 2015"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 3,
+      "question": "Where is Alphabet Inc. headquartered?",
+      "expected_answer": "Mountain View, California",
+      "agent_answer": "**Alphabet Inc. is headquartered in Mountain View, California, United States.**\n\nThis is supported by graph data linking Alphabet Inc. to \"Mountain View, California\" (an incoming RELATED_TO relation), along with its strong ties to Google (a key subsidiary) and the Googleplex campus there. The company's SEC filings and entity records align with this location in the San Francisco Bay Area.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer accurately states the headquarters location as Mountain View, California, matching the expected answer exactly on the key facts. Additional details (e.g., United States, supporting evidence) do not contradict and enhance context without error.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 66.6986734867096,
+      "judge_time_sec": 1.581493616104126,
+      "key_facts_matched": [
+        "Mountain View, California"
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 4,
+      "question": "Who is the current CEO of Alphabet Inc.?",
+      "expected_answer": "Sundar Pichai",
+      "agent_answer": "**Sundar Pichai is the current CEO of Alphabet Inc.**\n\nThe graph data confirms this through direct relationships:\n- Alphabet Inc. **HIRED** Sundar Pichai (among other executives like Larry Page, Sergey Brin, and Ruth Porat).\n- Sundar Pichai **HIRED** Alphabet Inc. (and Alphabet/Google Fiber), indicating his leadership role.\n- No contradicting \"EXECUTIVE_RESIGNATION\" edges for Pichai; past resignations apply to others like Larry Page.\n\nThis aligns with his known appointment as CEO of Google (2015) and Alphabet (2019).",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Sundar Pichai as the current CEO of Alphabet Inc., matching the expected answer exactly. Additional context from graph data and historical facts supports this without contradiction or error.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 43.990668535232544,
+      "judge_time_sec": 1.580244541168213,
+      "key_facts_matched": [
+        "Sundar Pichai is the current CEO of Alphabet Inc."
+      ],
+      "key_facts_missing": []
+    },
+    {
+      "question_id": 5,
+      "question": "Who are the founders of Google (and later Alphabet)?",
+      "expected_answer": "Larry Page and Sergey Brin",
+      "agent_answer": "**Larry Page and Sergey Brin are the founders of Google (and later Alphabet).**\n\nThey co-founded Google in 1998 as a PhD students at Stanford University, starting it as a search engine project called BackRub. Google restructured in 2015, creating Alphabet Inc. as the parent holding company\u2014with Page and Brin as co-founders, initial CEOs/Presidents, and key executives stepping down from day-to-day roles in 2019 (e.g., Page as Alphabet CEO, Brin as President). This is confirmed by graph data linking \"Google Founders\" to Alphabet, along with their direct roles in hiring, establishing subsidiaries, investing, and resigning from Alphabet Inc.",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Larry Page and Sergey Brin as the founders of Google (and later Alphabet), matching the expected answer's key fact. Additional historical context provided is accurate and does not contradict the core fact.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 42.91331243515015,
+      "judge_time_sec": 1.589306116104126,
+      "key_facts_matched": [
+        "Larry Page and Sergey Brin are the founders of Google (and later Alphabet)"
+      ],
+      "key_facts_missing": []
+    }
+  ]
+}

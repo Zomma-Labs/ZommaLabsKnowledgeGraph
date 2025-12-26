@@ -60,6 +60,28 @@ class RelationshipType(str, Enum):
     EFFECTED_BY = "EFFECTED_BY"
     CONTRIBUTED_TO = "CONTRIBUTED_TO"
     PREVENTED = "PREVENTED"
+    # Attribute Relationships (Entity properties stored as edges)
+    HEADQUARTERED_IN = "HEADQUARTERED_IN"
+    HAS_TICKER = "HAS_TICKER"
+    TRADES_ON = "TRADES_ON"
+    HAS_MOTTO = "HAS_MOTTO"
+    FOUNDED_IN = "FOUNDED_IN"
+    OPERATES_IN = "OPERATES_IN"
+    HAS_WEBSITE = "HAS_WEBSITE"
+    LED_BY = "LED_BY"
+    OFFERS_PRODUCT = "OFFERS_PRODUCT"
+    PROVIDES_SERVICE = "PROVIDES_SERVICE"
+    # Disclosure / Revelation Relationships
+    REVEALED = "REVEALED"
+    DISCLOSED = "DISCLOSED"
+    ANNOUNCED = "ANNOUNCED"
+    # Inspiration / Influence Relationships
+    INSPIRED_BY = "INSPIRED_BY"
+    MODELED_AFTER = "MODELED_AFTER"
+    # Advisory Relationships
+    ENCOURAGED = "ENCOURAGED"
+    ADVISED = "ADVISED"
+    RECOMMENDED = "RECOMMENDED"
 
 class RelationshipDefinition(BaseModel):
     name: RelationshipType
@@ -141,4 +163,26 @@ ACTIVE_TO_PASSIVE = {
     RelationshipType.EFFECTED_BY: "EFFECT_OF",
     RelationshipType.CONTRIBUTED_TO: "CONTRIBUTED_TO_BY",
     RelationshipType.PREVENTED: "PREVENTED_BY",
+    # Attribute Relationships
+    RelationshipType.HEADQUARTERED_IN: "HEADQUARTERS_OF",
+    RelationshipType.HAS_TICKER: "TICKER_OF",
+    RelationshipType.TRADES_ON: "LISTS",
+    RelationshipType.HAS_MOTTO: "MOTTO_OF",
+    RelationshipType.FOUNDED_IN: "FOUNDING_OF",
+    RelationshipType.OPERATES_IN: "OPERATION_REGION_OF",
+    RelationshipType.HAS_WEBSITE: "WEBSITE_OF",
+    RelationshipType.LED_BY: "LEADS",
+    RelationshipType.OFFERS_PRODUCT: "PRODUCT_OF",
+    RelationshipType.PROVIDES_SERVICE: "SERVICE_OF",
+    # Disclosure / Revelation
+    RelationshipType.REVEALED: "REVEALED_BY",
+    RelationshipType.DISCLOSED: "DISCLOSED_BY",
+    RelationshipType.ANNOUNCED: "ANNOUNCED_BY",
+    # Inspiration / Influence
+    RelationshipType.INSPIRED_BY: "INSPIRED",
+    RelationshipType.MODELED_AFTER: "MODEL_FOR",
+    # Advisory
+    RelationshipType.ENCOURAGED: "ENCOURAGED_BY",
+    RelationshipType.ADVISED: "ADVISED_BY",
+    RelationshipType.RECOMMENDED: "RECOMMENDED_BY",
 }

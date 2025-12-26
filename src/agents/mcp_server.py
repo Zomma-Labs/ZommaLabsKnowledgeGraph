@@ -6,8 +6,10 @@ FastMCP server exposing graph retrieval tools for AI agents.
 
 Tools:
     - resolve_entity_or_topic: Semantic search to find exact entity/topic names
+    - get_entity_info: Get entity metadata (summary, type, description)
     - explore_neighbors: Discover relationships connected to an entity
     - get_chunk: Retrieve source text evidence for a specific relationship
+    - get_chunks: Batch retrieve multiple chunks at once
 
 Run with: python -m src.agents.mcp_server
 """
@@ -26,29 +28,38 @@ ZommaLabs Knowledge Graph - Graph Retrieval API
 This server provides tools to navigate a financial knowledge graph and answer 
 complex questions with ground-truth evidence from source documents.
 
-## 3-Step Graph Retrieval Workflow
+## Graph Retrieval Workflow
 
-To answer a user question effectively, follow these steps IN ORDER:
+To answer a user question effectively, follow these steps:
 
 ### STEP 1: Resolve Entities (`resolve_entity_or_topic`)
 - **Goal**: Map vague user terms (e.g., "Google", "wage pressure") to exact node names.
 - **Why**: The graph requires exact matches. "Alphabet" won't work if the node is "Alphabet Inc.".
 - **Example**: `resolve_entity_or_topic(query="Google", node_type="Entity")` → ["Alphabet Inc."]
 
+### STEP 1b (Optional): Get Entity Info (`get_entity_info`)
+- **Goal**: Get descriptive information about an entity (summary, type, what it is).
+- **When**: Use this for "What is X?" questions or when you need entity descriptions.
+- **Example**: `get_entity_info(entity_name="Alphabet Inc.")` → {"summary": "American multinational technology conglomerate...", "entity_type": "Organization"}
+
 ### STEP 2: Explore Relationships (`explore_neighbors`)
 - **Goal**: Discover what connects to your resolved entities.
 - **Why**: You don't know the edge types or connected nodes yet. This gives you a map.
 - **Example**: `explore_neighbors(entity_name="Alphabet Inc.")` → ["Alphabet Inc. --[INVESTED]-->  Waymo", ...]
 
-### STEP 3: Retrieve Evidence (`get_chunk`)
+### STEP 3: Retrieve Evidence (`get_chunk` or `get_chunks`)
 - **Goal**: Get the actual source text (chunk) that justifies a specific relationship.
 - **Why**: The edge tells you THAT something happened; the chunk tells you HOW, WHEN, and WHY.
-- **Example**: `get_chunk(entity_one="Alphabet Inc.", entity_two="Waymo", edge_type="INVESTED")`
+- **Single**: `get_chunk(entity_one="Alphabet Inc.", entity_two="Waymo", edge_type="INVESTED")`
+- **Batch**: `get_chunks(relationships=[("Alphabet Inc.", "INVESTED", "Waymo"), ("Sundar Pichai", "LEADS", "Google")])` - PREFERRED when exploring multiple relationships!
 
 ## Important Notes
 - All queries are automatically scoped to your authorized tenant (data isolation).
 - Always use exact entity names returned by resolve_entity_or_topic.
 - If you can't find an entity, try different search terms or check for spelling variations.
+- YOU MUST CALL RETRIEVE EVIDENCE (`get_chunk` or `get_chunks`) TO GET THE ACTUAL SOURCE TEXT TO ANSWER THE QUESTION
+- DO NOT JUST ANSWER THE QUESTION BASED ON THE RELATIONSHIPS YOU DISCOVERED IN STEP 2
+- PREFER `get_chunks` (batch) when you need to check multiple relationships - it's more efficient!
 """
 )
 
@@ -200,6 +211,99 @@ Date: {chunk_data.get('created_at', 'N/A')}
     }
 
 
+def _get_chunks_logic(relationships: list[tuple[str, str, str]], user_id: str) -> dict:
+    """
+    Batch logic for getting multiple chunks at once.
+    
+    Args:
+        relationships: List of tuples (entity_one, edge_type, entity_two)
+        user_id: The tenant ID for scoping
+    
+    Returns:
+        dict with found_count, total_requested, and results array
+    """
+    # Cap at 8 to prevent response explosion
+    MAX_BATCH_SIZE = 8
+    if len(relationships) > MAX_BATCH_SIZE:
+        relationships = relationships[:MAX_BATCH_SIZE]
+    
+    results = []
+    found_count = 0
+    
+    for rel in relationships:
+        if len(rel) != 3:
+            results.append({
+                "relationship": str(rel),
+                "found": False,
+                "message": "Invalid tuple format. Expected (entity_one, edge_type, entity_two)"
+            })
+            continue
+            
+        entity_one, edge_type, entity_two = rel
+        
+        # Reuse existing single-chunk logic
+        single_result = _get_chunk_logic(entity_one, entity_two, edge_type, user_id)
+        
+        if single_result.get("found"):
+            found_count += 1
+            results.append({
+                "relationship": f"({entity_one}, {edge_type}, {entity_two})",
+                "found": True,
+                "chunk": single_result["chunk"]
+            })
+        else:
+            results.append({
+                "relationship": f"({entity_one}, {edge_type}, {entity_two})",
+                "found": False,
+                "message": single_result.get("message", "No evidence found")
+            })
+    
+    return {
+        "found_count": found_count,
+        "total_requested": len(relationships),
+        "results": results,
+        "message": f"Found evidence for {found_count}/{len(relationships)} relationships."
+    }
+
+
+def _get_entity_info_logic(entity_name: str, user_id: str) -> dict:
+    """
+    Core logic for getting entity metadata including summary and type.
+    """
+    services = get_services()
+
+    query = """
+    MATCH (e {name: $name, group_id: $uid})
+    WHERE e:EntityNode OR e:TopicNode
+    RETURN e.name as name,
+           e.summary as summary,
+           e.entity_type as entity_type,
+           labels(e) as labels
+    LIMIT 1
+    """
+
+    results = services.neo4j.query(query, {"name": entity_name, "uid": user_id})
+
+    if not results:
+        return {
+            "found": False,
+            "message": f"Entity '{entity_name}' not found. Use resolve_entity_or_topic first to get exact names."
+        }
+
+    row = results[0]
+    labels = row.get('labels', [])
+    node_type = "Topic" if "TopicNode" in labels else "Entity"
+
+    return {
+        "found": True,
+        "name": row.get('name'),
+        "type": node_type,
+        "entity_type": row.get('entity_type'),  # e.g., "Organization", "Person", "Place"
+        "summary": row.get('summary') or "No summary available for this entity.",
+        "message": "Entity information retrieved successfully."
+    }
+
+
 def _explore_neighbors_logic(entity_name: str, user_id: str) -> dict:
     """
     Core logic for exploring neighbors.
@@ -338,6 +442,53 @@ def get_chunk(entity_one: str, entity_two: str, edge_type: str, ctx: Context) ->
     return _get_chunk_logic(entity_one, entity_two, edge_type, get_user_id(ctx))
 
 @mcp.tool()
+def get_chunks(relationships: list[tuple[str, str, str]], ctx: Context) -> dict:
+    """
+    STEP 3 (BATCH): Retrieve multiple text chunks (evidence) for several relationships at once.
+    
+    Use this when you want to explore multiple potential relationships efficiently.
+    This is PREFERRED over calling get_chunk multiple times - it's faster and uses fewer tokens.
+    
+    Args:
+        relationships: A list of tuples, each in format (entity_one, edge_type, entity_two).
+                       Example: [("Alphabet Inc.", "INVESTED", "Waymo"), ("Google", "HIRED", "Sundar Pichai")]
+                       Maximum 8 relationships per call.
+        ctx (Context): The request context (Injected automatically).
+
+    Returns:
+        dict: Contains:
+            - found_count (int): Number of relationships with evidence
+            - total_requested (int): Total relationships queried
+            - results (list): Array of results, each with 'relationship', 'found', and 'chunk' or 'message'
+            - message (str): Summary status
+    """
+    return _get_chunks_logic(relationships, get_user_id(ctx))
+
+@mcp.tool()
+def get_entity_info(entity_name: str, ctx: Context) -> dict:
+    """
+    Get detailed information about an entity including its summary and type.
+
+    Use this tool when you need to answer "What is X?" questions or need descriptive
+    information about an entity beyond just its relationships.
+
+    Args:
+        entity_name (str): The exact entity name (use resolve_entity_or_topic first if needed).
+        ctx (Context): The request context (Injected automatically).
+
+    Returns:
+        dict: Contains:
+            - found (bool): Whether the entity exists
+            - name (str): The canonical entity name
+            - type (str): "Entity" or "Topic"
+            - entity_type (str): Specific type like "Organization", "Person", "Place"
+            - summary (str): A description of the entity
+            - message (str): Status message
+    """
+    return _get_entity_info_logic(entity_name, get_user_id(ctx))
+
+
+@mcp.tool()
 def explore_neighbors(entity_name: str, ctx: Context) -> str:
     """
     STEP 2: Explore the graph to find relationships connected to an Entity.
@@ -357,4 +508,16 @@ def explore_neighbors(entity_name: str, ctx: Context) -> str:
     return _explore_neighbors_logic(entity_name, get_user_id(ctx))
 
 if __name__ == "__main__":
-    mcp.run()
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="ZommaGraph MCP Server")
+    parser.add_argument("--sse", action="store_true", help="Run as SSE server instead of stdio")
+    parser.add_argument("--host", default="127.0.0.1", help="Host for SSE server (default: 127.0.0.1)")
+    parser.add_argument("--port", type=int, default=8765, help="Port for SSE server (default: 8765)")
+    args = parser.parse_args()
+    
+    if args.sse:
+        print(f"Starting ZommaGraph MCP Server (SSE) on http://{args.host}:{args.port}")
+        mcp.run(transport="sse", host=args.host, port=args.port)
+    else:
+        mcp.run()  # Default: stdio

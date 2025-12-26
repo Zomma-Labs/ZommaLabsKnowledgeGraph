@@ -98,4 +98,4 @@ class HeaderAnalyzer:
         except Exception as e:
             print(f"Header Analysis failed: {e}")
             # Fallback: Treat each header as a Topic
-            return [Dimension(value=h, type=DimensionType.TOPIC, original_header=h) for h in headers]
+            return [Dimension(value=h, type=DimensionType.TOPIC, description=h, original_header=h) for h in headers]
