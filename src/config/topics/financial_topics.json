@@ -51,7 +51,7 @@
     "uri": "https://kg.zommalabs.com/topic/LaborMarket",
     "label": "Labor Market",
     "definition": "The supply and demand dynamics for workers, including wages, employment rates, and workforce participation.",
-    "synonyms": ["Job Market", "Workforce", "Labor Conditions", "Labor Supply"]
+    "synonyms": ["Job Market", "Workforce", "Labor Conditions", "Labor Supply", "Employees", "Headcount", "Human Resources"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/WageGrowth",
@@ -147,7 +147,7 @@
     "uri": "https://kg.zommalabs.com/topic/StockMarket",
     "label": "Stock Market",
     "definition": "Markets where shares of publicly traded companies are bought and sold.",
-    "synonyms": ["Equity Markets", "Stock Prices", "Market Performance", "Share Prices"]
+    "synonyms": ["Equity Markets", "Stock Prices", "Market Performance", "Share Prices", "Stock Performance", "Stock Trading", "Stock Split", "Market Reaction", "Public Trading", "Market Listing"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/BondMarket",
@@ -162,16 +162,22 @@
     "synonyms": ["Volatility", "Market Swings", "Price Fluctuations", "VIX"]
   },
   {
+    "uri": "https://kg.zommalabs.com/topic/MarketValuation",
+    "label": "Market Valuation",
+    "definition": "The assessment of a company's or asset's worth based on market prices, often measured by market capitalization or enterprise value.",
+    "synonyms": ["Valuation", "Market Cap", "Market Capitalization", "Enterprise Value", "Company Valuation", "Stock Valuation", "Trillion Dollar Valuation"]
+  },
+  {
     "uri": "https://kg.zommalabs.com/topic/Revenue",
     "label": "Revenue",
     "definition": "Income generated from normal business operations, the top line of a company's income statement.",
     "synonyms": ["Sales", "Top Line", "Income", "Turnover"]
   },
   {
-    "uri": "https://kg.zommalabs.com/topic/Profitability",
-    "label": "Profitability",
-    "definition": "A company's ability to generate earnings relative to its expenses and other costs.",
-    "synonyms": ["Profit", "Earnings", "Net Income", "Margins", "Bottom Line"]
+    "uri": "https://kg.zommalabs.com/topic/NetIncome",
+    "label": "Net Income",
+    "definition": "A company's total earnings after all expenses, taxes, and costs have been deducted from revenue.",
+    "synonyms": ["Profitability", "Profit", "Earnings", "Margins", "Bottom Line", "Net income", "Financial Performance"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/CostStructure",
@@ -201,7 +207,7 @@
     "uri": "https://kg.zommalabs.com/topic/Antitrust",
     "label": "Antitrust",
     "definition": "Laws and regulations designed to promote competition and prevent monopolies.",
-    "synonyms": ["Competition Law", "Monopoly", "Market Dominance", "Anti-Competitive"]
+    "synonyms": ["Competition Law", "Monopoly", "Market Dominance", "Anti-Competitive", "Antitrust Lawsuit", "Antitrust Case", "Antitrust Probe", "Antitrust Ruling", "Anticompetitive Practices"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/Taxation",
@@ -412,5 +418,137 @@
     "label": "Transparency",
     "definition": "The degree to which information is openly shared with stakeholders.",
     "synonyms": ["Disclosure", "Information Transparency", "Open Communication"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/QuantumComputing",
+    "label": "Quantum Computing",
+    "definition": "Computing technology that uses quantum-mechanical phenomena to perform operations on data, with potential to revolutionize cryptography, drug discovery, and optimization.",
+    "synonyms": ["Quantum Technology", "Quantum Chips", "Quantum Processors", "Qubits"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/WorkforceReduction",
+    "label": "Workforce Reduction",
+    "definition": "Corporate actions to reduce employee headcount, including layoffs, downsizing, and restructuring.",
+    "synonyms": ["Layoffs", "Downsizing", "Job Cuts", "Headcount Reduction", "Restructuring", "RIF"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CorporateStructure",
+    "label": "Corporate Structure",
+    "definition": "The organization of a company including its divisions, subsidiaries, holding companies, and reporting relationships.",
+    "synonyms": ["Organizational Structure", "Company Structure", "Subsidiaries", "Holding Company", "Parent Company", "Corporate Restructuring", "Reorganization", "Corporate Reorganization"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Robotics",
+    "label": "Robotics",
+    "definition": "The design, construction, and use of robots and automated systems for manufacturing, services, and other applications.",
+    "synonyms": ["Automation", "Industrial Robots", "Robotic Systems", "Robotics Software"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/AutonomousVehicles",
+    "label": "Autonomous Vehicles",
+    "definition": "Self-driving vehicles that use sensors, AI, and software to navigate without human input.",
+    "synonyms": ["Self-Driving Cars", "Autonomous Driving", "Driverless Vehicles", "AV Technology", "Self-driving technology"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Pandemic",
+    "label": "Pandemic",
+    "definition": "A global outbreak of disease affecting economic activity, supply chains, and business operations.",
+    "synonyms": ["COVID-19", "Coronavirus", "Health Crisis", "Public Health Emergency", "COVID-19 pandemic"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/IntellectualProperty",
+    "label": "Intellectual Property",
+    "definition": "Legal rights to creations of the mind including patents, trademarks, copyrights, and trade secrets.",
+    "synonyms": ["IP", "Patents", "Trademarks", "Copyrights", "Trade Secrets", "Proprietary Technology"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ContentModeration",
+    "label": "Content Moderation",
+    "definition": "The practice of monitoring and applying rules to user-generated content on digital platforms.",
+    "synonyms": ["Free Speech", "Platform Moderation", "Content Policy", "Online Speech", "Content Removal", "Misinformation", "Disinformation"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/TotalAssets",
+    "label": "Total Assets",
+    "definition": "The sum of all resources owned by a company, including current and non-current assets.",
+    "synonyms": ["Assets", "Asset Base", "Total Asset Value"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/TotalEquity",
+    "label": "Total Equity",
+    "definition": "Shareholders' ownership interest in a company after liabilities are deducted.",
+    "synonyms": ["Shareholders Equity", "Stockholders Equity", "Net Worth", "Book Value"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BalanceSheet",
+    "label": "Balance Sheet",
+    "definition": "Financial statement showing assets, liabilities, and equity at a point in time.",
+    "synonyms": ["Financial Position", "Statement of Financial Position"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/OperatingIncome",
+    "label": "Operating Income",
+    "definition": "Profit from core business operations before interest and taxes.",
+    "synonyms": ["Operating Profit", "EBIT", "Operating Earnings"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/SECFiling",
+    "label": "SEC Filing",
+    "definition": "Mandatory documents submitted to the Securities and Exchange Commission.",
+    "synonyms": ["Regulatory Filing", "Securities Filing", "Form Filing", "SEC Filings"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/AnnualReport",
+    "label": "Annual Report",
+    "definition": "Yearly comprehensive report on company activities and financial performance.",
+    "synonyms": ["10-K", "Form 10-K", "Yearly Report", "Annual Form 10-K"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/QuarterlyReport",
+    "label": "Quarterly Report",
+    "definition": "Financial report covering a three-month period.",
+    "synonyms": ["10-Q", "Form 10-Q", "Quarterly Earnings", "Quarterly Filing"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Litigation",
+    "label": "Litigation",
+    "definition": "Legal proceedings including lawsuits, disputes, and settlements.",
+    "synonyms": ["Lawsuit", "Legal Action", "Legal Dispute", "Settlement", "Court Case", "Legal Proceedings"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/OwnershipStructure",
+    "label": "Ownership Structure",
+    "definition": "The distribution of equity ownership among shareholders and stakeholders.",
+    "synonyms": ["Ownership", "Shareholder Ownership", "Equity Ownership", "Controlling Interest", "Stock Ownership"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ExecutiveLeadership",
+    "label": "Executive Leadership",
+    "definition": "C-suite executives and their roles in company management.",
+    "synonyms": ["Leadership", "CEO", "CFO", "Executive Team", "C-Suite", "Chief Executive Officer", "Chief Financial Officer"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/LeadershipTransition",
+    "label": "Leadership Transition",
+    "definition": "Changes in executive or board positions.",
+    "synonyms": ["Leadership Change", "CEO Transition", "Executive Departure", "Succession", "Executive Changes"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/VentureCapital",
+    "label": "Venture Capital",
+    "definition": "Investment in early-stage companies with high growth potential.",
+    "synonyms": ["VC", "VC Funding", "Startup Investment", "Series A", "Series B", "Seed Funding"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/PrivateEquity",
+    "label": "Private Equity",
+    "definition": "Investment in mature private companies or buyouts.",
+    "synonyms": ["PE", "Buyout", "Growth Equity", "LBO", "Leveraged Buyout"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/LaborRelations",
+    "label": "Labor Relations",
+    "definition": "Relationships between employers, employees, and unions.",
+    "synonyms": ["Unionization", "Labor Law", "Worker Organizing", "Collective Bargaining", "Labor Dispute", "Labor Laws"]
   }
 ]

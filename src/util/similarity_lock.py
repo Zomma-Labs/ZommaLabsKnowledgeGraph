@@ -53,7 +53,7 @@ class SimilarityLockManager:
             async with cls._lock:
                 for op in cls._active_operations:
                     sim = cls.cosine_similarity(vector, op['vector'])
-                    if sim > 0.90:
+                    if sim > 0.75:
                         # Found a conflict! We must wait.
                         conflict_event = op['event']
                         break

@@ -8,7 +8,7 @@ from typing import List, Dict, Any, TypedDict
 from langgraph.graph import StateGraph, END
 from langgraph.types import RetryPolicy
 
-from src.agents.atomizer import atomizer
+from src.agents.atomizer import atomizer_with_reflexion
 from src.agents.entity_extractor import EntityExtractor
 from src.agents.topic_librarian import TopicLibrarian
 from src.agents.analyst import AnalystAgent
@@ -285,7 +285,7 @@ def atomize_node(state: GraphState) -> Dict[str, Any]:
     metadata = state["metadata"]
     
     try:
-        props = atomizer(chunk_text, metadata)
+        props = atomizer_with_reflexion(chunk_text, metadata)
         log(f"   Decomposed into {len(props)} propositions.")
         return {"propositions": props}
     except Exception as e:
@@ -309,20 +309,22 @@ async def entity_extraction_node(state: GraphState) -> Dict[str, Any]:
     async def extract_async(prop: str) -> List[AtomicFact]:
         # Use semaphore to limit concurrent LLM calls
         async with llm_semaphore:
-            # Extract returns List[FinancialRelation]
-            relations = await asyncio.to_thread(entity_extractor.extract, prop, chunk_text, header_path)
+            # Extract with reflexion loop - validates entities and re-extracts if needed
+            relations = await asyncio.to_thread(entity_extractor.extract_with_reflexion, prop, chunk_text, header_path)
         
         # Convert relations back to AtomicFact (preserving the original prop text)
         facts = []
         for rel in relations:
             # Create AtomicFact using the original 'prop' as the fact text
-            # and the extracted components from the relation
+            # and the extracted components from the relation (including summaries)
             facts.append(AtomicFact(
                 fact=prop,
                 subject=rel.subject,
                 subject_type=rel.subject_type,
+                subject_summary=rel.subject_summary,  # Now extracted inline
                 object=rel.object,
                 object_type=rel.object_type,
+                object_summary=rel.object_summary,  # Now extracted inline
                 relationship_description=rel.relationship_description,
                 topics=rel.topics,
                 date_context=rel.date_context
@@ -351,30 +353,90 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
     group_id = state.get("group_id", "default_tenant")
 
     # ========================================
-    # PHASE 1: COLLECT ALL UNIQUE ENTITIES
+    # PHASE 0: BATCH DEFINE ALL TOPICS FOR ENRICHED MATCHING
     # ========================================
-    unique_items_to_resolve = {} # (name, type) -> { "context": first_context, "original_indices": [...] }
+    # Collect all topic names from all facts (subjects, objects, topic lists)
+    all_topic_names = set()
+    for fact in facts:
+        if fact.subject_type == "Topic":
+            all_topic_names.add(fact.subject)
+        if fact.object and fact.object_type == "Topic":
+            all_topic_names.add(fact.object)
+        if fact.topics:
+            all_topic_names.update(fact.topics)
+
+    # Batch define topics in ONE LLM call
+    topic_definitions = {}
+    if all_topic_names:
+        log(f"   📖 Batch defining {len(all_topic_names)} topics...")
+        topic_definitions = topic_librarian.batch_define_topics(list(all_topic_names), chunk_text)
+
+    # ========================================
+    # PHASE 1: COLLECT ALL UNIQUE ENTITIES (with inline summaries)
+    # ========================================
+    unique_items_to_resolve = {} # (name, type) -> { "context": first_context, "summary": inline_summary, "original_indices": [...] }
+    invalid_fact_indices = set()  # Track facts to filter out (e.g., subject Topic failed validation)
 
     for i, fact in enumerate(facts):
-        # Subject
-        subj_key = (fact.subject, fact.subject_type)
+        # Subject - validate Topic types against ontology
+        subj_name = fact.subject
+        subj_type = fact.subject_type
+        subj_summary = getattr(fact, 'subject_summary', None) or ""  # Get inline summary
+
+        if subj_type == "Topic":
+            # Validate subject against topic ontology (use enriched definition for better matching)
+            enriched = topic_definitions.get(subj_name, subj_name)
+            match = topic_librarian.resolve_with_definition(subj_name, enriched, context=fact.fact)
+            if match:
+                subj_name = match['label']  # Use canonical name
+            else:
+                # Not a valid topic - discard this fact entirely (subject is required)
+                log(f"   ⚠️ Subject '{fact.subject}' marked as Topic but not in ontology - discarding fact")
+                invalid_fact_indices.add(i)
+                continue  # Skip this fact, will be filtered out before assembly
+
+        subj_key = (subj_name, subj_type)
         if subj_key not in unique_items_to_resolve:
-            unique_items_to_resolve[subj_key] = {"context": fact.fact, "original_indices": []}
+            unique_items_to_resolve[subj_key] = {"context": fact.fact, "summary": subj_summary, "original_indices": []}
+        elif subj_summary and not unique_items_to_resolve[subj_key].get("summary"):
+            # Update summary if we have one and the existing entry doesn't
+            unique_items_to_resolve[subj_key]["summary"] = subj_summary
         unique_items_to_resolve[subj_key]["original_indices"].append({"fact_idx": i, "role": "subject"})
 
-        # Object
+        # Object - validate Topic types against ontology
         if fact.object:
-            obj_key = (fact.object, fact.object_type)
-            if obj_key not in unique_items_to_resolve:
-                unique_items_to_resolve[obj_key] = {"context": fact.fact, "original_indices": []}
-            unique_items_to_resolve[obj_key]["original_indices"].append({"fact_idx": i, "role": "object"})
+            obj_name = fact.object
+            obj_type = fact.object_type
+            obj_summary = getattr(fact, 'object_summary', None) or ""  # Get inline summary
+            obj_valid = True  # Track if object should be added
+
+            if obj_type == "Topic":
+                # Validate object against topic ontology (use enriched definition)
+                enriched = topic_definitions.get(obj_name, obj_name)
+                match = topic_librarian.resolve_with_definition(obj_name, enriched, context=fact.fact)
+                if match:
+                    obj_name = match['label']  # Use canonical name
+                else:
+                    # Not a valid topic - discard this object (don't create garbage nodes)
+                    log(f"   ⚠️ Object '{fact.object}' marked as Topic but not in ontology - discarding")
+                    obj_valid = False
+
+            if obj_valid:
+                obj_key = (obj_name, obj_type)
+                if obj_key not in unique_items_to_resolve:
+                    unique_items_to_resolve[obj_key] = {"context": fact.fact, "summary": obj_summary, "original_indices": []}
+                elif obj_summary and not unique_items_to_resolve[obj_key].get("summary"):
+                    # Update summary if we have one and the existing entry doesn't
+                    unique_items_to_resolve[obj_key]["summary"] = obj_summary
+                unique_items_to_resolve[obj_key]["original_indices"].append({"fact_idx": i, "role": "object"})
 
         # Topics - Validate against topic ontology before processing
         if fact.topics:
             # Validate each topic and log rejected ones for manual review
             validated_topics = []
             for raw_topic in fact.topics:
-                match = topic_librarian.resolve(raw_topic)
+                enriched = topic_definitions.get(raw_topic, raw_topic)
+                match = topic_librarian.resolve_with_definition(raw_topic, enriched, context=fact.fact)
                 if match:
                     validated_topics.append(match['label'])
                 else:
@@ -384,25 +446,40 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
 
             for topic in validated_topics:
                 top_key = (topic, "Topic")
+                # Use topic definition from ontology as summary
+                topic_def = topic_definitions.get(topic, topic)
                 if top_key not in unique_items_to_resolve:
-                    unique_items_to_resolve[top_key] = {"context": fact.fact, "original_indices": []}
+                    unique_items_to_resolve[top_key] = {"context": fact.fact, "summary": topic_def, "original_indices": []}
                 unique_items_to_resolve[top_key]["original_indices"].append({"fact_idx": i, "role": "topic_list", "topic_name": topic})
 
     log(f"   Calculated {len(unique_items_to_resolve)} unique items to resolve from {len(facts)} facts.")
 
     # ========================================
-    # PHASE 2: BATCH GENERATE ALL SUMMARIES
+    # PHASE 2: USE INLINE SUMMARIES (extracted during entity extraction)
     # ========================================
-    log(f"   🔄 Batch generating summaries...")
-    entity_names = [name for name, _ in unique_items_to_resolve.keys()]
+    # Build summaries_dict from inline summaries - NO LLM call needed!
+    summaries_dict = {}
+    missing_summaries = []
 
-    # Use batch summarization (batches of 15)
-    summaries_dict = await asyncio.to_thread(
-        enhancer.batch_extract_summaries,
-        entity_names,
-        chunk_text,
-        batch_size=15
-    )
+    for (name, node_type), item_data in unique_items_to_resolve.items():
+        inline_summary = item_data.get("summary", "")
+        if inline_summary:
+            summaries_dict[name] = inline_summary
+        else:
+            missing_summaries.append(name)
+
+    # Only call batch_extract_summaries for entities missing inline summaries
+    if missing_summaries:
+        log(f"   🔄 Generating summaries for {len(missing_summaries)} entities missing inline definitions...")
+        fallback_summaries = await asyncio.to_thread(
+            enhancer.batch_extract_summaries,
+            missing_summaries,
+            chunk_text,
+            batch_size=15
+        )
+        summaries_dict.update(fallback_summaries)
+    else:
+        log(f"   ✅ Using {len(summaries_dict)} inline summaries (no LLM call needed)")
 
     # ========================================
     # PHASE 2.5: BATCH EMBED ALL ENTITY NAMES
@@ -618,6 +695,18 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
                     "summary": summary
                 })
 
+    # ========================================
+    # PHASE 7: FILTER OUT INVALID FACTS
+    # ========================================
+    # Facts with invalid topic subjects are removed before assembly
+    if invalid_fact_indices:
+        valid_indices = [i for i in range(len(facts)) if i not in invalid_fact_indices]
+        facts = [facts[i] for i in valid_indices]
+        resolved_entities = [resolved_entities[i] for i in valid_indices]
+        resolved_topics_by_fact = [resolved_topics_by_fact[i] for i in valid_indices]
+        classification_results = [classification_results[i] for i in valid_indices]
+        log(f"   ⚠️ Filtered out {len(invalid_fact_indices)} facts with invalid topic subjects")
+
     # Ensure Object fields are populated (None if no object)
     for i, fact in enumerate(facts):
         if not fact.object:
@@ -627,6 +716,7 @@ async def parallel_resolution_node(state: GraphState) -> Dict[str, Any]:
             resolved_entities[i]["object_type"] = "Entity" # Default
 
     return {
+        "atomic_facts": facts,  # Return filtered facts to update state
         "resolved_entities": resolved_entities,
         "resolved_topics": resolved_topics_by_fact,
         "classified_relationships": classification_results
@@ -820,13 +910,9 @@ async def ingest_document(chunks: List[Chunk], group_id: str) -> None:
     # Run in parallel with semaphore if needed, for now all at once or batched?
     # Python asyncio.gather might overwhelm if too many chunks.
     # Let's use a semaphore.
-    semaphore = asyncio.Semaphore(5) # max 5 concurrent chunks
-    
-    async def sem_process(chunk):
-        async with semaphore:
-            await process_chunk(chunk)
-            
-    tasks = [sem_process(c) for c in enriched_chunks]
+    # No chunk-level semaphore - let LLM_CONCURRENCY handle rate limiting
+    # All chunks process in parallel, individual LLM calls are throttled by llm_semaphore
+    tasks = [process_chunk(c) for c in enriched_chunks]
     
     # Run all
     await asyncio.gather(*tasks)

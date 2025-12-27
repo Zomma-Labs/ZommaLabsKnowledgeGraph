@@ -10,6 +10,8 @@ Tools:
     - explore_neighbors: Discover relationships connected to an entity
     - get_chunk: Retrieve source text evidence for a specific relationship
     - get_chunks: Batch retrieve multiple chunks at once
+    - get_chunks_by_edge: Wildcard search - get all chunks for entity + edge type
+    - think: Reasoning tool to analyze evidence before answering (prevents hallucination)
 
 Run with: python -m src.agents.mcp_server
 """
@@ -43,23 +45,62 @@ To answer a user question effectively, follow these steps:
 - **Example**: `get_entity_info(entity_name="Alphabet Inc.")` → {"summary": "American multinational technology conglomerate...", "entity_type": "Organization"}
 
 ### STEP 2: Explore Relationships (`explore_neighbors`)
-- **Goal**: Discover what connects to your resolved entities.
+- **Goal**: Discover what connects to your resolved entities AND what edge types are available.
 - **Why**: You don't know the edge types or connected nodes yet. This gives you a map.
-- **Example**: `explore_neighbors(entity_name="Alphabet Inc.")` → ["Alphabet Inc. --[INVESTED]-->  Waymo", ...]
+- **Output**: Shows all edge types grouped by direction (outgoing/incoming) with connected entities.
+- **Example**: `explore_neighbors(entity_name="Alphabet Inc.")` →
+  ```
+  outgoing:
+    ACQUIRED[5]: Waymo,DeepMind,Wing...
+    REACHED_MARKET_CAP[3]: $1 Trillion,$2 Trillion,$3 Trillion
+  incoming:
+    FOUNDED_BY[2]: Larry Page,Sergey Brin
+  ```
+- **IMPORTANT**: Use the edge types from this output for Step 3. If you see `REACHED_MARKET_CAP[3]`, you can use that edge type in `get_chunks_by_edge`.
 
-### STEP 3: Retrieve Evidence (`get_chunk` or `get_chunks`)
+### STEP 3: Retrieve Evidence (`get_chunk`, `get_chunks`, or `get_chunks_by_edge`)
 - **Goal**: Get the actual source text (chunk) that justifies a specific relationship.
 - **Why**: The edge tells you THAT something happened; the chunk tells you HOW, WHEN, and WHY.
 - **Single**: `get_chunk(entity_one="Alphabet Inc.", entity_two="Waymo", edge_type="INVESTED")`
-- **Batch**: `get_chunks(relationships=[("Alphabet Inc.", "INVESTED", "Waymo"), ("Sundar Pichai", "LEADS", "Google")])` - PREFERRED when exploring multiple relationships!
+- **Batch**: `get_chunks(relationships=[["Alphabet Inc.", "INVESTED", "Waymo"], ["Sundar Pichai", "LEADS", "Google"]])` - PREFERRED when exploring multiple relationships!
+- **Wildcard**: `get_chunks_by_edge(entity_name="Alphabet Inc.", edge_type="REACHED_MARKET_CAP")` - Use when you know the entity and edge type but NOT the other entity. Returns ALL matching chunks.
 
 ## Important Notes
 - All queries are automatically scoped to your authorized tenant (data isolation).
 - Always use exact entity names returned by resolve_entity_or_topic.
 - If you can't find an entity, try different search terms or check for spelling variations.
-- YOU MUST CALL RETRIEVE EVIDENCE (`get_chunk` or `get_chunks`) TO GET THE ACTUAL SOURCE TEXT TO ANSWER THE QUESTION
+- YOU MUST CALL RETRIEVE EVIDENCE (`get_chunk`, `get_chunks`, or `get_chunks_by_edge`) TO GET THE ACTUAL SOURCE TEXT TO ANSWER THE QUESTION
 - DO NOT JUST ANSWER THE QUESTION BASED ON THE RELATIONSHIPS YOU DISCOVERED IN STEP 2
 - PREFER `get_chunks` (batch) when you need to check multiple relationships - it's more efficient!
+- USE `get_chunks_by_edge` when you see a relevant edge type in explore_neighbors but don't know the exact target entity
+
+## Recommended Workflow Pattern
+
+1. `resolve_entity_or_topic("Alphabet")` → Get exact name: "Alphabet Inc."
+2. `explore_neighbors("Alphabet Inc.")` → See available edges:
+   - outgoing: ACQUIRED[5], REACHED_MARKET_CAP[3], DECLARED_DIVIDEND[1]
+3. Pick the relevant edge type and retrieve chunks:
+   - If you need ALL market cap events: `get_chunks_by_edge("Alphabet Inc.", "REACHED_MARKET_CAP")`
+   - If you need a specific one: `get_chunk("Alphabet Inc.", "$2 Trillion", "REACHED_MARKET_CAP")`
+4. **REQUIRED: Call `think` to analyze the evidence** before answering:
+   - List the specific facts found in the chunks
+   - Quote relevant text that answers the question
+   - Identify chunk ID for citation
+5. Provide your final answer with proper citations.
+
+## IMPORTANT: Using the Think Tool
+
+After retrieving chunks, you MUST call the `think` tool to analyze the evidence:
+
+```
+think(thought="Analyzing the retrieved chunk for the question 'When did Alphabet reach $2T market cap?':
+1. Found fact: 'Alphabet reached a $2 trillion market capitalization on January 23, 2024'
+2. Chunk ID: abc123, Document: alphabet_10k_2024
+3. This directly answers the question.
+Citation: [DOC: alphabet_10k_2024, CHUNK: abc123]")
+```
+
+This prevents hallucination by forcing explicit fact extraction before answering.
 """
 )
 
@@ -120,7 +161,7 @@ def _resolve_entity_or_topic_logic(query: str, node_type: str, user_id: str) -> 
         if not node or not isinstance(node, dict):
             continue
         
-        if score < 0.7:
+        if score < 0.5:
             continue
             
         if node.get('group_id') != user_id:
@@ -211,7 +252,7 @@ Date: {chunk_data.get('created_at', 'N/A')}
     }
 
 
-def _get_chunks_logic(relationships: list[tuple[str, str, str]], user_id: str) -> dict:
+def _get_chunks_logic(relationships: list[list[str]], user_id: str) -> dict:
     """
     Batch logic for getting multiple chunks at once.
     
@@ -263,6 +304,118 @@ def _get_chunks_logic(relationships: list[tuple[str, str, str]], user_id: str) -
         "total_requested": len(relationships),
         "results": results,
         "message": f"Found evidence for {found_count}/{len(relationships)} relationships."
+    }
+
+
+def _get_chunks_by_edge_logic(entity_name: str, edge_type: str, user_id: str, direction: str = "both") -> dict:
+    """
+    Get all chunks for a given entity and edge type, without needing to know the other entity.
+
+    Args:
+        entity_name: The entity to search from
+        edge_type: The relationship type (e.g., "REACHED_MARKET_CAP", "ACQUIRED")
+        user_id: Tenant ID
+        direction: "outgoing" (entity is subject), "incoming" (entity is object), or "both"
+
+    Returns:
+        dict with found chunks and their connected entities
+    """
+    services = get_services()
+    results = []
+
+    # Query for outgoing relationships (entity is subject)
+    if direction in ("outgoing", "both"):
+        query_out = """
+        MATCH (e1)-[r1]->(c:EpisodicNode {group_id: $uid})-[r2]->(e2)
+        WHERE (e1:EntityNode OR e1:TopicNode)
+          AND (e2:EntityNode OR e2:TopicNode)
+          AND e1.name = $name
+          AND e1.group_id = $uid
+          AND e2.group_id = $uid
+          AND type(r1) = $edge_type
+          AND r1.fact_id = r2.fact_id
+        RETURN e1.name as subject, type(r1) as edge, e2.name as object,
+               c.uuid as chunk_id, c.content as content, c.header_path as header, c.doc_id as doc_id
+        LIMIT 10
+        """
+        rows = services.neo4j.query(query_out, {
+            "name": entity_name,
+            "edge_type": edge_type,
+            "uid": user_id
+        })
+        for row in rows:
+            results.append({
+                "direction": "outgoing",
+                "subject": row["subject"],
+                "edge": row["edge"],
+                "object": row["object"],
+                "chunk_id": row["chunk_id"],
+                "header": row.get("header", "N/A"),
+                "content": row.get("content", "")
+            })
+
+    # Query for incoming relationships (entity is object)
+    if direction in ("incoming", "both"):
+        query_in = """
+        MATCH (e1)-[r1]->(c:EpisodicNode {group_id: $uid})-[r2]->(e2)
+        WHERE (e1:EntityNode OR e1:TopicNode)
+          AND (e2:EntityNode OR e2:TopicNode)
+          AND e2.name = $name
+          AND e1.group_id = $uid
+          AND e2.group_id = $uid
+          AND type(r1) = $edge_type
+          AND r1.fact_id = r2.fact_id
+        RETURN e1.name as subject, type(r1) as edge, e2.name as object,
+               c.uuid as chunk_id, c.content as content, c.header_path as header, c.doc_id as doc_id
+        LIMIT 10
+        """
+        rows = services.neo4j.query(query_in, {
+            "name": entity_name,
+            "edge_type": edge_type,
+            "uid": user_id
+        })
+        for row in rows:
+            # Avoid duplicates if same chunk found in both directions
+            chunk_id = row["chunk_id"]
+            if not any(r["chunk_id"] == chunk_id for r in results):
+                results.append({
+                    "direction": "incoming",
+                    "subject": row["subject"],
+                    "edge": row["edge"],
+                    "object": row["object"],
+                    "chunk_id": row["chunk_id"],
+                    "header": row.get("header", "N/A"),
+                    "content": row.get("content", "")
+                })
+
+    if not results:
+        return {
+            "found": False,
+            "count": 0,
+            "results": [],
+            "message": f"No relationships found for '{entity_name}' with edge type [{edge_type}]. Try explore_neighbors first to see available edge types."
+        }
+
+    # Format chunks for output
+    formatted_results = []
+    for r in results:
+        formatted_results.append({
+            "relationship": f"{r['subject']} -[{r['edge']}]-> {r['object']}",
+            "direction": r["direction"],
+            "chunk": f'''"""
+DOCUMENT: {r.get('doc_id', 'N/A')}
+CHUNK_id: {r['chunk_id']}
+Header: {r['header']}
+
+{r['content']}
+"""'''
+        })
+
+    return {
+        "found": True,
+        "count": len(formatted_results),
+        "results": formatted_results,
+        "message": f"Found {len(formatted_results)} chunk(s) for '{entity_name}' with edge [{edge_type}]."
     }
 
 
@@ -442,7 +595,7 @@ def get_chunk(entity_one: str, entity_two: str, edge_type: str, ctx: Context) ->
     return _get_chunk_logic(entity_one, entity_two, edge_type, get_user_id(ctx))
 
 @mcp.tool()
-def get_chunks(relationships: list[tuple[str, str, str]], ctx: Context) -> dict:
+def get_chunks(relationships: list[list[str]], ctx: Context) -> dict:
     """
     STEP 3 (BATCH): Retrieve multiple text chunks (evidence) for several relationships at once.
     
@@ -450,8 +603,8 @@ def get_chunks(relationships: list[tuple[str, str, str]], ctx: Context) -> dict:
     This is PREFERRED over calling get_chunk multiple times - it's faster and uses fewer tokens.
     
     Args:
-        relationships: A list of tuples, each in format (entity_one, edge_type, entity_two).
-                       Example: [("Alphabet Inc.", "INVESTED", "Waymo"), ("Google", "HIRED", "Sundar Pichai")]
+        relationships: A list of 3-element lists, each in format [entity_one, edge_type, entity_two].
+                       Example: [["Alphabet Inc.", "INVESTED", "Waymo"], ["Google", "HIRED", "Sundar Pichai"]]
                        Maximum 8 relationships per call.
         ctx (Context): The request context (Injected automatically).
 
@@ -463,6 +616,35 @@ def get_chunks(relationships: list[tuple[str, str, str]], ctx: Context) -> dict:
             - message (str): Summary status
     """
     return _get_chunks_logic(relationships, get_user_id(ctx))
+
+@mcp.tool()
+def get_chunks_by_edge(entity_name: str, edge_type: str, ctx: Context, direction: str = "both") -> dict:
+    """
+    STEP 3 (WILDCARD): Retrieve all chunks for an entity with a specific edge type.
+
+    Use this when you know the entity and relationship type but NOT the other entity.
+    For example: "Find all chunks about Alphabet reaching market cap milestones"
+
+    Args:
+        entity_name (str): The entity name (e.g., "Alphabet Inc.").
+        edge_type (str): The relationship type (e.g., "REACHED_MARKET_CAP", "ACQUIRED").
+                         Use explore_neighbors first to see available edge types.
+        ctx (Context): The request context (Injected automatically).
+        direction (str): Where to search - "outgoing" (entity is subject),
+                        "incoming" (entity is object), or "both" (default).
+
+    Returns:
+        dict: Contains:
+            - found (bool): Whether any chunks were found
+            - count (int): Number of chunks found
+            - results (list): Array of {relationship, direction, chunk}
+            - message (str): Summary status
+
+    Example:
+        get_chunks_by_edge("Alphabet Inc.", "REACHED_MARKET_CAP")
+        → Returns all chunks about Alphabet reaching market cap milestones ($1T, $2T, $3T)
+    """
+    return _get_chunks_by_edge_logic(entity_name, edge_type, get_user_id(ctx), direction)
 
 @mcp.tool()
 def get_entity_info(entity_name: str, ctx: Context) -> dict:
@@ -492,10 +674,10 @@ def get_entity_info(entity_name: str, ctx: Context) -> dict:
 def explore_neighbors(entity_name: str, ctx: Context) -> str:
     """
     STEP 2: Explore the graph to find relationships connected to an Entity.
-    
+
     Use this AFTER you have a resolved entity name.
     Returns a compact TOON-format view of connections grouped by relationship type.
-    
+
     Args:
         entity_name (str): The canonical entity name (e.g., "Alphabet Inc.").
         ctx (Context): The request context (Injected automatically).
@@ -506,6 +688,28 @@ def explore_neighbors(entity_name: str, ctx: Context) -> str:
              If found is false, stop exploring - this entity has no connections.
     """
     return _explore_neighbors_logic(entity_name, get_user_id(ctx))
+
+
+@mcp.tool()
+def think(thought: str) -> str:
+    """
+    Use this tool to think through the retrieved evidence before answering.
+
+    Call this tool AFTER retrieving chunks to:
+    1. List the specific facts found in the evidence
+    2. Check if those facts answer the user's question
+    3. Identify what citation to use
+
+    This tool does not retrieve new information - it just provides space for reasoning.
+
+    Args:
+        thought (str): Your analysis of the retrieved evidence and reasoning about the answer.
+
+    Returns:
+        str: Acknowledgment that the thought was recorded.
+    """
+    return "Thought recorded. Now provide your final answer based ONLY on the facts you identified above."
+
 
 if __name__ == "__main__":
     import argparse

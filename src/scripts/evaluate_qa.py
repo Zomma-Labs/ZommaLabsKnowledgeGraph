@@ -55,7 +55,7 @@ def get_chat_model(temperature: float = 0):
     # Try Gemini first (best for grounded responses)
     # if os.getenv("GOOGLE_API_KEY"):
     #     from langchain_google_genai import ChatGoogleGenerativeAI
-    #     return ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=temperature)
+    #     return ChatGoogleGenerativeAI(model="gemini-3-flash-preview", temperature=temperature)
 
     # Try Grok
     if os.getenv("XAI_API_KEY"):
@@ -88,6 +88,13 @@ class JudgeResult(BaseModel):
 
 
 @dataclass
+class ToolCallTrace:
+    """Record of a single tool call."""
+    tool_name: str
+    args: dict
+    response: str  # Truncated response
+
+@dataclass
 class EvalResult:
     """Result of evaluating a single Q&A pair."""
     question_id: int
@@ -103,11 +110,65 @@ class EvalResult:
     key_facts_matched: list[str] = field(default_factory=list)
     key_facts_missing: list[str] = field(default_factory=list)
     error: Optional[str] = None
+    tool_trace: list[ToolCallTrace] = field(default_factory=list)  # Tool calls for debugging
 
 
 # === AGENT SYSTEM PROMPT ===
-AGENT_SYSTEM_PROMPT = """You are a Knowledge Graph Research Agent. You must answer questions by searching a graph database. 
-Follow the tool instructions provided to you"""
+AGENT_SYSTEM_PROMPT = """You are a Knowledge Graph Research Agent. You answer questions ONLY using data from a graph database.
+
+## CRITICAL GROUNDING RULES
+
+1. **USE ONLY RETRIEVED DATA**: Your answer must come ONLY from chunks and entities returned by tool calls.
+   - NEVER use your prior knowledge or training data to fill in facts
+   - NEVER cite sources that weren't returned by tools (e.g., "SEC filings", "news reports")
+   - Specific dates, numbers, and names must come from retrieved chunks - do NOT guess
+
+2. **SEARCH THOROUGHLY BEFORE GIVING UP**: If your first search doesn't find the answer:
+   - Try different search terms (synonyms, related concepts)
+   - Search for related entities that might have the connection
+   - Use get_chunks to retrieve multiple relationship evidences at once
+   - Only after exhausting search options, say "not found in the knowledge graph"
+
+3. **VERIFY BEFORE ANSWERING**: Before stating any specific fact:
+   - Confirm it appears in a retrieved chunk
+   - If you're unsure, retrieve another chunk to verify
+
+4. **MATCH THE QUESTION PRECISELY**: When multiple related facts exist, select the one that EXACTLY answers the question.
+   - "technology companies by revenue" → revenue ranking, NOT overall company ranking
+   - "Google+ settlement" → Google+ case specifically, NOT other lawsuits
+
+5. **MANDATORY WORKFLOW** (you MUST follow ALL steps):
+   1. resolve_entity_or_topic → find exact entity names
+   2. explore_neighbors → discover available relationships/edge types
+   3. **get_chunk/get_chunks/get_chunks_by_edge** → REQUIRED: retrieve the actual source text
+   4. **think** → REQUIRED: analyze the retrieved chunks before answering
+   5. ANSWER using ONLY the facts you extracted in your think step
+
+## CRITICAL: YOU MUST RETRIEVE CHUNKS
+
+Entity summaries and relationship names are NOT enough to answer questions accurately.
+You MUST call get_chunk, get_chunks, or get_chunks_by_edge to get the actual source text.
+- Entity summaries don't contain specific dates, numbers, or details
+- Only the source chunks have the precise information to answer questions
+- If you answer without retrieving chunks, you WILL give wrong answers
+
+## MANDATORY: USE THE THINK TOOL BEFORE ANSWERING
+
+After retrieving chunks (NOT before!), you MUST call the `think` tool to:
+- List the SPECIFIC facts you found in the retrieved chunks
+- Quote the relevant text that answers the question
+- Identify what information is and isn't in the chunks
+
+Example:
+```
+think(thought="Analyzing the retrieved chunk:
+1. Found: 'Google was reorganized as an LLC on September 1, 2017'
+2. This directly answers the question about when Google became an LLC
+3. The answer is September 1, 2017")
+```
+
+If the think analysis shows the evidence doesn't contain the answer, say: "This information was not found in the knowledge graph."
+DO NOT make up dates, numbers, or facts. If you didn't retrieve it from a chunk, you don't know it."""
 
 # AGENT_SYSTEM_PROMPT = """You are an autonomous Knowledge Graph Research Agent. You answer questions by searching a graph database.
 
@@ -171,6 +232,30 @@ def count_tool_calls(messages) -> int:
     """Count the number of tool calls in the message history."""
     from langchain_core.messages import ToolMessage
     return sum(1 for msg in messages if isinstance(msg, ToolMessage))
+
+
+def extract_text_content(content) -> str:
+    """Extract text from various content formats (handles Gemini 3's structured response).
+    
+    Gemini 3 returns content as a list of structured blocks:
+    [{'type': 'text', 'text': 'actual message', 'extras': {...}}]
+    
+    This function normalizes it to a plain string.
+    """
+    if isinstance(content, str):
+        return content
+    
+    if isinstance(content, list):
+        # Gemini 3 format: list of content blocks
+        text_parts = []
+        for block in content:
+            if isinstance(block, dict) and 'text' in block:
+                text_parts.append(block['text'])
+            elif isinstance(block, str):
+                text_parts.append(block)
+        return '\n'.join(text_parts) if text_parts else str(content)
+    
+    return str(content)
 
 
 async def create_agent_graph(mcp_server: str = "original", transport: str = "stdio"):
@@ -271,25 +356,62 @@ def create_judge_llm():
     return llm.with_structured_output(JudgeResult)
 
 
-async def ask_agent(graph, question: str) -> tuple[str, float]:
-    """Ask the agent a question and return its answer with timing."""
+async def ask_agent(graph, question: str) -> tuple[str, float, list[ToolCallTrace]]:
+    """Ask the agent a question and return its answer with timing and tool trace."""
+    from langchain_core.messages import ToolMessage
+
     start = time.time()
+    tool_traces = []
+
     try:
         response = await graph.ainvoke(
             {"messages": [HumanMessage(content=question)]},
             config={"recursion_limit": 25}
         )
 
-        # Get the final AI message
-        for msg in reversed(response["messages"]):
-            if hasattr(msg, 'content') and msg.content and not hasattr(msg, 'tool_calls'):
-                return msg.content, time.time() - start
-            if hasattr(msg, 'content') and msg.content and hasattr(msg, 'tool_calls') and not msg.tool_calls:
-                return msg.content, time.time() - start
+        messages = response["messages"]
 
-        return "No response generated", time.time() - start
+        # Build tool trace by pairing AI tool_calls with ToolMessage responses
+        pending_calls = {}  # tool_call_id -> (tool_name, args)
+
+        for msg in messages:
+            # Capture tool calls from AI messages
+            if hasattr(msg, 'tool_calls') and msg.tool_calls:
+                for tc in msg.tool_calls:
+                    call_id = tc.get('id', tc.get('name', 'unknown'))
+                    pending_calls[call_id] = (tc['name'], tc.get('args', {}))
+
+            # Match ToolMessage responses
+            if isinstance(msg, ToolMessage):
+                call_id = getattr(msg, 'tool_call_id', None)
+                tool_name = msg.name or 'unknown'
+                args = {}
+
+                # Try to find matching call
+                if call_id and call_id in pending_calls:
+                    tool_name, args = pending_calls[call_id]
+
+                # Truncate long responses for readability
+                response_str = str(msg.content)
+                if len(response_str) > 500:
+                    response_str = response_str[:500] + "..."
+
+                tool_traces.append(ToolCallTrace(
+                    tool_name=tool_name,
+                    args=args,
+                    response=response_str
+                ))
+
+        # Get the final AI message
+        for msg in reversed(messages):
+            if hasattr(msg, 'content') and msg.content and not hasattr(msg, 'tool_calls'):
+                return extract_text_content(msg.content), time.time() - start, tool_traces
+            if hasattr(msg, 'content') and msg.content and hasattr(msg, 'tool_calls') and not msg.tool_calls:
+                return extract_text_content(msg.content), time.time() - start, tool_traces
+
+        return "No response generated", time.time() - start, tool_traces
     except Exception as e:
-        return f"Error: {str(e)}", time.time() - start
+        return f"Error: {str(e)}", time.time() - start, tool_traces
 
 
 async def judge_answer_async(judge_llm, question: str, expected: str, agent_answer: str) -> tuple[JudgeResult, float]:
@@ -369,7 +491,7 @@ async def evaluate_qa_pairs(
         judge_start = time.time()
         judge_tasks = [
             judge_answer_async(judge_llm, qa["question"], qa["answer"], agent_answer)
-            for qa, (agent_answer, _) in zip(batch, agent_results)
+            for qa, (agent_answer, _, _) in zip(batch, agent_results)
         ]
         judge_results = await asyncio.gather(*judge_tasks)
         judge_batch_time = time.time() - judge_start
@@ -377,7 +499,7 @@ async def evaluate_qa_pairs(
 
         # Combine results
         for i, qa in enumerate(batch):
-            agent_answer, agent_time = agent_results[i]
+            agent_answer, agent_time, tool_trace = agent_results[i]
             judge_result, judge_time = judge_results[i]
 
             q_id = qa.get("id", batch_start + i + 1)
@@ -386,19 +508,22 @@ async def evaluate_qa_pairs(
             q_type = qa.get("type", "unknown")
             difficulty = qa.get("difficulty", "unknown")
 
+            verdict_val = judge_result.verdict if judge_result else JudgeVerdict.INCORRECT
+
             result = EvalResult(
                 question_id=q_id,
                 question=question,
                 expected_answer=expected,
                 agent_answer=agent_answer,
-                verdict=judge_result.verdict,
-                reasoning=judge_result.reasoning,
+                verdict=verdict_val,
+                reasoning=judge_result.reasoning if judge_result else "Judge failed to return a result",
                 question_type=q_type,
                 difficulty=difficulty,
                 agent_time_sec=agent_time,
                 judge_time_sec=judge_time,
-                key_facts_matched=judge_result.key_facts_matched,
-                key_facts_missing=judge_result.key_facts_missing
+                key_facts_matched=judge_result.key_facts_matched if judge_result else [],
+                key_facts_missing=judge_result.key_facts_missing if judge_result else [],
+                tool_trace=tool_trace if verdict_val != JudgeVerdict.CORRECT else []  # Only store trace for failures
             )
             results.append(result)
 
@@ -410,19 +535,37 @@ async def evaluate_qa_pairs(
                 JudgeVerdict.UNANSWERABLE: "[N/A]"
             }
             global_idx = batch_start + i + 1
-            print(f"  Q{q_id}: {verdict_symbol.get(judge_result.verdict, '[?]')} ({agent_time:.1f}s)")
+            print(f"  Q{q_id}: {verdict_symbol.get(verdict_val, '[?]')} ({agent_time:.1f}s)")
 
             # Always show details for non-correct answers
-            is_not_correct = judge_result.verdict != JudgeVerdict.CORRECT
+            is_not_correct = verdict_val != JudgeVerdict.CORRECT
             if is_not_correct or verbose:
                 print(f"       Question: {question}")
                 print(f"       Expected: {expected}")
                 print(f"       Agent:    {agent_answer[:500]}{'...' if len(agent_answer) > 500 else ''}")
-                print(f"       Reason:   {judge_result.reasoning}")
-                if judge_result.key_facts_matched:
-                    print(f"       ✓ Matched: {', '.join(judge_result.key_facts_matched)}")
-                if judge_result.key_facts_missing:
-                    print(f"       ✗ Missing: {', '.join(judge_result.key_facts_missing)}")
+                reasoning = judge_result.reasoning if judge_result else "Judge failed"
+                print(f"       Reason:   {reasoning}")
+                facts_matched = judge_result.key_facts_matched if judge_result else []
+                facts_missing = judge_result.key_facts_missing if judge_result else []
+                if facts_matched:
+                    print(f"       ✓ Matched: {', '.join(facts_matched)}")
+                if facts_missing:
+                    print(f"       ✗ Missing: {', '.join(facts_missing)}")
+
+                # Show tool trace for failures
+                if tool_trace and is_not_correct:
+                    print(f"       📞 Tool Trace ({len(tool_trace)} calls):")
+                    for j, tc in enumerate(tool_trace):
+                        args_str = json.dumps(tc.args, ensure_ascii=False) if tc.args else "{}"
+                        if len(args_str) > 80:
+                            args_str = args_str[:80] + "..."
+                        print(f"          [{j+1}] {tc.tool_name}({args_str})")
+                        # Show truncated response
+                        resp_preview = tc.response[:200].replace('\n', ' ')
+                        if len(tc.response) > 200:
+                            resp_preview += "..."
+                        print(f"              → {resp_preview}")
+
                 print()  # Blank line for readability
 
     total_time = time.time() - total_start
@@ -551,6 +694,11 @@ def save_results(results: list[EvalResult], output_path: str):
                 "judge_time_sec": r.judge_time_sec,
                 "key_facts_matched": r.key_facts_matched,
                 "key_facts_missing": r.key_facts_missing,
+                # Include tool trace for failures (for debugging)
+                "tool_trace": [
+                    {"tool": tc.tool_name, "args": tc.args, "response": tc.response}
+                    for tc in r.tool_trace
+                ] if r.tool_trace else None,
             }
             for r in results
         ]

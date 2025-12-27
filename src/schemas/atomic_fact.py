@@ -21,6 +21,10 @@ class AtomicFact(BaseModel):
         "Entity",
         description="The type of the subject. 'Entity' for specific actors (Companies, People), 'Topic' for concepts acting as subjects (e.g. 'Inflation' hurt earnings)."
     )
+    subject_summary: Optional[str] = Field(
+        None,
+        description="A 1-2 sentence definition of what the subject IS. For people: role/title. For companies: industry. For topics: financial definition."
+    )
     object: Optional[str] = Field(
         None,
         description=(
@@ -32,6 +36,10 @@ class AtomicFact(BaseModel):
     object_type: str = Field(
         "Entity",
         description="The type of the object. 'Entity' for specific actors, 'Topic' for concepts."
+    )
+    object_summary: Optional[str] = Field(
+        None,
+        description="A 1-2 sentence definition of what the object IS. For people: role/title. For companies: industry. For topics: financial definition."
     )
     relationship_description: Optional[str] = Field(
         None,
