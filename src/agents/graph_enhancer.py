@@ -58,8 +58,8 @@ class GraphEnhancer:
             "You are a Quality Assurance Auditor for a Knowledge Graph.\n"
             "Your goal is to review the Extracted Facts against the Source Text and identify MISSING information.\n\n"
             "CRITICAL GOAL: PROMOTE CONCEPTS TO ENTITIES.\n"
-            "If the text says 'the tech giant' and we extracted it as a generic Concept, but the text implies it is 'Google', "
-            "you MUST flag this as a missed fact: 'The tech giant is Google'.\n\n"
+            "If the text says 'the tech giant' and we extracted it as a generic Concept, but the text implies a specific company, "
+            "you MUST flag this as a missed fact: 'The tech giant is [Company Name]'.\n\n"
             "Rules:\n"
             "1. Only report SUBSTANTIAL missing facts that change the meaning or add specific entities.\n"
             "2. Ignore minor wording differences.\n"
@@ -80,11 +80,16 @@ class GraphEnhancer:
 
     def extract_entity_summary(self, entity_name: str, context_text: str) -> str:
         """
-        Generates a brief 1-sentence summary/definition of what the entity IS in this context.
+        Generates a comprehensive summary of what the entity IS in this context,
+        including all relevant facts like roles, dates, events, and relationships.
         """
         prompt = (
-            f"Based on the text below, provide a brief, 1-sentence summary/definition of what '{entity_name}' IS.\n"
-            f"Example: 'A multinational technology company.' or 'A type of fruit.'\n"
+            f"Based on the text below, provide a comprehensive summary of what '{entity_name}' IS.\n"
+            f"Include ALL relevant facts from the context:\n"
+            f"- For people: role/title, organization, key dates (e.g., tenure start/end), notable actions\n"
+            f"- For organizations: type, parent/subsidiary relationships, key events, dates\n"
+            f"- For events: what happened, when, who was involved\n"
+            f"Keep it factual and specific. 2-4 sentences is fine if needed to capture key details.\n"
             f"TEXT: {context_text}\n"
             f"SUMMARY:"
         )
@@ -113,7 +118,7 @@ class GraphEnhancer:
         class EntitySummary(BaseModel):
             """Single entity summary."""
             name: str = Field(description="Entity name")
-            summary: str = Field(description="1-sentence summary describing what this entity is")
+            summary: str = Field(description="Comprehensive summary describing what this entity is, including key facts, dates, and relationships")
 
         class EntitySummaries(BaseModel):
             """Collection of entity summaries."""
@@ -131,16 +136,17 @@ class GraphEnhancer:
             entity_list = "\n".join([f"{idx+1}. {name}" for idx, name in enumerate(batch)])
 
             prompt = (
-                f"Given the following context, provide a brief 1-sentence summary for EACH entity.\n"
-                f"The summary should describe what the entity IS with SPECIFIC identifying details.\n\n"
+                f"Given the following context, provide a comprehensive summary for EACH entity.\n"
+                f"The summary should describe what the entity IS with ALL relevant facts from the context.\n\n"
                 f"Guidelines:\n"
-                f"- For people: Include their role/title and organization if mentioned.\n"
-                f"- For organizations: Include their type and any parent/subsidiary relationship.\n"
-                f"- Avoid generic phrases like 'a person' or 'a company' - be specific based on context.\n"
-                f"- If the context doesn't provide details, use what's available.\n\n"
+                f"- For people: Include role/title, organization, key dates (tenure start/end), notable actions.\n"
+                f"- For organizations: Include type, parent/subsidiary relationships, key events, founding dates.\n"
+                f"- For events/documents: Include what it is, when it occurred, key details.\n"
+                f"- Be specific - avoid generic phrases like 'a person' or 'a company'.\n"
+                f"- 2-4 sentences per entity is fine if needed to capture important details.\n\n"
                 f"CONTEXT:\n{context_text}\n\n"
                 f"ENTITIES TO SUMMARIZE:\n{entity_list}\n\n"
-                f"Provide summaries for all entities listed above."
+                f"Provide comprehensive summaries for all entities listed above."
             )
 
             try:

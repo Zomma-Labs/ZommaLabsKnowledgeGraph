@@ -580,5 +580,173 @@
             "Credit Suisse recommended overweight on semiconductor stocks.",
             "The compensation committee recommended a 20% raise for the CEO."
         ]
+    },
+    {
+        "name": "WENT_PUBLIC",
+        "description": "An entity completing an initial public offering (IPO) and becoming a publicly traded company.",
+        "examples": [
+            "Airbnb went public in December 2020 at a valuation of $47 billion.",
+            "Rivian completed its IPO, raising $11.9 billion in the largest US listing since Facebook."
+        ]
+    },
+    {
+        "name": "STOCK_SPLIT",
+        "description": "An entity dividing its existing shares into multiple shares to boost liquidity and accessibility.",
+        "examples": [
+            "Amazon executed a 20-for-1 stock split in June 2022.",
+            "Alphabet completed a 20-for-1 stock split to make shares more accessible to retail investors."
+        ]
+    },
+    {
+        "name": "DELISTED",
+        "description": "An entity being removed from a stock exchange, either voluntarily or due to non-compliance.",
+        "examples": [
+            "Didi was delisted from the NYSE after regulatory pressure from China.",
+            "The company was delisted after failing to meet minimum share price requirements."
+        ]
+    },
+    {
+        "name": "RAISED_EQUITY",
+        "description": "An entity raising capital by issuing new shares or equity securities. Distinct from debt issuance.",
+        "examples": [
+            "Tesla raised $5 billion through an at-the-market equity offering.",
+            "The SPAC raised $400 million in its IPO to acquire a target company."
+        ]
+    },
+    {
+        "name": "REFINANCED_DEBT",
+        "description": "An entity replacing existing debt with new debt, often at better terms or extended maturity.",
+        "examples": [
+            "Ford refinanced $15 billion of its revolving credit facility.",
+            "The company refinanced its 2024 maturities with lower-rate bonds."
+        ]
+    },
+    {
+        "name": "CREDIT_DOWNGRADE",
+        "description": "A credit rating agency lowering an entity's credit rating, indicating increased default risk.",
+        "examples": [
+            "Moody's downgraded Boeing to Baa2 following the 737 MAX crisis.",
+            "S&P cut the company's rating to junk status after missed debt payments."
+        ]
+    },
+    {
+        "name": "CREDIT_UPGRADE",
+        "description": "A credit rating agency raising an entity's credit rating, indicating improved creditworthiness.",
+        "examples": [
+            "Fitch upgraded Netflix to investment grade following strong cash flow.",
+            "Moody's raised the sovereign rating after fiscal reforms."
+        ]
+    },
+    {
+        "name": "FILED_WITH_REGULATOR",
+        "description": "An entity submitting a required filing to a regulatory body such as the SEC, FDA, or FCC.",
+        "examples": [
+            "Apple filed its annual 10-K report with the SEC.",
+            "The biotech company filed an NDA with the FDA for its cancer drug."
+        ]
+    },
+    {
+        "name": "RECEIVED_APPROVAL",
+        "description": "An entity receiving regulatory approval for a product, merger, or other action.",
+        "examples": [
+            "Pfizer received FDA approval for its COVID-19 vaccine.",
+            "The merger received antitrust clearance from the FTC."
+        ]
+    },
+    {
+        "name": "DENIED_APPROVAL",
+        "description": "An entity being denied regulatory approval for a product, merger, or other action.",
+        "examples": [
+            "The FDA denied approval for the experimental Alzheimer's drug.",
+            "The FCC denied the spectrum license application."
+        ]
+    },
+    {
+        "name": "COVENANT_BREACH",
+        "description": "An entity violating terms of a debt agreement, such as financial ratio requirements.",
+        "examples": [
+            "The retailer breached its debt-to-EBITDA covenant after weak holiday sales.",
+            "The company disclosed a technical breach of its interest coverage covenant."
+        ]
+    },
+    {
+        "name": "COVENANT_WAIVED",
+        "description": "Lenders agreeing to temporarily suspend or permanently remove debt covenant requirements.",
+        "examples": [
+            "Banks granted a covenant waiver to the airline during the pandemic.",
+            "The company obtained a waiver for its leverage ratio covenant."
+        ]
+    },
+    {
+        "name": "RESTATED_FINANCIALS",
+        "description": "An entity revising previously reported financial statements due to errors or accounting changes.",
+        "examples": [
+            "The company restated three years of financials after discovering revenue recognition errors.",
+            "GE restated its earnings following an SEC investigation into accounting practices."
+        ]
+    },
+    {
+        "name": "MISSED_EARNINGS",
+        "description": "An entity reporting earnings below analyst consensus expectations.",
+        "examples": [
+            "Intel missed earnings estimates, reporting EPS of $0.25 vs. expected $0.35.",
+            "The retailer missed revenue expectations by 5%, sending shares lower."
+        ]
+    },
+    {
+        "name": "BEAT_EARNINGS",
+        "description": "An entity reporting earnings above analyst consensus expectations.",
+        "examples": [
+            "Nvidia beat earnings expectations with record data center revenue.",
+            "The bank beat EPS estimates by 15% on strong trading revenue."
+        ]
+    },
+    {
+        "name": "APPOINTED_EXECUTIVE",
+        "description": "An entity naming a person to a senior leadership position. More specific than general hiring.",
+        "examples": [
+            "The board appointed a new CEO following the founder's resignation.",
+            "Microsoft appointed Satya Nadella as Chief Executive Officer in 2014."
+        ]
+    },
+    {
+        "name": "PROMOTED",
+        "description": "An entity elevating an existing employee to a higher position within the organization.",
+        "examples": [
+            "The CFO was promoted to President and Chief Operating Officer.",
+            "Google promoted the head of AI research to Senior Vice President."
+        ]
+    },
+    {
+        "name": "DISCONTINUED_PRODUCT",
+        "description": "An entity ending production or support for a product or service line.",
+        "examples": [
+            "Google discontinued Google+ after years of low engagement.",
+            "Intel discontinued its Optane memory business."
+        ]
+    },
+    {
+        "name": "EXITED_MARKET",
+        "description": "An entity withdrawing from a geographic or product market entirely.",
+        "examples": [
+            "Uber exited the China market after selling to Didi.",
+            "The retailer exited the UK market after sustained losses."
+        ]
+    },
+    {
+        "name": "SUPPLIES_TO",
+        "description": "An entity providing components, materials, or services to another entity as a supplier.",
+        "examples": [
+            "TSMC supplies chips to Apple for the iPhone.",
+            "Corning supplies Gorilla Glass to major smartphone manufacturers."
+        ]
+    },
+    {
+        "name": "CUSTOMER_OF",
+        "description": "An entity purchasing products or services from another entity as a customer.",
+        "examples": [
+            "Apple is a major customer of Samsung's display division.",
+            "AWS counts Netflix as one of its largest cloud customers."
+        ]
     }
 ]

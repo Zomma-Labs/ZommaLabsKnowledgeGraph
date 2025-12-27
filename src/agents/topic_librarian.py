@@ -1,20 +1,40 @@
 """
 MODULE: Topic Librarian
 DESCRIPTION:
-    Resolves extracted topic names to the curated topic ontology using hybrid retrieval:
-    1. Vector Search (Semantic Match) via Qdrant + Voyage AI.
-    2. Fuzzy Search (Typo/Exact Match) via RapidFuzz.
+    Resolves extracted topic names to the curated topic ontology using:
+    1. Vector Search (Semantic Match) via Qdrant + Voyage AI embeddings
+    2. LLM Verification - Uses LLM to decide if candidates actually match the input
 
-    If no match is found above threshold, returns None (topic should be discarded).
-    This prevents garbage topics like "Transparency And Oversight" from entering the graph.
+    Embeddings capture semantic meaning to find candidate topics.
+    LLM makes the final decision on whether the extracted topic matches a candidate.
 """
 
 import os
 from typing import List, Dict, Optional, TYPE_CHECKING
-from rapidfuzz import process, fuzz
+from pydantic import BaseModel, Field
+from src.util.llm_client import get_nano_llm
 
 if TYPE_CHECKING:
     from src.util.services import Services
+
+
+class TopicResolutionResponse(BaseModel):
+    """Structured response for topic resolution."""
+    selected_number: Optional[int] = Field(
+        None,
+        description="The number of the matching topic (1-indexed), or null if no match"
+    )
+
+
+class TopicDefinition(BaseModel):
+    """A topic with its contextual definition."""
+    topic: str = Field(description="The topic term exactly as provided")
+    definition: str = Field(description="A one-sentence definition of what this topic means")
+
+
+class BatchTopicDefinitions(BaseModel):
+    """Batch of topic definitions."""
+    definitions: List[TopicDefinition] = Field(description="List of topics with their definitions")
 
 # Control verbose output
 VERBOSE = os.getenv("VERBOSE", "false").lower() == "true"
@@ -43,120 +63,196 @@ class TopicLibrarian:
         from qdrant_client import QdrantClient
         self.client = QdrantClient(path=QDRANT_PATH)
 
-        # Load labels for fuzzy matching
-        self.label_map = self._load_all_labels()
-        self.all_labels = list(self.label_map.keys())
-        log(f"   Loaded {len(self.all_labels)} topics for fuzzy matching.")
+        # LLM for candidate verification (with structured output)
+        self.llm = get_nano_llm().with_structured_output(TopicResolutionResponse)
+        self.definition_llm = get_nano_llm().with_structured_output(BatchTopicDefinitions)
 
-    def _load_all_labels(self) -> Dict[str, Dict]:
+    def batch_define_topics(self, topics: List[str], context: str) -> Dict[str, str]:
         """
-        Fetches all labels, synonyms, and URIs from Qdrant.
-        Returns: {Label/Synonym: {"uri": ..., "canonical": ...}}
-        """
-        label_map = {}
+        Generate definitions for a batch of topics from a single chunk.
 
-        if not self.client.collection_exists(COLLECTION_NAME):
-            log(f"   Collection '{COLLECTION_NAME}' not found. Run topic_loader.py first.")
+        Args:
+            topics: List of topic terms extracted from the chunk
+            context: The full chunk text
+
+        Returns:
+            Dict mapping topic -> "topic: definition" for enriched embedding
+        """
+        if not topics:
             return {}
 
-        offset = None
-        while True:
-            points, offset = self.client.scroll(
-                collection_name=COLLECTION_NAME,
-                scroll_filter=None,
-                limit=100,
-                with_payload=True,
-                with_vectors=False,
-                offset=offset
-            )
+        # Deduplicate while preserving order
+        unique_topics = list(dict.fromkeys(topics))
 
-            for point in points:
-                payload = point.payload
-                if payload and "label" in payload and "uri" in payload:
-                    canonical = payload["label"]
-                    uri = payload["uri"]
+        topics_list = "\n".join([f"- {t}" for t in unique_topics])
 
-                    # Add canonical label
-                    label_map[canonical] = {"uri": uri, "canonical": canonical}
+        prompt = f"""Define each financial/business topic in one sentence.
 
-                    # Add synonyms
-                    synonyms_str = payload.get("synonyms", "")
-                    if synonyms_str:
-                        for syn in synonyms_str.split(","):
-                            syn = syn.strip()
-                            if syn:
-                                label_map[syn] = {"uri": uri, "canonical": canonical}
+CONTEXT:
+"{context}"
 
-            if offset is None:
-                break
+TOPICS TO DEFINE:
+{topics_list}
 
-        return label_map
+For each topic, provide a concise one-sentence definition explaining what it means in financial/business terms. Return the topic exactly as written."""
 
-    def resolve(self, text: str, top_k: int = 3, threshold: float = 0.70) -> Optional[Dict]:
+        try:
+            response: BatchTopicDefinitions = self.definition_llm.invoke(prompt)
+
+            # Build result mapping
+            result = {}
+            defined = {d.topic.lower(): d.definition for d in response.definitions}
+
+            for topic in unique_topics:
+                definition = defined.get(topic.lower(), "")
+                if definition:
+                    result[topic] = f"{topic}: {definition}"
+                else:
+                    result[topic] = topic  # Fallback to raw
+
+            log(f"   Defined {len(result)} topics for enriched matching")
+            return result
+
+        except Exception as e:
+            log(f"   Batch definition failed: {e}")
+            # Fallback: return raw topics
+            return {t: t for t in unique_topics}
+
+    def resolve_with_definition(self, text: str, enriched_text: str, context: str = "",
+                                 top_k: int = 15, candidate_threshold: float = 0.40) -> Optional[Dict]:
         """
-        Resolves a topic name to the best matching ontology concept.
-        Returns the match dictionary or None if no good match.
+        Resolves a topic using enriched text (topic: definition) for better semantic matching.
 
-        Threshold is lower than FIBO entities (0.70 vs 0.9) since topics are more abstract.
+        Args:
+            text: The original topic name
+            enriched_text: "topic: definition" string for embedding
+            context: The source fact/sentence
+            top_k: Number of candidates to retrieve
+            candidate_threshold: Minimum similarity score
+
+        Returns:
+            Match dictionary or None
         """
         if not text or not text.strip():
             return None
 
         text = text.strip()
 
-        # 1. Vector Search (Semantic)
-        vector_candidates = self._vector_search(text, k=top_k)
+        # Vector search using ENRICHED text
+        candidates = self._vector_search(enriched_text, k=top_k)
 
-        # 2. Fuzzy Search (Lexical)
-        fuzzy_candidates = self._fuzzy_search(text, k=top_k)
+        sorted_candidates = sorted(candidates, key=lambda x: x['score'], reverse=True)
 
-        # 3. Merge & Rank
-        combined = {}
-
-        for cand in vector_candidates:
-            uri = cand['uri']
-            combined[uri] = {
-                "uri": uri,
-                "label": cand['label'],
-                "definition": cand.get('definition', ''),
-                "source": "vector",
-                "score": cand['score']
-            }
-
-        for cand in fuzzy_candidates:
-            uri = cand['uri']
-            score = cand['score'] / 100.0  # Normalize to 0-1
-
-            if uri in combined:
-                existing_score = combined[uri]['score']
-                new_score = (existing_score + score) / 2 + 0.1
-                combined[uri]['score'] = min(new_score, 1.0)
-                combined[uri]['source'] = "hybrid"
-            else:
-                combined[uri] = {
-                    "uri": uri,
-                    "label": cand['label'],
-                    "definition": "",
-                    "source": "fuzzy",
-                    "score": score
-                }
-
-        sorted_candidates = sorted(combined.values(), key=lambda x: x['score'], reverse=True)
-
-        if not sorted_candidates:
-            log(f"   No topic match for '{text}'")
+        if not sorted_candidates or sorted_candidates[0]['score'] < candidate_threshold:
+            log(f"   No topic candidates for '{text}' (below threshold)")
             return None
 
-        best_match = sorted_candidates[0]
+        viable_candidates = [c for c in sorted_candidates if c['score'] >= candidate_threshold][:20]
 
-        if best_match['score'] < threshold:
-            log(f"   Topic '{text}' best match '{best_match['label']}' score {best_match['score']:.2f} < {threshold}. Rejecting.")
+        # LLM verification uses original text + context
+        selected = self._llm_verify_topic(text, context, viable_candidates)
+
+        if selected:
+            log(f"   Topic '{text}' -> '{selected['label']}' (definition-enriched)")
+            return selected
+        else:
+            log(f"   Topic '{text}' rejected by LLM")
             return None
 
-        log(f"   Topic '{text}' -> '{best_match['label']}' ({best_match['score']:.2f})")
-        return best_match
+    def resolve(self, text: str, context: str = "", top_k: int = 15, candidate_threshold: float = 0.40) -> Optional[Dict]:
+        """
+        Resolves a topic name to the best matching ontology concept.
 
-    def resolve_topics(self, topics: List[str], threshold: float = 0.70) -> List[str]:
+        Args:
+            text: The topic name to resolve
+            context: The source fact/sentence where this topic was extracted from
+            top_k: Number of candidates to retrieve from vector search
+            candidate_threshold: Minimum cosine similarity to consider a candidate
+
+        Returns:
+            Match dictionary with 'label', 'uri', 'definition', 'score' or None
+        """
+        if not text or not text.strip():
+            return None
+
+        text = text.strip()
+
+        # Vector Search (Semantic) - embeddings capture meaning
+        candidates = self._vector_search(text, k=top_k)
+
+        # Sort by score
+        sorted_candidates = sorted(candidates, key=lambda x: x['score'], reverse=True)
+
+        # Auto-reject if no candidates above threshold
+        if not sorted_candidates or sorted_candidates[0]['score'] < candidate_threshold:
+            log(f"   No topic candidates for '{text}' (below threshold)")
+            return None
+
+        # Get top candidates for LLM verification
+        viable_candidates = [c for c in sorted_candidates if c['score'] >= candidate_threshold][:20]
+
+        # LLM decides which candidate (if any) actually matches
+        selected = self._llm_verify_topic(text, context, viable_candidates)
+
+        if selected:
+            log(f"   Topic '{text}' -> '{selected['label']}' (LLM verified)")
+            return selected
+        else:
+            log(f"   Topic '{text}' rejected by LLM (no valid match)")
+            return None
+
+    def _llm_verify_topic(self, input_text: str, context: str, candidates: List[Dict]) -> Optional[Dict]:
+        """
+        Uses LLM to decide which candidate (if any) actually matches the input.
+        Returns the matching candidate dict or None if no match.
+        """
+        if not candidates:
+            return None
+
+        # Build candidate list with Topic : Definition : Examples format
+        candidate_list = "\n".join([
+            f"{i+1}. {c['label']}: {c.get('definition', 'No definition')} (e.g., {c.get('synonyms', 'N/A')})"
+            for i, c in enumerate(candidates)
+        ])
+
+        # Include context if provided
+        context_section = f'"{context}"' if context else "No context provided."
+
+        prompt = f"""TASK: Match an extracted topic to its canonical form from our ontology.
+
+EXTRACTED TOPIC: "{input_text}"
+
+SOURCE CONTEXT (use this to understand what the extracted topic means):
+{context_section}
+
+CANDIDATE TOPICS FROM ONTOLOGY:
+{candidate_list}
+
+INSTRUCTIONS:
+1. Use the SOURCE CONTEXT to understand what "{input_text}" refers to in this specific usage
+2. Compare the MEANING of the extracted topic against each candidate's definition
+3. If the extracted topic clearly matches one candidate's meaning, return that number
+4. If no candidate reliably matches what the extracted topic means, return null
+
+Return the matching candidate number (1-{len(candidates)}), or null if no reliable match."""
+
+        try:
+            response: TopicResolutionResponse = self.llm.invoke(prompt)
+
+            if response.selected_number is None:
+                return None
+
+            idx = response.selected_number - 1  # Convert to 0-indexed
+            if 0 <= idx < len(candidates):
+                return candidates[idx]
+
+            return None
+
+        except Exception as e:
+            log(f"   LLM verification failed: {e}")
+            return None
+
+    def resolve_topics(self, topics: List[str], context: str = "") -> List[str]:
         """
         Resolves a list of extracted topics to canonical names.
         Returns only valid topics that match the ontology.
@@ -165,7 +261,7 @@ class TopicLibrarian:
         seen = set()
 
         for topic in topics:
-            match = self.resolve(topic, threshold=threshold)
+            match = self.resolve(topic, context=context)
             if match:
                 canonical = match['label']
                 if canonical not in seen:
@@ -195,6 +291,7 @@ class TopicLibrarian:
                     "uri": hit.payload["uri"],
                     "label": hit.payload["label"],
                     "definition": hit.payload.get("definition", ""),
+                    "synonyms": hit.payload.get("synonyms", ""),
                     "score": hit.score
                 })
             return candidates
@@ -203,54 +300,27 @@ class TopicLibrarian:
             log(f"Topic vector search failed: {e}")
             return []
 
-    def _fuzzy_search(self, text: str, k: int) -> List[Dict]:
-        """Performs fuzzy matching on in-memory labels."""
-        if not self.all_labels:
-            return []
-
-        results = process.extract(text, self.all_labels, scorer=fuzz.WRatio, limit=k)
-
-        candidates = []
-        for match, score, _ in results:
-            data = self.label_map.get(match)
-            if data:
-                candidates.append({
-                    "uri": data['uri'],
-                    "label": data['canonical'],  # Use canonical name
-                    "score": score
-                })
-        return candidates
-
 
 if __name__ == "__main__":
     import sys
-    import os
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-    # Test the librarian
     librarian = TopicLibrarian()
 
-    test_queries = [
-        "Inflation",
-        "Price Increases",
-        "inflationary pressure",
-        "Transparency And Oversight",  # Should NOT match
-        "Consumer Confidence",
-        "AI",
-        "Artificial Intelligence",
-        "market volatility",
-        "Random Garbage Topic",  # Should NOT match
-        "employment",
-        "CPI",
-        "GDP growth",
+    # Test cases: (topic, context, expected_result)
+    test_cases = [
+        ("Inflation", "Inflation is causing prices to rise.", "should match"),
+        ("M&A", "The company engaged in M&A activity.", "should match"),
+        ("$1 Trillion Market Value", "Apple reached $1 Trillion Market Value.", "should match Market Valuation"),
+        ("$7.5 Million", "Purchased equipment for $7.5 Million.", "should REJECT"),
+        ("CEO", "The CEO announced layoffs.", "should REJECT"),
+        ("Random Garbage", "Some random text.", "should REJECT"),
     ]
 
-    print("\nTopic Resolution Tests:")
-    print("-" * 50)
+    print("\nTopic Resolution Tests (with context):")
+    print("-" * 70)
 
-    for q in test_queries:
-        result = librarian.resolve(q)
-        if result:
-            print(f"'{q}' -> '{result['label']}' ({result['score']:.2f})")
-        else:
-            print(f"'{q}' -> REJECTED (no match)")
+    for topic, context, expected in test_cases:
+        result = librarian.resolve(topic, context=context)
+        status = f"-> {result['label']}" if result else "-> REJECTED"
+        print(f"  {topic:30} {status:25} (expected: {expected})")

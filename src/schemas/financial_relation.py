@@ -2,6 +2,10 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 
 class FinancialRelation(BaseModel):
+    thinking: Optional[str] = Field(
+        None,
+        description="Your reasoning about whether these are valid, searchable entities that a financial analyst would research."
+    )
     subject: str = Field(
         ...,
         description="The entity performing the action (e.g., 'Apple', 'The Federal Reserve')."
@@ -9,6 +13,14 @@ class FinancialRelation(BaseModel):
     subject_type: str = Field(
         "Entity",
         description="The type of the subject. 'Entity' for specific actors (Companies, People), 'Topic' for concepts acting as subjects (e.g. 'Inflation' hurt earnings)."
+    )
+    subject_summary: Optional[str] = Field(
+        None,
+        description=(
+            "A 1-2 sentence definition of what the subject IS based on context. "
+            "For people: role/title, organization. For companies: industry, what they do. "
+            "For topics: what this concept means in financial terms."
+        )
     )
     object: Optional[str] = Field(
         None,
@@ -21,6 +33,14 @@ class FinancialRelation(BaseModel):
     object_type: str = Field(
         "Entity",
         description="The type of the object. 'Entity' for specific actors, 'Topic' for concepts."
+    )
+    object_summary: Optional[str] = Field(
+        None,
+        description=(
+            "A 1-2 sentence definition of what the object IS based on context. "
+            "For people: role/title, organization. For companies: industry, what they do. "
+            "For topics: what this concept means in financial terms."
+        )
     )
     relationship_description: str = Field(
         ...,

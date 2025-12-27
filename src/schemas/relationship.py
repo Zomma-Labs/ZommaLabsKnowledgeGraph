@@ -82,6 +82,36 @@ class RelationshipType(str, Enum):
     ENCOURAGED = "ENCOURAGED"
     ADVISED = "ADVISED"
     RECOMMENDED = "RECOMMENDED"
+    # Market Events
+    WENT_PUBLIC = "WENT_PUBLIC"  # IPO
+    STOCK_SPLIT = "STOCK_SPLIT"
+    DELISTED = "DELISTED"
+    # Capital Markets
+    RAISED_EQUITY = "RAISED_EQUITY"  # Distinct from ISSUED_DEBT
+    REFINANCED_DEBT = "REFINANCED_DEBT"
+    # Credit Ratings (distinct from analyst ratings)
+    CREDIT_DOWNGRADE = "CREDIT_DOWNGRADE"
+    CREDIT_UPGRADE = "CREDIT_UPGRADE"
+    # Regulatory Events
+    FILED_WITH_REGULATOR = "FILED_WITH_REGULATOR"  # 10-K, 10-Q, 8-K filings
+    RECEIVED_APPROVAL = "RECEIVED_APPROVAL"  # FDA, FCC, etc.
+    DENIED_APPROVAL = "DENIED_APPROVAL"
+    # Debt/Credit Events
+    COVENANT_BREACH = "COVENANT_BREACH"
+    COVENANT_WAIVED = "COVENANT_WAIVED"
+    # Financial Reporting Events
+    RESTATED_FINANCIALS = "RESTATED_FINANCIALS"
+    MISSED_EARNINGS = "MISSED_EARNINGS"
+    BEAT_EARNINGS = "BEAT_EARNINGS"
+    # Leadership (more specific than HIRED)
+    APPOINTED_EXECUTIVE = "APPOINTED_EXECUTIVE"
+    PROMOTED = "PROMOTED"
+    # Product/Market
+    DISCONTINUED_PRODUCT = "DISCONTINUED_PRODUCT"
+    EXITED_MARKET = "EXITED_MARKET"
+    # Supply Chain
+    SUPPLIES_TO = "SUPPLIES_TO"
+    CUSTOMER_OF = "CUSTOMER_OF"
 
 class RelationshipDefinition(BaseModel):
     name: RelationshipType
@@ -185,4 +215,34 @@ ACTIVE_TO_PASSIVE = {
     RelationshipType.ENCOURAGED: "ENCOURAGED_BY",
     RelationshipType.ADVISED: "ADVISED_BY",
     RelationshipType.RECOMMENDED: "RECOMMENDED_BY",
+    # Market Events
+    RelationshipType.WENT_PUBLIC: "IPO_OF",
+    RelationshipType.STOCK_SPLIT: "SPLIT_BY",
+    RelationshipType.DELISTED: "DELISTED_FROM",
+    # Capital Markets
+    RelationshipType.RAISED_EQUITY: "EQUITY_RAISED_BY",
+    RelationshipType.REFINANCED_DEBT: "DEBT_REFINANCED_BY",
+    # Credit Ratings
+    RelationshipType.CREDIT_DOWNGRADE: "DOWNGRADED_BY",
+    RelationshipType.CREDIT_UPGRADE: "UPGRADED_BY",
+    # Regulatory Events
+    RelationshipType.FILED_WITH_REGULATOR: "FILING_RECEIVED_FROM",
+    RelationshipType.RECEIVED_APPROVAL: "APPROVAL_GRANTED_TO",
+    RelationshipType.DENIED_APPROVAL: "APPROVAL_DENIED_TO",
+    # Debt/Credit Events
+    RelationshipType.COVENANT_BREACH: "COVENANT_BREACHED_BY",
+    RelationshipType.COVENANT_WAIVED: "COVENANT_WAIVED_FOR",
+    # Financial Reporting Events
+    RelationshipType.RESTATED_FINANCIALS: "FINANCIALS_RESTATED_BY",
+    RelationshipType.MISSED_EARNINGS: "EARNINGS_MISSED_BY",
+    RelationshipType.BEAT_EARNINGS: "EARNINGS_BEAT_BY",
+    # Leadership
+    RelationshipType.APPOINTED_EXECUTIVE: "WAS_APPOINTED",
+    RelationshipType.PROMOTED: "WAS_PROMOTED",
+    # Product/Market
+    RelationshipType.DISCONTINUED_PRODUCT: "WAS_DISCONTINUED",
+    RelationshipType.EXITED_MARKET: "MARKET_EXITED_BY",
+    # Supply Chain
+    RelationshipType.SUPPLIES_TO: "SUPPLIED_BY",
+    RelationshipType.CUSTOMER_OF: "SELLS_TO",
 }

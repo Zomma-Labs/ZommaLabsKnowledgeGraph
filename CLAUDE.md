@@ -40,12 +40,24 @@ The pipeline in `src/workflows/main_pipeline.py` processes chunks through these 
 
 ### Key Agents (`src/agents/`)
 
-- **atomizer.py** - Text decomposition with de-contextualization (pronoun resolution, temporal grounding)
+- **atomizer.py** - Text decomposition with de-contextualization (pronoun resolution, temporal grounding, completeness preservation)
 - **FIBO_librarian.py** - Hybrid entity resolution using Qdrant vector search + RapidFuzz fuzzy matching
-- **entity_extractor.py** - Extracts subject/object/relationship triples from propositions
+- **entity_extractor.py** - Extracts subject/object/relationship triples from propositions with multi-relation pattern support (source attribution, list expansion)
 - **analyst.py** - Classifies relationships into strict semantic types (e.g., ACQUIRED, SUED, RAISED_POLICY_RATE)
 - **graph_assembler.py** - Batch writes to Neo4j with embedding-based deduplication
 - **graph_enhancer.py** - Entity summarization and graph candidate matching
+
+### Extraction Patterns
+
+**Atomizer Completeness Rule**: Facts must be self-contained. When someone communicates information, the speaker and their message stay together as ONE fact:
+- BAD: "The CEO announced something" (incomplete)
+- GOOD: "The CEO announced that revenue grew 15% in Q3"
+
+**Entity Extractor Multi-Relation Patterns**: A single fact can produce MULTIPLE relations:
+- **List Expansion**: "Subsidiaries include Google, Waymo, DeepMind" → 3 relations
+- **Source Attribution**: "Dr. Smith found that Drug X treats Disease Y" → 2 relations:
+  - Content: Drug X → treats → Disease Y
+  - Source: Dr. Smith → discovered → Drug X
 
 ### Node Schema (`src/schemas/nodes.py`)
 

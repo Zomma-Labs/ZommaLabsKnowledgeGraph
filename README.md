@@ -24,20 +24,27 @@ The pipeline uses a Parallel Agentic Workflow (powered by LangGraph) to ensure h
 1. **The "Atomizer" (Ingestion)**
     - Splits documents by Section Headers.
     - Explodes paragraphs into Atomic Facts.
+    - **Completeness Rule**: Facts must be self-contained. Speaker + message stay together.
     - **Reflexion Loop**: Self-corrects to ensure no facts are missed.
 
-2. **The "Dual-Brain" Resolver (Transformation)**
+2. **The "Entity Extractor" (Relation Extraction)**
+    - **Multi-Relation Patterns**: A single fact can produce multiple relations:
+        - **List Expansion**: "Subsidiaries include A, B, C" → 3 separate relations
+        - **Source Attribution**: "CEO revealed that X inspired Y" → Content relation + Source relation
+    - Structured prompt with 4 sections: Entity Resolution, Relationship Extraction, Multi-Relation Patterns, Validation
+
+3. **The "Dual-Brain" Resolver (Transformation)**
     - **Stream A (Nouns - Librarian)**:
         - Hybrid Search: Combines Qdrant Vector Search with RapidFuzz.
         - Thresholding: < 90% confidence -> Creates new UUID.
     - **Stream B (Verbs - Analyst)**:
         - Classifies facts into types like `REPORTED_FINANCIALS` or `CAUSED`.
 
-3. **The "Causal Linker" (Reasoning)**
+4. **The "Causal Linker" (Reasoning)**
     - Connects `FactNode`s based on logical flow.
     - Example: `(Fed Raised Rates) -[:CAUSES]-> (Stocks Dropped)`
 
-4. **The "Assembler" (Loading)**
+5. **The "Assembler" (Loading)**
     - Writes to Neo4j using the **Fact-as-Node** pattern.
     - Ensures all Entities have `name` properties and correct FIBO URIs.
 
