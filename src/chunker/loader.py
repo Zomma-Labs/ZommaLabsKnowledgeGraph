@@ -7,7 +7,7 @@ from typing import Iterator
 
 
 PDF_DIR = Path("data")
-from .types import DocumentPayload
+from .chunk_types import DocumentPayload
 
 logger = logging.getLogger(__name__)
 

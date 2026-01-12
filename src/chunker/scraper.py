@@ -15,7 +15,7 @@ from docling.datamodel.document import DoclingDocument, DocumentStream
 SCRAPE_DIR = Path("./SAVED")
 SAVE_SCRAPE = True
 from .loader import iter_document_payloads
-from .types import (
+from .chunk_types import (
     DocumentPayload,
     Paragraph,
     ScrapeArtifact,

@@ -28,6 +28,7 @@ class EpisodicNode(Node):
     content: str = Field(description='raw episode data')
     header_path: str = Field(default="", description="Full breadcrumb path of the section")
     valid_at: datetime = Field(default_factory=utc_now)
+    document_date: Optional[str] = Field(default=None, description="Date of the source document (YYYY-MM-DD)")
 
 # --- The Document (Source Container) ---
 class DocumentNode(Node):
@@ -42,7 +43,8 @@ class DocumentNode(Node):
 # --- The Entity (Noun) ---
 class EntityNode(Node):
     """Represents extraction anchors (People, Places, Orgs)."""
-    name_embedding: list[float] | None = None
+    name_embedding: list[float] | None = None        # Embedding of name + summary (for semantic matching)
+    name_only_embedding: list[float] | None = None   # Embedding of just the name (for direct name lookup)
     summary: str = ""
     attributes: dict[str, Any] = {}
 

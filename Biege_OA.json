@@ -1,0 +1,1123 @@
+{
+    "metadata": {
+        "source": "Federal Reserve Beige Book - October 2025",
+        "report_date": "October 15, 2025",
+        "prepared_by": "Federal Reserve Bank of San Francisco",
+        "data_collected_before": "October 6, 2025",
+        "total_questions": 75
+    },
+    "qa_pairs": [
+        {
+            "id": 1,
+            "category": "District Activity",
+            "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+            "answer": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+            "entities": [
+                "Federal Reserve Bank of San Francisco",
+                "Twelfth District"
+            ]
+        },
+        {
+            "id": 2,
+            "category": "Entity Resolution",
+            "question": "What is the Beige Book?",
+            "answer": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+            "entities": [
+                "Beige Book",
+                "Federal Reserve System"
+            ]
+        },
+        {
+            "id": 3,
+            "category": "Entity Resolution",
+            "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+            "answer": "12 Federal Reserve Districts are covered in the Beige Book.",
+            "entities": [
+                "Federal Reserve Districts",
+                "Beige Book"
+            ]
+        },
+        {
+            "id": 4,
+            "category": "Overall Economic Activity",
+            "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+            "answer": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+            "entities": [
+                "Economic Activity"
+            ]
+        },
+        {
+            "id": 5,
+            "category": "District Activity",
+            "question": "Which districts reported slight to modest economic growth?",
+            "answer": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+            "entities": [
+                "Federal Reserve Bank of Boston",
+                "Federal Reserve Bank of Philadelphia",
+                "Federal Reserve Bank of Richmond"
+            ]
+        },
+        {
+            "id": 6,
+            "category": "District Activity",
+            "question": "Which districts reported no change in economic activity?",
+            "answer": "Five districts reported no change: Cleveland (Fourth District), Atlanta (Sixth District), Chicago (Seventh District), St. Louis (Eighth District), and Dallas (Eleventh District).",
+            "entities": [
+                "Federal Reserve Bank of Cleveland",
+                "Federal Reserve Bank of Atlanta",
+                "Federal Reserve Bank of Chicago",
+                "Federal Reserve Bank of St. Louis",
+                "Federal Reserve Bank of Dallas"
+            ]
+        },
+        {
+            "id": 7,
+            "category": "District Activity",
+            "question": "Which districts reported a slight softening or decline in economic activity?",
+            "answer": "Four districts reported slight softening or decline: New York (Second District), Minneapolis (Ninth District), Kansas City (Tenth District), and San Francisco (Twelfth District).",
+            "entities": [
+                "Federal Reserve Bank of New York",
+                "Federal Reserve Bank of Minneapolis",
+                "Federal Reserve Bank of Kansas City",
+                "Federal Reserve Bank of San Francisco"
+            ]
+        },
+        {
+            "id": 8,
+            "category": "District Activity",
+            "question": "What was the economic activity in the Seventh District (Chicago)?",
+            "answer": "Economic activity in the Seventh District was little changed over the reporting period. Consumer spending declined some; construction and real estate activity increased slightly; employment was flat; business spending declined slightly; and manufacturing demand declined modestly.",
+            "entities": [
+                "Federal Reserve Bank of Chicago",
+                "Seventh District"
+            ]
+        },
+        {
+            "id": 9,
+            "category": "District Activity",
+            "question": "How did the Second District (New York) economy perform?",
+            "answer": "Economic activity in the Second District continued to decline slightly. Employment held steady, and wage growth remained modest. The pace of price increases remained elevated but was little changed.",
+            "entities": [
+                "Federal Reserve Bank of New York",
+                "Second District"
+            ]
+        },
+        {
+            "id": 10,
+            "category": "Consumer Spending",
+            "question": "What happened to overall consumer spending in the October 2025 report?",
+            "answer": "Overall consumer spending, particularly on retail goods, inched down in recent weeks.",
+            "entities": [
+                "Consumer Spending",
+                "Retail"
+            ]
+        },
+        {
+            "id": 11,
+            "category": "Consumer Spending",
+            "question": "What boosted auto sales in some districts?",
+            "answer": "Auto sales were boosted in some Districts by strong demand for electric vehicles ahead of the expiration of a federal tax credit at the end of September.",
+            "entities": [
+                "Auto Sales",
+                "Electric Vehicles",
+                "Federal Tax Credit"
+            ]
+        },
+        {
+            "id": 12,
+            "category": "Consumer Spending",
+            "question": "How did lower- and middle-income households respond to economic conditions?",
+            "answer": "Lower- and middle-income households continued to seek discounts and promotions in the face of rising prices and elevated economic uncertainty.",
+            "entities": [
+                "Consumer Spending",
+                "Households"
+            ]
+        },
+        {
+            "id": 13,
+            "category": "Consumer Spending",
+            "question": "How did spending by higher-income individuals on luxury travel perform?",
+            "answer": "Spending by higher-income individuals on luxury travel and accommodation was reportedly strong.",
+            "entities": [
+                "Consumer Spending",
+                "Luxury Travel"
+            ]
+        },
+        {
+            "id": 14,
+            "category": "Leisure and Hospitality",
+            "question": "What happened to demand for leisure and hospitality services by international travelers?",
+            "answer": "Demand for leisure and hospitality services by international travelers fell further over the reporting period.",
+            "entities": [
+                "Leisure and Hospitality",
+                "International Travel"
+            ]
+        },
+        {
+            "id": 15,
+            "category": "Leisure and Hospitality",
+            "question": "How did demand from domestic consumers for leisure and hospitality change?",
+            "answer": "Demand by domestic consumers was largely unchanged.",
+            "entities": [
+                "Leisure and Hospitality",
+                "Domestic Travel"
+            ]
+        },
+        {
+            "id": 16,
+            "category": "Manufacturing",
+            "question": "What were the conditions in manufacturing according to the October 2025 Beige Book?",
+            "answer": "Manufacturing activity varied by District, and most reports noted challenging conditions due to higher tariffs and waning overall demand.",
+            "entities": [
+                "Manufacturing",
+                "Tariffs"
+            ]
+        },
+        {
+            "id": 17,
+            "category": "Manufacturing",
+            "question": "What drove manufacturing demand in the Chicago District?",
+            "answer": "Manufacturing demand declined modestly in late August and September. Steel orders were flat overall. Fabricated metals demand was unchanged on balance, as higher sales to a range of sectors was offset by lower sales to the construction and automotive industries. Machinery orders decreased moderately, driven by a decline in demand from the auto sector. Auto production was down modestly, while heavy truck production was flat.",
+            "entities": [
+                "Federal Reserve Bank of Chicago",
+                "Manufacturing",
+                "Fabricated Metals",
+                "Automotive",
+                "Steel",
+                "Machinery"
+            ]
+        },
+        {
+            "id": 18,
+            "category": "Manufacturing",
+            "question": "What challenges did manufacturers face regarding tariff policies?",
+            "answer": "Several manufacturers noted that changing tariff policies were making it difficult to plan for the future.",
+            "entities": [
+                "Manufacturing",
+                "Tariffs"
+            ]
+        },
+        {
+            "id": 19,
+            "category": "Labor Markets",
+            "question": "What was the overall trend in employment levels?",
+            "answer": "Employment levels were largely stable in recent weeks, and demand for labor was generally muted across Districts and sectors.",
+            "entities": [
+                "Employment",
+                "Labor Markets"
+            ]
+        },
+        {
+            "id": 20,
+            "category": "Labor Markets",
+            "question": "What factors did employers cite for lowering head counts?",
+            "answer": "Employers cited weaker demand, elevated economic uncertainty, and, in some cases, increased investment in artificial intelligence technologies as reasons for lowering head counts through layoffs and attrition.",
+            "entities": [
+                "Employment",
+                "Layoffs",
+                "Artificial Intelligence"
+            ]
+        },
+        {
+            "id": 21,
+            "category": "Labor Markets",
+            "question": "Which sectors faced labor shortages due to immigration policy changes?",
+            "answer": "Labor supply in the hospitality, agriculture, construction, and manufacturing sectors was reportedly strained in several Districts due to recent changes to immigration policies.",
+            "entities": [
+                "Labor Shortages",
+                "Immigration Policies",
+                "Hospitality",
+                "Agriculture",
+                "Construction",
+                "Manufacturing"
+            ]
+        },
+        {
+            "id": 22,
+            "category": "Labor Markets",
+            "question": "What did the St. Louis District report about immigration policies and labor?",
+            "answer": "Contacts continue to report that immigration policies have been resulting in labor shortages.",
+            "entities": [
+                "Federal Reserve Bank of St. Louis",
+                "Immigration Policies",
+                "Labor Shortages"
+            ]
+        },
+        {
+            "id": 23,
+            "category": "Labor Markets",
+            "question": "How did employers' hiring preferences change?",
+            "answer": "Employers that reported hiring generally noted improved labor availability, and some favored hiring temporary and part-time workers over offering full-time employment opportunities.",
+            "entities": [
+                "Employment",
+                "Hiring",
+                "Part-time Workers"
+            ]
+        },
+        {
+            "id": 24,
+            "category": "Wages",
+            "question": "How did wages grow across districts?",
+            "answer": "Wages grew across all reporting Districts, generally at a modest to moderate pace.",
+            "entities": [
+                "Wages",
+                "Wage Growth"
+            ]
+        },
+        {
+            "id": 25,
+            "category": "Wages",
+            "question": "What drove labor cost pressures to intensify?",
+            "answer": "Labor cost pressures intensified in recent weeks due to outsized increases in employer-sponsored health insurance expenses.",
+            "entities": [
+                "Labor Costs",
+                "Health Insurance"
+            ]
+        },
+        {
+            "id": 26,
+            "category": "Prices",
+            "question": "What happened to prices during the October 2025 reporting period?",
+            "answer": "Prices rose further during the reporting period.",
+            "entities": [
+                "Prices",
+                "Inflation"
+            ]
+        },
+        {
+            "id": 27,
+            "category": "Prices",
+            "question": "What caused input costs to increase at a faster pace?",
+            "answer": "Input costs increased at a faster pace due to higher import costs and the higher cost of services such as insurance, health care, and technology solutions.",
+            "entities": [
+                "Input Costs",
+                "Import Costs",
+                "Insurance",
+                "Health Care",
+                "Technology"
+            ]
+        },
+        {
+            "id": 28,
+            "category": "Prices",
+            "question": "How did tariffs affect prices across districts?",
+            "answer": "Tariff-induced input cost increases were reported across many Districts, but the extent of those higher costs passing through to final prices varied. Some firms kept selling prices unchanged to preserve market share, while others fully passed higher import costs to customers.",
+            "entities": [
+                "Tariffs",
+                "Prices",
+                "Input Costs"
+            ]
+        },
+        {
+            "id": 29,
+            "category": "Prices",
+            "question": "Which materials saw price decreases and in which districts?",
+            "answer": "Waning demand in some markets reportedly pushed prices down for steel in the Sixth District (Atlanta) and lumber in the Twelfth District (San Francisco).",
+            "entities": [
+                "Steel",
+                "Lumber",
+                "Federal Reserve Bank of Atlanta",
+                "Federal Reserve Bank of San Francisco"
+            ]
+        },
+        {
+            "id": 30,
+            "category": "Real Estate",
+            "question": "What were the conditions in residential and commercial real estate?",
+            "answer": "Conditions in the financial services sector and other interest rate-sensitive sectors, such as residential and commercial real estate, were mixed; some reports noted improved business lending in recent weeks due to lower interest rates, while other reports continued to highlight muted activity.",
+            "entities": [
+                "Residential Real Estate",
+                "Commercial Real Estate",
+                "Interest Rates"
+            ]
+        },
+        {
+            "id": 31,
+            "category": "Real Estate",
+            "question": "What happened to home sales in the Boston District?",
+            "answer": "Home sales were flat from a year earlier in the Boston District, while housing inventory increased notably.",
+            "entities": [
+                "Federal Reserve Bank of Boston",
+                "Home Sales",
+                "Housing Inventory"
+            ]
+        },
+        {
+            "id": 32,
+            "category": "Real Estate",
+            "question": "How was the housing market in the Dallas District?",
+            "answer": "The housing market remained weak in the Dallas District.",
+            "entities": [
+                "Federal Reserve Bank of Dallas",
+                "Housing Market"
+            ]
+        },
+        {
+            "id": 33,
+            "category": "Financial Services",
+            "question": "How did lower interest rates affect business activity?",
+            "answer": "Commercial construction and financial services contacts noted an uptick in demand because of lower interest rates. Some reports noted improved business lending in recent weeks due to lower interest rates.",
+            "entities": [
+                "Interest Rates",
+                "Financial Services",
+                "Commercial Construction",
+                "Business Lending"
+            ]
+        },
+        {
+            "id": 34,
+            "category": "Financial Services",
+            "question": "What was the state of banking activity in the St. Louis District?",
+            "answer": "Banking activity has remained unchanged since the previous report, with overall credit conditions remaining strong.",
+            "entities": [
+                "Federal Reserve Bank of St. Louis",
+                "Banking",
+                "Credit Conditions"
+            ]
+        },
+        {
+            "id": 35,
+            "category": "Financial Services",
+            "question": "How did financial conditions change in the Chicago District?",
+            "answer": "Financial conditions loosened slightly in late August and September. Bond and equity values rose a bit, while volatility remained unchanged. Business loan demand decreased slightly on net, with one contact citing a decline in acquisition activity.",
+            "entities": [
+                "Federal Reserve Bank of Chicago",
+                "Financial Conditions",
+                "Equity",
+                "Business Loans"
+            ]
+        },
+        {
+            "id": 36,
+            "category": "Agriculture",
+            "question": "What were the conditions in the agriculture sector?",
+            "answer": "Agriculture conditions were mixed across reporting Districts. In St. Louis, agriculture conditions are strained and have further deteriorated. In Chicago, crops were in good shape across most of the District, though soybean prices were lower due to absence of new-crop exports to China. In Atlanta, overall demand for agricultural products was healthy. Minneapolis agricultural contacts were concerned about China's elimination of soybean purchases.",
+            "entities": [
+                "Agriculture"
+            ]
+        },
+        {
+            "id": 37,
+            "category": "Agriculture",
+            "question": "What concerns did Minneapolis District agricultural contacts have about China?",
+            "answer": "Agricultural contacts were concerned about China's elimination of soybean purchases.",
+            "entities": [
+                "Federal Reserve Bank of Minneapolis",
+                "Agriculture",
+                "China",
+                "Soybeans"
+            ]
+        },
+        {
+            "id": 38,
+            "category": "Agriculture",
+            "question": "What were the prospects for 2025 farm income in the Chicago District?",
+            "answer": "Prospects for 2025 farm income were unchanged in the Chicago District.",
+            "entities": [
+                "Federal Reserve Bank of Chicago",
+                "Farm Income"
+            ]
+        },
+        {
+            "id": 39,
+            "category": "Energy",
+            "question": "How did energy activity perform?",
+            "answer": "Activity in energy was generally down among reporting Districts, though the Atlanta District reported that energy grew moderately.",
+            "entities": [
+                "Energy",
+                "Federal Reserve Bank of Atlanta"
+            ]
+        },
+        {
+            "id": 40,
+            "category": "Energy",
+            "question": "What was drilling and well completion activity like in the Dallas District?",
+            "answer": "Drilling and well completion activity was flat in the Dallas District.",
+            "entities": [
+                "Federal Reserve Bank of Dallas",
+                "Drilling",
+                "Energy"
+            ]
+        },
+        {
+            "id": 41,
+            "category": "Outlook",
+            "question": "What was the outlook for future economic growth?",
+            "answer": "The outlook for future economic growth varied by District and sector. Sentiment reportedly improved in a few Districts, with some contacts expecting an uptick in demand over the next 6 to 12 months. However, many others continued to expect elevated uncertainty to weigh down activity.",
+            "entities": [
+                "Economic Outlook",
+                "Uncertainty"
+            ]
+        },
+        {
+            "id": 42,
+            "category": "Outlook",
+            "question": "What downside risk to growth did one district report highlight?",
+            "answer": "One District report highlighted the downside risk to growth from a prolonged government shutdown.",
+            "entities": [
+                "Government Shutdown",
+                "Economic Risk"
+            ]
+        },
+        {
+            "id": 43,
+            "category": "Outlook",
+            "question": "What were the business expectations for 2026 in the Kansas City District?",
+            "answer": "Though activity fell recently, expectations for sales and employment in 2026 were broadly optimistic. Expectations for the pace of price growth in 2026 were similarly above 2025 levels.",
+            "entities": [
+                "Federal Reserve Bank of Kansas City",
+                "Outlook",
+                "2026"
+            ]
+        },
+        {
+            "id": 44,
+            "category": "Outlook",
+            "question": "What was the outlook in the Boston District?",
+            "answer": "The outlook was neutral to cautiously optimistic, but contacts saw mostly downside risks.",
+            "entities": [
+                "Federal Reserve Bank of Boston",
+                "Outlook"
+            ]
+        },
+        {
+            "id": 45,
+            "category": "Outlook",
+            "question": "What were the top concerns for businesses in the Dallas District?",
+            "answer": "Outlooks deteriorated with slowing demand, policy uncertainty, and inflation highlighted as the top concerns for businesses.",
+            "entities": [
+                "Federal Reserve Bank of Dallas",
+                "Outlook",
+                "Policy Uncertainty",
+                "Inflation"
+            ]
+        },
+        {
+            "id": 46,
+            "category": "Nonprofits",
+            "question": "What challenges did nonprofits face according to the New York District?",
+            "answer": "Many nonprofits are facing challenges due to unpredictable funding and a reduction in federal benefit programs. Rising business costs, including insurance, added to financial pressures for community service providers.",
+            "entities": [
+                "Federal Reserve Bank of New York",
+                "Nonprofits",
+                "Federal Funding"
+            ]
+        },
+        {
+            "id": 47,
+            "category": "Nonprofits",
+            "question": "What happened to nonprofit employment in the Cleveland District?",
+            "answer": "One respondent said that the nonprofit sector was not filling open positions because of uncertainty around federal grants.",
+            "entities": [
+                "Federal Reserve Bank of Cleveland",
+                "Nonprofits",
+                "Federal Grants",
+                "Employment"
+            ]
+        },
+        {
+            "id": 48,
+            "category": "Transportation",
+            "question": "What was the state of transportation activity?",
+            "answer": "Activity in transportation was generally down among reporting Districts. In the Atlanta District, transportation declined.",
+            "entities": [
+                "Transportation",
+                "Federal Reserve Bank of Atlanta"
+            ]
+        },
+        {
+            "id": 49,
+            "category": "Technology",
+            "question": "How did artificial intelligence affect employment decisions?",
+            "answer": "In some cases, employers cited increased investment in artificial intelligence technologies as a reason for lowering head counts through layoffs and attrition.",
+            "entities": [
+                "Artificial Intelligence",
+                "Employment",
+                "Layoffs"
+            ]
+        },
+        {
+            "id": 50,
+            "category": "Technology",
+            "question": "How did software and IT services perform in the Boston District?",
+            "answer": "Software and IT services firms reported small increases in revenues and strong demand. Demand for software and IT services remained strong among First District contacts; revenues rose slightly from last quarter on average.",
+            "entities": [
+                "Federal Reserve Bank of Boston",
+                "Software",
+                "IT Services"
+            ]
+        },
+        {
+            "id": 51,
+            "category": "Multi-hop",
+            "subcategory": "District + Sector Comparison",
+            "question": "In districts where economic activity declined, what happened to manufacturing?",
+            "answer": "In the four districts where economic activity declined (New York, Minneapolis, Kansas City, San Francisco): New York saw manufacturing hold steady after a summer uptick; Minneapolis reported manufacturing was flat; Kansas City saw manufacturing output growth moderate; and San Francisco reported manufacturing activity remained stable. Overall, manufacturing in declining districts was flat to slightly moderating.",
+            "entities": [
+                "Federal Reserve Bank of New York",
+                "Federal Reserve Bank of Minneapolis",
+                "Federal Reserve Bank of Kansas City",
+                "Federal Reserve Bank of San Francisco",
+                "Manufacturing"
+            ],
+            "reasoning_hops": [
+                "Identify districts with economic decline",
+                "Find manufacturing conditions in each of those districts",
+                "Synthesize the pattern"
+            ]
+        },
+        {
+            "id": 52,
+            "category": "Multi-hop",
+            "subcategory": "Policy + Sector Impact",
+            "question": "Which districts mentioned both tariff impacts on manufacturing AND labor shortages from immigration policies?",
+            "answer": "The St. Louis District reported both: contacts mentioned that immigration policies resulted in labor shortages, and the national summary noted tariff-induced input cost increases affected manufacturing across many districts including St. Louis. The Chicago District also mentioned both tariff impacts on manufacturing (with manufacturers noting changing tariff policies made planning difficult) and labor supply strains in manufacturing due to immigration policy changes.",
+            "entities": [
+                "Federal Reserve Bank of St. Louis",
+                "Federal Reserve Bank of Chicago",
+                "Tariffs",
+                "Immigration Policies",
+                "Manufacturing",
+                "Labor Shortages"
+            ],
+            "reasoning_hops": [
+                "Find districts mentioning tariff impacts on manufacturing",
+                "Find districts mentioning immigration-related labor shortages",
+                "Identify the intersection"
+            ]
+        },
+        {
+            "id": 53,
+            "category": "Multi-hop",
+            "subcategory": "Price + Demand Relationship",
+            "question": "What materials saw price decreases, and what caused those decreases in each district?",
+            "answer": "Steel prices decreased in the Atlanta (Sixth) District and lumber prices decreased in the San Francisco (Twelfth) District. In both cases, waning demand in those markets pushed prices down. This occurred even as overall prices rose during the reporting period.",
+            "entities": [
+                "Steel",
+                "Lumber",
+                "Federal Reserve Bank of Atlanta",
+                "Federal Reserve Bank of San Francisco",
+                "Prices",
+                "Demand"
+            ],
+            "reasoning_hops": [
+                "Identify materials with price decreases",
+                "Find the districts where each decrease occurred",
+                "Determine the cause of each decrease"
+            ]
+        },
+        {
+            "id": 54,
+            "category": "Multi-hop",
+            "subcategory": "Financial Conditions + Real Estate",
+            "question": "In districts where financial conditions loosened, how did real estate activity perform?",
+            "answer": "In the Chicago (Seventh) District, financial conditions loosened slightly in late August and September. Bond and equity values rose a bit. In the same district, nonresidential construction increased slightly and commercial real estate activity also increased slightly. The Cleveland (Fourth) District noted that commercial construction and financial services contacts saw an uptick in demand because of lower interest rates.",
+            "entities": [
+                "Federal Reserve Bank of Chicago",
+                "Federal Reserve Bank of Cleveland",
+                "Financial Conditions",
+                "Real Estate",
+                "Interest Rates",
+                "Commercial Construction"
+            ],
+            "reasoning_hops": [
+                "Find districts where financial conditions loosened",
+                "Find real estate/construction conditions in those districts",
+                "Connect the interest rate mechanism"
+            ]
+        },
+        {
+            "id": 55,
+            "category": "Multi-hop",
+            "subcategory": "Consumer Behavior + Income Segments",
+            "question": "How did consumer spending patterns differ between income groups, and what drove those differences?",
+            "answer": "Higher-income individuals maintained strong spending on luxury travel and accommodation. Lower- and middle-income households sought discounts and promotions due to rising prices and elevated economic uncertainty. This bifurcation was driven by rising prices eroding purchasing power for lower/middle-income groups while higher-income groups remained insulated.",
+            "entities": [
+                "Consumer Spending",
+                "Luxury Travel",
+                "Discounts",
+                "Prices",
+                "Inflation",
+                "Households"
+            ],
+            "reasoning_hops": [
+                "Identify spending patterns for higher-income consumers",
+                "Identify spending patterns for lower/middle-income consumers",
+                "Determine the causal factors for each group"
+            ]
+        },
+        {
+            "id": 56,
+            "category": "Multi-hop",
+            "subcategory": "Employment + Technology",
+            "question": "What is the relationship between AI investment and employment trends reported in the Beige Book?",
+            "answer": "Some employers cited increased investment in artificial intelligence technologies as one of the reasons for lowering head counts through layoffs and attrition. This occurred alongside other factors like weaker demand and elevated economic uncertainty. Overall employment levels were largely stable, but demand for labor was generally muted, with more employers reporting layoffs and attrition.",
+            "entities": [
+                "Artificial Intelligence",
+                "Employment",
+                "Layoffs",
+                "Labor Markets"
+            ],
+            "reasoning_hops": [
+                "Find mentions of AI investment",
+                "Connect AI investment to employment decisions",
+                "Place in context of overall employment trends"
+            ]
+        },
+        {
+            "id": 57,
+            "category": "Multi-hop",
+            "subcategory": "District + Outlook Comparison",
+            "question": "Compare the economic outlook between districts that saw growth versus those that saw decline.",
+            "answer": "Districts with growth (Boston, Philadelphia, Richmond) had mixed-to-cautiously-optimistic outlooks: Boston was neutral to cautiously optimistic with mostly downside risks; Philadelphia expected modest growth but noted heightened uncertainty. Districts with decline (New York, Minneapolis, Kansas City, San Francisco) had varied outlooks: New York businesses did not expect activity to increase much; Kansas City was broadly optimistic for 2026 despite recent declines; Minneapolis saw contraction across most sectors.",
+            "entities": [
+                "Federal Reserve Bank of Boston",
+                "Federal Reserve Bank of Philadelphia",
+                "Federal Reserve Bank of Richmond",
+                "Federal Reserve Bank of New York",
+                "Federal Reserve Bank of Minneapolis",
+                "Federal Reserve Bank of Kansas City",
+                "Outlook"
+            ],
+            "reasoning_hops": [
+                "Categorize districts by growth/decline",
+                "Find outlook for each district",
+                "Compare patterns between the two groups"
+            ]
+        },
+        {
+            "id": 58,
+            "category": "Multi-hop",
+            "subcategory": "Agriculture + Trade Policy",
+            "question": "How did trade-related concerns affect the agriculture sector across different districts?",
+            "answer": "In the Minneapolis District, agricultural contacts were specifically concerned about China's elimination of soybean purchases, representing a direct trade policy impact. In the St. Louis District, agriculture conditions were strained and further deteriorated, with the overall pessimistic outlook. Across reporting districts, activity in agriculture was generally down, with trade uncertainty adding to sector challenges.",
+            "entities": [
+                "Agriculture",
+                "China",
+                "Soybeans",
+                "Federal Reserve Bank of Minneapolis",
+                "Federal Reserve Bank of St. Louis",
+                "Trade Policy"
+            ],
+            "reasoning_hops": [
+                "Find agriculture conditions across districts",
+                "Identify trade-related concerns affecting agriculture",
+                "Connect China/soybean issue to broader agricultural stress"
+            ]
+        },
+        {
+            "id": 59,
+            "category": "Multi-hop",
+            "subcategory": "Nonprofit + Federal Policy",
+            "question": "How did federal policy changes affect nonprofits across multiple districts?",
+            "answer": "In the New York District, nonprofits faced challenges due to unpredictable funding and reduction in federal benefit programs, with a community health-care center reporting financial distress among Medicaid patients. In the Cleveland District, the nonprofit sector was not filling open positions due to uncertainty around federal grants. In the Boston District, cuts to federal grant funding contributed to layoffs in the education and health-care sectors.",
+            "entities": [
+                "Nonprofits",
+                "Federal Funding",
+                "Federal Grants",
+                "Federal Reserve Bank of New York",
+                "Federal Reserve Bank of Cleveland",
+                "Federal Reserve Bank of Boston",
+                "Medicaid",
+                "Education",
+                "Health Care"
+            ],
+            "reasoning_hops": [
+                "Find nonprofit mentions across districts",
+                "Identify federal policy impacts in each",
+                "Synthesize the pattern of federal funding uncertainty affecting nonprofits"
+            ]
+        },
+        {
+            "id": 60,
+            "category": "Multi-hop",
+            "subcategory": "Labor + Immigration + Sectors",
+            "question": "Which specific sectors reported labor shortages due to immigration policies, and in which districts was this most prominently mentioned?",
+            "answer": "Four sectors reported labor shortages due to immigration policy changes: hospitality, agriculture, construction, and manufacturing. The St. Louis District explicitly stated that contacts continue to report immigration policies resulting in labor shortages. The Boston District noted retail and tourism contacts worried about next summer's labor supply given expected reductions in seasonal visas, with Maine and Vermont seeing increased labor market slack.",
+            "entities": [
+                "Hospitality",
+                "Agriculture",
+                "Construction",
+                "Manufacturing",
+                "Immigration Policies",
+                "Labor Shortages",
+                "Federal Reserve Bank of St. Louis",
+                "Federal Reserve Bank of Boston",
+                "Seasonal Visas"
+            ],
+            "reasoning_hops": [
+                "Identify sectors with immigration-related labor shortages",
+                "Find districts explicitly mentioning this issue",
+                "Connect visa policy to seasonal labor concerns"
+            ]
+        },
+        {
+            "id": 61,
+            "category": "Multi-hop",
+            "subcategory": "Tariffs + Pricing Strategy",
+            "question": "How did firms in different sectors respond to tariff-induced cost increases in terms of their pricing strategies?",
+            "answer": "Responses to tariff-induced costs varied by sector: In manufacturing and retail trades, some firms fully passed higher import costs along to customers. Other firms facing tariff-induced cost pressures kept selling prices largely unchanged to preserve market share and due to pushback from price-sensitive clients. In Chicago, a retail industry analyst expected peak tariff impact in the first half of 2026.",
+            "entities": [
+                "Tariffs",
+                "Manufacturing",
+                "Retail",
+                "Prices",
+                "Input Costs",
+                "Federal Reserve Bank of Chicago"
+            ],
+            "reasoning_hops": [
+                "Find tariff cost impacts",
+                "Identify different pricing responses",
+                "Connect to sector-specific strategies"
+            ]
+        },
+        {
+            "id": 62,
+            "category": "Multi-hop",
+            "subcategory": "EV Sales + Policy",
+            "question": "What was the relationship between federal policy and electric vehicle sales, and how did this affect overall auto sales?",
+            "answer": "Auto sales were boosted in some districts by strong demand for electric vehicles ahead of the expiration of a federal tax credit at the end of September. However, in the Chicago District, light vehicle sales declined overall, especially for EVs following the end of federal tax credits. This shows the federal tax credit created a pre-expiration demand surge followed by a post-expiration decline.",
+            "entities": [
+                "Electric Vehicles",
+                "Federal Tax Credit",
+                "Auto Sales",
+                "Federal Reserve Bank of Chicago"
+            ],
+            "reasoning_hops": [
+                "Find EV sales mentions",
+                "Connect to federal tax credit policy",
+                "Trace the before/after effect of policy expiration"
+            ]
+        },
+        {
+            "id": 63,
+            "category": "Multi-hop",
+            "subcategory": "Health Insurance + Labor Costs + Wages",
+            "question": "What were the multiple factors affecting labor costs, and how did they interact with wage growth?",
+            "answer": "Wages grew at a modest to moderate pace across all districts. However, labor cost pressures intensified due to outsized increases in employer-sponsored health insurance expenses. Additionally, some contacts in the Chicago District reported moderate increases in nonlabor costs including energy and higher prices for raw materials. This meant total compensation costs were rising faster than wage growth alone would suggest.",
+            "entities": [
+                "Wages",
+                "Labor Costs",
+                "Health Insurance",
+                "Federal Reserve Bank of Chicago"
+            ],
+            "reasoning_hops": [
+                "Find wage growth trends",
+                "Find other labor cost factors",
+                "Connect health insurance to intensified cost pressures"
+            ]
+        },
+        {
+            "id": 64,
+            "category": "Multi-hop",
+            "subcategory": "Consumer Spending + Restaurant Segments",
+            "question": "How did consumer spending patterns affect different restaurant segments in the Chicago District?",
+            "answer": "In the Chicago District, leisure and hospitality sales were mixed, with softness in some travel-related categories including airlines and hotels, but increased spending at restaurants in the fast food, fast casual, and family dining segments. Demand from restaurant groups remained solid, as indicated by commercial real estate leasing activity.",
+            "entities": [
+                "Federal Reserve Bank of Chicago",
+                "Consumer Spending",
+                "Restaurants",
+                "Fast Food",
+                "Fast Casual",
+                "Family Dining",
+                "Leisure and Hospitality"
+            ],
+            "reasoning_hops": [
+                "Find restaurant segment performance",
+                "Connect to consumer value-seeking behavior",
+                "Link to the family restaurant cost absorption example"
+            ]
+        },
+        {
+            "id": 65,
+            "category": "Multi-hop",
+            "subcategory": "Interest Rates + Multiple Sectors",
+            "question": "How did lower interest rates affect different interest rate-sensitive sectors across districts?",
+            "answer": "Lower interest rates had positive effects across multiple sectors: In Cleveland, commercial construction and financial services saw uptick in demand due to lower rates. In Chicago, financial conditions loosened modestly with business loan volumes increasing. However, the impact was mixed - while some reports noted improved business lending, residential real estate remained weak in Dallas and home sales were flat in Boston. The housing market's response to lower rates was more muted than commercial sectors.",
+            "entities": [
+                "Interest Rates",
+                "Commercial Construction",
+                "Financial Services",
+                "Business Lending",
+                "Residential Real Estate",
+                "Federal Reserve Bank of Cleveland",
+                "Federal Reserve Bank of Chicago",
+                "Federal Reserve Bank of Dallas",
+                "Federal Reserve Bank of Boston"
+            ],
+            "reasoning_hops": [
+                "Find sectors affected by interest rates",
+                "Trace positive impacts in commercial/financial sectors",
+                "Compare to residential real estate response",
+                "Synthesize differential impact pattern"
+            ]
+        },
+        {
+            "id": 66,
+            "category": "Multi-hop",
+            "subcategory": "Employment + Federal Funding + Sectors",
+            "question": "How did federal funding changes affect employment in specific sectors?",
+            "answer": "Federal funding changes negatively impacted employment across multiple sectors: In Boston, cuts to federal grant funding contributed to layoffs in education and health-care sectors. In Cleveland, the nonprofit sector was not filling open positions due to federal grant uncertainty. In New York, nonprofits faced challenges from reduced federal benefit programs, with community health-care centers reporting financial strain. Manufacturing employment in Boston was mixed, with one firm shedding workers to offset tariff-related cost increases.",
+            "entities": [
+                "Employment",
+                "Federal Grants",
+                "Education",
+                "Health Care",
+                "Nonprofits",
+                "Federal Reserve Bank of Boston",
+                "Federal Reserve Bank of Cleveland",
+                "Federal Reserve Bank of New York"
+            ],
+            "reasoning_hops": [
+                "Find federal funding mentions",
+                "Connect to employment impacts",
+                "Identify affected sectors",
+                "Synthesize cross-district pattern"
+            ]
+        },
+        {
+            "id": 67,
+            "category": "Multi-hop",
+            "subcategory": "Outlook + Uncertainty Factors",
+            "question": "What specific factors contributed to economic uncertainty across different districts?",
+            "answer": "Multiple factors contributed to uncertainty: Tariff policy changes made planning difficult for manufacturers (noted in Chicago and across districts). Federal grant uncertainty affected nonprofits (Cleveland, New York, Boston). Policy uncertainty was a top business concern (Dallas). Immigration policy changes created labor supply concerns (St. Louis, Boston). The potential for government shutdown was highlighted as a downside risk. Kansas City noted that despite current decline, 2026 expectations remained optimistic.",
+            "entities": [
+                "Uncertainty",
+                "Tariffs",
+                "Federal Grants",
+                "Immigration Policies",
+                "Government Shutdown",
+                "Federal Reserve Bank of Chicago",
+                "Federal Reserve Bank of Cleveland",
+                "Federal Reserve Bank of Dallas",
+                "Federal Reserve Bank of St. Louis",
+                "Federal Reserve Bank of Kansas City"
+            ],
+            "reasoning_hops": [
+                "Identify uncertainty mentions across districts",
+                "Categorize types of uncertainty (tariff, federal, immigration, etc.)",
+                "Connect to outlook assessments"
+            ]
+        },
+        {
+            "id": 68,
+            "category": "Multi-hop",
+            "subcategory": "Manufacturing + Supply Chain",
+            "question": "What supply chain disruptions affected manufacturing, and how did they impact production?",
+            "answer": "Supply chain challenges varied across districts. In San Francisco, manufacturers noted higher costs for utilities and imported semiconductor chips. In Chicago, manufacturing demand declined modestly with fabricated metals demand unchanged on balance as higher sales to some sectors were offset by lower sales to construction and automotive industries. Tariff-induced input cost increases affected manufacturing across many districts, with firms reporting difficulty planning due to changing tariff policies. Labor shortages due to immigration policy changes also constrained production in manufacturing, construction, and agriculture sectors.",
+            "entities": [
+                "Manufacturing",
+                "Supply Chain",
+                "Aluminum",
+                "Semiconductors",
+                "China",
+                "Federal Reserve Bank of Chicago",
+                "Auto Production",
+                "Heavy Trucks"
+            ],
+            "reasoning_hops": [
+                "Find supply chain disruption mentions",
+                "Connect disruptions to specific production impacts",
+                "Trace through to manufacturing output effects"
+            ]
+        },
+        {
+            "id": 69,
+            "category": "Multi-hop",
+            "subcategory": "Input Costs + Services",
+            "question": "What service-related costs contributed to input cost increases, and how did this affect different sectors?",
+            "answer": "Several service-related costs drove input cost increases: insurance, health care, and technology solutions all saw higher costs. In New York, rising business costs including insurance added to financial pressures for community service providers. Employer-sponsored health insurance expenses saw outsized increases, intensifying labor cost pressures across districts. These service cost increases occurred alongside tariff-driven goods cost increases.",
+            "entities": [
+                "Input Costs",
+                "Insurance",
+                "Health Care",
+                "Technology",
+                "Federal Reserve Bank of New York",
+                "Labor Costs"
+            ],
+            "reasoning_hops": [
+                "Identify service-related cost increases",
+                "Connect to sector-specific impacts",
+                "Distinguish from goods/tariff-related cost increases"
+            ]
+        },
+        {
+            "id": 70,
+            "category": "Multi-hop",
+            "subcategory": "Retail Categories + Consumer Behavior",
+            "question": "Which retail categories saw gains versus declines, and how does this reflect consumer behavior patterns?",
+            "answer": "In Chicago, leisure and hospitality sales were mixed. Categories seeing gains included restaurants in the fast food, fast casual, and family dining segments, as well as new light vehicle sales which were brisk due to strong underlying demand and the end of tax incentives for electric vehicle purchases. Categories seeing softness included travel-related categories such as airlines and hotels. Used vehicle sales remained steady though dealerships in low-to-moderate income communities reported softer demand. This pattern reflects consumers seeking value in dining while cutting back on travel.",
+            "entities": [
+                "Retail",
+                "Consumer Spending",
+                "Federal Reserve Bank of Chicago",
+                "Computers",
+                "Appliances",
+                "Discount Stores",
+                "Apparel",
+                "Grocery"
+            ],
+            "reasoning_hops": [
+                "Find retail category performance",
+                "Categorize gains vs declines",
+                "Connect to consumer behavior patterns and income segments"
+            ]
+        },
+        {
+            "id": 71,
+            "category": "Multi-hop",
+            "subcategory": "Energy + District Comparison",
+            "question": "How did energy sector performance vary across districts, and what specific activities were mentioned?",
+            "answer": "Energy sector performance varied significantly: In Atlanta (Sixth District), energy grew moderately - a positive outlier. In Dallas (Eleventh District), drilling and well completion activity was flat. Nationally, energy activity was generally down among reporting districts. The Chicago District noted higher energy prices as part of nonlabor cost increases affecting manufacturers.",
+            "entities": [
+                "Energy",
+                "Federal Reserve Bank of Atlanta",
+                "Federal Reserve Bank of Dallas",
+                "Drilling",
+                "Federal Reserve Bank of Chicago"
+            ],
+            "reasoning_hops": [
+                "Find energy mentions across districts",
+                "Compare performance levels",
+                "Identify specific energy activities mentioned"
+            ]
+        },
+        {
+            "id": 72,
+            "category": "Multi-hop",
+            "subcategory": "Banking + Consumer vs Business",
+            "question": "How did banking conditions differ for consumer versus business lending across districts?",
+            "answer": "In Kansas City, while expectations for 2026 were optimistic, consumer loan portfolios deteriorated moderately, signaling stress among households. In Chicago, business loan demand decreased slightly on net with one contact citing a decline in acquisition activity, while consumer loan demand increased slightly with a pickup in mortgage refinancing. In Dallas, loan demand grew overall. St. Louis reported banking activity unchanged with strong overall credit conditions. Consumer lending showed some signs of stress while business lending conditions were mixed.",
+            "entities": [
+                "Banking",
+                "Consumer Loans",
+                "Business Loans",
+                "Federal Reserve Bank of Kansas City",
+                "Federal Reserve Bank of Chicago",
+                "Federal Reserve Bank of Dallas",
+                "Federal Reserve Bank of St. Louis"
+            ],
+            "reasoning_hops": [
+                "Find consumer lending conditions",
+                "Find business lending conditions",
+                "Compare across districts",
+                "Identify divergent patterns"
+            ]
+        },
+        {
+            "id": 73,
+            "category": "Multi-hop",
+            "subcategory": "Price Pressures + Sector Variation",
+            "question": "How did price pressures differ between manufacturing and services sectors?",
+            "answer": "In Dallas, price pressures were subdued in services but remained elevated in the manufacturing sector. In Richmond, price growth remained moderate overall despite some pickup in price growth in the manufacturing sector. In Chicago, producer prices grew moderately with contacts reporting moderate nonlabor cost increases including energy and raw materials. Manufacturing contacts attributed some raw materials price increases to tariffs, suggesting tariffs disproportionately affected goods-producing sectors.",
+            "entities": [
+                "Prices",
+                "Manufacturing",
+                "Services",
+                "Federal Reserve Bank of Dallas",
+                "Federal Reserve Bank of Richmond",
+                "Federal Reserve Bank of Chicago",
+                "Tariffs"
+            ],
+            "reasoning_hops": [
+                "Find sector-specific price mentions",
+                "Compare manufacturing vs services",
+                "Connect to tariff impacts on goods prices"
+            ]
+        },
+        {
+            "id": 74,
+            "category": "Multi-hop",
+            "subcategory": "Employment + Hiring Patterns",
+            "question": "How did hiring patterns change, and what does this indicate about employer confidence?",
+            "answer": "Employers showed cautious hiring behavior: More employers reported lowering head counts through layoffs and attrition. Those still hiring favored temporary and part-time workers over full-time employment. In Boston, both hiring and layoffs increased modestly, indicating churn rather than net growth. Employment in IT services increased modestly with hiring in sales and technical positions - a relative bright spot. Jobseekers in Cleveland reported offers were more likely to be part-time with little or no benefits. This pattern indicates employer uncertainty and reluctance to commit to permanent workforce expansion.",
+            "entities": [
+                "Employment",
+                "Hiring",
+                "Part-time Workers",
+                "Layoffs",
+                "Federal Reserve Bank of Boston",
+                "Federal Reserve Bank of Cleveland",
+                "IT Services"
+            ],
+            "reasoning_hops": [
+                "Find hiring pattern mentions",
+                "Identify shift toward temporary/part-time",
+                "Connect to layoff trends",
+                "Interpret as employer confidence signal"
+            ]
+        },
+        {
+            "id": 75,
+            "category": "Multi-hop",
+            "subcategory": "Comprehensive District Analysis",
+            "question": "What were all the key economic indicators for the Chicago (Seventh) District, and how did they compare to national trends?",
+            "answer": "Chicago District indicators: Economic activity was little changed (matching national 'little change on balance'). Consumer spending declined some (worse than national 'inched down'). Manufacturing demand declined modestly (consistent with national challenging conditions). Employment was flat (matching national stable levels). Wages and benefits costs were up modestly (matching national modest-to-moderate). Prices rose moderately (matching national rising trend). Financial conditions loosened slightly (better than mixed national picture). Construction/real estate increased slightly (better than mixed national). Farm income prospects unchanged. Compared to national trends, Chicago showed relative strength in financial conditions and construction while consumer spending and manufacturing weakness aligned with or slightly underperformed broader trends.",
+            "entities": [
+                "Federal Reserve Bank of Chicago",
+                "Economic Activity",
+                "Consumer Spending",
+                "Manufacturing",
+                "Employment",
+                "Wages",
+                "Prices",
+                "Financial Conditions",
+                "Real Estate",
+                "Agriculture"
+            ],
+            "reasoning_hops": [
+                "Compile all Chicago indicators",
+                "Find corresponding national indicators",
+                "Compare each metric",
+                "Synthesize overall relative performance"
+            ]
+        }
+    ],
+    "categories_summary": {
+        "Entity Resolution": 3,
+        "Overall Economic Activity": 1,
+        "District Activity": 5,
+        "Consumer Spending": 4,
+        "Leisure and Hospitality": 2,
+        "Manufacturing": 3,
+        "Labor Markets": 5,
+        "Wages": 2,
+        "Prices": 4,
+        "Real Estate": 3,
+        "Financial Services": 3,
+        "Agriculture": 3,
+        "Energy": 2,
+        "Outlook": 5,
+        "Nonprofits": 2,
+        "Transportation": 1,
+        "Technology": 2,
+        "Multi-hop": 25
+    },
+    "multihop_subcategories": {
+        "District + Sector Comparison": 2,
+        "Policy + Sector Impact": 1,
+        "Price + Demand Relationship": 1,
+        "Financial Conditions + Real Estate": 1,
+        "Consumer Behavior + Income Segments": 1,
+        "Employment + Technology": 1,
+        "District + Outlook Comparison": 1,
+        "Agriculture + Trade Policy": 1,
+        "Nonprofit + Federal Policy": 1,
+        "Labor + Immigration + Sectors": 1,
+        "Tariffs + Pricing Strategy": 1,
+        "EV Sales + Policy": 1,
+        "Health Insurance + Labor Costs + Wages": 1,
+        "Consumer Spending + Restaurant Segments": 1,
+        "Interest Rates + Multiple Sectors": 1,
+        "Employment + Federal Funding + Sectors": 1,
+        "Outlook + Uncertainty Factors": 1,
+        "Manufacturing + Supply Chain": 1,
+        "Input Costs + Services": 1,
+        "Retail Categories + Consumer Behavior": 1,
+        "Energy + District Comparison": 1,
+        "Banking + Consumer vs Business": 1,
+        "Price Pressures + Sector Variation": 1,
+        "Employment + Hiring Patterns": 1,
+        "Comprehensive District Analysis": 1
+    }
+}

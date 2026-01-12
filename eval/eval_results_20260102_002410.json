@@ -1,0 +1,1753 @@
+{
+  "timestamp": "2026-01-02T00:24:10.388469",
+  "total_questions": 50,
+  "timing": {
+    "avg_agent_time_sec": 49.25306802749634,
+    "avg_judge_time_sec": 2.1974959802627563,
+    "avg_total_time_sec": 51.45056400775909
+  },
+  "summary": {
+    "correct": 31,
+    "partially_correct": 8,
+    "incorrect": 11,
+    "unanswerable": 0
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "What is Alphabet Inc.?",
+      "expected_answer": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+      "agent_answer": "Alphabet Inc. is a publicly traded information-technology holding company best known as the parent company of Google. It was created as Google\u2019s parent so that Google and other businesses (often called \u201cOther Bets\u201d) could operate under a broader corporate umbrella.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly identifies Alphabet as a holding company and Google's parent, but it omits key expected details: that it is an American multinational technology conglomerate and that it is headquartered in Mountain View, California.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 22.18487548828125,
+      "judge_time_sec": 2.7204277515411377,
+      "key_facts_matched": [
+        "Alphabet Inc. is a technology holding company"
+      ],
+      "key_facts_missing": [
+        "American multinational technology conglomerate",
+        "Headquartered in Mountain View, California"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "get_entity_info",
+          "args": {
+            "entity_name": "alphabet inc."
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"name\":\"alphabet inc.\",\"type\":\"Entity\",\"entity_type\":null,\"summary\":\"Alphabet Inc., a public information technology company (Google\u2019s parent). Described with trading listings, founders, headquarters, and key people; also referenced in an NLRB allegation context where it denied wrongdoing. Alphabet Inc., the parent company of Google; referenced in multiple contexts including alleged NLRB-related conduct and acquiring startups in FY2017. Includes spelling/p..."
+        }
+      ]
+    },
+    {
+      "question_id": 2,
+      "question": "When was Alphabet Inc. created?",
+      "expected_answer": "Alphabet Inc. was created on October 2, 2015.",
+      "agent_answer": "Alphabet Inc. was created in **2015**, when Google reorganized under a new holding company structure called Alphabet.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly states the year (2015) and context of Google reorganizing under Alphabet, but it omits the specific creation date (October 2, 2015) required by the expected answer.",
+      "question_type": "temporal",
+      "difficulty": "easy",
+      "agent_time_sec": 42.54818940162659,
+      "judge_time_sec": 3.1428773403167725,
+      "key_facts_matched": [
+        "Alphabet Inc. was created in 2015."
+      ],
+      "key_facts_missing": [
+        "Alphabet Inc. was created on October 2, 2015."
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "get_entity_info",
+          "args": {
+            "entity_name": "alphabet inc."
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"name\":\"alphabet inc.\",\"type\":\"Entity\",\"entity_type\":null,\"summary\":\"Alphabet Inc., a public information technology company (Google\u2019s parent). Described with trading listings, founders, headquarters, and key people; also referenced in an NLRB allegation context where it denied wrongdoing. Alphabet Inc., the parent company of Google; referenced in multiple contexts including alleged NLRB-related conduct and acquiring startups in FY2017. Includes spelling/p..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "alphabet inc.",
+            "query_hint": "created founded formed incorporated when created"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: alphabet inc.\\noutgoing:\\n  IS_HEADQUARTERED_AT[1]: Googleplex\\n  IS_TRADED_AS[1]: Nasdaq: Goog\\n  IS_TRADED_ON[1]: nasdaq\\n  IS_A_COMPONENT[1]: S&P 500\\n  HAS_ISIN[1]: Us02079K1079\\n  SERVES_AREA[1]: Worldwide\\n  HAS_WEBSITE[1]: Abc.Xyz\\n  IS_HEADQUARTERED_IN[1]: Mountain View, California\\n  IS_LISTED_ON[1]: nasdaq\\n  WAS_ESTABLISHED_TO[1]: Internet Services\\n  FILED_A_LAWSUIT[1]: Uber\\n  FACED_ANTITRUST_ACTIONS[1]: Japan\\n  FILED_FOR_BANKRUPTCY[1..."
+        },
+        {
+          "tool": "get_chunks_by_edge",
+          "args": {
+            "entity_name": "alphabet inc.",
+            "edge_type": "WAS_CREATED_TO",
+            "direction": "outgoing"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"count\":1,\"results\":[{\"relationship\":\"alphabet inc. -[WAS_CREATED_TO]-> google (company/subsidiary of alphabet)\",\"direction\":\"outgoing\",\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: 828bc8fe-0514-4afd-b142-465dbd1e2273\\\\nHeader: Alphabet > History\\\\n\\\\nHistory\\\\nblog.[iol Alphabet was created to restructure Google by moving subsidiaries from Google to Alphabet, thus narrowing Google\\'s scope. The new holding company would consist of Google as well as oth..."
+        }
+      ]
+    },
+    {
+      "question_id": 3,
+      "question": "Where is Alphabet Inc. headquartered?",
+      "expected_answer": "Mountain View, California",
+      "agent_answer": "Alphabet Inc. is headquartered in **Mountain View, California**.",
+      "verdict": "correct",
+      "reasoning": "The agent states Alphabet Inc. is headquartered in Mountain View, California, which matches the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 42.332032918930054,
+      "judge_time_sec": 2.963257312774658,
+      "key_facts_matched": [
+        "Alphabet Inc. headquarters: Mountain View, California"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 4,
+      "question": "Who is the current CEO of Alphabet Inc.?",
+      "expected_answer": "Sundar Pichai",
+      "agent_answer": "The current CEO of Alphabet Inc. is **Sundar Pichai**.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identified Sundar Pichai as the current CEO of Alphabet Inc., matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 75.80124711990356,
+      "judge_time_sec": 1.5161173343658447,
+      "key_facts_matched": [
+        "Sundar Pichai is the current CEO of Alphabet Inc."
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 5,
+      "question": "Who are the founders of Google (and later Alphabet)?",
+      "expected_answer": "Larry Page and Sergey Brin",
+      "agent_answer": "Google (and later its parent company, Alphabet) was founded by **Larry Page** and **Sergey Brin**.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Larry Page and Sergey Brin as the founders of Google (and later Alphabet).",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 23.655546188354492,
+      "judge_time_sec": 2.4952056407928467,
+      "key_facts_matched": [
+        "Larry Page is a founder of Google/Alphabet",
+        "Sergey Brin is a founder of Google/Alphabet"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 6,
+      "question": "What is the domain name used by Alphabet Inc.?",
+      "expected_answer": "abc.xyz",
+      "agent_answer": "Alphabet Inc. uses the domain **abc.xyz** (https://abc.xyz).",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identified Alphabet Inc.'s domain name as abc.xyz, matching the expected answer.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 71.22260332107544,
+      "judge_time_sec": 1.5151870250701904,
+      "key_facts_matched": [
+        "Alphabet Inc. domain name is abc.xyz"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 7,
+      "question": "What are the ticker symbols for Alphabet on Nasdaq?",
+      "expected_answer": "GOOGL and GOOG",
+      "agent_answer": "Alphabet trades on Nasdaq under two ticker symbols:\n\n- **GOOGL** \u2014 Alphabet Inc. **Class A** shares  \n- **GOOG** \u2014 Alphabet Inc. **Class C** shares",
+      "verdict": "correct",
+      "reasoning": "The agent provided both Nasdaq ticker symbols for Alphabet (GOOGL and GOOG) and correctly identified the share classes. This matches the expected answer.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 14.147655487060547,
+      "judge_time_sec": 2.5624001026153564,
+      "key_facts_matched": [
+        "GOOGL",
+        "GOOG"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 8,
+      "question": "Who is the Chairman of Alphabet Inc.?",
+      "expected_answer": "John L. Hennessy",
+      "agent_answer": "Alphabet Inc.\u2019s Chairman is **John L. Hennessy** (Chairman of the Board).",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies John L. Hennessy as the Chairman of Alphabet Inc., matching the expected answer.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 44.75742959976196,
+      "judge_time_sec": 1.6384468078613281,
+      "key_facts_matched": [
+        "John L. Hennessy is the Chairman of Alphabet Inc."
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 9,
+      "question": "Who is the CFO of Alphabet Inc.?",
+      "expected_answer": "Anat Ashkenazi",
+      "agent_answer": "Alphabet Inc.\u2019s CFO is **Anat Ashkenazi**.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Anat Ashkenazi as the CFO of Alphabet Inc., matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 42.004310607910156,
+      "judge_time_sec": 1.6386785507202148,
+      "key_facts_matched": [
+        "Alphabet Inc. CFO is Anat Ashkenazi"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 10,
+      "question": "Who is the President and Chief Investment Officer of Alphabet?",
+      "expected_answer": "Ruth Porat",
+      "agent_answer": "The **President and Chief Investment Officer (CIO) of Alphabet is Ruth Porat**.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is Ruth Porat, and the agent identified Ruth Porat as the President and Chief Investment Officer of Alphabet, matching the key fact exactly.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 22.389559268951416,
+      "judge_time_sec": 1.762512445449829,
+      "key_facts_matched": [
+        "Ruth Porat is the President and Chief Investment Officer of Alphabet"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 11,
+      "question": "When did Larry Page and Sergey Brin step down from their executive roles?",
+      "expected_answer": "December 2019",
+      "agent_answer": "Larry Page and Sergey Brin **stepped down on December 3, 2019**\u2014Page as **CEO of Alphabet** and Brin as **President of Alphabet**.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is December 2019. The agent states they stepped down on December 3, 2019, which is within December 2019 and accurately specifies the event and roles.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 48.98135018348694,
+      "judge_time_sec": 1.7866556644439697,
+      "key_facts_matched": [
+        "They stepped down in December 2019"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 12,
+      "question": "When did Sundar Pichai become CEO of Alphabet?",
+      "expected_answer": "December 2019",
+      "agent_answer": "Sundar Pichai became CEO of Alphabet on **December 3, 2019**, when Larry Page stepped down and Pichai took over.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is December 2019. The agent stated December 3, 2019, which falls within December 2019 and matches the known announcement/effective date of Pichai becoming Alphabet CEO.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 48.440327644348145,
+      "judge_time_sec": 2.653960943222046,
+      "key_facts_matched": [
+        "Sundar Pichai became CEO of Alphabet in December 2019"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 13,
+      "question": "What was the primary reason for creating Alphabet Inc. as stated by the founders?",
+      "expected_answer": "To make the core Google business cleaner and more accountable while allowing greater autonomy to group companies that operate in businesses other than Internet services.",
+      "agent_answer": "The founders\u2019 stated primary reason for creating Alphabet Inc. was to **make the company\u2019s operations more accountable and transparent by restructuring Google under a holding-company model**\u2014i.e., **\u201cslimming down\u201d Google and placing businesses \u201cpretty far afield\u201d from Google\u2019s main internet products into Alphabet**, which would improve **\u201ctransparency and oversight of what we\u2019re doing.\u201d**",
+      "verdict": "correct",
+      "reasoning": "The agent captures the founders\u2019 stated purpose: reorganizing into a holding company to make the core Google business cleaner/more accountable/transparent and to separate and give autonomy/oversight to non-core, non-internet businesses under Alphabet.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 37.27143669128418,
+      "judge_time_sec": 2.314666509628296,
+      "key_facts_matched": [
+        "Restructure to make core Google business cleaner/more accountable/transparent",
+        "Separate non-core businesses outside Google\u2019s main internet products into Alphabet (holding-company model)",
+        "Improve transparency/oversight and management of other businesses"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 14,
+      "question": "What company's management structure inspired Alphabet's organizational design?",
+      "expected_answer": "Berkshire Hathaway",
+      "agent_answer": "Alphabet\u2019s organizational design was inspired by **Warren Buffett\u2019s Berkshire Hathaway** holding-company management structure.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is Berkshire Hathaway, and the agent explicitly states Alphabet\u2019s design was inspired by Berkshire Hathaway\u2019s management structure. Mentioning Warren Buffett is additional context and does not alter correctness.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 85.02623867988586,
+      "judge_time_sec": 1.7928721904754639,
+      "key_facts_matched": [
+        "Berkshire Hathaway"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 15,
+      "question": "Who revealed that Warren Buffett's Berkshire Hathaway inspired Alphabet's structure?",
+      "expected_answer": "Eric Schmidt",
+      "agent_answer": "It was **Eric Schmidt** (former Google/Alphabet executive) who revealed that **Warren Buffett\u2019s Berkshire Hathaway** inspired Alphabet\u2019s holding-company structure.",
+      "verdict": "correct",
+      "reasoning": "The agent identified Eric Schmidt as the person who revealed Berkshire Hathaway inspired Alphabet's structure, matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 66.31106424331665,
+      "judge_time_sec": 1.860673189163208,
+      "key_facts_matched": [
+        "Eric Schmidt"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 16,
+      "question": "List the major subsidiaries of Alphabet mentioned in the article.",
+      "expected_answer": "Google, X Development, Calico, Verily, Waymo, Google Fiber, CapitalG, GV, DeepMind, Intrinsic, Isomorphic Labs",
+      "agent_answer": "The article mentions these major Alphabet subsidiaries:\n\n- Google\n- Waymo\n- Verily\n- X (Google X)\n- GV (Google Ventures)\n- CapitalG",
+      "verdict": "partially_correct",
+      "reasoning": "The agent lists 6 subsidiaries that are in the expected answer, but omits several other major subsidiaries mentioned in the article (Calico, Google Fiber, DeepMind, Intrinsic, Isomorphic Labs). Therefore it is incomplete.",
+      "question_type": "list-based",
+      "difficulty": "medium",
+      "agent_time_sec": 95.68404507637024,
+      "judge_time_sec": 2.525744915008545,
+      "key_facts_matched": [
+        "Google",
+        "Waymo",
+        "Verily",
+        "X Development (listed as X/Google X)",
+        "GV",
+        "CapitalG"
+      ],
+      "key_facts_missing": [
+        "Calico",
+        "Google Fiber",
+        "DeepMind",
+        "Intrinsic",
+        "Isomorphic Labs"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet major subsidiaries article",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"Antitrust\",\"Artificial Intelligence\",\"Autonomous Vehicles\",\"Balance Sheet\",\"Cloud Computing\",\"Corporate Governance\",\"Corporate History\",\"Corporate Strategy\",\"Corporate Structure\",\"Intellectual Property\",\"Interactive Media & Services\",\"Mergers And Acquisitions\",\"Ownership Structure\",\"Private Equity\",\"Quantum Computing\",\"Robotics\",\"SEC Filing\",\"Software\",\"Stock Market\",\"Venture Capital\"],\"message\":\"Found 20 matching topic(s) in the graph.\"}', 'i..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "get_entity_info",
+          "args": {
+            "entity_name": "Alphabet Subsidiaries"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"name\":\"Alphabet Subsidiaries\",\"type\":\"Entity\",\"entity_type\":null,\"summary\":\"A collective category referring to the subsidiaries of Alphabet; treated as a group rather than a single company.\\\\n[Source: d1afbdee-f77d-42f6-86fc-04ba58a99508]\",\"message\":\"Entity information retrieved successfully.\"}', 'id': 'lc_33c4d178-13b6-4b3a-a0fd-5211560e1d24'}]"
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Subsidiaries",
+            "query_hint": "major subsidiaries of Alphabet mentioned in the article"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Alphabet Subsidiaries\\nquery: major subsidiaries of Alphabet mentioned in the article\\nmode: semantic_ranked\\nincoming:\\n  HAD_COMPANIES_OR[1]: google (company/subsidiary of alphabet)(0.69)\\n    hint: \"google (company/subsidiary of alphabet) HAD_COMPANIES_OR Alphabet Subsidiaries\"\\ntotal: 1', 'id': 'lc_396ac0ad-480e-4c7f-8a2c-a987206afde3'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet (Forbes Company Page)",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Annualreportpursuanttosection13Or15(D)Ofthesecurities..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet (Forbes Company Page)",
+            "query_hint": "subsidiaries"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Alphabet (Forbes Company Page)\\nquery: subsidiaries\\nmode: semantic_ranked\\noutgoing:\\n  IS_ABOUT[1]: alphabet inc.(0.39)\\n    hint: \"Alphabet (Forbes Company Page) IS_ABOUT alphabet inc.\"\\n  IS_LOCATED_AT[1]: Https://Www.Forbes.Com/Companies/Alphabet/(0.39)\\n    hint: \"Alphabet (Forbes Company Page) IS_LOCATED_AT Https://Www.Forbes.Com/Companies/Alphabet/\"\\nincoming:\\n  PUBLISHES[1]: Forbes(0.42)\\n    hint: \"Forbes PUBLISHES Alphabet (Forbes Compa..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "\"Google'S New Alphabet, From A To Z (Pictures)\"",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Bloomberg Article Url: Https://Www.Bloomberg.Com/News/Articles/2015-08-10/Google-To-Adopt-New-Holding-St..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "\"Google'S New Alphabet, From A To Z (Pictures)\"",
+            "query_hint": "subsidiaries of Alphabet"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: \"Google\\'S New Alphabet, From A To Z (Pictures)\"\\nquery: subsidiaries of Alphabet\\nmode: semantic_ranked\\noutgoing:\\n  WAS_PUBLISHED_BY[1]: cnet(0.56)\\n    hint: \"\"Google\\'S New Alphabet, From A To Z (Pictures)\" WAS_PUBLISHED_BY cnet\"\\ntotal: 1', 'id': 'lc_7e025aca-c6f8-4662-93b4-7c7c93743697'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "\"Google Creates Parent Company Called Alphabet In 5)\"",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Bloomberg Article Url: Https://Www.Bloomberg.Com/News/Articles/2015-08-10/Google-To-Adopt-New-Holding-Struct Ure-Under-Name-Alphabet-\",\"Britannica Money\",\"Chen, Angela\",\"Google Inc.\",\"Google Is N..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "\"Google Creates Parent Company Called Alphabet In 5)\"",
+            "query_hint": "major subsidiaries"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: \"Google Creates Parent Company Called Alphabet In 5)\"\\nquery: major subsidiaries\\nmessage: NO MATCHING FACTS - no facts found for this entity matching your query', 'id': 'lc_9fd49b4d-f457-40d6-8643-d270a784ecc9'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 17,
+      "question": "What does XXVI Holdings refer to?",
+      "expected_answer": "XXVI Holdings, Inc. (referring to the Roman numeral of 26, the number of letters in the alphabet) is a subsidiary that holds the equity of certain Alphabet companies so they can be valued and legally separated from Google.",
+      "agent_answer": "**XXVI Holdings (XXVI Holdings, Inc.)** refers to an Alphabet subsidiary whose name uses the Roman numeral **XXVI (26)**\u2014a nod to the **26 letters in the alphabet**.\n\nIn Alphabet\u2019s corporate structure, **as of Sept. 1, 2017**, the equity of certain Alphabet \u201cOther Bets\u201d businesses was **held by XXVI Holdings, Inc.** so that those businesses **could be valued and legally separated from Google**.  \nSource excerpt: \u201ctheir equity is held by a subsidiary known as **XXVI Holdings, Inc.** \u2026 **so that they can be valued and legally separated from Google**.\u201d (Alphabet > Structure, chunk id: 8e818449-a75f-4271-bc59-efb980a0e0d0)",
+      "verdict": "correct",
+      "reasoning": "The agent accurately states that XXVI Holdings, Inc. is an Alphabet subsidiary named for the Roman numeral 26 (26 letters in the alphabet) and that it holds equity of certain Alphabet companies so they can be valued and legally separated from Google\u2014matching all key elements of the expected answer. The added date detail does not contradict the expected answer.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 64.92722010612488,
+      "judge_time_sec": 3.913029670715332,
+      "key_facts_matched": [
+        "XXVI Holdings, Inc. is an Alphabet subsidiary",
+        "Name refers to Roman numeral XXVI = 26, nod to 26 letters in the alphabet",
+        "Holds equity of certain Alphabet companies (e.g., Other Bets)",
+        "Purpose is to allow those companies to be valued and legally separated from Google"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 18,
+      "question": "When was Google reorganized as a limited liability company (LLC)?",
+      "expected_answer": "September 1, 2017",
+      "agent_answer": "Google was reorganized as a limited liability company effective **September 1, 2017**, when it became **Google LLC**.",
+      "verdict": "correct",
+      "reasoning": "The agent states that Google was reorganized as an LLC effective September 1, 2017, which matches the expected answer exactly.",
+      "question_type": "temporal",
+      "difficulty": "hard",
+      "agent_time_sec": 41.519845962524414,
+      "judge_time_sec": 0.9887905120849609,
+      "key_facts_matched": [
+        "Google reorganized as an LLC on September 1, 2017"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 19,
+      "question": "What subsidiaries were merged back into Google?",
+      "expected_answer": "Nest Labs (merged in February 2018), Chronicle Security (merged in June 2019), and Sidewalk Labs (absorbed in 2021)",
+      "agent_answer": "The graph evidence provided doesn\u2019t name any *subsidiaries* that were \u201cmerged back into Google.\u201d\n\nWhat it does show is a **holding-company reorganization in 2015** where **a newly formed placeholder subsidiary was merged with Google Inc.**, and Google became a subsidiary of Alphabet:\n\n- \u201c...a placeholder subsidiary was created for the ownership of Alphabet, at which point the newly formed subsidiary was **merged with Google**.\u201d (Alphabet > History chunk in the graph)\n\nIf you can share which timeframe or which \u201cOther Bets\u201d units you mean (e.g., Nest, Fiber, X, Calico, etc.), I can check those specifically\u2014but with the current graph relationships, only the placeholder subsidiary merger is evidenced, not named operating subsidiaries merged back into Google.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer lists three specific subsidiaries that were merged back into Google (Nest Labs in Feb 2018, Chronicle Security in Jun 2019, Sidewalk Labs absorbed in 2021). The agent instead says no subsidiaries are named and discusses a 2015 placeholder subsidiary merger related to Alphabet\u2019s reorganization, which does not address the question and omits all expected entities and dates.",
+      "question_type": "list-based",
+      "difficulty": "hard",
+      "agent_time_sec": 42.251038789749146,
+      "judge_time_sec": 2.9869046211242676,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Nest Labs merged back into Google in February 2018",
+        "Chronicle Security merged back into Google in June 2019",
+        "Sidewalk Labs absorbed/merged back into Google in 2021"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"Alphabet Investor Relations\",\"Ars Technica\",\"Britannica Money\",\"G0Ogle\",\"Go0Gle Official Blog\",\"Google Inc.\",\"Google Llc\",\"Googleplex\",\"Gv\",\"Https://Finance.Yahoo.Com/Quote/Googl/\",\"Https://Web.Archive.Org/Web/20170211223917/Https://Abc.Xyz/Investor/Other/Google-Code-..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Ars Technica\",\"Britannica Money\",\"G0Ogle\",\"Go0Gle Official Blog\",\"Google Inc.\",\"Googl..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Google Inc.",
+            "query_hint": "subsidiaries merged back into Google merged back into Google corporate reorg absorbed"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Google Inc.\\nquery: subsidiaries merged back into Google merged back into Google corporate reorg absorbed\\nmode: semantic_ranked\\noutgoing:\\n  BECAME_A_SUBSIDIARY[1]: alphabet inc.(0.61)\\n    hint: \"Google Inc. BECAME_A_SUBSIDIARY alphabet inc.\"\\n  WAS_STRUCTURED_AS[1]: alphabet inc.(0.56)\\n    hint: \"Google Inc. WAS_STRUCTURED_AS alphabet inc.\"\\n  HAS_A_REFERENCED[1]: Form 8-K(0.47)\\n    hint: \"Google Inc. HAS_A_REFERENCED Form 8-K\"\\n  HAS_FILING_..."
+        },
+        {
+          "tool": "get_chunks_by_edge",
+          "args": {
+            "entity_name": "Google Inc.",
+            "edge_type": "WAS_STRUCTURED_AS",
+            "direction": "outgoing"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"count\":1,\"results\":[{\"relationship\":\"Google Inc. -[WAS_STRUCTURED_AS]-> alphabet inc.\",\"direction\":\"outgoing\",\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: aa1c26a6-6b7c-4040-9bf5-8cdea8eb8900\\\\nHeader: Alphabet > History\\\\n\\\\nHistory\\\\nBefore it became a subsidiary of Alphabet, Google Inc. was first structured as the owner of Alphabet.[18l The roles were reversed after a placeholder subsidiary was created for the ownership of Alphabet, at which point t..."
+        }
+      ]
+    },
+    {
+      "question_id": 20,
+      "question": "What subsidiary was shut down in January 2021?",
+      "expected_answer": "Loon LLC",
+      "agent_answer": "The subsidiary that was shut down in **January 2021** was **Loon LLC**.",
+      "verdict": "correct",
+      "reasoning": "The agent identified Loon LLC as the subsidiary shut down in January 2021, which matches the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 64.92781066894531,
+      "judge_time_sec": 1.6116173267364502,
+      "key_facts_matched": [
+        "Loon LLC was shut down in January 2021"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 21,
+      "question": "What is the name of Alphabet's autonomous vehicle division?",
+      "expected_answer": "Waymo",
+      "agent_answer": "Alphabet\u2019s autonomous vehicle division is **Waymo**.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identified Alphabet's autonomous vehicle division as Waymo, matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 25.161880254745483,
+      "judge_time_sec": 1.0005574226379395,
+      "key_facts_matched": [
+        "Alphabet's autonomous vehicle division is Waymo"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 22,
+      "question": "Who are the largest institutional shareholders of Alphabet?",
+      "expected_answer": "The Vanguard Group (7.25%), BlackRock (6.27%), and State Street Corporation (3.36%)",
+      "agent_answer": "I can\u2019t answer that from the data available in this graph.\n\nI checked the graph entries for Alphabet/\u201cAlphabet Inc. (Class A)\u201d and there are **no relationships captured for institutional shareholders** (i.e., no nodes/edges like \u201cOWNED_BY\u201d, \u201cINSTITUTIONAL_HOLDER\u201d, etc.). The only related \u201cAlphabet (Forbes Company Page)\u201d node links to Forbes/URL metadata, not shareholder holdings.\n\nIf you want, tell me **which source you want to use** (e.g., SEC 13F filings, Nasdaq/NYSE \u201cinstitutional holders\u201d, Bloomberg, or CompaniesMarketCap), and I can format the typical \u201clargest institutional holders\u201d list accordingly.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer lists the largest institutional shareholders and their percentages (Vanguard, BlackRock, State Street). The agent did not provide these and instead claimed it could not answer from available data. Since the information is available in the ground truth, the response does not address the question as required.",
+      "question_type": "list-based",
+      "difficulty": "medium",
+      "agent_time_sec": 47.56134271621704,
+      "judge_time_sec": 1.5670726299285889,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "The Vanguard Group (7.25%)",
+        "BlackRock (6.27%)",
+        "State Street Corporation (3.36%)"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Inc. (Class A)",
+            "query_hint": "largest institutional shareholders"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Alphabet Inc. (Class A)\\nmessage: NO RELATIONSHIPS FOUND - stop exploring this entity', 'id': 'lc_c5c34deb-0562-4efe-b8d9-3647c67b43d4'}]"
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet (Forbes Company Page)",
+            "query_hint": "institutional shareholders"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Alphabet (Forbes Company Page)\\nquery: institutional shareholders\\nmode: semantic_ranked\\noutgoing:\\n  IS_ABOUT[1]: alphabet inc.(0.34)\\n    hint: \"Alphabet (Forbes Company Page) IS_ABOUT alphabet inc.\"\\n  IS_LOCATED_AT[1]: Https://Www.Forbes.Com/Companies/Alphabet/(0.34)\\n    hint: \"Alphabet (Forbes Company Page) IS_LOCATED_AT Https://Www.Forbes.Com/Companies/Alphabet/\"\\nincoming:\\n  PUBLISHES[1]: Forbes(0.42)\\n    hint: \"Forbes PUBLISHES Alphabet..."
+        }
+      ]
+    },
+    {
+      "question_id": 23,
+      "question": "What percentage of shares do Larry Page and Sergey Brin each control?",
+      "expected_answer": "Approximately 3% each",
+      "agent_answer": "Larry Page controls **around 3%** of shares, and Sergey Brin controls **around 3%** of shares (with Brin specifically listed at **3.0%**).",
+      "verdict": "correct",
+      "reasoning": "The expected answer is that Larry Page and Sergey Brin each control approximately 3% of shares. The agent states both control around 3%, with Brin listed at 3.0%, matching the key fact.",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "agent_time_sec": 74.76005935668945,
+      "judge_time_sec": 2.9482991695404053,
+      "key_facts_matched": [
+        "Larry Page controls approximately 3% of shares",
+        "Sergey Brin controls approximately 3% of shares"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 24,
+      "question": "What is Alphabet's company motto?",
+      "expected_answer": "Do the right thing",
+      "agent_answer": "Alphabet\u2019s company motto is **\u201cDo the right thing.\u201d** (adopted in Alphabet\u2019s corporate code of conduct in October 2015).",
+      "verdict": "correct",
+      "reasoning": "The expected answer is \u201cDo the right thing,\u201d and the agent provided that exact motto. The added detail about adoption date does not contradict the key fact.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 44.608845949172974,
+      "judge_time_sec": 2.0185630321502686,
+      "key_facts_matched": [
+        "Alphabet's company motto is \"Do the right thing\""
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 25,
+      "question": "What was Google's original motto that is still retained in Google's code of conduct?",
+      "expected_answer": "Don't be evil",
+      "agent_answer": "Google\u2019s original motto\u2014still retained in Google\u2019s code of conduct\u2014is **\u201cDon\u2019t be evil.\u201d**",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states Google's original motto retained in the code of conduct as \u201cDon\u2019t be evil,\u201d matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 53.22574520111084,
+      "judge_time_sec": 2.9138450622558594,
+      "key_facts_matched": [
+        "Google's original motto is \"Don't be evil\""
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 26,
+      "question": "Why did Larry Page say they chose the name 'Alphabet'?",
+      "expected_answer": "Because it means a collection of letters that represent language, one of humanity's most important innovations, and is the core of how they index with Google search. Also because it means alpha-bet (Alpha is investment return above benchmark).",
+      "agent_answer": "Larry Page said they chose the name **\u201cAlphabet\u201d** because it suggests **a collection of letters that represent language**\u2014\u201cone of humanity\u2019s most important innovations\u201d\u2014and **language is core to what Google Search does (indexing information)**. He also noted they liked the \u201c**alpha-bet**\u201d pun: **\u201calpha\u201d** meaning investment returns above a benchmark, which they said they strive for.",
+      "verdict": "correct",
+      "reasoning": "The agent includes both key reasons Larry Page gave: (1) Alphabet as a collection of letters representing language, central to Google Search/indexing, and (2) the alpha-bet pun referring to alpha as investment return above a benchmark. This matches the expected answer.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 42.424951791763306,
+      "judge_time_sec": 3.2118875980377197,
+      "key_facts_matched": [
+        "Alphabet means a collection of letters that represent language, a key human innovation",
+        "Language/letters are core to how Google Search indexes information",
+        "They liked the 'alpha-bet' pun",
+        "Alpha refers to investment returns above a benchmark"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 27,
+      "question": "What was the actual inspiration for the name Alphabet according to Eric Schmidt's 2018 talk?",
+      "expected_answer": "The location of the then Google Hamburg office's street address: ABC-Stra\u00dfe",
+      "agent_answer": "According to Eric Schmidt\u2019s 2018 talk (recounting what he revealed at a conference), the \u201cAlphabet\u201d idea was inspired by **Berkshire Hathaway\u2019s holding-company structure**: a parent company made up of subsidiaries run by **strong, trusted CEOs** who operate their businesses independently.",
+      "verdict": "incorrect",
+      "reasoning": "The expected inspiration was the street address of Google's Hamburg office (ABC-Stra\u00dfe). The agent instead claims the name was inspired by Berkshire Hathaway\u2019s holding-company structure, which does not match the ground truth and directly answers a different rationale.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 33.17984461784363,
+      "judge_time_sec": 2.674116373062134,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet was inspired by the Google Hamburg office street address: ABC-Stra\u00dfe"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Eric Schmidt 2018 talk Alphabet name inspiration",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"Abc-Strabe\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Bergen, Mark\",\"Berkshire Hathaway\",\"Britannica Money\",\"Ceos\",\"Conference In 2017\",\"Eric Schmidt\",\"Go0Gle Official Blog\",\"Gv\",\"Https://Www.Cnet.Com/News/Go..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Eric Schmidt",
+            "query_hint": "2018 talk inspiration for the name Alphabet"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Eric Schmidt\\nquery: 2018 talk inspiration for the name Alphabet\\nmode: semantic_ranked\\noutgoing:\\n  REVEALED_AT[1]: Conference In 2017(0.49)\\n    hint: \"Eric Schmidt REVEALED_AT Conference In 2017\"\\n  CITED_AS_INSPIRATION[1]: Berkshire Hathaway(0.46)\\n    hint: \"Eric Schmidt CITED_AS_INSPIRATION Berkshire Hathaway\"\\n  WAS_MEETING_WITH[1]: Ceos(0.42)\\n    hint: \"Eric Schmidt WAS_MEETING_WITH Ceos\"\\n  SPOKE_AT_EVENT[1]: Internet Association(0.40)\\n..."
+        },
+        {
+          "tool": "get_chunk",
+          "args": {
+            "entity_one": "Eric Schmidt",
+            "entity_two": "Berkshire Hathaway",
+            "edge_type": "CITED_AS_INSPIRATION"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: 828bc8fe-0514-4afd-b142-465dbd1e2273\\\\nHeader: Alphabet > History\\\\nDate: 2026-01-02T03:21:21.597000000+00:00\\\\n\\\\nHistory\\\\nblog.[iol Alphabet was created to restructure Google by moving subsidiaries from Google to Alphabet, thus narrowing Google\\'s scope. The new holding company would consist of Google as well as other Pichai, the company\\'s Product Chief, became the new chief executive officer of Google, r..."
+        }
+      ]
+    },
+    {
+      "question_id": 28,
+      "question": "Does Alphabet own the domain alphabet.com?",
+      "expected_answer": "No, alphabet.com is owned by a fleet management division of BMW",
+      "agent_answer": "No. Alphabet (Google\u2019s parent company) does **not** own **alphabet.com**; the domain is owned by **a fleet management division of BMW**. Evidence: \u201cIt does not own the domain alphabet.com \u2026 which is owned by a fleet management division of BMW.\u201d",
+      "verdict": "correct",
+      "reasoning": "The agent clearly states that Alphabet does not own alphabet.com and that it is owned by a fleet management division of BMW, matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 35.73118257522583,
+      "judge_time_sec": 1.8862483501434326,
+      "key_facts_matched": [
+        "Alphabet does not own alphabet.com",
+        "alphabet.com is owned by a fleet management division of BMW"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 29,
+      "question": "When did Alphabet reach a $1 trillion market value?",
+      "expected_answer": "January 16, 2020",
+      "agent_answer": "Alphabet reached a **$1 trillion market value on January 16, 2020**.",
+      "verdict": "correct",
+      "reasoning": "The agent states Alphabet reached a $1 trillion market value on January 16, 2020, which exactly matches the expected answer.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 77.40504765510559,
+      "judge_time_sec": 1.4907371997833252,
+      "key_facts_matched": [
+        "January 16, 2020"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 30,
+      "question": "When did Alphabet reach a $2 trillion market valuation?",
+      "expected_answer": "April 26, 2024",
+      "agent_answer": "The graph data available here only contains evidence that Alphabet reached a **$1 trillion** market value (referenced as of **January 19, 2020**) and later references about a **$3 trillion** milestone (September 2025). It does **not** include a chunk/evidence entry for when Alphabet reached a **$2 trillion** market valuation, so I can\u2019t give you a graph-cited date for the $2T milestone from this dataset.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is a specific date (April 26, 2024). The agent instead claims the dataset lacks evidence and does not provide the correct date, so it fails to answer the question as expected.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 68.79389548301697,
+      "judge_time_sec": 2.6106159687042236,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet reached a $2 trillion market valuation on April 26, 2024"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Inc. (Class A)",
+            "query_hint": "reached $2 trillion market valuation market cap milestone"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Alphabet Inc. (Class A)\\nmessage: NO RELATIONSHIPS FOUND - stop exploring this entity', 'id': 'lc_6b35b12d-75ad-4bc7-8612-272a46d12347'}]"
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet (Forbes Company Page)",
+            "query_hint": "reached $2 trillion market valuation market cap milestone"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Alphabet (Forbes Company Page)\\nquery: reached $2 trillion market valuation market cap milestone\\nmode: semantic_ranked\\noutgoing:\\n  IS_LOCATED_AT[1]: Https://Www.Forbes.Com/Companies/Alphabet/(0.39)\\n    hint: \"Alphabet (Forbes Company Page) IS_LOCATED_AT Https://Www.Forbes.Com/Companies/Alphabet/\"\\n  IS_ABOUT[1]: alphabet inc.(0.37)\\n    hint: \"Alphabet (Forbes Company Page) IS_ABOUT alphabet inc.\"\\nincoming:\\n  PUBLISHES[1]: Forbes(0.41)\\n    h..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "alphabet inc.",
+            "query_hint": "reached $2 trillion market valuation market cap milestone"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: alphabet inc.\\nquery: reached $2 trillion market valuation market cap milestone\\nmode: semantic_ranked\\noutgoing:\\n  REACHED[1]: $1 Trilion Market Value(0.60)\\n    hint: \"alphabet inc. REACHED $1 Trilion Market Value\"\\n  ENTERED_FOR_THE[1]: Trillion Dollar Companies Club(0.54)\\n    hint: \"alphabet inc. ENTERED_FOR_THE Trillion Dollar Companies Club\"\\n  SURPASSED[1]: apple inc.(0.51)\\n    hint: \"alphabet inc. SURPASSED apple inc.\"\\n  BECAME[1]: The ..."
+        },
+        {
+          "tool": "get_chunks_by_edge",
+          "args": {
+            "entity_name": "alphabet inc.",
+            "edge_type": "IS_ABOUT",
+            "direction": "incoming"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"count\":4,\"results\":[{\"relationship\":\"Alphabet (Forbes Company Page) -[IS_ABOUT]-> alphabet inc.\",\"direction\":\"incoming\",\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: b5e17bdd-030d-413f-aaf7-cc85eb5c7af2\\\\nHeader: Alphabet > References\\\\n\\\\nReferences\\\\n1. \\\\\"Alphabet Inc. 2024 Annual Form 10-K Report\\\\\" (https://www.sec.gov/ix?doc=/Archives/edgar/data/ 1652044/000165204425000014/g00g-20241231.htm). U.S. Securities and Exchange Commission.February5,2024...."
+        }
+      ]
+    },
+    {
+      "question_id": 31,
+      "question": "When did Alphabet reach a $3 trillion market valuation?",
+      "expected_answer": "September 15, 2025",
+      "agent_answer": "Alphabet reached a **$3 trillion market valuation on September 15, 2025** (reported by Reuters and cited in Alphabet\u2019s references).",
+      "verdict": "correct",
+      "reasoning": "The agent states Alphabet reached a $3 trillion market valuation on September 15, 2025, which exactly matches the expected answer date.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 53.218849897384644,
+      "judge_time_sec": 1.069345474243164,
+      "key_facts_matched": [
+        "September 15, 2025"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 32,
+      "question": "How many companies reached $3 trillion market cap before Alphabet?",
+      "expected_answer": "Three companies: Nvidia, Microsoft, and Apple",
+      "agent_answer": "I can\u2019t answer from this graph: the Alphabet entity here has no market-cap \u201creached $3T\u201d relationships, so there\u2019s no evidence in the dataset to count how many companies hit $3 trillion before Alphabet.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is explicitly known (three companies: Nvidia, Microsoft, Apple). The agent incorrectly claims it cannot be answered due to missing graph relationships rather than providing the correct count and names.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 45.740217447280884,
+      "judge_time_sec": 1.9743373394012451,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Three companies reached $3T before Alphabet",
+        "The companies were Nvidia, Microsoft, and Apple"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Inc. (Class A)",
+            "query_hint": "reached $3 trillion market cap milestone"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Alphabet Inc. (Class A)\\nmessage: NO RELATIONSHIPS FOUND - stop exploring this entity', 'id': 'lc_ae59c19b-ba0f-4ad7-9ffc-025254fb7d4b'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet (Forbes Company Page)",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Annualreportpursuanttosection13Or15(D)Ofthesecurities..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet (Forbes Company Page)",
+            "query_hint": "market cap reached $3 trillion before Alphabet"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Alphabet (Forbes Company Page)\\noutgoing:\\n  IS_LOCATED_AT[1]: Https://Www.Forbes.Com/Companies/Alphabet/\\n  IS_ABOUT[1]: alphabet inc.\\nincoming:\\n  PUBLISHES[1]: Forbes\\n  ARCHIVES[1]: Internet Archive\\ntotal: 4', 'id': 'lc_bfb3a5ae-c189-4748-9d45-07ea0372bfe0'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 33,
+      "question": "How many employees did Alphabet lay off in January 2023?",
+      "expected_answer": "Approximately 12,000 jobs, which was 6% of its global workforce",
+      "agent_answer": "Alphabet laid off **12,000 employees** in January 2023.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly states the layoff number (12,000), but it omits the additional key detail from the expected answer that this represented about 6% of Alphabet's global workforce.",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "agent_time_sec": 62.45292568206787,
+      "judge_time_sec": 2.7848446369171143,
+      "key_facts_matched": [
+        "Alphabet laid off 12,000 employees in January 2023"
+      ],
+      "key_facts_missing": [
+        "This was approximately 6% of its global workforce"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet (Forbes Company Page)",
+            "query_hint": "layoffs January 2023 employees laid off"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Alphabet (Forbes Company Page)\\noutgoing:\\n  IS_LOCATED_AT[1]: Https://Www.Forbes.Com/Companies/Alphabet/\\n  IS_ABOUT[1]: alphabet inc.\\nincoming:\\n  PUBLISHES[1]: Forbes\\n  ARCHIVES[1]: Internet Archive\\ntotal: 4', 'id': 'lc_1acdf1f5-27e5-4f80-94c3-b5708360d4cf'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "alphabet inc.",
+            "query_hint": "January 2023 laid off employees"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: alphabet inc.\\nquery: January 2023 laid off employees\\nmode: semantic_ranked\\noutgoing:\\n  WAS_ACCUSED_OF[1]: Several Workers At Google(0.30)\\n    hint: \"alphabet inc. WAS_ACCUSED_OF Several Workers At Google\"\\n  ANNOUNCED_IT_HAD[1]: French Autorit\u00e9 De La Concurrence(0.27)\\n    hint: \"alphabet inc. ANNOUNCED_IT_HAD French Autorit\u00e9 De La Concurrence\"\\n  FACED_ANTITRUST_ACTIONS[1]: Japan(0.26)\\n    hint: \"alphabet inc. FACED_ANTITRUST_ACTIONS Japan\"\\..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"Alphabet Investor Relations\",\"Ars Technica\",\"Britannica Money\",\"G0Ogle\",\"Go0Gle Official Blog\",\"Google Inc.\",\"Google Llc\",\"Googleplex\",\"Gv\",\"Https://Finance.Yahoo.Com/Quote/Googl/\",\"Https://Web.Archive.Org/Web/20170211223917/Https://Abc.Xyz/Investor/Other/Google-Code-..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Google Inc.",
+            "query_hint": "January 2023 layoffs number of employees"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Google Inc.\\nquery: January 2023 layoffs number of employees\\nmode: semantic_ranked\\noutgoing:\\n  WAS_STRUCTURED_AS[1]: alphabet inc.(0.26)\\n    hint: \"Google Inc. WAS_STRUCTURED_AS alphabet inc.\"\\n  HAS_FILING_PAGE[1]: Https://Www.Sec.Gov/Archives/Edgar/Data/1288776/000128877615000039/A20150810Form8-K.Htm(0.25)\\n    hint: \"Google Inc. HAS_FILING_PAGE Https://Www.Sec.Gov/Archives/Edgar/Data/1288776/000128877615000039/A2015...\"\\n  BECAME_A_SUBSIDIAR..."
+        }
+      ]
+    },
+    {
+      "question_id": 34,
+      "question": "What percentage of Alphabet's 2017 revenues came from performance and brand advertising?",
+      "expected_answer": "86%",
+      "agent_answer": "Alphabet doesn\u2019t break out **2017 revenues** by **\u201cperformance advertising\u201d vs \u201cbrand advertising\u201d** in its 2017 reporting. In Alphabet\u2019s 2017 Form 10\u2011K/annual report, advertising revenue is reported in aggregate categories (e.g., **Google Search & other**, **YouTube ads**, **Google Network Members\u2019 properties**) rather than by \u201cperformance\u201d and \u201cbrand.\u201d\n\nSo, the **percentage of 2017 revenues** from performance vs. brand advertising is **not disclosed**, and therefore can\u2019t be calculated from Alphabet\u2019s 2017 reported revenue breakdown.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states that 86% of Alphabet's 2017 revenues came from performance and brand advertising. The agent instead claims this breakdown is not disclosed and cannot be calculated, directly conflicting with the provided ground truth.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 84.40140318870544,
+      "judge_time_sec": 2.213846445083618,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "86% of Alphabet's 2017 revenues came from performance and brand advertising"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet 2017 revenues performance and brand advertising percentage",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Alphabet Financial Statements Yearly I Googl\\\\\"\",\"\\\\\"Annual Report 2016\\\\\"\",\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"7Th\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Annualreportpursuanttosection13Or15(D)Ofthesecuritiesexchange ..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc. (Class A)",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Alphabet Financial Statements Yearly I Googl\\\\\"\",\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"A Placeholder Subsidiary\",\"A Subsidiary Of Alphabet\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Annualreportpursuanttosection13Or15(D)Ofthesecuritiesexchange..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "alphabet inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet.Com\",\"Amazon\",\"Https://Abc.Xyz/\",\"Https://En.Wikipedia.Org/W/Index.Php?Title=Alphabet_Inc.&Oldid=1321934934\",\"Https://Web.Archive.Org/Web/20150811164757/Http://Techcrunch.Com/201..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "alphabet inc.",
+            "query_hint": "2017 revenues breakdown performance advertising brand advertising percentages"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: alphabet inc.\\noutgoing:\\n  IS_HEADQUARTERED_AT[1]: Googleplex\\n  IS_TRADED_AS[1]: Nasdaq: Goog\\n  IS_TRADED_ON[1]: nasdaq\\n  IS_A_COMPONENT[1]: S&P 500\\n  HAS_ISIN[1]: Us02079K1079\\n  SERVES_AREA[1]: Worldwide\\n  HAS_WEBSITE[1]: Abc.Xyz\\n  IS_HEADQUARTERED_IN[1]: Mountain View, California\\n  IS_LISTED_ON[1]: nasdaq\\n  WAS_ESTABLISHED_TO[1]: Internet Services\\n  FILED_A_LAWSUIT[1]: Uber\\n  FACED_ANTITRUST_ACTIONS[1]: Japan\\n  FILED_FOR_BANKRUPTCY[1..."
+        },
+        {
+          "tool": "get_chunk",
+          "args": {
+            "entity_one": "\"Alphabet Financial Statements Yearly I Googl\"",
+            "entity_two": "alphabet inc.",
+            "edge_type": "PROVIDES_FINANCIAL_STATEMENTS"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: 33afb712-4285-473e-bc08-cc57089c5579\\\\nHeader: Alphabet > References\\\\nDate: 2026-01-02T03:21:21.597000000+00:00\\\\n\\\\nReferences\\\\n53. 99345). ndtv.com. NDTV Convergence Limited. Archived (https://web.archive.org/web/201904070 42748/https://www.ndtv.com/photos/news/happy-birthday-google--8267#photo-99345) from the originalonApril 7,2019.RetrievedApril28,2016.\\\\n55. \\\\\"Alphabet Financial Statements yearly I GO..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Annual Report 2016",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Annual Report 2016\\\\\"\",\"\\\\\"Annual Report 2018\\\\\"\",\"\\\\\"Annualreport 2017\\\\\"\",\"2019Q4_Alphabet_Earnings_Release.Pdf\",\"20210203_Alphabet_10K.Pdf\",\"2024 Annual Form 10-K Report\",\"Abendblatt.De\",\"Alphabet Inc. 2021 Annual Form 10-K Report\",\"Annual Report 2019\",\"Annual Report 2020\",\"Annualreportpursuanttosection13Or15(D)Ofthesecuritiesexchange Act Of 1934\",\"Archived (Https://Web.Archive.Org/Web/20161128112043/Http://Www.Ws 28,2016.Retrieved Augus..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "\"Annualreport 2017\"",
+            "query_hint": "2017 revenues percentage performance advertising brand advertising"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: \"Annualreport 2017\"\\nquery: 2017 revenues percentage performance advertising brand advertising\\nmode: semantic_ranked\\noutgoing:\\n  LINKS_TO[1]: Https://Abc.Xyz/Investor/Static/Pdf/20171231_Alphabet_10K.Pdf(0.34)\\n    hint: \"\"Annualreport 2017\" LINKS_TO Https://Abc.Xyz/Investor/Static/Pdf/20171231_Alphabet_10K.Pdf\"\\ntotal: 1', 'id': 'lc_08019442-7a40-45f7-8ebb-c0abb2053e44'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Https://Abc.Xyz/Investor/Static/Pdf/20171231_Alphabet_10K.Pdf",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"2019Q4_Alphabet_Earnings_Release.Pdf\",\"20210203_Alphabet_10K.Pdf\",\"Annualreportpursuanttosection13Or15(D)Ofthesecuritiesexchange Act Of 1934\",\"Https://Abc.Xyz/\",\"Https://Abc.Xyz/Investor/Other/Google-Code-Of-Conduct.Html\",\"Https://Abc.Xyz/Investor/Static/Pdf/2016Q4_Alphabet_Earnings_Release.Pdf\",\"Https://Abc.Xyz/Investor/Static/Pdf/20171231_Alphabet_10K.Pdf\",\"Https://Abc.Xyz/Investor/Static/Pdf/2018Q4_Alphabet_Earnings_Release.Pdf?Cache=Adc3B3..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Https://Abc.Xyz/Investor/Static/Pdf/20171231_Alphabet_10K.Pdf",
+            "query_hint": "2017 revenues performance advertising brand advertising percentage"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Https://Abc.Xyz/Investor/Static/Pdf/20171231_Alphabet_10K.Pdf\\nquery: 2017 revenues performance advertising brand advertising percentage\\nmode: semantic_ranked\\nincoming:\\n  LINKS_TO[1]: \"Annualreport 2017\"(0.35)\\n    hint: \"\"Annualreport 2017\" LINKS_TO Https://Abc.Xyz/Investor/Static/Pdf/20171231_Alphabet_10K.Pdf\"\\ntotal: 1', 'id': 'lc_83a7331d-548b-49f3-8a6a-d2db1c868ab9'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 35,
+      "question": "What was Alphabet's R&D expenditure in 2022?",
+      "expected_answer": "US$39.5 billion",
+      "agent_answer": "I can\u2019t find any fact in the provided graph for **Alphabet\u2019s 2022 R&D expenditure** (the entity **\u201cAlphabet Inc. (Class A)\u201d** has no matching facts for that query), so I can\u2019t answer this from the available dataset.\n\nIf you want the generally reported figure from Alphabet\u2019s 2022 annual results (outside this graph), tell me whether you mean **R&D expense under GAAP** or **\u201cresearch and development\u201d in the cash flow/segment context**, and whether you want it in **USD billions**.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer provides a specific figure (US$39.5 billion). The agent instead claims it cannot find the fact and does not provide the number, so it fails to answer the question correctly.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 23.467103242874146,
+      "judge_time_sec": 1.4215378761291504,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet's 2022 R&D expenditure was US$39.5 billion"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Inc. (Class A)",
+            "query_hint": "R&D expenditure 2022 research and development spending"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Alphabet Inc. (Class A)\\nquery: R&D expenditure 2022 research and development spending\\nmessage: NO MATCHING FACTS - no facts found for this entity matching your query', 'id': 'lc_6483c341-14fa-467f-ad48-d0c802dddd35'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 36,
+      "question": "What was Alphabet's ranking in R&D expenditure worldwide in 2022?",
+      "expected_answer": "Second-highest expenditure on research and development worldwide",
+      "agent_answer": "I can\u2019t answer from the graph I have access to: it doesn\u2019t contain any facts about **Alphabet\u2019s worldwide R&D expenditure ranking in 2022** (no matching relationships/evidence for \u201cAlphabet Inc. (Class A)\u201d on this topic).\n\nIf you want, I can answer if you provide the source you\u2019re using (e.g., an OECD/UNESCO report, EU Industrial R&D Investment Scoreboard, Statista table, etc.) or if you tell me which \u201cranking\u201d definition you mean (by absolute $ spend vs. % of revenue, and whether \u201cworldwide\u201d is all industries or just ICT).",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is that Alphabet ranked second-highest worldwide in R&D expenditure in 2022. The agent did not provide this ranking and instead claimed it could not answer due to lack of data. Since the information is available in the expected ground truth, the agent\u2019s response does not address the question correctly.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 25.112948179244995,
+      "judge_time_sec": 2.5743331909179688,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet ranked second-highest in worldwide R&D expenditure in 2022"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Inc. (Class A)",
+            "query_hint": "R&D expenditure worldwide 2022 ranking"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Alphabet Inc. (Class A)\\nquery: R&D expenditure worldwide 2022 ranking\\nmessage: NO MATCHING FACTS - no facts found for this entity matching your query', 'id': 'lc_ac27bbf8-e165-408b-bb02-dad90f22f719'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 37,
+      "question": "What lawsuit did Alphabet file against Uber in 2017?",
+      "expected_answer": "Alphabet sued Uber over technology similar to Alphabet's proprietary self-driving car technology, related to 14,000 documents believed to have been downloaded and stolen by a former Waymo engineer employed by Uber",
+      "agent_answer": "Alphabet filed a **2017 lawsuit against Uber alleging stolen self-driving car technology**\u2014i.e., that Uber had taken/misappropriated Alphabet/Waymo\u2019s autonomous vehicle trade secrets.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly identifies that Alphabet (via Waymo) sued Uber in 2017 alleging theft/misappropriation of self-driving car trade secrets. However, it omits key specifics from the expected answer: the suit\u2019s connection to ~14,000 allegedly downloaded/stolen documents by a former Waymo engineer who later worked at Uber, and the similarity to Alphabet\u2019s proprietary self-driving tech as described.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 51.31151366233826,
+      "judge_time_sec": 4.204569339752197,
+      "key_facts_matched": [
+        "Alphabet/Waymo sued Uber in 2017",
+        "Allegation involved stolen/misappropriated self-driving car technology/trade secrets"
+      ],
+      "key_facts_missing": [
+        "Reference to 14,000 documents believed downloaded and stolen",
+        "Involvement of a former Waymo engineer employed by Uber",
+        "Explicit mention of technology similar to Alphabet\u2019s proprietary self-driving car technology tied to those documents"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Britannica Money\",\"C..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Uber",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Uber Fires Self-Driving Car Chief At Center Of Court Case\\\\\"\",\"Alphabet (Forbes Company Page)\",\"Alphabet\\'S Proprietary Self-Driving Car Technology\",\"Alphabet\\'S Self Driving Car Unit\",\"Alphabet\\'S Waymo Seeks To Expand Driverless Service To Los Angeles\",\"Driverless Service\",\"G0Ogle\",\"Https:// Ahoo.Com/Quote/Goog\",\"Https:// Www.Reuters.Com/Article/Us-Uber-Alphabet-Lawsuit-Iduskbn18Q2Cw\",\"Https://Www.Forbes.Com/Companies/Alphabet/\",\"License\"..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Uber",
+            "query_hint": "2017 lawsuit filed by Alphabet against Uber"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Uber\\nquery: 2017 lawsuit filed by Alphabet against Uber\\nmode: semantic_ranked\\noutgoing:\\n  AGREED_TO_PROVIDE[1]: Waymo(0.60)\\n    hint: \"Uber AGREED_TO_PROVIDE Waymo\"\\nincoming:\\n  FILED_A_LAWSUIT[1]: alphabet inc.(0.72)\\n    hint: \"alphabet inc. FILED_A_LAWSUIT Uber\"\\n  SUED[1]: alphabet inc.(0.69)\\n    hint: \"alphabet inc. SUED Uber\"\\ntotal: 3', 'id': 'lc_4bb4d79d-14b0-435c-b541-1de01a2ca319'}]"
+        },
+        {
+          "tool": "get_chunk",
+          "args": {
+            "entity_one": "alphabet inc.",
+            "entity_two": "Uber",
+            "edge_type": "FILED_A_LAWSUIT"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: 393bc667-d478-46a2-a40d-a9970080551e\\\\nHeader: Alphabet > Body\\\\nDate: 2026-01-02T03:21:21.597000000+00:00\\\\n\\\\nAlphabet\\\\nThe establishment of Alphabet Inc. was prompted by a desire to make the core Google business \\\\\"cleaner and more accountable\\\\\" while allowing greater autonomy to group companies that operate in businesses other than Internet services.[6ll8l Founders Larry Page and Sergey Brin announced t..."
+        }
+      ]
+    },
+    {
+      "question_id": 38,
+      "question": "How was the Uber-Waymo lawsuit settled?",
+      "expected_answer": "Uber agreed not to use the self-driving technology in dispute and provided Waymo with an equity stake of 0.34%, equating to around $245 million at the firm's early 2018 value",
+      "agent_answer": "The Uber\u2013Waymo lawsuit was settled when **Uber agreed to give Waymo an equity stake of 0.34% (about $245 million based on Uber\u2019s early\u20112018 valuation)** in connection with the self-driving technology dispute.  \n\nEvidence: \u201c\\[Uber\\] also agreed to provide Waymo with an equity stake of 0.34%, equating to around $245 million at the firm's early 2018 value.\u201d (Alphabet > \u201cLawsuits and controversies\u201d chunk `107cbea9-082b-4d91-b681-905868acdb08`)",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly states the equity stake portion of the settlement (0.34% worth about $245M). However, it omits the other key term: Uber agreed not to use the disputed self-driving technology.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 43.77600646018982,
+      "judge_time_sec": 2.9965362548828125,
+      "key_facts_matched": [
+        "Uber provided Waymo with an equity stake of 0.34%",
+        "The stake was valued at about $245 million based on early 2018 valuation"
+      ],
+      "key_facts_missing": [
+        "Uber agreed not to use the self-driving technology in dispute"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Uber-Waymo lawsuit",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"Antitrust\",\"Artificial Intelligence\",\"Autonomous Vehicles\",\"Balance Sheet\",\"Bankruptcy\",\"Cloud Computing\",\"Corporate Strategy\",\"Corporate Structure\",\"Cybersecurity\",\"Employment\",\"Intellectual Property\",\"Litigation\",\"Mergers And Acquisitions\",\"Ownership Structure\",\"Robotics\",\"SEC Filing\",\"Software\",\"Stock Market\",\"Transparency\",\"Venture Capital\"],\"message\":\"Found 20 matching topic(s) in the graph.\"}', 'id': 'lc_5b2a0acc-3307-46c1-83c9-4935e57a4..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Waymo",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"Alphabet\\'S Autonomous Vehicle Technology\",\"Alphabet\\'S Proprietary Self-Driving Car Technology\",\"Alphabet\\'S Self Driving Car Unit\",\"Alphabet\\'S Waymo Seeks To Expand Driverless Service To Los Angeles\",\"Autonomous Driving\",\"California Public Utilities Commission\",\"Dmitri Dolgov\",\"Driverless Service\",\"Former Waymo Engineer\",\"Gv\",\"License\",\"Los Angeles\",\"San Francisco\",\"Service\",\"Sidewalk Labs\",\"Sidewalk Labs Will Be Folded Into Google As Ceo S..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Uber",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Uber Fires Self-Driving Car Chief At Center Of Court Case\\\\\"\",\"Alphabet (Forbes Company Page)\",\"Alphabet\\'S Proprietary Self-Driving Car Technology\",\"Alphabet\\'S Self Driving Car Unit\",\"Alphabet\\'S Waymo Seeks To Expand Driverless Service To Los Angeles\",\"Driverless Service\",\"G0Ogle\",\"Https:// Ahoo.Com/Quote/Goog\",\"Https:// Www.Reuters.Com/Article/Us-Uber-Alphabet-Lawsuit-Iduskbn18Q2Cw\",\"Https://Www.Forbes.Com/Companies/Alphabet/\",\"License\"..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Waymo",
+            "query_hint": "lawsuit settlement with Uber"
+          },
+          "response": "[{'type': 'text', 'text': \"found: true\\nentity: Waymo\\noutgoing:\\n  FILED_AN_APPLICATION[1]: California Public Utilities Commission\\n  IS_THE_AUTONOMOUS[1]: alphabet inc.\\n  OPERATES_EXTENSIVELY_IN[1]: San Francisco\\n  HAS_BUSINESS[1]: Autonomous Driving\\n  DEVELOPED_FOR_A[1]: Alphabet'S Autonomous Vehicle Technology\\n  SEEKS_TO_EXPAND[1]: Los Angeles\\nincoming:\\n  IS_EXECUTIVE_LEADER[1]: Tekedra Mawakana\\n  HAS_DIVISION[1]: alphabet inc.\\n  AGREED_TO_PROVIDE[1]: Uber\\n  IS_ABOUT[1]: Alphabet'S ..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Uber",
+            "query_hint": "Waymo lawsuit settlement"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Uber\\nquery: Waymo lawsuit settlement\\nmode: semantic_ranked\\noutgoing:\\n  AGREED_TO_PROVIDE[1]: Waymo(0.55)\\n    hint: \"Uber AGREED_TO_PROVIDE Waymo\"\\nincoming:\\n  FILED_A_LAWSUIT[1]: alphabet inc.(0.50)\\n    hint: \"alphabet inc. FILED_A_LAWSUIT Uber\"\\n  SUED[1]: alphabet inc.(0.49)\\n    hint: \"alphabet inc. SUED Uber\"\\ntotal: 3', 'id': 'lc_82a0874e-a598-44be-8f3a-7067f4439a9d'}]"
+        },
+        {
+          "tool": "get_chunks",
+          "args": {
+            "relationships": [
+              [
+                "Waymo",
+                "AGREED_TO_PROVIDE",
+                "Uber"
+              ],
+              [
+                "Uber",
+                "AGREED_TO_PROVIDE",
+                "Waymo"
+              ],
+              [
+                "alphabet inc.",
+                "SUED",
+                "Uber"
+              ],
+              [
+                "alphabet inc.",
+                "FILED_A_LAWSUIT",
+                "Uber"
+              ]
+            ]
+          },
+          "response": "[{'type': 'text', 'text': '{\"found_count\":4,\"total_requested\":4,\"results\":[{\"relationship\":\"(Waymo, AGREED_TO_PROVIDE, Uber)\",\"found\":true,\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: 107cbea9-082b-4d91-b681-905868acdb08\\\\nHeader: Alphabet > Lawsuits and controversies\\\\nDate: 2026-01-02T03:21:21.597000000+00:00\\\\n\\\\nLawsuits and controversies\\\\nIn 2o17, Alphabet Inc. sued Uber over technology similar to Alphabet\\'s proprietary self-driving car technology. Alphabet\\'s autonomous vehicle technol..."
+        }
+      ]
+    },
+    {
+      "question_id": 39,
+      "question": "What was the settlement amount for the Google+ privacy bug class action lawsuit?",
+      "expected_answer": "$7.5 million in July 2020, with a payout to claimants of at least $5 each, with a maximum of $12 each",
+      "agent_answer": "The Google+ privacy-bug class action (In re Google Plus Profile Litigation) settled for **$7.5 million**.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly states the settlement amount was $7.5 million, but omits key details from the expected answer: the timing (July 2020) and the claimant payout range ($5 minimum, $12 maximum).",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 97.26824069023132,
+      "judge_time_sec": 1.7105498313903809,
+      "key_facts_matched": [
+        "Settlement amount: $7.5 million"
+      ],
+      "key_facts_missing": [
+        "Timing: July 2020",
+        "Payout details: at least $5 each, maximum of $12 each"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google+ privacy bug class action lawsuit settlement amount",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"Antitrust\",\"Balance Sheet\",\"Corporate Governance\",\"Currency Exchange\",\"Cybersecurity\",\"Data Privacy\",\"Dividend\",\"Litigation\",\"Lobbying\",\"Market Share\",\"Net Income\",\"Private Equity\",\"Quantum Computing\",\"Regulation\",\"Reputational Risk\",\"SEC Filing\",\"Share Buyback\",\"Total Assets\",\"Transparency\",\"Venture Capital\"],\"message\":\"Found 20 matching topic(s) in the graph.\"}', 'id': 'lc_73b6bfbe-37b2-4c8c-9625-950672d58c17'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google+",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"\\\\\"Non-Public\\\\\" Google+ Account Data\",\"Ars Technica\",\"Britannica Money\",\"Class A\",\"Did You Use Google+? You May Be Owed Some Money From Class-Action Privacy Settlement\",\"G0Ogle\",\"Go0Gle Official Blog\",\"Google+\",\"Google+ Settlement: How To Submit A Claim Over Privacy ..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Google+",
+            "query_hint": "privacy bug class action settlement amount"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Google+\\nquery: privacy bug class action settlement amount\\nmessage: NO MATCHING FACTS - no facts found for this entity matching your query', 'id': 'lc_21c1489d-a4de-4c6e-bbf6-8107e94b8a69'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "In re Google Plus Profile Litigation",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"After 16 Years Of Service, Google Fires Employee By Deactivating His Account In The Middle Of The Night\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"\\\\\"Non-Public\\\\\" Google+ Account Data\",\"Ars Technica\",\"Class A\",\"Did You Use Google+? You May Be Owed Some Money From Class-Action Privacy Settlement\",\"Go0Gle Official Blog\",\"Google Has \\'Outgrown\\' Its 14-Year Old Mission Statement, Says Larry Page\",\"Google+\",\"Google+ Settlement..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google+ Settlement: How To Submit A Claim Over Privacy Bug",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"\\\\\"Non-Public\\\\\" Google+ Account Data\",\"App Developers\",\"Ars Technica\",\"Class A\",\"Did You Use Google+? You May Be Owed Some Money From Class-Action Privacy Settlement\",\"Google Inc.\",\"Google+\",\"Google+ Settlement: How To Submit A Claim Over Privacy Bug\",\"Gv\",\"Https://Web.Archive.0Rg/Web/20200806003928/Https://Www.Cou\",\"Https://Www.Cnet.Com/News/Googles-Larry-Page-Explains-The-New-Alphabet/\"..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Google+ Settlement: How To Submit A Claim Over Privacy Bug",
+            "query_hint": "settlement amount class action"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Google+ Settlement: How To Submit A Claim Over Privacy Bug\\nquery: settlement amount class action\\nmode: semantic_ranked\\noutgoing:\\n  HAS_CITED_URL[1]: Https://Www.Newsweek.Com/Google-Plus-Privacy-Bug-Settlement-Claim-Money-1522967(0.41)\\n    hint: \"Google+ Settlement: How To Submit A Claim Over Privacy Bug HAS_CITED_URL Https://Www.Newsweek.Com/Go...\"\\n  WAS_PUBLISHED_IN[1]: Newsweek(0.40)\\n    hint: \"Google+ Settlement: How To Submit A Claim Ove..."
+        },
+        {
+          "tool": "get_chunks_by_edge",
+          "args": {
+            "entity_name": "Google+ Settlement: How To Submit A Claim Over Privacy Bug",
+            "edge_type": "HAS_CITED_URL",
+            "direction": "both"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"count\":1,\"results\":[{\"relationship\":\"Google+ Settlement: How To Submit A Claim Over Privacy Bug -[HAS_CITED_URL]-> Https://Www.Newsweek.Com/Google-Plus-Privacy-Bug-Settlement-Claim-Money-1522967\",\"direction\":\"outgoing\",\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: 5f47b955-9673-4a2a-bf28-6d5ae4cbdd5c\\\\nHeader: Alphabet > References\\\\n\\\\nReferences\\\\n81. Murdock, Jason (August 5, 2020). \\\\\"Google+ Settlement: How to Submit a Claim over Privacy Bug tm ps:..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "In re Go0gle Plus Profile Litigation",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"\\\\\"Non-Public\\\\\" Google+ Account Data\",\"Ars Technica\",\"Class A\",\"Did You Use Google+? You May Be Owed Some Money From Class-Action Privacy Settlement\",\"G0Ogle\",\"Go0Gle Official Blog\",\"Google+\",\"Google+ Settlement: How To Submit A Claim Over Privacy Bug\",\"Gv\",\"Https://Web.Archive.0Rg/Web/20200806003928/Https://Www.Cou\",\"Https://Www..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Https://Www.Courtlistener.Com/Docket/7999009/In-Re-Google-Plus-Profile -",
+            "query_hint": "settlement amount"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Https://Www.Courtlistener.Com/Docket/7999009/In-Re-Google-Plus-Profile -\\nquery: settlement amount\\nmessage: NO MATCHING FACTS - no facts found for this entity matching your query', 'id': 'lc_05f5e96f-34dc-4264-be96-29b5d43058f2'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Did You Use Google+? You May Be Owed Some Money From Class-Action Privacy Settlement",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"\\\\\"Non-Public\\\\\" Google+ Account Data\",\"A United States District Court\",\"Alphabet Inc. (Class A) (Security)\",\"Britannica Money\",\"Class A\",\"Class C\",\"Did You Use Google+? You May Be Owed Some Money From Class-Action Privacy Settlement\",\"Google+\",\"Google+ Settlement: How To Submit A Claim Over Privacy Bug\",\"Https://Web.Archive.0Rg/Web/20200806003928/Https://Www.Cou\",\"Https://Www.Courtlistene..."
+        }
+      ]
+    },
+    {
+      "question_id": 40,
+      "question": "When did the United States Department of Justice file an antitrust lawsuit against Alphabet?",
+      "expected_answer": "October 2020",
+      "agent_answer": "The U.S. Department of Justice filed its antitrust lawsuit against Alphabet in **2020**.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly identified the year (2020) but did not specify the month. The expected answer is October 2020, so the response is incomplete.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 78.02640390396118,
+      "judge_time_sec": 1.2144136428833008,
+      "key_facts_matched": [
+        "Filed in 2020"
+      ],
+      "key_facts_missing": [
+        "October 2020"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "United States Department of Justice",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"A United States District Court\",\"Archived (Https://Web.Archive.Org/Web/20161128112043/Http://Www.Ws 28,2016.Retrieved August 10,2015.\",\"D82837D8K12B.Htm\",\"December 3, 2020\",\"Fdintelligence.C\",\"Government\",\"Http://Www.Ws\",\"Https://Www.Wsj.Com/Articles/Justice-Department-To-File-Long-Awaited-Antitrust-Su M/Articles/Justice-Department-To-File-Long-Awaited-Antitrust-Suit-Against-G0Ogle-11603195203\",\"June 13, 2021\",\"Justice Department\",\"Justice-Dep..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Inc. (Class A)",
+            "query_hint": "antitrust lawsuit filed by the United States Department of Justice"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Alphabet Inc. (Class A)\\nmessage: NO RELATIONSHIPS FOUND - stop exploring this entity', 'id': 'lc_1d9d9c76-4bee-4615-bc41-0896c5437259'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"Alphabet Investor Relations\",\"Ars Technica\",\"Britannica Money\",\"G0Ogle\",\"Go0Gle Official Blog\",\"Google Inc.\",\"Google Llc\",\"Googleplex\",\"Gv\",\"Https://Finance.Yahoo.Com/Quote/Googl/\",\"Https://Web.Archive.Org/Web/20170211223917/Https://Abc.Xyz/Investor/Other/Google-Code-..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Google Llc",
+            "query_hint": "Department of Justice antitrust lawsuit filed"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Google Llc\\nquery: Department of Justice antitrust lawsuit filed\\nmode: semantic_ranked\\nincoming:\\n  WOULD_BE_REORGANIZED[1]: google (company/subsidiary of alphabet)(0.36)\\n    hint: \"google (company/subsidiary of alphabet) WOULD_BE_REORGANIZED Google Llc\"\\ntotal: 1', 'id': 'lc_8f37afd0-496b-4826-9a1b-799549fb5a5b'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "United States Department Of Justice",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"A United States District Court\",\"Archived (Https://Web.Archive.Org/Web/20161128112043/Http://Www.Ws 28,2016.Retrieved August 10,2015.\",\"D82837D8K12B.Htm\",\"December 3, 2020\",\"Fdintelligence.C\",\"Government\",\"Http://Www.Ws\",\"Https://Web.Archive.Org/Web/20200806014134/Https://Www.Usato 01/\",\"Https://Www.Wsj.Com/Articles/Justice-Department-To-File-Long-Awaited-Antitrust-Su M/Articles/Justice-Department-To-File-Long-Awaited-Antitrust-Suit-Against-G0..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "United States Department Of Justice",
+            "query_hint": "filed an antitrust lawsuit against Alphabet"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: United States Department Of Justice\\nquery: filed an antitrust lawsuit against Alphabet\\nmode: semantic_ranked\\noutgoing:\\n  FILED_AN_ANTITRUST[1]: alphabet inc.(0.67)\\n    hint: \"United States Department Of Justice FILED_AN_ANTITRUST alphabet inc.\"\\n  FILED_A_LAWSUIT[1]: alphabet inc.(0.64)\\n    hint: \"United States Department Of Justice FILED_A_LAWSUIT alphabet inc.\"\\ntotal: 2', 'id': 'lc_ff7c98f6-dfa4-4fb5-b480-c892b962e029'}]"
+        },
+        {
+          "tool": "get_chunks",
+          "args": {
+            "relationships": [
+              [
+                "United States Department Of Justice",
+                "FILED_AN_ANTITRUST",
+                "alphabet inc."
+              ],
+              [
+                "United States Department Of Justice",
+                "FILED_A_LAWSUIT",
+                "alphabet inc."
+              ]
+            ]
+          },
+          "response": "[{'type': 'text', 'text': '{\"found_count\":2,\"total_requested\":2,\"results\":[{\"relationship\":\"(United States Department Of Justice, FILED_AN_ANTITRUST, alphabet inc.)\",\"found\":true,\"chunk\":\"\\\\\"\\\\\"\\\\\"\\\\nDOCUMENT: N/A\\\\nCHUNK_id: 3d14829c-ec3b-43a8-9bb1-f22273b68848\\\\nHeader: Alphabet > Lawsuits and controversies\\\\nDate: 2026-01-02T03:21:21.597000000+00:00\\\\n\\\\nLawsuits and controversies\\\\nIn October 2018, a class action lawsuit was filed against Google and Alphabet due to \\\\\"non-public\\\\\" Google+ a..."
+        }
+      ]
+    },
+    {
+      "question_id": 41,
+      "question": "When was Alphabet found guilty of violating antitrust law by a U.S. district court?",
+      "expected_answer": "August 2024",
+      "agent_answer": "I can\u2019t find any fact in the provided graph data that says **Alphabet** was \u201cfound guilty of violating antitrust law by a U.S. district court,\u201d so I can\u2019t give a date from this dataset.\n\nIf you meant **Google** (Alphabet\u2019s subsidiary), the graph still doesn\u2019t contain a \u201cfound guilty/antitrust violation by a U.S. district court\u201d relationship\u2014only an \u201calleged\u201d mention\u2014so there\u2019s no date available here either.\n\nIf you share the specific case name (e.g., *U.S. v. Google* and the court), I can try to pinpoint the exact ruling date.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is that Alphabet was found guilty in August 2024. The agent instead claims it cannot find any such fact/date and provides no date, so it fails to supply the key expected information.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 51.96886491775513,
+      "judge_time_sec": 2.5238606929779053,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet found guilty of violating antitrust law by a U.S. district court: August 2024"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc. (Class A)",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Alphabet Financial Statements Yearly I Googl\\\\\"\",\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"A Placeholder Subsidiary\",\"A Subsidiary Of Alphabet\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Annualreportpursuanttosection13Or15(D)Ofthesecuritiesexchange..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Inc. (Class A)",
+            "query_hint": "found guilty violating antitrust law by a U.S. district court"
+          },
+          "response": "[{'type': 'text', 'text': 'found: false\\nentity: Alphabet Inc. (Class A)\\nquery: found guilty violating antitrust law by a U.S. district court\\nmessage: NO MATCHING FACTS - no facts found for this entity matching your query', 'id': 'lc_a2d62a95-f283-4f3d-a1fd-1dca2dad1f6e'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "google (company/subsidiary of alphabet)",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"A Subsidiary Of Alphabet\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Br..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "google (company/subsidiary of alphabet)",
+            "query_hint": "U.S. district court found guilty violating antitrust law"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: google (company/subsidiary of alphabet)\\nquery: U.S. district court found guilty violating antitrust law\\nmode: semantic_ranked\\noutgoing:\\n  FIRED_AS_STATED[1]: Unnamed Google Employee(0.34)\\n    hint: \"google (company/subsidiary of alphabet) FIRED_AS_STATED Unnamed Google Employee\"\\n  HAS_UNOFFICIAL_SLOGAN[1]: don\\'t be evil(0.31)\\n    hint: \"google (company/subsidiary of alphabet) HAS_UNOFFICIAL_SLOGAN don\\'t be evil\"\\n  HAD_COMPANIES_OR[1]: Alp..."
+        }
+      ]
+    },
+    {
+      "question_id": 42,
+      "question": "What was the settlement amount for Alphabet's antitrust case with France in June 2021?",
+      "expected_answer": "$270 million",
+      "agent_answer": "Alphabet settled the French antitrust case in June 2021 for **$270 million** (payment to France\u2019s *Autorit\u00e9 de la concurrence*).",
+      "verdict": "correct",
+      "reasoning": "The agent states the settlement amount was $270 million, which matches the expected answer.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 52.77308440208435,
+      "judge_time_sec": 0.8388791084289551,
+      "key_facts_matched": [
+        "Settlement amount: $270 million"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 43,
+      "question": "What happened to Google's Russian subsidiary in 2022?",
+      "expected_answer": "Russian authorities seized Google's Russian bank account in May 2022, forcing them to file for bankruptcy one month later due to the inability to pay vendors and staff",
+      "agent_answer": "In the graph data I have access to, **Google\u2019s Russian subsidiary** is only linked as **a subsidiary of Google/Alphabet** and there are **no recorded 2022 events** (e.g., bankruptcy, shutdown, seizure, etc.) connected to it. So I can\u2019t answer \u201cwhat happened in 2022\u201d from this source.\n\nIf you want, I can try again with a different entity name (for example the legal entity name used in Russia) if you provide it, or you can share a snippet/article and I\u2019ll summarize what happened.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states specific 2022 events: Russian authorities seized Google's Russian bank account in May 2022 and the subsidiary filed for bankruptcy about a month later. The agent instead claims there are no recorded 2022 events and says it cannot answer, which contradicts the ground truth rather than providing it.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 22.829301357269287,
+      "judge_time_sec": 3.3175504207611084,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Russian authorities seized Google's Russian bank account in May 2022",
+        "The seizure forced the subsidiary to file for bankruptcy about one month later",
+        "Reason: inability to pay vendors and staff"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google's Russian subsidiary",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google To Be Part Of New Holding Company, \\'Alphabet\\' \\\\\"\",\"A Placeholder Subsidiary\",\"A Subsidiary Of Alphabet\",\"Alphabet Subsidiaries\",\"Bank Account\",\"Britannica Money\",\"Capitalg\",\"G0Ogle\",\"Google Inc.\",\"Google Llc\",\"Google\\'S Russian Subsidiary\",\"Gv\",\"Https://Web.Archive.Org/Web/20170326053031/Https://Www.Theguardian.Com/Technology/2014/Nov/03/Larry-Page-Google-Dont-Be-Evil-Ser..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Google'S Russian Subsidiary",
+            "query_hint": "what happened in 2022 bankruptcy or shutdown"
+          },
+          "response": "[{'type': 'text', 'text': 'found: true\\nentity: Google\\'S Russian Subsidiary\\nquery: what happened in 2022 bankruptcy or shutdown\\nmode: semantic_ranked\\noutgoing:\\n  IS_A_SUBSIDIARY[1]: google (company/subsidiary of alphabet)(0.28)\\n    hint: \"Google\\'S Russian Subsidiary IS_A_SUBSIDIARY google (company/subsidiary of alphabet)\"\\ntotal: 1', 'id': 'lc_ff08e5cf-126a-4ea5-a666-797559cfe514'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 44,
+      "question": "What is the name of Alphabet's quantum computing chip unveiled in December 2024?",
+      "expected_answer": "Willow",
+      "agent_answer": "Alphabet\u2019s quantum computing chip unveiled in December 2024 was named **Willow**.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that Alphabet's quantum computing chip unveiled in December 2024 was named Willow, matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 49.98497986793518,
+      "judge_time_sec": 2.059972047805786,
+      "key_facts_matched": [
+        "Chip name: Willow",
+        "Unveiled in December 2024"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 45,
+      "question": "What notable achievement did the Willow quantum chip accomplish?",
+      "expected_answer": "It solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe",
+      "agent_answer": "The Willow quantum chip\u2019s notable achievement was **solving a complex problem in about five minutes\u2014something that would take a classical computer longer than the age of the universe**.",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer matches the expected achievement: solving a complex problem in about five minutes that would take a classical computer longer than the age of the universe.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 30.441917419433594,
+      "judge_time_sec": 1.2092647552490234,
+      "key_facts_matched": [
+        "Solved a complex problem in five minutes (about five minutes)",
+        "A classical computer would take longer than the age of the universe to do the same task"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 46,
+      "question": "When did Alphabet announce its first-ever dividend payout?",
+      "expected_answer": "April 2024 (announced alongside the $2 trillion market cap milestone)",
+      "agent_answer": "Alphabet announced its **first-ever dividend payout on April 26, 2024**.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is April 2024, and the agent specifies April 26, 2024, which falls in April 2024 and corresponds to the announcement timing. It does not contradict the expected context.",
+      "question_type": "temporal",
+      "difficulty": "hard",
+      "agent_time_sec": 49.319143772125244,
+      "judge_time_sec": 2.2835848331451416,
+      "key_facts_matched": [
+        "Announcement occurred in April 2024"
+      ],
+      "key_facts_missing": [
+        "Mention that it was alongside the $2 trillion market cap milestone"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 47,
+      "question": "What was the size of Alphabet's stock buyback program announced in April 2024?",
+      "expected_answer": "$70 billion",
+      "agent_answer": "Alphabet\u2019s stock buyback program announced in April 2024 was **$70 billion**.",
+      "verdict": "correct",
+      "reasoning": "The agent stated the buyback size was $70 billion, matching the expected answer exactly.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 34.10554647445679,
+      "judge_time_sec": 1.5029630661010742,
+      "key_facts_matched": [
+        "Alphabet's April 2024 stock buyback program size: $70 billion"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 48,
+      "question": "What is Alphabet's ranking among the world's largest technology companies by revenue?",
+      "expected_answer": "Third-largest, after Amazon and Apple",
+      "agent_answer": "I can\u2019t answer that from the data available in the graph I have access to: it contains no facts about Alphabet\u2019s *ranking among the world\u2019s largest technology companies by revenue* (no ranking/\u201clargest by revenue\u201d relationships for Alphabet show up).\n\nIf you tell me the source/list you mean (e.g., Fortune Global 500, CompaniesMarketCap \u201clargest tech companies by revenue,\u201d etc.) and the year, I can give the exact ranking from that reference.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states Alphabet is the third-largest by revenue among the world's largest technology companies (after Amazon and Apple). The agent did not provide this ranking and instead claimed it could not be answered from available data, so it fails to address the question with the correct fact.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 32.783002614974976,
+      "judge_time_sec": 2.9126360416412354,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet is the third-largest technology company by revenue",
+        "Alphabet ranks after Amazon and Apple"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"\\\\\"Google\\'S New Alphabet, From A To Z (Pictures)\\\\\"\",\"7Th\",\"Abc.Xyz\",\"Alphabet (Forbes Company Page)\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Alphabet Subsidiaries\",\"Alphabet.Com\",\"Anat Ashkenazi\",\"Fleet Management Division Of Bmw\",\"Https://Ab..."
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc. (Class A)",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":true,\"results\":[\"\\\\\"Alphabet Financial Statements Yearly I Googl\\\\\"\",\"\\\\\"Google Creates Parent Company Called Alphabet In 5)\\\\\"\",\"A Placeholder Subsidiary\",\"A Subsidiary Of Alphabet\",\"Alphabet Inc. (Class A)\",\"Alphabet Inc. (Class A) (Security)\",\"Alphabet Inc. (Https://Www.Littlesis.Org/Org/223501) On Littlesis\",\"Alphabet Inc. (Https://Www.Opensecrets.Org/Orgs/Summary?Id=D000067823) On Opensecrets\",\"Annualreportpursuanttosection13Or15(D)Ofthesecuritiesexchange..."
+        },
+        {
+          "tool": "explore_neighbors",
+          "args": {
+            "entity_name": "Alphabet Inc. (Class A)",
+            "query_hint": "ranking among the world's largest technology companies by revenue"
+          },
+          "response": "[{'type': 'text', 'text': \"found: false\\nentity: Alphabet Inc. (Class A)\\nquery: ranking among the world's largest technology companies by revenue\\nmessage: NO MATCHING FACTS - no facts found for this entity matching your query\", 'id': 'lc_7b892ee8-bae9-4f7c-a194-17f95a8fdd5f'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 49,
+      "question": "When did Alphabet conduct a stock split?",
+      "expected_answer": "Mid-2022",
+      "agent_answer": "Alphabet completed a stock split in **mid\u20112022**.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is 'Mid-2022' and the agent states Alphabet completed a stock split in mid-2022, matching the key fact exactly.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 40.39466953277588,
+      "judge_time_sec": 2.2789437770843506,
+      "key_facts_matched": [
+        "Alphabet conducted/completed a stock split in mid-2022"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 50,
+      "question": "What are the main products/services that remain direct components of Google under Alphabet?",
+      "expected_answer": "Android operating system, YouTube, and Google Search",
+      "agent_answer": "Under Alphabet, **Google (Google LLC)** remains the umbrella for Alphabet\u2019s **internet-related businesses**. The direct components explicitly called out as remaining within Google are:\n\n- **Google Search**\n- **Android (operating system)**\n- **YouTube**\n\nThese are cited as \u201cwidely used products and services long associated with Google \u2026 which remain direct components of Google.\u201d",
+      "verdict": "correct",
+      "reasoning": "The agent listed all three expected direct components under Google/Alphabet: Google Search, Android OS, and YouTube. No contradictions were introduced.",
+      "question_type": "list-based",
+      "difficulty": "easy",
+      "agent_time_sec": 34.04065561294556,
+      "judge_time_sec": 2.070861577987671,
+      "key_facts_matched": [
+        "Google Search",
+        "Android operating system",
+        "YouTube"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    }
+  ]
+}

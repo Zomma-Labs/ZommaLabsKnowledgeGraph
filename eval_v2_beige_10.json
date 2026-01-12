@@ -1,0 +1,214 @@
+[
+  {
+    "id": 1,
+    "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+    "category": "District Activity",
+    "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+    "generated": "Economic activity in the Twelfth District (San Francisco) during the mid\u2011August to September reporting period was **slightly weaker than in the prior period but still relatively stable overall**.\n\n- **Level of activity at the relevant time:**  \n  The Beige Book summary states that \u201ceconomic activity in the Twelfth District edged down slightly during the mid\u2011August to September reporting period.\u201d [Source: Federal Reserve Bank of San Francisco > Summary of Economic Activity, Date: 2026-01-09] This indicates that overall activity remained near prior levels but at a somewhat lower level than before, rather than showing a sharp contraction or strong growth. [Source: National Summary > Highlights by Federal Reserve District > San Francisco, Date: 2026-01-09]\n\n- **How activity changed over the period:**  \n  The phrase \u201cedged down slightly\u201d is used repeatedly to characterize the change, indicating a **small, gradual decline** rather than a steep drop. [Source: Federal Reserve Bank of San Francisco > Summary of Economic Activity, Date: 2026-01-09; Source: National Summary > Highlights by Federal Reserve District > San Francisco, Date: 2026-01-09]  \n  A key fact summary specifies that \u201ceconomic activity in the Twelfth District edged down slightly during the mid\u2011August to September reporting period,\u201d confirming both the direction (down) and the pace (slight/edging). [Source: Key Facts, Evidence 6, Date: 2026-01-09]\n\nIn chronological terms, for the **mid\u2011August to September 2025** reporting window, the Twelfth District (San Francisco) experienced **a modest softening in overall economic activity, described as having \u2018edged down slightly\u2019 relative to the prior reporting period.** [Source: Federal Reserve Bank of San Francisco > Summary of Economic Activity, Date: 2026-01-09; Source: National Summary > Highlights by Federal Reserve District > San Francisco, Date: 2026-01-09]",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 6766,
+      "retrieval_ms": 61349,
+      "scoring_ms": 39207,
+      "expansion_ms": 0,
+      "synthesis_ms": 4821,
+      "total_ms": 112143
+    },
+    "evidence_count": 59,
+    "gaps": [
+      "Description of the level of economic activity in the Twelfth District (San Francisco) at the relevant time",
+      "Description of how that economic activity changed (e.g., increased, decreased, unchanged, pace of change)"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "What is the Beige Book?",
+    "category": "Entity Resolution",
+    "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+    "generated": "The Beige Book is a publication of the Federal Reserve System that provides a \u201cSummary of Commentary on Current Economic Conditions\u201d across the 12 Federal Reserve Districts. [Source: About This Publication > What is the Beige Book?, Date: 2026-01-09; Source: Key Facts summary, Date: 2026-01-09]\n\nSupporting details:\n\n- The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. [Source: About This Publication > What is the Beige Book?, Date: 2026-01-09; Source: Key Facts summary, Date: 2026-01-09]  \n- It characterizes regional economic conditions and economic prospects based on a variety of mostly qualitative information gathered directly from each District\u2019s sources. [Source: About This Publication > What is the Beige Book?, Date: 2026-01-09]  \n- The Beige Book is intended to characterize the change in economic conditions since the last report. [Source: About This Publication > What is the purpose of the Beige Book?, Date: 2026-01-09]  \n- Information for the Beige Book is collected from a wide range of contacts through various formal and informal methods, allowing it to complement other forms of regional information gathering. [Source: About This Publication > What is the purpose of the Beige Book?, Date: 2026-01-09]  \n- Reports are published eight times per year. [Source: About This Publication > What is the Beige Book?, Date: 2026-01-09]  \n- The Federal Reserve publishes the Beige Book, which summarizes current economic conditions by Federal Reserve District. [Source: National Summary > Highlights by Federal Reserve District > Philadelphia, Date: 2026-01-09]  \n- The Beige Book is not a commentary on the views of Federal Reserve officials; instead, it summarizes commentary on current economic conditions obtained through outreach to businesses and other organizations. [Source: About This Publication > What is the purpose of the Beige Book?, Date: 2026-01-09; Source: Key Facts summary, Date: 2026-01-09]",
+    "confidence": 0.8822838232654762,
+    "timing": {
+      "decomposition_ms": 8418,
+      "retrieval_ms": 92138,
+      "scoring_ms": 36382,
+      "expansion_ms": 0,
+      "synthesis_ms": 4239,
+      "total_ms": 141177
+    },
+    "evidence_count": 68,
+    "gaps": [
+      "Definition or description of what the Beige Book is",
+      "Purpose or role of the Beige Book in context",
+      "Who produces the Beige Book and in what setting"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+    "category": "Entity Resolution",
+    "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+    "generated": "The Beige Book covers **12 Federal Reserve Districts**.  \n\nSupporting detail:  \n- The Beige Book is described as \u201ca Federal Reserve System publication about current economic conditions across the **12 Federal Reserve Districts**.\u201d [Source: About This Publication > What is the Beige Book?, Document: BeigeBook_20251015, Date: 2026-01-09]  \n- It \u201ccovers current economic conditions across **12 Federal Reserve Districts**\u201d and is \u201cbased on information gathered directly from sources in each of the **12 Federal Reserve Districts**.\u201d [Source: About This Publication > What is the Beige Book?, Document: BeigeBook_20251015, Date: 2026-01-09]",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 3456,
+      "retrieval_ms": 67662,
+      "scoring_ms": 30327,
+      "expansion_ms": 0,
+      "synthesis_ms": 1760,
+      "total_ms": 103205
+    },
+    "evidence_count": 71,
+    "gaps": [
+      "The number of Federal Reserve Districts that are covered in the Beige Book"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+    "category": "Overall Economic Activity",
+    "expected": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+    "generated": "Overall economic activity showed mixed changes across Federal Reserve Districts in the October 2025 Beige Book, with some districts reporting slight increases and others reporting slight declines. [Source: National Summary > Highlights by Federal Reserve District > Philadelphia, Document: BeigeBook_20251015, Date: 2026-01-09] [Source: National Summary > Highlights by Federal Reserve District > New York, Document: BeigeBook_20251015, Date: 2026-01-09] [Source: Federal Reserve Bank of Boston > Summary of Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09] [Source: Federal Reserve Bank of San Francisco > Summary of Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09]\n\nSupporting details:\n\n- In the Boston District, \u201ceconomic activity ticked up overall,\u201d led by modest increases in consumer spending and manufacturing sales, indicating a slight overall increase. [Source: Federal Reserve Bank of Boston > Summary of Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09]\n\n- In the Philadelphia District, \u201cbusiness activity increased slightly,\u201d with employment levels also increasing slightly, suggesting a modest upward change in overall activity. [Source: National Summary > Highlights by Federal Reserve District > Philadelphia, Document: BeigeBook_20251015, Date: 2026-01-09]\n\n- In the New York District, \u201ceconomic activity continued to decline slightly,\u201d indicating a modest ongoing downturn rather than stability or growth. [Source: National Summary > Highlights by Federal Reserve District > New York, Document: BeigeBook_20251015, Date: 2026-01-09]\n\n- In the Twelfth District (San Francisco), \u201ceconomic activity \u2026 edged down slightly\u201d during the mid\u2011August to September reporting period, again characterizing a small decline. [Source: Federal Reserve Bank of San Francisco > Summary of Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09]\n\nThe provided evidence does not include a single, consolidated national statement of how overall U.S. economic activity changed; instead, it documents district\u2011level changes that range from \u201cticked up overall\u201d to \u201ccontinued to decline slightly\u201d and \u201cedged down slightly.\u201d [Source: Federal Reserve Bank of Boston > Summary of Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09] [Source: National Summary > Highlights by Federal Reserve District > New York, Document: BeigeBook_20251015, Date: 2026-01-09] [Source: Federal Reserve Bank of San Francisco > Summary of Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09]",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 3739,
+      "retrieval_ms": 44643,
+      "scoring_ms": 51056,
+      "expansion_ms": 0,
+      "synthesis_ms": 5094,
+      "total_ms": 104532
+    },
+    "evidence_count": 79,
+    "gaps": [
+      "Description of the change in overall economic activity as reported in the October 2025 Beige Book",
+      "Any qualitative characterization of that change (e.g., increased, decreased, remained unchanged, modestly, slightly)"
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Which districts reported slight to modest economic growth?",
+    "category": "District Activity",
+    "expected": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+    "generated": "- The specific Federal Reserve Districts that reported economic growth described as \u201cslight to modest\u201d are **not identified by name** in the provided evidence. The National Summary only states that \u201cthree Districts reported slight to modest growth in activity,\u201d without listing which ones they are. [Source: National Summary > Overall Economic Activity, Date: 2026-01-09; Key Facts from this section (EVIDENCE 10, 11)]\n\n- Context / definition of \u201cslight to modest economic growth\u201d:\n  - In the National Summary of Overall Economic Activity, the Beige Book characterizes aggregate conditions as follows:  \n    - \u201cEconomic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.\u201d [Source: National Summary > Overall Economic Activity, Date: 2026-01-09 (EVIDENCE 11)]  \n    - The associated key facts reiterate: \u201cThree Districts reported slight to modest growth in activity since the previous report,\u201d and that across all Districts \u201cthree Districts reported slight to modest growth in activity, five Districts reported no change, and four Districts noted a slight softening in activity.\u201d [Key Facts from this section (EVIDENCE 10, 11), Date: 2026-01-09]\n  - This context implies that \u201cslight to modest growth\u201d is a qualitative description used in contrast to \u201cno change\u201d and \u201cslight softening,\u201d but the source **does not provide a quantitative or more detailed definition** of \u201cslight to modest\u201d beyond this comparative framing. [Source: National Summary > Overall Economic Activity, Date: 2026-01-09 (EVIDENCE 11); Key Facts from this section (EVIDENCE 10)]\n\n- Possible incompleteness:\n  - The evidence clearly states that **three Districts** reported \u201cslight to modest\u201d growth, but does **not** name those districts or provide further breakdowns by District in the text provided here. [Key Facts from this section (EVIDENCE 10, 11), Date: 2026-01-09]  \n  - Therefore, the list of Districts is incomplete based on the available evidence.",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 3595,
+      "retrieval_ms": 39414,
+      "scoring_ms": 40267,
+      "expansion_ms": 0,
+      "synthesis_ms": 4506,
+      "total_ms": 87782
+    },
+    "evidence_count": 67,
+    "gaps": [
+      "List of districts that reported economic growth described as 'slight to modest'",
+      "Context for how 'slight to modest economic growth' is defined in the source using that exact phrasing"
+    ]
+  },
+  {
+    "id": 6,
+    "question": "Which districts reported no change in economic activity?",
+    "category": "District Activity",
+    "expected": "Five districts reported no change: Cleveland (Fourth District), Atlanta (Sixth District), Chicago (Seventh District), St. Louis (Eighth District), and Dallas (Eleventh District).",
+    "generated": "- **St. Louis District (Eighth District)**  \n  - Reported that \u201ceconomic activity \u2026 ha[s] remained unchanged since our previous report.\u201d [Source: Federal Reserve Bank of St. Louis > Summary of Economic Activity, Date: 2026-01-09]  \n  - The National Summary\u2019s district highlight for St. Louis repeats that \u201ceconomic activity \u2026 ha[s] remained unchanged since our previous report.\u201d [Source: National Summary > Highlights by Federal Reserve District > St. Louis, Date: 2026-01-09]  \n  - Context: This is from the Federal Reserve\u2019s **Beige Book** for October 15, 2025, which \u201cis intended to characterize the change in economic conditions since the last report\u201d across the 12 Federal Reserve Districts. [Source: About This Publication > What is the Beige Book?, Date: 2026-01-09; Source: About This Publication > What is the purpose of the Beige Book?, Date: 2026-01-09]\n\n- **Districts with \u201clittle changed\u201d or \u201cflat\u201d activity (classified as \u201cno change\u201d in the national tally, but not explicitly labeled \u201cunchanged\u201d)**  \n  The National Summary notes that \u201ceconomic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, **five reporting no change**, and four noting a slight softening,\u201d but it does not name which five districts these are. [Source: National Summary > Overall Economic Activity, Date: 2026-01-09]  \n  Among individual district reports, several describe activity as \u201clittle changed\u201d or \u201cflat\u201d:  \n  - **Atlanta (Sixth District)**: \u201cEconomic activity in the Sixth District was little changed.\u201d [Source: Federal Reserve Bank of Atlanta > Summary of Economic Activity, Date: 2026-01-09]  \n  - **Dallas (Eleventh District)**: The national highlight for Dallas states \u201cEconomic activity was flat.\u201d [Source: National Summary > Highlights by Federal Reserve District > Dallas, Date: 2026-01-09] and the Dallas district report says \u201cEconomic activity in the Eleventh District was little changed over the reporting period.\u201d [Source: Federal Reserve Bank of Dallas > Summary of Economic Activity, Date: 2026-01-09]  \n  - **Seventh District (Chicago)**: A key fact states \u201cEconomic activity was little changed in the Seventh District over the reporting period.\u201d [Source: Key Facts (Seventh District), Date: 2026-01-09]\n\n  However, the evidence does not explicitly state that these specific districts are the ones counted among the \u201cfive reporting no change\u201d in the National Summary, so this mapping is not certain. [Source: National Summary > Overall Economic Activity, Date: 2026-01-09]\n\n---\n\n**Context / Source of the reports**\n\n- All of these statements come from the Federal Reserve\u2019s **Beige Book**, a publication that \u201cdescribes current economic conditions across the Federal Reserve Districts\u201d and \u201cis intended to characterize the change in economic conditions since the last report.\u201d [Source: About This Publication > What is the Beige Book?, Date: 2026-01-09; Source: About This Publication > What is the purpose of the Beige Book?, Date: 2026-01-09]\n\n---\n\n**Completeness note**\n\n- The National Summary explicitly states that **five** districts reported \u201cno change\u201d in economic activity, but based on the provided excerpts, only the **St. Louis District** is unambiguously described as having economic activity \u201cremained unchanged\u201d since the previous report. [Source: National Summary > Overall Economic Activity, Date: 2026-01-09; Source: Federal Reserve Bank of St. Louis > Summary of Economic Activity, Date: 2026-01-09]  \n- Therefore, the list of districts that reported no change in economic activity is **likely incomplete** given the limited evidence provided.",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 4447,
+      "retrieval_ms": 37245,
+      "scoring_ms": 44866,
+      "expansion_ms": 0,
+      "synthesis_ms": 8872,
+      "total_ms": 95430
+    },
+    "evidence_count": 67,
+    "gaps": [
+      "List of districts that reported no change in economic activity",
+      "Context or source where districts report on economic activity (e.g., a specific report or dataset)"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "Which districts reported a slight softening or decline in economic activity?",
+    "category": "District Activity",
+    "expected": "Four districts reported slight softening or decline: New York (Second District), Minneapolis (Ninth District), Kansas City (Tenth District), and San Francisco (Twelfth District).",
+    "generated": "- Districts that reported a **slight softening in economic activity**  \n  - The National Summary states that, across all Federal Reserve Districts, \u201cfour Districts noted a slight softening in activity.\u201d However, it does **not** name which specific Districts these are. [Source: National Summary_Overall Economic Activity, Date: 2026-01-09; Key Fact: federal reserve districts -[REPORTED_VARIED_CHANGES_IN]-> Economic Activity]  \n  - No other provided excerpts identify by name any District explicitly described as having \u201cslight softening\u201d of overall economic activity. Based on the evidence given, the specific Districts in this category **cannot be determined**.\n\n- Districts that reported a **decline (or slight decline) in economic activity**  \n  1. **Kansas City (Tenth District)**  \n     - National Summary highlight: \u201cEconomic activity in the Tenth District fell slightly over the past month.\u201d [Source: National Summary_Highlights by Federal Reserve District_Kansas City, Date: 2026-01-09]  \n     - District summary: \u201cEconomic activity in the Tenth District fell slightly, with softening activity reported across several sectors.\u201d [Source: Federal Reserve Bank of Kansas City_Summary of Economic Activity, Date: 2026-01-09]  \n     - This indicates a **slight decline** in overall economic activity.\n\n  2. **Minneapolis (Ninth District)**  \n     - \u201cNinth District economic activity was slightly down since the previous report, indicating a modest decline in overall conditions.\u201d [Source: Federal Reserve Bank of Minneapolis_Summary of Economic Activity, Date: 2026-01-09]  \n     - This indicates a **slight decline** in overall economic activity.\n\n  3. **San Francisco / Twelfth District**  \n     - National Summary highlight: \u201cEconomic activity edged down slightly.\u201d [Source: National Summary_Highlights by Federal Reserve District_San Francisco, Date: 2026-01-09]  \n     - District summary: \u201cEconomic activity in the Twelfth District edged down slightly during the mid-August to September reporting period.\u201d [Source: Federal Reserve Bank of San Francisco_Summary of Economic Activity, Date: 2026-01-09]  \n     - \u201cEdged down slightly\u201d indicates a **slight decline** in overall economic activity.\n\n  4. **New York (Second District)**  \n     - National Summary highlight: \u201cEconomic activity continued to decline slightly.\u201d [Source: National Summary_Highlights by Federal Reserve District_New York, Date: 2026-01-09]  \n     - This indicates a **slight decline** in overall economic activity.\n\n- Districts that clearly meet **either condition (slight softening or decline)** in economic activity, based on the provided excerpts  \n\n  Since the specific Districts with \u201cslight softening\u201d are not named, the only Districts that can be definitively identified as meeting at least one of the two conditions (slight softening or decline) are those where a decline is explicitly reported:\n\n  1. **Kansas City (Tenth District)** \u2013 overall economic activity \u201cfell slightly,\u201d with \u201csoftening activity reported across several sectors,\u201d i.e., a slight decline. [Source: National Summary_Highlights by Federal Reserve District_Kansas City, Date: 2026-01-09; Source: Federal Reserve Bank of Kansas City_Summary of Economic Activity, Date: 2026-01-09]\n\n  2. **Minneapolis (Ninth District)** \u2013 economic activity \u201cwas slightly down \u2026 indicating a modest decline in overall conditions,\u201d i.e., a slight decline. [Source: Federal Reserve Bank of Minneapolis_Summary of Economic Activity, Date: 2026-01-09]\n\n  3. **San Francisco / Twelfth District** \u2013 economic activity \u201cedged down slightly,\u201d i.e., a slight decline. [Source: National Summary_Highlights by Federal Reserve District_San Francisco, Date: 2026-01-09; Source: Federal Reserve Bank of San Francisco_Summary of Economic Activity, Date: 2026-01-09]\n\n  4. **New York (Second District)** \u2013 economic activity \u201ccontinued to decline slightly,\u201d i.e., a slight decline. [Source: National Summary_Highlights by Federal Reserve District_New York, Date: 2026-01-09]\n\n- Possible incompleteness of the list  \n\n  - The National Summary notes that \u201cfour Districts noted a slight softening in activity,\u201d but does not identify them. [Source: National Summary_Overall Economic Activity, Date: 2026-01-09]  \n  - From the evidence provided, we can only **definitively** identify the four Districts listed above as having slight declines. It is possible some or all of these overlap with the four unnamed \u201cslight softening\u201d Districts, but this cannot be confirmed from the excerpts.  \n  - Therefore, the list of Districts with \u201cslight softening\u201d is **incomplete**, and the overall set of Districts meeting either condition (slight softening or decline) may be larger than what can be named here based solely on the given evidence.",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 4682,
+      "retrieval_ms": 84470,
+      "scoring_ms": 64045,
+      "expansion_ms": 0,
+      "synthesis_ms": 11094,
+      "total_ms": 164291
+    },
+    "evidence_count": 69,
+    "gaps": [
+      "List of districts that reported a slight softening in economic activity",
+      "List of districts that reported a decline in economic activity",
+      "Identification of districts that meet either condition (slight softening or decline) in economic activity"
+    ]
+  },
+  {
+    "id": 8,
+    "question": "What was the economic activity in the Seventh District (Chicago)?",
+    "category": "District Activity",
+    "expected": "Economic activity in the Seventh District was little changed over the reporting period. Consumer spending declined some; construction and real estate activity increased slightly; employment was flat; business spending declined slightly; and manufacturing demand declined modestly.",
+    "generated": "Economic activity in the Seventh District (Chicago) was flat to little changed over the reporting period. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09; Source: Key Facts 10, Date: 2026-01-09]\n\nSupporting details:\n\n- The Federal Reserve\u2019s national summary for Chicago states: \u201cEconomic activity in the Seventh District was flat.\u201d [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Key Facts 10, Date: 2026-01-09]\n\n- The Chicago Fed\u2019s district report similarly notes that \u201cEconomic activity in the Seventh District was little changed over the reporting period.\u201d [Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n\n- Within this generally flat overall environment:\n  - Consumer spending increased modestly. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n  - Construction and real estate activity increased slightly. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n  - Employment was flat. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n  - Nonbusiness contacts reported no change in activity. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n  - Business spending declined slightly. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n  - Manufacturing activity declined modestly. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n\n- Price and income conditions:\n  - Prices rose moderately. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n  - Wages were up modestly. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n  - Prospects for 2025 farm income were unchanged. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n\n- Financial conditions loosened slightly in the District. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]\n\nThese details together characterize the Seventh District\u2019s economic activity as broadly stable overall, with modest strength in consumer spending and real estate, offset by weaker business spending and manufacturing, and moderate upward pressure on prices and wages. [Source: National Summary > Highlights by Federal Reserve District > Chicago, Date: 2026-01-09; Source: Federal Reserve Bank of Chicago > Summary of Economic Activity, Date: 2026-01-09]",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 4464,
+      "retrieval_ms": 74208,
+      "scoring_ms": 40811,
+      "expansion_ms": 0,
+      "synthesis_ms": 6824,
+      "total_ms": 126307
+    },
+    "evidence_count": 54,
+    "gaps": [
+      "Description or characterization of economic activity in the Seventh District (Chicago)",
+      "Any quantitative or qualitative assessment of economic conditions in the Seventh District (Chicago)"
+    ]
+  },
+  {
+    "id": 9,
+    "question": "How did the Second District (New York) economy perform?",
+    "category": "District Activity",
+    "expected": "Economic activity in the Second District continued to decline slightly. Employment held steady, and wage growth remained modest. The pace of price increases remained elevated but was little changed.",
+    "generated": "Economic activity in the Second District (New York) **continued to decline slightly overall** during the reporting period. [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09; Source: Key Facts 12, Date: 2026-01-09]\n\nWithin the Second District, the **New York (New York Fed) economy showed the same pattern of a slight decline in overall activity**, with **employment holding steady** and **wage growth remaining modest**. [Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09]\n\nKey indicators and dimensions of performance:\n\n- **Activity/Growth:**  \n  - Overall economic activity in the Second District \u201ccontinued to decline slightly.\u201d [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09; Source: Key Facts 12, Date: 2026-01-09]  \n  - For the New York District specifically, \u201ceconomic activity continued to decline slightly.\u201d [Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09]\n\n- **Labor market:**  \n  - Second District employment \u201cheld steady\u201d during the reporting period. [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09]  \n  - In the New York Federal Reserve District, employment also \u201cheld steady.\u201d [Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09]  \n  - Wage growth remained \u201cmodest\u201d in both the Second District summary and the New York highlight. [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09; Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09]\n\n- **Prices and inflation:**  \n  - In the Second District, the \u201cpace of price increases remained elevated but was little changed,\u201d with **selling prices rising moderately** and **input prices rising strongly**. [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09]  \n  - This same characterization (elevated but little changed price increases) is given for the New York District. [Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09]\n\n- **Manufacturing and distribution:**  \n  - Second District manufacturing activity was \u201clittle changed after a summer uptick,\u201d with new orders down and shipments mostly unchanged. [Source: Federal Reserve Bank of New York > Manufacturing and Distribution, Date: 2026-01-09; Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09]  \n  - The New York highlight similarly notes that manufacturing activity \u201cheld steady after a summer uptick.\u201d [Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09]\n\n- **Consumer spending:**  \n  - Consumer spending in the Second District \u201cincreased modestly,\u201d supported by resilience among mid\u2011 to upper\u2011income households. [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09; Source: Federal Reserve Bank of New York > Consumer Spending, Date: 2026-01-09]  \n  - The New York district summary states that consumer spending increased modestly, \u201cbuoyed by mid\u2011 to upper\u2011income households.\u201d [Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09]\n\n- **Housing and real estate (District and New York City specifics):**  \n  - Housing markets \u201cremained solid\u201d across the Second District, with low inventory and prices continuing to push upwards. [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09; Source: Federal Reserve Bank of New York > Real Estate and Construction, Date: 2026-01-09]  \n  - In the New York City area, new listings \u201cslowed to a trickle,\u201d but \u201cnew signed contracts edged up,\u201d and desirable properties often sold above asking price and quickly. [Source: Federal Reserve Bank of New York > Real Estate and Construction, Date: 2026-01-09]  \n  - New York City rents were \u201cat historic highs,\u201d and rents continued to rise. [Source: Federal Reserve Bank of New York > Real Estate and Construction, Date: 2026-01-09]\n\n- **Commercial real estate and services in New York City:**  \n  - Commercial real estate markets \u201ccontinue to improve,\u201d and New York City\u2019s office market \u201cremained stronger than many other large cities,\u201d helped by a few large transactions and growing demand from AI firms seeking office space. [Source: Federal Reserve Bank of New York > Real Estate and Construction, Date: 2026-01-09]  \n  - Demand for hotel rooms in New York City \u201ccontinued to edge up,\u201d nearing 2019 levels, with room rates \u201cremaining exceptionally high.\u201d [Source: Federal Reserve Bank of New York > Services, Date: 2026-01-09]  \n  - Domestic tourism in New York City continued to grow, but a modest decline in international visitors negatively affected attractions and restaurants; attendance at Broadway shows \u201cremained solid,\u201d while activity at other cultural attractions was \u201cflat to down slightly.\u201d [Source: Federal Reserve Bank of New York > Services, Date: 2026-01-09]\n\n- **Credit conditions:**  \n  - Overall loan demand in the Second District \u201cdeclined\u201d during the reporting period. [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09]\n\n- **Business expectations:**  \n  - Businesses in the Second District did not expect \u201cmuch of an increase in activity in the months ahead.\u201d [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09]  \n  - The New York District highlight similarly notes that businesses did not expect activity to increase much going forward. [Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09]\n\nIn sum, the Second District and the New York economy within it were characterized by a **slight ongoing decline in overall activity**, steady employment with modest wage growth, elevated but stable inflation pressures, modest gains in consumer spending, solid but tight housing markets (especially strong in New York City), improving but uneven commercial real estate, and weakening loan demand, with firms generally not anticipating a near\u2011term pickup in activity. [Source: Federal Reserve Bank of New York > Summary of Economic Activity, Date: 2026-01-09; Source: National Summary > Highlights by Federal Reserve District > New York, Date: 2026-01-09; Source: Federal Reserve Bank of New York > Real Estate and Construction, Date: 2026-01-09; Source: Federal Reserve Bank of New York > Consumer Spending, Date: 2026-01-09; Source: Federal Reserve Bank of New York > Services, Date: 2026-01-09]",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 4248,
+      "retrieval_ms": 124369,
+      "scoring_ms": 36831,
+      "expansion_ms": 0,
+      "synthesis_ms": 17067,
+      "total_ms": 182515
+    },
+    "evidence_count": 52,
+    "gaps": [
+      "Overall performance of the Second District economy",
+      "Specific performance of the New York economy within the Second District",
+      "Key indicators or dimensions of performance (e.g., growth, activity level, conditions)"
+    ]
+  },
+  {
+    "id": 10,
+    "question": "What happened to overall consumer spending in the October 2025 report?",
+    "category": "Consumer Spending",
+    "expected": "Overall consumer spending, particularly on retail goods, inched down in recent weeks.",
+    "generated": "Overall consumer spending in the October 2025 report **inched down**, particularly for retail goods. [Source: National Summary > Overall Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09]\n\nSupporting details:\n\n- The National Summary states that \u201coverall consumer spending, particularly on retail goods, inched down in recent weeks.\u201d [Source: National Summary > Overall Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09]  \n- This description characterizes the change as a **slight decrease** rather than a sharp drop, with the softness most evident in **retail goods**. [Source: National Summary > Overall Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09]  \n- The report also notes that auto sales were an exception in some Districts, being \u201cboosted\u2026by strong demand for electric vehicles ahead of the expiration of a federal tax credit at the end of September,\u201d indicating that the overall softening did not apply uniformly across all categories of consumer spending. [Source: National Summary > Overall Economic Activity, Document: BeigeBook_20251015, Date: 2026-01-09]",
+    "confidence": 1.0,
+    "timing": {
+      "decomposition_ms": 3692,
+      "retrieval_ms": 52373,
+      "scoring_ms": 46939,
+      "expansion_ms": 0,
+      "synthesis_ms": 3331,
+      "total_ms": 106335
+    },
+    "evidence_count": 73,
+    "gaps": [
+      "The content and findings of the October 2025 report regarding overall consumer spending",
+      "The specific description of how overall consumer spending changed (e.g., increased, decreased, remained flat) in that report"
+    ]
+  }
+]

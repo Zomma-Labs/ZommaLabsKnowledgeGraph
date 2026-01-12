@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-01-07T17:55:34.667869",
+  "system": "deep_research_kg",
+  "total_questions": 1,
+  "summary": {
+    "correct": 1,
+    "partially_correct": 0,
+    "incorrect": 0,
+    "strict_accuracy": 1.0,
+    "lenient_accuracy": 1.0,
+    "avg_time_sec": 77.84695744514465,
+    "avg_findings": 4.0
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+      "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+      "answer": "During the reported period, overall economic activity in the Twelfth District (San Francisco area) edged down slightly, relative to the previous report.  \n\nAccording to the Federal Reserve Bank of San Francisco\u2019s Summary of Economic Activity:\n\n- **Overall activity:** \u201cOverall economic activity edged down slightly during the reported period\u201d in the San Francisco area.  \n- **Sectoral detail:** Activity in **retail trade, agriculture, and residential real estate** was mixed, with activity either decreasing or remaining stable across those sectors during the same period. Conditions in both **consumer services** and **business services** were also described as mixed.  \n- **Labor market:** **Employment levels** in the San Francisco area were \u201clittle changed\u201d during the reported period, and **wages** grew slightly.  \n- **Prices:** Prices in the area \u201crose modestly,\u201d with the Federal Reserve Bank of San Francisco noting that prices rose modestly, similar to the prior reporting period.  \n- **Specific demand/price development:** In the Twelfth District, waning demand pushed **lumber prices** down during the reporting period.\n\nTaken together, these findings indicate a slight softening in overall economic activity in the Twelfth District over the reported period, with largely flat employment, mixed sectoral conditions (especially in retail trade, agriculture, residential real estate, and services), modest wage growth, modest overall price increases, and some areas (such as lumber) experiencing price declines due to weaker demand.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is that overall economic activity in the Twelfth District edged down slightly, and that retail trade, agriculture, and residential real estate either decreased or were stable. The agent states activity edged down slightly and that those three sectors were either decreasing or stable. Extra details (services, labor, prices, lumber) do not contradict the expected answer.",
+      "num_findings": 4,
+      "agent_time_sec": 77.84695744514465,
+      "research_time_ms": 72855,
+      "synthesis_time_ms": 4991,
+      "judge_time_sec": 2.4557292461395264
+    }
+  ]
+}

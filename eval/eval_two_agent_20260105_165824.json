@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-01-05T16:58:24.316672",
+  "system": "two_agent",
+  "total_questions": 3,
+  "summary": {
+    "correct": 0,
+    "partially_correct": 0,
+    "incorrect": 3
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "Which Federal Reserve Bank prepared the October 2025 Beige Book report?",
+      "expected": "The Federal Reserve Bank of San Francisco prepared the October 2025 Beige Book report.",
+      "answer": "Error: Error calling tool 'search_relationships': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: fact_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not answer the question and instead returned a tool error message. The expected answer is that the Federal Reserve Bank of San Francisco prepared the October 2025 Beige Book report.",
+      "agent_time": 4.154866695404053,
+      "judge_time": 2.0715503692626953,
+      "search_trace": []
+    },
+    {
+      "question_id": 2,
+      "question": "What is the Beige Book?",
+      "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+      "answer": "Error: Error calling tool 'search_relationships': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: fact_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not provide any definition or information about the Beige Book. Instead, it returned an internal tool error message unrelated to the question, so it fails to address the prompt.",
+      "agent_time": 4.1538519859313965,
+      "judge_time": 2.9202160835266113,
+      "search_trace": []
+    },
+    {
+      "question_id": 3,
+      "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+      "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+      "answer": "Error: Error calling tool 'search_relationships': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: fact_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The question asks how many Federal Reserve Districts are covered in the Beige Book (expected: 12). The agent did not provide an answer and instead returned a tool error message, so it does not address the question.",
+      "agent_time": 3.1469671726226807,
+      "judge_time": 2.1338140964508057,
+      "search_trace": []
+    }
+  ]
+}

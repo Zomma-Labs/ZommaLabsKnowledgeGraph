@@ -5,13 +5,8 @@ DESCRIPTION: Singleton container for shared infrastructure services.
 """
 
 from typing import Optional
-from src.util.llm_client import get_llm, get_embeddings
-from src.tools.neo4j_client import Neo4jClient
-from qdrant_client import QdrantClient
-
-# Qdrant configuration (reused from FIBO_librarian)
-QDRANT_FIBO_PATH = "./qdrant_fibo"
-QDRANT_RELATIONSHIPS_PATH = "./qdrant_relationships"
+from src.util.llm_client import get_llm, get_claude_llm, get_embeddings, get_dedup_embeddings
+from src.util.neo4j_client import Neo4jClient
 
 
 class Services:
@@ -24,10 +19,10 @@ class Services:
     def __init__(self):
         # Lazy initialization flags
         self._llm = None
+        self._claude_llm = None
         self._embeddings = None
+        self._dedup_embeddings = None
         self._neo4j = None
-        self._qdrant_fibo = None
-        self._qdrant_relationships = None
 
     @classmethod
     def get(cls) -> "Services":
@@ -38,17 +33,31 @@ class Services:
 
     @property
     def llm(self):
-        """Lazy-initialized LLM client."""
+        """Lazy-initialized LLM client (Gemini by default)."""
         if self._llm is None:
             self._llm = get_llm()
         return self._llm
 
     @property
+    def claude_llm(self):
+        """Lazy-initialized Claude Sonnet LLM (for entity deduplication)."""
+        if self._claude_llm is None:
+            self._claude_llm = get_claude_llm()
+        return self._claude_llm
+
+    @property
     def embeddings(self):
-        """Lazy-initialized embeddings client."""
+        """Lazy-initialized embeddings client (voyage-finance-2)."""
         if self._embeddings is None:
             self._embeddings = get_embeddings()
         return self._embeddings
+
+    @property
+    def dedup_embeddings(self):
+        """Lazy-initialized embeddings for entity deduplication (voyage-3-large)."""
+        if self._dedup_embeddings is None:
+            self._dedup_embeddings = get_dedup_embeddings()
+        return self._dedup_embeddings
 
     @property
     def neo4j(self) -> Neo4jClient:
@@ -57,25 +66,10 @@ class Services:
             self._neo4j = Neo4jClient()
         return self._neo4j
 
-    @property
-    def qdrant_fibo(self) -> QdrantClient:
-        """Lazy-initialized Qdrant client for FIBO entities."""
-        if self._qdrant_fibo is None:
-            self._qdrant_fibo = QdrantClient(path=QDRANT_FIBO_PATH)
-        return self._qdrant_fibo
-
-    @property
-    def qdrant_relationships(self) -> QdrantClient:
-        """Lazy-initialized Qdrant client for relationship definitions."""
-        if self._qdrant_relationships is None:
-            self._qdrant_relationships = QdrantClient(path=QDRANT_RELATIONSHIPS_PATH)
-        return self._qdrant_relationships
-
     def close(self):
         """Closes all active connections."""
         if self._neo4j is not None:
             self._neo4j.close()
-        # Qdrant clients don't need explicit closing for local storage
 
 
 # Convenience function

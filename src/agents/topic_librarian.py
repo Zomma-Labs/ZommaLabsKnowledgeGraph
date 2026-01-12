@@ -159,7 +159,8 @@ For each topic, provide a concise one-sentence definition explaining what it mea
             log(f"   Topic '{text}' rejected by LLM")
             return None
 
-    def resolve(self, text: str, context: str = "", top_k: int = 15, candidate_threshold: float = 0.40) -> Optional[Dict]:
+    def resolve(self, text: str, context: str = "", top_k: int = 15, candidate_threshold: float = 0.40,
+                precomputed_embedding: Optional[List[float]] = None) -> Optional[Dict]:
         """
         Resolves a topic name to the best matching ontology concept.
 
@@ -168,6 +169,7 @@ For each topic, provide a concise one-sentence definition explaining what it mea
             context: The source fact/sentence where this topic was extracted from
             top_k: Number of candidates to retrieve from vector search
             candidate_threshold: Minimum cosine similarity to consider a candidate
+            precomputed_embedding: Optional pre-computed embedding to avoid API call
 
         Returns:
             Match dictionary with 'label', 'uri', 'definition', 'score' or None
@@ -178,7 +180,7 @@ For each topic, provide a concise one-sentence definition explaining what it mea
         text = text.strip()
 
         # Vector Search (Semantic) - embeddings capture meaning
-        candidates = self._vector_search(text, k=top_k)
+        candidates = self._vector_search(text, k=top_k, precomputed_embedding=precomputed_embedding)
 
         # Sort by score
         sorted_candidates = sorted(candidates, key=lambda x: x['score'], reverse=True)
@@ -270,13 +272,17 @@ Return the matching candidate number (1-{len(candidates)}), or null if no reliab
 
         return resolved
 
-    def _vector_search(self, text: str, k: int) -> List[Dict]:
+    def _vector_search(self, text: str, k: int, precomputed_embedding: Optional[List[float]] = None) -> List[Dict]:
         """Queries Qdrant for semantic matches."""
         if not self.client.collection_exists(COLLECTION_NAME):
             return []
 
         try:
-            vector = self.embeddings.embed_query(text)
+            # Use precomputed embedding if available
+            if precomputed_embedding is not None:
+                vector = precomputed_embedding
+            else:
+                vector = self.embeddings.embed_query(text)
 
             results = self.client.query_points(
                 collection_name=COLLECTION_NAME,

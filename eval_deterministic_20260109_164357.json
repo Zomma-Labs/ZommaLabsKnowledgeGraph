@@ -1,0 +1,220 @@
+{
+  "timestamp": "2026-01-09T16:43:57.900518",
+  "num_runs": 3,
+  "avg_consistency": 1.0,
+  "results": {
+    "What happened to wages in Boston?": [
+      {
+        "question": "What happened to wages in Boston?",
+        "answer": "Wages in the Boston Federal Reserve District **rose at a modest pace on average** during the period, according to the cited labor market report (Evidence 2).",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "fcede52f-a9a3-4c2b-acdc-6ad2b06ebc9b",
+          "831600ce-5e16-45c1-abc0-ef5ae08a70d0",
+          "b98dc441-dc39-4582-b966-4662a109f34f",
+          "a0b4ad5a-4503-4f4e-8838-5a2ee40482ff",
+          "3fdb0d56-27f4-48ed-9710-b6f89bbbb6f6",
+          "d5990cfe-bfc6-44ea-8e8e-0669b2c46981",
+          "196a0164-bb69-4bce-80c3-354e6f4e073e",
+          "3ac8d250-4a9d-47f9-8c11-10fd044db7a8",
+          "0db56046-2f11-4e8c-a7da-bc229fe97b38",
+          "a4c26802-c5a2-4ef0-8557-4c1c830654c0"
+        ],
+        "strategies_used": [
+          "keyword",
+          "graph",
+          "vector"
+        ],
+        "top_rrf_score": 0.01639344262295082
+      },
+      {
+        "question": "What happened to wages in Boston?",
+        "answer": "Wages in the Boston Federal Reserve District **rose at a modest pace on average** during the period, according to the Beige Book report (Evidence 2: \u201cWages in the Federal Reserve Bank of Boston District rose at a modest pace on average.\u201d).",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "fcede52f-a9a3-4c2b-acdc-6ad2b06ebc9b",
+          "831600ce-5e16-45c1-abc0-ef5ae08a70d0",
+          "b98dc441-dc39-4582-b966-4662a109f34f",
+          "a0b4ad5a-4503-4f4e-8838-5a2ee40482ff",
+          "3fdb0d56-27f4-48ed-9710-b6f89bbbb6f6",
+          "d5990cfe-bfc6-44ea-8e8e-0669b2c46981",
+          "196a0164-bb69-4bce-80c3-354e6f4e073e",
+          "3ac8d250-4a9d-47f9-8c11-10fd044db7a8",
+          "0db56046-2f11-4e8c-a7da-bc229fe97b38",
+          "a4c26802-c5a2-4ef0-8557-4c1c830654c0"
+        ],
+        "strategies_used": [
+          "keyword",
+          "graph",
+          "vector"
+        ],
+        "top_rrf_score": 0.01639344262295082
+      },
+      {
+        "question": "What happened to wages in Boston?",
+        "answer": "Wages in the Boston Federal Reserve District **rose at a modest pace on average** during the period, according to the Beige Book report (Evidence 2: \u201cWages in the Federal Reserve Bank of Boston District rose at a modest pace on average.\u201d).",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "fcede52f-a9a3-4c2b-acdc-6ad2b06ebc9b",
+          "831600ce-5e16-45c1-abc0-ef5ae08a70d0",
+          "b98dc441-dc39-4582-b966-4662a109f34f",
+          "a0b4ad5a-4503-4f4e-8838-5a2ee40482ff",
+          "3fdb0d56-27f4-48ed-9710-b6f89bbbb6f6",
+          "d5990cfe-bfc6-44ea-8e8e-0669b2c46981",
+          "196a0164-bb69-4bce-80c3-354e6f4e073e",
+          "3ac8d250-4a9d-47f9-8c11-10fd044db7a8",
+          "0db56046-2f11-4e8c-a7da-bc229fe97b38",
+          "a4c26802-c5a2-4ef0-8557-4c1c830654c0"
+        ],
+        "strategies_used": [
+          "keyword",
+          "graph",
+          "vector"
+        ],
+        "top_rrf_score": 0.01639344262295082
+      }
+    ],
+    "Which districts reported declining manufacturing activity?": [
+      {
+        "question": "Which districts reported declining manufacturing activity?",
+        "answer": "The provided evidence does not identify any specific Federal Reserve Districts as having **declining manufacturing activity**. \n\n- The only manufacturing-related fact states that \"manufacturing activity varied by District\" (Evidence 4), without specifying which districts were declining.\n- New York\u2019s manufacturing activity is described as having \"held steady after a summer uptick\" (Evidence 6), not declining.\n\nTherefore, based on the evidence given, there is not enough information to determine which districts reported declining manufacturing activity.",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "6234b378-5fb8-4a63-9ba1-6b63bd00cce0",
+          "4c70095d-c612-4085-9710-e5bfe902a552",
+          "9f986709-7505-4228-b4d0-e598f8ef4fb3",
+          "58ae9137-d5b2-492b-bb26-bf8ace932e9e",
+          "d29a771a-e87a-4958-a19b-123be65d128b",
+          "70a2cd9f-dd23-4308-ab52-96488e7649cc",
+          "b9b2c4cc-79be-415a-b6e6-571823eff48c",
+          "0e7b74b9-82cf-42ab-8006-7f23d8cbb78b",
+          "1e1d5d04-baed-45e2-bc0f-1eac19a46dc4",
+          "82e203f2-29c0-4f8d-a20a-ae3d85fd8292"
+        ],
+        "strategies_used": [
+          "vector",
+          "graph",
+          "keyword"
+        ],
+        "top_rrf_score": 0.03278688524590164
+      },
+      {
+        "question": "Which districts reported declining manufacturing activity?",
+        "answer": "The provided evidence does not specify which Federal Reserve Districts reported declining (or softening) **manufacturing** activity.\n\n- Evidence 4 only states that \u201cManufacturing activity varied by District\u201d but does not identify which Districts saw declines.\n- Evidence 6 notes that in the New York District, \u201cManufacturing activity held steady after a summer uptick,\u201d which is not a decline.\n- The references to overall activity softening in some Districts (Evidence 1\u20133) are about *overall economic activity*, not specifically manufacturing.\n\nBased on the evidence given, there is not enough information to determine which districts reported declining manufacturing activity.",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "6234b378-5fb8-4a63-9ba1-6b63bd00cce0",
+          "4c70095d-c612-4085-9710-e5bfe902a552",
+          "9f986709-7505-4228-b4d0-e598f8ef4fb3",
+          "58ae9137-d5b2-492b-bb26-bf8ace932e9e",
+          "d29a771a-e87a-4958-a19b-123be65d128b",
+          "70a2cd9f-dd23-4308-ab52-96488e7649cc",
+          "b9b2c4cc-79be-415a-b6e6-571823eff48c",
+          "0e7b74b9-82cf-42ab-8006-7f23d8cbb78b",
+          "1e1d5d04-baed-45e2-bc0f-1eac19a46dc4",
+          "82e203f2-29c0-4f8d-a20a-ae3d85fd8292"
+        ],
+        "strategies_used": [
+          "vector",
+          "graph",
+          "keyword"
+        ],
+        "top_rrf_score": 0.03278688524590164
+      },
+      {
+        "question": "Which districts reported declining manufacturing activity?",
+        "answer": "The provided evidence does not identify any specific Federal Reserve Districts as having **declining manufacturing activity**. \n\n- Evidence 4 only notes that \u201cManufacturing activity varied by District\u201d but gives no detail on which Districts saw declines.\n- Evidence 6 states that in the New York District \u201cmanufacturing activity held steady after a summer uptick,\u201d indicating no decline there.\n\nBased on the evidence given, there is not enough information to determine which districts reported declining manufacturing activity.",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "6234b378-5fb8-4a63-9ba1-6b63bd00cce0",
+          "4c70095d-c612-4085-9710-e5bfe902a552",
+          "9f986709-7505-4228-b4d0-e598f8ef4fb3",
+          "58ae9137-d5b2-492b-bb26-bf8ace932e9e",
+          "d29a771a-e87a-4958-a19b-123be65d128b",
+          "70a2cd9f-dd23-4308-ab52-96488e7649cc",
+          "b9b2c4cc-79be-415a-b6e6-571823eff48c",
+          "0e7b74b9-82cf-42ab-8006-7f23d8cbb78b",
+          "1e1d5d04-baed-45e2-bc0f-1eac19a46dc4",
+          "82e203f2-29c0-4f8d-a20a-ae3d85fd8292"
+        ],
+        "strategies_used": [
+          "vector",
+          "graph",
+          "keyword"
+        ],
+        "top_rrf_score": 0.03278688524590164
+      }
+    ],
+    "What are the trends in consumer spending?": [
+      {
+        "question": "What are the trends in consumer spending?",
+        "answer": "Based on the provided evidence, the main trends in consumer spending are:\n\n1. **Slight overall decline in consumer spending**\n   - The Minneapolis District reports that \u201cconsumer spending was slightly lower,\u201d with **lower foot traffic, revenue, and profits** for retail, hospitality, and tourism compared with a year ago, and businesses expect these weaker trends to continue (Evidence 2, 8).\n   - The St. Louis District similarly notes that **\u201cconsumer spending has slightly declined\u201d** and that businesses are **anxious about the upcoming holiday season** (Evidence 5).\n\n2. **Pressure on margins and increased discounting**\n   - Consumer-facing businesses are **unable to fully pass through higher costs to customers** and are instead **\u201cincreasing discounts to sustain demand,\u201d** including more aggressive retail discounts, **lower hotel room rates**, and **increased incentives on autos and newly constructed homes** (Evidence 3, 6).\n   - In Minneapolis, firms expect **increasing pressure on margins** as costs rise while revenue is flat or declining (Evidence 2, 8).\n\n3. **Divergence by income level and rising financial strain**\n   - In the St. Louis District, **upper\u2011income households and corporate clients are still spending** on travel, events, and luxury services, but **middle\u2011income consumers are becoming more cautious** (Evidence 5).\n   - Middle\u2011income consumers are **\u201cusing credit to maintain their spending levels\u201d** and there is **rising food pantry usage** among low- and middle\u2011income households and greater reliance on \u201cbuy now, pay later\u201d products (Evidence 5, 9), indicating mounting financial stress.\n\n4. **Sector and regional context**\n   - In the San Francisco District, **retail trade decreased somewhat** as part of a slight overall economic edging down (Evidence 4).\n   - Overall, retailers are **holding staffing levels steady**, suggesting no sharp collapse in demand but rather a modest softening (Evidence 1).\n\nTaken together, the evidence indicates **slightly weaker consumer spending**, particularly in retail, hospitality, and tourism; firms are discounting more to support demand; and financial strain is growing for middle- and lower\u2011income consumers even as higher\u2011income spending on discretionary services remains relatively resilient.",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "13464875-eddc-4417-a460-7b734a700048",
+          "a33dc590-2f0b-440e-b98f-e3f949d4dd8e",
+          "2c0d6e68-2c91-4fb7-9f67-f855fc90ea45",
+          "c69b6b8f-2b92-4f6b-873a-01fd55ee2914",
+          "9b8e5a43-4b7c-4826-8ebc-4115b729c2c6",
+          "7ccacd9b-943e-464c-a8b5-c40c7d187139",
+          "b616ff90-6507-417b-a994-b5883f3c3d2c",
+          "b69a278e-0481-4742-81b0-41ed6d92872d",
+          "774633e1-b444-40ca-93d4-7088a9369f50",
+          "a39027fc-bc84-4957-956c-8b66d639df7a"
+        ],
+        "strategies_used": [
+          "keyword",
+          "graph",
+          "vector"
+        ],
+        "top_rrf_score": 0.01639344262295082
+      },
+      {
+        "question": "What are the trends in consumer spending?",
+        "answer": "Consumer spending is softening and becoming more cautious:\n\n1. **Overall level of spending**\n   - In multiple Districts, consumer spending is *slightly lower* or has *slightly declined*:\n     - Minneapolis: \u201cConsumer spending was slightly lower,\u201d with retail, hospitality, and tourism firms reporting **lower foot traffic, revenue, and profits relative to a year ago** and expecting these weaker trends to continue (Evidence 2, 8).\n     - St. Louis: \u201cConsumer spending has slightly declined, and businesses are anxious about the upcoming holiday season\u201d (Evidence 5).\n\n2. **Household segments**\n   - **Upper\u2011income households and corporate clients** are still spending on **travel, events, and luxury services** (Evidence 5).\n   - **Middle\u2011income consumers** are \u201cincreasingly cautious\u201d and \u201chave been using credit to maintain their spending levels,\u201d along with greater reliance on \u201cbuy now, pay later\u201d and rising food pantry usage (Evidence 5, 9), indicating stress and constrained real purchasing power.\n\n3. **Business responses and margins**\n   - Consumer\u2011facing businesses report they **cannot fully pass through higher costs** and are \u201cincreasing discounts to sustain demand,\u201d with \u201cmore aggressive discounts from retailers, lower hotel room rates, and increased incentives on autos and newly constructed homes\u201d (Evidence 3, 6).\n   - Firms in retail, hospitality, and tourism expect **continued pressure on margins** due to weaker revenue and higher costs (Evidence 2, 8).\n\nOverall, the trend is toward slightly weaker consumer spending, especially among middle\u2011income households, with businesses relying more on discounting and incentives to support demand and facing margin compression.",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "13464875-eddc-4417-a460-7b734a700048",
+          "a33dc590-2f0b-440e-b98f-e3f949d4dd8e",
+          "2c0d6e68-2c91-4fb7-9f67-f855fc90ea45",
+          "c69b6b8f-2b92-4f6b-873a-01fd55ee2914",
+          "9b8e5a43-4b7c-4826-8ebc-4115b729c2c6",
+          "7ccacd9b-943e-464c-a8b5-c40c7d187139",
+          "b616ff90-6507-417b-a994-b5883f3c3d2c",
+          "b69a278e-0481-4742-81b0-41ed6d92872d",
+          "774633e1-b444-40ca-93d4-7088a9369f50",
+          "a39027fc-bc84-4957-956c-8b66d639df7a"
+        ],
+        "strategies_used": [
+          "keyword",
+          "graph",
+          "vector"
+        ],
+        "top_rrf_score": 0.01639344262295082
+      },
+      {
+        "question": "What are the trends in consumer spending?",
+        "answer": "Based on the provided evidence, consumer spending is weakening and becoming more cautious:\n\n1. **Overall direction: slight decline**\n   - The Federal Reserve Bank of Minneapolis reports that *\u201cconsumer spending was slightly lower\u201d*, with retail, hospitality, and tourism firms seeing **lower foot traffic, revenue, and profits relative to a year ago**, and expecting these weaker trends to continue, with **increasing pressure on margins** (Evidence 2, 8).\n   - The Federal Reserve Bank of St. Louis similarly notes that **\u201cconsumer spending has slightly declined\u201d** and that businesses are **anxious about the upcoming holiday season** (Evidence 5).\n\n2. **Shift in consumer behavior and financial strain**\n   - In the St. Louis District, **middle-income consumers are increasingly cautious** and have been **using credit to maintain their spending levels**, along with a **growing reliance on \u201cbuy now, pay later\u201d** and rising food pantry usage among low- and middle-income households (Evidence 5, 9). This points to mounting financial stress and less discretionary spending capacity.\n   - By contrast, **upper-income households and corporate clients continue to spend on travel, events, and luxury services** (Evidence 5), indicating weakness is more concentrated in the middle and lower income segments.\n\n3. **Business responses: discounting to support demand**\n   - In the Philadelphia District, **consumer-facing businesses across sectors report they cannot fully pass higher costs to customers**, and **many are increasing discounts to sustain demand** (Evidence 3, 6). This includes:\n     - **More aggressive discounts from retailers**\n     - **Lower hotel room rates**\n     - **Increased incentives on autos and newly constructed homes**  \n   These steps suggest demand is soft enough that firms must sacrifice margin to keep volumes up.\n\n4. **Related signals from sectors**\n   - In the San Francisco District, **activity in retail trade decreased somewhat** (Evidence 4), consistent with softer consumer spending.\n   - Retailers in the Cleveland District have **held staffing levels steady** (Evidence 1), which aligns with a flat-to-soft environment rather than robust growth.\n\nOverall, the trend indicated by the evidence is that **consumer spending is slightly down, particularly in retail, hospitality, and tourism, with growing caution among middle-income consumers and increased discounting by firms to support demand, while higher-income spending on travel and luxury services remains relatively resilient.**",
+        "num_evidence": 10,
+        "evidence_ids": [
+          "13464875-eddc-4417-a460-7b734a700048",
+          "a33dc590-2f0b-440e-b98f-e3f949d4dd8e",
+          "2c0d6e68-2c91-4fb7-9f67-f855fc90ea45",
+          "c69b6b8f-2b92-4f6b-873a-01fd55ee2914",
+          "9b8e5a43-4b7c-4826-8ebc-4115b729c2c6",
+          "7ccacd9b-943e-464c-a8b5-c40c7d187139",
+          "b616ff90-6507-417b-a994-b5883f3c3d2c",
+          "b69a278e-0481-4742-81b0-41ed6d92872d",
+          "774633e1-b444-40ca-93d4-7088a9369f50",
+          "a39027fc-bc84-4957-956c-8b66d639df7a"
+        ],
+        "strategies_used": [
+          "keyword",
+          "graph",
+          "vector"
+        ],
+        "top_rrf_score": 0.01639344262295082
+      }
+    ]
+  }
+}

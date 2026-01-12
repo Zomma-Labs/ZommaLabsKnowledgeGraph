@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-ZommaLabsKG is a knowledge graph ingestion pipeline that transforms financial documents (10-Ks, Earnings Calls, Press Releases) into a typed, FIBO-standardized knowledge graph stored in Neo4j.
+ZommaLabsKG is a knowledge graph ingestion pipeline that transforms financial documents (10-Ks, Earnings Calls, Press Releases) into a typed knowledge graph stored in Neo4j.
 
 ## Commands
 
@@ -13,99 +13,180 @@ ZommaLabsKG is a knowledge graph ingestion pipeline that transforms financial do
 uv run src/scripts/setup_graph_index.py
 
 # Run the main ingestion pipeline
-uv run scripts/run_pipeline.py
+uv run src/pipeline.py
 
-# Test scripts
-uv run src/scripts/test_large_pipeline.py      # End-to-end verification
-uv run src/scripts/test_atomizer_reflexion.py  # Test atomizer with reflexion
-uv run src/scripts/test_entity_resolution.py   # Test entity resolution
-
-# QA Evaluation (tests KG agent against Q&A pairs with LLM judge)
-uv run src/scripts/evaluate_qa.py                        # Run full evaluation
-uv run src/scripts/evaluate_qa.py --limit 10 --verbose   # Test with 10 questions
-uv run src/scripts/evaluate_qa.py --qa-file custom.json  # Use custom Q&A file
+# With options
+uv run src/pipeline.py --limit 5              # Limit chunks for testing
+uv run src/pipeline.py --concurrency 10       # Adjust parallel extraction
+uv run src/pipeline.py --filter beige         # Filter files by name
+uv run src/pipeline.py --group-id tenant1     # Set tenant/group ID
+VERBOSE=true uv run src/pipeline.py           # Verbose mode
 ```
 
 ## Architecture
 
-### Pipeline Flow (LangGraph StateGraph)
+### Pipeline Flow (`src/pipeline.py`)
 
-The pipeline in `src/workflows/main_pipeline.py` processes chunks through these stages:
+Three-phase async pipeline:
 
-1. **initialize_episode** - Creates DocumentNode and EpisodicNode in Neo4j, analyzes header dimensions
-2. **atomizer** - Decomposes text into atomic propositions using LLM with reflexion loop
-3. **entity_extraction** - Extracts entities/relationships from propositions in parallel
-4. **parallel_resolution** - Resolves entities against FIBO ontology and deduplicates against existing graph
-5. **assembler** - Creates FactNodes and relationships in Neo4j
+**Phase 1: Parallel Extraction** (LLM-heavy)
+- All chunks extracted concurrently with semaphore-limited concurrency
+- Uses V2 Chain-of-Thought extraction for better entity coverage
+
+**Phase 2: Resolution** (sequential per chunk)
+- Entity resolution via EntityRegistry (vector search + LLM verification)
+- Topic resolution via TopicLibrarian (Qdrant + LLM verification)
+
+**Phase 3: Assembly** (sequential per chunk)
+- Creates DocumentNode, EpisodicNode, EntityNode, FactNode, TopicNode in Neo4j
+- Links entities through chunks for provenance
 
 ### Key Agents (`src/agents/`)
 
-- **atomizer.py** - Text decomposition with de-contextualization (pronoun resolution, temporal grounding, completeness preservation)
-- **FIBO_librarian.py** - Hybrid entity resolution using Qdrant vector search + RapidFuzz fuzzy matching
-- **entity_extractor.py** - Extracts subject/object/relationship triples from propositions with multi-relation pattern support (source attribution, list expansion)
-- **analyst.py** - Classifies relationships into strict semantic types (e.g., ACQUIRED, SUED, RAISED_POLICY_RATE)
-- **graph_assembler.py** - Batch writes to Neo4j with embedding-based deduplication
-- **graph_enhancer.py** - Entity summarization and graph candidate matching
+- **extractor_v2.py** - Chain-of-thought extraction: (1) enumerate ALL entities, (2) generate relationships. Better coverage than single-pass.
+- **entity_registry.py** - LLM-based entity deduplication with vector search + LLM verification. Subsidiaries kept separate (AWS ≠ Amazon).
+- **topic_librarian.py** - Topic ontology resolution using Qdrant vector search + LLM verification
 
 ### Extraction Patterns
 
-**Atomizer Completeness Rule**: Facts must be self-contained. When someone communicates information, the speaker and their message stay together as ONE fact:
-- BAD: "The CEO announced something" (incomplete)
-- GOOD: "The CEO announced that revenue grew 15% in Q3"
+**Chain-of-Thought Extraction**: Two-step structured output:
+1. Step 1: Enumerate ALL entities in the text
+2. Step 2: Generate relationships between enumerated entities
 
-**Entity Extractor Multi-Relation Patterns**: A single fact can produce MULTIPLE relations:
-- **List Expansion**: "Subsidiaries include Google, Waymo, DeepMind" → 3 relations
-- **Source Attribution**: "Dr. Smith found that Drug X treats Disease Y" → 2 relations:
-  - Content: Drug X → treats → Disease Y
-  - Source: Dr. Smith → discovered → Drug X
+**Reflexion Loop**: Single critique step to catch missed facts and improve extraction quality.
+
+**Free-form Relationships**: No strict enum - relationships preserved as natural language (e.g., "acquired majority stake in").
 
 ### Node Schema (`src/schemas/nodes.py`)
 
 - **DocumentNode** - Parent container for all chunks from a source file
 - **EpisodicNode** - The "hub" chunk of text with `header_path` for context
 - **EntityNode** - Deduplicated real-world entities (People, Orgs, Places)
-- **FactNode** - Atomic facts with `fact_type` classification and embedding
+- **FactNode** - Atomic facts with embedding for semantic search
 - **TopicNode** - Global themes linked to chunks
 
 ### Shared Services (`src/util/services.py`)
 
 Singleton container providing lazy-initialized clients:
-- `services.llm` - LLM client (Gemini or OpenAI based on LLM_MODEL env var)
+- `services.llm` - LLM client (Gemini by default)
 - `services.embeddings` - Voyage AI embeddings (voyage-finance-2)
 - `services.neo4j` - Neo4j client
-- `services.qdrant_fibo` - Qdrant client for FIBO entity vectors
-- `services.qdrant_relationships` - Qdrant client for relationship definitions
 
 ### Environment Variables
 
-- `LLM_MODEL` - Model to use (default: gemini-2.5-flash-lite)
 - `GOOGLE_API_KEY` - Required for Gemini models
 - `VOYAGE_API_KEY` - Required for embeddings
+- `NEO4J_URI`, `NEO4J_USERNAME`, `NEO4J_PASSWORD` - Neo4j connection
 - `VERBOSE` - Set to "true" for detailed logging
-- `LLM_CONCURRENCY` - Max concurrent LLM calls (default: 100)
+- `EXTRACTION_CONCURRENCY` - Max concurrent extractions (default: 5)
 
-### Graph Schema (V2 Chunk-Centric Design)
+### Graph Schema (Chunk-Centric Design)
 
 Relationships flow through chunks for provenance:
 ```
-(EntityNode) -[:RELATIONSHIP_TYPE]-> (EpisodicNode) -[:RELATIONSHIP_TYPE_PASSIVE]-> (EntityNode)
-     Subject                              Chunk                                          Object
+(EntityNode) -[:RELATIONSHIP_TYPE]-> (EpisodicNode) -[:RELATIONSHIP_TYPE_TARGET]-> (EntityNode)
+     Subject                              Chunk                                         Object
 ```
 
-Example: `(Apple) -[:SUED]-> (chunk_123) -[:GOT_SUED]-> (Intel)`
-
-### Relationship Taxonomy
-
-Strict enum to prevent schema drift:
-- **Corporate**: ACQUIRED, SUED, PARTNERED, INVESTED, DIVESTED, HIRED, LAUNCHED_PRODUCT
-- **Financial**: REPORTED_FINANCIALS, ISSUED_GUIDANCE, DECLARED_DIVIDEND, FILED_BANKRUPTCY
-- **Regulatory**: REGULATED, SETTLED_LEGAL_DISPUTE, GRANTED_PATENT
-- **Causation**: CAUSED, EFFECTED_BY, CONTRIBUTED_TO, PREVENTED
+All nodes include `group_id` for multi-tenant isolation.
 
 ## Data Flow
 
 1. Documents chunked by `src/chunker/` and saved as JSONL in `src/chunker/SAVED/`
 2. Each chunk becomes an EpisodicNode linked to its DocumentNode
-3. Atomic facts extracted and entities resolved against FIBO (90% confidence threshold)
-4. Unmatched entities create new EntityNodes with embeddings
+3. V2 CoT extraction: enumerate entities → generate relationships → critique → refine
+4. Entity resolution via vector search + LLM verification (subsidiaries kept separate)
 5. FactNodes link subjects/objects through the EpisodicNode for provenance
+
+## LLM Usage by Pipeline Step
+
+```
+PIPELINE FLOW WITH LLM ASSIGNMENTS:
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ PHASE 1: EXTRACTION (per chunk)                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   Chunk Text ──► EXTRACTION ──► CRITIQUE ──► RE-EXTRACT (if needed)        │
+│                     │              │              │                         │
+│                  gpt-5.2        gpt-5.1        gpt-5.2                      │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ PHASE 2a-2c: IN-DOCUMENT ENTITY DEDUP (bulk)                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   All Entities ──► Embed ──► Cluster ──► LLM DEDUP (per component)          │
+│                                              │                              │
+│                                           gpt-5.2                           │
+│                                                                             │
+│   Example: "Tim Cook", "Timothy Cook" ──► Same person ──► 1 canonical       │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ PHASE 2d: GRAPH RESOLUTION (per canonical entity)                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   Canonical Entity ──► Vector Search Neo4j ──► LLM MATCH ──► SUMMARY MERGE  │
+│                                                    │              │         │
+│                                                gpt-5-mini   gemini-flash    │
+│                                                                             │
+│   Example: "Tim Cook" ──► exists in graph? ──► merge summaries              │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ PHASE 2: TOPIC RESOLUTION (per chunk)                                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   Topics ──► BATCH DEFINE ──► Vector Search Qdrant ──► LLM VERIFY           │
+│                   │                                        │                │
+│            gemini-flash                              gemini-flash           │
+│                                                                             │
+│   Example: "M&A" ──► define ──► match "Mergers and Acquisitions"            │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ PHASE 3: ASSEMBLY (bulk write to Neo4j)                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   No LLM calls - pure database operations                                   │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### LLM Summary Table
+
+| Step | Model | Cost | File |
+|------|-------|------|------|
+| Extraction | `gpt-5.2` | $$$ | `extractor_v2.py` |
+| Critique | `gpt-5.1` | $$ | `extractor_v2.py` |
+| Re-extract | `gpt-5.2` | $$$ | `extractor_v2.py` |
+| In-doc dedup | `gpt-5.2` | $$$ | `entity_dedup.py` |
+| Graph match | `gpt-5-mini` | $ | `entity_registry.py` |
+| Summary merge | `gemini-2.5-flash-lite` | $ | `entity_registry.py` |
+| Topic define | `gemini-2.5-flash-lite` | $ | `topic_librarian.py` |
+| Topic verify | `gemini-2.5-flash-lite` | $ | `topic_librarian.py` |
+
+### Helper Functions (`src/util/llm_client.py`)
+
+- `get_llm()` - Main LLM (gpt-5.2)
+- `get_critique_llm()` - Critique LLM (gpt-5.1)
+- `get_nano_gpt_llm()` - Cheap GPT (gpt-5-mini)
+- `get_nano_llm()` - Cheap Gemini (gemini-2.5-flash-lite)
+
+## Vector Stores
+
+- **Neo4j** - `entity_name_embeddings`, `topic_embeddings` indexes
+- **Qdrant** - `./qdrant_topics` for topic ontology (TopicLibrarian)
+
+## Deprecated Code
+
+The `deprecated/` folder contains a complete snapshot of the previous architecture for reference.

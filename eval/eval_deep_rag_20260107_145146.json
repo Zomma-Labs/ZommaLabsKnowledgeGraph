@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-01-07T14:51:46.642019",
+  "system": "deep_research_rag",
+  "total_questions": 3,
+  "summary": {
+    "correct": 3,
+    "partially_correct": 0,
+    "incorrect": 0,
+    "strict_accuracy": 1.0,
+    "lenient_accuracy": 1.0,
+    "avg_time_sec": 35.68501901626587,
+    "avg_findings": 2.3333333333333335
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+      "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+      "answer": "Economic activity in the Twelfth District (San Francisco) edged down slightly over the recent reporting period, according to San Francisco Fed Beige Book summaries (e.g., October 2025).\n\nSpecifically (San Francisco Fed Beige Book, multiple reports):\n\n- Overall economic activity: edged down slightly.  \n- Labor market: employment levels were little changed; demand for labor was muted.  \n- Wages and prices: wages grew slightly; prices rose modestly.  \n- Sectoral activity:\n  - Retail trade, agriculture, and residential real estate: activity decreased or remained stable.\n  - Consumer and business services: conditions were mixed.\n- Financial conditions: lending activity was largely steady; recent reductions in interest rates began to spur additional loan demand, but borrowers remained cautious amid high uncertainty.",
+      "verdict": "correct",
+      "reasoning": "The expected answer says economic activity in the Twelfth District (San Francisco) edged down slightly, and that retail trade, agriculture, and residential real estate either decreased or remained stable. The agent explicitly states overall activity edged down slightly and repeats the sectoral detail exactly. Extra information about labor, wages, services, and lending does not contradict the expected answer.",
+      "num_findings": 2,
+      "agent_time_sec": 45.99663686752319,
+      "research_time_ms": 43223,
+      "synthesis_time_ms": 2773,
+      "judge_time_sec": 2.763749361038208
+    },
+    {
+      "question_id": 2,
+      "question": "What is the Beige Book?",
+      "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+      "answer": "The Beige Book is a Federal Reserve System publication that summarizes current economic conditions across the 12 Federal Reserve Districts, characterizing regional economic conditions and prospects using mostly qualitative information gathered directly from each District\u2019s sources. Reports are published eight times per year. (Source: Federal Reserve System, \u201cWhat is the Beige Book?\u201d)\n\nIts purpose is to characterize the change in economic conditions since the last report and to complement other forms of regional information gathering. It is not a commentary on the views of Federal Reserve officials. (Source: Federal Reserve System, \u201cWhat is the purpose of the Beige Book?\u201d)\n\nThe content and structure consist of a \u201cSummary of Commentary on Current Economic Conditions by Federal Reserve District,\u201d presenting mostly qualitative information from a wide range of contacts collected through various formal and informal methods. (Sources: Federal Reserve System Beige Book, report front matter; \u201cWhat is the Beige Book?\u201d; \u201cHow is the information collected?\u201d)\n\nIn economic analysis, information from the Beige Book supplements the data and analysis used by Federal Reserve economists and staff to assess economic conditions in the Districts. Its qualitative nature allows characterization of dynamics and identification of emerging economic trends that may not be apparent in available quantitative data, and it enables comparison of economic conditions in different parts of the country. (Source: Federal Reserve System, \u201cHow is the information used?\u201d)",
+      "verdict": "correct",
+      "reasoning": "The agent accurately defines the Beige Book as a Federal Reserve System publication summarizing current economic conditions across the 12 Federal Reserve Districts and notes it is based mostly on qualitative information gathered from each District\u2019s sources. This matches all key elements of the expected answer; extra details (publication frequency, purpose, usage) do not contradict it.",
+      "num_findings": 3,
+      "agent_time_sec": 48.986358642578125,
+      "research_time_ms": 45832,
+      "synthesis_time_ms": 3153,
+      "judge_time_sec": 1.9426534175872803
+    },
+    {
+      "question_id": 3,
+      "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+      "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+      "answer": "The Beige Book covers information from **12 Federal Reserve Districts**.  \n\nSource: The Beige Book is described as \u201ca Federal Reserve System publication about current economic conditions across the **12 Federal Reserve Districts**\u201d (\u201cWhat is the Beige Book?\u201d).",
+      "verdict": "correct",
+      "reasoning": "The agent states that the Beige Book covers 12 Federal Reserve Districts, which matches the expected answer.",
+      "num_findings": 2,
+      "agent_time_sec": 12.072061538696289,
+      "research_time_ms": 10976,
+      "synthesis_time_ms": 1095,
+      "judge_time_sec": 0.9676189422607422
+    }
+  ]
+}

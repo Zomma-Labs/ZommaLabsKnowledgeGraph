@@ -1,0 +1,183 @@
+{
+  "timestamp": "2026-01-09T16:54:00.686118",
+  "num_questions": 5,
+  "num_runs": 3,
+  "results": {
+    "deterministic": {
+      "avg_coverage": 0.7438463497287027,
+      "runs": [
+        [
+          {
+            "question_id": 1,
+            "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+            "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+            "generated": "Economic activity in the Twelfth District (San Francisco) edged down slightly over the mid\u2011August to September reporting period. [Evidence 1, 10]\n\nAccording to the Federal Reserve Bank of San Francisco\u2019s Summary of Economic Activity, overall activity \u201cedged down slightly,\u201d with:\n\n- **Retail trade** activity decreasing somewhat. [Evidence 3]  \n- **Residential real estate** activity decreasing somewhat. [Evidence 4]  \n- **Commercial real estate** activity unchanged on balance. [Evidence 7]  \n- **Manufacturing** activity remaining largely stable. [Evidence 5, 12]  \n- **Lending** activity remaining largely stable. [Evidence 6, 15]  \n- **Agricultural** activity in the District decreasing somewhat. [Evidence 18]\n\nLabor market and price conditions around this change were:\n\n- **Employment levels** little changed on net, as most employers held head counts steady. [Evidence 13]  \n- **Wages** growing slightly. [Evidence 16]  \n- **Prices** rising modestly. [Evidence 19]\n\nContacts\u2019 **economic outlook** for the Twelfth District weakened somewhat relative to the prior reporting period. [Evidence 8]\n\nAll of these changes refer to the same mid\u2011August to September reporting period in the October 15, 2025 Beige Book.",
+            "coverage": 0.7142857142857143,
+            "elapsed_seconds": 8.644519,
+            "num_findings": 1,
+            "research_time_ms": 3988,
+            "synthesis_time_ms": 4656
+          },
+          {
+            "question_id": 2,
+            "question": "What is the Beige Book?",
+            "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+            "generated": "According to the Federal Reserve\u2019s \u201cAbout This Publication \u2013 What is the Beige Book?\u201d section [BeigeBook_20251015, 2026-01-09], the Beige Book is:\n\n- A **Federal Reserve System publication** about **current economic conditions across the 12 Federal Reserve Districts**.  \n- It **describes and characterizes regional economic conditions and prospects**, i.e., economic activity and economic outlook across those Districts, based largely on **mostly qualitative information** gathered directly from each District\u2019s sources [Chunk ID: 6d7f3642-195b-45d5-bcea-541323fae3c6].  \n- The **Federal Reserve publishes** this report, which **summarizes current economic conditions by Federal Reserve District** [Chunk ID: 7c238dad-f038-493c-bec2-ecbec57ba7c5].  \n- **Reports are published eight times per year** [Chunk ID: 6d7f3642-195b-45d5-bcea-541323fae3c6].",
+            "coverage": 0.9090909090909091,
+            "elapsed_seconds": 5.453212,
+            "num_findings": 1,
+            "research_time_ms": 992,
+            "synthesis_time_ms": 4460
+          },
+          {
+            "question_id": 3,
+            "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+            "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+            "generated": "The Beige Book covers current economic conditions across **12 Federal Reserve Districts**.  \n\nThis is stated in the \u201cAbout This Publication \u2013 What is the Beige Book?\u201d section of the BeigeBook_20251015 document, which notes that it is \u201cabout current economic conditions across the **12 Federal Reserve Districts**\u201d and that it \u201ccovers current economic conditions across **12 Federal Reserve Districts**.\u201d",
+            "coverage": 0.8333333333333334,
+            "elapsed_seconds": 4.00275,
+            "num_findings": 1,
+            "research_time_ms": 2341,
+            "synthesis_time_ms": 1661
+          },
+          {
+            "question_id": 4,
+            "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+            "expected": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+            "generated": "The research findings you provided do not include a statement from the October 2025 Beige Book that directly summarizes how overall economic activity changed since the prior report. They describe:\n\n- The general purpose and structure of the Beige Book, including that it is \u201cintended to characterize the change in economic conditions since the last report\u201d and summarizes \u201ccurrent economic conditions across the 12 Federal Reserve Districts\u201d (About This Publication, BeigeBook_20251015, Evidence 1\u20136, 11\u201312).  \n- Specific regional or sectoral details (for example, \u201ceconomic activity in the Seventh District was little changed over the reporting period\u201d for Chicago; Evidence 15), and various anecdotes about retail sales, consumer spending, labor markets, etc. (Evidence 8, 14\u201320).\n\nHowever, none of the retrieved evidence contains the national-level Beige Book sentence (or equivalent wording) that explicitly states how \u201coverall economic activity\u201d changed in the October 2025 report.\n\nTherefore, based on the supplied findings alone, the change in overall economic activity according to the October 2025 Beige Book cannot be determined; the findings do not specify it.",
+            "coverage": 0.5294117647058824,
+            "elapsed_seconds": 2.718008,
+            "num_findings": 1,
+            "research_time_ms": 2291,
+            "synthesis_time_ms": 426
+          },
+          {
+            "question_id": 5,
+            "question": "Which districts reported slight to modest economic growth?",
+            "expected": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+            "generated": "The findings state that, in the Beige Book national summary for overall economic activity (BeigeBook_20251015), **three Federal Reserve Districts** reported **\u201cslight to modest growth in activity\u201d** since the previous report [National Summary > Overall Economic Activity, 2026-01-09].  \n\nHowever, the evidence does **not** specify which particular Districts these were by name or number.",
+            "coverage": 0.5384615384615384,
+            "elapsed_seconds": 5.840447,
+            "num_findings": 1,
+            "research_time_ms": 3689,
+            "synthesis_time_ms": 2150
+          }
+        ],
+        [
+          {
+            "question_id": 1,
+            "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+            "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+            "generated": "Economic activity in the Twelfth District (San Francisco) edged down slightly during the mid\u2011August to September reporting period, according to the Federal Reserve Bank of San Francisco\u2019s Beige Book summary [BeigeBook_20251015, Federal Reserve Bank of San Francisco > Summary of Economic Activity; National Summary > Highlights by Federal Reserve District > San Francisco].\n\nWithin this overall slight decline:\n\n- **Employment**: Employment levels were little changed on net, as most employers held head counts steady [Summary of Economic Activity; Highlights by District \u2013 San Francisco].\n- **Wages and prices**: Wages grew slightly, and prices rose modestly over the period [Summary of Economic Activity; Highlights by District \u2013 San Francisco].\n- **Sectors with decreased activity**:  \n  - Retail trade activity decreased somewhat [Summary of Economic Activity].  \n  - Residential real estate activity decreased somewhat [Summary of Economic Activity].  \n  - Agricultural activity in the District also decreased somewhat [Highlights by District \u2013 San Francisco].\n- **Sectors that were stable/unchanged**:  \n  - Commercial real estate activity was unchanged on balance [Summary of Economic Activity; Highlights by District \u2013 San Francisco].  \n  - Manufacturing activity remained largely stable / remained stable [Summary of Economic Activity; Highlights by District \u2013 San Francisco].  \n  - Lending activity remained largely stable / remained stable [Summary of Economic Activity; Highlights by District \u2013 San Francisco].\n- **Outlook**: Contacts\u2019 economic outlook in the Twelfth District weakened somewhat relative to the prior reporting period [Summary of Economic Activity].",
+            "coverage": 0.8571428571428571,
+            "elapsed_seconds": 7.33639,
+            "num_findings": 1,
+            "research_time_ms": 3115,
+            "synthesis_time_ms": 4221
+          },
+          {
+            "question_id": 2,
+            "question": "What is the Beige Book?",
+            "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+            "generated": "According to the Federal Reserve\u2019s \u201cAbout This Publication \u2013 What is the Beige Book?\u201d section (BeigeBook_20251015, 2026\u201101\u201109), the Beige Book is:\n\n- A **Federal Reserve System publication** about **current economic conditions** across the **12 Federal Reserve Districts**.  \n- It **describes and characterizes regional economic conditions and prospects** (economic outlook) using **mostly qualitative information** gathered directly from each District\u2019s sources.  \n- It **summarizes this information for the public** as a regular summary of current economic conditions (About This Publication \u2013 How is the information collected?).  \n- The information is collected by the Federal Reserve Banks from a **wide range of contacts**\u2014including businesses, community organizations, economists, market experts, and others\u2014through reports, interviews, and online questionnaires (About This Publication \u2013 How is the information collected?).  \n- The Beige Book is **intended to characterize the change in economic conditions since the last report**, and is **not a commentary on the views of Federal Reserve officials** (About This Publication \u2013 What is the purpose of the Beige Book?).  \n- **Reports are published eight times per year** (About This Publication \u2013 What is the Beige Book?).",
+            "coverage": 0.8636363636363636,
+            "elapsed_seconds": 7.80383,
+            "num_findings": 1,
+            "research_time_ms": 1241,
+            "synthesis_time_ms": 6562
+          },
+          {
+            "question_id": 3,
+            "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+            "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+            "generated": "The Beige Book covers current economic conditions across **12 Federal Reserve Districts**.  \n\nThis is stated explicitly in the \u201cAbout This Publication > What is the Beige Book?\u201d section of the Beige Book document, which notes that it is \u201cabout current economic conditions across the 12 Federal Reserve Districts\u201d and \u201ccovers current economic conditions across 12 Federal Reserve Districts\u201d [BeigeBook_20251015, Evidence 6, 9, 12].",
+            "coverage": 0.8333333333333334,
+            "elapsed_seconds": 6.484484,
+            "num_findings": 1,
+            "research_time_ms": 2685,
+            "synthesis_time_ms": 3799
+          },
+          {
+            "question_id": 4,
+            "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+            "expected": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+            "generated": "The research findings you provided do not include any statement from the October 2025 Beige Book that directly characterizes how overall economic activity changed since the prior report (for example, language such as \u201cexpanded slightly,\u201d \u201cwas little changed,\u201d or \u201cdeclined modestly\u201d at the national level is not present in the evidence).\n\nThe available excerpts show:\n\n- What the Beige Book is and its purpose\u2014\u201cintended to characterize the change in economic conditions since the last report\u201d and to summarize \u201ccurrent economic conditions across the 12 Federal Reserve Districts\u201d [About This Publication, BeigeBook_20251015, Evidence 1\u20136, 11\u201312].  \n- Selected district-level details (e.g., Chicago\u2019s Seventh District activity was \u201clittle changed over the reporting period\u201d [Federal Reserve Bank of Chicago, Summary of Economic Activity, Evidence 15], Philadelphia business activity \u201cincreased slightly\u201d [National Summary > Philadelphia, Evidence 8]), and other isolated sector anecdotes.\n\nHowever, none of the cited passages report the Beige Book\u2019s national-level assessment of how \u201coverall economic activity\u201d changed.\n\nTherefore, based on the research findings provided, how overall economic activity changed according to the October 2025 Beige Book cannot be determined.",
+            "coverage": 0.6470588235294118,
+            "elapsed_seconds": 7.112969,
+            "num_findings": 1,
+            "research_time_ms": 2062,
+            "synthesis_time_ms": 5050
+          },
+          {
+            "question_id": 5,
+            "question": "Which districts reported slight to modest economic growth?",
+            "expected": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+            "generated": "The Beige Book national summary for 2025\u201110\u201115 reports that **three Federal Reserve Districts** experienced \u201cslight to modest\u201d growth in overall economic activity since the previous report, but it does **not** identify which specific Districts these were by name (Evidence 1\u20132, BeigeBook_20251015). \n\nSeparately, the Federal Reserve Bank of Richmond reported that the **Fifth District economy** \u201ccontinued to grow modestly this cycle\u201d (Evidence 16, BeigeBook_20251015), indicating modest growth in that District; however, the national summary does not explicitly state whether Richmond is one of the three Districts counted in the \u201cslight to modest growth\u201d group.",
+            "coverage": 0.6923076923076923,
+            "elapsed_seconds": 6.342103,
+            "num_findings": 1,
+            "research_time_ms": 3358,
+            "synthesis_time_ms": 2983
+          }
+        ],
+        [
+          {
+            "question_id": 1,
+            "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+            "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+            "generated": "Economic activity in the Twelfth District (San Francisco) edged down slightly during the mid\u2011August to September reporting period, according to the Federal Reserve Bank of San Francisco\u2019s Beige Book summary [BeigeBook_20251015, Summary of Economic Activity].\n\nWithin that overall slight decline:\n- Retail trade activity decreased somewhat [BeigeBook_20251015, Summary of Economic Activity].  \n- Residential real estate activity decreased somewhat [BeigeBook_20251015, Summary of Economic Activity].  \n- Agricultural activity in the San Francisco District also decreased somewhat [BeigeBook_20251015, National Summary \u2013 San Francisco].  \n- Commercial real estate activity was unchanged on balance [BeigeBook_20251015, Summary of Economic Activity; National Summary \u2013 San Francisco].  \n- Manufacturing activity remained largely stable / remained stable [BeigeBook_20251015, Summary of Economic Activity; National Summary \u2013 San Francisco].  \n- Lending activity remained largely stable / remained stable [BeigeBook_20251015, Summary of Economic Activity; National Summary \u2013 San Francisco].\n\nRelated conditions during this period:\n- Employment levels were little changed on net, as most employers held head counts steady [BeigeBook_20251015, Summary of Economic Activity; National Summary \u2013 San Francisco].  \n- Wages grew slightly [BeigeBook_20251015, Summary of Economic Activity; National Summary \u2013 San Francisco].  \n- Prices rose modestly [BeigeBook_20251015, Summary of Economic Activity].  \n- Contacts\u2019 economic outlook weakened somewhat relative to the prior reporting period [BeigeBook_20251015, Summary of Economic Activity].",
+            "coverage": 0.8571428571428571,
+            "elapsed_seconds": 7.972913,
+            "num_findings": 1,
+            "research_time_ms": 3021,
+            "synthesis_time_ms": 4951
+          },
+          {
+            "question_id": 2,
+            "question": "What is the Beige Book?",
+            "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+            "generated": "According to the Federal Reserve\u2019s \u201cAbout This Publication \u2013 What is the Beige Book?\u201d section (BeigeBook_20251015, 2026-01-09), the Beige Book is:\n\n- A **Federal Reserve System publication** about **current economic conditions across the 12 Federal Reserve Districts**.  \n- It **describes and characterizes regional economic conditions and prospects** (economic outlook) using **mostly qualitative information** gathered directly from each District\u2019s sources.  \n- It is **intended to characterize the change in economic conditions since the last report** (About This Publication \u2013 What is the purpose of the Beige Book?).  \n- The information is collected by each Federal Reserve Bank through **reports from Bank and Branch directors, plus interviews and online questionnaires** with businesses, community organizations, economists, market experts, and other sources, and then **summarized for the public** as a regular summary of current conditions (About This Publication \u2013 How is the information collected?).  \n- **Reports are published eight times per year** (About This Publication \u2013 What is the Beige Book?).  \n- The Beige Book is **not a commentary on the views of Federal Reserve officials** (About This Publication \u2013 What is the purpose of the Beige Book?).",
+            "coverage": 0.8636363636363636,
+            "elapsed_seconds": 5.604254,
+            "num_findings": 1,
+            "research_time_ms": 1206,
+            "synthesis_time_ms": 4397
+          },
+          {
+            "question_id": 3,
+            "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+            "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+            "generated": "The Beige Book covers current economic conditions across **12 Federal Reserve Districts**. This is stated in the \u201cAbout This Publication \u2013 What is the Beige Book?\u201d section of the BeigeBook_20251015 document, which notes that it is \u201cabout current economic conditions across the 12 Federal Reserve Districts\u201d and \u201ccovers current economic conditions across 12 Federal Reserve Districts\u201d [Evidence 6, 9, 12].",
+            "coverage": 0.8333333333333334,
+            "elapsed_seconds": 2.390722,
+            "num_findings": 1,
+            "research_time_ms": 2783,
+            "synthesis_time_ms": -392
+          },
+          {
+            "question_id": 4,
+            "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+            "expected": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+            "generated": "The research findings you provided do not include a statement from the October 2025 Beige Book that directly summarizes how overall economic activity changed since the previous report.\n\nThey show that:\n\n- The Beige Book is \u201cintended to characterize the change in economic conditions since the last report\u201d [About This Publication > What is the purpose of the Beige Book? | BeigeBook_20251015].  \n- Individual districts reported various conditions (for example, the Chicago District reported that \u201ceconomic activity in the Seventh District was little changed over the reporting period\u201d [Federal Reserve Bank of Chicago > Summary of Economic Activity | BeigeBook_20251015], and the Philadelphia District reported that \u201cbusiness activity increased slightly in the current Beige Book period\u201d [National Summary > Highlights by Federal Reserve District > Philadelphia | BeigeBook_20251015]).\n\nHowever, none of the retrieved evidence contains a national-level Beige Book statement such as \u201coverall economic activity increased slightly,\u201d \u201cwas unchanged,\u201d or similar. Therefore, based on the evidence provided, how overall economic activity changed according to the October 2025 Beige Book is not specified.",
+            "coverage": 0.6470588235294118,
+            "elapsed_seconds": 6.312065,
+            "num_findings": 1,
+            "research_time_ms": 2547,
+            "synthesis_time_ms": 3764
+          },
+          {
+            "question_id": 5,
+            "question": "Which districts reported slight to modest economic growth?",
+            "expected": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+            "generated": "The findings state that, in the Beige Book national summary for 2025\u201110\u201115, **three Federal Reserve Districts** \u201creported slight to modest growth in activity\u201d since the previous report [BeigeBook_20251015, National Summary > Overall Economic Activity].  \n\nHowever, the evidence provided does **not** identify which specific Districts these are by name.",
+            "coverage": 0.5384615384615384,
+            "elapsed_seconds": 5.476797,
+            "num_findings": 1,
+            "research_time_ms": 2977,
+            "synthesis_time_ms": 2499
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,1315 @@
+{
+  "timestamp": "2026-01-01T22:37:08.159969",
+  "total_questions": 50,
+  "timing": {
+    "avg_agent_time_sec": 15.91708293914795,
+    "avg_judge_time_sec": 2.4951414585113527,
+    "avg_total_time_sec": 18.4122243976593
+  },
+  "summary": {
+    "correct": 17,
+    "partially_correct": 5,
+    "incorrect": 17,
+    "unanswerable": 11
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "What is Alphabet Inc.?",
+      "expected_answer": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+      "agent_answer": "I don\u2019t have \u201cAlphabet Inc.\u201d in the knowledge graph I\u2019m connected to right now, so I can\u2019t return a graph-sourced definition.\n\nIn general terms: **Alphabet Inc.** is a **U.S. multinational holding company** created in **2015** as a reorganization of Google. **Google** is its largest subsidiary (covering products like Search, YouTube, Android, Chrome, Google Cloud, and advertising). Alphabet also owns and operates a set of other businesses\u2014often referred to as **\u201cOther Bets\u201d**\u2014such as **Waymo** (self-driving technology) and **Verily** (life sciences). Its headquarters are in **Mountain View, California**, and its stock trades under **GOOGL** and **GOOG**.",
+      "verdict": "correct",
+      "reasoning": "The expected answer defines Alphabet Inc. as an American multinational technology conglomerate holding company headquartered in Mountain View, California. The agent states Alphabet is a U.S. multinational holding company with headquarters in Mountain View, California, which matches the core definition; extra details (2015 reorg, subsidiaries, tickers) do not contradict the expected facts.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 17.11303210258484,
+      "judge_time_sec": 1.2945587635040283,
+      "key_facts_matched": [
+        "Alphabet Inc. is an American/U.S. multinational holding company",
+        "Headquartered in Mountain View, California"
+      ],
+      "key_facts_missing": [
+        "Technology conglomerate/conglomerate holding company (implied but not explicitly stated as 'technology conglomerate')"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 2,
+      "question": "When was Alphabet Inc. created?",
+      "expected_answer": "Alphabet Inc. was created on October 2, 2015.",
+      "agent_answer": "I can\u2019t answer that from the knowledge graph available to me here because **\u201cAlphabet Inc.\u201d isn\u2019t present in this dataset** (so I can\u2019t retrieve a sourced creation date from it).\n\nIf you want the general public fact (not from this graph): **Alphabet Inc. was created on October 2, 2015**, when Google reorganized under the new holding company structure.",
+      "verdict": "correct",
+      "reasoning": "The agent explicitly states the correct creation date (October 2, 2015), which matches the expected answer. The additional note about the dataset/knowledge graph limitation does not contradict the fact and still provides the correct information.",
+      "question_type": "temporal",
+      "difficulty": "easy",
+      "agent_time_sec": 17.244154930114746,
+      "judge_time_sec": 1.2380235195159912,
+      "key_facts_matched": [
+        "Alphabet Inc. was created on October 2, 2015."
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 3,
+      "question": "Where is Alphabet Inc. headquartered?",
+      "expected_answer": "Mountain View, California",
+      "agent_answer": "I can\u2019t answer that from the knowledge graph I have access to here, because **\u201cAlphabet Inc.\u201d doesn\u2019t exist in this dataset** (no matching entity node).\n\nIf you want, tell me which company name *does* appear in your dataset (or share a list of nearby entities you see), and I\u2019ll look up its headquarters.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is that Alphabet Inc. is headquartered in Mountain View, California. The agent did not provide this and instead claimed it couldn\u2019t answer because the entity wasn\u2019t in its dataset, which contradicts the fact that the question is answerable with the expected information.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 15.60482144355774,
+      "judge_time_sec": 2.155695676803589,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet Inc. is headquartered in Mountain View, California"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_a3725eb4-dbe4-4633-b638-49cfaf16e8ef'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 4,
+      "question": "Who is the current CEO of Alphabet Inc.?",
+      "expected_answer": "Sundar Pichai",
+      "agent_answer": "I can\u2019t determine that from the knowledge graph available to me here, because **\u201cAlphabet Inc.\u201d isn\u2019t present in the dataset** I\u2019m allowed to query.\n\nIf you want the general, up-to-date real\u2011world answer: **Sundar Pichai** is the CEO of Alphabet (and Google).",
+      "verdict": "correct",
+      "reasoning": "The expected answer is Sundar Pichai, and the agent explicitly states that Sundar Pichai is the CEO of Alphabet. Although it adds a note about not finding it in a dataset, it still provides the correct real-world answer.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 15.579705238342285,
+      "judge_time_sec": 1.3993048667907715,
+      "key_facts_matched": [
+        "Sundar Pichai is the current CEO of Alphabet Inc."
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 5,
+      "question": "Who are the founders of Google (and later Alphabet)?",
+      "expected_answer": "Larry Page and Sergey Brin",
+      "agent_answer": "Google (and its later parent company, Alphabet) was founded by **Larry Page** and **Sergey Brin**.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Larry Page and Sergey Brin as the founders of Google (and later Alphabet), matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 14.721546649932861,
+      "judge_time_sec": 2.1273598670959473,
+      "key_facts_matched": [
+        "Larry Page and Sergey Brin are the founders of Google/Alphabet"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 6,
+      "question": "What is the domain name used by Alphabet Inc.?",
+      "expected_answer": "abc.xyz",
+      "agent_answer": "I can\u2019t answer from the knowledge graph I have access to here because **\u201cAlphabet Inc.\u201d isn\u2019t present in it** (no matching entity was found), so there\u2019s no stored \u201cdomain name used by Alphabet Inc.\u201d to retrieve.\n\nIf you mean Alphabet\u2019s primary corporate website domain in general usage, it\u2019s **abc.xyz**.",
+      "verdict": "correct",
+      "reasoning": "The expected domain is abc.xyz. The agent ultimately provides abc.xyz as Alphabet\u2019s primary corporate website domain, which matches the ground truth; the added note about the knowledge graph does not contradict the correct domain.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 12.579203844070435,
+      "judge_time_sec": 2.7615549564361572,
+      "key_facts_matched": [
+        "Alphabet Inc. domain name: abc.xyz"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 7,
+      "question": "What are the ticker symbols for Alphabet on Nasdaq?",
+      "expected_answer": "GOOGL and GOOG",
+      "agent_answer": "Alphabet\u2019s ticker symbols on the Nasdaq are **GOOGL** (Class A shares) and **GOOG** (Class C shares).",
+      "verdict": "correct",
+      "reasoning": "The agent provided both Nasdaq ticker symbols for Alphabet\u2014GOOGL and GOOG\u2014which matches the expected answer. Additional clarification about share classes is accurate and does not conflict.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 12.020893573760986,
+      "judge_time_sec": 1.7081637382507324,
+      "key_facts_matched": [
+        "GOOGL",
+        "GOOG"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 8,
+      "question": "Who is the Chairman of Alphabet Inc.?",
+      "expected_answer": "John L. Hennessy",
+      "agent_answer": "I can\u2019t determine that from the knowledge graph available to me here: **\u201cAlphabet Inc.\u201d isn\u2019t present in this dataset**, so I can\u2019t retrieve its Chairman.\n\nIf you want, I can answer from general knowledge (or you can tell me the time period you mean, since leadership can change).",
+      "verdict": "unanswerable",
+      "reasoning": "The expected answer is John L. Hennessy, but the agent did not provide it and instead stated it could not be determined from its available knowledge graph because Alphabet Inc. was not present. This is a refusal due to missing data in its KB, which fits the 'unanswerable' category per the guidelines.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 12.774421453475952,
+      "judge_time_sec": 2.478681802749634,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "John L. Hennessy is the Chairman of Alphabet Inc."
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_c866575f-14ac-4109-a216-6508c7ae480d'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 9,
+      "question": "Who is the CFO of Alphabet Inc.?",
+      "expected_answer": "Anat Ashkenazi",
+      "agent_answer": "I can\u2019t answer from the knowledge graph available to me here because **\u201cAlphabet Inc.\u201d isn\u2019t present in the dataset** (no matching entity node), so there\u2019s no CFO relationship to retrieve.\n\nIf you want the CFO **in general (outside this graph)**, tell me what time frame you mean (e.g., \u201ccurrent as of 2026\u201d vs. a specific year), and I can answer accordingly.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is that the CFO of Alphabet Inc. is Anat Ashkenazi. The agent did not provide this; it instead claimed it could not answer due to a missing entity in its dataset. Since the correct answer exists and was not given, the response is incorrect.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 13.115349292755127,
+      "judge_time_sec": 1.4017815589904785,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Anat Ashkenazi is the CFO of Alphabet Inc."
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_e21bc439-aab7-4331-8f5c-1981eae3de13'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 10,
+      "question": "Who is the President and Chief Investment Officer of Alphabet?",
+      "expected_answer": "Ruth Porat",
+      "agent_answer": "I can\u2019t determine that from the knowledge graph I have access to here (Alphabet/Alphabet Inc. isn\u2019t present in it), so I\u2019m unable to answer from provided data.\n\nIf you want, I can answer from general public information instead\u2014confirm you mean **Alphabet Inc. (Google\u2019s parent company)** and whether you want the **current** officeholders or a **specific date/year**.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is Ruth Porat. The agent did not provide this and instead claimed it could not determine the information. Since the information is known and a specific correct answer exists, the response does not address the question.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 21.401062488555908,
+      "judge_time_sec": 2.7370662689208984,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Ruth Porat is the President and Chief Investment Officer of Alphabet."
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet President and Chief Investment Officer",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet President and Chief Investment Officer\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_82a1fa6c-b650-4ed4-9fc8-6626a4ebcba8'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_e62895f7-faea-4be6-bda1-fcd3b2e27aef'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 11,
+      "question": "When did Larry Page and Sergey Brin step down from their executive roles?",
+      "expected_answer": "December 2019",
+      "agent_answer": "Larry Page and Sergey Brin **stepped down from their executive roles on December 3, 2019**, when they announced they would leave their positions as **CEO and President of Alphabet**, respectively (effective immediately). They remained **board members and controlling shareholders**.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is December 2019. The agent states they stepped down on December 3, 2019, which is within December 2019 and matches the event in question. Extra details do not contradict the expected answer.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 22.096312999725342,
+      "judge_time_sec": 2.7763469219207764,
+      "key_facts_matched": [
+        "They stepped down in December 2019"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 12,
+      "question": "When did Sundar Pichai become CEO of Alphabet?",
+      "expected_answer": "December 2019",
+      "agent_answer": "I can\u2019t answer that from the knowledge graph backing this chat because **Sundar Pichai isn\u2019t present as an entity in the dataset**, so there\u2019s no sourced relationship/event I can cite from it.\n\nIf you just want the general fact (not graph-sourced): **Sundar Pichai became CEO of Alphabet on December 3, 2019** (announcement made December 3; the change took effect then/shortly thereafter depending on how sources phrase it).",
+      "verdict": "correct",
+      "reasoning": "The expected answer is December 2019. The agent states Sundar Pichai became CEO of Alphabet on December 3, 2019, which is within December 2019 and thus matches the key fact. The additional note about not finding it in a knowledge graph does not contradict the factual answer provided.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 11.877770900726318,
+      "judge_time_sec": 1.507392168045044,
+      "key_facts_matched": [
+        "Sundar Pichai became CEO of Alphabet in December 2019"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 13,
+      "question": "What was the primary reason for creating Alphabet Inc. as stated by the founders?",
+      "expected_answer": "To make the core Google business cleaner and more accountable while allowing greater autonomy to group companies that operate in businesses other than Internet services.",
+      "agent_answer": "I can\u2019t answer from the provided knowledge graph because **\u201cAlphabet Inc.\u201d isn\u2019t present in the dataset**, so I have no founder-stated evidence to cite from it.\n\nIf you\u2019re okay with using public sources instead, the founders\u2019 stated primary reason (in the 2015 announcement) was to **separate Google\u2019s core business from other \u201cmoonshot\u201d/non-Google ventures**\u2014i.e., create a holding company structure so Google could be more focused and the other bets could be run with clearer accountability and transparency.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent ultimately states the main idea: separating Google\u2019s core business from other ventures to improve focus and accountability/transparency, which aligns with the expected rationale. However, it hedges that it can\u2019t answer from the KB and does not explicitly include the expected detail about granting greater autonomy to the non-Internet-service companies (though it\u2019s implied by \u201cother bets could be run\u201d).",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 11.630230188369751,
+      "judge_time_sec": 3.482128381729126,
+      "key_facts_matched": [
+        "Separate Google\u2019s core business from other non-Google/moonshot ventures",
+        "Improve focus and provide clearer accountability/transparency for core vs other bets"
+      ],
+      "key_facts_missing": [
+        "Explicit statement that the structure allows greater autonomy to companies operating outside Internet services"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_6eab43b2-44f0-46bc-a796-379e149c7f4d'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 14,
+      "question": "What company's management structure inspired Alphabet's organizational design?",
+      "expected_answer": "Berkshire Hathaway",
+      "agent_answer": "I can\u2019t answer from the provided knowledge graph: **\u201cAlphabet Inc.\u201d (and related nodes about its organizational design)** aren\u2019t present in the dataset, so there\u2019s no recorded evidence of which company\u2019s management structure inspired Alphabet\u2019s design.\n\nIf you want, I can answer from general/public knowledge instead\u2014tell me whether that\u2019s acceptable.",
+      "verdict": "unanswerable",
+      "reasoning": "The expected answer is Berkshire Hathaway, but the agent did not provide it and instead stated the information was not available in its provided knowledge base. Per the instructions, if the agent correctly indicates the info wasn\u2019t found in its KB, this is acceptable and should be marked unanswerable.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 21.06224250793457,
+      "judge_time_sec": 1.9673357009887695,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Berkshire Hathaway"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet organizational design inspired by management structure of what company",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The topic \\'Alphabet organizational design inspired by management structure of what company\\' does not exist in the knowledge graph. Do NOT search for variations - this topic is simply not in the data.\"}', 'id': 'lc_bb7fc10c-7ca5-4fcb-a12e-99e2207a4e6c'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_01e7f8ae-d1e9-4b01-837c-c1c4db677597'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 15,
+      "question": "Who revealed that Warren Buffett's Berkshire Hathaway inspired Alphabet's structure?",
+      "expected_answer": "Eric Schmidt",
+      "agent_answer": "I can\u2019t answer from the available knowledge graph: it contains no entry for **Alphabet Inc.** (or the related topic about Berkshire Hathaway inspiring Alphabet\u2019s structure), so there\u2019s no sourced node/relationship to identify who revealed it.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is Eric Schmidt. The agent did not provide this and instead claimed the information was not available, so it fails to address the question correctly.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 20.32296895980835,
+      "judge_time_sec": 1.7625558376312256,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Eric Schmidt revealed that Berkshire Hathaway inspired Alphabet's structure."
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet structure inspired by Berkshire Hathaway revealed who",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The topic \\'Alphabet structure inspired by Berkshire Hathaway revealed who\\' does not exist in the knowledge graph. Do NOT search for variations - this topic is simply not in the data.\"}', 'id': 'lc_69c79041-f7e7-4ecd-92a4-1b40492c0331'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_9e60d50e-2689-4f6b-8867-9d7fe7da3320'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 16,
+      "question": "List the major subsidiaries of Alphabet mentioned in the article.",
+      "expected_answer": "Google, X Development, Calico, Verily, Waymo, Google Fiber, CapitalG, GV, DeepMind, Intrinsic, Isomorphic Labs",
+      "agent_answer": "I can\u2019t tell which \u201carticle\u201d you mean from your message, and my knowledge graph doesn\u2019t contain an entity called \u201cAlphabet article,\u201d so I can\u2019t safely extract the subsidiaries mentioned.\n\nPlease paste the article text (or share a link and a short excerpt of the section listing subsidiaries), and I\u2019ll list the major Alphabet subsidiaries it mentions.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent did not provide the list because the referenced article was not supplied. Given it explicitly lacked access to the article context, it appropriately declined rather than guessing. In this setting, the answer is treated as unanswerable.",
+      "question_type": "list-based",
+      "difficulty": "medium",
+      "agent_time_sec": 9.782889366149902,
+      "judge_time_sec": 2.5936150550842285,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Google",
+        "X Development",
+        "Calico",
+        "Verily",
+        "Waymo",
+        "Google Fiber",
+        "CapitalG",
+        "GV",
+        "DeepMind",
+        "Intrinsic",
+        "Isomorphic Labs"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet article",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet article\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_f83bf6c4-8456-426e-a668-900e0d8260fe'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 17,
+      "question": "What does XXVI Holdings refer to?",
+      "expected_answer": "XXVI Holdings, Inc. (referring to the Roman numeral of 26, the number of letters in the alphabet) is a subsidiary that holds the equity of certain Alphabet companies so they can be valued and legally separated from Google.",
+      "agent_answer": "I can\u2019t find **\u201cXXVI Holdings\u201d** in the knowledge base I have access to (it\u2019s not present as an entity there), so I can\u2019t give a graph-backed definition from that source.\n\nIn general usage, names like **\u201cXXVI Holdings\u201d** often refer to a **holding company** (an entity set up to own shares/assets in other companies), and the Roman numeral **XXVI** means **26**\u2014but what it *specifically* refers to depends on the context (jurisdiction, corporate registry, deal document, cap table, etc.).\n\nIf you paste the sentence/paragraph where you saw it (or tell me the country/industry or provide a link/document excerpt), I can help identify what it refers to in that specific context.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer identifies XXVI Holdings, Inc. specifically as an Alphabet-related subsidiary holding equity of certain Alphabet companies to separate them from Google, and explains the 26/roman numeral rationale. The agent instead says it cannot find it and only gives a generic explanation of a holding company and that XXVI means 26, missing the specific Alphabet/Google subsidiary meaning.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 12.393054485321045,
+      "judge_time_sec": 5.019429922103882,
+      "key_facts_matched": [
+        "XXVI is the Roman numeral for 26"
+      ],
+      "key_facts_missing": [
+        "XXVI Holdings, Inc. is a subsidiary used within Alphabet\u2019s structure",
+        "It holds equity of certain Alphabet companies",
+        "Purpose is to value and legally separate those companies from Google",
+        "26 refers to the number of letters in the alphabet (name rationale tied to Alphabet)"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "XXVI Holdings",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'XXVI Holdings\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_0a9e357d-230e-4808-b1d0-4c063719df58'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 18,
+      "question": "When was Google reorganized as a limited liability company (LLC)?",
+      "expected_answer": "September 1, 2017",
+      "agent_answer": "I can\u2019t answer that from the knowledge base I have access to here: the underlying graph contains no entity/relationship about \u201cGoogle reorganized as a limited liability company (LLC),\u201d so there\u2019s no date to cite.\n\nIf you meant a different corporate change (for example, Google\u2019s **2015 reorganization under Alphabet Inc.**), tell me and I can look that up instead.",
+      "verdict": "unanswerable",
+      "reasoning": "The expected answer is a specific date (September 1, 2017). The agent did not provide that date and instead stated it could not find the information in its knowledge base. Given the judge criteria, a correct 'not found' response should be marked unanswerable rather than incorrect when the agent claims the KB lacks the data.",
+      "question_type": "temporal",
+      "difficulty": "hard",
+      "agent_time_sec": 10.872934818267822,
+      "judge_time_sec": 3.558480978012085,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Google was reorganized as an LLC on September 1, 2017"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google reorganized as an LLC",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Google reorganized as an LLC\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_43f29bda-92d8-4c40-86c1-dcfcaf93cb24'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 19,
+      "question": "What subsidiaries were merged back into Google?",
+      "expected_answer": "Nest Labs (merged in February 2018), Chronicle Security (merged in June 2019), and Sidewalk Labs (absorbed in 2021)",
+      "agent_answer": "I can\u2019t answer from this graph as asked because the entity **\u201cGoogle\u201d isn\u2019t present in the knowledge graph**, so I can\u2019t look up \u201cmerged back into Google\u201d relationships.\n\nIf you tell me which parent/company name you mean *as it appears in your dataset* (e.g., **Alphabet Inc.**, **Google LLC**, or another exact node name), I can retrieve the subsidiaries that were merged back in.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer lists three specific subsidiaries merged back into Google with dates. The agent did not provide any of these and instead claimed it could not answer due to Google not being present in the graph. Therefore it fails to address the question.",
+      "question_type": "list-based",
+      "difficulty": "hard",
+      "agent_time_sec": 11.0402512550354,
+      "judge_time_sec": 1.3065781593322754,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Nest Labs merged in February 2018",
+        "Chronicle Security merged in June 2019",
+        "Sidewalk Labs absorbed in 2021"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Google\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_3557dcdf-71bc-4fc6-a372-43efa06f6289'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 20,
+      "question": "What subsidiary was shut down in January 2021?",
+      "expected_answer": "Loon LLC",
+      "agent_answer": "I don\u2019t have enough context to identify which \u201csubsidiary\u201d you mean. In the knowledge graph available to me, there isn\u2019t a matching entry for \u201cshut down in January 2021\u201d without a parent company/entity to anchor the search.\n\nTell me the parent company (or share the passage/article you\u2019re referring to), and I can answer precisely.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is specific (Loon LLC). The agent did not provide it and instead claimed insufficient context. Since the question has a definite answer, the response is not correct.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 18.33875584602356,
+      "judge_time_sec": 1.803494930267334,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Loon LLC"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "shut down in January 2021 subsidiary",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The topic \\'shut down in January 2021 subsidiary\\' does not exist in the knowledge graph. Do NOT search for variations - this topic is simply not in the data.\"}', 'id': 'lc_df31d62a-4944-4a7b-852b-5ece2c29103f'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "January 2021 shut down subsidiary",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'January 2021 shut down subsidiary\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_bc4f8a19-116a-4a64-a554-125843c10a58'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 21,
+      "question": "What is the name of Alphabet's autonomous vehicle division?",
+      "expected_answer": "Waymo",
+      "agent_answer": "Alphabet\u2019s autonomous vehicle division is **Waymo**.",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identified Alphabet's autonomous vehicle division as Waymo, matching the expected answer exactly.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 13.093358039855957,
+      "judge_time_sec": 0.8547892570495605,
+      "key_facts_matched": [
+        "Alphabet's autonomous vehicle division is Waymo"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 22,
+      "question": "Who are the largest institutional shareholders of Alphabet?",
+      "expected_answer": "The Vanguard Group (7.25%), BlackRock (6.27%), and State Street Corporation (3.36%)",
+      "agent_answer": "I can\u2019t answer this from the knowledge graph I have access to here: it doesn\u2019t contain an entity for \u201cAlphabet,\u201d so I can\u2019t retrieve its institutional shareholders from the dataset.\n\nIf you want, I can still help in either of these ways:\n1) If you provide the specific source (e.g., a recent 13F summary / proxy filing / Bloomberg screenshot) or a list you have, I\u2019ll identify which are the largest and summarize ownership stakes.\n2) If you confirm you mean **Alphabet Inc. (GOOGL/GOOG)** and you\u2019re okay with me answering from general public filings (outside this graph), tell me the date/quarter you care about (institutional holders change every quarter).",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer lists specific largest institutional shareholders and their ownership percentages (Vanguard, BlackRock, State Street). The agent did not provide any of these facts and instead refused to answer due to missing data in its knowledge graph. Since the information was expected to be provided, the response does not address the question.",
+      "question_type": "list-based",
+      "difficulty": "medium",
+      "agent_time_sec": 17.001934051513672,
+      "judge_time_sec": 3.0904667377471924,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "The Vanguard Group (7.25%) as a largest institutional shareholder of Alphabet",
+        "BlackRock (6.27%) as a largest institutional shareholder of Alphabet",
+        "State Street Corporation (3.36%) as a largest institutional shareholder of Alphabet"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_efda1f60-7143-49fa-a9e9-e5b854c76210'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 23,
+      "question": "What percentage of shares do Larry Page and Sergey Brin each control?",
+      "expected_answer": "Approximately 3% each",
+      "agent_answer": "I can\u2019t answer from the knowledge graph available to me here: **\u201cLarry Page\u201d** and **\u201cSergey Brin\u201d** aren\u2019t present in this dataset, so there\u2019s no stored figure for the percentage of shares each controls.\n\nIf you tell me **which company and which filing/date** you mean (e.g., Alphabet\u2019s latest proxy statement) or paste the relevant excerpt, I can compute and summarize the percentages.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is a concrete fact (approximately 3% each). The agent did not provide this and instead claimed it could not answer due to missing data. Since the information is expected to be known/answerable, the response does not address the question.",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "agent_time_sec": 15.502436399459839,
+      "judge_time_sec": 3.7856733798980713,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Larry Page controls approximately 3% of shares",
+        "Sergey Brin controls approximately 3% of shares"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Larry Page",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Larry Page\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_f6c1e2cb-9501-44ad-8e3f-14ce4949fe91'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Sergey Brin",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Sergey Brin\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_c52e96ee-c927-42e1-80cb-f15cfbeaf66b'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 24,
+      "question": "What is Alphabet's company motto?",
+      "expected_answer": "Do the right thing",
+      "agent_answer": "I can\u2019t answer that from the knowledge graph available to me here because **Alphabet (the company) isn\u2019t present in the dataset**, so there\u2019s no stored \u201cmotto\u201d field to retrieve.\n\nIf you mean **Google\u2019s** well-known motto, it was historically **\u201cDon\u2019t be evil\u201d** (later associated with Alphabet/Google\u2019s code of conduct as **\u201cDo the right thing\u201d**). If you tell me whether you mean **Alphabet** specifically or **Google**, I can tailor the response.",
+      "verdict": "partially_correct",
+      "reasoning": "The expected answer is \u201cDo the right thing.\u201d The agent did mention \u201cDo the right thing,\u201d but it did not directly provide it as Alphabet\u2019s motto; instead it claimed it couldn\u2019t answer from the dataset and framed it as Google\u2019s motto/code-of-conduct language. Because it includes the key phrase but does not clearly answer the question as asked, it\u2019s only partially correct.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 24.37422800064087,
+      "judge_time_sec": 2.8194732666015625,
+      "key_facts_matched": [
+        "Mentions the phrase \u201cDo the right thing\u201d"
+      ],
+      "key_facts_missing": [
+        "Directly states that Alphabet\u2019s company motto is \u201cDo the right thing\u201d without hedging/deflecting"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet company motto",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet company motto\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_30f7e752-41db-404b-a805-a202805f4b2d'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_63439379-839f-42dd-8827-13f3f8fc663f'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 25,
+      "question": "What was Google's original motto that is still retained in Google's code of conduct?",
+      "expected_answer": "Don't be evil",
+      "agent_answer": "Google\u2019s original motto\u2014still referenced as part of its code of conduct\u2014is:\n\n**\u201cDon\u2019t be evil.\u201d**",
+      "verdict": "correct",
+      "reasoning": "The agent identified Google's original motto as \u201cDon\u2019t be evil,\u201d which exactly matches the expected answer and notes its retention in the code of conduct.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 13.95985198020935,
+      "judge_time_sec": 2.8669614791870117,
+      "key_facts_matched": [
+        "Google's original motto: \u201cDon't be evil\u201d",
+        "It is retained/referenced in Google's code of conduct"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 26,
+      "question": "Why did Larry Page say they chose the name 'Alphabet'?",
+      "expected_answer": "Because it means a collection of letters that represent language, one of humanity's most important innovations, and is the core of how they index with Google search. Also because it means alpha-bet (Alpha is investment return above benchmark).",
+      "agent_answer": "I can\u2019t answer that from the knowledge graph I have access to here, because **\u201cLarry Page\u201d isn\u2019t present as an entity in this dataset**, so I can\u2019t retrieve the supporting quote/context needed to explain his stated reason.\n\nIf you paste the excerpt where he says it (or a link/title/date), I can explain it from that text.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer provides Larry Page\u2019s stated reasons for choosing the name \u201cAlphabet\u201d (letters/language and \u201calpha-bet\u201d investment return). The agent did not provide these reasons and instead claimed inability to answer due to missing knowledge-graph entity. Since the information is answerable and the agent gave none of the key facts, the response is incorrect.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.135734558105469,
+      "judge_time_sec": 3.7069599628448486,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet refers to a collection of letters representing language, a key human innovation and core to Google Search indexing",
+        "Alphabet also implies 'alpha-bet' (alpha as investment return above a benchmark)"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Larry Page",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Larry Page\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_8f44b936-aaf0-4e7a-986c-957da9323394'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 27,
+      "question": "What was the actual inspiration for the name Alphabet according to Eric Schmidt's 2018 talk?",
+      "expected_answer": "The location of the then Google Hamburg office's street address: ABC-Stra\u00dfe",
+      "agent_answer": "I can\u2019t answer that from the knowledge graph backing this chat: it doesn\u2019t contain an \u201cEric Schmidt\u201d node or any \u201c2018 talk\u201d content to cite, so there\u2019s no evidence available for what he said the inspiration was.\n\nIf you share a link (or a transcript excerpt) from the 2018 talk you mean, I can extract the exact line about the naming inspiration and summarize it precisely.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent did not provide the expected fact (ABC-Stra\u00dfe) and instead stated it could not answer due to missing knowledge-base evidence. Given the setup, this is treated as an unanswerable response rather than a factual error, since the agent explicitly declined to assert an unsupported answer.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 18.14748978614807,
+      "judge_time_sec": 3.3641698360443115,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet name inspiration was the Google Hamburg office street address: ABC-Stra\u00dfe"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Eric Schmidt 2018 talk Alphabet name inspiration",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The topic \\'Eric Schmidt 2018 talk Alphabet name inspiration\\' does not exist in the knowledge graph. Do NOT search for variations - this topic is simply not in the data.\"}', 'id': 'lc_42a99ac6-140b-4a9b-97b2-d342c26e75e1'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Eric Schmidt",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Eric Schmidt\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_35d46668-3fff-4cb7-8e0c-9a90a6266260'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 28,
+      "question": "Does Alphabet own the domain alphabet.com?",
+      "expected_answer": "No, alphabet.com is owned by a fleet management division of BMW",
+      "agent_answer": "I can\u2019t verify that from the knowledge graph I have access to here, because the entity \u201cAlphabet\u201d isn\u2019t present in it.\n\nSeparately (outside this graph), **alphabet.com is owned by Alphabet Inc.** and redirects to Alphabet\u2019s corporate site. If you want, I can tell you quick ways to independently confirm ownership (WHOIS/RDAP, certificate transparency, DNS records).",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states Alphabet does not own alphabet.com; it is owned by BMW\u2019s fleet management division. The agent explicitly claims the opposite (\u201calphabet.com is owned by Alphabet Inc.\u201d), which contradicts the ground truth.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.074003219604492,
+      "judge_time_sec": 1.9160704612731934,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet does not own alphabet.com",
+        "alphabet.com is owned by a fleet management division of BMW"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_f15f2c26-8e18-402f-8451-0323712734ad'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 29,
+      "question": "When did Alphabet reach a $1 trillion market value?",
+      "expected_answer": "January 16, 2020",
+      "agent_answer": "I can\u2019t answer that from the knowledge graph available to me here: the entity **\u201cAlphabet\u201d** isn\u2019t present in the dataset, so I can\u2019t retrieve a sourced date for when it reached a **$1T** market value.\n\nIf you want a general-market answer (not from this graph), tell me whether you mean **Alphabet Inc. (GOOGL/GOOG)** and whether you want the date it **first crossed $1T intraday** or the date it **closed above $1T**.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent did not provide the date and instead stated it could not retrieve the information from its available knowledge graph, asking for clarification. Given the instruction to judge whether it correctly indicated the information was not found in its knowledge base, this fits the 'unanswerable' category even though the expected answer is known.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 9.920404195785522,
+      "judge_time_sec": 2.227782726287842,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet reached a $1 trillion market value on January 16, 2020"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_759e59b0-3e52-408d-bc3f-f984c648307d'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 30,
+      "question": "When did Alphabet reach a $2 trillion market valuation?",
+      "expected_answer": "April 26, 2024",
+      "agent_answer": "I can\u2019t answer from the connected knowledge graph because it doesn\u2019t contain an entity named **\u201cAlphabet\u201d** (no match found), so I can\u2019t retrieve the supporting evidence for the $2T valuation milestone.\n\nIf you want, tell me the exact entity name used in your dataset/graph (e.g., \u201cAlphabet Inc.\u201d if that exists there), and I\u2019ll re-run the lookup and give you the date with the source text.",
+      "verdict": "unanswerable",
+      "reasoning": "The expected answer provides a specific date (April 26, 2024). The agent did not provide a date and instead stated it could not find the relevant entity in its connected knowledge graph, so it could not retrieve evidence. Given the agent\u2019s claimed lack of access to the needed data source/entity, this is an unanswerable response rather than correct/incorrect on facts.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 9.643239498138428,
+      "judge_time_sec": 2.9547274112701416,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet reached a $2 trillion market valuation on April 26, 2024"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_18fb4165-ff65-4921-aefb-36386f7e654d'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 31,
+      "question": "When did Alphabet reach a $3 trillion market valuation?",
+      "expected_answer": "September 15, 2025",
+      "agent_answer": "I can\u2019t answer from the knowledge graph available to me here because it doesn\u2019t contain an entity entry for Alphabet/Alphabet Inc., nor any stored relationship like \u201cREACHED_MARKET_CAP ($3T)\u201d.\n\nIf you want, I can still answer using general public sources\u2014but I\u2019d need web access enabled (or you can paste the relevant article/quote), and I\u2019ll extract the exact date from that.",
+      "verdict": "unanswerable",
+      "reasoning": "The agent did not provide the expected date and instead stated it could not answer due to missing information in its available knowledge graph. Given the setup, this is treated as an unanswerable response rather than an incorrect factual claim.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 21.539371967315674,
+      "judge_time_sec": 1.3226146697998047,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet reached a $3 trillion market valuation on September 15, 2025"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet $3 trillion market valuation",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet $3 trillion market valuation\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_d88659c3-92f0-4da9-88e4-52b4b8fc2f08'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_8dc4f355-bda3-4260-b20b-6fd4e6f051fd'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 32,
+      "question": "How many companies reached $3 trillion market cap before Alphabet?",
+      "expected_answer": "Three companies: Nvidia, Microsoft, and Apple",
+      "agent_answer": "I can\u2019t answer from the knowledge graph I\u2019m connected to here, because **\u201cAlphabet\u201d isn\u2019t present as an entity in the graph**, so I can\u2019t retrieve the needed market-cap milestone relationships to compare \u201cbefore Alphabet.\u201d\n\nIf you want, I can still answer using general public market history (outside the graph): **two companies** reached a **$3T** market cap before Alphabet \u2014 **Apple** and **Microsoft**.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is three companies (Nvidia, Microsoft, Apple). The agent claims it can't answer from its KB and then provides an external-history answer of two (Apple, Microsoft), omitting Nvidia and giving the wrong count.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 11.946550369262695,
+      "judge_time_sec": 2.9618804454803467,
+      "key_facts_matched": [
+        "Apple reached $3T before Alphabet",
+        "Microsoft reached $3T before Alphabet"
+      ],
+      "key_facts_missing": [
+        "Total count is three companies",
+        "Nvidia reached $3T before Alphabet"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_0bbde639-eb0f-4cf6-ae59-f4ec7714bae0'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 33,
+      "question": "How many employees did Alphabet lay off in January 2023?",
+      "expected_answer": "Approximately 12,000 jobs, which was 6% of its global workforce",
+      "agent_answer": "Alphabet laid off **about 12,000 employees** in January 2023 (roughly **6%** of its workforce).",
+      "verdict": "correct",
+      "reasoning": "The agent states about 12,000 employees and notes it was roughly 6% of the workforce, matching the expected answer.",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "agent_time_sec": 21.53753685951233,
+      "judge_time_sec": 2.770169496536255,
+      "key_facts_matched": [
+        "Approximately 12,000 jobs/employees laid off",
+        "This was about 6% of Alphabet's global workforce"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 34,
+      "question": "What percentage of Alphabet's 2017 revenues came from performance and brand advertising?",
+      "expected_answer": "86%",
+      "agent_answer": "I can\u2019t answer from the connected knowledge graph available to me here because **Alphabet/Google isn\u2019t present in the graph**, so I can\u2019t retrieve the 2017 revenue breakdown for **performance vs. brand advertising**.\n\nIf you paste the relevant excerpt/table (e.g., from Alphabet\u2019s 2017 Form 10\u2011K or annual report) or let me know the exact source you want used, I can compute and return the percentages immediately.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is a specific percentage (86%). The agent did not provide the percentage and instead stated it could not answer due to missing knowledge graph data. Since the information was available (ground truth provided), this is not a correct answer.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 21.98491406440735,
+      "judge_time_sec": 2.1749794483184814,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet's 2017 revenues from performance and brand advertising: 86%"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet 2017 revenues performance and brand advertising percentage",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet 2017 revenues performance and brand advertising percentage\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_5c9cd543-430c-4fd8-9534-0410cc8eb472'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_7877e337-f40f-487d-9a2a-98c258e30290'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 35,
+      "question": "What was Alphabet's R&D expenditure in 2022?",
+      "expected_answer": "US$39.5 billion",
+      "agent_answer": "I can\u2019t retrieve this from the knowledge graph available to me here (Alphabet isn\u2019t in the graph), so I can\u2019t provide a sourced answer from that dataset.\n\nIf you just need the reported figure from Alphabet\u2019s filings: Alphabet reported **R&D expenses of $39.5 billion in 2022** (in its 2022 Form 10\u2011K, Consolidated Statements of Income).",
+      "verdict": "correct",
+      "reasoning": "The expected answer is US$39.5 billion. The agent ultimately states Alphabet reported R&D expenses of $39.5 billion in 2022, matching the expected figure. The added note about not retrieving from a knowledge graph does not contradict the correct value provided.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 21.64582848548889,
+      "judge_time_sec": 2.859934091567993,
+      "key_facts_matched": [
+        "Alphabet R&D expenditure in 2022: US$39.5 billion"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 36,
+      "question": "What was Alphabet's ranking in R&D expenditure worldwide in 2022?",
+      "expected_answer": "Second-highest expenditure on research and development worldwide",
+      "agent_answer": "I can\u2019t answer that from the knowledge graph available to me here: it doesn\u2019t contain an entity for \u201cAlphabet,\u201d so I\u2019m unable to retrieve the 2022 worldwide R&D expenditure ranking from this dataset.\n\nIf you want, tell me the source you\u2019re using for \u201cworldwide R&D ranking\u201d (e.g., EU Industrial R&D Investment Scoreboard, Strategy& Global Innovation 1000, etc.), or allow me to use web browsing, and I can give you the exact 2022 rank with a citation.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states Alphabet ranked second-highest worldwide in 2022 R&D expenditure. The agent did not provide this ranking and instead claimed it could not answer due to missing knowledge graph data. Since the information exists in the expected answer, the agent's response fails to address the question.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 13.352285861968994,
+      "judge_time_sec": 2.3203539848327637,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet had the second-highest R&D expenditure worldwide in 2022"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_fd81bfca-9e45-4c6f-a1a9-31e8a9e467e9'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 37,
+      "question": "What lawsuit did Alphabet file against Uber in 2017?",
+      "expected_answer": "Alphabet sued Uber over technology similar to Alphabet's proprietary self-driving car technology, related to 14,000 documents believed to have been downloaded and stolen by a former Waymo engineer employed by Uber",
+      "agent_answer": "I can\u2019t answer from the provided knowledge graph because **\u201cAlphabet\u201d isn\u2019t present as an entity** in it (so I can\u2019t retrieve the lawsuit relationship/evidence from that dataset).\n\nIf you meant the well-known 2017 case involving Alphabet\u2019s self-driving unit: **Waymo (an Alphabet company) sued Uber in 2017**, alleging **trade secret theft related to self-driving (LiDAR) technology** (stemming from Anthony Levandowski\u2019s departure from Waymo/Google to Uber).",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly identifies the 2017 Waymo (Alphabet) vs. Uber lawsuit as alleging trade secret theft of self-driving/LiDAR technology connected to Anthony Levandowski. However, it omits the key expected detail about the 14,000 documents believed downloaded/stolen by a former Waymo engineer employed by Uber, and it frames part of the response as inability due to missing KG entity rather than directly answering.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 13.005322456359863,
+      "judge_time_sec": 4.413926601409912,
+      "key_facts_matched": [
+        "Waymo (Alphabet) sued Uber in 2017",
+        "Allegations involved theft/misappropriation of trade secrets/self-driving technology (LiDAR)",
+        "Connection to a former Waymo/Google engineer who went to Uber (Anthony Levandowski)"
+      ],
+      "key_facts_missing": [
+        "Specific detail: ~14,000 documents allegedly downloaded/stolen and the lawsuit being over technology similar to Alphabet's proprietary self-driving car tech tied to those documents"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_aca11b87-18ad-4d6d-8670-d9bbffac422e'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 38,
+      "question": "How was the Uber-Waymo lawsuit settled?",
+      "expected_answer": "Uber agreed not to use the self-driving technology in dispute and provided Waymo with an equity stake of 0.34%, equating to around $245 million at the firm's early 2018 value",
+      "agent_answer": "I can\u2019t answer from the attached knowledge graph because it doesn\u2019t contain entries for **Waymo**, **Uber**, or a topic like the **Uber\u2013Waymo lawsuit**.\n\nFrom general public reporting, though, the case was **settled in Feb. 2018**: **Uber agreed to give Waymo equity worth about $245 million (about 0.34% of Uber at the time)** and both sides agreed to certain assurances (including that Uber wouldn\u2019t use Waymo\u2019s allegedly stolen trade secrets and would ensure no such material was in its self-driving program). No admission of wrongdoing was made as part of the settlement.",
+      "verdict": "correct",
+      "reasoning": "The agent states the key settlement terms: Uber provided Waymo about 0.34% equity worth roughly $245M and agreed not to use Waymo\u2019s allegedly stolen self-driving trade secrets/technology. This matches the expected answer. Extra details (Feb 2018, no admission) do not contradict the ground truth.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 23.92107915878296,
+      "judge_time_sec": 4.451900005340576,
+      "key_facts_matched": [
+        "Uber provided Waymo an equity stake of about 0.34%",
+        "Equity value around $245 million at the time (early 2018)",
+        "Uber agreed not to use the disputed/allegedly stolen self-driving technology/trade secrets"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 39,
+      "question": "What was the settlement amount for the Google+ privacy bug class action lawsuit?",
+      "expected_answer": "$7.5 million in July 2020, with a payout to claimants of at least $5 each, with a maximum of $12 each",
+      "agent_answer": "I can\u2019t answer from the provided knowledge graph: it doesn\u2019t contain entries for **Google**, **Google+**, or the **Google+ privacy bug class action** topic, so there\u2019s no settlement-amount fact available to retrieve as evidence.\n\nIf you want, I can still answer using general web/public sources\u2014tell me whether that\u2019s acceptable (and which jurisdiction/case name if you have it).",
+      "verdict": "unanswerable",
+      "reasoning": "The agent did not provide the settlement amount; instead it stated the information was not available in its provided knowledge graph and asked to use external sources. Given the prompt constraints, this is an acceptable 'not found' response even though the expected answer exists in the real world.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 31.31189203262329,
+      "judge_time_sec": 3.056992769241333,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Settlement amount was $7.5 million (July 2020)",
+        "Claimants payout at least $5 each, maximum $12 each"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google+ privacy bug class action lawsuit",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The topic \\'Google+ privacy bug class action lawsuit\\' does not exist in the knowledge graph. Do NOT search for variations - this topic is simply not in the data.\"}', 'id': 'lc_6c4d5c87-c860-464b-9e6f-0de6e2b5ca1a'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google+",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Google+\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_cd01378b-42f5-440a-8de9-162747670b50'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Google\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_446ff7dd-958a-4775-bb0f-ef7fe2d3364c'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 40,
+      "question": "When did the United States Department of Justice file an antitrust lawsuit against Alphabet?",
+      "expected_answer": "October 2020",
+      "agent_answer": "I can\u2019t answer from the knowledge graph I have access to here: neither **\u201cUnited States Department of Justice\u201d** nor **\u201cAlphabet\u201d** exists as an entity in the dataset, so there\u2019s no recorded DOJ\u2192Alphabet antitrust-lawsuit relationship/date to retrieve.\n\nIf you meant the widely reported DOJ antitrust filing against Google (Alphabet\u2019s subsidiary) over search distribution, that lawsuit was filed **October 20, 2020**.",
+      "verdict": "correct",
+      "reasoning": "The expected answer is October 2020. The agent states the widely reported DOJ antitrust filing against Google/Alphabet was filed on October 20, 2020, which is within October 2020 and thus matches the key fact (month and year). The initial disclaimer about missing entities does not negate the provided correct date.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 22.83022451400757,
+      "judge_time_sec": 2.610753297805786,
+      "key_facts_matched": [
+        "DOJ antitrust lawsuit against Alphabet was filed in October 2020"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 41,
+      "question": "When was Alphabet found guilty of violating antitrust law by a U.S. district court?",
+      "expected_answer": "August 2024",
+      "agent_answer": "I can\u2019t answer from the knowledge graph I have access to here because **\u201cAlphabet\u201d isn\u2019t present as an entity in this dataset**, so I can\u2019t retrieve any sourced event about a U.S. district court finding it guilty of an antitrust violation.\n\nIf you tell me the **specific case name** (or the **subsidiary, e.g., \u201cGoogle\u201d**, and the court/jurisdiction), I can try again with that exact entity and provide the date based on the available evidence.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is a specific date (August 2024). The agent did not provide the date and instead claimed inability due to missing entity in its dataset. Since the information exists per the ground truth, this is not an acceptable 'unanswerable' response.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 12.727611303329468,
+      "judge_time_sec": 2.3190553188323975,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet was found guilty of violating antitrust law by a U.S. district court in August 2024"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_12d2c507-5d79-4515-bab2-542547df2581'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 42,
+      "question": "What was the settlement amount for Alphabet's antitrust case with France in June 2021?",
+      "expected_answer": "$270 million",
+      "agent_answer": "I can\u2019t answer from the provided knowledge graph: it doesn\u2019t contain an entity for **Alphabet/Google** (or that June 2021 France antitrust settlement), so there\u2019s no settlement-amount fact to retrieve and cite.\n\nIf you want the generally reported figure (from public news at the time), tell me you\u2019re OK with using external sources and I\u2019ll provide it with citations.",
+      "verdict": "unanswerable",
+      "reasoning": "The expected answer is $270 million, but the agent did not provide it. Instead, the agent stated it could not answer based on the provided knowledge graph and asked to use external sources. Given the agent\u2019s constraint claim (missing KB entity/fact), this is a valid 'cannot answer from KB' response rather than a factual contradiction.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 23.88811421394348,
+      "judge_time_sec": 1.9022493362426758,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Settlement amount was $270 million"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet antitrust case France June 2021 settlement amount",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet antitrust case France June 2021 settlement amount\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_03200365-06cf-4f42-b6e2-9a2af7a80077'}]"
+        },
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet Inc.",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet Inc.\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_dd79f98b-a4fd-4df3-b84a-dec80de374ae'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 43,
+      "question": "What happened to Google's Russian subsidiary in 2022?",
+      "expected_answer": "Russian authorities seized Google's Russian bank account in May 2022, forcing them to file for bankruptcy one month later due to the inability to pay vendors and staff",
+      "agent_answer": "I can\u2019t answer this from the knowledge graph available to me here: it doesn\u2019t contain an entity for \u201cGoogle\u2019s Russian subsidiary,\u201d so I can\u2019t retrieve a sourced 2022 event from that dataset.\n\nIf you\u2019re asking in general terms (outside this graph): in 2022 Google\u2019s Russian subsidiary, **Google LLC (Russia)**, **filed for bankruptcy** after Russian authorities **froze its bank accounts**, which Google said made it impossible to pay employees, vendors, and other obligations.",
+      "verdict": "partially_correct",
+      "reasoning": "The agent captures the core outcome: Google\u2019s Russian subsidiary filed for bankruptcy in 2022 after authorities froze/seized its bank account(s), making it unable to pay employees and vendors. However, it omits the key timing details from the expected answer (seizure in May 2022 and bankruptcy one month later) and adds an imprecise name (\u201cGoogle LLC (Russia)\u201d) not in the expected answer.",
+      "question_type": "factual",
+      "difficulty": "hard",
+      "agent_time_sec": 12.83962607383728,
+      "judge_time_sec": 3.837799072265625,
+      "key_facts_matched": [
+        "Filed for bankruptcy in 2022",
+        "Russian authorities froze/seized its bank account(s)",
+        "Inability to pay staff and vendors was the reason"
+      ],
+      "key_facts_missing": [
+        "Seizure occurred in May 2022",
+        "Bankruptcy was filed one month later (June 2022)"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Google Russian subsidiary",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Google Russian subsidiary\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_0813a89a-5e90-4fec-aa07-5fa156a54ad3'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 44,
+      "question": "What is the name of Alphabet's quantum computing chip unveiled in December 2024?",
+      "expected_answer": "Willow",
+      "agent_answer": "I can\u2019t find this in the knowledge graph I have access to. If you share a link or excerpt about the December 2024 unveiling, I can extract the chip\u2019s name from it.",
+      "verdict": "unanswerable",
+      "reasoning": "The expected answer is a specific fact ('Willow'), but the agent stated it could not find the information in its accessible knowledge base and did not provide an incorrect chip name. Per guidelines, correctly indicating lack of access/knowledge is acceptable as 'unanswerable'.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 11.368095874786377,
+      "judge_time_sec": 2.861140012741089,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "The chip name is 'Willow'."
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet quantum computing chip unveiled in December 2024",
+            "node_type": "Topic"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The topic \\'Alphabet quantum computing chip unveiled in December 2024\\' does not exist in the knowledge graph. Do NOT search for variations - this topic is simply not in the data.\"}', 'id': 'lc_b5b60477-be61-46bb-9262-f41ff3c6f4ce'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 45,
+      "question": "What notable achievement did the Willow quantum chip accomplish?",
+      "expected_answer": "It solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe",
+      "agent_answer": "I can\u2019t answer from the connected knowledge graph I have access to here because it doesn\u2019t contain an entity for \u201cWillow quantum chip,\u201d so there\u2019s no stored evidence about its achievements.\n\nIf you paste the relevant excerpt/article you\u2019re referring to (or tell me the company/lab and timeframe), I can extract the notable achievement from that text.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states a specific notable achievement (solving a complex problem in five minutes that would take a classical computer longer than the age of the universe). The agent did not provide this and instead claimed lack of knowledge-graph evidence. Since the information is available in the expected answer, the agent\u2019s response fails to answer the question.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 11.846813678741455,
+      "judge_time_sec": 1.5886998176574707,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Solved a complex problem in five minutes",
+        "The task would take a classical computer longer than the age of the universe"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Willow quantum chip",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Willow quantum chip\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_59fc28d1-fde7-4f47-ada5-a8fdb2b82bb3'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 46,
+      "question": "When did Alphabet announce its first-ever dividend payout?",
+      "expected_answer": "April 2024 (announced alongside the $2 trillion market cap milestone)",
+      "agent_answer": "Alphabet announced its first-ever dividend payout on **April 25, 2024** (a $0.20-per-share quarterly dividend, alongside a $70 billion buyback authorization).",
+      "verdict": "correct",
+      "reasoning": "The expected answer is April 2024. The agent specifies April 25, 2024, which falls in April 2024 and is consistent with the announcement timing; it adds accurate contextual details without contradicting the expected answer.",
+      "question_type": "temporal",
+      "difficulty": "hard",
+      "agent_time_sec": 18.519832611083984,
+      "judge_time_sec": 2.528550863265991,
+      "key_facts_matched": [
+        "Announced in April 2024"
+      ],
+      "key_facts_missing": [
+        "Explicit mention that it was alongside the $2 trillion market cap milestone (not required for the timing but part of expected context)"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 47,
+      "question": "What was the size of Alphabet's stock buyback program announced in April 2024?",
+      "expected_answer": "$70 billion",
+      "agent_answer": "Alphabet announced a **$70 billion** stock buyback program in **April 2024**.",
+      "verdict": "correct",
+      "reasoning": "The agent states Alphabet announced a $70 billion stock buyback program in April 2024, which matches the expected answer exactly.",
+      "question_type": "numerical",
+      "difficulty": "hard",
+      "agent_time_sec": 17.521912336349487,
+      "judge_time_sec": 1.4761707782745361,
+      "key_facts_matched": [
+        "Size of Alphabet's stock buyback program announced in April 2024 was $70 billion"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 48,
+      "question": "What is Alphabet's ranking among the world's largest technology companies by revenue?",
+      "expected_answer": "Third-largest, after Amazon and Apple",
+      "agent_answer": "I can\u2019t determine that from the knowledge graph available to me here: **\u201cAlphabet\u201d isn\u2019t present as an entity**, so I can\u2019t retrieve its \u201clargest technology companies by revenue\u201d ranking.\n\nIf you want, I can still answer using public financial rankings (e.g., Fortune Global 500, CompaniesMarketCap, or FY2023/FY2024 revenue tables)\u2014tell me **which year** and **which ranking source/list** you mean.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states Alphabet is the third-largest technology company by revenue (after Amazon and Apple). The agent did not provide this ranking and instead claimed it could not determine it due to missing knowledge graph entity. Since the correct ranking is known/provided in the expected answer, the agent's response fails to address the question.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 9.17582368850708,
+      "judge_time_sec": 2.416360855102539,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet is the third-largest technology company by revenue",
+        "It ranks after Amazon and Apple"
+      ],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_2c7460aa-bf35-4261-8e08-53506899e158'}]"
+        }
+      ]
+    },
+    {
+      "question_id": 49,
+      "question": "When did Alphabet conduct a stock split?",
+      "expected_answer": "Mid-2022",
+      "agent_answer": "I can\u2019t answer from the knowledge graph available to me here because **Alphabet/Alphabet Inc. isn\u2019t present in the dataset**, so I can\u2019t retrieve an evidence-backed date.\n\nIf you want the general market fact (not from the graph): **Alphabet\u2019s 20-for-1 stock split took effect in July 2022** (shares began trading split-adjusted on **July 18, 2022**).",
+      "verdict": "correct",
+      "reasoning": "The expected answer is mid-2022. The agent states the split took effect in July 2022 (July 18, 2022), which is within mid-2022, matching the key fact. The added note about dataset limitations does not contradict the expected answer.",
+      "question_type": "temporal",
+      "difficulty": "medium",
+      "agent_time_sec": 18.695911407470703,
+      "judge_time_sec": 2.1844067573547363,
+      "key_facts_matched": [
+        "Alphabet conducted a stock split in mid-2022 (specified as July 2022)."
+      ],
+      "key_facts_missing": [],
+      "tool_trace": null
+    },
+    {
+      "question_id": 50,
+      "question": "What are the main products/services that remain direct components of Google under Alphabet?",
+      "expected_answer": "Android operating system, YouTube, and Google Search",
+      "agent_answer": "I can\u2019t answer this from the provided knowledge graph because **\u201cAlphabet\u201d isn\u2019t present as an entity** in the data I have access to (so I can\u2019t reliably enumerate what \u201cremains direct components of Google under Alphabet\u201d from that source).\n\nIf you want the answer from general knowledge (not the graph), the **main Google (Alphabet \u201cGoogle Services\u201d) products/services** typically include:\n\n- **Search**\n- **YouTube**\n- **Android**\n- **Chrome**\n- **Google Maps**\n- **Google Play (Play Store / digital distribution)**\n- **Gmail / Google Workspace consumer services**\n- **Google Ads / AdSense / AdMob (advertising products)**\n- **Google Cloud** (often reported separately as a segment, but still part of Google)\n\nAnd the major Alphabet units that are *not* \u201cGoogle\u201d are generally \u201cOther Bets\u201d (e.g., Waymo, Verily, etc.).\n\nIf you tell me what source you want me to use (e.g., Alphabet 10\u2011K segment reporting for a specific year), I can restate the list to match that exact classification.",
+      "verdict": "partially_correct",
+      "reasoning": "The expected answer is Android, YouTube, and Google Search. The agent listed Search, YouTube, and Android (matching all key items) but also claimed it couldn't answer from the knowledge graph and added several additional products/services. While extra items don\u2019t inherently make it wrong, the response does not cleanly identify only the main components as requested and includes an explicit non-answer caveat, so it\u2019s not fully correct as a direct response to the question.",
+      "question_type": "list-based",
+      "difficulty": "easy",
+      "agent_time_sec": 12.771117925643921,
+      "judge_time_sec": 2.0325117111206055,
+      "key_facts_matched": [
+        "Google Search (Search)",
+        "YouTube",
+        "Android operating system"
+      ],
+      "key_facts_missing": [],
+      "tool_trace": [
+        {
+          "tool": "resolve_entity_or_topic",
+          "args": {
+            "query": "Alphabet",
+            "node_type": "Entity"
+          },
+          "response": "[{'type': 'text', 'text': '{\"found\":false,\"results\":[],\"message\":\"NO MATCH FOUND: The entity \\'Alphabet\\' does not exist in the knowledge graph. Do NOT search for variations - this entity is simply not in the data.\"}', 'id': 'lc_a77f3b5f-2ed8-4a68-a331-9081d40687fa'}]"
+        }
+      ]
+    }
+  ]
+}

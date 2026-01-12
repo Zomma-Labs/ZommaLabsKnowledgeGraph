@@ -51,7 +51,7 @@
     "uri": "https://kg.zommalabs.com/topic/LaborMarket",
     "label": "Labor Market",
     "definition": "The supply and demand dynamics for workers, including wages, employment rates, and workforce participation.",
-    "synonyms": ["Job Market", "Workforce", "Labor Conditions", "Labor Supply", "Employees", "Headcount", "Human Resources"]
+    "synonyms": ["Job Market", "Workforce", "Labor Conditions", "Labor Supply", "Employees", "Headcount", "Human Resources", "Staffing", "Labor Force", "Worker Shortage", "Labor Availability"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/WageGrowth",
@@ -75,7 +75,7 @@
     "uri": "https://kg.zommalabs.com/topic/HousingMarket",
     "label": "Housing Market",
     "definition": "The market for residential real estate, including home sales, prices, and construction.",
-    "synonyms": ["Real Estate", "Home Sales", "Residential Real Estate", "Housing Sector"]
+    "synonyms": ["Home Sales", "Residential Real Estate", "Housing Sector", "Home Prices", "Real Estate", "Rents", "Rental Market", "Housing Demand", "Home Construction"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/CommercialRealEstate",
@@ -99,7 +99,7 @@
     "uri": "https://kg.zommalabs.com/topic/BankLending",
     "label": "Bank Lending",
     "definition": "The extension of credit by financial institutions to businesses and consumers.",
-    "synonyms": ["Loan Growth", "Credit Extension", "Bank Loans", "Lending Standards"]
+    "synonyms": ["Loan Growth", "Credit Extension", "Bank Loans", "Lending Standards", "Loan Performance", "Real Estate Loans", "Commercial Loans", "Loan Types", "Lending Activity"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/Manufacturing",
@@ -183,7 +183,7 @@
     "uri": "https://kg.zommalabs.com/topic/CostStructure",
     "label": "Cost Structure",
     "definition": "The types and relative proportions of fixed and variable costs in a business.",
-    "synonyms": ["Operating Costs", "Expenses", "Cost Management", "Cost Cutting"]
+    "synonyms": ["Operating Costs", "Expenses", "Cost Management", "Cost Cutting", "Cost Pressures", "Costs", "Labor Costs", "Input Costs", "Cost Increases"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/MarketShare",
@@ -519,7 +519,7 @@
     "uri": "https://kg.zommalabs.com/topic/OwnershipStructure",
     "label": "Ownership Structure",
     "definition": "The distribution of equity ownership among shareholders and stakeholders.",
-    "synonyms": ["Ownership", "Shareholder Ownership", "Equity Ownership", "Controlling Interest", "Stock Ownership"]
+    "synonyms": ["Ownership", "Shareholder Ownership", "Equity Ownership", "Controlling Interest", "Stock Ownership", "Parent Company", "Subsidiary Ownership", "Corporate Ownership"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/ExecutiveLeadership",
@@ -550,5 +550,237 @@
     "label": "Labor Relations",
     "definition": "Relationships between employers, employees, and unions.",
     "synonyms": ["Unionization", "Labor Law", "Worker Organizing", "Collective Bargaining", "Labor Dispute", "Labor Laws"]
+  },
+
+  {
+    "uri": "https://kg.zommalabs.com/topic/Construction",
+    "label": "Construction",
+    "definition": "The industry sector involved in building infrastructure, residential, and commercial structures.",
+    "synonyms": ["Building", "Construction Industry", "Construction Sector", "Infrastructure Development"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/DrugDiscovery",
+    "label": "Drug Discovery",
+    "definition": "Research and development of new pharmaceutical compounds and therapeutics.",
+    "synonyms": ["Pharmaceutical R&D", "Drug Development", "Biotech Research", "Drug Research"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Tourism",
+    "label": "Tourism",
+    "definition": "The travel and hospitality industry including hotels, airlines, and leisure services.",
+    "synonyms": ["Travel", "Hospitality", "Travel Industry", "Leisure", "Hotel Industry"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Agriculture",
+    "label": "Agriculture",
+    "definition": "The farming and agribusiness sector including crop production and livestock.",
+    "synonyms": ["Farming", "Agribusiness", "Agricultural Sector", "Crops", "Livestock"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/DigitalAssets",
+    "label": "Digital Assets",
+    "definition": "Blockchain-based assets including cryptocurrencies, tokens, and NFTs.",
+    "synonyms": ["Cryptocurrency", "Crypto", "Bitcoin", "Blockchain", "NFT", "Digital Currency"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/LoanDemand",
+    "label": "Loan Demand",
+    "definition": "Borrower appetite and applications for credit from financial institutions.",
+    "synonyms": ["Credit Demand", "Borrowing Demand", "Loan Applications", "Loan Volume"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/EconomicUncertainty",
+    "label": "Economic Uncertainty",
+    "definition": "Unpredictability in economic conditions, policy outcomes, and market direction.",
+    "synonyms": ["Uncertainty", "Policy Uncertainty", "Market Uncertainty", "Economic Volatility"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CorporateStrategy",
+    "label": "Corporate Strategy",
+    "definition": "High-level planning and decision-making about a company's direction and competitive positioning.",
+    "synonyms": ["Business Strategy", "Strategic Planning", "Corporate Direction", "Strategy"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BusinessExpansion",
+    "label": "Business Expansion",
+    "definition": "Growth initiatives including new markets, products, or geographic expansion.",
+    "synonyms": ["Expansion", "Growth", "Market Expansion", "Geographic Expansion", "Business Growth"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Media",
+    "label": "Media",
+    "definition": "The media and entertainment industry including broadcasting, publishing, and streaming.",
+    "synonyms": ["Media Industry", "Entertainment", "Broadcasting", "Publishing", "Streaming"]
+  },
+
+  {"uri": "https://kg.zommalabs.com/gics/EnergyEquipment", "label": "Energy Equipment & Services", "definition": "Companies that manufacture equipment and provide services for oil and gas exploration, drilling, and production.", "synonyms": ["Energy Equipment", "Oilfield Services", "Drilling Services", "Energy Services"]},
+  {"uri": "https://kg.zommalabs.com/gics/OilGasFuels", "label": "Oil, Gas & Consumable Fuels", "definition": "Companies engaged in exploration, production, refining, and marketing of oil, gas, and coal.", "synonyms": ["Oil & Gas", "Oil Companies", "Gas Companies", "Fossil Fuels", "Petroleum", "Energy", "Oil Industry"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/Chemicals", "label": "Chemicals", "definition": "Companies that produce industrial, specialty, and agricultural chemicals.", "synonyms": ["Chemical Industry", "Specialty Chemicals", "Industrial Chemicals", "Petrochemicals"]},
+  {"uri": "https://kg.zommalabs.com/gics/ConstructionMaterials", "label": "Construction Materials", "definition": "Producers of cement, aggregates, concrete, and other construction materials.", "synonyms": ["Building Materials", "Cement", "Aggregates", "Concrete"]},
+  {"uri": "https://kg.zommalabs.com/gics/Packaging", "label": "Containers & Packaging", "definition": "Manufacturers of containers, packaging materials, and related products.", "synonyms": ["Packaging", "Containers", "Packaging Materials", "Industrial Packaging"]},
+  {"uri": "https://kg.zommalabs.com/gics/MetalsMining", "label": "Metals & Mining", "definition": "Companies engaged in mining, refining, and processing metals and minerals.", "synonyms": ["Mining", "Metals", "Mining Companies", "Gold Mining", "Copper Mining", "Steel", "Aluminum"]},
+  {"uri": "https://kg.zommalabs.com/gics/PaperForest", "label": "Paper & Forest Products", "definition": "Producers of paper, pulp, timber, and forest products.", "synonyms": ["Paper Products", "Forest Products", "Timber", "Pulp & Paper", "Lumber"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/AerospaceDefense", "label": "Aerospace & Defense", "definition": "Manufacturers of aircraft, defense equipment, and space-related products.", "synonyms": ["Aerospace", "Defense", "Defense Contractors", "Aviation", "Military", "Space Industry"]},
+  {"uri": "https://kg.zommalabs.com/gics/BuildingProducts", "label": "Building Products", "definition": "Manufacturers of building components, fixtures, and home improvement products.", "synonyms": ["Building Supplies", "Home Improvement", "Building Components"]},
+  {"uri": "https://kg.zommalabs.com/gics/ConstructionEngineering", "label": "Construction & Engineering", "definition": "Companies providing construction, engineering, and infrastructure development services.", "synonyms": ["Engineering", "Infrastructure", "Construction Services", "Civil Engineering", "EPC"]},
+  {"uri": "https://kg.zommalabs.com/gics/ElectricalEquipment", "label": "Electrical Equipment", "definition": "Manufacturers of electrical components, equipment, and power systems.", "synonyms": ["Electrical Components", "Power Equipment", "Electrical Systems"]},
+  {"uri": "https://kg.zommalabs.com/gics/Conglomerates", "label": "Industrial Conglomerates", "definition": "Diversified industrial companies operating across multiple business segments.", "synonyms": ["Conglomerates", "Diversified Industrials", "Multi-Industry"]},
+  {"uri": "https://kg.zommalabs.com/gics/Machinery", "label": "Machinery", "definition": "Manufacturers of industrial machinery, equipment, and machine tools.", "synonyms": ["Industrial Machinery", "Heavy Equipment", "Machine Tools", "Manufacturing Equipment"]},
+  {"uri": "https://kg.zommalabs.com/gics/TradingCompanies", "label": "Trading Companies & Distributors", "definition": "Companies engaged in wholesale distribution and trading of industrial products.", "synonyms": ["Trading Companies", "Distributors", "Wholesale Distribution", "Industrial Distribution"]},
+  {"uri": "https://kg.zommalabs.com/gics/CommercialServices", "label": "Commercial Services & Supplies", "definition": "Providers of commercial printing, office services, and business supplies.", "synonyms": ["Commercial Services", "Business Services", "Office Supplies", "Commercial Printing"]},
+  {"uri": "https://kg.zommalabs.com/gics/ProfessionalServices", "label": "Professional Services", "definition": "Companies providing consulting, research, staffing, and professional advisory services.", "synonyms": ["Consulting", "Staffing", "HR Services", "Research Services", "Advisory Services"]},
+  {"uri": "https://kg.zommalabs.com/gics/AirFreight", "label": "Air Freight & Logistics", "definition": "Companies providing air freight, courier, and logistics services.", "synonyms": ["Air Freight", "Logistics", "Courier Services", "Freight Forwarding", "Supply Chain Services"]},
+  {"uri": "https://kg.zommalabs.com/gics/Airlines", "label": "Passenger Airlines", "definition": "Companies providing scheduled passenger air transportation.", "synonyms": ["Airlines", "Aviation", "Air Travel", "Airline Industry", "Commercial Aviation"]},
+  {"uri": "https://kg.zommalabs.com/gics/Marine", "label": "Marine Transportation", "definition": "Companies providing ocean and inland waterway freight transportation.", "synonyms": ["Shipping", "Marine Shipping", "Ocean Freight", "Container Shipping", "Maritime"]},
+  {"uri": "https://kg.zommalabs.com/gics/GroundTransport", "label": "Ground Transportation", "definition": "Companies providing rail, trucking, and ground passenger transportation.", "synonyms": ["Trucking", "Rail", "Railroads", "Ground Freight", "Transportation", "Freight Rail"]},
+  {"uri": "https://kg.zommalabs.com/gics/TransportInfra", "label": "Transportation Infrastructure", "definition": "Operators of airports, ports, toll roads, and other transportation infrastructure.", "synonyms": ["Airports", "Ports", "Toll Roads", "Transport Infrastructure"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/AutoComponents", "label": "Automobile Components", "definition": "Manufacturers of auto parts, components, and accessories.", "synonyms": ["Auto Parts", "Auto Components", "Automotive Suppliers", "Car Parts"]},
+  {"uri": "https://kg.zommalabs.com/gics/Automobiles", "label": "Automobiles", "definition": "Manufacturers of passenger cars, trucks, and motorcycles.", "synonyms": ["Auto Industry", "Automakers", "Car Manufacturers", "Automotive", "Vehicle Manufacturing", "EVs", "Electric Vehicles"]},
+  {"uri": "https://kg.zommalabs.com/gics/HouseholdDurables", "label": "Household Durables", "definition": "Manufacturers of household appliances, home furnishings, and consumer electronics.", "synonyms": ["Appliances", "Home Furnishings", "Consumer Electronics", "Household Goods"]},
+  {"uri": "https://kg.zommalabs.com/gics/LeisureProducts", "label": "Leisure Products", "definition": "Manufacturers of recreational products, toys, and sporting goods.", "synonyms": ["Toys", "Sporting Goods", "Recreation", "Gaming Products", "Outdoor Recreation"]},
+  {"uri": "https://kg.zommalabs.com/gics/Apparel", "label": "Textiles, Apparel & Luxury Goods", "definition": "Manufacturers and retailers of clothing, footwear, and luxury items.", "synonyms": ["Apparel", "Fashion", "Clothing", "Luxury Goods", "Footwear", "Textiles"]},
+  {"uri": "https://kg.zommalabs.com/gics/HotelsRestaurants", "label": "Hotels, Restaurants & Leisure", "definition": "Operators of hotels, restaurants, cruise lines, and leisure facilities.", "synonyms": ["Hotels", "Restaurants", "Hospitality", "Leisure", "Casinos", "Gaming", "Cruise Lines", "Travel & Leisure"]},
+  {"uri": "https://kg.zommalabs.com/gics/ConsumerServices", "label": "Diversified Consumer Services", "definition": "Providers of education, training, and other consumer services.", "synonyms": ["Consumer Services", "Education Services", "Training Services"]},
+  {"uri": "https://kg.zommalabs.com/gics/Distributors", "label": "Distributors", "definition": "Wholesale distributors of consumer products and merchandise.", "synonyms": ["Wholesale Distributors", "Product Distribution"]},
+  {"uri": "https://kg.zommalabs.com/gics/BroadlineRetail", "label": "Broadline Retail", "definition": "Large retailers selling a wide variety of merchandise including department stores and mass merchants.", "synonyms": ["Department Stores", "Mass Merchants", "General Merchandise", "Big Box Retail", "Retail"]},
+  {"uri": "https://kg.zommalabs.com/gics/SpecialtyRetail", "label": "Specialty Retail", "definition": "Retailers focused on specific product categories like electronics, home improvement, or apparel.", "synonyms": ["Specialty Stores", "Electronics Retail", "Home Improvement Retail", "Apparel Retail"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/ConsumerStaplesRetail", "label": "Consumer Staples Distribution & Retail", "definition": "Retailers and distributors of food, beverages, and household staples.", "synonyms": ["Grocery Stores", "Supermarkets", "Food Retail", "Consumer Staples Retail", "Food Distribution"]},
+  {"uri": "https://kg.zommalabs.com/gics/Beverages", "label": "Beverages", "definition": "Producers of alcoholic and non-alcoholic beverages.", "synonyms": ["Beverage Industry", "Soft Drinks", "Alcoholic Beverages", "Beer", "Wine", "Spirits"]},
+  {"uri": "https://kg.zommalabs.com/gics/FoodProducts", "label": "Food Products", "definition": "Producers and processors of packaged foods and agricultural products.", "synonyms": ["Food Industry", "Packaged Foods", "Food Processing", "Food Manufacturing", "Consumer Foods"]},
+  {"uri": "https://kg.zommalabs.com/gics/Tobacco", "label": "Tobacco", "definition": "Manufacturers of cigarettes, cigars, and tobacco products.", "synonyms": ["Tobacco Industry", "Cigarettes", "Tobacco Products"]},
+  {"uri": "https://kg.zommalabs.com/gics/HouseholdProducts", "label": "Household Products", "definition": "Manufacturers of cleaning products, personal care items, and household consumables.", "synonyms": ["Consumer Products", "Cleaning Products", "Home Care"]},
+  {"uri": "https://kg.zommalabs.com/gics/PersonalCare", "label": "Personal Care Products", "definition": "Manufacturers of cosmetics, toiletries, and personal care items.", "synonyms": ["Personal Care", "Cosmetics", "Beauty Products", "Toiletries", "Skincare"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/HealthEquipment", "label": "Health Care Equipment & Supplies", "definition": "Manufacturers of medical devices, equipment, and supplies.", "synonyms": ["Medical Devices", "Medical Equipment", "Health Care Supplies", "Medical Technology", "MedTech"]},
+  {"uri": "https://kg.zommalabs.com/gics/HealthProviders", "label": "Health Care Providers & Services", "definition": "Operators of hospitals, clinics, and health care service providers.", "synonyms": ["Hospitals", "Health Care Services", "Clinics", "Healthcare Providers", "Managed Care", "Health Insurance"]},
+  {"uri": "https://kg.zommalabs.com/gics/HealthTech", "label": "Health Care Technology", "definition": "Providers of healthcare IT systems, software, and data analytics.", "synonyms": ["Healthcare IT", "Health Tech", "Medical Software", "Healthcare Analytics"]},
+  {"uri": "https://kg.zommalabs.com/gics/Biotech", "label": "Biotechnology", "definition": "Companies using biological processes to develop drugs and therapies.", "synonyms": ["Biotech", "Biopharma", "Gene Therapy", "Cell Therapy", "Biologics"]},
+  {"uri": "https://kg.zommalabs.com/gics/Pharma", "label": "Pharmaceuticals", "definition": "Companies that research, develop, and manufacture prescription drugs.", "synonyms": ["Pharma", "Drug Companies", "Pharmaceutical Industry", "Prescription Drugs", "Big Pharma"]},
+  {"uri": "https://kg.zommalabs.com/gics/LifeSciences", "label": "Life Sciences Tools & Services", "definition": "Providers of research tools, contract research, and laboratory services.", "synonyms": ["Life Sciences", "CRO", "Contract Research", "Lab Services", "Research Tools"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/Banks", "label": "Banks", "definition": "Commercial and retail banks providing deposit, lending, and financial services.", "synonyms": ["Banking", "Commercial Banks", "Retail Banks", "Financial Institutions", "Bank Industry"]},
+  {"uri": "https://kg.zommalabs.com/gics/FinancialServices", "label": "Financial Services", "definition": "Diversified financial companies providing multiple financial services.", "synonyms": ["Diversified Financials", "Financial Holding Companies", "Multi-line Financials"]},
+  {"uri": "https://kg.zommalabs.com/gics/ConsumerFinance", "label": "Consumer Finance", "definition": "Companies providing consumer loans, credit cards, and personal finance services.", "synonyms": ["Consumer Lending", "Credit Cards", "Personal Loans", "Consumer Credit", "Buy Now Pay Later", "BNPL"]},
+  {"uri": "https://kg.zommalabs.com/gics/CapitalMarkets", "label": "Capital Markets", "definition": "Investment banks, brokerages, and asset management firms.", "synonyms": ["Investment Banking", "Asset Management", "Brokerage", "Securities", "Wealth Management", "Trading", "Wall Street"]},
+  {"uri": "https://kg.zommalabs.com/gics/MortgageREITs", "label": "Mortgage REITs", "definition": "REITs that invest in mortgages and mortgage-backed securities.", "synonyms": ["Mortgage REITs", "mREITs", "Mortgage Investment"]},
+  {"uri": "https://kg.zommalabs.com/gics/Insurance", "label": "Insurance", "definition": "Companies providing life, property, casualty, and specialty insurance.", "synonyms": ["Insurance Industry", "Life Insurance", "Property Insurance", "Casualty Insurance", "Insurers", "Underwriters"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/ITServices", "label": "IT Services", "definition": "Companies providing IT consulting, outsourcing, and technology services.", "synonyms": ["IT Consulting", "Tech Services", "IT Outsourcing", "Systems Integration", "Managed Services"]},
+  {"uri": "https://kg.zommalabs.com/gics/Software", "label": "Software", "definition": "Companies that develop and publish software applications and systems.", "synonyms": ["Software Industry", "Enterprise Software", "SaaS", "Application Software", "Cloud Software", "Tech"]},
+  {"uri": "https://kg.zommalabs.com/gics/CommEquipment", "label": "Communications Equipment", "definition": "Manufacturers of networking, telecom, and communications hardware.", "synonyms": ["Networking Equipment", "Telecom Equipment", "Network Infrastructure", "5G Equipment"]},
+  {"uri": "https://kg.zommalabs.com/gics/TechHardware", "label": "Technology Hardware, Storage & Peripherals", "definition": "Manufacturers of computers, storage devices, and peripherals.", "synonyms": ["Computer Hardware", "PCs", "Storage", "Peripherals", "Hardware", "Servers", "Data Centers"]},
+  {"uri": "https://kg.zommalabs.com/gics/Electronics", "label": "Electronic Equipment, Instruments & Components", "definition": "Manufacturers of electronic components, instruments, and industrial electronics.", "synonyms": ["Electronics", "Electronic Components", "Semiconductors Equipment", "Instruments", "Sensors"]},
+  {"uri": "https://kg.zommalabs.com/gics/Semiconductors", "label": "Semiconductors & Semiconductor Equipment", "definition": "Designers and manufacturers of chips, processors, and semiconductor equipment.", "synonyms": ["Semiconductors", "Chips", "Chipmakers", "Processors", "Foundries", "Semiconductor Industry", "Chip Industry"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/Telecom", "label": "Diversified Telecommunication Services", "definition": "Providers of fixed-line and broadband telecommunications services.", "synonyms": ["Telecom", "Telecommunications", "Telcos", "Broadband", "Fixed Line", "Internet Service Providers", "ISPs"]},
+  {"uri": "https://kg.zommalabs.com/gics/Wireless", "label": "Wireless Telecommunication Services", "definition": "Providers of wireless and mobile telecommunications services.", "synonyms": ["Wireless", "Mobile", "Cellular", "Mobile Carriers", "Wireless Carriers"]},
+  {"uri": "https://kg.zommalabs.com/gics/MediaIndustry", "label": "Media", "definition": "Companies in publishing, broadcasting, and advertising.", "synonyms": ["Publishing", "Broadcasting", "Advertising", "Media Companies", "News Media"]},
+  {"uri": "https://kg.zommalabs.com/gics/Entertainment", "label": "Entertainment", "definition": "Companies producing movies, TV content, music, and live entertainment.", "synonyms": ["Entertainment Industry", "Movies", "Film", "Music", "Live Entertainment", "Studios", "Streaming"]},
+  {"uri": "https://kg.zommalabs.com/gics/InteractiveMedia", "label": "Interactive Media & Services", "definition": "Internet platforms, search engines, and social media companies.", "synonyms": ["Social Media", "Internet", "Search Engines", "Digital Platforms", "Online Services", "Big Tech", "Tech Platforms"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/ElectricUtilities", "label": "Electric Utilities", "definition": "Companies generating, transmitting, and distributing electricity.", "synonyms": ["Electric Companies", "Power Generation", "Electricity", "Electric Power", "Utilities"]},
+  {"uri": "https://kg.zommalabs.com/gics/GasUtilities", "label": "Gas Utilities", "definition": "Companies distributing natural gas to end users.", "synonyms": ["Gas Companies", "Natural Gas Distribution", "Gas Distribution"]},
+  {"uri": "https://kg.zommalabs.com/gics/MultiUtilities", "label": "Multi-Utilities", "definition": "Companies providing multiple utility services including electric, gas, and water.", "synonyms": ["Multi-Utilities", "Diversified Utilities", "Utility Companies"]},
+  {"uri": "https://kg.zommalabs.com/gics/WaterUtilities", "label": "Water Utilities", "definition": "Companies providing water supply and wastewater treatment services.", "synonyms": ["Water Companies", "Water Supply", "Wastewater", "Water Treatment"]},
+  {"uri": "https://kg.zommalabs.com/gics/RenewableEnergy", "label": "Independent Power & Renewable Electricity", "definition": "Independent power producers and renewable energy companies.", "synonyms": ["Renewable Energy", "Solar", "Wind Power", "Clean Energy", "IPPs", "Green Energy", "Renewables"]},
+
+  {"uri": "https://kg.zommalabs.com/gics/DiversifiedREITs", "label": "Diversified REITs", "definition": "REITs investing across multiple property types.", "synonyms": ["Diversified REITs", "Multi-Property REITs"]},
+  {"uri": "https://kg.zommalabs.com/gics/IndustrialREITs", "label": "Industrial REITs", "definition": "REITs focused on warehouses, distribution centers, and industrial properties.", "synonyms": ["Industrial REITs", "Warehouse REITs", "Logistics REITs"]},
+  {"uri": "https://kg.zommalabs.com/gics/HotelREITs", "label": "Hotel & Resort REITs", "definition": "REITs investing in hotels, resorts, and lodging properties.", "synonyms": ["Hotel REITs", "Lodging REITs", "Resort REITs"]},
+  {"uri": "https://kg.zommalabs.com/gics/OfficeREITs", "label": "Office REITs", "definition": "REITs focused on office buildings and commercial office space.", "synonyms": ["Office REITs", "Commercial Office", "Office Properties"]},
+  {"uri": "https://kg.zommalabs.com/gics/HealthREITs", "label": "Health Care REITs", "definition": "REITs investing in hospitals, medical offices, and senior housing.", "synonyms": ["Healthcare REITs", "Medical REITs", "Senior Housing REITs"]},
+  {"uri": "https://kg.zommalabs.com/gics/ResidentialREITs", "label": "Residential REITs", "definition": "REITs focused on apartments and residential rental properties.", "synonyms": ["Apartment REITs", "Residential REITs", "Multifamily REITs"]},
+  {"uri": "https://kg.zommalabs.com/gics/RetailREITs", "label": "Retail REITs", "definition": "REITs investing in shopping centers, malls, and retail properties.", "synonyms": ["Retail REITs", "Shopping Center REITs", "Mall REITs"]},
+  {"uri": "https://kg.zommalabs.com/gics/SpecializedREITs", "label": "Specialized REITs", "definition": "REITs focused on specialized properties like data centers, cell towers, and self-storage.", "synonyms": ["Specialty REITs", "Data Center REITs", "Cell Tower REITs", "Self-Storage REITs", "Infrastructure REITs"]},
+  {"uri": "https://kg.zommalabs.com/gics/RealEstateServices", "label": "Real Estate Management & Development", "definition": "Companies providing real estate services, development, and property management.", "synonyms": ["Real Estate", "Property Management", "Real Estate Development", "Real Estate Services", "Property Development"]},
+
+  {"uri": "https://kg.zommalabs.com/topic/Lobbying", "label": "Lobbying", "definition": "Activities aimed at influencing government officials and legislation on behalf of business interests.", "synonyms": ["Political Lobbying", "Government Relations", "Legislative Advocacy", "Policy Advocacy", "Influence"]},
+  {"uri": "https://kg.zommalabs.com/topic/CampaignFinance", "label": "Campaign Finance", "definition": "Political contributions and spending by corporations and individuals to influence elections.", "synonyms": ["Political Contributions", "PAC", "Political Action Committee", "Political Donations", "Election Spending"]},
+  {"uri": "https://kg.zommalabs.com/topic/CorporateHistory", "label": "Corporate History", "definition": "The historical development, milestones, and evolution of a company over time.", "synonyms": ["Company History", "Historical Background", "Founding History", "Corporate Timeline", "Company Origins"]},
+  {"uri": "https://kg.zommalabs.com/topic/EquityIndices", "label": "Equity Indices", "definition": "Stock market indices that track the performance of a basket of stocks.", "synonyms": ["Stock Indices", "Market Indices", "Index Funds", "S&P 500", "Dow Jones", "NASDAQ Composite", "Index Membership"]},
+  {"uri": "https://kg.zommalabs.com/topic/InstitutionalOwnership", "label": "Institutional Ownership", "definition": "Shares held by institutional investors such as mutual funds, pension funds, and hedge funds.", "synonyms": ["Institutional Investors", "Institutional Holdings", "Fund Ownership", "Institutional Shareholders"]},
+  {"uri": "https://kg.zommalabs.com/topic/ReputationalRisk", "label": "Reputational Risk", "definition": "Risk of damage to a company's reputation that could affect its business and stock price.", "synonyms": ["Reputation Risk", "Brand Risk", "Public Relations Risk", "Reputational Damage"]},
+  {"uri": "https://kg.zommalabs.com/topic/ProductLaunch", "label": "Product Launch", "definition": "The introduction of new products or services to the market.", "synonyms": ["Product Release", "New Product", "Product Announcement", "Product Introduction", "Launch Event"]},
+  {"uri": "https://kg.zommalabs.com/topic/GeographicExpansion", "label": "Geographic Expansion", "definition": "A company's expansion into new geographic markets or regions.", "synonyms": ["International Expansion", "Market Entry", "Geographic Scope", "Regional Expansion", "Global Expansion"]},
+  {"uri": "https://kg.zommalabs.com/topic/CustomerRelationships", "label": "Customer Relationships", "definition": "Business relationships with customers including contracts, partnerships, and retention.", "synonyms": ["Customer Base", "Client Relationships", "Customer Contracts", "Key Customers", "Customer Retention"]},
+  {"uri": "https://kg.zommalabs.com/topic/CompetitiveLandscape", "label": "Competitive Landscape", "definition": "The competitive environment including competitors, market dynamics, and competitive positioning.", "synonyms": ["Competition", "Competitors", "Competitive Environment", "Industry Competition", "Market Competition"]},
+  {"uri": "https://kg.zommalabs.com/topic/OperationalEfficiency", "label": "Operational Efficiency", "definition": "Measures of how effectively a company uses its resources to generate output.", "synonyms": ["Operations", "Operational Performance", "Efficiency", "Productivity", "Operational Metrics"]},
+  {"uri": "https://kg.zommalabs.com/topic/SecurityIdentifiers", "label": "Security Identifiers", "definition": "Unique identifiers for securities including ticker symbols, CUSIPs, and ISINs.", "synonyms": ["Ticker Symbol", "CUSIP", "ISIN", "Stock Symbol", "Trading Symbol", "Tickers"]},
+
+  {
+    "uri": "https://kg.zommalabs.com/topic/FinancialReporting",
+    "label": "Financial Reporting",
+    "definition": "The process of producing financial statements and disclosures for stakeholders.",
+    "synonyms": ["Financial Statements", "Financial Disclosures", "Reporting Period", "Financial Results", "Quarterly Results", "Annual Results"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Demand",
+    "label": "Demand",
+    "definition": "The quantity of goods or services that consumers are willing and able to purchase.",
+    "synonyms": ["Market Demand", "Customer Demand", "Consumer Demand", "Demand Growth", "Demand Decline", "Weak Demand", "Strong Demand"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Prices",
+    "label": "Prices",
+    "definition": "The monetary value at which goods and services are bought and sold.",
+    "synonyms": ["Pricing", "Price Levels", "Price Changes", "Price Increases", "Price Decreases", "Price Trends"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BusinessActivity",
+    "label": "Business Activity",
+    "definition": "The level and nature of commercial operations and transactions.",
+    "synonyms": ["Business Operations", "Commercial Activity", "Business Conditions", "Operating Activity", "Business Volume"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/SocialServices",
+    "label": "Social Services",
+    "definition": "Government and nonprofit programs providing assistance to individuals and communities.",
+    "synonyms": ["Social Programs", "Public Services", "Community Services", "Welfare Services", "Human Services"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Technology",
+    "label": "Technology",
+    "definition": "The application of scientific knowledge for practical purposes, especially in industry.",
+    "synonyms": ["Tech", "Technology Sector", "Technology Industry", "Tech Industry", "Technological Innovation"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/InvestorRelations",
+    "label": "Investor Relations",
+    "definition": "Corporate communications with shareholders and the investment community.",
+    "synonyms": ["IR", "Shareholder Communications", "Investor Communications", "Shareholder Relations"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CorporateCulture",
+    "label": "Corporate Culture",
+    "definition": "The shared values, beliefs, and practices that characterize a company.",
+    "synonyms": ["Company Culture", "Workplace Culture", "Organizational Culture", "Corporate Values", "Mission Statement"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ProductsAndServices",
+    "label": "Products And Services",
+    "definition": "The goods and services offered by a company to its customers.",
+    "synonyms": ["Products and Services", "Product Offerings", "Service Offerings", "Product Portfolio", "Product Line"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ServicesIndustry",
+    "label": "Services Industry",
+    "definition": "The sector of the economy that provides services rather than physical goods.",
+    "synonyms": ["Services Sector", "Service Industry", "Service Economy", "Business Services"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/InternationalOperations",
+    "label": "International Operations",
+    "definition": "Business activities conducted outside a company's home country.",
+    "synonyms": ["International Business", "Global Operations", "Foreign Operations", "Overseas Operations", "International Markets"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Safety",
+    "label": "Safety",
+    "definition": "Measures and practices to prevent accidents, injuries, and harm in business operations.",
+    "synonyms": ["Workplace Safety", "Product Safety", "Public Safety", "Safety Standards", "Safety Regulations"]
   }
 ]

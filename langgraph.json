@@ -1,7 +1,8 @@
 {
   "$schema": "https://langchain-ai.github.io/langgraph/langgraph.json",
   "graphs": {
-    "agent": "./src/agents/kg_agent.py:make_graph"
+    "deep_research_rag": "./src/querying_system/deep_research_rag/graph.py:graph",
+    "deep_research_kg": "./src/querying_system/deep_research/graph.py:graph"
   },
   "env": ".env",
   "dependencies": ["."],

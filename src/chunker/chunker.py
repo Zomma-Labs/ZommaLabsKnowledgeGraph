@@ -18,7 +18,7 @@ SAVE_SCRAPE = True
 SAVE_CHUNKS = True
 from .loader import iter_document_payloads
 from .scraper import StructuralScraper
-from .types import Chunk, ChunkStats, ScrapeArtifact, TableRowPayload
+from .chunk_types import Chunk, ChunkStats, ScrapeArtifact, TableRowPayload
 
 logger = logging.getLogger(__name__)
 

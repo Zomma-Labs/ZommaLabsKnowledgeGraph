@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-01-06T11:49:23.892983",
+  "system": "structured_pipeline",
+  "total_questions": 5,
+  "summary": {
+    "correct": 1,
+    "partially_correct": 0,
+    "incorrect": 4,
+    "unanswerable": 0,
+    "avg_agent_time_sec": 11.56553406715393,
+    "avg_chunks": 3.0
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "Which Federal Reserve Bank prepared the October 2025 Beige Book report?",
+      "expected": "The Federal Reserve Bank of San Francisco prepared the October 2025 Beige Book report.",
+      "answer": "Direct answer:  \nBased on the available evidence, the October 2025 Beige Book is identified only as a publication of the \u201cFEDERAL RESERVE SYSTEM,\u201d and the specific Federal Reserve Bank that prepared this report is not stated. [CHUNK: ed01c792-87ea-4517-98cc-75c4d1d65146]\n\nSupporting details:  \n- The header of the report reads: \u201cThe Beige Book \u2013 Summary of Commentary on Current Economic Conditions by Federal Reserve District \u2013 October 2025 \u2013 FEDERAL RESERVE SYSTEM,\u201d which attributes it generally to the Federal Reserve System but does not name an individual Reserve Bank as the preparer. [CHUNK: ed01c792-87ea-4517-98cc-75c4d1d65146]  \n- Separate evidence refers to the \u201cFederal Reserve Bank of Kansas City\u201d in a different context (\u201cCommunity and Regional Banking\u201d) but does not link this bank to the preparation of the October 2025 Beige Book document. [CHUNK: f504bda0-f795-44a9-936c-cec770f66e18]\n\nLimitations:  \nBased on the available evidence, there is no explicit statement identifying which specific Federal Reserve Bank prepared the October 2025 Beige Book, so this cannot be determined from the provided material. [CHUNK: ed01c792-87ea-4517-98cc-75c4d1d65146][CHUNK: f504bda0-f795-44a9-936c-cec770f66e18]",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states that the Federal Reserve Bank of San Francisco prepared the October 2025 Beige Book. The agent instead claims the preparing Reserve Bank is not stated and cannot be determined, which contradicts the expected fact and does not provide the correct bank.",
+      "query_type": "entity_relationship",
+      "agent_time": 19.852757453918457,
+      "analysis_time_ms": 1162,
+      "retrieval_time_ms": 6596,
+      "generation_time_ms": 12093,
+      "chunks_retrieved": 2,
+      "fallback_used": false
+    },
+    {
+      "question_id": 2,
+      "question": "What is the Beige Book?",
+      "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+      "answer": "**Direct Answer**\n\nThe Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. [CHUNK: 4768ba1c-f8bd-4e1c-9bf1-7a9e63c3904b]\n\n**Supporting Details**\n\n- It characterizes regional economic conditions and prospects using a variety of mostly qualitative information gathered directly from each District's sources. [CHUNK: 4768ba1c-f8bd-4e1c-9bf1-7a9e63c3904b]  \n- Reports are published eight times per year. [CHUNK: 4768ba1c-f8bd-4e1c-9bf1-7a9e63c3904b]\n\n**Limitations**\n\nBased on the available evidence, there is no additional detail about specific data sources, how the information is used in policymaking, or the history of the Beige Book. [CHUNK: 4768ba1c-f8bd-4e1c-9bf1-7a9e63c3904b]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer matches the expected definition: it identifies the Beige Book as a Federal Reserve System publication on current economic conditions across the 12 Federal Reserve Districts and notes it is based largely on qualitative information gathered from each District\u2019s sources. The extra detail about being published eight times per year does not conflict with the expected answer.",
+      "query_type": "entity_relationship",
+      "agent_time": 8.708873510360718,
+      "analysis_time_ms": 746,
+      "retrieval_time_ms": 3492,
+      "generation_time_ms": 4470,
+      "chunks_retrieved": 1,
+      "fallback_used": false
+    },
+    {
+      "question_id": 3,
+      "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+      "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+      "answer": "Direct Answer:  \n\nBased on the available evidence, the Beige Book summarizes economic conditions \u201cby Federal Reserve District,\u201d but the number of Districts covered is not stated in the provided text. [CHUNK: ed01c792-87ea-4517-98cc-75c4d1d65146]\n\nSupporting Details:  \n\n- The document is titled \u201cSummary of Commentary on Current Economic Conditions by Federal Reserve District,\u201d indicating that its structure is organized around Federal Reserve Districts. [CHUNK: ed01c792-87ea-4517-98cc-75c4d1d65146]  \n- There is a section labeled \u201cFederal Reserve Bank of Minneapolis,\u201d and the text refers to it as a \u201cDistrict,\u201d showing that individual Federal Reserve Districts (such as Minneapolis) are covered. [CHUNK: e73412e9-d6ab-4359-8b6f-9375d3db8b68]; [CHUNK: ee147fec-120b-4077-925a-c99f363e2eac]  \n- Another section on \u201cPrices\u201d references multiple Districts, including the \u201cSixth District\u201d and the \u201cTwelfth District,\u201d confirming that at least these numbered Districts are included. [CHUNK: 043f769e-14bb-4b3b-96a1-80cf228076e6]\n\nLimitations:  \n\nBased on the available evidence, there is no explicit statement of the total number of Federal Reserve Districts covered in the Beige Book, so the exact count cannot be determined from these excerpts alone.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is that the Beige Book covers 12 Federal Reserve Districts. The agent stated the number is not provided and cannot be determined from the text, rather than giving 12. Therefore it does not answer the question correctly.",
+      "query_type": "entity_relationship",
+      "agent_time": 9.664453029632568,
+      "analysis_time_ms": 98,
+      "retrieval_time_ms": 4278,
+      "generation_time_ms": 5287,
+      "chunks_retrieved": 6,
+      "fallback_used": false
+    },
+    {
+      "question_id": 4,
+      "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+      "expected": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+      "answer": "**Direct Answer**\n\nBased on the available evidence, the October 2025 Beige Book document is identified, but the retrieved excerpts do not contain a nationwide summary of how overall economic activity changed; only a partial regional summary (Richmond District) is shown, so the change in overall economic activity across all districts cannot be determined from this evidence alone. [CHUNK: ed01c792-87ea-4517-98cc-75c4d1d65146]  \n\n**Supporting Details from Available Evidence**\n\n- The document titled \u201cThe Beige Book, Summary of Commentary on Current Economic Conditions by Federal Reserve District, October 2025\u201d is referenced, confirming the existence and date of the October 2025 Beige Book. [CHUNK: ed01c792-87ea-4517-98cc-75c4d1d65146]  \n- The Beige Book is described generally as a Federal Reserve System publication about \u201ccurrent economic conditions across the 12 Federal Reserve Districts,\u201d characterizing \u201cregional economic conditions and prospects\u201d using mostly qualitative information, published eight times per year. [CHUNK: 4768ba1c-f8bd-4e1c-9bf1-7a9e63c3904b]  \n- Its stated purpose is \u201cto characterize the change in economic conditions since the last\u201d report, based on information from a wide range of contacts, and it is not a commentary on Federal Reserve officials\u2019 views. [CHUNK: bb6bfd77-f982-43c7-886e-1de82f2133f6]  \n- For the Federal Reserve Bank of Richmond specifically, activity in \u201cthe remaining sectors was generally flat,\u201d manufacturing activity \u201cdeclined slightly,\u201d employment was \u201cunchanged, on balance,\u201d wage growth \u201cremained moderate,\u201d and overall year\u2011over\u2011year price growth \u201cremained within a moderate range.\u201d [CHUNK: e7e8738d-fea3-4a75-bab7-d47a343cecf2]  \n\n**Limitations**\n\n- The evidence does not include the national summary section of the October 2025 Beige Book or district-level summaries beyond Richmond. [CHUNK: ed01c792-87ea-4517-98cc-75c4d1d65146]  \n- Because of this, the change in **overall** U.S. economic activity according to the October 2025 Beige Book cannot be fully or precisely described based on the retrieved excerpts; only Richmond District conditions (generally flat activity with slight manufacturing decline and unchanged employment) are available. [CHUNK: e7e8738d-fea3-4a75-bab7-d47a343cecf2]",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states the Beige Book\u2019s national summary: activity changed little on balance, with 3 districts slight/modest growth, 5 no change, and 4 slight softening. The agent instead claims the overall change cannot be determined from the evidence and provides only Richmond details. This contradicts the question\u2019s requirement and omits the key national summary facts.",
+      "query_type": "global_theme",
+      "agent_time": 11.784249067306519,
+      "analysis_time_ms": 96,
+      "retrieval_time_ms": 2347,
+      "generation_time_ms": 9340,
+      "chunks_retrieved": 4,
+      "fallback_used": false
+    },
+    {
+      "question_id": 5,
+      "question": "Which districts reported slight to modest economic growth?",
+      "expected": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+      "answer": "**Direct Answer**\n\nBased on the available evidence, none of the referenced districts are reported as having overall \u201cslight to modest economic growth\u201d; the Fourth District (Cleveland) is described as having \u201cflat business activity,\u201d and the Sixth District (Atlanta) economy is described as \u201cunchanged.\u201d [CHUNK: 6b748b97-7661-41ed-845f-99939e01859f] [CHUNK: 4b78ed98-489a-447e-90ea-ba7b4e9165f0]\n\n**Supporting Details**\n\n- For the Fourth District (Cleveland), contacts \u201csuggested flat business activity in recent weeks,\u201d though they \u201cexpected activity to increase modestly in the months ahead,\u201d indicating anticipated, but not current, modest growth. [CHUNK: 6b748b97-7661-41ed-845f-99939e01859f]  \n- For the Sixth District (Atlanta), \u201cThe Sixth District economy was unchanged,\u201d which does not indicate slight or modest growth. [CHUNK: 4b78ed98-489a-447e-90ea-ba7b4e9165f0]\n\n**Limitations**\n\nBased on the available evidence, only the Cleveland and Atlanta district summaries are provided. The question asks which districts reported slight to modest economic growth across all districts, but the evidence does not include information for the other Federal Reserve districts, so a complete list cannot be determined from these excerpts alone.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer states that Boston (First), Philadelphia (Third), and Richmond (Fifth) reported slight to modest growth. The agent instead claims none of the referenced districts reported slight to modest growth and discusses only Cleveland (Fourth) and Atlanta (Sixth), concluding the needed information isn\u2019t present. This contradicts the expected districts and fails to name the correct ones.",
+      "query_type": "global_theme",
+      "agent_time": 7.817337274551392,
+      "analysis_time_ms": 186,
+      "retrieval_time_ms": 1220,
+      "generation_time_ms": 6410,
+      "chunks_retrieved": 2,
+      "fallback_used": false
+    }
+  ]
+}

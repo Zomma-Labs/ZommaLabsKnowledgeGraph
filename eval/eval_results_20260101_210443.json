@@ -1,0 +1,189 @@
+{
+  "timestamp": "2026-01-01T21:04:43.055462",
+  "total_questions": 10,
+  "timing": {
+    "avg_agent_time_sec": 9.526914429664611,
+    "avg_judge_time_sec": 2.0164332151412965,
+    "avg_total_time_sec": 11.543347644805909
+  },
+  "summary": {
+    "correct": 0,
+    "partially_correct": 0,
+    "incorrect": 10,
+    "unanswerable": 0
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "What is Alphabet Inc.?",
+      "expected_answer": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not answer the question and instead returned an internal tool/error message. It provided none of the expected factual information about Alphabet Inc.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 9.254060745239258,
+      "judge_time_sec": 2.5424649715423584,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet Inc. is an American multinational technology conglomerate holding company",
+        "Headquartered in Mountain View, California"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 2,
+      "question": "When was Alphabet Inc. created?",
+      "expected_answer": "Alphabet Inc. was created on October 2, 2015.",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is a specific creation date (October 2, 2015). The agent did not provide any date or relevant information, only an internal tool error message.",
+      "question_type": "temporal",
+      "difficulty": "easy",
+      "agent_time_sec": 9.252060413360596,
+      "judge_time_sec": 2.3457326889038086,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet Inc. was created on October 2, 2015."
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 3,
+      "question": "Where is Alphabet Inc. headquartered?",
+      "expected_answer": "Mountain View, California",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not provide a location for Alphabet Inc.'s headquarters; it only returned an internal tool error. The expected answer is Mountain View, California.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 9.251498699188232,
+      "judge_time_sec": 1.7582669258117676,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet Inc. is headquartered in Mountain View, California"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 4,
+      "question": "Who is the current CEO of Alphabet Inc.?",
+      "expected_answer": "Sundar Pichai",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not provide an answer to the question; it returned a tool/procedure error instead of naming the CEO. The expected answer is Sundar Pichai.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 10.25703239440918,
+      "judge_time_sec": 1.9765052795410156,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Sundar Pichai is the current CEO of Alphabet Inc."
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 5,
+      "question": "Who are the founders of Google (and later Alphabet)?",
+      "expected_answer": "Larry Page and Sergey Brin",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not answer the question and instead returned an internal tool error. The expected founders are Larry Page and Sergey Brin, which are not provided.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "agent_time_sec": 9.889366388320923,
+      "judge_time_sec": 1.3329484462738037,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Larry Page",
+        "Sergey Brin"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 6,
+      "question": "What is the domain name used by Alphabet Inc.?",
+      "expected_answer": "abc.xyz",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The expected domain name is \"abc.xyz\", but the agent returned only an internal tool error message and did not provide the domain name. Therefore it does not answer the question correctly.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.254558563232422,
+      "judge_time_sec": 3.2534382343292236,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet Inc.'s domain name is abc.xyz"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 7,
+      "question": "What are the ticker symbols for Alphabet on Nasdaq?",
+      "expected_answer": "GOOGL and GOOG",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not provide the ticker symbols for Alphabet on Nasdaq; it returned a tool/procedure error instead. The expected answer is the tickers GOOGL and GOOG.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.158889055252075,
+      "judge_time_sec": 1.637148380279541,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Alphabet ticker symbols on Nasdaq are GOOGL and GOOG"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 8,
+      "question": "Who is the Chairman of Alphabet Inc.?",
+      "expected_answer": "John L. Hennessy",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is a specific person (John L. Hennessy). The agent did not provide any answer and instead returned a tool/runtime error message, so it does not address the question.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.122550010681152,
+      "judge_time_sec": 1.7182645797729492,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Chairman of Alphabet Inc. is John L. Hennessy"
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 9,
+      "question": "Who is the CFO of Alphabet Inc.?",
+      "expected_answer": "Anat Ashkenazi",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The agent did not provide the CFO\u2019s name and instead returned a tool/database error. The expected answer is Anat Ashkenazi.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 10.113763809204102,
+      "judge_time_sec": 2.209289073944092,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Anat Ashkenazi is the CFO of Alphabet Inc."
+      ],
+      "tool_trace": null
+    },
+    {
+      "question_id": 10,
+      "question": "Who is the President and Chief Investment Officer of Alphabet?",
+      "expected_answer": "Ruth Porat",
+      "agent_answer": "Error: Error calling tool 'resolve_entity_or_topic': {neo4j_code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.vector.queryNodes`: Caused by: java.lang.IllegalArgumentException: There is no such vector schema index: entity_embeddings} {gql_status: 52N37} {gql_status_description: error: procedure exception - procedure execution error. Execution of the procedure db.index.vector.queryNodes() failed.}",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is Ruth Porat. The agent did not provide a person\u2019s name and instead returned a tool/procedure error message, so it does not address the question.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "agent_time_sec": 6.715364217758179,
+      "judge_time_sec": 1.3902735710144043,
+      "key_facts_matched": [],
+      "key_facts_missing": [
+        "Ruth Porat is the President and Chief Investment Officer of Alphabet"
+      ],
+      "tool_trace": null
+    }
+  ]
+}
