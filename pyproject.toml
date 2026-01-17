@@ -1,9 +1,38 @@
 [project]
 name = "zommalabskg"
 version = "0.1.0"
-description = "Add your description here"
+description = "Knowledge graph ingestion pipeline for financial documents using LLMs and Neo4j"
 readme = "README.md"
 requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Zomma Labs"}
+]
+keywords = [
+    "knowledge-graph",
+    "neo4j",
+    "nlp",
+    "financial-documents",
+    "rag",
+    "llm",
+    "information-extraction"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Database :: Database Engines/Servers",
+]
+
+[project.urls]
+Homepage = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph"
+Repository = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph"
+Issues = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph/issues"
 dependencies = [
     "docling>=2.63.0",
     "docling-core>=2.52.0",
