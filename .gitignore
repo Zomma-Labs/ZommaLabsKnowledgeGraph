@@ -16,3 +16,14 @@ wheels/
 *.log
 !README.txt
 !requirements.txt
+
+# Qdrant vector store data (local only)
+qdrant_*/
+qdrant_data/
+
+# Node.js (if accidentally added)
+node_modules/
+package-lock.json
+
+# Cache files
+*.npz
