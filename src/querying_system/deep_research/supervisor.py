@@ -21,6 +21,33 @@ from .researcher import run_researcher
 from src.util.llm_client import get_llm, get_nano_llm
 
 
+class ResearchPlanItem(BaseModel):
+    """Planned research topic with optional search hints."""
+    topic: str = Field(..., description="Specific topic/question to research")
+    hints: list[str] = Field(default_factory=list, description="Entities/terms to search for")
+
+
+class ResearchPlan(BaseModel):
+    """Structured plan for targeted research."""
+    topics: list[ResearchPlanItem] = Field(default_factory=list)
+
+
+PLAN_RESEARCH_PROMPT = """You are planning targeted research topics for a knowledge graph.
+
+Break the question into 2-4 specific research topics that can be investigated independently.
+Each topic should be concise and focused. Include optional search hints (entities or terms).
+
+Return JSON with this structure:
+{
+  "topics": [
+    {"topic": "specific research topic", "hints": ["entity1", "term2"]}
+  ]
+}
+
+QUESTION: {question}
+"""
+
+
 # === Supervisor Tools ===
 
 # Placeholder - actual execution happens in the tools node
@@ -47,6 +74,32 @@ def research_complete() -> str:
 
 
 SUPERVISOR_TOOLS = [conduct_research, research_complete]
+
+
+async def plan_research(question: str, user_id: str = "default") -> list[dict]:
+    """
+    Create a lightweight research plan without running the supervisor graph.
+
+    Returns list of dicts: [{"topic": "...", "hints": [...]}, ...]
+    """
+    planner = get_nano_llm().with_structured_output(ResearchPlan)
+    prompt = PLAN_RESEARCH_PROMPT.format(question=question)
+
+    try:
+        result = await asyncio.to_thread(
+            planner.invoke,
+            [HumanMessage(content=prompt)]
+        )
+        topics = []
+        for item in result.topics:
+            topic = (item.topic or "").strip()
+            if not topic:
+                continue
+            topics.append({"topic": topic, "hints": item.hints or []})
+        return topics
+    except Exception:
+        # Fallback: single-topic plan
+        return [{"topic": question, "hints": []}]
 
 
 def create_supervisor_graph(user_id: str = "default", max_iterations: int = 3, max_concurrent: int = 3):

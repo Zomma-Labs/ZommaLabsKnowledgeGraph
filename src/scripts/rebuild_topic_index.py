@@ -21,7 +21,7 @@ from src.util.llm_client import get_embeddings
 CUSTOM_TOPICS_DIR = "src/config/topics"
 QDRANT_PATH = "./qdrant_topics"
 COLLECTION_NAME = "topic_ontology"
-VECTOR_SIZE = 1024  # Voyage finance-2
+VECTOR_SIZE = 3072  # OpenAI text-embedding-3-large
 BATCH_SIZE = 50
 
 

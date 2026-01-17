@@ -36,6 +36,9 @@ class SubQuery(BaseModel):
     entity_hints: list[str] = Field(
         default_factory=list, description="Entity names to resolve"
     )
+    topic_hints: list[str] = Field(
+        default_factory=list, description="Topic names to resolve"
+    )
 
 
 class QueryDecomposition(BaseModel):

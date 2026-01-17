@@ -24,7 +24,8 @@ CONVERSION_PROMPT = """Convert the contents of this PDF into well-formatted Mark
 Preserve all structural elements like headings, lists, tables, and paragraphs.
 Maintain the original formatting and hierarchy. Ensure the output is clean.
 You can remove the headers and footers.
-All headers should use # where the number of # indicates their level (# for h1, ## for h2, etc.)."""
+All headers should use # where the number of # indicates their level (# for h1, ## for h2, etc.).
+All tables MUST be formatted as HTML tables using <table>, <tr>, <th>, and <td> tags. Do NOT use markdown pipe tables."""
 
 
 def pdf_to_markdown(

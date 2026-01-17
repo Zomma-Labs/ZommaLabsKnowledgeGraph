@@ -57,7 +57,7 @@
     "uri": "https://kg.zommalabs.com/topic/WageGrowth",
     "label": "Wage Growth",
     "definition": "The rate at which employee compensation increases over time, a key inflation indicator.",
-    "synonyms": ["Wages", "Compensation", "Salary Increases", "Wage Pressures", "Wage Trends"]
+    "synonyms": ["Wages", "Compensation", "Salary Increases", "Wage Pressures", "Wage Trends", "Wage Levels", "Employee Wages"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/ConsumerSpending",
@@ -75,7 +75,7 @@
     "uri": "https://kg.zommalabs.com/topic/HousingMarket",
     "label": "Housing Market",
     "definition": "The market for residential real estate, including home sales, prices, and construction.",
-    "synonyms": ["Home Sales", "Residential Real Estate", "Housing Sector", "Home Prices", "Real Estate", "Rents", "Rental Market", "Housing Demand", "Home Construction"]
+    "synonyms": ["Home Sales", "Residential Real Estate", "Housing Sector", "Home Prices", "Real Estate", "Rents", "Rental Market", "Housing Demand", "Home Construction", "New Residential Real Estate"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/CommercialRealEstate",
@@ -93,7 +93,7 @@
     "uri": "https://kg.zommalabs.com/topic/CreditQuality",
     "label": "Credit Quality",
     "definition": "The assessment of a borrower's ability to repay debt, reflected in ratings and default rates.",
-    "synonyms": ["Credit Risk", "Default Risk", "Creditworthiness", "Credit Ratings"]
+    "synonyms": ["Credit Risk", "Default Risk", "Creditworthiness", "Credit Ratings", "Asset Quality", "Loan Quality"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/BankLending",
@@ -147,7 +147,7 @@
     "uri": "https://kg.zommalabs.com/topic/StockMarket",
     "label": "Stock Market",
     "definition": "Markets where shares of publicly traded companies are bought and sold.",
-    "synonyms": ["Equity Markets", "Stock Prices", "Market Performance", "Share Prices", "Stock Performance", "Stock Trading", "Stock Split", "Market Reaction", "Public Trading", "Market Listing"]
+    "synonyms": ["Equity Markets", "Stock Prices", "Market Performance", "Share Prices", "Stock Performance", "Stock Trading", "Stock Split", "Market Reaction", "Public Trading", "Market Listing", "Listing", "Stock Listing"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/BondMarket",
@@ -556,7 +556,7 @@
     "uri": "https://kg.zommalabs.com/topic/Construction",
     "label": "Construction",
     "definition": "The industry sector involved in building infrastructure, residential, and commercial structures.",
-    "synonyms": ["Building", "Construction Industry", "Construction Sector", "Infrastructure Development"]
+    "synonyms": ["Building", "Construction Industry", "Construction Sector", "Infrastructure Development", "Real Estate and Construction", "Construction and Real Estate"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/DrugDiscovery",
@@ -574,7 +574,7 @@
     "uri": "https://kg.zommalabs.com/topic/Agriculture",
     "label": "Agriculture",
     "definition": "The farming and agribusiness sector including crop production and livestock.",
-    "synonyms": ["Farming", "Agribusiness", "Agricultural Sector", "Crops", "Livestock"]
+    "synonyms": ["Farming", "Agribusiness", "Agricultural Sector", "Crops", "Livestock", "Agriculture and Natural Resources", "Agriculture, Energy, and Natural Resources"]
   },
   {
     "uri": "https://kg.zommalabs.com/topic/DigitalAssets",
@@ -663,7 +663,7 @@
   {"uri": "https://kg.zommalabs.com/gics/LifeSciences", "label": "Life Sciences Tools & Services", "definition": "Providers of research tools, contract research, and laboratory services.", "synonyms": ["Life Sciences", "CRO", "Contract Research", "Lab Services", "Research Tools"]},
 
   {"uri": "https://kg.zommalabs.com/gics/Banks", "label": "Banks", "definition": "Commercial and retail banks providing deposit, lending, and financial services.", "synonyms": ["Banking", "Commercial Banks", "Retail Banks", "Financial Institutions", "Bank Industry"]},
-  {"uri": "https://kg.zommalabs.com/gics/FinancialServices", "label": "Financial Services", "definition": "Diversified financial companies providing multiple financial services.", "synonyms": ["Diversified Financials", "Financial Holding Companies", "Multi-line Financials"]},
+  {"uri": "https://kg.zommalabs.com/gics/FinancialServices", "label": "Financial Services", "definition": "Diversified financial companies providing multiple financial services.", "synonyms": ["Diversified Financials", "Financial Holding Companies", "Multi-line Financials", "Financial Sector", "Banking Sector", "Finance Industry"]},
   {"uri": "https://kg.zommalabs.com/gics/ConsumerFinance", "label": "Consumer Finance", "definition": "Companies providing consumer loans, credit cards, and personal finance services.", "synonyms": ["Consumer Lending", "Credit Cards", "Personal Loans", "Consumer Credit", "Buy Now Pay Later", "BNPL"]},
   {"uri": "https://kg.zommalabs.com/gics/CapitalMarkets", "label": "Capital Markets", "definition": "Investment banks, brokerages, and asset management firms.", "synonyms": ["Investment Banking", "Asset Management", "Brokerage", "Securities", "Wealth Management", "Trading", "Wall Street"]},
   {"uri": "https://kg.zommalabs.com/gics/MortgageREITs", "label": "Mortgage REITs", "definition": "REITs that invest in mortgages and mortgage-backed securities.", "synonyms": ["Mortgage REITs", "mREITs", "Mortgage Investment"]},
@@ -782,5 +782,197 @@
     "label": "Safety",
     "definition": "Measures and practices to prevent accidents, injuries, and harm in business operations.",
     "synonyms": ["Workplace Safety", "Product Safety", "Public Safety", "Safety Standards", "Safety Regulations"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/AutoSales",
+    "label": "Auto Sales",
+    "definition": "Sales of new and used automobiles and light vehicles to consumers and businesses.",
+    "synonyms": ["Vehicle Sales", "Car Sales", "Automobile Sales", "Light Vehicle Sales", "Auto Demand", "New Car Sales", "Used Car Sales"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/RetailTrade",
+    "label": "Retail Trade",
+    "definition": "The sale of goods to consumers through stores, online platforms, and other retail channels.",
+    "synonyms": ["Retail Goods", "Retail Sector", "Retail Industry", "Retail Activity", "Retail Market", "Retail Trade and Services"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/RegionalEconomicConditions",
+    "label": "Regional Economic Conditions",
+    "definition": "Economic conditions and trends specific to geographic regions or Federal Reserve districts.",
+    "synonyms": ["District Economic Conditions", "Regional Economy", "Local Economic Conditions", "District Economy", "Regional Business Conditions"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/TaxIncentives",
+    "label": "Tax Incentives",
+    "definition": "Government tax policies designed to encourage specific economic behaviors or investments.",
+    "synonyms": ["Tax Credit", "Tax Credits", "Federal Tax Credit", "Tax Breaks", "Tax Benefits", "Tax Subsidies", "EV Tax Credit"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/TransportationSector",
+    "label": "Transportation Sector",
+    "definition": "The industry segment providing movement of goods and people including trucking, rail, and shipping.",
+    "synonyms": ["Transportation Industry", "Freight Transportation", "Logistics Sector", "Transport Industry"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/EnergySector",
+    "label": "Energy Sector",
+    "definition": "The industry segment involved in production, distribution, and sale of energy.",
+    "synonyms": ["Energy Industry", "Oil and Gas Sector", "Energy Markets", "Energy Production"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/Fraud",
+    "label": "Fraud",
+    "definition": "Deceptive practices or criminal activities resulting in financial losses.",
+    "synonyms": ["Losses related to fraud", "Fraudulent Activity", "Financial Fraud", "Fraud Losses", "Fraud Risk"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BusinessOperations",
+    "label": "Business Operations",
+    "definition": "The day-to-day activities and processes that a company performs to generate value.",
+    "synonyms": ["Operations", "Business Activities", "Operational Activities", "Company Operations"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/TechnologyProducts",
+    "label": "Technology Products",
+    "definition": "Software, hardware, and digital services offered by technology companies.",
+    "synonyms": ["Products and Services", "Tech Products", "Digital Products", "Software Products", "Technology Services"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CorporateRestructuring",
+    "label": "Corporate Restructuring",
+    "definition": "Significant changes to a company's structure, operations, or financial arrangements.",
+    "synonyms": ["Restructuring", "Business Restructuring", "Organizational Restructuring", "Corporate Reorganization"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/TechnologyIndustry",
+    "label": "Technology Industry",
+    "definition": "The sector of the economy focused on developing and selling technology products and services.",
+    "synonyms": ["Technology Sector", "Tech Industry", "Technology Industry", "Global Internet Industry", "Tech Sector"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ImmigrationPolicy",
+    "label": "Immigration Policy",
+    "definition": "Government policies regulating the entry, stay, and employment of foreign nationals.",
+    "synonyms": ["Immigration", "Immigration enforcement", "Immigration policies", "Visa policy", "Immigration laws", "Deportation", "Immigration changes"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ConsumerBehavior",
+    "label": "Consumer Behavior",
+    "definition": "The patterns and decisions consumers make when purchasing goods and services.",
+    "synonyms": ["Customer behavior", "Consumer purchasing behavior", "Buying behavior", "Shopping behavior", "Consumer habits", "Customer purchasing behavior"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/PriceSensitivity",
+    "label": "Price Sensitivity",
+    "definition": "The degree to which consumers respond to changes in prices when making purchasing decisions.",
+    "synonyms": ["Customer price sensitivity", "Price conscious", "Price awareness", "Price elasticity"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BankingDeposits",
+    "label": "Banking Deposits",
+    "definition": "Funds placed by customers in bank accounts including checking, savings, and time deposits.",
+    "synonyms": ["Deposit levels", "Deposits", "Bank deposits", "Deposit growth", "Deposit rates", "Competition for balances"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/WorkingCapital",
+    "label": "Working Capital",
+    "definition": "The difference between current assets and current liabilities, measuring operational liquidity.",
+    "synonyms": ["Operating capital", "Net working capital", "Current assets", "Liquidity position"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/VacancyRates",
+    "label": "Vacancy Rates",
+    "definition": "The percentage of unoccupied rental units or commercial space in a market.",
+    "synonyms": ["Office vacancy", "Industrial vacancy rates", "Commercial vacancy", "Retail vacancy", "Vacancy levels"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/WeatherConditions",
+    "label": "Weather Conditions",
+    "definition": "Atmospheric conditions affecting agricultural production, energy demand, and economic activity.",
+    "synonyms": ["Weather", "La Niña", "El Niño", "Drought", "Adverse weather conditions", "Favorable weather", "Extreme weather", "Dry conditions"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/BusinessClosures",
+    "label": "Business Closures",
+    "definition": "The permanent or temporary shutting down of business operations.",
+    "synonyms": ["Store closures", "Business shutdowns", "Closures", "Industry exit", "Business failures"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/TravelDemand",
+    "label": "Travel Demand",
+    "definition": "Consumer and business demand for travel and related services.",
+    "synonyms": ["Travel activity", "Business travel", "Group travel", "Leisure travel", "Passenger demand", "Tourism demand"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/LoanDelinquency",
+    "label": "Loan Delinquency",
+    "definition": "Failure to make loan payments on time, an indicator of credit stress.",
+    "synonyms": ["Delinquencies", "Delinquency rates", "Consumer delinquency rates", "Loan defaults", "Past due loans", "Mortgages delinquency"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/EmployeeBenefits",
+    "label": "Employee Benefits",
+    "definition": "Non-wage compensation provided to employees including health insurance and retirement plans.",
+    "synonyms": ["Benefits", "Benefits costs", "Health insurance premiums", "Insurance costs", "Employee health care premiums", "Healthcare costs"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/FoodAssistance",
+    "label": "Food Assistance",
+    "definition": "Programs providing food aid to individuals and families in need.",
+    "synonyms": ["Food pantry", "Food pantry usage", "Food banks", "SNAP", "Food stamps", "Food aid"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/GovernmentFunding",
+    "label": "Government Funding",
+    "definition": "Financial support from federal, state, or local government through grants and programs.",
+    "synonyms": ["Government support", "Grants", "Federal grants", "Government grants", "Public funding", "Funding streams", "Grant funding"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/LaborDemand",
+    "label": "Labor Demand",
+    "definition": "Employer demand for workers and the number of job openings in the economy.",
+    "synonyms": ["Hiring demand", "Job openings", "Labor needs", "Workforce demand", "Staffing demand", "Employment demand"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/LaborSupply",
+    "label": "Labor Supply",
+    "definition": "The availability of workers in the labor market willing to work at prevailing wages.",
+    "synonyms": ["Worker availability", "Labor availability", "Workforce availability", "Labor pool", "Worker supply"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/HotelOccupancy",
+    "label": "Hotel Occupancy",
+    "definition": "The percentage of available hotel rooms that are occupied during a given period.",
+    "synonyms": ["Occupancy rates", "Room occupancy", "Lodging occupancy", "Hotel demand"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/FreightActivity",
+    "label": "Freight Activity",
+    "definition": "The movement of goods by truck, rail, air, or sea transportation.",
+    "synonyms": ["Freight volumes", "Shipping volumes", "Trucking activity", "Rail activity", "Freight demand", "Cargo volumes", "Container volumes"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/ConstructionActivity",
+    "label": "Construction Activity",
+    "definition": "The level of building and infrastructure development in an economy.",
+    "synonyms": ["Building activity", "Construction permits", "New construction", "Residential construction", "Commercial construction", "Construction projects"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/FarmIncome",
+    "label": "Farm Income",
+    "definition": "Revenue earned by agricultural operations from crop and livestock sales.",
+    "synonyms": ["Agricultural income", "Net farm income", "Farm profitability", "Crop income", "Farm revenue"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/OrderBacklogs",
+    "label": "Order Backlogs",
+    "definition": "Unfilled orders that have been received but not yet delivered or completed.",
+    "synonyms": ["Backlogs", "Order backlog", "Unfilled orders", "Pending orders", "Project backlogs"]
+  },
+  {
+    "uri": "https://kg.zommalabs.com/topic/CommunityConditions",
+    "label": "Community Conditions",
+    "definition": "Economic and social conditions affecting local communities and households.",
+    "synonyms": ["Community Perspectives", "Community", "Local conditions", "Neighborhood conditions"]
   }
 ]

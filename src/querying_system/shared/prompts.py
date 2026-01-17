@@ -20,11 +20,17 @@ For EACH entity, provide a brief contextual definition to help with semantic mat
 - The definition should describe what category/type this entity belongs to
 - Definitions help match against stored entity descriptions in the knowledge graph
 
-STEP 2 - EXTRACT TOPICS WITH DEFINITIONS:
-Extract concepts and themes mentioned in the question.
+STEP 2 - EXTRACT TOPICS WITH DEFINITIONS (Topic Chain-of-Thought):
+First, extract concepts explicitly mentioned in the question.
+Then, infer related contexts where relevant data might be stored.
+
+2a. MENTIONED TOPICS: Concepts directly stated in the question
+2b. CONTEXT TOPICS: Related sections/areas where this data would typically be recorded
+    - Think: "Where in a document would this information be written?"
+    - Include 1-2 context topics where the answer might live
+
 For EACH topic, provide a brief contextual definition.
-- The definition should explain what the concept means in context
-- Focus on the semantic meaning that would help find related facts
+Include BOTH mentioned topics AND context topics in topic_hints.
 
 STEP 3 - EXTRACT RELATIONSHIPS:
 Extract action verbs and their modifiers as a single relationship phrase.
@@ -48,6 +54,9 @@ STEP 6 - GENERATE SUB-QUERIES:
 Create keyword-focused search queries combining extracted elements.
 - Combine entities + topics + relationship keywords
 - For comparison questions, generate separate queries per entity mentioned
+- For EACH sub-query, include:
+  - entity_hints: entities that sub-query should resolve
+  - topic_hints: topics that sub-query should resolve
 
 IMPORTANT RULES:
 - Extract ONLY what appears in the question text
@@ -69,7 +78,7 @@ Think step-by-step:
 4. Is there a time constraint?
 5. What type of question is this?
 
-Output the structured decomposition."""
+Output the structured decomposition. Ensure each sub-query lists its relevant entity_hints and topic_hints."""
 
 
 # =============================================================================

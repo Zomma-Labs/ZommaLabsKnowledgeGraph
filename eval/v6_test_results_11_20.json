@@ -1,0 +1,1454 @@
+{
+  "total_time_s": 453.7876670360565,
+  "results": [
+    {
+      "id": 11,
+      "question": "What boosted auto sales in some districts?",
+      "expected": "Auto sales were boosted in some Districts by strong demand for electric vehicles ahead of the expiration of a federal tax credit at the end of September.",
+      "predicted": "Auto sales in some districts were boosted mainly by time-sensitive demand for electric vehicles (EVs).\n\nCause \u2192 Effect relationships:\n\n1. **Impending expiration of the federal EV tax credit (cause)**  \n   - A federal tax credit for electric-vehicle purchases was scheduled to **expire at the end of September**.  \n   - This created a **deadline effect**: consumers who had been considering EVs faced losing a significant financial incentive if they waited.\n\n2. **Rush to buy EVs before the credit expired (intermediate effect)**  \n   - The looming expiration **prompted a surge in EV demand**, as buyers tried to complete purchases in time to claim the tax credit.  \n   - Contacts in multiple Federal Reserve Districts reported a **rush to purchase EVs** specifically tied to this deadline.\n\n3. **Boost or support for auto sales in certain districts (outcome)**  \n   - **Nationally**, the Beige Book notes that **\u201csome Districts\u201d** saw auto sales **boosted or supported** by this EV rush, meaning:  \n     - In some places, overall auto sales **rose** due to strong EV demand.  \n     - In others, auto sales **would have fallen more**, but the additional EV sales **propped them up**.\n   \n   - **Concrete district examples:**  \n     - **First District (Boston), New Hampshire:** A **modest increase in auto sales** was **driven by a rush to purchase EVs** before the tax credit expired. This increase was caused by consumers advancing EV purchases to capture the incentive.  \n     - **Third District (Philadelphia):** Auto sales overall **slightly decreased**, but contacts reported that **sales would have declined further if not for the pre-expiration rush to buy EVs**. As a result, the EV incentive **cushioned what would otherwise have been a sharper drop**.\n\n4. **Why only \u201csome\u201d districts saw this boost**  \n   - The Beige Book\u2019s national summary states that EV demand boosted auto sales in **\u201csome Districts\u201d**, implying that **other districts did not experience the same strong, deadline-driven EV surge**.  \n   - As a result, only those areas with **especially strong EV uptake in response to the tax-credit deadline**\u2014explicitly including the Boston District (New Hampshire) and the Philadelphia District\u2014saw auto sales noticeably boosted or supported by this factor.\n\nIn summary:  \n- **Cause:** The impending end-of-September expiration of a federal EV tax credit.  \n- **Immediate effect:** A rush to purchase EVs as consumers sought to take advantage of the tax incentive before it disappeared.  \n- **Final outcome:** This rush **boosted or propped up auto sales in some Federal Reserve Districts**, such as New Hampshire in the Boston District and the Philadelphia District, while other districts without similarly strong EV demand did not see the same lift in auto sales.",
+      "confidence": 0.9,
+      "question_type": "causal",
+      "num_evidence": 18,
+      "evidence": [
+        {
+          "fact_id": "2d4ddca5-c793-4a61-8e1f-4f90314edf2b",
+          "content": "The timing of the rush to buy electric vehicles relative to the end-of-September expiration of the federal EV tax credit influenced sales conditions for auto dealers.",
+          "subject": "Automobiles",
+          "object": "Revenue",
+          "score": 1.3294961810112,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "339c146b-2e72-4a21-bae2-d63ed1ad709b",
+          "content": "Auto sales in some Federal Reserve Districts were boosted in recent weeks by strong demand for electric vehicles ahead of the expiration of a federal tax credit at the end of September.",
+          "subject": "Auto Sales",
+          "object": "Electric Vehicle Purchases",
+          "score": 1.1137103319168091,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "2549bc3c-c45b-4d26-8641-4fa008b51ba1",
+          "content": "Strong demand for electric vehicles ahead of the end-September expiration of a federal tax credit boosted auto sales in some Districts.",
+          "subject": "Electric Vehicle Purchases",
+          "object": "Auto Sales",
+          "score": 1.1040829300880433,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "b56fa941-b1cd-4dd9-add5-dfff23dfa2ba",
+          "content": "Contacts highlighted that sales conditions, specifically auto sales, would have fallen by more in the current period if not for a rush to buy electric vehicles before the expiration of the federal EV tax credit.",
+          "subject": "First District contacts",
+          "object": "Revenue",
+          "score": 0.9165733695030213,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "12b64d9c-ba14-4f1c-ab4d-ecb9d48d4631",
+          "content": "New light vehicle sales were brisk in part because of strong underlying demand during the reporting period.",
+          "subject": "New Light Vehicle Sales",
+          "object": "Demand",
+          "score": 0.9131262540817261,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "bba556a2-5492-4c81-b091-054214d0ecce",
+          "content": "New light vehicle sales were brisk during the reporting period.",
+          "subject": "New Light Vehicle Sales",
+          "object": "Financial Reporting",
+          "score": 0.9051513910293579,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "b2fdf2a4-a795-43a7-a76e-fe5c208c83e2",
+          "content": "Auto sales would have declined by more in the current period without the federal EV tax credit that motivated a rush to purchase electric vehicles before its expiration.",
+          "subject": "Auto Sales",
+          "object": "Tax Incentives",
+          "score": 0.8846618175506592,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "259c03c5-8f04-4204-95ba-22852c343161",
+          "content": "Auto sales would have declined by more in the current period without the rush to buy electric vehicles ahead of the expiration of the federal EV tax credit.",
+          "subject": "Auto Sales",
+          "object": "Electric Vehicle Purchases",
+          "score": 0.8834837913513184,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "cb473aad-4fb4-4193-b855-8c5c5d949eb4",
+          "content": "The modest increase in auto sales in New Hampshire was driven by a rush to purchase electric vehicles.",
+          "subject": "Auto Sales",
+          "object": "Electric Vehicle Purchases",
+          "score": 0.7690684795379639,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "ab987e04-6fe0-4340-8b3a-bf031516586b",
+          "content": "Used car sales were an exception to the general pattern of flat-to-down auto sales reported by auto dealers.",
+          "subject": "Auto Sales",
+          "object": "Auto Sales",
+          "score": 0.7544581890106201,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "4976c3c1-2dab-4b7f-9124-269fc3a3185e",
+          "content": "Automobile dealers experienced a robust surge in new electric vehicle sales ahead of the expiration of the EV tax credit.",
+          "subject": "Automobile Dealers",
+          "object": "Auto Sales",
+          "score": 0.7355408072471619,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "cef0332d-51cd-4e64-98a9-beea6a0eacdd",
+          "content": "The briskness of new light vehicle sales reflected the end of tax incentives for electric vehicle purchases during the reporting period.",
+          "subject": "New Light Vehicle Sales",
+          "object": "Tax Incentives",
+          "score": 0.7311004996299744,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "fa2ab4f2-8c24-4562-b8c5-de6e607ec771",
+          "content": "The robust surge in new electric vehicle sales at automobile dealers occurred ahead of the expiration of the EV tax credit.",
+          "subject": "Auto Sales",
+          "object": "Tax Incentives",
+          "score": 0.6303272724151612,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "19c5c57c-7097-4728-b65a-423454edd58b",
+          "content": "The Beige Book characterizes regional economic conditions and prospects across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Regional Economic Conditions",
+          "score": 0.6256012916564941,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "fe079298-b6db-4607-abdb-bb7fe663ceb7",
+          "content": "The Beige Book covers economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Federal Reserve Districts",
+          "score": 0.6239965438842774,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "8a45dd58-9a84-442d-b597-045de54a743f",
+          "content": "The Federal Reserve Bank of Boston reported on labor markets in its regional commentary dated October 15, 2025.",
+          "subject": "Federal Reserve Bank Of Boston",
+          "object": "Labor Market",
+          "score": 0.6155951499938965,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "1f7b0c62-cf50-4496-9b2d-f04ea15c3901",
+          "content": "The Federal Reserve Bank of Richmond reported on labor markets in the Fifth District in this document section dated 2025-10-15.",
+          "subject": "Federal Reserve Bank Of Richmond",
+          "object": "Labor Market",
+          "score": 0.6141753196716309,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "804e6d74-a7f4-491a-a87e-f22e0ec04f2b",
+          "content": "Tax incentives previously supported electric vehicle purchases before their end during the reporting period.",
+          "subject": "Tax Incentives",
+          "object": "Electric Vehicle Purchases",
+          "score": 0.6121713638305665,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 3,
+      "time_ms": 408041,
+      "gaps": [
+        "The Beige Book excerpt does not list all specific districts where EV-driven demand boosted auto sales; only some (e.g., Boston/New Hampshire and Philadelphia) are explicitly identified.",
+        "The text does not detail why certain unnamed districts had weaker EV uptake or did not experience the same boost in auto sales."
+      ],
+      "error": null
+    },
+    {
+      "id": 12,
+      "question": "How did lower- and middle-income households respond to economic conditions?",
+      "expected": "Lower- and middle-income households continued to seek discounts and promotions in the face of rising prices and elevated economic uncertainty.",
+      "predicted": "Lower- and middle-income households primarily responded to the economic environment of rising prices and elevated uncertainty by shifting how they spent, not by changes in documented saving or employment behavior.\n\n\u2022 Nationally, both **lower- and middle-income households** **\u201ccontinued to seek discounts and promotions in response to rising prices and elevated economic uncertainty.\u201d** This indicates persistent, cost\u2011conscious spending patterns rather than a clearly measured *increase* in such behavior; the Beige Book does not provide quantitative figures on how often or how much discount\u2011seeking rose. [BeigeBook_20251015, National Summary > Overall Economic Activity]\n\n\u2022 In the **Tenth District (Kansas City Fed)**, contacts reported that household consumption had become **more volatile due to heightened price sensitivity**, with:\n  - **\u201cSales, deals, and markdowns\u201d driving \u201csmall surges in purchasing activity for certain businesses.\u201d**\n  - These promotions **\u201cespecially drove purchases by lower income households,\u201d** showing that lower\u2011income households were particularly responsive to discounts and promotions. [BeigeBook_20251015, Kansas City > Consumer Spending]\n  - At the same time, **sales of goods declined moderately, particularly for automotive and sporting goods**, consistent with weaker demand for some big\u2011ticket or discretionary items, though the report does not tie these declines explicitly to income groups. [BeigeBook_20251015, Kansas City > Consumer Spending]\n\n\u2022 Other district evidence (e.g., Richmond/Fifth District) similarly described consumers **\u201clooking for value and comparative price shopping,\u201d** reinforcing that households in general were more price\u2011sensitive and value\u2011oriented, but without clearly separating lower\u2011 from middle\u2011income households in those descriptions. [BeigeBook_20251015, Richmond > Summary of Economic Activity]\n\n\u2022 On **saving, borrowing, and employment**, the cited Beige Book passages **do not provide income\u2011specific evidence**:\n  - There are no reported figures or qualitative statements directly linking changes in saving rates, borrowing behavior, hours worked, or job search specifically to lower- or middle-income households.\n  - The Tenth District as a whole saw economic activity **fall slightly**, employment **decline slightly**, and consumer loan portfolios **deteriorate moderately**, but these are aggregate outcomes not broken out by income group. [BeigeBook_20251015, Kansas City > Summary of Economic Activity; National Summary > Highlights by District]\n\nTaken together, the documented response of lower- and middle-income households was to manage economic pressures mainly by **seeking discounts, promotions, and better value and by timing purchases around sales**, with **lower-income households especially driven by sales and markdowns**, leading to **small, promotion\u2011driven surges** and more volatile consumption. The available evidence does **not** provide comparable, income\u2011specific detail on changes in saving or employment behavior.",
+      "confidence": 0.82,
+      "question_type": "factual",
+      "num_evidence": 28,
+      "evidence": [
+        {
+          "fact_id": "4a65be67-5c4f-4ece-9f0a-eb5b1c04084d",
+          "content": "Lower- and middle-income households continued to seek discounts and promotions in response to rising prices and elevated economic uncertainty.",
+          "subject": "Lower- And Middle-Income Households",
+          "object": "Discounts And Promotions",
+          "score": 1.8627328157424925,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "1e21ce78-2453-4e48-9276-b45e6096cf91",
+          "content": "Elevated economic uncertainty contributed to lower- and middle-income households' continued search for discounts and promotions.",
+          "subject": "Economic Uncertainty",
+          "object": "Lower- And Middle-Income Households",
+          "score": 1.8352755784988402,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "0a0e85c7-5684-414a-9521-fd7a2ff70b79",
+          "content": "Rising prices contributed to lower- and middle-income households' continued search for discounts and promotions.",
+          "subject": "Inflation",
+          "object": "Lower- And Middle-Income Households",
+          "score": 1.8245364308357237,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "d29ee009-f2f1-402b-9f0d-5c19c9624832",
+          "content": "Further increases in consumer prices linked to tariffs posed additional risks to low- and moderate-income households going forward.",
+          "subject": "Inflation",
+          "object": "Low- And Moderate-Income Households",
+          "score": 1.167658281326294,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "42c9b27f-2c57-4ec9-b358-4d6c09b9e38f",
+          "content": "Dealerships located in low-to-moderate income communities reported softer demand for used vehicles during the reporting period.",
+          "subject": "Low-To-Moderate Income Communities",
+          "object": "Used Vehicle Sales",
+          "score": 1.1357277154922485,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "3c2660c0-d42f-4752-b301-206a62db5316",
+          "content": "Tariffs posed additional risks to low- and moderate-income households by contributing to further increases in consumer prices.",
+          "subject": "Tariffs",
+          "object": "Low- And Moderate-Income Households",
+          "score": 1.0090350389480591,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7d2e9000-ba23-40f0-b28f-473325b08f5b",
+          "content": "Planned cuts to SNAP posed additional risks to low- and moderate-income households going forward.",
+          "subject": "Snap",
+          "object": "Low- And Moderate-Income Households",
+          "score": 0.9944620013237,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "1fec2d69-284c-4646-97f0-de8413d1614a",
+          "content": "The Federal Reserve Bank of Kansas City reported that sales, deals, and markdowns drove small surges in purchasing activity for certain businesses.",
+          "subject": "Federal Reserve Bank of Kansas City\u2019s District (Tenth District)",
+          "object": "Business Activity",
+          "score": 0.6883882522583008,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "fa9f5ada-4691-47e4-b9f5-345f29f3e9c0",
+          "content": "The Federal Reserve Bank of Kansas City reported a recent decline in economic activity in the Tenth District as context for contacts' expectations about future sales and employment.",
+          "subject": "Federal Reserve Bank of Kansas City\u2019s District (Tenth District)",
+          "object": "Economic Activity",
+          "score": 0.6529063701629639,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5523d159-8664-43c2-996c-9806115de849",
+          "content": "Sales, deals, and markdowns drove small surges in purchasing activity for certain businesses.",
+          "subject": "Revenue",
+          "object": "Certain Businesses",
+          "score": 0.6501017570495606,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "855c3cda-5405-4ff7-bff6-ef09fd7148b2",
+          "content": "The Federal Reserve Bank of Kansas City reported that sales of goods declined moderately, particularly for automotive and sporting goods.",
+          "subject": "Federal Reserve Bank of Kansas City\u2019s District (Tenth District)",
+          "object": "Revenue",
+          "score": 0.6500401973724366,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "b223537e-b067-4262-aef1-cb8440fdb33b",
+          "content": "The Federal Reserve Bank of Kansas City reported that economic activity in the Tenth District fell slightly, with softening activity across several sectors.",
+          "subject": "Federal Reserve Bank of Kansas City\u2019s District (Tenth District)",
+          "object": "Economic Activity",
+          "score": 0.6325452327728271,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "a9210982-7ad7-432e-b615-4e3d0ac6e2bf",
+          "content": "Despite a recent decline in economic activity in the Tenth District, the majority of contacts across a broad range of sectors reported to the Federal Reserve Bank of Kansas City that they expect their sales to be higher at the end of 2026 compared to 2025.",
+          "subject": "First District contacts",
+          "object": "Revenue",
+          "score": 0.6318621635437012,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5a11e07d-b4e1-4ef7-b147-b4ed5fc420cd",
+          "content": "The Federal Reserve Bank of Kansas City reported that prices in the Tenth District rose at a moderate pace.",
+          "subject": "Federal Reserve Bank of Kansas City\u2019s District (Tenth District)",
+          "object": "Prices",
+          "score": 0.6282286643981934,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "d3c4e6b7-4972-4466-bea1-fd0d6bfd6e8e",
+          "content": "Economic activity in the Tenth District fell slightly over the past month.",
+          "subject": "Tenth District",
+          "object": "Economic Activity",
+          "score": 0.6214932918548585,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "a37484f1-7ef9-4087-8f37-bfac7c412315",
+          "content": "The Federal Reserve Bank of Richmond reported that consumers in the Fifth District were looking for value in their spending decisions.",
+          "subject": "Federal Reserve Bank Of Richmond",
+          "object": "Consumer Spending",
+          "score": 0.6209073066711426,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "ee9382d8-52d5-4b0d-a2ed-7a09581eb3e4",
+          "content": "The Federal Reserve Bank of Kansas City reported that sales, deals, and markdowns especially drove purchases by lower income households.",
+          "subject": "Federal Reserve Bank of Kansas City\u2019s District (Tenth District)",
+          "object": "Lower- And Middle-Income Households",
+          "score": 0.6169721603393555,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "2b39b0d0-4d79-4c5a-a824-4681cd6bcc02",
+          "content": "The economic situation of low- and moderate-income households in the First District was a focus of concern reported by contacts.",
+          "subject": "Economic Activity",
+          "object": "Low- And Moderate-Income Households",
+          "score": 0.6092063903808594,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "9f69de90-4f91-4a6f-bcd1-369376a672bf",
+          "content": "Sales, deals, and markdowns especially influenced purchasing by lower income households, driving small surges in their purchases.",
+          "subject": "Revenue",
+          "object": "Lower- And Middle-Income Households",
+          "score": 0.60751371383667,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "8ebb94ea-fd81-4c41-8c6e-b7d7e19df5ed",
+          "content": "The Federal Reserve Bank of Kansas City reported that household consumption was more volatile recently due to heightened price sensitivity.",
+          "subject": "Federal Reserve Bank of Kansas City\u2019s District (Tenth District)",
+          "object": "Consumer Spending",
+          "score": 0.6070786476135255,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "e3d17a4c-e99a-441f-8e51-a64a2b153675",
+          "content": "Contacts expressed increased anxiety and uncertainty regarding the economic situation of low- and moderate-income households in the First District.",
+          "subject": "First District contacts",
+          "object": "Economic Activity",
+          "score": 0.6025151252746582,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "0df623f4-0116-4ef1-8c26-3b770f00b571",
+          "content": "The Federal Reserve Bank of Minneapolis summarized that consumers are exhibiting caution and value-seeking behavior that is affecting various categories of consumer spending, including vacations.",
+          "subject": "Federal Reserve Bank of Minneapolis",
+          "object": "Consumer Spending",
+          "score": 0.6020504951477051,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "19c5c57c-7097-4728-b65a-423454edd58b",
+          "content": "The Beige Book characterizes regional economic conditions and prospects across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Regional Economic Conditions",
+          "score": 0.6015633583068848,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "592454c5-b518-442e-8843-6e726f9315d2",
+          "content": "The Beige Book is a publication of the Federal Reserve System about current economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Federal Reserve System",
+          "score": 0.6012994766235352,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "ad0dee40-3d21-4f39-8639-be26c9c0ba60",
+          "content": "The economic situation of low- and moderate-income households was discussed in the context of the First District.",
+          "subject": "Economic Activity",
+          "object": "First District",
+          "score": 0.6006290435791016,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "1c7c115b-2e29-486f-90ed-8b06ceee556a",
+          "content": "The Beige Book serves as a regular summary of information gathered by Federal Reserve Banks from curated sources about current economic conditions and economic activities.",
+          "subject": "Beige Book",
+          "object": "Economic Activity",
+          "score": 0.6001749038696289,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "cad77602-d17f-4973-832a-81633559cffa",
+          "content": "The Beige Book is intended to characterize the change in economic conditions since the last report, focusing on changes relative to that prior report.",
+          "subject": "Beige Book",
+          "object": "Economic Activity",
+          "score": 0.5976767539978027,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "a5170375-283d-4dd3-a45a-c69ddbad2282",
+          "content": "The Federal Reserve Bank of Cleveland included this discussion of consumer spending conditions in its Consumer Spending report section.",
+          "subject": "Federal Reserve Bank Of Cleveland",
+          "object": "Consumer Spending",
+          "score": 0.5953644752502442,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 3,
+      "time_ms": 446787,
+      "gaps": [
+        "No quantitative measures (shares of purchases on promotion, changes in discount use, or exact size of \u201csmall surges\u201d) are provided for lower- or middle-income households.",
+        "The Beige Book excerpts do not give income-specific data on changes in saving rates, borrowing patterns, hours worked, or job search for lower- vs. middle-income households.",
+        "There is no direct, side-by-side comparison quantifying how middle-income household behavior differed from lower-income households beyond the statement that promotions \u201cespecially drove\u201d lower-income purchases."
+      ],
+      "error": null
+    },
+    {
+      "id": 13,
+      "question": "How did spending by higher-income individuals on luxury travel perform?",
+      "expected": "Spending by higher-income individuals on luxury travel and accommodation was reportedly strong.",
+      "predicted": "From the perspective of the October 15, 2025 Federal Reserve Beige Book, the documented history we have for higher\u2011income individuals\u2019 luxury travel spending is concentrated in the most recent reporting window leading up to that date. Here is how conditions evolved over that period, organized temporally as far as the evidence allows:\n\n**Prior to the latest Beige Book period (before mid\u20112025 into early/mid\u20112025)**  \n- The Beige Book always describes changes **\u201csince the last report\u201d**, but the excerpts you provided do not give specific numeric data or detailed descriptions of earlier conditions for luxury travel spending by high\u2011income consumers.  \n- We therefore know there was an earlier baseline, but we **do not have evidence here** describing whether luxury travel spending by higher\u2011income individuals was weak, moderate, or already strong before the latest reporting window.\n\n**Latest Beige Book reporting window leading up to October 15, 2025**  \n(Covering conditions **between the previous Beige Book and the October 15, 2025 report**, exact start date not specified)\n\n- In this most recent interval, contacts across the Federal Reserve\u2019s **12 Districts** reported that **spending by higher\u2011income individuals on luxury travel and accommodations was strong**. The Beige Book characterizes this as **robust demand** rather than a soft or declining segment.\n- Within the broader travel and tourism sector, **overall tourism activity had softened modestly**, but **luxury leisure travel stood out as the only segment still experiencing growth**. This indicates a **divergence over this period**:  \n  - Mass\u2011market or budget travel was slowing.  \n  - **Luxury travel, driven by high\u2011income consumers, continued to grow.**\n- Growth in lodging demand during this window came **\u201calmost entirely from luxury properties rather than budget options,\u201d** meaning that over this recent period the incremental gains in accommodations demand were disproportionately at the high end of the market.\n- This pattern implies that, relative to the previous Beige Book period, **high\u2011income luxury travel spending either held up or increased**, while lower\u2011price segments weakened, leading to a **widening gap between luxury and non\u2011luxury travel** during the months immediately preceding October 15, 2025.\n\n**By the time of the October 15, 2025 publication**  \n- As of the report date **2025\u201110\u201115**, the Beige Book\u2019s qualitative narrative depicts luxury travel spending by higher\u2011income individuals as **resilient and still growing**, with **no clear signs of weakening** in that segment over the most recent reporting interval.  \n- However, the report is **qualitative**; it does **not** provide:  \n  - Exact calendar dates for the start of the reporting window,  \n  - Percentage growth rates or dollar values of spending, or  \n  - A defined income threshold for what constitutes \u201chigher\u2011income.\u201d\n\n**Summary of the temporal pattern**  \n- Earlier baseline (before the latest Beige Book period): status of luxury travel spending by high\u2011income consumers is not quantified in the excerpts.  \n- **During the latest Beige Book period (up to 2025\u201110\u201115):**  \n  - Overall tourism softened.  \n  - **Luxury travel and accommodations, driven by higher\u2011income individuals, strengthened relative to other segments and continued to grow.**  \n  - The result by October 15, 2025 is a **clear temporal divergence**, with high\u2011income luxury spending performing strongly over this period while lower\u2011end travel lagged.\n\nAll temporal conclusions are therefore anchored to the **interval between the previous Beige Book and the October 15, 2025 Beige Book**, with exact start dates and any longer\u2011run history beyond that interval not specified in the available evidence.",
+      "confidence": 0.72,
+      "question_type": "temporal",
+      "num_evidence": 18,
+      "evidence": [
+        {
+          "fact_id": "081622d2-2597-4ca8-a667-6b2418699514",
+          "content": "Spending by higher-income individuals on luxury travel and accommodation was reportedly strong in the recent period.",
+          "subject": "Higher-Income Individuals",
+          "object": "Luxury Travel And Accommodation",
+          "score": 1.7861204385757445,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "67824a4a-60f1-4dc6-bdc2-c5c9d6887e90",
+          "content": "The tourism sector slowdown was widespread across nearly all segments except for luxury leisure travel, which experienced growth.",
+          "subject": "Tourism",
+          "object": "Tourism",
+          "score": 0.7571569681167603,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "66885336-8d50-45b3-8e50-db046de5b8a5",
+          "content": "Tourism contacts indicated that overall growth in accommodations demand was fueled almost entirely by luxury accommodations rather than budget-friendly accommodations.",
+          "subject": "First District contacts",
+          "object": "Luxury Accommodations",
+          "score": 0.7449735403060913,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "be531518-0b8c-4772-852c-18b3e8d7639f",
+          "content": "Tourism contacts noted that there was a widening gap in demand between luxury accommodations and budget-friendly accommodations.",
+          "subject": "First District contacts",
+          "object": "Textiles, Apparel & Luxury Goods",
+          "score": 0.7248070240020752,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "2fb0d0a4-af02-45d6-b17c-ed9aa2b4359c",
+          "content": "The Federal Reserve Bank of Richmond reported that reports on travel spending in the Fifth District were mixed.",
+          "subject": "Federal Reserve Bank Of Richmond",
+          "object": "Consumer Spending",
+          "score": 0.662804937362671,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "929a501f-17aa-4299-a227-96b6aaa8f7ab",
+          "content": "The Federal Reserve Bank of Philadelphia reported, citing contacts, that only luxury leisure travel experienced growth within the broader tourism sector slowdown.",
+          "subject": "Federal Reserve Bank Of Philadelphia",
+          "object": "Tourism",
+          "score": 0.6469449520111085,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "cad77602-d17f-4973-832a-81633559cffa",
+          "content": "The Beige Book is intended to characterize the change in economic conditions since the last report, focusing on changes relative to that prior report.",
+          "subject": "Beige Book",
+          "object": "Economic Activity",
+          "score": 0.6429652214050293,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "592454c5-b518-442e-8843-6e726f9315d2",
+          "content": "The Beige Book is a publication of the Federal Reserve System about current economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Federal Reserve System",
+          "score": 0.6423702239990234,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "1c7c115b-2e29-486f-90ed-8b06ceee556a",
+          "content": "The Beige Book serves as a regular summary of information gathered by Federal Reserve Banks from curated sources about current economic conditions and economic activities.",
+          "subject": "Beige Book",
+          "object": "Economic Activity",
+          "score": 0.6415058135986329,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "19c5c57c-7097-4728-b65a-423454edd58b",
+          "content": "The Beige Book characterizes regional economic conditions and prospects across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Regional Economic Conditions",
+          "score": 0.6399331569671631,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "e896812f-a2e2-48ed-a66a-bd37a5d4b259",
+          "content": "The Beige Book serves as a regular summary of information gathered by Federal Reserve Banks from curated sources for the public.",
+          "subject": "Beige Book",
+          "object": "The Public",
+          "score": 0.6397730827331544,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "fe079298-b6db-4607-abdb-bb7fe663ceb7",
+          "content": "The Beige Book covers economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Federal Reserve Districts",
+          "score": 0.6366070747375489,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "de022acc-24aa-4ea7-a868-62af294ee798",
+          "content": "There was softness in some travel-related categories within leisure and hospitality sales over the reporting period.",
+          "subject": "Travel-Related Categories",
+          "object": "Leisure And Hospitality",
+          "score": 0.6360077857971191,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "e428f30b-11d2-42d9-87a6-4e5440eb8150",
+          "content": "In the New York Federal Reserve District, consumer spending increased modestly over the reported period.",
+          "subject": "Federal Reserve Bank of New York\u2019s District (Second District)",
+          "object": "Consumer Spending",
+          "score": 0.6346028327941895,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "4ad6f5e3-3cb9-466b-89e1-53a0893e61a6",
+          "content": "The Federal Reserve Bank of Atlanta reported that leisure travel activity declined slightly since the previous report.",
+          "subject": "Tourism",
+          "object": "Consumer Spending",
+          "score": 0.6292768478393556,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "a81603d0-7b0b-4c80-bbc3-08d09d1601f2",
+          "content": "Tourism and travel businesses in the Fifth District reported mixed business conditions in recent weeks.",
+          "subject": "Tourism And Travel Businesses",
+          "object": "Business Activity",
+          "score": 0.6280830383300782,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "c2c795b6-324d-4005-8397-54af46a1a4c8",
+          "content": "Contacts to the Federal Reserve Bank of Philadelphia provided qualitative information on the widespread slowdown and the exception of luxury leisure travel within the tourism sector.",
+          "subject": "First District contacts",
+          "object": "Federal Reserve Bank Of Philadelphia",
+          "score": 0.6270812511444093,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7410ef25-39fa-4892-94fb-f4a516020640",
+          "content": "In the Boston Federal Reserve District, consumer spending grew modestly.",
+          "subject": "Boston Federal Reserve District",
+          "object": "Consumer Spending",
+          "score": 0.625662660598755,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 2,
+      "time_ms": 394898,
+      "gaps": [
+        "No exact calendar start date is given for the Beige Book reporting window preceding October 15, 2025.",
+        "No quantitative figures (growth rates, spending levels) are provided for luxury travel spending by higher\u2011income individuals over time.",
+        "No explicit description of conditions for high\u2011income luxury travel spending in periods well before the latest Beige Book window (e.g., early 2025 or 2024) is included in the excerpts.",
+        "No formal income thresholds or percentiles defining \u201chigher\u2011income individuals\u201d are provided."
+      ],
+      "error": null
+    },
+    {
+      "id": 14,
+      "question": "What happened to demand for leisure and hospitality services by international travelers?",
+      "expected": "Demand for leisure and hospitality services by international travelers fell further over the reporting period.",
+      "predicted": "Demand for leisure and hospitality services by international travelers **declined further** over the most recent reporting period. The Beige Book notes that this demand **\u201cfell further,\u201d** indicating a continued and worsening drop in international tourist use of leisure and hospitality services rather than stabilization or recovery. [BeigeBook_20251015, 2025-10-15]",
+      "confidence": 0.9,
+      "question_type": "factual",
+      "num_evidence": 1,
+      "evidence": [
+        {
+          "fact_id": "51fa185a-e153-4fe0-890b-928d19f63d09",
+          "content": "Demand for leisure and hospitality services by international travelers fell further over the reporting period.",
+          "subject": "International Travelers",
+          "object": "Leisure And Hospitality Services",
+          "score": 1.2862517356872558,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 1,
+      "time_ms": 341709,
+      "gaps": [
+        "Magnitude of the decline (no specific percentage or dollar figures provided)",
+        "Exact time frame covered by the \u201cmost recent reporting period\u201d is not specified beyond the Beige Book date",
+        "No detail on which specific leisure and hospitality segments (e.g., hotels, restaurants, recreation) were most affected"
+      ],
+      "error": null
+    },
+    {
+      "id": 15,
+      "question": "How did demand from domestic consumers for leisure and hospitality change?",
+      "expected": "Demand by domestic consumers was largely unchanged.",
+      "predicted": "From the information provided, the evolution of domestic consumer demand for leisure and hospitality over the referenced period can be summarized as follows:\n\n- **Start of the period (before mid\u2011October 2025)**  \n  Entering the period covered by the October 15, 2025 Beige Book, demand from **domestic consumers for leisure and hospitality services** was at a certain baseline level (not specified in the source). There is no indication of a trend shift (no noted upswing or downturn) leading into this reporting window.\n\n- **Mid\u2011October 2025 (Beige Book dated 2025\u201110\u201115)**  \n  As of **October 15, 2025**, the Beige Book reports that **demand from domestic consumers for leisure and hospitality services had remained largely unchanged**, with **no significant increase or decrease** over the period it covers. This implies:\n  - No notable surge in bookings, visits, or spending by domestic consumers in leisure and hospitality.  \n  - No significant pullback or weakening either\u2014demand was essentially **stable**.\n\n- **End of the covered period**  \n  Through the end of the observation window implied by the Beige Book (the weeks leading up to **mid\u2011October 2025**), there is **no reported shift away from this stable pattern**. Demand remained broadly flat, without clear upward or downward momentum.\n\nOverall, across the time span leading into and up to **October 15, 2025**, demand from domestic consumers for leisure and hospitality is characterized as **steady and largely unchanged**, with **no material directional change** reported in that period. [Source: BeigeBook_20251015, 2025-10-15]",
+      "confidence": 0.86,
+      "question_type": "temporal",
+      "num_evidence": 1,
+      "evidence": [
+        {
+          "fact_id": "00bf85e7-b792-4513-a2bb-a176d4b1f9de",
+          "content": "Demand for leisure and hospitality services by domestic consumers was largely unchanged over the reporting period.",
+          "subject": "Domestic Consumers",
+          "object": "Leisure And Hospitality Services",
+          "score": 1.3234488487243652,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 1,
+      "time_ms": 339678,
+      "gaps": [
+        "Exact start date of the period covered by BeigeBook_20251015 is not specified, so the beginning of the trend window is approximate.",
+        "No numerical data (e.g., percentage changes, index levels) are provided to quantify the stability in demand.",
+        "No information is available on changes after October 15, 2025, so the post\u2011October trajectory of domestic leisure and hospitality demand is unknown."
+      ],
+      "error": null
+    },
+    {
+      "id": 16,
+      "question": "What were the conditions in manufacturing according to the October 2025 Beige Book?",
+      "expected": "Manufacturing activity varied by District, and most reports noted challenging conditions due to higher tariffs and waning overall demand.",
+      "predicted": "According to the October 15, 2025 Beige Book, manufacturing conditions were mixed and generally weak-to-modest across the country, with notable variation by Federal Reserve District:\n\n**National picture**  \n- The Beige Book reported that manufacturing activity **\u201cvaried by Federal Reserve District\u201d** and that waning demand was contributing to **\u201cchallenging conditions\u201d** in the sector overall. [BeigeBook_20251015, National Summary]\n- Overall national momentum in manufacturing was described as limited, with **some regions seeing modest gains while others were flat or slightly weaker**, and manufacturers continued to face cost and supply challenges. [BeigeBook_20251015]\n\n**Selected District details**\n- **Philadelphia (Third District)**  \n  - Overall economic activity in the District **\u201cincreased slightly after rising modestly in the prior period.\u201d** [BeigeBook_20251015, Third District]  \n  - Within that, **manufacturing activity \u201crose moderately during the period.\u201d** [BeigeBook_20251015, Third District]  \n  - The Philadelphia Fed\u2019s September manufacturing survey showed that **46% of firms reported higher total production in the third quarter than in the prior quarter**, the highest share in over a year, consistent with a moderate rise in manufacturing. [BeigeBook_20251015, Third District]  \n  - Firms reported heightened economic uncertainty, with prices **continuing to rise moderately** and wages growing at modest, pre\u2011pandemic\u2011like rates. [BeigeBook_20251015, Third District]\n\n- **Kansas City (Tenth District)**  \n  - The Beige Book\u2019s Kansas City section on **\u201cManufacturing and Other Business Activity\u201d** reported that manufacturing **increased slightly**, and contacts expected more favorable conditions in the coming year. [BeigeBook_20251015, Tenth District]\n\n- **Richmond (Fifth District)**  \n  - The Richmond District\u2019s **\u201cManufacturing\u201d** section reported that manufacturing activity **declined slightly** in the Fifth District during the period. [BeigeBook_20251015, Fifth District]\n\n- **Minneapolis (Ninth District)**  \n  - The Minneapolis **\u201cManufacturing\u201d** section indicated that activity was **flat on balance**, neither expanding nor contracting significantly. [BeigeBook_20251015, Ninth District]\n\n- **Dallas (Eleventh District)**  \n  - The Dallas **\u201cManufacturing\u201d** section reported that **factory output growth slowed**, **new orders dipped**, and **business conditions worsened**.  \n  - Contacts cited **policy uncertainty and slowing demand** as weighing on their outlooks. [BeigeBook_20251015, Eleventh District]\n\n- **Atlanta (Sixth District)**  \n  - The Atlanta summary noted that **manufacturing picked up slightly** in the Sixth District. [BeigeBook_20251015, Sixth District]\n\n- **San Francisco (Twelfth District)**  \n  - The San Francisco **\u201cManufacturing\u201d** section reported that manufacturing activity **remained largely stable**, with some **excess capacity** and **mixed demand across products**. [BeigeBook_20251015, Twelfth District]\n\nIn sum, the October 2025 Beige Book described U.S. manufacturing as a patchwork: moderate increases in some Districts (e.g., Philadelphia, Kansas City, Atlanta), flat or stable conditions in others (e.g., Minneapolis, San Francisco), and slight declines or deteriorating conditions in places like Richmond and Dallas, all against a national backdrop of weak overall momentum, softening demand, and ongoing cost and supply pressures. [BeigeBook_20251015]",
+      "confidence": 0.78,
+      "question_type": "factual",
+      "num_evidence": 25,
+      "evidence": [
+        {
+          "fact_id": "af503650-6b4e-4b42-93ff-e3417ad5ce31",
+          "content": "The Federal Reserve Bank of Kansas City reported on the recent manufacturing activity trend in its Manufacturing and Other Business Activity section.",
+          "subject": "Federal Reserve Bank of Kansas City\u2019s District (Tenth District)",
+          "object": "Manufacturing",
+          "score": 1.2460504293441772,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "14e6aa67-cee5-41ea-9019-0d191a06b04e",
+          "content": "Manufacturing activity has declined slightly since the previous report from the Federal Reserve Bank of St. Louis.",
+          "subject": "Manufacturing",
+          "object": "Manufacturing",
+          "score": 1.225490403175354,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7e5b17e0-7f22-46a2-a47e-217bc459c151",
+          "content": "Price pressures in the manufacturing sector in the Dallas Federal Reserve District remained elevated during the period described.",
+          "subject": "Dallas Federal Reserve District",
+          "object": "Inflation",
+          "score": 1.2193880796432495,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "8dad1e11-0899-4a6c-b224-933824e48ca0",
+          "content": "Manufacturing contacts expected economic conditions next year to be more favorable than economic conditions throughout 2025.",
+          "subject": "Manufacturing Contacts",
+          "object": "Economic Outlook",
+          "score": 1.0885486483573914,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "94359488-9981-4d43-bdda-b78cd62d9746",
+          "content": "The manufacturing sector in the Minneapolis Federal Reserve District was flat during the reported period.",
+          "subject": "Manufacturing",
+          "object": "Federal Reserve Bank of Minneapolis",
+          "score": 1.0874920964241028,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "67201271-35e6-4fc1-b66c-a6877a1b08e7",
+          "content": "In the New York Federal Reserve District, manufacturing activity held steady after a summer uptick.",
+          "subject": "Federal Reserve Bank of New York\u2019s District (Second District)",
+          "object": "Manufacturing",
+          "score": 1.0861807346343995,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "75c61525-d4a2-414e-9225-d5318969c066",
+          "content": "Current manufacturing activity in the manufacturing sector increased moderately following modest growth in the previous period.",
+          "subject": "Manufacturing",
+          "object": "Manufacturing",
+          "score": 1.0819795608520508,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "ca10965a-3ea4-494c-8884-931ba59c4219",
+          "content": "The Federal Reserve Bank of Richmond reported that manufacturing activity in the Fifth District declined slightly in the recent reporting period.",
+          "subject": "Federal Reserve Bank Of Richmond",
+          "object": "Manufacturing",
+          "score": 1.0797130346298218,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "63f45fa6-4a1c-4d05-a7c9-d3d5a4bdf2c9",
+          "content": "Manufacturers in the Federal Reserve Bank of New York\u2019s district had some difficulty procuring equipment and materials in the reporting period.",
+          "subject": "Manufacturers",
+          "object": "Equipment And Materials",
+          "score": 1.0787578105926514,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7f5aea04-018e-44a4-9326-c199bf6698fb",
+          "content": "Manufacturing in the Sixth District grew slightly over the period described.",
+          "subject": "Federal Reserve Bank of Atlanta (Sixth District)",
+          "object": "Manufacturing",
+          "score": 1.0751379013061524,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "8ab46846-0697-4a96-a0ef-c24c5abf78ad",
+          "content": "The Federal Reserve Bank of Richmond stated that manufacturing activity in the Fifth District declined slightly.",
+          "subject": "Federal Reserve Bank Of Richmond",
+          "object": "Manufacturing",
+          "score": 1.0744580507278443,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "a6dea3d1-5c33-470b-9c5a-3965b2fa0aa6",
+          "content": "Manufacturing activity in the Fifth District declined slightly in the recent reporting period.",
+          "subject": "Manufacturing",
+          "object": "Fifth District",
+          "score": 1.0657943964004517,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "0b551e1f-0630-4097-95fe-0f08a4f52cf6",
+          "content": "Economic conditions next year were expected by manufacturing contacts to be more favorable than economic conditions throughout 2025.",
+          "subject": "Economic Outlook",
+          "object": "Economic Activity",
+          "score": 0.9528995394706726,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "160b3d50-7f49-4b93-97da-fb4350951617",
+          "content": "The Federal Reserve Bank of Minneapolis reported on manufacturing activity and related order conditions in its District in this document.",
+          "subject": "Federal Reserve Bank of Minneapolis",
+          "object": "Manufacturing",
+          "score": 0.9277055501937866,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "e8e22e91-52f2-49a3-be8a-655fa8f66325",
+          "content": "Manufacturing activity in the Twelfth District remained largely stable during the mid-August to September reporting period.",
+          "subject": "Manufacturing",
+          "object": "Twelfth District",
+          "score": 0.9245821475982666,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "fe079298-b6db-4607-abdb-bb7fe663ceb7",
+          "content": "The Beige Book covers economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Federal Reserve Districts",
+          "score": 0.9209088921546936,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "592454c5-b518-442e-8843-6e726f9315d2",
+          "content": "The Beige Book is a publication of the Federal Reserve System about current economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Federal Reserve System",
+          "score": 0.9170726776123047,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "9bffffec-19a5-4531-b4cb-385187c32586",
+          "content": "Manufacturing activity varied by Federal Reserve District over the reporting period.",
+          "subject": "Manufacturing",
+          "object": "Federal Reserve Districts",
+          "score": 0.9169435739517212,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "232a69dd-e725-4efd-8593-c84c8ac55df8",
+          "content": "Perceptions of broader business conditions in manufacturing worsened during the reporting period.",
+          "subject": "Business Activity",
+          "object": "Manufacturing",
+          "score": 0.9167621374130249,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "8d0db5aa-ebc2-4329-9032-9cf70031c44b",
+          "content": "Manufacturing activity remained largely stable in recent weeks according to the Federal Reserve Bank of San Francisco's manufacturing report.",
+          "subject": "Manufacturing",
+          "object": "Federal Reserve Bank Of San Francisco",
+          "score": 0.9118094682693482,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "ce287e2c-70bc-4e97-b633-8c45ea56f3ea",
+          "content": "Most reports noted that waning overall demand contributed to challenging conditions in manufacturing activity.",
+          "subject": "Demand",
+          "object": "Manufacturing",
+          "score": 0.9099119544029236,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "25b544e7-0e1c-46be-baaf-099c8dc3a364",
+          "content": "The Federal Reserve Bank of New York reported that there had been a summer uptick in manufacturing activity in the Second District prior to the current reporting period, after which conditions were little changed.",
+          "subject": "Federal Reserve Bank Of New York",
+          "object": "Economic Activity",
+          "score": 0.9098388195037842,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "067921c7-ec6e-41c2-8b9c-a611681a25d2",
+          "content": "Domestic policy uncertainty continued to weigh on manufacturing outlooks during the reporting period.",
+          "subject": "Economic Uncertainty",
+          "object": "Economic Outlook",
+          "score": 0.9091472864151001,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "48e6d3b4-4f93-4ce8-b460-5532c23c782c",
+          "content": "Manufacturing activity in the Sixth District picked up slightly over the relevant period.",
+          "subject": "Federal Reserve Bank of Atlanta (Sixth District)",
+          "object": "Manufacturing",
+          "score": 0.9089727640151978,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "8329dd17-1568-4015-ae49-1a21668735ea",
+          "content": "Slowing demand continued to weigh on manufacturing outlooks during the reporting period.",
+          "subject": "Recession",
+          "object": "Economic Outlook",
+          "score": 0.907894515991211,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 2,
+      "time_ms": 384976,
+      "gaps": [
+        "The supplied evidence does not include the full text for all 12 Districts, so some district\u2011specific manufacturing conditions (e.g., New York, Chicago, Boston, St. Louis) cannot be described in detail or with exact language.",
+        "Quantitative details (beyond the Philadelphia survey\u2019s 46% figure) such as specific output indexes, capacity utilization measures, or precise price and wage growth rates are not available in the provided excerpts."
+      ],
+      "error": null
+    },
+    {
+      "id": 17,
+      "question": "What drove manufacturing demand in the Chicago District?",
+      "expected": "Manufacturing demand declined modestly in late August and September. Steel orders were flat overall. Fabricated metals demand was unchanged on balance, as higher sales to a range of sectors was offset by lower sales to the construction and automotive industries. Machinery orders decreased moderately, driven by a decline in demand from the auto sector. Auto production was down modestly, while heavy truck production was flat.",
+      "predicted": "Manufacturing demand in the Chicago (Seventh) District was held down mainly by broad-based weakness in demand rather than by any single, local shock. The Beige Book describes a chain of cause-and-effect that looks like this:\n\n1. **Nationwide waning demand \u2192 Challenging manufacturing conditions overall**  \n   - Across many Federal Reserve Districts, **\u201cwaning overall demand\u201d** was reported. This was caused by a broad softening in orders and spending, not confined to one sector or region.  \n   - As a result, **manufacturers nationally faced challenging conditions**, with weaker order books and more cautious customers.\n\n2. **National softening in demand \u2192 Modest decline in Chicago District manufacturing**  \n   - Within this national backdrop of softer demand, **manufacturing activity in the Chicago (Seventh) District \u201cdeclined modestly.\u201d**  \n   - This modest decline was caused by the District operating in the same environment of generally waning demand that many other Districts reported, rather than by a Chicago\u2011specific demand shock.  \n   - As a result, manufacturers in the Chicago area experienced **lower or flatter order volumes**, contributing to overall weaker manufacturing demand in the District.\n\n3. **Elevated inventories \u2192 Reduced need for new orders**  \n   - In late August and September, firms reported that **inventories were \u201ca little high.\u201d**  \n   - This was caused by earlier production and ordering decisions that left businesses holding more stock than they wanted, given the softer demand environment.  \n   - As a result, **firms focused on working down existing inventories rather than placing new orders**, which directly **dampened current manufacturing demand**\u2014manufacturers saw fewer new orders because customers were drawing from their own stocks.\n\n4. **Only modest support from local spending and construction \u2192 No offset to weak manufacturing demand**  \n   - **Consumer spending in the Chicago District increased modestly**, and **construction and real estate activity also increased modestly.**  \n   - These gains were caused by localized improvements in household and property\u2011market activity, but:  \n     - There is **no evidence** that the spending increase was concentrated in manufacturing\u2011heavy categories (like appliances or electronics).  \n     - There is **no documented, quantified link** from modest construction gains to a boost in local manufacturing orders.  \n   - As a result, these modest improvements **did not clearly offset** the effects of waning demand and high inventories on manufacturing; manufacturing activity still **declined modestly**.\n\n5. **No single dominant, documented local cause \u2192 Chicago\u2019s experience mirrors broader national softness**  \n   - The Beige Book **does not identify one \u201cprimary\u201d Chicago\u2011specific driver** (such as a unique regional shock, a sector collapse, or a sharp cost spike) for the decline.  \n   - Instead, the Chicago District\u2019s manufacturing sector was affected by the **same broad forces**\u2014waning overall demand and challenging conditions\u2014that many other Districts reported.  \n   - As a result, **Chicago\u2019s manufacturing demand weakened modestly as part of a nationwide pattern of softening**, rather than standing out for a distinct local cause.\n\nPutting it together in a causal chain:\n- **Broadly waning demand across many Districts** \u2192 created **challenging nationwide manufacturing conditions**.  \n- Within this context, **Chicago\u2019s manufacturing activity declined modestly** \u2192 because it was subject to the same general softening in orders.  \n- At the same time, **inventories in Chicago were somewhat elevated** \u2192 which caused firms to **slow or postpone new orders**, further suppressing manufacturing demand.  \n- **Modest increases in local consumer spending and construction** did occur \u2192 but, as far as the evidence shows, they **were not strong or targeted enough to reverse or significantly offset** the weakening in manufacturing demand.\n\nSo, manufacturing demand in the Chicago District was driven down mainly by a **broad, national softening in demand**, **amplified by elevated inventories that reduced new orders**, while modest local strength in spending and construction **was not sufficient to change the overall outcome of a modest decline in manufacturing activity.**",
+      "confidence": 0.8,
+      "question_type": "causal",
+      "num_evidence": 15,
+      "evidence": [
+        {
+          "fact_id": "2936f954-2f74-4b2b-99fd-94145fa7a79a",
+          "content": "The Federal Reserve Bank of Chicago reported a summary of economic activity in the Seventh District for the reporting period.",
+          "subject": "Federal Reserve Bank Of Chicago",
+          "object": "Regional Economic Conditions",
+          "score": 1.6753910422325133,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "feb1b8e7-967e-4b0b-922f-c0d6a92702a8",
+          "content": "Available industrial space in the Federal Reserve Bank of Chicago district was sitting longer on the market over the reporting period, despite low industrial vacancy rates, according to some contacts.",
+          "subject": "Commercial Real Estate",
+          "object": "Federal Reserve Bank Of Chicago",
+          "score": 1.3774934768676759,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "3271e391-5911-4937-85d0-5c4634df15b5",
+          "content": "Residential construction in the Federal Reserve Bank of Chicago district edged up over the reporting period, according to contacts cited by the Federal Reserve Bank of Chicago.",
+          "subject": "Construction",
+          "object": "Federal Reserve Bank Of Chicago",
+          "score": 1.3668752670288087,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "9bffffec-19a5-4531-b4cb-385187c32586",
+          "content": "Manufacturing activity varied by Federal Reserve District over the reporting period.",
+          "subject": "Manufacturing",
+          "object": "Federal Reserve Districts",
+          "score": 1.2341238975524902,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "b1bd81be-fd86-4597-9cae-19cc23acdb26",
+          "content": "More warehouse inventory was available in the Federal Reserve Bank of Chicago district over the reporting period, as reported by the Federal Reserve Bank of Chicago.",
+          "subject": "Inventory",
+          "object": "Federal Reserve Bank Of Chicago",
+          "score": 1.2290228724479675,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "ee388cd5-6ad5-437a-be95-c274a3217a14",
+          "content": "The Federal Reserve Bank of Chicago reported that consumer spending increased modestly over the reporting period.",
+          "subject": "Federal Reserve Bank Of Chicago",
+          "object": "Consumer Spending",
+          "score": 1.1871066212654113,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "48e6d3b4-4f93-4ce8-b460-5532c23c782c",
+          "content": "Manufacturing activity in the Sixth District picked up slightly over the relevant period.",
+          "subject": "Federal Reserve Bank of Atlanta (Sixth District)",
+          "object": "Manufacturing",
+          "score": 1.0717843055725098,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "d8d0aa22-4c8c-4509-ba45-54c1d96762af",
+          "content": "Manufacturing activity in the Seventh District declined modestly.",
+          "subject": "Seventh District",
+          "object": "Manufacturing",
+          "score": 0.9332199335098267,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "24fc3a16-1374-4cfe-8a60-c013974e3357",
+          "content": "The Federal Reserve Bank of Chicago reported that manufacturing inventories were a little high in late August and September.",
+          "subject": "Federal Reserve Bank Of Chicago",
+          "object": "Inventory",
+          "score": 0.8923112988471985,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "ce287e2c-70bc-4e97-b633-8c45ea56f3ea",
+          "content": "Most reports noted that waning overall demand contributed to challenging conditions in manufacturing activity.",
+          "subject": "Demand",
+          "object": "Manufacturing",
+          "score": 0.8739845991134644,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5e2480a8-8a56-408b-8479-b0a694554258",
+          "content": "Manufacturing activity in the Seventh District declined modestly over the reporting period.",
+          "subject": "Manufacturing",
+          "object": "Regional Economic Conditions",
+          "score": 0.7809573411941528,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "f8185e16-e0e3-4fba-86ba-568a67bf831f",
+          "content": "Nonresidential construction in the Federal Reserve Bank of Chicago district increased slightly as demand remained robust for data centers, according to the Federal Reserve Bank of Chicago.",
+          "subject": "Construction",
+          "object": "Data Centers",
+          "score": 0.6842466831207276,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "31ad8f44-76cf-43a8-be82-0d9293952c71",
+          "content": "Nonresidential construction in the Federal Reserve Bank of Chicago district increased slightly as demand remained robust for health-care facilities, according to the Federal Reserve Bank of Chicago.",
+          "subject": "Construction",
+          "object": "Health-Care Facilities",
+          "score": 0.6810675621032716,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "4778165e-dbf7-4d80-9453-d3a7924854e9",
+          "content": "Residential real estate activity in the Federal Reserve Bank of Chicago district was unchanged over the reporting period, as reported by the Federal Reserve Bank of Chicago.",
+          "subject": "Housing Market",
+          "object": "Federal Reserve Bank Of Chicago",
+          "score": 0.6512535095214844,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "19c5c57c-7097-4728-b65a-423454edd58b",
+          "content": "The Beige Book characterizes regional economic conditions and prospects across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "object": "Regional Economic Conditions",
+          "score": 0.6479840278625488,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 2,
+      "time_ms": 387970,
+      "gaps": [
+        "No detailed product-level breakdown of consumer spending in Chicago (e.g., which goods categories changed and how that fed into manufacturing orders).",
+        "No quantitative measure of how much each factor (waning demand, inventories, construction, etc.) contributed to the decline in manufacturing demand.",
+        "No explicit discussion of sector-by-sector manufacturing performance within the Chicago District (e.g., autos vs. machinery vs. metals).",
+        "No data on warehouse/industrial space, vacancy, or logistics capacity for the Chicago District in the cited period."
+      ],
+      "error": null
+    },
+    {
+      "id": 18,
+      "question": "What challenges did manufacturers face regarding tariff policies?",
+      "expected": "Several manufacturers noted that changing tariff policies were making it difficult to plan for the future.",
+      "predicted": "Manufacturers faced several concrete challenges from tariff policies:\n\n- **Higher input and operating costs:** Across multiple Federal Reserve districts, manufacturers reported that tariffs directly increased the cost of imported inputs and materials, leading to higher overall cost pressures and faster price growth in manufacturing. Some firms had to absorb part of these higher costs because they were not yet able to fully pass them on to customers, squeezing margins. [Source: BeigeBook_20251015]\n\n- **Pressure to raise selling prices and customer pushback:** Because of higher input costs, many firms were forced to increase the prices they charged. This created operational challenges and heightened price sensitivity among customers, as manufacturers tried to manage price increases without losing business. [Source: BeigeBook_20251015]\n\n- **Weaker demand and new orders:** In districts such as Cleveland, manufacturers reported modest declines in demand for goods and weaker or flat new orders. They explicitly attributed this softer demand to tariffs and broader trade-policy uncertainty, which weighed on overall manufacturing activity. [Source: BeigeBook_20251015]\n\n- **Operational and employment adjustments:** Some manufacturers had to change their operations or cost structure to cope with tariff-related cost increases. Examples included a furniture manufacturer facing greater challenges and a Boston-area firm that shed workers specifically to offset higher costs from tariffs. [Source: BeigeBook_20251015]\n\n- **Supply-chain and pricing strategy disruptions:** Firms devoted significant effort to rethinking pricing structures and finding cost-effective ways to manage tariffs, including adjusting supply chains. This added administrative and strategic complexity to their operations. [Source: BeigeBook_20251015]\n\n- **Policy uncertainty harming planning and sentiment:** Uncertainty around both existing and potential future tariffs weighed on manufacturers\u2019 sentiment and outlook, particularly noted in the New York district. This uncertainty complicated planning, investment, and hiring decisions, as firms were unsure how trade policy would evolve. [Source: BeigeBook_20251015]\n\n- **Misapplication of tariffs:** Some manufacturers reported complications from tariffs being misapplied\u2014for instance, steel and aluminum tariffs being assessed on products that did not actually contain those metals\u2014creating additional, unexpected cost and compliance issues. [Source: BeigeBook_20251015]",
+      "confidence": 0.9,
+      "question_type": "factual",
+      "num_evidence": 22,
+      "evidence": [
+        {
+          "fact_id": "32226425-ed92-4d09-88d0-eeedbb1ba7c5",
+          "content": "Manufacturers in the Federal Reserve Bank of Atlanta district remained concerned about tariffs.",
+          "subject": "Manufacturers",
+          "object": "Tariffs",
+          "score": 1.2188918709754943,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "c87fcaef-71a6-47c5-a2f6-52b4a851a144",
+          "content": "Uncertainty relating to tariffs continued to weigh on manufacturers in the Federal Reserve Bank of New York\u2019s district during the reporting period.",
+          "subject": "Tariffs",
+          "object": "Manufacturers",
+          "score": 1.2160804390907287,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "313a3c09-97a1-4bb0-8a78-8651fe481b62",
+          "content": "Some contacts are seeking cost-effective strategies to manage tariffs.",
+          "subject": "Some Contacts",
+          "object": "Tariffs",
+          "score": 1.2030996203422546,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7db84596-9951-4d94-8726-46d87322dd47",
+          "content": "Tariffs contributed to increased operational challenges for a furniture manufacturer by raising the prices it charged.",
+          "subject": "Tariffs",
+          "object": "Furniture Manufacturer",
+          "score": 1.1268297910690308,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "9d57905f-a123-471c-b37c-9f9ad21b71ad",
+          "content": "Manufacturers attributed modest declines in demand for goods to tariffs.",
+          "subject": "Manufacturers",
+          "object": "Tariffs",
+          "score": 1.1031207323074341,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "ca42a66f-9810-4bc1-ad2f-256c5676b848",
+          "content": "Manufacturers reported modest declines in demand for goods, which they attributed to tariffs and trade-policy uncertainty.",
+          "subject": "Manufacturers",
+          "object": "Demand",
+          "score": 1.085835862159729,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "1094b143-fa3a-473b-a91a-c3c3dca95853",
+          "content": "Manufacturers attributed modest declines in demand for goods to trade-policy uncertainty.",
+          "subject": "Manufacturers",
+          "object": "Economic Uncertainty",
+          "score": 1.0737782001495362,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "f9a2099b-d012-438a-89ec-b6b170edd13f",
+          "content": "Tariffs contributed to the increase in price growth in manufacturing, according to firms in the Fifth District.",
+          "subject": "Tariffs",
+          "object": "Prices",
+          "score": 1.0678451538085938,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "332cdbbd-5d91-4606-ab34-de899c4d34e5",
+          "content": "Many businesses continued to strategize around how to structure prices in consideration of new tariffs.",
+          "subject": "Many Businesses",
+          "object": "Tariffs",
+          "score": 1.0619628310203553,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5c49aa93-78cd-449d-bf5b-4d95eed3935e",
+          "content": "Firms in both the service sector and manufacturing sectors continued to cite tariffs as adding to their input costs.",
+          "subject": "Service Sector Firms",
+          "object": "Tariffs",
+          "score": 1.0604389786720276,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "b852acc5-b851-41f1-a456-f85bd1c9d9fa",
+          "content": "Firms in both the service sector and manufacturing sectors continued to cite tariffs as adding to their input costs.",
+          "subject": "Tariffs",
+          "object": "Cost Structure",
+          "score": 1.0604269981384278,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "f811608e-e573-4474-af9c-80a77cd067b7",
+          "content": "One manufacturing firm shed workers to offset tariff-related cost increases.",
+          "subject": "Manufacturing Firms",
+          "object": "Cost Structure",
+          "score": 1.0549695372581482,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "067921c7-ec6e-41c2-8b9c-a611681a25d2",
+          "content": "Domestic policy uncertainty continued to weigh on manufacturing outlooks during the reporting period.",
+          "subject": "Economic Uncertainty",
+          "object": "Economic Outlook",
+          "score": 1.0510710954666138,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7f21d89c-8af1-4879-aae4-a9695b9207a3",
+          "content": "Firms in both the service sector and manufacturing sectors continued to cite tariffs as adding to their input costs.",
+          "subject": "Manufacturers",
+          "object": "Tariffs",
+          "score": 1.0457005977630616,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "8f08baca-4116-48ab-a691-8e2782a8620d",
+          "content": "A computer manufacturer reported that U.S. customs was applying steel and aluminum tariffs to products that do not contain these metals.",
+          "subject": "Computer Manufacturer",
+          "object": "U.S. Customs",
+          "score": 1.0432711124420166,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "2754d06a-d04f-487a-a691-124d3e48efad",
+          "content": "Firms reported that tariffs are a source of increased cost pressures.",
+          "subject": "Firms",
+          "object": "Tariffs",
+          "score": 1.0405208349227906,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "57884e4c-9f4f-49c5-8feb-50807b1f2028",
+          "content": "A specialty appliance manufacturer from upstate New York hiked their prices for the second time this year to account for the impact of tariffs on their costs.",
+          "subject": "Specialty Appliance Manufacturer From Upstate New York",
+          "object": "Tariffs",
+          "score": 1.0342569828033448,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "d1523288-b394-45fb-acbd-559c8f4dc4d1",
+          "content": "Some of the higher input costs associated with tariffs had yet to be passed along to customers by firms in both sectors.",
+          "subject": "Manufacturers",
+          "object": "Customer Relationships",
+          "score": 1.0335769534111023,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "e295f348-252a-4f39-8179-552a9e5d17b3",
+          "content": "A pharmaceutical company reported that foreign manufacturers were absorbing tariff costs to maintain market share.",
+          "subject": "Pharmaceutical Company",
+          "object": "Foreign Manufacturers",
+          "score": 1.021641778945923,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7963462e-6b63-4271-a6c1-096d3e4b9280",
+          "content": "Shipping unfinished goods to the United States for final assembly is used as a strategy to manage tariffs, shipping, and labor dynamics.",
+          "subject": "Marine Transportation",
+          "object": "Tariffs",
+          "score": 1.0082273960113526,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "56a5dc79-38c6-4a0f-bc35-22bbdf8791f0",
+          "content": "Shipments by manufacturers in the Federal Reserve Bank of New York\u2019s district were mostly unchanged in the reporting period.",
+          "subject": "Transportation Sector",
+          "object": "Manufacturers",
+          "score": 0.962471890449524,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7036e87b-e1a7-4453-af3c-423b47e2448c",
+          "content": "Several manufacturers attributed flat or weaker orders for manufactured goods to import tariffs in recent weeks.",
+          "subject": "Manufacturers",
+          "object": "Manufacturing",
+          "score": 0.9358829498291016,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 2,
+      "time_ms": 331879,
+      "gaps": [
+        "No precise numerical data (e.g., percentage cost increases, exact changes in order volumes) are provided in the cited Beige Book material, only qualitative descriptions such as \u201cmodest declines\u201d or \u201cgreater challenges.\u201d",
+        "Industry- and firm-size\u2013specific impacts are mentioned only through individual examples (e.g., furniture, Boston-area firm) and not quantified across the entire manufacturing sector."
+      ],
+      "error": null
+    },
+    {
+      "id": 19,
+      "question": "What was the overall trend in employment levels?",
+      "expected": "Employment levels were largely stable in recent weeks, and demand for labor was generally muted across Districts and sectors.",
+      "predicted": "From the beginning to the end of the Beige Book reporting period ending October 15, 2025, employment levels followed a largely flat path, with only modest regional deviations.\n\n- **Early in the period (pre\u2011October 15, 2025):**\n  - Across most Federal Reserve Districts, reports consistently described employment as **\u201cflat,\u201d \u201csteady,\u201d or \u201clittle changed on net.\u201d**\n  - In Districts such as **Boston, New York, Atlanta, Richmond, San Francisco, and St. Louis**, hiring in some industries was generally offset by layoffs or attrition in others, resulting in **no meaningful net change** in total employment levels over the period.\n\n- **Mid\u2011period developments (throughout the reporting window up to October 2025):**\n  - Some localized shifts emerged, but they remained small in scale:\n    - The **Philadelphia (Third) District** reported **slight increases in employment**, indicating a **modest upward trend** in that region rather than outright stability.\n    - The **Kansas City (Tenth) District** reported a **slight decline in employment**, pointing to a **mild downward trend** there.\n  - These changes did not accumulate into large swings; instead, they were described as **minor adjustments** within an otherwise steady overall labor market.\n\n- **By the end of the period (around October 15, 2025):**\n  - Taking all Districts together, the **overall national pattern** was one of **broadly stable employment levels**, with only **small, region\u2011specific increases (e.g., Philadelphia)** and **small declines (e.g., Kansas City)**.\n  - There is no indication in the October 15, 2025 Beige Book summary of a **gradual sustained rise** or a **sharp, widespread decline** over the period; instead, the trend is best characterized as **overall flat employment, punctuated by modest gains and losses in a few regions**.[Source: BeigeBook_20251015, 2025-10-15]",
+      "confidence": 0.9,
+      "question_type": "temporal",
+      "num_evidence": 15,
+      "evidence": [
+        {
+          "fact_id": "56138022-3d5a-48ba-a98d-4bf608714454",
+          "content": "Employment was flat overall even though both hiring and layoffs increased modestly.",
+          "subject": "Employment",
+          "object": "Employment",
+          "score": 1.0575324773788453,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5913b0f1-1319-4c77-b215-59308c1c05c5",
+          "content": "In the Boston Federal Reserve District, employment was flat while both hiring and layoffs increased modestly.",
+          "subject": "Boston Federal Reserve District",
+          "object": "Employment",
+          "score": 1.0280753254890442,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "41df4873-7239-4364-bbf2-c994d6527396",
+          "content": "In the New York Federal Reserve District, employment held steady over the reported period.",
+          "subject": "Federal Reserve Bank of New York\u2019s District (Second District)",
+          "object": "Employment",
+          "score": 1.0275925874710083,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "f60ac05e-d366-45bb-a559-7c6747bf9a72",
+          "content": "Employment levels were little changed on net over the reporting period described in the document.",
+          "subject": "Employment",
+          "object": "Financial Reporting",
+          "score": 0.9366155505180359,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "7d2e0a65-a544-478f-8308-205d1430e6c8",
+          "content": "Employment appeared to increase slightly in the current period relative to the prior period, which showed no change.",
+          "subject": "Employment",
+          "object": "Financial Reporting",
+          "score": 0.9349379777908325,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "c7e6516f-d838-4290-af3d-c732e155bfdb",
+          "content": "Employment levels in the District were generally flat over the reporting period.",
+          "subject": "Federal Reserve Districts",
+          "object": "Employment",
+          "score": 0.9158041715621948,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "02843f0b-43ba-45f2-8667-524180387bcd",
+          "content": "According to the Federal Reserve Bank of New York, on balance, employment remained steady during the reporting period, implying that increases and decreases across sectors roughly offset each other.",
+          "subject": "Federal Reserve Bank Of New York",
+          "object": "Employment",
+          "score": 0.9081747770309448,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "3e341590-f869-4f46-b894-5350922375d0",
+          "content": "Employment levels in the Tenth District fell slightly overall.",
+          "subject": "Employment",
+          "object": "Tenth District",
+          "score": 0.9021011829376221,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5fe80412-c8f8-4127-bf05-61067a775ed2",
+          "content": "In the San Francisco District, employment levels were little changed over the reported period.",
+          "subject": "San Francisco",
+          "object": "Employment",
+          "score": 0.9011543035507202,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "36824ff7-24fb-497b-aa71-ad8b60c6e60b",
+          "content": "Employment levels in the Twelfth District were little changed on net during the mid-August to September reporting period.",
+          "subject": "Employment",
+          "object": "Twelfth District",
+          "score": 0.9003170967102051,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "759e295b-77bf-4b3b-9990-3c50b259b008",
+          "content": "Employment levels in the Tenth District declined slightly over the past month.",
+          "subject": "Tenth District",
+          "object": "Employment",
+          "score": 0.895924711227417,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "55075ea6-b6d0-4f72-8da5-43b5b4489765",
+          "content": "Employment levels in the Sixth District were steady over the period described.",
+          "subject": "Federal Reserve Bank of Atlanta (Sixth District)",
+          "object": "Employment",
+          "score": 0.8954848289489746,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "3e189270-a458-409f-8ad5-5479effdc377",
+          "content": "Employment levels in the Third District rose slightly during the period.",
+          "subject": "Employment",
+          "object": "Third Federal Reserve District (Philadelphia)",
+          "score": 0.8927268624305725,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5f0928dd-e286-47f1-bd00-6aa4aaeed55e",
+          "content": "Employment levels in Richmond were largely unchanged in recent weeks.",
+          "subject": "Employment",
+          "object": "Richmond",
+          "score": 0.8925831556320191,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "dba83fcd-4fd9-465b-8b20-284c0200308f",
+          "content": "Most contacts reported no change to their employment levels.",
+          "subject": "Most Contacts",
+          "object": "Employment",
+          "score": 0.8853208661079407,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 1,
+      "time_ms": 313259,
+      "gaps": [
+        "Exact start date of the Beige Book reporting window is not specified, only that it culminates in the October 15, 2025 report.",
+        "No precise monthly or weekly employment figures are provided, so the description of the trend is qualitative rather than quantitative.",
+        "Sector\u2011specific temporal patterns (e.g., manufacturing vs. services over time) are not detailed in the provided excerpt."
+      ],
+      "error": null
+    },
+    {
+      "id": 20,
+      "question": "What factors did employers cite for lowering head counts?",
+      "expected": "Employers cited weaker demand, elevated economic uncertainty, and, in some cases, increased investment in artificial intelligence technologies as reasons for lowering head counts through layoffs and attrition.",
+      "predicted": "Employers cited several key factors for lowering head counts:\n\n- **Weaker demand and business activity:** Firms reported \"weaker or slightly softer demand\" and a general decline in business activity, which reduced their need for labor. \n- **Elevated economic uncertainty:** Employers pointed to heightened uncertainty about the economic outlook as a reason to scale back staffing.\n- **Profitability pressures:** Some employers reduced staff to maintain profitability in a softer environment.\n- **\u201cRight-sizing\u201d workforce levels:** Businesses described their actions as efforts to \"right-size\" staffing\u2014aligning head counts more closely with current and expected levels of demand. \n\n[Source: BeigeBook_20251015, 2025-10-15]",
+      "confidence": 0.88,
+      "question_type": "factual",
+      "num_evidence": 15,
+      "evidence": [
+        {
+          "fact_id": "6dd517df-ce61-4f48-9c39-cf0690c121c4",
+          "content": "Employers lowered head counts through attrition in recent weeks.",
+          "subject": "Employers",
+          "object": "Workforce Reduction",
+          "score": 0.9902316570281983,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "1e46bc97-9c38-44d8-ad51-7900880da3ee",
+          "content": "Employers lowered head counts through layoffs in recent weeks.",
+          "subject": "Employers",
+          "object": "Workforce Reduction",
+          "score": 0.9868458151817322,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "6b133f9b-6713-4ff6-98d8-54836c82b8ab",
+          "content": "In most Districts, more employers reported lowering head counts through layoffs and attrition in recent weeks.",
+          "subject": "Employers",
+          "object": "Labor Market",
+          "score": 0.9569273233413697,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "694a5eb3-cbda-4018-be5e-42f481f2fded",
+          "content": "Some firms were strategically downsizing their workforces.",
+          "subject": "Some Firms",
+          "object": "Workforce Reduction",
+          "score": 0.9535814762115479,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "a1ba346a-9db8-4923-9e53-796c1940eabe",
+          "content": "Several contacts in manufacturing and health care reported that staff levels were reduced through attrition, layoffs, and early retirements during the reporting period.",
+          "subject": "First District contacts",
+          "object": "Labor Market",
+          "score": 0.930251145362854,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5e7dfdaa-d1c6-49a1-a098-565ac172418a",
+          "content": "Most contacts reported that impending layoffs are intended to right-size staffing levels to align with slightly softer demand conditions.",
+          "subject": "First District contacts",
+          "object": "Labor Market",
+          "score": 0.9299009680747986,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "c9aa7659-db44-447e-a5b8-d0db24782973",
+          "content": "The manufacturing sector was among the industries where contacts noted reductions in staff levels through attrition, layoffs, and early retirements.",
+          "subject": "Manufacturing",
+          "object": "Labor Market",
+          "score": 0.9286975502967835,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "e3d8be67-1139-4d55-825f-278bdca8e509",
+          "content": "Several firms in the Fifth District reduced their head count in response to slowing demand in the most recent period.",
+          "subject": "Firms",
+          "object": "Labor Market",
+          "score": 0.9233128070831299,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "35515d39-d191-46f4-8d74-a0fb17a7023c",
+          "content": "Most contacts indicated that businesses are using impending modest layoffs to help maintain profitability under slightly softer demand conditions.",
+          "subject": "First District contacts",
+          "object": "Net Income",
+          "score": 0.9203685164451599,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "f9263777-f699-4aca-ab78-d98fda8ed5b5",
+          "content": "Most contacts indicated that impending layoffs will be modest and are intended to right-size staffing levels given slightly softer demand conditions to maintain profitability.",
+          "subject": "First District contacts",
+          "object": "Workforce Reduction",
+          "score": 0.9156736373901367,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "d1b43b6c-c136-4c25-aeab-e10c9c399d46",
+          "content": "The health care sector was among the industries where contacts noted reductions in staff levels through attrition, layoffs, and early retirements.",
+          "subject": "Health Care Providers & Services",
+          "object": "Labor Market",
+          "score": 0.9137797594070435,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "aa7d982c-d55c-40a1-978d-27aae517826d",
+          "content": "Contacts cited weaker demand as a reason for employers lowering head counts through layoffs and attrition in recent weeks.",
+          "subject": "First District contacts",
+          "object": "Demand",
+          "score": 0.827961802482605,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "12169aaa-f9b7-4a58-a242-f49bf85f7ef2",
+          "content": "Contacts cited elevated economic uncertainty as a reason for employers lowering head counts in recent weeks.",
+          "subject": "First District contacts",
+          "object": "Economic Uncertainty",
+          "score": 0.818244218826294,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "4d43cc98-8cc2-4e5a-a92f-09aa26918b5b",
+          "content": "Across industries, reduced labor demand led to layoffs in some cases.",
+          "subject": "Labor Market",
+          "object": "Workforce Reduction",
+          "score": 0.7645658254623413,
+          "source_doc": "BeigeBook_20251015"
+        },
+        {
+          "fact_id": "5062d3f5-b758-4ef4-bb57-a5065769933b",
+          "content": "Across industries, many contacts said that declining business activity led to reduced labor demand.",
+          "subject": "Business Activity",
+          "object": "Labor Market",
+          "score": 0.7578791975975037,
+          "source_doc": "BeigeBook_20251015"
+        }
+      ],
+      "num_sub_answers": 1,
+      "time_ms": 348307,
+      "gaps": [],
+      "error": null
+    }
+  ]
+}

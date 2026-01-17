@@ -69,7 +69,7 @@ class TemporalExtractor:
         first_chunks: List[str],
         last_chunks: List[str],
         title: str
-    ) -> str:
+    ) -> Optional[str]:
         """
         Extract document date from first/last chunks.
 
@@ -79,7 +79,7 @@ class TemporalExtractor:
             title: Document title for context
 
         Returns:
-            ISO date string (YYYY-MM-DD). Falls back to today if not found.
+            ISO date string (YYYY-MM-DD) or None if not found.
         """
         # Combine chunks for context
         context_text = f"--- DOCUMENT TITLE: {title} ---\n\n"
@@ -104,8 +104,8 @@ class TemporalExtractor:
             result = self.structured_llm.invoke(prompt)
 
             if not result.date_found or not result.year:
-                log(f"No date found for '{title}'. Using default (today).")
-                return date.today().isoformat()
+                log(f"No date found for '{title}'.")
+                return None
 
             # Construct date with fallbacks
             year = result.year
@@ -119,12 +119,12 @@ class TemporalExtractor:
                 return dt.isoformat()
             except ValueError:
                 # Handle invalid dates (e.g. Feb 30) -> Fallback to today
-                log(f"Invalid date {year}-{month}-{day}. Fallback to today.")
-                return date.today().isoformat()
+                log(f"Invalid date {year}-{month}-{day}.")
+                return None
 
         except Exception as e:
             log(f"Extraction failed: {e}")
-            return date.today().isoformat()
+            return None
 
 
 # Convenience function for direct use
@@ -132,7 +132,7 @@ def extract_document_date(
     first_chunks: List[str],
     last_chunks: List[str],
     title: str
-) -> str:
+) -> Optional[str]:
     """
     Extract document date from first/last chunks.
 
@@ -142,7 +142,7 @@ def extract_document_date(
         title: Document title for context
 
     Returns:
-        ISO date string (YYYY-MM-DD)
+        ISO date string (YYYY-MM-DD) or None
     """
     extractor = TemporalExtractor()
     return extractor.extract_date(first_chunks, last_chunks, title)

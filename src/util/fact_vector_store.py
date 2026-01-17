@@ -1,7 +1,7 @@
 """
 Fact Vector Store - Qdrant collection for semantic fact search.
 
-Uses voyage-3-large embeddings (1024 dimensions) for semantic matching.
+Uses OpenAI text-embedding-3-large embeddings (3072 dimensions) for semantic matching.
 
 Schema:
     - id: fact UUID
@@ -52,7 +52,7 @@ from qdrant_client.models import (
 
 QDRANT_PATH = "./qdrant_facts"
 COLLECTION_NAME = "fact_vectors"
-VECTOR_SIZE = 1024  # voyage-3-large
+VECTOR_SIZE = 3072  # OpenAI text-embedding-3-large
 
 VERBOSE = os.getenv("VERBOSE", "false").lower() == "true"
 

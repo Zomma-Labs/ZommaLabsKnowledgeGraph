@@ -30,7 +30,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-from uuid import uuid4
+from uuid import uuid4, uuid5, NAMESPACE_DNS
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -55,6 +55,12 @@ def log(msg: str):
     """Print only if VERBOSE mode is enabled."""
     if VERBOSE:
         print(f"[Pipeline] {msg}")
+
+
+def _stable_uuid(*parts: str) -> str:
+    """Create a deterministic UUID from input parts."""
+    key = "|".join([p for p in parts if p])
+    return str(uuid5(NAMESPACE_DNS, key))
 
 
 def _prepend_header_if_missing(text: str, header_path: str) -> str:
@@ -104,7 +110,7 @@ def _ensure_vector_indexes(neo4j) -> None:
                 FOR (n:EntityNode)
                 ON (n.name_embedding)
                 OPTIONS {indexConfig: {
-                  `vector.dimensions`: 1024,
+                  `vector.dimensions`: 3072,
                   `vector.similarity_function`: 'cosine'
                 }}
             """)
@@ -124,7 +130,7 @@ def _ensure_vector_indexes(neo4j) -> None:
                 FOR (n:EntityNode)
                 ON (n.name_only_embedding)
                 OPTIONS {indexConfig: {
-                  `vector.dimensions`: 1024,
+                  `vector.dimensions`: 3072,
                   `vector.similarity_function`: 'cosine'
                 }}
             """)
@@ -144,7 +150,7 @@ def _ensure_vector_indexes(neo4j) -> None:
                 FOR (n:TopicNode)
                 ON (n.embedding)
                 OPTIONS {indexConfig: {
-                  `vector.dimensions`: 1024,
+                  `vector.dimensions`: 3072,
                   `vector.similarity_function`: 'cosine'
                 }}
             """)
@@ -171,7 +177,7 @@ def create_document_node(neo4j, uuid: str, name: str, group_id: str, document_da
         "uuid": uuid,
         "name": name,
         "group_id": group_id,
-        "document_date": document_date.isoformat() if document_date else datetime.utcnow().isoformat()
+        "document_date": document_date.isoformat() if document_date else None
     })
 
 
@@ -371,7 +377,7 @@ def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str,
         "uuid": buffer.document_uuid,
         "name": buffer.document_name,
         "group_id": buffer.group_id,
-        "document_date": buffer.document_date or datetime.utcnow().isoformat()
+        "document_date": buffer.document_date
     })
 
     # 2. Bulk create EpisodicNodes
@@ -379,15 +385,16 @@ def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str,
         neo4j.query("""
             UNWIND $nodes AS n
             MATCH (d:DocumentNode {uuid: $doc_uuid, group_id: $group_id})
-            CREATE (e:EpisodicNode {
-                uuid: n.uuid,
-                content: n.content,
-                header_path: n.header_path,
-                group_id: $group_id,
-                document_date: $document_date,
-                created_at: datetime()
-            })
-            CREATE (d)-[:CONTAINS_CHUNK]->(e)
+            MERGE (e:EpisodicNode {uuid: n.uuid, group_id: $group_id})
+            ON CREATE SET
+                e.content = n.content,
+                e.header_path = n.header_path,
+                e.document_date = $document_date,
+                e.created_at = datetime()
+            ON MATCH SET
+                e.content = n.content,
+                e.header_path = n.header_path
+            MERGE (d)-[:CONTAINS_CHUNK]->(e)
         """, {
             "nodes": buffer.episodic_nodes,
             "doc_uuid": buffer.document_uuid,
@@ -419,13 +426,14 @@ def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str,
     if buffer.fact_nodes:
         neo4j.query("""
             UNWIND $nodes AS n
-            CREATE (f:FactNode {
-                uuid: n.uuid,
-                content: n.content,
-                group_id: n.group_id,
-                embedding: n.embedding,
-                created_at: datetime()
-            })
+            MERGE (f:FactNode {uuid: n.uuid, group_id: n.group_id})
+            ON CREATE SET
+                f.content = n.content,
+                f.embedding = n.embedding,
+                f.created_at = datetime()
+            ON MATCH SET
+                f.content = n.content,
+                f.embedding = n.embedding
         """, {"nodes": buffer.fact_nodes})
         counts["facts"] = len(buffer.fact_nodes)
 
@@ -526,13 +534,27 @@ def _bulk_create_relationships(relationships: List[Dict], neo4j) -> int:
         # Relationships with properties - use CREATE to ensure each fact gets its own edge
         # (MERGE would dedupe on (a, rel_type, b) and overwrite properties including fact_id)
         if with_props:
-            neo4j.query(f"""
-                UNWIND $rels AS r
-                MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
-                CREATE (a)-[rel:{rel_type}]->(b)
-                SET rel = r.properties
-            """, {"rels": with_props})
-            total += len(with_props)
+            # If fact_id exists, MERGE on it to avoid duplicates on reruns
+            with_fact_id = [r for r in with_props if r.get("properties", {}).get("fact_id")]
+            without_fact_id = [r for r in with_props if r not in with_fact_id]
+
+            if with_fact_id:
+                neo4j.query(f"""
+                    UNWIND $rels AS r
+                    MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
+                    MERGE (a)-[rel:{rel_type} {{fact_id: r.properties.fact_id}}]->(b)
+                    SET rel += r.properties
+                """, {"rels": with_fact_id})
+                total += len(with_fact_id)
+
+            if without_fact_id:
+                neo4j.query(f"""
+                    UNWIND $rels AS r
+                    MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
+                    CREATE (a)-[rel:{rel_type}]->(b)
+                    SET rel = r.properties
+                """, {"rels": without_fact_id})
+                total += len(without_fact_id)
 
     return total
 
@@ -547,6 +569,7 @@ async def extract_chunk(
     chunk_text: str,
     header_path: str,
     document_date: str,
+    chunk_uuid: str,
     semaphore: asyncio.Semaphore
 ) -> Dict[str, Any]:
     """Extract facts from a single chunk using V2 chain-of-thought."""
@@ -564,7 +587,8 @@ async def extract_chunk(
                 "chunk_idx": chunk_idx,
                 "extraction": result,
                 "chunk_text": chunk_text,
-                "header_path": header_path
+                "header_path": header_path,
+                "chunk_uuid": chunk_uuid
             }
         except Exception as e:
             print(f"  [Extract] Chunk {chunk_idx}: ERROR - {e}")
@@ -574,7 +598,8 @@ async def extract_chunk(
                 "error": str(e),
                 "extraction": ChainOfThoughtResult(entities=[], facts=[]),
                 "chunk_text": chunk_text,
-                "header_path": header_path
+                "header_path": header_path,
+                "chunk_uuid": chunk_uuid
             }
 
 
@@ -599,10 +624,22 @@ def resolve_entities(extraction: ChainOfThoughtResult, episodic_uuid: str, entit
 
 
 def resolve_topics(extraction: ChainOfThoughtResult, chunk_text: str, topic_librarian: TopicLibrarian) -> Dict[str, Dict]:
-    """Resolve all topics from an extraction against the ontology."""
+    """Resolve all topics from an extraction against the ontology.
+
+    This includes:
+    - Topics from fact.topics list
+    - Subjects/objects typed as 'topic' (e.g., 'Economic activity')
+    """
     all_topics = []
     for fact in extraction.facts:
+        # Add topics from the topics list
         all_topics.extend(fact.topics)
+        # Also add subjects/objects that are typed as Topic
+        if fact.subject_type.lower() == "topic":
+            all_topics.append(fact.subject)
+        if fact.object_type.lower() == "topic":
+            all_topics.append(fact.object)
+
     unique_topics = list(set(all_topics))
 
     if not unique_topics:
@@ -615,7 +652,8 @@ def resolve_topics(extraction: ChainOfThoughtResult, chunk_text: str, topic_libr
         enriched = definitions.get(topic, topic)
         match = topic_librarian.resolve_with_definition(topic, enriched, chunk_text[:200])
         if match:
-            lookup[topic] = match
+            # Store with lowercase key for case-insensitive lookup
+            lookup[topic.lower()] = match
 
     return lookup
 
@@ -723,8 +761,16 @@ def collect_chunk(
             log(f"Skipping fact due to unresolved {' and '.join(missing)}: {fact.fact[:60]}...")
             continue
 
-        fact_uuid = str(uuid4())
         rel_type = _normalize_rel_type(fact.relationship)
+        fact_uuid = _stable_uuid(
+            buffer.group_id,
+            episodic_uuid,
+            subject.canonical_name,
+            rel_type,
+            obj.canonical_name,
+            fact.fact,
+            fact.date_context or "",
+        )
 
         buffer.fact_nodes.append({
             "uuid": fact_uuid,
@@ -922,7 +968,16 @@ def assemble_chunk(
     rel_count = 0
 
     for fact in extraction.facts:
-        fact_uuid = str(uuid4())
+        rel_type = _normalize_rel_type(fact.relationship)
+        fact_uuid = _stable_uuid(
+            group_id,
+            episodic_uuid,
+            fact.subject,
+            rel_type,
+            fact.object,
+            fact.fact,
+            fact.date_context or "",
+        )
         fact_embedding = embeddings.embed_query(fact.fact)
         create_fact_node(neo4j, fact_uuid, fact.fact, group_id, fact_embedding)
         fact_count += 1
@@ -936,7 +991,6 @@ def assemble_chunk(
         obj = entity_lookup.get(fact.object)
 
         if subject and obj:
-            rel_type = _normalize_rel_type(fact.relationship)
             props = {"fact_id": fact_uuid, "description": fact.relationship, "date_context": fact.date_context or ""}
 
             create_relationship(neo4j, subject.uuid, episodic_uuid, rel_type, props)
@@ -982,7 +1036,7 @@ def process_chunk(
         return {"success": True, "chunk_idx": chunk_idx, "facts": 0, "entities": 0, "relationships": 0}
 
     try:
-        episodic_uuid = str(uuid4())
+        episodic_uuid = extraction_result.get("chunk_uuid") or str(uuid4())
 
         # Resolution
         entity_lookup = resolve_entities(extraction, episodic_uuid, entity_registry)
@@ -1032,7 +1086,7 @@ def process_chunk_with_lookup(
         return {"success": True, "chunk_idx": chunk_idx, "facts": 0, "entities": 0, "relationships": 0}
 
     try:
-        episodic_uuid = str(uuid4())
+        episodic_uuid = extraction_result.get("chunk_uuid") or str(uuid4())
 
         # Build chunk-specific entity lookup from global pre-resolved lookup
         entity_lookup = {}
@@ -1084,8 +1138,8 @@ async def process_file(
     filename = os.path.basename(filepath)
     print(f"\nProcessing: {filename}")
 
-    document_uuid = str(uuid4())
     document_name = filename.replace(".jsonl", "")
+    document_uuid = _stable_uuid(group_id, document_name)
 
     # Load chunks
     chunks = []
@@ -1116,7 +1170,20 @@ async def process_file(
                 except (ValueError, TypeError):
                     pass
 
-            chunks.append({"idx": i, "text": text, "header_path": header_path, "document_date": doc_date})
+            chunk_id = data.get("chunk_id") or metadata.get("chunk_id")
+            if chunk_id:
+                chunk_uuid = _stable_uuid(group_id, document_name, chunk_id)
+            else:
+                chunk_uuid = _stable_uuid(group_id, document_name, f"idx:{i}")
+
+            chunks.append({
+                "idx": i,
+                "text": text,
+                "header_path": header_path,
+                "document_date": doc_date,
+                "chunk_id": chunk_id,
+                "chunk_uuid": chunk_uuid,
+            })
 
     if not chunks:
         print(f"  No valid chunks")
@@ -1130,7 +1197,13 @@ async def process_file(
     first_chunks = [c["text"] for c in chunks[:6]]
     last_chunks = [c["text"] for c in chunks[-6:]] if len(chunks) > 6 else []
     document_date_str = temporal_extractor.extract_date(first_chunks, last_chunks, document_name)
-    print(f"    Document date: {document_date_str}")
+    if not document_date_str:
+        # Fall back to metadata date if available
+        for c in chunks:
+            if c["document_date"]:
+                document_date_str = c["document_date"].date().isoformat()
+                break
+    print(f"    Document date: {document_date_str or 'Unknown'}")
 
     # ===== PHASE 1: PARALLEL EXTRACTION =====
     print(f"  Phase 1: Extracting (concurrency={concurrency})...")
@@ -1139,7 +1212,19 @@ async def process_file(
     extractor = ExtractorV2()
     sem = asyncio.Semaphore(concurrency)
 
-    tasks = [extract_chunk(extractor, c["idx"], c["text"], c["header_path"], document_date_str, sem) for c in chunks]
+    document_date_for_prompt = document_date_str or "Unknown"
+    tasks = [
+        extract_chunk(
+            extractor,
+            c["idx"],
+            c["text"],
+            c["header_path"],
+            document_date_for_prompt,
+            c["chunk_uuid"],
+            sem,
+        )
+        for c in chunks
+    ]
     extractions = await asyncio.gather(*tasks)
 
     phase1_time = time.time() - t1
@@ -1420,7 +1505,7 @@ async def process_file(
     buffer = BulkWriteBuffer(
         document_uuid=document_uuid,
         document_name=document_name,
-        document_date=document_date_str,  # LLM-extracted date
+        document_date=document_date_str,  # LLM/metadata date (or None)
         group_id=group_id
     )
 
@@ -1442,7 +1527,7 @@ async def process_file(
             continue
 
         try:
-            episodic_uuid = str(uuid4())
+            episodic_uuid = ext.get("chunk_uuid") or str(uuid4())
 
             # Use global lookups directly with lowercase keys for case-insensitive matching
             # Collect into buffer (no Neo4j writes or embeddings yet)
@@ -1472,6 +1557,8 @@ async def process_file(
 
     # Execute bulk write
     print("  Phase 3c: Writing to Neo4j...")
+    # Warmup connection - Aura may have gone to sleep during embedding generation
+    neo4j.warmup()
     t5 = time.time()
     write_counts = bulk_write_all(buffer, neo4j, embeddings, llm)
     write_time = time.time() - t5

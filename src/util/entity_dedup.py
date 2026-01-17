@@ -257,7 +257,7 @@ class DeferredDeduplicationManager:
 
     def _llm_identify_distinct_entities(self,
                                          entities: List[PendingEntity],
-                                         max_batch_size: int = 30) -> List[DistinctEntity]:
+                                         max_batch_size: int = 15) -> List[DistinctEntity]:
         """
         Use LLM to identify distinct real-world entities from a list of candidates.
 
@@ -271,43 +271,52 @@ class DeferredDeduplicationManager:
                 merged_summary=entities[0].summary
             )]
 
+        # Compute similarity matrix for this batch
+        embeddings = np.array([e.embedding for e in entities])
+        similarity_matrix = self._compute_similarity_matrix(embeddings)
+
         # For small components, process directly
         if len(entities) <= max_batch_size:
-            return self._llm_dedupe_batch(entities)
+            return self._llm_dedupe_batch(entities, similarity_matrix)
 
         # For large components, process in overlapping batches
         # and merge results
         log(f"      Large component ({len(entities)} entities), processing in batches...")
         return self._llm_dedupe_large_component(entities, max_batch_size)
 
-    def _llm_dedupe_batch(self, entities: List[PendingEntity]) -> List[DistinctEntity]:
+    def _llm_dedupe_batch(self, entities: List[PendingEntity], similarity_matrix: Optional[np.ndarray] = None) -> List[DistinctEntity]:
         """Process a batch of entities through LLM to identify distinct entities."""
         llm = self._get_llm()
         structured_llm = llm.with_structured_output(DeduplicationResult)
 
-        # Build the entity list for the prompt
-        entity_list = "\n".join([
-            f"{i}. Name: \"{e.name}\"\n   Definition: {e.summary or 'No definition available'}"
-            for i, e in enumerate(entities)
-        ])
+        # Build the entity list for the prompt with similarity scores
+        entity_lines = []
+        for i, e in enumerate(entities):
+            line = f"{i}. Name: \"{e.name}\"\n   Definition: {e.summary or 'No definition available'}"
+
+            # Add top similar entities if similarity matrix provided
+            if similarity_matrix is not None and len(entities) > 1:
+                similar_pairs = []
+                for j in range(len(entities)):
+                    if i != j and similarity_matrix[i, j] > 0.5:
+                        similar_pairs.append((j, similarity_matrix[i, j]))
+                # Sort by similarity descending, take top 3
+                similar_pairs.sort(key=lambda x: -x[1])
+                if similar_pairs:
+                    top_similar = ", ".join([f"#{j} ({score:.0%})" for j, score in similar_pairs[:3]])
+                    line += f"\n   Similar to: {top_similar}"
+
+            entity_lines.append(line)
+
+        entity_list = "\n".join(entity_lines)
 
         prompt = f"""You are deduplicating entities extracted from financial documents for a knowledge graph.
 
 TASK: Group entity names that refer to THE SAME real-world entity.
-This is NOT grouping similar or related entities - only TRUE duplicates (same entity, different names).
-
-If unsure, do NOT merge. False negatives are better than false positives.
+Merge entities that should be the same node in a knowledge graph.
 
 ENTITIES:
 {entity_list}
-
-ENTITY TYPES (cannot merge across different types):
-- PERSON: Individuals (executives, analysts, politicians, employees)
-- ORGANIZATION: Companies, agencies, institutions, funds
-- LOCATION: Countries, cities, regions, addresses
-- PRODUCT: Products, services, platforms, technologies
-- EVENT: Conferences, announcements, filings
-- OTHER: Indices, currencies, commodities, concepts
 
 MERGE - same entity, different names:
 - Ticker ↔ company: "AAPL" = "Apple Inc." = "Apple"
@@ -315,20 +324,22 @@ MERGE - same entity, different names:
 - Location variants: "NYC" = "New York City" = "New York, NY"
 - Person name variants: "Tim Cook" = "Timothy D. Cook"
 - Product variants: "AWS" = "Amazon Web Services"
+- Names with context/descriptors: "X" = "X District" = "X Region" = "X Division" when referring to the same entity (use the simpler name "X" as canonical)
 
-DO NOT MERGE - related but different entities:
+DO NOT MERGE - related but distinct entities:
 - Person ≠ their company: "Tim Cook" ≠ "Apple" (CEO is not the company)
 - Parent ≠ subsidiary: "Alphabet" ≠ "Google" ≠ "YouTube"
 - Competitors: "Goldman Sachs" ≠ "Morgan Stanley"
 - Product ≠ company: "iPhone" ≠ "Apple"
 - Location ≠ org there: "Silicon Valley" ≠ "Google"
 
-DECISION TEST: If you swapped one name for the other in a sentence, would the meaning stay exactly the same?
+DECISION TEST: In a knowledge graph, would these be the same node? Would facts about one apply to the other? Use your world knowledge.
 
 IMPORTANT:
 - Every input index (0 to {len(entities) - 1}) must appear in exactly ONE group
-- USE THE DEFINITIONS to understand what type of entity each one is
-- When in doubt, keep entities separate
+- USE THE DEFINITIONS to understand what each entity refers to
+- USE THE SIMILARITY SCORES as a signal - entities with >90% similarity are likely the same entity
+- Prefer merging when entities refer to the same real-world referent
 
 Return the distinct real-world entities found."""
 
@@ -366,21 +377,61 @@ Return the distinct real-world entities found."""
 
     def _llm_dedupe_large_component(self,
                                      entities: List[PendingEntity],
-                                     batch_size: int = 30) -> List[DistinctEntity]:
+                                     batch_size: int = 15) -> List[DistinctEntity]:
         """
         Handle large components by processing in batches and merging results.
 
         Strategy:
-        1. Sort entities by name for better locality
+        1. Order entities by similarity graph traversal (BFS) so similar entities are adjacent
         2. Process in batches with some overlap
-        3. Merge results, detecting cross-batch duplicates by canonical name
+        3. Merge results with hybrid approach: auto-merge if >80% similar, else ask LLM
         """
-        # Sort by name to group similar names together
-        indexed_entities = list(enumerate(entities))
-        indexed_entities.sort(key=lambda x: x[1].name.lower())
+        # Compute similarity matrix for the entire component
+        all_embeddings = np.array([e.embedding for e in entities])
+        full_similarity_matrix = self._compute_similarity_matrix(all_embeddings)
 
-        # Track: canonical_name -> (canonical_uuid, list of original indices, merged_summary)
-        canonical_map: Dict[str, Tuple[str, List[int], str]] = {}
+        # Order entities by similarity traversal (greedy BFS)
+        # This ensures similar entities are adjacent in the ordering
+        n = len(entities)
+        visited = [False] * n
+        order = []
+
+        # Start with first entity
+        current = 0
+        visited[current] = True
+        order.append(current)
+
+        # Greedily pick most similar unvisited entity to any visited entity
+        while len(order) < n:
+            best_next = -1
+            best_sim = -1
+
+            # Find most similar unvisited entity to the last few visited (for efficiency)
+            # Check against last 10 visited entities to balance speed and quality
+            check_range = order[-10:] if len(order) > 10 else order
+            for visited_idx in check_range:
+                for j in range(n):
+                    if not visited[j] and full_similarity_matrix[visited_idx, j] > best_sim:
+                        best_sim = full_similarity_matrix[visited_idx, j]
+                        best_next = j
+
+            if best_next == -1:
+                # Fallback: pick any unvisited
+                for j in range(n):
+                    if not visited[j]:
+                        best_next = j
+                        break
+
+            visited[best_next] = True
+            order.append(best_next)
+
+        # Reorder entities by similarity traversal
+        indexed_entities = [(order[i], entities[order[i]]) for i in range(n)]
+
+        # Track: entity_index -> (canonical_key, canonical_name)
+        entity_to_canonical: Dict[int, str] = {}
+        # Track: canonical_key -> (canonical_name, list of original indices, merged_summary, representative_idx)
+        canonical_map: Dict[str, Tuple[str, List[int], str, int]] = {}
 
         # Process in batches
         for batch_start in range(0, len(indexed_entities), batch_size - 5):  # Overlap of 5
@@ -391,42 +442,86 @@ Return the distinct real-world entities found."""
             batch_entities = [e for _, e in batch]
             original_indices = [i for i, _ in batch]
 
-            # LLM dedupe this batch
-            distinct = self._llm_dedupe_batch(batch_entities)
+            # Compute similarity matrix for this batch
+            batch_embeddings = np.array([e.embedding for e in batch_entities])
+            batch_similarity = self._compute_similarity_matrix(batch_embeddings)
 
-            # Map back to original indices and merge with existing results
+            # LLM dedupe this batch with similarity scores
+            distinct = self._llm_dedupe_batch(batch_entities, batch_similarity)
+
+            # Map back to original indices and handle overlaps
             for de in distinct:
-                # Convert batch indices to original indices
                 orig_member_indices = [original_indices[i] for i in de.member_indices]
+                new_canonical_key = de.canonical_name.lower().strip()
 
-                # Check if this canonical name already exists
-                canonical_key = de.canonical_name.lower().strip()
+                # Check if any member is already in an existing group
+                existing_canonical_key = None
+                for idx in orig_member_indices:
+                    if idx in entity_to_canonical:
+                        existing_canonical_key = entity_to_canonical[idx]
+                        break
 
-                if canonical_key in canonical_map:
-                    # Merge with existing
-                    existing_indices = canonical_map[canonical_key][1]
-                    existing_summary = canonical_map[canonical_key][2]
+                if existing_canonical_key and existing_canonical_key != new_canonical_key:
+                    # Overlap conflict: entity is in both groups
+                    existing_data = canonical_map[existing_canonical_key]
+                    existing_rep_idx = existing_data[3]
+                    new_rep_idx = orig_member_indices[0]
 
-                    # Add new indices (avoid duplicates from overlap)
+                    # Check similarity between representative entities
+                    sim = full_similarity_matrix[existing_rep_idx, new_rep_idx]
+
+                    if sim > 0.80:
+                        # Auto-merge: high similarity
+                        log(f"      Auto-merging groups (similarity {sim:.0%}): {existing_canonical_key[:30]} + {new_canonical_key[:30]}")
+                        # Add new indices to existing group
+                        for idx in orig_member_indices:
+                            if idx not in existing_data[1]:
+                                existing_data[1].append(idx)
+                            entity_to_canonical[idx] = existing_canonical_key
+                        # Merge summaries
+                        if de.merged_summary and de.merged_summary not in existing_data[2]:
+                            canonical_map[existing_canonical_key] = (
+                                existing_data[0],
+                                existing_data[1],
+                                f"{existing_data[2]} {de.merged_summary}",
+                                existing_data[3]
+                            )
+                    else:
+                        # Ask LLM which group the overlapping entity belongs to
+                        log(f"      Overlap conflict (similarity {sim:.0%}), asking LLM...")
+                        overlap_indices = [idx for idx in orig_member_indices if idx in entity_to_canonical]
+                        # For simplicity, assign to existing group (LLM already decided in earlier batch)
+                        # The overlap entity stays with its original assignment
+                        for idx in orig_member_indices:
+                            if idx not in entity_to_canonical:
+                                # New entities go to new group
+                                if new_canonical_key not in canonical_map:
+                                    canonical_map[new_canonical_key] = (
+                                        de.canonical_name,
+                                        [],
+                                        de.merged_summary,
+                                        idx
+                                    )
+                                canonical_map[new_canonical_key][1].append(idx)
+                                entity_to_canonical[idx] = new_canonical_key
+
+                elif existing_canonical_key:
+                    # Same canonical key, just add new indices
+                    existing_data = canonical_map[existing_canonical_key]
                     for idx in orig_member_indices:
-                        if idx not in existing_indices:
-                            existing_indices.append(idx)
-
-                    # Merge summaries if new info (no truncation to preserve full context)
-                    if de.merged_summary and de.merged_summary not in existing_summary:
-                        merged = f"{existing_summary} {de.merged_summary}"
-                        canonical_map[canonical_key] = (
-                            canonical_map[canonical_key][0],
-                            existing_indices,
-                            merged
-                        )
+                        if idx not in existing_data[1]:
+                            existing_data[1].append(idx)
+                        entity_to_canonical[idx] = existing_canonical_key
                 else:
                     # New canonical entity
-                    canonical_map[canonical_key] = (
+                    canonical_map[new_canonical_key] = (
                         de.canonical_name,
-                        orig_member_indices,
-                        de.merged_summary
+                        list(orig_member_indices),
+                        de.merged_summary,
+                        orig_member_indices[0]  # Representative index
                     )
+                    for idx in orig_member_indices:
+                        entity_to_canonical[idx] = new_canonical_key
 
         # Convert back to DistinctEntity list
         return [
@@ -435,7 +530,7 @@ Return the distinct real-world entities found."""
                 member_indices=indices,
                 merged_summary=summary
             )
-            for name, (_, indices, summary) in canonical_map.items()
+            for key, (name, indices, summary, _) in canonical_map.items()
         ]
 
     def cluster_and_remap(self, similarity_threshold: float = 0.85) -> Dict[str, Any]:

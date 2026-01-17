@@ -80,9 +80,32 @@ def parse_markdown_to_chunks(
 
         current_paragraph_lines.clear()
 
+    # Track if we're inside an HTML table
+    inside_table = False
+
     for line in lines:
         # Check if line is a header
         header_match = re.match(r'^(#{1,6})\s+(.+)$', line)
+
+        # Check for HTML table boundaries
+        if '<table' in line.lower():
+            # Flush any accumulated paragraph before starting table
+            flush_paragraph()
+            inside_table = True
+            current_paragraph_lines.append(line)
+            # Check if table also closes on same line
+            if '</table>' in line.lower():
+                inside_table = False
+                flush_paragraph()
+            continue
+
+        if inside_table:
+            # Accumulate table lines without splitting on blank lines
+            current_paragraph_lines.append(line)
+            if '</table>' in line.lower():
+                inside_table = False
+                flush_paragraph()
+            continue
 
         if header_match:
             # Flush any accumulated paragraph before changing headers

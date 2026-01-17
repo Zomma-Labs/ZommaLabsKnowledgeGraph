@@ -69,13 +69,13 @@ Three-phase async pipeline:
 
 Singleton container providing lazy-initialized clients:
 - `services.llm` - LLM client (Gemini by default)
-- `services.embeddings` - Voyage AI embeddings (voyage-finance-2)
+- `services.embeddings` - OpenAI embeddings (text-embedding-3-large, 3072 dimensions)
 - `services.neo4j` - Neo4j client
 
 ### Environment Variables
 
 - `GOOGLE_API_KEY` - Required for Gemini models
-- `VOYAGE_API_KEY` - Required for embeddings
+- `OPENAI_API_KEY` - Required for embeddings (text-embedding-3-large)
 - `NEO4J_URI`, `NEO4J_USERNAME`, `NEO4J_PASSWORD` - Neo4j connection
 - `VERBOSE` - Set to "true" for detailed logging
 - `EXTRACTION_CONCURRENCY` - Max concurrent extractions (default: 5)
@@ -184,9 +184,84 @@ PIPELINE FLOW WITH LLM ASSIGNMENTS:
 
 ## Vector Stores
 
-- **Neo4j** - `entity_name_embeddings`, `topic_embeddings` indexes
-- **Qdrant** - `./qdrant_topics` for topic ontology (TopicLibrarian)
+- **Neo4j** - `entity_name_embeddings`, `entity_name_only_embeddings`, `topic_embeddings`, `fact_embeddings` indexes (3072 dimensions)
+- **Qdrant** - `./qdrant_topics` for topic ontology, `./qdrant_facts` for fact search
 
-## Deprecated Code
+## Querying System
 
-The `deprecated/` folder contains a complete snapshot of the previous architecture for reference.
+Located in `src/querying_system/`:
+
+### V6 Pipeline (Production)
+- Uses OpenAI text-embedding-3-large (3072 dims)
+- Threshold-only retrieval (no LLM scoring)
+- Query time: ~1-2 minutes per question
+- Located in `src/querying_system/v6/`
+
+```python
+# V6 Usage
+from src.querying_system.v6 import V6Pipeline, query_v6
+
+# Option 1: Async function
+result = await query_v6("What economic conditions did Boston report?")
+
+# Option 2: Pipeline class
+pipeline = V6Pipeline(group_id="default")
+result = await pipeline.query("Compare inflation in Boston vs New York")
+```
+
+### V6 Key Configuration
+```python
+from src.querying_system.v6 import ResearcherConfig
+
+config = ResearcherConfig(
+    relevance_threshold=0.65,      # OpenAI score cutoff (no LLM scoring)
+    enable_gap_expansion=True,     # 1-hop expansion if too few facts
+    enable_entity_drilldown=True,  # Extra retrieval for ENUMERATION
+    enable_refinement_loop=True,   # Refine vague answers
+)
+pipeline = V6Pipeline(config=config)
+```
+
+### Deep Research Pipeline
+- Multi-step research with supervisor/worker pattern
+- Located in `src/querying_system/deep_research/`
+
+### MCP Server
+- Model Context Protocol server for external tool access
+- Located in `src/querying_system/mcp_server.py`
+- Start with: `scripts/start_mcp.sh`
+
+## Directory Structure
+
+```
+src/
+├── pipeline.py              # Main ingestion pipeline
+├── agents/                  # Extraction agents
+├── chunker/                 # Document chunking
+├── config/                  # Configuration files
+├── schemas/                 # Data schemas
+├── util/                    # Shared utilities
+├── scripts/                 # Setup and maintenance scripts
+└── querying_system/
+    ├── v6/                  # Production query pipeline
+    ├── deep_research/       # Deep research pipeline
+    ├── shared/              # Shared query utilities
+    ├── mcp_server.py        # MCP server
+    └── _archived/           # Old versions (v1-v5, experiments)
+
+scripts/                     # Active test/eval scripts
+├── test_v6_*.py            # V6 pipeline tests
+├── test_deep_research_*.py # Deep research tests
+├── start_mcp.sh            # MCP server launcher
+└── _archived/              # Old scripts
+
+docs/                        # Design documents and planning
+eval/                        # Evaluation results
+tests/                       # Unit tests
+```
+
+## Archived Code
+
+Old pipeline versions and experimental code are in `_archived/` directories:
+- `src/querying_system/_archived/` - v1-v5, hybrid_cot_gnn, structured_pipeline
+- `scripts/_archived/` - old debug/diagnostic scripts

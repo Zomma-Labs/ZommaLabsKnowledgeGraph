@@ -12,7 +12,7 @@ Single LLM call (gpt-5.1) that extracts from the question:
 import os
 import time
 
-from .schemas import QueryDecomposition, QuestionType, SubQuery, EntityHint
+from .schemas import QueryDecomposition, QuestionType, SubQuery
 from .prompts import DECOMPOSITION_SYSTEM_PROMPT, DECOMPOSITION_USER_PROMPT
 from src.util.llm_client import get_critique_llm
 
@@ -79,12 +79,9 @@ class QueryDecomposer:
                 )
 
             elapsed = int((time.time() - start_time) * 1000)
-            # Extract names for logging
-            entity_names = [h.name if isinstance(h, EntityHint) else h for h in parsed.entity_hints]
-            topic_names = [h.name if isinstance(h, EntityHint) else h for h in parsed.topic_hints]
             log(
                 f"Decomposed in {elapsed}ms: type={parsed.question_type.value}, "
-                f"sub_queries={len(parsed.sub_queries)}, entities={entity_names}, topics={topic_names}"
+                f"sub_queries={len(parsed.sub_queries)}, entities={parsed.entity_hints}"
             )
             return parsed, elapsed
 
@@ -140,12 +137,6 @@ class QueryDecomposer:
         else:
             q_type = QuestionType.FACTUAL
 
-        # Create EntityHint objects with generic definitions for fallback
-        entity_hints = [
-            EntityHint(name=e, definition=f"Entity mentioned in the question: {e}")
-            for e in entities
-        ]
-
         return QueryDecomposition(
             required_info=[question[:100]],
             sub_queries=[
@@ -153,10 +144,9 @@ class QueryDecomposer:
                     query_text=question[:100],
                     target_info="Answer to the question",
                     entity_hints=entities,
-                    topic_hints=[],
                 )
             ],
-            entity_hints=entity_hints,
+            entity_hints=entities,
             topic_hints=[],
             temporal_scope=None,
             question_type=q_type,

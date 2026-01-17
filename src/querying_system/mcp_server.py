@@ -752,11 +752,10 @@ def _search_relationships_logic(
     Returns:
         dict with matching facts and their connected entities, sorted by date (newest first)
     """
-    from src.util.llm_client import LLMClient
     services = get_services()
 
-    # Use voyage-3-large for fact search (better general semantic matching)
-    fact_embeddings = LLMClient.get_embeddings(model="voyage-3-large")
+    # Use the same embedding model as the fact index
+    fact_embeddings = services.embeddings
 
     # Expand query into variations for more robust search
     query_variations = _expand_query(query)

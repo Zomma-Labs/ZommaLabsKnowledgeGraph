@@ -29,13 +29,13 @@ class LLMClient:
             raise ValueError(f"Unknown model: {model}")
 
     @staticmethod
-    def get_embeddings(model="voyage-finance-2"):
+    def get_embeddings(model="text-embedding-3-large"):
         """
         Returns a NEW embedding model instance (non-singleton for testing).
-        Defaults to Voyage AI (voyage-finance-2) as requested.
+        Uses OpenAI text-embedding-3-large (3072 dimensions).
         """
-        from langchain_voyageai import VoyageAIEmbeddings
-        return VoyageAIEmbeddings(model=model)
+        from langchain_openai import OpenAIEmbeddings
+        return OpenAIEmbeddings(model=model)
 
 def get_llm(model="gemini", temperature=0) -> BaseChatModel:
     """
@@ -87,14 +87,16 @@ def get_dedup_llm() -> BaseChatModel:
 
 def get_embeddings():
     """
-    Helper function to get the embedding model (voyage-3-large).
+    Helper function to get the embedding model (OpenAI text-embedding-3-large).
     Used for: fact embeddings, entity embeddings in Neo4j, Qdrant searches.
+    3072 dimensions for better score separation.
     """
-    return LLMClient.get_embeddings(model="voyage-3-large")
+    return LLMClient.get_embeddings(model="text-embedding-3-large")
 
 def get_dedup_embeddings():
     """
-    Helper function to get embeddings for entity deduplication (voyage-3-large).
+    Helper function to get embeddings for entity deduplication (OpenAI text-embedding-3-large).
     Better at alias/identity matching than domain-specific models.
+    3072 dimensions for better score separation.
     """
-    return LLMClient.get_embeddings(model="voyage-3-large")
+    return LLMClient.get_embeddings(model="text-embedding-3-large")

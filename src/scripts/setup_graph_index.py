@@ -20,7 +20,7 @@ def setup_index():
     FOR (n:EntityNode)
     ON (n.name_embedding)
     OPTIONS {indexConfig: {
-      `vector.dimensions`: 1024,
+      `vector.dimensions`: 3072,
       `vector.similarity_function`: 'cosine'
     }}
     """
@@ -37,7 +37,7 @@ def setup_index():
     FOR (n:EntityNode)
     ON (n.name_only_embedding)
     OPTIONS {indexConfig: {
-      `vector.dimensions`: 1024,
+      `vector.dimensions`: 3072,
       `vector.similarity_function`: 'cosine'
     }}
     """
@@ -53,7 +53,7 @@ def setup_index():
     FOR (n:TopicNode)
     ON (n.embedding)
     OPTIONS {indexConfig: {
-      `vector.dimensions`: 1024,
+      `vector.dimensions`: 3072,
       `vector.similarity_function`: 'cosine'
     }}
     """
@@ -70,7 +70,7 @@ def setup_index():
     FOR (n:FactNode)
     ON (n.embedding)
     OPTIONS {indexConfig: {
-      `vector.dimensions`: 1024,
+      `vector.dimensions`: 3072,
       `vector.similarity_function`: 'cosine'
     }}
     """
@@ -79,47 +79,6 @@ def setup_index():
         print("✅ Vector Index 'fact_embeddings' created/verified.")
     except Exception as e:
         print(f"❌ Failed to create fact index: {e}")
-
-    # === FULL-TEXT INDEXES FOR DETERMINISTIC RETRIEVAL ===
-
-    # Full-text index on FactNode.content for BM25/keyword search
-    print("Checking/Creating Full-Text Index 'fact_fulltext'...")
-    cypher_fact_fulltext = """
-    CREATE FULLTEXT INDEX fact_fulltext IF NOT EXISTS
-    FOR (n:FactNode)
-    ON EACH [n.content]
-    """
-    try:
-        client.query(cypher_fact_fulltext)
-        print("✅ Full-Text Index 'fact_fulltext' created/verified.")
-    except Exception as e:
-        print(f"❌ Failed to create fact_fulltext index: {e}")
-
-    # Full-text index on EpisodicNode.content for chunk text search
-    print("Checking/Creating Full-Text Index 'chunk_fulltext'...")
-    cypher_chunk_fulltext = """
-    CREATE FULLTEXT INDEX chunk_fulltext IF NOT EXISTS
-    FOR (n:EpisodicNode)
-    ON EACH [n.content]
-    """
-    try:
-        client.query(cypher_chunk_fulltext)
-        print("✅ Full-Text Index 'chunk_fulltext' created/verified.")
-    except Exception as e:
-        print(f"❌ Failed to create chunk_fulltext index: {e}")
-
-    # Full-text index on EntityNode for keyword entity search
-    print("Checking/Creating Full-Text Index 'entity_fulltext'...")
-    cypher_entity_fulltext = """
-    CREATE FULLTEXT INDEX entity_fulltext IF NOT EXISTS
-    FOR (n:EntityNode)
-    ON EACH [n.name, n.summary]
-    """
-    try:
-        client.query(cypher_entity_fulltext)
-        print("✅ Full-Text Index 'entity_fulltext' created/verified.")
-    except Exception as e:
-        print(f"❌ Failed to create entity_fulltext index: {e}")
 
     client.close()
 
