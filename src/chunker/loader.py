@@ -63,10 +63,10 @@ def iter_document_payloads(load_bytes: bool = False) -> Iterator[DocumentPayload
 
     Args:
         load_bytes: When True, eagerly read the PDF bytes for consumers that
-            require in-memory payloads (e.g., Docling converters).
+            require in-memory payloads (e.g., Gemini PDF conversion).
 
     Yields:
-        Fully-initialized DocumentPayload instances ready for scraping.
+        Fully-initialized DocumentPayload instances ready for processing.
     """
 
     seen: set[str] = set()
