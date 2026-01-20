@@ -120,22 +120,46 @@ Phase 3: ASSEMBLY (Bulk write to Neo4j)
 All relationships flow through chunks for full traceability:
 
 ```
-(EntityNode:Subject) ─[REL {fact_id}]─► (EpisodicNode) ─[REL_TARGET {fact_id}]─► (EntityNode:Object)
-                                              │
-                                              ├─[CONTAINS_FACT]─► (FactNode)
-                                              └─[DISCUSSES]─► (TopicNode)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ FACT PATTERN (Subject → Chunk → Object)                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  (EntityNode OR TopicNode)                    (EntityNode OR TopicNode)     │
+│         Subject                                       Object                │
+│            │                                            ▲                   │
+│            │ [REL {fact_id, description, date_context}] │                   │
+│            ▼                                            │                   │
+│      (EpisodicNode) ─────────────────────────────────────                   │
+│            │         [REL_TARGET {fact_id, ...}]                            │
+│            │                                                                │
+│            ├─[CONTAINS_FACT]─► (FactNode)                                   │
+│            │                                                                │
+│            └─[DISCUSSES]─► (TopicNode)  ← Thematic topics from fact.topics  │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
 
-(DocumentNode) ─[CONTAINS_CHUNK]─► (EpisodicNode)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ DOCUMENT STRUCTURE                                                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  (DocumentNode) ─[CONTAINS_CHUNK]─► (EpisodicNode)                          │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+**Key Points:**
+- **Subject/Object can be EntityNode OR TopicNode** — Topics like "Economic Activity" or "Inflation" can be fact subjects/objects
+- **DISCUSSES is separate** — Links chunks to thematic topics from `fact.topics` list (e.g., "Labor Markets", "Consumer Spending")
+- **REL types are dynamic** — Relationship names are normalized from free-form text (e.g., "reported growth in" → `REPORTED_GROWTH_IN`)
 
 **Node Types:**
 | Node | Description |
 |------|-------------|
 | **DocumentNode** | Parent container for source file metadata |
 | **EpisodicNode** | Text chunk with `header_path` context (the provenance hub) |
-| **EntityNode** | Deduplicated real-world entities (Companies, People, Organizations) |
+| **EntityNode** | Deduplicated real-world entities (Companies, People, Organizations, Locations) |
 | **FactNode** | Atomic facts with embeddings for semantic search |
-| **TopicNode** | Financial themes/topics from curated ontology |
+| **TopicNode** | Financial themes/topics — can be fact subjects/objects OR thematic tags via DISCUSSES |
 
 ### LLM Usage by Step
 
