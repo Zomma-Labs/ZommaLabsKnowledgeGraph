@@ -1,6 +1,5 @@
 # ZommaLabsKG
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 
 A knowledge graph ingestion pipeline that transforms financial documents (10-Ks, Earnings Calls, Press Releases, Fed Reports) into a queryable knowledge graph stored in Neo4j.
@@ -693,7 +692,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for:
 
 ## License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+This project is licensed under the Apache 2.0 License - see [LICENSE](LICENSE) for details.
 
 ---
 
