@@ -86,7 +86,7 @@
             "id": 8,
             "category": "District Activity",
             "question": "What was the economic activity in the Seventh District (Chicago)?",
-            "answer": "Economic activity in the Seventh District was little changed over the reporting period. Consumer spending declined some; construction and real estate activity increased slightly; employment was flat; business spending declined slightly; and manufacturing demand declined modestly.",
+            "answer": "Economic activity in the Seventh District was little changed over the reporting period. Consumer spending increased modestly; construction and real estate activity increased slightly; employment was flat; business spending declined slightly; and manufacturing demand declined modestly.",
             "entities": [
                 "Federal Reserve Bank of Chicago",
                 "Seventh District"
@@ -571,10 +571,14 @@
             "category": "Multi-hop",
             "subcategory": "Policy + Sector Impact",
             "question": "Which districts mentioned both tariff impacts on manufacturing AND labor shortages from immigration policies?",
-            "answer": "The St. Louis District reported both: contacts mentioned that immigration policies resulted in labor shortages, and the national summary noted tariff-induced input cost increases affected manufacturing across many districts including St. Louis. The Chicago District also mentioned both tariff impacts on manufacturing (with manufacturers noting changing tariff policies made planning difficult) and labor supply strains in manufacturing due to immigration policy changes.",
+            "answer": "Six districts mentioned both tariff impacts on manufacturing AND labor shortages from immigration policies: (1) New York - tariff uncertainty weighed on manufacturers with one temporarily ceasing production due to high steel prices, while businesses in construction and hospitality reported difficulty finding workers due to immigration policy shifts. (2) Philadelphia - manufacturers reported increased cost pressures from tariffs and some tariff-related onshoring, while contacts noted disruptions from immigration policies including vacated positions due to visa status changes and decline in foreign-born workers in construction. (3) Atlanta - concerns over tariffs remained prevalent among manufacturers, while immigration policy impacts were more material than previously reported in agriculture and hospitality sectors. (4) Chicago - manufacturing contacts attributed metals price increases to tariffs, while contacts noted fear of immigration enforcement was reducing labor availability and revoked visas created rehiring needs. (5) St. Louis - contacts reported managing tariffs as a cost factor, while immigration policies resulted in labor shortages with workers in manufacturing, construction, and agriculture not reporting to work due to fears of deportation. (6) San Francisco - higher import duties led to cost increases for raw materials and electronic components used in manufacturing, while contacts in construction and manufacturing noted difficulty finding entry-level workers attributed to reduced immigration.",
             "entities": [
-                "Federal Reserve Bank of St. Louis",
+                "Federal Reserve Bank of New York",
+                "Federal Reserve Bank of Philadelphia",
+                "Federal Reserve Bank of Atlanta",
                 "Federal Reserve Bank of Chicago",
+                "Federal Reserve Bank of St. Louis",
+                "Federal Reserve Bank of San Francisco",
                 "Tariffs",
                 "Immigration Policies",
                 "Manufacturing",
@@ -583,7 +587,7 @@
             "reasoning_hops": [
                 "Find districts mentioning tariff impacts on manufacturing",
                 "Find districts mentioning immigration-related labor shortages",
-                "Identify the intersection"
+                "Identify the intersection of all six districts"
             ]
         },
         {
@@ -1052,7 +1056,7 @@
             "category": "Multi-hop",
             "subcategory": "Comprehensive District Analysis",
             "question": "What were all the key economic indicators for the Chicago (Seventh) District, and how did they compare to national trends?",
-            "answer": "Chicago District indicators: Economic activity was little changed (matching national 'little change on balance'). Consumer spending declined some (worse than national 'inched down'). Manufacturing demand declined modestly (consistent with national challenging conditions). Employment was flat (matching national stable levels). Wages and benefits costs were up modestly (matching national modest-to-moderate). Prices rose moderately (matching national rising trend). Financial conditions loosened slightly (better than mixed national picture). Construction/real estate increased slightly (better than mixed national). Farm income prospects unchanged. Compared to national trends, Chicago showed relative strength in financial conditions and construction while consumer spending and manufacturing weakness aligned with or slightly underperformed broader trends.",
+            "answer": "Chicago District indicators: Economic activity was little changed (matching national 'little change on balance'). Consumer spending increased modestly (better than national 'inched down'). Manufacturing demand declined modestly (consistent with national challenging conditions). Employment was flat (matching national stable levels). Wages and benefits costs were up modestly (matching national modest-to-moderate). Prices rose moderately (matching national rising trend). Financial conditions loosened slightly (better than mixed national picture). Construction/real estate increased slightly (better than mixed national). Farm income prospects unchanged. Compared to national trends, Chicago showed relative strength in financial conditions, construction, and consumer spending while manufacturing weakness aligned with broader trends.",
             "entities": [
                 "Federal Reserve Bank of Chicago",
                 "Economic Activity",

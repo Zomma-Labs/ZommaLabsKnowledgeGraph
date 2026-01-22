@@ -12,7 +12,7 @@ DESCRIPTION:
 import os
 from typing import List, Dict, Optional, TYPE_CHECKING
 from pydantic import BaseModel, Field
-from src.util.llm_client import get_nano_llm
+from src.util.llm_client import get_nano_gpt_llm
 
 if TYPE_CHECKING:
     from src.util.services import Services
@@ -64,8 +64,8 @@ class TopicLibrarian:
         self.client = QdrantClient(path=QDRANT_PATH)
 
         # LLM for candidate verification (with structured output)
-        self.llm = get_nano_llm().with_structured_output(TopicResolutionResponse)
-        self.definition_llm = get_nano_llm().with_structured_output(BatchTopicDefinitions)
+        self.llm = get_nano_gpt_llm().with_structured_output(TopicResolutionResponse)
+        self.definition_llm = get_nano_gpt_llm().with_structured_output(BatchTopicDefinitions)
 
     def batch_define_topics(self, topics: List[str], context: str) -> Dict[str, str]:
         """
@@ -118,58 +118,18 @@ For each topic, provide a concise one-sentence definition explaining what it mea
             # Fallback: return raw topics
             return {t: t for t in unique_topics}
 
-    def resolve_with_definition(self, text: str, enriched_text: str, context: str = "",
-                                 top_k: int = 15, candidate_threshold: float = 0.40) -> Optional[Dict]:
-        """
-        Resolves a topic using enriched text (topic: definition) for better semantic matching.
-
-        Args:
-            text: The original topic name
-            enriched_text: "topic: definition" string for embedding
-            context: The source fact/sentence
-            top_k: Number of candidates to retrieve
-            candidate_threshold: Minimum similarity score
-
-        Returns:
-            Match dictionary or None
-        """
-        if not text or not text.strip():
-            return None
-
-        text = text.strip()
-
-        # Vector search using ENRICHED text
-        candidates = self._vector_search(enriched_text, k=top_k)
-
-        sorted_candidates = sorted(candidates, key=lambda x: x['score'], reverse=True)
-
-        if not sorted_candidates or sorted_candidates[0]['score'] < candidate_threshold:
-            log(f"   No topic candidates for '{text}' (below threshold)")
-            return None
-
-        viable_candidates = [c for c in sorted_candidates if c['score'] >= candidate_threshold][:20]
-
-        # LLM verification uses original text + context
-        selected = self._llm_verify_topic(text, context, viable_candidates)
-
-        if selected:
-            log(f"   Topic '{text}' -> '{selected['label']}' (definition-enriched)")
-            return selected
-        else:
-            log(f"   Topic '{text}' rejected by LLM")
-            return None
-
-    def resolve(self, text: str, context: str = "", top_k: int = 15, candidate_threshold: float = 0.40,
-                precomputed_embedding: Optional[List[float]] = None) -> Optional[Dict]:
+    def resolve(self, text: str, enriched_text: str = None, context: str = "",
+                top_k: int = 15, candidate_threshold: float = 0.40) -> Optional[Dict]:
         """
         Resolves a topic name to the best matching ontology concept.
 
         Args:
             text: The topic name to resolve
+            enriched_text: Optional "topic: definition" string for better semantic matching.
+                          If provided, this is used for vector search instead of raw text.
             context: The source fact/sentence where this topic was extracted from
             top_k: Number of candidates to retrieve from vector search
             candidate_threshold: Minimum cosine similarity to consider a candidate
-            precomputed_embedding: Optional pre-computed embedding to avoid API call
 
         Returns:
             Match dictionary with 'label', 'uri', 'definition', 'score' or None
@@ -179,8 +139,9 @@ For each topic, provide a concise one-sentence definition explaining what it mea
 
         text = text.strip()
 
-        # Vector Search (Semantic) - embeddings capture meaning
-        candidates = self._vector_search(text, k=top_k, precomputed_embedding=precomputed_embedding)
+        # Use enriched text for vector search if provided, otherwise use raw text
+        search_text = enriched_text if enriched_text else text
+        candidates = self._vector_search(search_text, k=top_k)
 
         # Sort by score
         sorted_candidates = sorted(candidates, key=lambda x: x['score'], reverse=True)
@@ -194,7 +155,8 @@ For each topic, provide a concise one-sentence definition explaining what it mea
         viable_candidates = [c for c in sorted_candidates if c['score'] >= candidate_threshold][:20]
 
         # LLM decides which candidate (if any) actually matches
-        selected = self._llm_verify_topic(text, context, viable_candidates)
+        # Pass enriched_text so LLM knows the definition of the extracted topic
+        selected = self._llm_verify_topic(text, enriched_text, context, viable_candidates)
 
         if selected:
             log(f"   Topic '{text}' -> '{selected['label']}' (LLM verified)")
@@ -203,10 +165,16 @@ For each topic, provide a concise one-sentence definition explaining what it mea
             log(f"   Topic '{text}' rejected by LLM (no valid match)")
             return None
 
-    def _llm_verify_topic(self, input_text: str, context: str, candidates: List[Dict]) -> Optional[Dict]:
+    def _llm_verify_topic(self, input_text: str, enriched_text: str, context: str, candidates: List[Dict]) -> Optional[Dict]:
         """
         Uses LLM to decide which candidate (if any) actually matches the input.
         Returns the matching candidate dict or None if no match.
+
+        Args:
+            input_text: The raw topic name
+            enriched_text: Optional "topic: definition" string from extraction
+            context: The source text where topic was extracted
+            candidates: List of ontology candidates from vector search
         """
         if not candidates:
             return None
@@ -220,9 +188,16 @@ For each topic, provide a concise one-sentence definition explaining what it mea
         # Include context if provided
         context_section = f'"{context}"' if context else "No context provided."
 
+        # Include extracted definition if available (helps LLM understand what the topic means)
+        if enriched_text and enriched_text != input_text:
+            extracted_def = enriched_text.replace(f"{input_text}:", "").strip()
+            definition_section = f'\nEXTRACTED DEFINITION: "{extracted_def}"'
+        else:
+            definition_section = ""
+
         prompt = f"""TASK: Match an extracted topic to its canonical form from our ontology.
 
-EXTRACTED TOPIC: "{input_text}"
+EXTRACTED TOPIC: "{input_text}"{definition_section}
 
 SOURCE CONTEXT (use this to understand what the extracted topic means):
 {context_section}
@@ -231,7 +206,7 @@ CANDIDATE TOPICS FROM ONTOLOGY:
 {candidate_list}
 
 INSTRUCTIONS:
-1. Use the SOURCE CONTEXT to understand what "{input_text}" refers to in this specific usage
+1. Use the EXTRACTED DEFINITION and SOURCE CONTEXT to understand what "{input_text}" refers to
 2. Compare the MEANING of the extracted topic against each candidate's definition
 3. If the extracted topic clearly matches one candidate's meaning, return that number
 4. If no candidate reliably matches what the extracted topic means, return null

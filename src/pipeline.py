@@ -645,12 +645,12 @@ def resolve_topics(extraction: ChainOfThoughtResult, chunk_text: str, topic_libr
     if not unique_topics:
         return {}
 
-    definitions = topic_librarian.batch_define_topics(unique_topics, chunk_text[:500])
+    definitions = topic_librarian.batch_define_topics(unique_topics, chunk_text)
 
     lookup = {}
     for topic in unique_topics:
         enriched = definitions.get(topic, topic)
-        match = topic_librarian.resolve_with_definition(topic, enriched, chunk_text[:200])
+        match = topic_librarian.resolve(topic, enriched_text=enriched, context=chunk_text)
         if match:
             # Store with lowercase key for case-insensitive lookup
             lookup[topic.lower()] = match
@@ -1313,10 +1313,17 @@ async def process_file(
     t3 = time.time()
 
     # Collect topics from extractions (needed before parallel resolution)
+    # Also collect definitions from extracted topic entities for better resolution
     topic_names_from_facts: set[str] = set()
+    topic_definitions: Dict[str, str] = {}  # topic_name -> definition/summary
     for ext in extractions:
         if not ext["success"]:
             continue
+        # Collect topic definitions from entities
+        for entity in ext["extraction"].entities:
+            if entity.entity_type.lower() == "topic" and entity.summary:
+                topic_definitions[entity.name] = entity.summary
+        # Collect topic names from facts
         for fact in ext["extraction"].facts:
             if fact.subject_type.lower() == "topic":
                 topic_names_from_facts.add(fact.subject)
@@ -1351,14 +1358,25 @@ async def process_file(
                 entity_embeddings_map[canonical_uuid] = entity_embeddings_list[i]
         print(f"    Pre-computed {len(entity_embeddings_map)} entity embeddings")
 
-    # Pre-compute topic embeddings in batch (filter empty strings)
+    # Pre-compute topic embeddings in batch using enriched text (topic: definition)
     topic_embeddings_map: Dict[str, List[float]] = {}
+    topic_enriched_texts: Dict[str, str] = {}  # topic_name -> enriched text for resolution
     topic_names_list = [t for t in topic_names_from_facts if t and t.strip()]
     if topic_names_list:
-        topic_embeddings_list = embeddings.embed_documents(topic_names_list)
+        # Build enriched texts for embedding (use definition if available)
+        texts_to_embed = []
+        for topic_name in topic_names_list:
+            definition = topic_definitions.get(topic_name, "")
+            if definition:
+                enriched = f"{topic_name}: {definition}"
+            else:
+                enriched = topic_name
+            topic_enriched_texts[topic_name] = enriched
+            texts_to_embed.append(enriched)
+        topic_embeddings_list = embeddings.embed_documents(texts_to_embed)
         for i, topic_name in enumerate(topic_names_list):
             topic_embeddings_map[topic_name] = topic_embeddings_list[i]
-        print(f"    Pre-computed {len(topic_embeddings_map)} topic embeddings")
+        print(f"    Pre-computed {len(topic_embeddings_map)} topic embeddings (with definitions)")
 
     print(f"  Phase 2e: Resolving {len(canonical_uuids)} entities + {len(topic_names_from_facts)} topics in parallel...")
 
@@ -1403,18 +1421,18 @@ async def process_file(
         if not topic_names_from_facts:
             return {}
 
-        # Step 1: Resolve all topic names to canonical labels
+        # Step 1: Resolve all topic names to canonical labels (using definitions for better matching)
         async def resolve_topic_name(topic_name: str):
             async with resolve_sem:
                 try:
-                    precomputed_emb = topic_embeddings_map.get(topic_name)
+                    enriched_text = topic_enriched_texts.get(topic_name, topic_name)
                     resolution = await asyncio.to_thread(
                         topic_librarian.resolve,
                         text=topic_name,
-                        context="",
+                        enriched_text=enriched_text,
+                        context="",  # Context not available in batch mode
                         top_k=10,
-                        candidate_threshold=0.4,
-                        precomputed_embedding=precomputed_emb
+                        candidate_threshold=0.4
                     )
                     if resolution:
                         return topic_name, resolution["label"], resolution.get("definition", "")

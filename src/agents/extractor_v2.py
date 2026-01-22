@@ -58,6 +58,15 @@ First, list EVERY named entity mentioned in the text AND the Section header:
 
 NOTE: The Section header (format: "X > Y") shows Y is a subheader of X. Extract entities from the header too.
 
+CRITICAL - TOPIC EXTRACTION (Portfolio Manager Perspective):
+Think like a portfolio manager or trader reading this text. Beyond explicit metrics, extract Topics for:
+- Any government policy, regulation, or political factor mentioned that could affect markets or sectors
+- Any macroeconomic condition, trend, or indicator discussed
+- Any sector or industry being impacted
+- The CAUSE topics AND the EFFECT topics (e.g., if a policy causes labor shortages, extract both the policy topic and labor market topic)
+
+Ask yourself: "What themes in this text would a trader want to monitor or filter by?"
+
 For each entity, provide:
 - name: Exact name as it appears in the text
 - entity_type: Company, Person, Organization, Location, Product, Topic
