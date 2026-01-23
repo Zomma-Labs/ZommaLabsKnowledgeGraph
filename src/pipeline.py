@@ -362,7 +362,7 @@ class BulkWriteBuffer:
     _created_topics: Dict[str, str] = field(default_factory=dict)  # label -> uuid
 
 
-def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str, int]:
+def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm, batch_size: int = 250) -> Dict[str, int]:
     """Execute all buffered operations in batched queries."""
     counts = {"entities": 0, "facts": 0, "relationships": 0, "topics": 0}
 
@@ -380,62 +380,77 @@ def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str,
         "document_date": buffer.document_date
     })
 
-    # 2. Bulk create EpisodicNodes
+    # 2. Bulk create EpisodicNodes (batched)
     if buffer.episodic_nodes:
-        neo4j.query("""
-            UNWIND $nodes AS n
-            MATCH (d:DocumentNode {uuid: $doc_uuid, group_id: $group_id})
-            MERGE (e:EpisodicNode {uuid: n.uuid, group_id: $group_id})
-            ON CREATE SET
-                e.content = n.content,
-                e.header_path = n.header_path,
-                e.document_date = $document_date,
-                e.created_at = datetime()
-            ON MATCH SET
-                e.content = n.content,
-                e.header_path = n.header_path
-            MERGE (d)-[:CONTAINS_CHUNK]->(e)
-        """, {
-            "nodes": buffer.episodic_nodes,
-            "doc_uuid": buffer.document_uuid,
-            "group_id": buffer.group_id,
-            "document_date": buffer.document_date
-        })
-
-    # 3. Bulk create new EntityNodes
-    if buffer.entity_nodes:
-        neo4j.query("""
-            UNWIND $nodes AS n
-            CREATE (e:EntityNode {
-                uuid: n.uuid,
-                name: n.name,
-                summary: n.summary,
-                group_id: n.group_id,
-                name_embedding: n.embedding,
-                name_only_embedding: n.name_only_embedding,
-                created_at: datetime()
+        total = len(buffer.episodic_nodes)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = buffer.episodic_nodes[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $nodes AS n
+                MATCH (d:DocumentNode {uuid: $doc_uuid, group_id: $group_id})
+                MERGE (e:EpisodicNode {uuid: n.uuid, group_id: $group_id})
+                ON CREATE SET
+                    e.content = n.content,
+                    e.header_path = n.header_path,
+                    e.document_date = $document_date,
+                    e.created_at = datetime()
+                ON MATCH SET
+                    e.content = n.content,
+                    e.header_path = n.header_path
+                MERGE (d)-[:CONTAINS_CHUNK]->(e)
+            """, {
+                "nodes": batch,
+                "doc_uuid": buffer.document_uuid,
+                "group_id": buffer.group_id,
+                "document_date": buffer.document_date
             })
-        """, {"nodes": buffer.entity_nodes})
-        counts["entities"] = len(buffer.entity_nodes)
+        log(f"  Episodic nodes: {total}/{total} ({num_batches} batches)")
+
+    # 3. Bulk create new EntityNodes (batched)
+    if buffer.entity_nodes:
+        total = len(buffer.entity_nodes)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = buffer.entity_nodes[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $nodes AS n
+                CREATE (e:EntityNode {
+                    uuid: n.uuid,
+                    name: n.name,
+                    summary: n.summary,
+                    group_id: n.group_id,
+                    name_embedding: n.embedding,
+                    name_only_embedding: n.name_only_embedding,
+                    created_at: datetime()
+                })
+            """, {"nodes": batch})
+        counts["entities"] = total
+        log(f"  Entities: {total}/{total} ({num_batches} batches)")
 
     # 4. Update existing entity summaries (requires LLM merge)
     if buffer.entity_updates:
-        _bulk_update_entity_summaries(buffer.entity_updates, buffer.group_id, neo4j, llm)
+        _bulk_update_entity_summaries(buffer.entity_updates, buffer.group_id, neo4j, llm, batch_size=batch_size)
 
-    # 5. Bulk create FactNodes
+    # 5. Bulk create FactNodes (batched)
     if buffer.fact_nodes:
-        neo4j.query("""
-            UNWIND $nodes AS n
-            MERGE (f:FactNode {uuid: n.uuid, group_id: n.group_id})
-            ON CREATE SET
-                f.content = n.content,
-                f.embedding = n.embedding,
-                f.created_at = datetime()
-            ON MATCH SET
-                f.content = n.content,
-                f.embedding = n.embedding
-        """, {"nodes": buffer.fact_nodes})
-        counts["facts"] = len(buffer.fact_nodes)
+        total = len(buffer.fact_nodes)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = buffer.fact_nodes[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $nodes AS n
+                MERGE (f:FactNode {uuid: n.uuid, group_id: n.group_id})
+                ON CREATE SET
+                    f.content = n.content,
+                    f.embedding = n.embedding,
+                    f.created_at = datetime()
+                ON MATCH SET
+                    f.content = n.content,
+                    f.embedding = n.embedding
+            """, {"nodes": batch})
+        counts["facts"] = total
+        log(f"  Facts: {total}/{total} ({num_batches} batches)")
 
         # Also index facts to Qdrant for semantic search
         fact_store = get_fact_store()
@@ -452,28 +467,33 @@ def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str,
             for f in buffer.fact_nodes
         ]
         fact_store.index_facts_batch(qdrant_facts)
-        log(f"Indexed {len(qdrant_facts)} facts to Qdrant")
+        log(f"  Indexed {len(qdrant_facts)} facts to Qdrant")
 
-    # 6. Bulk create TopicNodes
+    # 6. Bulk create TopicNodes (batched)
     if buffer.topic_nodes:
-        neo4j.query("""
-            UNWIND $nodes AS n
-            MERGE (t:TopicNode {name: n.name, group_id: n.group_id})
-            ON CREATE SET
-                t.uuid = n.uuid,
-                t.embedding = n.embedding,
-                t.created_at = datetime()
-        """, {"nodes": buffer.topic_nodes})
-        counts["topics"] = len(buffer.topic_nodes)
+        total = len(buffer.topic_nodes)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = buffer.topic_nodes[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $nodes AS n
+                MERGE (t:TopicNode {name: n.name, group_id: n.group_id})
+                ON CREATE SET
+                    t.uuid = n.uuid,
+                    t.embedding = n.embedding,
+                    t.created_at = datetime()
+            """, {"nodes": batch})
+        counts["topics"] = total
+        log(f"  Topics: {total}/{total} ({num_batches} batches)")
 
     # 7. Bulk create relationships (grouped by type)
     if buffer.relationships:
-        counts["relationships"] = _bulk_create_relationships(buffer.relationships, neo4j)
+        counts["relationships"] = _bulk_create_relationships(buffer.relationships, neo4j, batch_size=batch_size)
 
     return counts
 
 
-def _bulk_update_entity_summaries(updates: List[Dict], group_id: str, neo4j, llm) -> None:
+def _bulk_update_entity_summaries(updates: List[Dict], group_id: str, neo4j, llm, batch_size: int = 250) -> None:
     """Batch read existing summaries, LLM merge, batch write."""
     if not updates:
         return
@@ -502,14 +522,19 @@ def _bulk_update_entity_summaries(updates: List[Dict], group_id: str, neo4j, llm
 
     # Batch write merged summaries
     if merged_updates:
-        neo4j.query("""
-            UNWIND $updates AS u
-            MATCH (e:EntityNode {uuid: u.uuid, group_id: $group_id})
-            SET e.summary = u.summary
-        """, {"updates": merged_updates, "group_id": group_id})
+        total = len(merged_updates)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = merged_updates[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $updates AS u
+                MATCH (e:EntityNode {uuid: u.uuid, group_id: $group_id})
+                SET e.summary = u.summary
+            """, {"updates": batch, "group_id": group_id})
+        log(f"  Entity summary updates: {total}/{total} ({num_batches} batches)")
 
 
-def _bulk_create_relationships(relationships: List[Dict], neo4j) -> int:
+def _bulk_create_relationships(relationships: List[Dict], neo4j, batch_size: int = 250) -> int:
     """Create relationships in batches grouped by type."""
     # Group by relationship type
     by_type = defaultdict(list)
@@ -517,18 +542,22 @@ def _bulk_create_relationships(relationships: List[Dict], neo4j) -> int:
         by_type[rel["rel_type"]].append(rel)
 
     total = 0
+    total_batches = 0
     for rel_type, rels in by_type.items():
         # Separate rels with properties vs without
         with_props = [r for r in rels if r.get("properties")]
         without_props = [r for r in rels if not r.get("properties")]
 
-        # Simple relationships (no properties)
+        # Simple relationships (no properties) - batched
         if without_props:
-            neo4j.query(f"""
-                UNWIND $rels AS r
-                MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
-                MERGE (a)-[:{rel_type}]->(b)
-            """, {"rels": without_props})
+            for i in range(0, len(without_props), batch_size):
+                batch = without_props[i:i + batch_size]
+                neo4j.query(f"""
+                    UNWIND $rels AS r
+                    MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
+                    MERGE (a)-[:{rel_type}]->(b)
+                """, {"rels": batch})
+                total_batches += 1
             total += len(without_props)
 
         # Relationships with properties - use CREATE to ensure each fact gets its own edge
@@ -539,23 +568,30 @@ def _bulk_create_relationships(relationships: List[Dict], neo4j) -> int:
             without_fact_id = [r for r in with_props if r not in with_fact_id]
 
             if with_fact_id:
-                neo4j.query(f"""
-                    UNWIND $rels AS r
-                    MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
-                    MERGE (a)-[rel:{rel_type} {{fact_id: r.properties.fact_id}}]->(b)
-                    SET rel += r.properties
-                """, {"rels": with_fact_id})
+                for i in range(0, len(with_fact_id), batch_size):
+                    batch = with_fact_id[i:i + batch_size]
+                    neo4j.query(f"""
+                        UNWIND $rels AS r
+                        MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
+                        MERGE (a)-[rel:{rel_type} {{fact_id: r.properties.fact_id}}]->(b)
+                        SET rel += r.properties
+                    """, {"rels": batch})
+                    total_batches += 1
                 total += len(with_fact_id)
 
             if without_fact_id:
-                neo4j.query(f"""
-                    UNWIND $rels AS r
-                    MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
-                    CREATE (a)-[rel:{rel_type}]->(b)
-                    SET rel = r.properties
-                """, {"rels": without_fact_id})
+                for i in range(0, len(without_fact_id), batch_size):
+                    batch = without_fact_id[i:i + batch_size]
+                    neo4j.query(f"""
+                        UNWIND $rels AS r
+                        MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
+                        CREATE (a)-[rel:{rel_type}]->(b)
+                        SET rel = r.properties
+                    """, {"rels": batch})
+                    total_batches += 1
                 total += len(without_fact_id)
 
+    log(f"  Relationships: {total}/{total} ({total_batches} batches)")
     return total
 
 
