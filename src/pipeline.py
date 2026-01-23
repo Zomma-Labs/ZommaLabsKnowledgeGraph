@@ -40,6 +40,7 @@ from src.agents.topic_librarian import TopicLibrarian
 from src.agents.temporal_extractor import TemporalExtractor
 from src.util.entity_dedup import DeferredDeduplicationManager
 from src.util.fact_vector_store import get_fact_store
+from src.util.checkpoint import CheckpointManager
 from src.schemas.extraction import ChainOfThoughtResult, TopicResolution, EnumeratedEntity
 
 # =============================================================================
@@ -1168,7 +1169,9 @@ async def process_file(
     dedup_concurrency: int,
     neo4j, embeddings, dedup_embeddings, llm,
     entity_registry: EntityRegistry,
-    topic_librarian: TopicLibrarian
+    topic_librarian: TopicLibrarian,
+    batch_size: int = 250,
+    checkpoint_mgr: Optional[CheckpointManager] = None
 ) -> Dict[str, Any]:
     """Process all chunks in a JSONL file."""
     filename = os.path.basename(filepath)
@@ -1266,6 +1269,8 @@ async def process_file(
     phase1_time = time.time() - t1
     ok = sum(1 for e in extractions if e["success"])
     print(f"  Phase 1: {ok}/{len(chunks)} extracted ({phase1_time:.1f}s)")
+    if checkpoint_mgr:
+        checkpoint_mgr.save_phase1(extractions, document_uuid, document_name, document_date_str, chunks)
 
     # ===== PHASE 2a: COLLECT ALL ENTITIES =====
     # Derive entities from fact subjects/objects (not from entity list)
@@ -1549,6 +1554,8 @@ async def process_file(
     # Count topics that didn't match ontology
     skipped_topics = len(topic_names_from_facts) - len(topic_lookup_global)
     print(f"    Resolved {len(entity_lookup_global)} entities + {len(topic_lookup_global)} topics ({skipped_topics} skipped - not in ontology) in {resolve_time:.1f}s")
+    if checkpoint_mgr:
+        checkpoint_mgr.save_phase2(entity_lookup_global, topic_lookup_global, {}, uuid_by_name)
 
     # ===== PHASE 3: ASSEMBLY (Bulk Write) =====
     print("  Phase 3: Collecting operations...")
@@ -1601,6 +1608,8 @@ async def process_file(
 
     collect_time = time.time() - t4
     print(f"    Collected {len(buffer.episodic_nodes)} episodic, {len(buffer.entity_nodes)} entities, {len(buffer.fact_nodes)} facts, {len(buffer.relationships)} rels ({collect_time:.1f}s)")
+    if checkpoint_mgr:
+        checkpoint_mgr.save_phase3(buffer, embeddings_done=False)
 
     # Generate all embeddings in batches (avoids rate limits)
     print("  Phase 3b: Generating embeddings (batched)...")
@@ -1608,13 +1617,15 @@ async def process_file(
     batch_generate_embeddings(buffer, embeddings, dedup_embeddings, batch_size=128)
     embed_time = time.time() - t_embed
     print(f"    Generated embeddings in {embed_time:.1f}s")
+    if checkpoint_mgr:
+        checkpoint_mgr.save_phase3(buffer, embeddings_done=True)
 
     # Execute bulk write
     print("  Phase 3c: Writing to Neo4j...")
     # Warmup connection - Aura may have gone to sleep during embedding generation
     neo4j.warmup()
     t5 = time.time()
-    write_counts = bulk_write_all(buffer, neo4j, embeddings, llm)
+    write_counts = bulk_write_all(buffer, neo4j, embeddings, llm, batch_size)
     write_time = time.time() - t5
     print(f"    Wrote in {write_time:.1f}s")
 
@@ -1656,6 +1667,9 @@ async def main():
     parser.add_argument("--similarity-threshold", "-s", type=float, default=0.70, help="Similarity threshold for entity deduplication (0.0-1.0)")
     parser.add_argument("--resolve-concurrency", "-r", type=int, default=50, help="Max concurrent entity resolutions")
     parser.add_argument("--dedup-concurrency", "-d", type=int, default=20, help="Max concurrent LLM deduplication calls")
+    parser.add_argument("--resume", action="store_true", help="Resume from checkpoint (fail if none exists)")
+    parser.add_argument("--fresh", action="store_true", help="Force fresh start (ignore existing checkpoint)")
+    parser.add_argument("--batch-size", "-b", type=int, default=250, help="Neo4j write batch size (default: 250)")
     args = parser.parse_args()
 
     print("=" * 60)
@@ -1686,6 +1700,35 @@ async def main():
     if args.limit:
         print(f"Limiting to {args.limit} chunks/file")
 
+    # Handle checkpoint flags
+    checkpoint_managers = {}  # filepath -> CheckpointManager
+
+    for filepath in files:
+        existing = CheckpointManager.find_existing(filepath, args.group_id)
+
+        if args.fresh and existing:
+            print(f"  --fresh specified, removing checkpoint for {os.path.basename(filepath)}...")
+            existing.delete()
+            existing = None
+
+        if args.resume:
+            if not existing:
+                print(f"ERROR: --resume specified but no checkpoint found for {os.path.basename(filepath)}")
+                sys.exit(1)
+            existing.print_status()
+            checkpoint_managers[filepath] = existing
+        elif existing:
+            # Auto-resume
+            print(f"\nFound existing checkpoint:")
+            existing.print_status()
+            checkpoint_managers[filepath] = existing
+        else:
+            # Fresh run - create new checkpoint manager
+            checkpoint_managers[filepath] = CheckpointManager(
+                filepath, args.group_id,
+                cli_args={"limit": args.limit, "concurrency": args.concurrency}
+            )
+
     # Init services
     print("\nInitializing services...")
     from src.util.services import get_services
@@ -1711,9 +1754,15 @@ async def main():
         r = await process_file(
             f, args.group_id, args.limit, args.concurrency, args.similarity_threshold,
             args.resolve_concurrency, args.dedup_concurrency,
-            svc.neo4j, svc.embeddings, svc.dedup_embeddings, svc.llm, entity_registry, topic_librarian
+            svc.neo4j, svc.embeddings, svc.dedup_embeddings, svc.llm, entity_registry, topic_librarian,
+            batch_size=args.batch_size,
+            checkpoint_mgr=checkpoint_managers.get(f)
         )
         results.append(r)
+        # Cleanup checkpoint on success
+        if checkpoint_managers.get(f):
+            checkpoint_managers[f].cleanup()
+            print(f"  Checkpoint cleaned up")
 
     # Summary
     elapsed = time.time() - start
