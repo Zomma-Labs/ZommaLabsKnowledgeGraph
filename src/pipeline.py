@@ -881,14 +881,15 @@ def collect_chunk(
     return {"entities": entity_count, "facts": fact_count, "relationships": rel_count}
 
 
-def batch_generate_embeddings(buffer: BulkWriteBuffer, embeddings, dedup_embeddings, batch_size: int = 128) -> None:
-    """Generate all embeddings in batches to avoid rate limits.
+async def batch_generate_embeddings(buffer: BulkWriteBuffer, embeddings, dedup_embeddings, batch_size: int = 128, concurrency: int = 10) -> None:
+    """Generate all embeddings in parallel batches.
 
     Args:
         buffer: The bulk write buffer containing nodes that need embeddings
         embeddings: voyage-finance-2 embeddings client (for entities/topics)
         dedup_embeddings: voyage-3-large embeddings client (for facts)
         batch_size: Max texts per embedding API call (Voyage limit is ~128)
+        concurrency: Max concurrent embedding API calls per embedding type
     """
     import time
 
@@ -923,46 +924,81 @@ def batch_generate_embeddings(buffer: BulkWriteBuffer, embeddings, dedup_embeddi
 
     log(f"Generating embeddings: {len(entity_texts)} entities, {len(topic_texts)} topics, {len(fact_texts)} facts")
 
-    def embed_in_batches(texts: List[str], embed_fn, batch_sz: int) -> List[List[float]]:
-        """Embed texts in batches with rate limit handling."""
-        all_embeddings = []
-        for i in range(0, len(texts), batch_sz):
-            batch = texts[i:i + batch_sz]
-            try:
-                batch_embeddings = embed_fn.embed_documents(batch)
-                all_embeddings.extend(batch_embeddings)
-            except Exception as e:
-                if "rate limit" in str(e).lower():
-                    log(f"Rate limited, waiting 60s...")
-                    time.sleep(60)
-                    batch_embeddings = embed_fn.embed_documents(batch)
-                    all_embeddings.extend(batch_embeddings)
-                else:
+    async def embed_in_batches_async(texts: List[str], embed_fn, batch_sz: int, sem: asyncio.Semaphore) -> List[List[float]]:
+        """Embed texts in parallel batches with concurrency control."""
+        if not texts:
+            return []
+
+        async def embed_batch(batch: List[str], batch_idx: int) -> tuple:
+            async with sem:
+                try:
+                    result = await asyncio.to_thread(embed_fn.embed_documents, batch)
+                    return batch_idx, result
+                except Exception as e:
+                    if "rate limit" in str(e).lower():
+                        log(f"Rate limited on batch {batch_idx}, waiting 30s...")
+                        await asyncio.sleep(30)
+                        result = await asyncio.to_thread(embed_fn.embed_documents, batch)
+                        return batch_idx, result
                     raise
-            # Small delay between batches to stay under rate limits
-            if i + batch_sz < len(texts):
-                time.sleep(0.5)
+
+        # Create all batch tasks
+        batches = [(texts[i:i + batch_sz], i // batch_sz) for i in range(0, len(texts), batch_sz)]
+        tasks = [embed_batch(batch, idx) for batch, idx in batches]
+
+        # Run all batches concurrently (limited by semaphore)
+        results = await asyncio.gather(*tasks)
+
+        # Sort by batch index and flatten
+        results.sort(key=lambda x: x[0])
+        all_embeddings = []
+        for _, batch_embeddings in results:
+            all_embeddings.extend(batch_embeddings)
+
         return all_embeddings
 
-    # Generate entity embeddings (voyage-finance-2)
-    if entity_texts:
-        entity_embeddings = embed_in_batches(entity_texts, embeddings, batch_size)
-        entity_name_embeddings = embed_in_batches(entity_name_texts, embeddings, batch_size)
-        for j, idx in enumerate(entity_indices):
-            buffer.entity_nodes[idx]['embedding'] = entity_embeddings[j]
-            buffer.entity_nodes[idx]['name_only_embedding'] = entity_name_embeddings[j]
+    # Create semaphores for concurrency control (separate per embedding client to avoid conflicts)
+    sem_main = asyncio.Semaphore(concurrency)
+    sem_dedup = asyncio.Semaphore(concurrency)
 
-    # Generate topic embeddings (voyage-finance-2)
-    if topic_texts:
-        topic_embeddings = embed_in_batches(topic_texts, embeddings, batch_size)
-        for j, idx in enumerate(topic_indices):
-            buffer.topic_nodes[idx]['embedding'] = topic_embeddings[j]
+    # Run all 4 embedding types in parallel
+    async def embed_entities():
+        if not entity_texts:
+            return [], []
+        # Run entity text and entity name embeddings in parallel
+        entity_emb, entity_name_emb = await asyncio.gather(
+            embed_in_batches_async(entity_texts, embeddings, batch_size, sem_main),
+            embed_in_batches_async(entity_name_texts, embeddings, batch_size, sem_main)
+        )
+        return entity_emb, entity_name_emb
 
-    # Generate fact embeddings (voyage-3-large for Qdrant)
-    if fact_texts:
-        fact_embeddings = embed_in_batches(fact_texts, dedup_embeddings, batch_size)
-        for j, idx in enumerate(fact_indices):
-            buffer.fact_nodes[idx]['embedding'] = fact_embeddings[j]
+    async def embed_topics():
+        if not topic_texts:
+            return []
+        return await embed_in_batches_async(topic_texts, embeddings, batch_size, sem_main)
+
+    async def embed_facts():
+        if not fact_texts:
+            return []
+        return await embed_in_batches_async(fact_texts, dedup_embeddings, batch_size, sem_dedup)
+
+    # Execute all embedding tasks in parallel
+    (entity_embeddings, entity_name_embeddings), topic_embeddings, fact_embeddings = await asyncio.gather(
+        embed_entities(),
+        embed_topics(),
+        embed_facts()
+    )
+
+    # Map embeddings back to buffer
+    for j, idx in enumerate(entity_indices):
+        buffer.entity_nodes[idx]['embedding'] = entity_embeddings[j]
+        buffer.entity_nodes[idx]['name_only_embedding'] = entity_name_embeddings[j]
+
+    for j, idx in enumerate(topic_indices):
+        buffer.topic_nodes[idx]['embedding'] = topic_embeddings[j]
+
+    for j, idx in enumerate(fact_indices):
+        buffer.fact_nodes[idx]['embedding'] = fact_embeddings[j]
 
     log(f"Embeddings generated successfully")
 
@@ -1676,9 +1712,9 @@ async def process_file(
 
     # Phase 3b embeddings (if not done)
     if not embeddings_done:
-        print("  Phase 3b: Generating embeddings (batched)...")
+        print("  Phase 3b: Generating embeddings (parallel)...")
         t_embed = time.time()
-        batch_generate_embeddings(buffer, embeddings, dedup_embeddings, batch_size=128)
+        await batch_generate_embeddings(buffer, embeddings, dedup_embeddings, batch_size=128)
         embed_time = time.time() - t_embed
         print(f"    Generated embeddings in {embed_time:.1f}s")
         if checkpoint_mgr:
