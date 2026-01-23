@@ -69,7 +69,7 @@ class CheckpointManager:
         if not matches:
             return None
 
-        # Return the most recent one (by directory name, which includes run_id)
+        # Return the most recent one (by modification time)
         latest = sorted(matches, key=lambda d: d.stat().st_mtime, reverse=True)[0]
 
         # Load the checkpoint
@@ -161,24 +161,36 @@ class CheckpointManager:
         path = self.checkpoint_dir / "phase1_extraction.pkl"
         if not path.exists():
             return None
-        with open(path, "rb") as f:
-            return pickle.load(f)
+        try:
+            with open(path, "rb") as f:
+                return pickle.load(f)
+        except (pickle.UnpicklingError, EOFError, Exception) as e:
+            print(f"Warning: Corrupted checkpoint file {path}: {e}")
+            return None
 
     def load_phase2(self) -> Optional[Dict]:
         """Load Phase 2 data if it exists."""
         path = self.checkpoint_dir / "phase2_resolution.pkl"
         if not path.exists():
             return None
-        with open(path, "rb") as f:
-            return pickle.load(f)
+        try:
+            with open(path, "rb") as f:
+                return pickle.load(f)
+        except (pickle.UnpicklingError, EOFError, Exception) as e:
+            print(f"Warning: Corrupted checkpoint file {path}: {e}")
+            return None
 
     def load_phase3(self) -> Optional[Dict]:
         """Load Phase 3 data if it exists."""
         path = self.checkpoint_dir / "phase3_buffer.pkl"
         if not path.exists():
             return None
-        with open(path, "rb") as f:
-            return pickle.load(f)
+        try:
+            with open(path, "rb") as f:
+                return pickle.load(f)
+        except (pickle.UnpicklingError, EOFError, Exception) as e:
+            print(f"Warning: Corrupted checkpoint file {path}: {e}")
+            return None
 
     def cleanup(self):
         """Remove checkpoint directory after successful completion."""
