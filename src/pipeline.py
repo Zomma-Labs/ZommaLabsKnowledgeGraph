@@ -99,6 +99,56 @@ def _prepend_header_if_missing(text: str, header_path: str) -> str:
     return f"{prefix}\n{text}"
 
 
+async def embed_in_batches_async(
+    texts: List[str],
+    embed_fn,
+    batch_sz: int,
+    sem: asyncio.Semaphore
+) -> List[List[float]]:
+    """
+    Embed texts in parallel batches with concurrency control.
+
+    Args:
+        texts: List of strings to embed
+        embed_fn: Embedding function with embed_documents method
+        batch_sz: Number of texts per batch
+        sem: Semaphore for concurrency control
+
+    Returns:
+        List of embeddings in same order as input texts
+    """
+    if not texts:
+        return []
+
+    async def embed_batch(batch: List[str], batch_idx: int) -> tuple:
+        async with sem:
+            try:
+                result = await asyncio.to_thread(embed_fn.embed_documents, batch)
+                return batch_idx, result
+            except Exception as e:
+                if "rate limit" in str(e).lower():
+                    log(f"Rate limited on batch {batch_idx}, waiting 30s...")
+                    await asyncio.sleep(30)
+                    result = await asyncio.to_thread(embed_fn.embed_documents, batch)
+                    return batch_idx, result
+                raise
+
+    # Create all batch tasks
+    batches = [(texts[i:i + batch_sz], i // batch_sz) for i in range(0, len(texts), batch_sz)]
+    tasks = [embed_batch(batch, idx) for batch, idx in batches]
+
+    # Run all batches concurrently (limited by semaphore)
+    results = await asyncio.gather(*tasks)
+
+    # Sort by batch index and flatten
+    results.sort(key=lambda x: x[0])
+    all_embeddings = []
+    for _, batch_embeddings in results:
+        all_embeddings.extend(batch_embeddings)
+
+    return all_embeddings
+
+
 def _ensure_vector_indexes(neo4j) -> None:
     """Ensure required Neo4j vector indexes exist. Creates them if missing."""
     # Check for entity_name_embeddings index
@@ -481,8 +531,11 @@ def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm, batch_size: 
                 MERGE (t:TopicNode {name: n.name, group_id: n.group_id})
                 ON CREATE SET
                     t.uuid = n.uuid,
+                    t.definition = n.definition,
                     t.embedding = n.embedding,
                     t.created_at = datetime()
+                ON MATCH SET
+                    t.definition = COALESCE(n.definition, t.definition)
             """, {"nodes": batch})
         counts["topics"] = total
         log(f"  Topics: {total}/{total} ({num_batches} batches)")
@@ -766,6 +819,7 @@ def collect_chunk(
             buffer.topic_nodes.append({
                 "uuid": topic_res.uuid,
                 "name": topic_label,
+                "definition": topic_res.definition,  # From Qdrant ontology
                 "group_id": buffer.group_id,
                 "embedding": None  # Will be filled by batch_generate_embeddings
             })
@@ -864,6 +918,7 @@ def collect_chunk(
                     buffer.topic_nodes.append({
                         "uuid": topic_uuid,
                         "name": topic_label,
+                        "definition": topic_res.definition,  # From Qdrant ontology
                         "group_id": buffer.group_id,
                         "embedding": None  # Will be filled by batch_generate_embeddings
                     })
@@ -923,39 +978,6 @@ async def batch_generate_embeddings(buffer: BulkWriteBuffer, embeddings, dedup_e
             fact_indices.append(i)
 
     log(f"Generating embeddings: {len(entity_texts)} entities, {len(topic_texts)} topics, {len(fact_texts)} facts")
-
-    async def embed_in_batches_async(texts: List[str], embed_fn, batch_sz: int, sem: asyncio.Semaphore) -> List[List[float]]:
-        """Embed texts in parallel batches with concurrency control."""
-        if not texts:
-            return []
-
-        async def embed_batch(batch: List[str], batch_idx: int) -> tuple:
-            async with sem:
-                try:
-                    result = await asyncio.to_thread(embed_fn.embed_documents, batch)
-                    return batch_idx, result
-                except Exception as e:
-                    if "rate limit" in str(e).lower():
-                        log(f"Rate limited on batch {batch_idx}, waiting 30s...")
-                        await asyncio.sleep(30)
-                        result = await asyncio.to_thread(embed_fn.embed_documents, batch)
-                        return batch_idx, result
-                    raise
-
-        # Create all batch tasks
-        batches = [(texts[i:i + batch_sz], i // batch_sz) for i in range(0, len(texts), batch_sz)]
-        tasks = [embed_batch(batch, idx) for batch, idx in batches]
-
-        # Run all batches concurrently (limited by semaphore)
-        results = await asyncio.gather(*tasks)
-
-        # Sort by batch index and flatten
-        results.sort(key=lambda x: x[0])
-        all_embeddings = []
-        for _, batch_embeddings in results:
-            all_embeddings.extend(batch_embeddings)
-
-        return all_embeddings
 
     # Create semaphores for concurrency control (separate per embedding client to avoid conflicts)
     sem_main = asyncio.Semaphore(concurrency)
@@ -1207,6 +1229,8 @@ async def process_file(
     entity_registry: EntityRegistry,
     topic_librarian: TopicLibrarian,
     batch_size: int = 250,
+    embedding_concurrency: int = 10,
+    embedding_batch_size: int = 100,
     checkpoint_mgr: Optional[CheckpointManager] = None
 ) -> Dict[str, Any]:
     """Process all chunks in a JSONL file."""
@@ -1399,7 +1423,7 @@ async def process_file(
         dedup_manager.reset()  # Clear any previous state
 
         if entities_by_name:
-            print(f"  Phase 2b: Generating embeddings and registering entities...")
+            print(f"  Phase 2b: Generating embeddings and registering entities (concurrency={embedding_concurrency}, batch={embedding_batch_size})...")
 
             # Generate embeddings for all entities
             entity_names = list(entities_by_name.keys())
@@ -1409,7 +1433,14 @@ async def process_file(
                 summary = first_entity.summary if hasattr(first_entity, 'summary') else ""
                 entity_texts.append(f"{name}: {summary}" if summary else name)
 
-            entity_embeddings = dedup_embeddings.embed_documents(entity_texts)
+            # Parallel batch embedding with rate limit handling
+            sem_dedup_embed = asyncio.Semaphore(embedding_concurrency)
+            entity_embeddings = await embed_in_batches_async(
+                entity_texts,
+                dedup_embeddings,
+                batch_sz=embedding_batch_size,
+                sem=sem_dedup_embed
+            )
 
             # Register entities with dedup manager
             uuid_by_name = {}
@@ -1469,44 +1500,68 @@ async def process_file(
             for name in uuid_by_name
         ))
 
-        print(f"  Phase 2d: Pre-computing embeddings for resolution...")
+        print(f"  Phase 2d: Pre-computing embeddings for resolution (concurrency={embedding_concurrency}, batch={embedding_batch_size})...")
 
-        # Pre-compute entity embeddings in batch (avoids rate limits during resolution)
-        entity_embeddings_map: Dict[str, List[float]] = {}
+        # Prepare entity texts for embedding
+        entity_texts_2d = []
+        valid_uuids = []
         if canonical_uuids:
-            entity_texts = []
-            valid_uuids = []
             for canonical_uuid in canonical_uuids:
                 canonical_entity = dedup_manager._pending_entities[canonical_uuid]
                 text = f"{canonical_entity.name}: {canonical_entity.summary}"
                 if text.strip():  # Skip empty texts
-                    entity_texts.append(text)
+                    entity_texts_2d.append(text)
                     valid_uuids.append(canonical_uuid)
-            # Batch embed all entities
-            if entity_texts:
-                entity_embeddings_list = dedup_embeddings.embed_documents(entity_texts)
-                for i, canonical_uuid in enumerate(valid_uuids):
-                    entity_embeddings_map[canonical_uuid] = entity_embeddings_list[i]
-            print(f"    Pre-computed {len(entity_embeddings_map)} entity embeddings")
 
-        # Pre-compute topic embeddings in batch using enriched text (topic: definition)
-        topic_embeddings_map: Dict[str, List[float]] = {}
+        # Prepare topic texts for embedding (use definition if available)
         topic_enriched_texts: Dict[str, str] = {}  # topic_name -> enriched text for resolution
         topic_names_list = [t for t in topic_names_from_facts if t and t.strip()]
-        if topic_names_list:
-            # Build enriched texts for embedding (use definition if available)
-            texts_to_embed = []
-            for topic_name in topic_names_list:
-                definition = topic_definitions.get(topic_name, "")
-                if definition:
-                    enriched = f"{topic_name}: {definition}"
-                else:
-                    enriched = topic_name
-                topic_enriched_texts[topic_name] = enriched
-                texts_to_embed.append(enriched)
-            topic_embeddings_list = embeddings.embed_documents(texts_to_embed)
-            for i, topic_name in enumerate(topic_names_list):
-                topic_embeddings_map[topic_name] = topic_embeddings_list[i]
+        topic_texts_2d = []
+        for topic_name in topic_names_list:
+            definition = topic_definitions.get(topic_name, "")
+            if definition:
+                enriched = f"{topic_name}: {definition}"
+            else:
+                enriched = topic_name
+            topic_enriched_texts[topic_name] = enriched
+            topic_texts_2d.append(enriched)
+
+        # Run entity and topic embedding in PARALLEL (major speedup)
+        # Use separate semaphores per embedding client to avoid rate limit conflicts
+        sem_entity_embed = asyncio.Semaphore(embedding_concurrency)
+        sem_topic_embed = asyncio.Semaphore(embedding_concurrency)
+
+        async def compute_entity_embeddings():
+            if not entity_texts_2d:
+                return []
+            return await embed_in_batches_async(
+                entity_texts_2d, dedup_embeddings, batch_sz=embedding_batch_size, sem=sem_entity_embed
+            )
+
+        async def compute_topic_embeddings():
+            if not topic_texts_2d:
+                return []
+            return await embed_in_batches_async(
+                topic_texts_2d, embeddings, batch_sz=embedding_batch_size, sem=sem_topic_embed
+            )
+
+        entity_embeddings_list, topic_embeddings_list = await asyncio.gather(
+            compute_entity_embeddings(),
+            compute_topic_embeddings()
+        )
+
+        # Build entity embeddings map
+        entity_embeddings_map: Dict[str, List[float]] = {}
+        for i, canonical_uuid in enumerate(valid_uuids):
+            entity_embeddings_map[canonical_uuid] = entity_embeddings_list[i]
+        if entity_embeddings_map:
+            print(f"    Pre-computed {len(entity_embeddings_map)} entity embeddings")
+
+        # Build topic embeddings map
+        topic_embeddings_map: Dict[str, List[float]] = {}
+        for i, topic_name in enumerate(topic_names_list):
+            topic_embeddings_map[topic_name] = topic_embeddings_list[i]
+        if topic_embeddings_map:
             print(f"    Pre-computed {len(topic_embeddings_map)} topic embeddings (with definitions)")
 
         print(f"  Phase 2e: Resolving {len(canonical_uuids)} entities + {len(topic_names_from_facts)} topics in parallel...")
@@ -1714,7 +1769,7 @@ async def process_file(
     if not embeddings_done:
         print("  Phase 3b: Generating embeddings (parallel)...")
         t_embed = time.time()
-        await batch_generate_embeddings(buffer, embeddings, dedup_embeddings, batch_size=128)
+        await batch_generate_embeddings(buffer, embeddings, dedup_embeddings, batch_size=embedding_batch_size, concurrency=embedding_concurrency)
         embed_time = time.time() - t_embed
         print(f"    Generated embeddings in {embed_time:.1f}s")
         if checkpoint_mgr:
@@ -1767,11 +1822,13 @@ async def main():
     parser.add_argument("--filter", "-f", help="Filter files by name substring")
     parser.add_argument("--concurrency", "-c", type=int, default=DEFAULT_CONCURRENCY, help="Max concurrent extractions")
     parser.add_argument("--similarity-threshold", "-s", type=float, default=0.70, help="Similarity threshold for entity deduplication (0.0-1.0)")
-    parser.add_argument("--resolve-concurrency", "-r", type=int, default=50, help="Max concurrent entity resolutions")
-    parser.add_argument("--dedup-concurrency", "-d", type=int, default=20, help="Max concurrent LLM deduplication calls")
+    parser.add_argument("--resolve-concurrency", "-r", type=int, default=100, help="Max concurrent entity resolutions (default: 100)")
+    parser.add_argument("--dedup-concurrency", "-d", type=int, default=40, help="Max concurrent LLM deduplication calls (default: 40)")
     parser.add_argument("--resume", action="store_true", help="Resume from checkpoint (fail if none exists)")
     parser.add_argument("--fresh", action="store_true", help="Force fresh start (ignore existing checkpoint)")
     parser.add_argument("--batch-size", "-b", type=int, default=250, help="Neo4j write batch size (default: 250)")
+    parser.add_argument("--embedding-concurrency", type=int, default=10, help="Max concurrent embedding batches (default: 10)")
+    parser.add_argument("--embedding-batch-size", type=int, default=100, help="Texts per embedding batch (default: 100)")
     args = parser.parse_args()
 
     # Validate arguments
@@ -1867,6 +1924,8 @@ async def main():
             args.resolve_concurrency, args.dedup_concurrency,
             svc.neo4j, svc.embeddings, svc.dedup_embeddings, svc.llm, entity_registry, topic_librarian,
             batch_size=args.batch_size,
+            embedding_concurrency=args.embedding_concurrency,
+            embedding_batch_size=args.embedding_batch_size,
             checkpoint_mgr=checkpoint_managers.get(f)
         )
         results.append(r)

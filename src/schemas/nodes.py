@@ -69,5 +69,6 @@ class TopicNode(Node):
     Example: "Inflation", "Labor Markets", "Risk".
     """
     name: str = Field(description="Normalized name of the topic")
+    definition: Optional[str] = Field(default=None, description="One-sentence definition from ontology")
     # fibo_id removed - will implement custom ontology later
     embedding: Optional[List[float]] = None

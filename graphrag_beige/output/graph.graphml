@@ -1,0 +1,4168 @@
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="edge" attr.name="weight" attr.type="double" />
+  <graph edgedefault="undirected">
+    <node id="BEIGE BOOK" />
+    <node id="FEDERAL RESERVE SYSTEM" />
+    <node id="FEDERAL RESERVE DISTRICTS" />
+    <node id="ECONOMIC ACTIVITY" />
+    <node id="BUSINESSES" />
+    <node id="COMMUNITY ORGANIZATIONS" />
+    <node id="ECONOMISTS" />
+    <node id="MARKET EXPERTS" />
+    <node id="FEDERAL RESERVE BOARD" />
+    <node id="OUTREACH" />
+    <node id="SURVEYS" />
+    <node id="FEDERAL RESERVE BANK" />
+    <node id="SEATTLE BRANCH" />
+    <node id="SAN FRANCISCO BANK" />
+    <node id="NEW YORK BANK" />
+    <node id="BRANCH DIRECTORS" />
+    <node id="BANK DIRECTORS" />
+    <node id="STATISTICAL RELEASES" />
+    <node id="CONSUMER SPENDING" />
+    <node id="MANUFACTURING ACTIVITY" />
+    <node id="AGRICULTURE" />
+    <node id="ENERGY" />
+    <node id="TRANSPORTATION" />
+    <node id="FINANCIAL SERVICES SECTOR" />
+    <node id="GOVERNMENT SHUTDOWN" />
+    <node id="LABOR MARKETS" />
+    <node id="PRICES" />
+    <node id="RETAIL GOODS" />
+    <node id="AUTO SALES" />
+    <node id="LEISURE AND HOSPITALITY SERVICES" />
+    <node id="LOWER- AND MIDDLE-INCOME HOUSEHOLDS" />
+    <node id="ELECTRIC VEHICLES" />
+    <node id="FEDERAL TAX CREDIT" />
+    <node id="INTERNATIONAL TRAVELERS" />
+    <node id="DOMESTIC CONSUMERS" />
+    <node id="HIGHER-INCOME INDIVIDUALS" />
+    <node id="TARIFFS" />
+    <node id="BUSINESS LENDING" />
+    <node id="INTEREST RATE-SENSITIVE SECTORS" />
+    <node id="INTEREST RATES" />
+    <node id="RESIDENTIAL REAL ESTATE" />
+    <node id="COMMERCIAL REAL ESTATE" />
+    <node id="EMPLOYMENT LEVELS" />
+    <node id="ARTIFICIAL INTELLIGENCE TECHNOLOGIES" />
+    <node id="TEMPORARY AND PART-TIME WORKERS" />
+    <node id="FULL-TIME EMPLOYMENT" />
+    <node id="HOSPITALITY" />
+    <node id="CONSTRUCTION" />
+    <node id="IMMIGRATION POLICIES" />
+    <node id="WAGES" />
+    <node id="LABOR COST PRESSURES" />
+    <node id="EMPLOYER-SPONSORED HEALTH INSURANCE EXPENSES" />
+    <node id="INPUT COSTS" />
+    <node id="IMPORT COSTS" />
+    <node id="INSURANCE" />
+    <node id="HEALTH CARE" />
+    <node id="TECHNOLOGY SOLUTIONS" />
+    <node id="ADVISORY COUNCILS" />
+    <node id="NONPROFIT ORGANIZATIONS" />
+    <node id="COMMUNITY GROUPS" />
+    <node id="ADVISORY COUNCIL MEMBERS" />
+    <node id="FED(&quot;ENTITY&quot;" />
+    <node id="HOUSEHOLDS" />
+    <node id="FEDERAL RESERVE BANK OF SAN FRANCISCO" />
+    <node id="BOSTON" />
+    <node id="NEW YORK" />
+    <node id="PHILADELPHIA" />
+    <node id="CLEVELAND" />
+    <node id="RICHMOND" />
+    <node id="ATLANTA" />
+    <node id="CHICAGO" />
+    <node id="ST. LOUIS" />
+    <node id="MINNEAPOLIS" />
+    <node id="KANSAS CITY" />
+    <node id="DALLAS" />
+    <node id="SAN FRANCISCO" />
+    <node id="DISTRICT" />
+    <node id="CONTACTS" />
+    <node id="SIXTH DISTRICT" />
+    <node id="TWELFTH DISTRICT" />
+    <node id="LABOR SHORTAGES" />
+    <node id="EMPLOYMENT" />
+    <node id="OUTSIZED INCREASES" />
+    <node id="INFLATION" />
+    <node id="MANUFACTURING" />
+    <node id="RETAIL TRADE" />
+    <node id="MID- TO UPPER-INCOME HOUSEHOLDS" />
+    <node id="JOB SEEKERS" />
+    <node id="INFLATION-ERODED PURCHASING POWER" />
+    <node id="CONSUMER PURCHASING POWER" />
+    <node id="CHINA" />
+    <node id="AGRICULTURE CONDITIONS" />
+    <node id="FARMERS" />
+    <node id="FINANCIAL SERVICES" />
+    <node id="LOAN DEMAND" />
+    <node id="FINANCIAL CONDITIONS" />
+    <node id="COMMERCIAL CONSTRUCTION" />
+    <node id="BANKING" />
+    <node id="CREDIT CONDITIONS" />
+    <node id="BANKING ACTIVITY" />
+    <node id="SOYBEAN PURCHASES" />
+    <node id="POLICY UNCERTAINTY" />
+    <node id="POLICY" />
+    <node id="OUTLOOK" />
+    <node id="OUTLOOKS" />
+    <node id="2025" />
+    <node id="2026" />
+    <node id="HOME SALES" />
+    <node id="CONSUMER LOAN PORTFOLIOS" />
+    <node id="BANKERS" />
+    <node id="COST PRESSURES" />
+    <node id="COST GROWTH" />
+    <node id="BUSINESS SPENDING" />
+    <node id="NONMANUFACTURERS" />
+    <node id="MANUFACTURERS" />
+    <node id="FIRM" />
+    <node id="CLIENTS" />
+    <node id="CUSTOMERS" />
+    <node id="REPORTING PERIOD" />
+    <node id="FEDERAL RESERVE BANK OF BOSTON" />
+    <node id="UNITED STATES" />
+    <node id="SOFTWARE AND IT SERVICES" />
+    <node id="TOURISM" />
+    <node id="MAINE" />
+    <node id="VERMONT" />
+    <node id="NEW HAMPSHIRE" />
+    <node id="CAPE COD" />
+    <node id="COASTAL NEW HAMPSHIRE" />
+    <node id="LAYOFFS" />
+    <node id="FEDERAL GRANT FUNDING" />
+    <node id="SEASONAL VISAS" />
+    <node id="TAX CREDITS" />
+    <node id="FIRST DISTRICT" />
+    <node id="BUSINESS CONTACTS" />
+    <node id="NON-BUSINESS CONTACTS" />
+    <node id="LABOR MARKET SLACK" />
+    <node id="CANADA" />
+    <node id="NEW ENGLAND" />
+    <node id="OPERATING COSTS" />
+    <node id="OFFICE RENTS" />
+    <node id="LEASING ACTIVITY" />
+    <node id="WORKER AVAILABILITY" />
+    <node id="HOUSING INVENTORY" />
+    <node id="REVENUES" />
+    <node id="OUTPUT PRICES" />
+    <node id="MEDICAL MARKET SEGMENT" />
+    <node id="RETAIL MARKET SEGMENT" />
+    <node id="WHOLESALE MARKET SEGMENT" />
+    <node id="RESTAURANT MARKET SEGMENT" />
+    <node id="IT FIRMS" />
+    <node id="CAPITAL AND TECHNOLOGY SPENDING" />
+    <node id="EDUCATION SECTOR" />
+    <node id="HEALTH-CARE SECTOR" />
+    <node id="RESTAURANTS" />
+    <node id="COSTS" />
+    <node id="PROFITABILITY" />
+    <node id="MENU PRICES" />
+    <node id="HOTELS" />
+    <node id="DAY TRIPS" />
+    <node id="LUXURY ACCOMMODATIONS" />
+    <node id="BUDGET-FRIENDLY ACCOMMODATIONS" />
+    <node id="COST INCREASES" />
+    <node id="SALARIES" />
+    <node id="ANNUAL INCREASES" />
+    <node id="MAN(&quot;ENTITY&quot;" />
+    <node id="SALES POSITIONS" />
+    <node id="TECHNICAL POSITIONS" />
+    <node id="RETAIL SECTOR" />
+    <node id="INDUSTRIAL LEASING AND SALES" />
+    <node id="A DEPARTMENT STORE" />
+    <node id="CONDOMINIUMS" />
+    <node id="SINGLE-FAMILY HOMES" />
+    <node id="NORTHERN NEW ENGLAND STATES" />
+    <node id="APPAREL" />
+    <node id="INDIA" />
+    <node id="A LONG ISLAND IMPORTER AND WHOLESALER OF AUTO PARTS" />
+    <node id="BRAZIL" />
+    <node id="A COFFEE ROASTER AND SUPPLIER" />
+    <node id="UPSTATE NEW YORK" />
+    <node id="A SPECIALTY APPLIANCE MANUFACTURER" />
+    <node id="A BREWING COMPANY" />
+    <node id="NEW YORK CITY" />
+    <node id="A SPECIALTY CONTRACTOR" />
+    <node id="CONGESTION PRICING" />
+    <node id="FOREIGN MANUFACTURERS" />
+    <node id="A PHARMACEUTICAL COMPANY" />
+    <node id="BEEF" />
+    <node id="IMPORTED WINE" />
+    <node id="INPUT PRICES" />
+    <node id="A MAJOR RETAILER" />
+    <node id="SELLING PRICES" />
+    <node id="(&quot;ENTITY&quot;" />
+    <node id="FEDERAL RESERVE BANK OF NEW YORK" />
+    <node id="LONG ISLAND" />
+    <node id="WHOLESALE AND DISTRIBUTION FIRMS" />
+    <node id="BANKS" />
+    <node id="SECURITY SERVICES FIRM" />
+    <node id="BROADWAY SHOWS" />
+    <node id="HOTEL ROOMS" />
+    <node id="LEISURE AND HOSPITALITY SECTOR" />
+    <node id="BUSINESS SERVICES SECTOR" />
+    <node id="INFORMATION SECTOR" />
+    <node id="HOUSING MARKETS" />
+    <node id="COMMERCIAL REAL ESTATE MARKETS" />
+    <node id="MANHATTAN" />
+    <node id="INDUSTRIAL SECTOR" />
+    <node id="CONSTRUCTION ACTIVITY" />
+    <node id="FOOD STORE" />
+    <node id="AUTO DEALERS" />
+    <node id="ROCHESTER" />
+    <node id="DEPARTMENT STORE" />
+    <node id="MID- TO UPPER-INCOME CONSUMERS" />
+    <node id="PRODUCE" />
+    <node id="MEAT" />
+    <node id="COSTS FOR PRODUCE AND MEAT" />
+    <node id="USED CAR SALES" />
+    <node id="INVENTORY LEVELS" />
+    <node id="TARIFF-RELATED VOLATILITY" />
+    <node id="ELECTRICAL EQUIPMENT" />
+    <node id="MACHINERY" />
+    <node id="INSTRUMENTS" />
+    <node id="KEGS" />
+    <node id="OVERSEAS DEMAND" />
+    <node id="SUPPLY AVAILABILITY" />
+    <node id="DELIVERY TIMES" />
+    <node id="CAPITAL SPENDING PLANS" />
+    <node id="NEW ORDERS" />
+    <node id="SHIPMENTS" />
+    <node id="INVENTORIES" />
+    <node id="RENTAL DEMAND" />
+    <node id="RETAIL SPACE" />
+    <node id="LUXURY RETAIL MARKET" />
+    <node id="RESIDENTIAL MORTGAGES" />
+    <node id="BUSINESS LOANS" />
+    <node id="CREDIT STANDARDS" />
+    <node id="COMMERCIAL MORTGAGES" />
+    <node id="CONSUMER LOANS" />
+    <node id="DELINQUENCY RATES" />
+    <node id="NONPROFITS" />
+    <node id="FEDERAL BENEFIT PROGRAMS" />
+    <node id="COMMUNITY HEALTH-CARE CENTER" />
+    <node id="MEDICAID PATIENTS" />
+    <node id="FEDERAL RESERVE BANK OF PHILADELPHIA" />
+    <node id="THIRD DISTRICT" />
+    <node id="NON-AUTO RETAILERS" />
+    <node id="NONMANUFACTURING ACTIVITY" />
+    <node id="AUTO DEALERS (PHILADELPHIA)" />
+    <node id="WAGE GROWTH" />
+    <node id="PART-TIME EMPLOYMENT" />
+    <node id="STAFFING CONTACTS" />
+    <node id="DOWNSIDE RISKS" />
+    <node id="SPECIALTY CONTRACTOR" />
+    <node id="PRICING PRESSURES" />
+    <node id="BUSINESS COSTS" />
+    <node id="STEEL PRICES" />
+    <node id="INTERNATIONAL TRADE DYNAMICS" />
+    <node id="MORTGAGE RATES" />
+    <node id="COMMUNITY SERVICE PROVIDERS" />
+    <node id="BUSINESS EXPENSES" />
+    <node id="FIRMS" />
+    <node id="LABOR MARKET" />
+    <node id="PRICES PAID INDEX" />
+    <node id="PRICES RECEIVED INDEX" />
+    <node id="WAGE INFLATION" />
+    <node id="BANK LENDING" />
+    <node id="SEPTEMBER SURVEY" />
+    <node id="NEW ORDERS INDEX" />
+    <node id="SHIPMENTS INDEX" />
+    <node id="CAPACITY UTILIZATION" />
+    <node id="FUTURE PRICES PAID INDEX" />
+    <node id="FUTURE PRICES RECEIVED INDEX" />
+    <node id="THIRD QUARTER" />
+    <node id="SALES/REVENUES INDEX" />
+    <node id="CONSTRUCTION INDUSTRY" />
+    <node id="EMPLOYEE TURNOVER" />
+    <node id="WORKFORCE" />
+    <node id="FEDERAL GOVERNMENT" />
+    <node id="NONRESIDENTIAL CONSTRUCTION" />
+    <node id="JOB SITE" />
+    <node id="FOREIGN-BORN WORKERS" />
+    <node id="UTILITIES" />
+    <node id="HISTORICAL AVERAGE" />
+    <node id="INVENTORIES OF PRE-TARIFF GOODS" />
+    <node id="SUPPLIERS" />
+    <node id="LIABILITY INSURANCE POLICY" />
+    <node id="HEALTH-CARE COSTS" />
+    <node id="RETAILERS" />
+    <node id="DISCOUNTS" />
+    <node id="AUGUST" />
+    <node id="CONSUMERS" />
+    <node id="ELECTRIC VEHICLES (EVS)" />
+    <node id="FEDERAL EV TAX CREDIT" />
+    <node id="END OF SEPTEMBER" />
+    <node id="TOURISM SECTOR" />
+    <node id="LUXURY LEISURE TRAVEL" />
+    <node id="REAL ESTATE INDUSTRY" />
+    <node id="REALTORS" />
+    <node id="RENTAL MARKET" />
+    <node id="NEW-HOME BUILDERS" />
+    <node id="HOMES" />
+    <node id="REALTOR" />
+    <node id="BUYERS" />
+    <node id="FEDERAL FUNDING" />
+    <node id="DATA CENTERS" />
+    <node id="CONSUMER-FACING BUSINESSES" />
+    <node id="LOCAL RENTAL MARKET" />
+    <node id="PENNSYLVANIA" />
+    <node id="SUMMER MONTHS" />
+    <node id="PROJECT-BASED ROLES" />
+    <node id="COMPANIES" />
+    <node id="EMPLOYEES" />
+    <node id="PREVIOUS EMPLOYEES" />
+    <node id="COMMERCIAL AND INDUSTRIAL LENDING" />
+    <node id="COMMERCIAL REAL ESTATE LOANS" />
+    <node id="CONSUMER LENDING" />
+    <node id="HOME EQUITY LINES" />
+    <node id="AUTO LOANS" />
+    <node id="MORTGAGES" />
+    <node id="CREDIT CARD VOLUMES" />
+    <node id="CREDIT QUALITY" />
+    <node id="DELINQUENCIES AND DEFAULTS" />
+    <node id="DISTRICT BANKS" />
+    <node id="BANKING CONTACTS" />
+    <node id="FEDERAL RESERVE BANK OF CLEVELAND" />
+    <node id="BUSINESS ACTIVITY" />
+    <node id="WAGE PRESSURES" />
+    <node id="NONLABOR COST PRESSURES" />
+    <node id="RETAIL" />
+    <node id="FOOD AND HOSPITALITY" />
+    <node id="FOSSIL FUEL INDUSTRY" />
+    <node id="ELECTRICITY GENERATION" />
+    <node id="DATA CENTER CONSTRUCTION" />
+    <node id="TRADE POLICY" />
+    <node id="IMPORT TARIFFS" />
+    <node id="INDUSTRIAL EQUIPMENT PRODUCTION" />
+    <node id="AGRICULTURAL EQUIPMENT PRODUCTION" />
+    <node id="RAW MATERIALS" />
+    <node id="IMPORTED COMPONENTS" />
+    <node id="CHEMICAL INPUTS" />
+    <node id="VEHICLES" />
+    <node id="COFFEE" />
+    <node id="CHOCOLATE" />
+    <node id="FOREIGN PRODUCERS" />
+    <node id="LABOR DEMAND" />
+    <node id="PROFESSIONAL AND BUSINESS SERVICES" />
+    <node id="TECHNOLOGY" />
+    <node id="UTILITIES COSTS" />
+    <node id="SELLING PRICE INCREASES" />
+    <node id="SURCHARGES" />
+    <node id="PRICE SENSITIVITY" />
+    <node id="UNIT SALES" />
+    <node id="IN-STORE TRAFFIC" />
+    <node id="ONLINE TRAFFIC" />
+    <node id="CUSTOMER SENTIMENT" />
+    <node id="RESTAURATEUR" />
+    <node id="CANADIANS" />
+    <node id="COMMERCIAL CLIENTS" />
+    <node id="LOAN ORIGINATORS" />
+    <node id="LENDER" />
+    <node id="MINIMUM WAGE" />
+    <node id="WHOLESALERS" />
+    <node id="LONG-TERM INVESTMENT DECISIONS" />
+    <node id="PLANNED PROJECTS" />
+    <node id="ORDERS" />
+    <node id="PRODUCERS" />
+    <node id="INDUSTRIAL PRODUCTION" />
+    <node id="REAL ESTATE BROKER" />
+    <node id="HOMEBUILDER" />
+    <node id="REAL ESTATE DEVELOPERS" />
+    <node id="COMMERCIAL BUILDER" />
+    <node id="COMMERCIAL BANKER" />
+    <node id="SOFTWARE FIRM" />
+    <node id="ACCOUNTING FIRM" />
+    <node id="LEGAL SERVICES FIRM" />
+    <node id="FREIGHT CONTACTS" />
+    <node id="AIRPORT" />
+    <node id="NONPROFIT SECTOR" />
+    <node id="SURVEY OF NONPROFITS" />
+    <node id="FEDERAL RESERVE BANK OF RICHMOND" />
+    <node id="FIFTH DISTRICT" />
+    <node id="HOME BUILDER" />
+    <node id="JEWELRY STORE" />
+    <node id="CONCRETE MANUFACTURER" />
+    <node id="FURNITURE MANUFACTURER" />
+    <node id="RETAIL CLIENTS" />
+    <node id="CAPITAL INVESTMENTS" />
+    <node id="ACQUISITIONS (RETAIL)" />
+    <node id="PASSENGER VOLUMES" />
+    <node id="CARGO VOLUMES" />
+    <node id="FEDERAL GRANTS" />
+    <node id="FORMERLY INCARCERATED JOBSEEKERS" />
+    <node id="SOUTH CAROLINA" />
+    <node id="SOCIAL MEDIA RECRUITMENT CAMPAIGN" />
+    <node id="FUSE BOX MANUFACTURER" />
+    <node id="ENGINE-PARTS MANUFACTURER" />
+    <node id="OFFICE EQUIPMENT MANUFACTURER" />
+    <node id="HOUSING MARKET" />
+    <node id="PRE-TARIFF IMPORT SURGE" />
+    <node id="OPERATING EXPENSES" />
+    <node id="FUNDING" />
+    <node id="OPEN POSITIONS" />
+    <node id="RESERVE FUND (NONPROFIT)" />
+    <node id="MARITIME PORTS" />
+    <node id="AUTO IMPORTS" />
+    <node id="INVENTORY" />
+    <node id="CARRIER CAPACITY" />
+    <node id="SPOT RATES" />
+    <node id="FUEL SURCHARGES" />
+    <node id="HOUSEHOLD BUDGET" />
+    <node id="DEMAND" />
+    <node id="RETAIL HOLIDAY ORDERING" />
+    <node id="FURNITURE INDUSTRY" />
+    <node id="REPLACEMENT WINDOW COMPANY" />
+    <node id="FURNITURE STORE" />
+    <node id="OPERATIONAL CHALLENGES" />
+    <node id="RETAIL INDUSTRY" />
+    <node id="NORTH CAROLINA" />
+    <node id="REAL ESTATE AGENT" />
+    <node id="VIRGINIA" />
+    <node id="VIRGINIA AGENT" />
+    <node id="VIRGINIA BROKER" />
+    <node id="MARYLAND" />
+    <node id="MARYLAND DEVELOPER" />
+    <node id="MARYLAND BROKER" />
+    <node id="SOUTH CAROLINA BROKER" />
+    <node id="LEISURE AND SPORTS-RELATED TRAVEL" />
+    <node id="BUSINESS TRAVEL" />
+    <node id="WORKER TRAININGS" />
+    <node id="FEDERAL RESERVE BANK OF ATLANTA" />
+    <node id="LEISURE TRAVEL" />
+    <node id="LOAN GROWTH" />
+    <node id="ENERGY ACTIVITY" />
+    <node id="RECEIVERSHIP" />
+    <node id="UPFITTING COSTS" />
+    <node id="HIRING CHILL" />
+    <node id="HEAD COUNT REDUCTIONS" />
+    <node id="TURNOVER" />
+    <node id="WELCOMED ATTRITION" />
+    <node id="HEAD COUNT ADDITIONS" />
+    <node id="GENERATIVE AI" />
+    <node id="BANKING AND FINANCE" />
+    <node id="LOAN DELINQUENCIES" />
+    <node id="DEPOSIT LEVELS" />
+    <node id="LOAN TYPES" />
+    <node id="STAFFING FIRMS" />
+    <node id="POOL OF POTENTIAL APPLICANTS" />
+    <node id="APPLICANTS" />
+    <node id="COMPETITION FOR BALANCES" />
+    <node id="COMPETITORS" />
+    <node id="BUSINESS LEVELS" />
+    <node id="PRICING" />
+    <node id="FREIGHT" />
+    <node id="OVER THE ROAD FREIGHT" />
+    <node id="OCCUPANCY RATES" />
+    <node id="SALES" />
+    <node id="AFFORDABILITY" />
+    <node id="TRAFFIC" />
+    <node id="LISTINGS" />
+    <node id="PRICE REDUCTIONS" />
+    <node id="INCENTIVES" />
+    <node id="NEW CONSTRUCTION" />
+    <node id="PRICES (REAL ESTATE)" />
+    <node id="PROJECTS" />
+    <node id="UNCERTAINTY" />
+    <node id="EXPANSION PLANS" />
+    <node id="MATH DOESN'T WORK" />
+    <node id="BORROWERS" />
+    <node id="TECHNICAL ROLES" />
+    <node id="RETAIL SALES" />
+    <node id="CRUDE OIL PRODUCTION" />
+    <node id="FLORIDA" />
+    <node id="SOUTH GEORGIA" />
+    <node id="ONE BIG BEAUTIFUL BILL ACT" />
+    <node id="ACCELERATED DEPRECIATION SCHEDULE" />
+    <node id="IMMIGRATION POLICY" />
+    <node id="HOLIDAY TRAVEL SEASON" />
+    <node id="AUTO MANUFACTURERS" />
+    <node id="AUTO SHIPMENTS" />
+    <node id="STEEL PRODUCERS" />
+    <node id="TRANSPORTATION CARRIERS" />
+    <node id="SAME-STORE SALES" />
+    <node id="HOLIDAY SALES" />
+    <node id="CONSUMER DEMAND" />
+    <node id="AUTOMOBILE DEALERS" />
+    <node id="ELECTRIC VEHICLE (EV) SALES" />
+    <node id="PORTS" />
+    <node id="CRUISING" />
+    <node id="CONTAINER VOLUMES" />
+    <node id="BREAKBULK ACTIVITY" />
+    <node id="OCCUPANCY LEVELS" />
+    <node id="HOME BUILDERS" />
+    <node id="SPECULATIVE INVENTORY" />
+    <node id="COST INFLATION" />
+    <node id="CREDIT PROFILES" />
+    <node id="CORPORATE BORROWERS" />
+    <node id="HELOC APPLICATIONS" />
+    <node id="DELINQUENCIES" />
+    <node id="TRUCKING FIRMS" />
+    <node id="TRUCKING CAPACITY" />
+    <node id="SHIPMENTS OF CONSUMER GOODS" />
+    <node id="PACE OF DECLINES" />
+    <node id="CHEMICAL MANUFACTURERS" />
+    <node id="PAPER AND PULP SALES" />
+    <node id="ORDERS FOR COMPONENTS USED IN TIRES" />
+    <node id="PACKAGED SNACK PRODUCERS" />
+    <node id="PRODUCER-DRIVEN PRICE INCREASES" />
+    <node id="SALES VOLUMES" />
+    <node id="BANK MERGERS" />
+    <node id="BANKING LANDSCAPE" />
+    <node id="EV TAX CREDIT" />
+    <node id="STARTER HOMES" />
+    <node id="LUXURY NEW HOME MARKET" />
+    <node id="VACANCY RATES" />
+    <node id="ENERGY INDUSTRY SEGMENTS" />
+    <node id="LIQUEFIED NATURAL GAS DEMAND" />
+    <node id="U.S. EXPORTS" />
+    <node id="ELECTRICITY DEMAND" />
+    <node id="LABOR SUPPLY" />
+    <node id="MORTGAGE QUALIFICATION" />
+    <node id="MULTIFAMILY VACANCIES" />
+    <node id="CARBON CAPTURE AND STORAGE" />
+    <node id="TARIFF IMPACTS" />
+    <node id="PRICE PASS-THROUGH" />
+    <node id="INTERNATIONAL VISITORS" />
+    <node id="DOMESTIC TRAVEL" />
+    <node id="OFFICE VACANCY RATES" />
+    <node id="INDUSTRIAL VACANCY RATES" />
+    <node id="REFINED PRODUCTS DEMAND" />
+    <node id="SOUTHEAST" />
+    <node id="DISTRICT ECONOMIC CONDITIONS" />
+    <node id="GULF OF MEXICO" />
+    <node id="LIQUEFIED NATURAL GAS" />
+    <node id="SOLAR DEVELOPMENT" />
+    <node id="ELECTRICITY" />
+    <node id="REFINED PRODUCTS" />
+    <node id="COMMERCIAL SECTOR" />
+    <node id="FEDERAL RESERVE BANK OF CHICAGO" />
+    <node id="SEVENTH DISTRICT" />
+    <node id="REAL ESTATE" />
+    <node id="DAIRY FARMERS" />
+    <node id="RICE" />
+    <node id="FOOD SERVICES PROVIDERS" />
+    <node id="CONSTRUCTION AND REAL ESTATE" />
+    <node id="ASKING PRICES" />
+    <node id="VACANCY" />
+    <node id="SUBLEASE AVAILABILITY" />
+    <node id="AUTOMOTIVE INDUSTRY" />
+    <node id="AUTOMOTIVE INDUSTRY SALES" />
+    <node id="STEEL" />
+    <node id="RESHORING" />
+    <node id="FABRICATED METALS" />
+    <node id="FABRICATED METALS SALES" />
+    <node id="MACHINERY ORDERS" />
+    <node id="TRUCK TRANSPORTATION" />
+    <node id="TRUCK TRANSPORTATION DEMAND" />
+    <node id="FREIGHT RATES" />
+    <node id="VEHICLE DEALERSHIPS" />
+    <node id="VEHICLE STOCKS" />
+    <node id="RESIDENTIAL REAL ESTATE ACTIVITY" />
+    <node id="SINGLE-FAMILY MARKET" />
+    <node id="MULTIFAMILY SECTOR" />
+    <node id="MULTIFAMILY RENT CONCESSIONS" />
+    <node id="NONRESIDENTIAL CONSTRUCTION DEMAND" />
+    <node id="COMMERCIAL REAL ESTATE ACTIVITY" />
+    <node id="OFFICE SECTOR" />
+    <node id="OFFICE LEASING ACTIVITY" />
+    <node id="INDUSTRIAL SPACE" />
+    <node id="WAREHOUSE INVENTORY" />
+    <node id="WAREHOUSE SPACE" />
+    <node id="RETAIL INVENTORY" />
+    <node id="MANUFACTURING INVENTORY" />
+    <node id="CONSTRUCTION INDUSTRY SALES" />
+    <node id="OVERSEAS SALES" />
+    <node id="OVERSEAS BUYERS" />
+    <node id="DOMESTIC DEMAND" />
+    <node id="POULTRY" />
+    <node id="PEANUTS" />
+    <node id="TOBACCO" />
+    <node id="DAIRY" />
+    <node id="FOOD SERVICES" />
+    <node id="DA(&quot;ENTITY&quot;" />
+    <node id="SOFTENING DEMAND" />
+    <node id="CAPITAL EXPENDITURES" />
+    <node id="AUTOMOTIVE" />
+    <node id="SALES TO A RANGE OF SECTORS" />
+    <node id="SALES TO THE CONSTRUCTION INDUSTRY" />
+    <node id="SALES TO THE AUTOMOTIVE INDUSTRY" />
+    <node id="HEAVY TRUCK PRODUCTION" />
+    <node id="BOND VALUES" />
+    <node id="EQUITY VALUES" />
+    <node id="BUSINESS LOAN DEMAND" />
+    <node id="BUSINESS LOAN QUALITY" />
+    <node id="BUSINESS LOAN RATES" />
+    <node id="CONSUMER SECTOR" />
+    <node id="BUSINESS LOAN ACQUISITION ACTIVITY" />
+    <node id="BUSINESS LOAN TERMS" />
+    <node id="SUPPLIERS IN THE AUTO INDUSTRY" />
+    <node id="MORTGAGE REFINANCING" />
+    <node id="CORN" />
+    <node id="SOYBEAN" />
+    <node id="CATTLE" />
+    <node id="HOG" />
+    <node id="MILK" />
+    <node id="EGG" />
+    <node id="FRUIT AND VEGETABLE PRODUCTION" />
+    <node id="FERTILIZER PRICES" />
+    <node id="NET FARM INCOME" />
+    <node id="CROP PRODUCERS" />
+    <node id="EXPORT V(&quot;ENTITY&quot;" />
+    <node id="FEDERAL RESERVE BANK OF ST. LOUIS" />
+    <node id="GROCERY FOOD PRICES" />
+    <node id="INSURANCE PREMIUMS" />
+    <node id="CORPORATE CLIENTS" />
+    <node id="UPPER-INCOME HOUSEHOLDS" />
+    <node id="MIDDLE-INCOME CONSUMERS" />
+    <node id="FOOD PANTRY USAGE" />
+    <node id="LOW-INCOME HOUSEHOLDS" />
+    <node id="MIDDLE-CLASS RECESSION" />
+    <node id="SELECT-SERVICE HOTELS" />
+    <node id="SALES TAX REVENUE" />
+    <node id="SALES TAX" />
+    <node id="SOCIAL SERVICE CONTACTS" />
+    <node id="OPERATING COSTS FOR SOCIAL SERVICES" />
+    <node id="WORKFORCE DEVELOPMENT CONTACTS" />
+    <node id="WORKFORCE DEVELOPMENT" />
+    <node id="PROFESSIONAL SERVICES FIRM" />
+    <node id="APPAREL RETAILER" />
+    <node id="COMPENSATION GROWTH" />
+    <node id="APPAREL FIRM" />
+    <node id="UNIFORMS" />
+    <node id="TECHNOLOGY FIRM" />
+    <node id="PRICE GUARANTEE PERIODS" />
+    <node id="HOTEL OWNER" />
+    <node id="TRAVEL DEMAND" />
+    <node id="REGIONAL AIRPORT" />
+    <node id="EMPLOYER CONTRIBUTIONS TO HEALTH INSURANCE" />
+    <node id="CONSTRUCTION FIRM" />
+    <node id="LABOR COSTS" />
+    <node id="PROJECT DELAYS" />
+    <node id="MANUFACTURER" />
+    <node id="DOMESTIC SUPPLY CHAIN" />
+    <node id="DONATIONS" />
+    <node id="DONATIONS TO SOCIAL SERVICES" />
+    <node id="LOAN QUALITY" />
+    <node id="LOAN RATES" />
+    <node id="LOAN TERMS" />
+    <node id="EQUIPMENT PURCHASES" />
+    <node id="EQUIPMENT REPAIRS" />
+    <node id="EMPLOYERS" />
+    <node id="MISSOURI" />
+    <node id="MISSISSIPPI" />
+    <node id="NORTHWEST ARKANSAS" />
+    <node id="TENNESSEE" />
+    <node id="KENTUCKY" />
+    <node id="MEMPHIS" />
+    <node id="ARKANSAS" />
+    <node id="WEST TENNESSEE" />
+    <node id="CARIBBEAN" />
+    <node id="APPAREL COMPANY" />
+    <node id="FEDERAL RESERVE BANK OF MINNEAPOLIS" />
+    <node id="MICHIGAN'S UPPER PENINSULA" />
+    <node id="HOSPITAL CEO" />
+    <node id="HOSPITAL IN MISSISSIPPI" />
+    <node id="HOTEL OWNER IN MISSOURI" />
+    <node id="REAL ESTATE AGENT IN MISSISSIPPI" />
+    <node id="DEVELOPER IN MEMPHIS" />
+    <node id="BANKER IN MEMPHIS" />
+    <node id="BANKER" />
+    <node id="SMALL BUSINESS LOANS" />
+    <node id="CONSUMER DELINQUENCY RATES" />
+    <node id="FARMER IN ARKANSAS" />
+    <node id="BANKRUPTCY" />
+    <node id="NONFINANCIAL SERVICES" />
+    <node id="LOGISTICS FIRM IN NORTHWEST ARKANSAS" />
+    <node id="TRANSPORTATION AND LOGISTICS COMPANIES" />
+    <node id="FEDERAL PROGRAM" />
+    <node id="GRANT FUNDING" />
+    <node id="LABOR CHALLENGES" />
+    <node id="EQUIPMENT MANUFACTURER IN KENTUCKY" />
+    <node id="MANUFACTURER IN TENNESSEE" />
+    <node id="PROTEIN BUSINESS" />
+    <node id="PROTEIN DEMAND" />
+    <node id="LABOR" />
+    <node id="COMMODITY PRICES" />
+    <node id="GOVERNMENT SUPPORT" />
+    <node id="CROP CONDITIONS" />
+    <node id="SHIPPING AND LOGISTICS COSTS" />
+    <node id="EVENT CENTER IN NORTHWEST ARKANSAS" />
+    <node id="ROOM RENTALS" />
+    <node id="GATHERINGS" />
+    <node id="YOUTH-FOCUSED GAMING FACILITIES" />
+    <node id="YOUTH" />
+    <node id="CONTRACTORS" />
+    <node id="INSTITUTIONAL CONSTRUCTION" />
+    <node id="HEALTH-CARE CONSTRUCTION" />
+    <node id="UNIVERSITY-RELATED CONSTRUCTION" />
+    <node id="MULTIFAMILY PROJECTS" />
+    <node id="OFFICE PROJECTS" />
+    <node id="INDUSTRIAL PROJECTS" />
+    <node id="EQUITY REQUIREMENTS" />
+    <node id="CREDIT COUNSELING AGENCIES" />
+    <node id="COMMERCIAL LOAN DEMAND" />
+    <node id="PAST-DUE LOANS" />
+    <node id="LENDING STANDARDS" />
+    <node id="ACCESS TO CREDIT" />
+    <node id="CREDIT COUNSELING" />
+    <node id="CREDIT CARD DELINQUENCY RATES" />
+    <node id="CREDIT CARD" />
+    <node id="SMALL BUSINESS" />
+    <node id="AIRPORT PROJECT IN NORTHWEST ARKANSAS" />
+    <node id="AIRPORT PROJECT" />
+    <node id="BUY NOW, PAY LATER SERVICES" />
+    <node id="BUY NOW, PAY LATER" />
+    <node id="CREDIT" />
+    <node id="MIDDLE-INCOME HOUSEHOLDS" />
+    <node id="BIDS" />
+    <node id="NON-IRRIGATED FIELDS" />
+    <node id="MINING" />
+    <node id="NORTH DAKOTA" />
+    <node id="SOUTH DAKOTA" />
+    <node id="ROCHESTER, MINNESOTA" />
+    <node id="CONSTRUCTION PERMITS" />
+    <node id="ALTERATIONS AND REPAIRS" />
+    <node id="INFRASTRUCTURE PROJECTS" />
+    <node id="BACKLOGS" />
+    <node id="REQUIREMENTS TO BUILD AND ASSEMBLE PRODUCTS IN THE U.S." />
+    <node id="HOSPITALITY AND TOURISM" />
+    <node id="FULL-TIME EMPLOYEES" />
+    <node id="BOOKINGS" />
+    <node id="HOTEL OCCUPANCY" />
+    <node id="AVERAGE REVENUE PER ROOM" />
+    <node id="UNEMPLOYMENT CLAIMS" />
+    <node id="MONTANA" />
+    <node id="VACANCIES" />
+    <node id="ARTIFICIAL INTELLIGENCE" />
+    <node id="ENTRY-LEVEL FOLKS" />
+    <node id="MINNESOTA" />
+    <node id="GROCERY STORES" />
+    <node id="INFRASTRUCTURE" />
+    <node id="MEDIAN WAGES" />
+    <node id="PAYROLL CONTACTS" />
+    <node id="PAYROLL" />
+    <node id="ELECTRICITY RATES" />
+    <node id="EMPLOYEE HEALTH CARE PREMIUMS" />
+    <node id="RETAIL FUEL PRICES" />
+    <node id="GRAND FORKS, NORTH DAKOTA" />
+    <node id="MINORITY- AND WOMEN-OWNED BUSINESS ENTERPRISES (MWBE)" />
+    <node id="SOYBEANS" />
+    <node id="SUGAR BEETS" />
+    <node id="POTATOES" />
+    <node id="CANOLA" />
+    <node id="SUNFLOWERS" />
+    <node id="HOGS" />
+    <node id="TURKEYS" />
+    <node id="WHEAT" />
+    <node id="PULSE CROPS" />
+    <node id="HAY" />
+    <node id="CHICKENS" />
+    <node id="EGGS" />
+    <node id="JOB FAIR" />
+    <node id="SKELETON CREWS" />
+    <node id="HOURS" />
+    <node id="MALL" />
+    <node id="FOOT TRAFFIC" />
+    <node id="REVENUE" />
+    <node id="PROFITS" />
+    <node id="MARGINS" />
+    <node id="OFFICE BUILDINGS" />
+    <node id="METAL FABRICATORS" />
+    <node id="EQUIPMENT MANUFACTURERS" />
+    <node id="OIL AND GAS EXPLORATION" />
+    <node id="CRUDE OIL" />
+    <node id="TEMP AND TEMP-TO-HIRE WORK" />
+    <node id="SEPTEMBER" />
+    <node id="CAREER SERVICES PROFESSIONALS" />
+    <node id="WORKERS" />
+    <node id="TERMINATIONS" />
+    <node id="VACATION SPENDING" />
+    <node id="U.S. PRODUCERS" />
+    <node id="METALS" />
+    <node id="MINORITY- AND WOMEN-OWNED BUSINESS ENTERPRISES" />
+    <node id="WISCONSIN" />
+    <node id="FINAL PRICES" />
+    <node id="AVERAGE COMPENSATION" />
+    <node id="FEDERAL RESERVE BANK OF KANSAS CITY" />
+    <node id="TENTH DISTRICT" />
+    <node id="MANUFACTURING FIRMS" />
+    <node id="RAW MATERIAL COSTS" />
+    <node id="MARKDOWNS" />
+    <node id="CHILDCARE" />
+    <node id="NONLABOR COSTS" />
+    <node id="PRESCHOOL SEATS" />
+    <node id="INFANT AND TODDLER SLOTS" />
+    <node id="UNIVERSITY OF NEBRASKA-LINCOLN" />
+    <node id="IN-STATE TUITION" />
+    <node id="MARKET EXPECTATIONS" />
+    <node id="DOMESTIC MANUFACTURERS" />
+    <node id="CAPITALIZED FIRMS" />
+    <node id="FOREIGN IMPORTS" />
+    <node id="MARKET SHARE" />
+    <node id="CONSTRUCTION EMPLOYMENT" />
+    <node id="RESIDENTIAL DEVELOPMENT" />
+    <node id="SKILLED WORKERS" />
+    <node id="FORMER FEDERAL WORKERS" />
+    <node id="PROFESSIONAL SERVICE COMPANIES" />
+    <node id="AI CAPABILITIES" />
+    <node id="HEAD COUNTS" />
+    <node id="AUTOMOTIVE GOODS" />
+    <node id="SALES OF GOODS" />
+    <node id="SPORTING GOODS" />
+    <node id="STAFFING HOURS" />
+    <node id="RIGHT-SIZE STAFFING" />
+    <node id="EXPENSES" />
+    <node id="PRODUCER INCOMES" />
+    <node id="FEDERAL RESERVE BANK OF DALLAS" />
+    <node id="BUILDING MATERIAL AND GARDEN EQUIPMENT STORES" />
+    <node id="FURNITURE STORES" />
+    <node id="ELECTRONIC AND APPLIANCE STORES" />
+    <node id="HEALTH CARE RETAILERS" />
+    <node id="FOOD AND BEVERAGE RETAILERS" />
+    <node id="TRANSPORTATION AND WAREHOUSING" />
+    <node id="INFORMATION" />
+    <node id="LEISURE AND HOSPITALITY" />
+    <node id="PORT TRAFFIC" />
+    <node id="SMALL PARCEL SHIPMENTS" />
+    <node id="AIRLINES" />
+    <node id="TRANSPORTATION AND W(&quot;ENTITY&quot;" />
+    <node id="HOME STARTS" />
+    <node id="VACANT DEVELOPED LOT SUPPLY" />
+    <node id="BUILDERS" />
+    <node id="MARKETING AND INCENTIVES" />
+    <node id="SHORT-TERM LEASES" />
+    <node id="INVESTMENT SALES ACTIVITY" />
+    <node id="APARTMENT DEMAND" />
+    <node id="SUPPLY OF NEW UNITS" />
+    <node id="CREDIT TERMS" />
+    <node id="GENERAL BUSINESS ACTIVITY" />
+    <node id="DRILLING AND WELL COMPLETION" />
+    <node id="OIL FIELD SERVICE FIRMS" />
+    <node id="PIPELINE FIRMS" />
+    <node id="PROJECT PIPELINES" />
+    <node id="REGULATORY RELIEF" />
+    <node id="FAVORABLE TAX POLICIES" />
+    <node id="GRAIN PRICES" />
+    <node id="GOVERNMENT PRICE SUPPORT PROGRAMS" />
+    <node id="CROP INSURANCE" />
+    <node id="WARMER, DRYER WEATHER" />
+    <node id="SPRING ROW CROPS" />
+    <node id="PRODUCTION" />
+    <node id="YIELDS" />
+    <node id="COTTON GROWERS" />
+    <node id="DOWNSTREAM INDUSTRIES" />
+    <node id="COTTON PRICES" />
+    <node id="CATTLE PRICES" />
+    <node id="SUPPLY" />
+    <node id="CATTLE IMPORTS FROM MEXICO" />
+    <node id="SUSPENSION OF CATTLE IMPORTS" />
+    <node id="LA NI&#209;A CLIMATE PATTERN" />
+    <node id="DOMESTIC POLICY UNCERTAINTY" />
+    <node id="MANUFACTURING (LABOR)" />
+    <node id="STAFF LEVELS" />
+    <node id="HEALTH CARE (LABOR)" />
+    <node id="SOCIAL SERVICES" />
+    <node id="REVENUE STREAMS" />
+    <node id="AGRICULTURE NONPROFIT" />
+    <node id="LIVE WEBINARS" />
+    <node id="NOMINAL FEE" />
+    <node id="LARGE NONPROFIT ORGANIZATION" />
+    <node id="HIGH-VALUE PRODUCTS" />
+    <node id="E-COMMERCE SITE" />
+    <node id="BRICK-AND-MORTAR STORES" />
+    <node id="MORTGAGE RATE BUYDOWNS" />
+    <node id="RENTAL RATES" />
+    <node id="SPREAD OF NEW WORLD SCREWWORM" />
+    <node id="ATTRITION" />
+    <node id="EARLY RETIREMENTS" />
+    <node id="COMMUNITY SUPPORT ORGANIZATIONS" />
+    <node id="SMALL BUSINESSES" />
+    <node id="PACIFIC NORTHWEST" />
+    <node id="ALASKA" />
+    <node id="UTAH" />
+    <node id="HAWAII" />
+    <node id="NORTHERN CALIFORNIA" />
+    <node id="GRANT CUTS" />
+    <node id="FUNDING CUTS" />
+    <node id="BUSINESS CLOSURES" />
+    <node id="OPERATING HOURS CUTS" />
+    <node id="SAVINGS" />
+    <node id="CONTRACTOR" />
+    <node id="BUILDER" />
+    <node id="DOMESTIC LUMBER" />
+    <node id="PUBLIC INFRASTRUCTURE PROJECTS" />
+    <node id="PRIVATE INFRASTRUCTURE PROJECTS" />
+    <node id="LOGISTICS" />
+    <node id="SOUTHERN CALIFORNIA" />
+    <node id="RENT" />
+    <node id="HEALTH FACILITIES" />
+    <node id="LEASING DEMAND" />
+    <node id="FINANCIAL INSTITUTIONS" />
+    <node id="OFFICE SPACE" />
+    <node id="LOSSES RELATED TO FRAUD" />
+    <node id="ARIZONA" />
+    <node id="COMMERCIAL LOANS" />
+    <node id="SEMICONDUCTOR MANUFACTURING PROJECTS" />
+    <node id="DEPOSIT RATES" />
+    <node id="ASSET QUALITY" />
+    <node id="FRAUD" />
+    <node id="CONSTRUCTION MATERIALS" />
+    <edge source="BEIGE BOOK" target="FEDERAL RESERVE SYSTEM">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="BEIGE BOOK" target="FEDERAL RESERVE DISTRICTS">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="BEIGE BOOK" target="ECONOMIC ACTIVITY">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="BEIGE BOOK" target="BUSINESSES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BEIGE BOOK" target="COMMUNITY ORGANIZATIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BEIGE BOOK" target="ECONOMISTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BEIGE BOOK" target="MARKET EXPERTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BEIGE BOOK" target="REPORTING PERIOD">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="FEDERAL RESERVE BOARD">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="OUTREACH">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="SURVEYS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="FEDERAL RESERVE BANK OF SAN FRANCISCO">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="NEW YORK">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="PHILADELPHIA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="CLEVELAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="RICHMOND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="ST. LOUIS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="MINNEAPOLIS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="KANSAS CITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="DALLAS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="SAN FRANCISCO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="DISTRICT">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="CONTACTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="UNITED STATES">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE SYSTEM" target="FEDERAL RESERVE BANK OF ST. LOUIS">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE DISTRICTS" target="FEDERAL RESERVE BANK">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE DISTRICTS" target="SEATTLE BRANCH">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE DISTRICTS" target="SAN FRANCISCO BANK">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE DISTRICTS" target="NEW YORK BANK">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="CONSUMER SPENDING">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="MANUFACTURING ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="AGRICULTURE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="ENERGY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="TRANSPORTATION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="FINANCIAL SERVICES SECTOR">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="GOVERNMENT SHUTDOWN">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="LABOR MARKETS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ECONOMIC ACTIVITY" target="FEDERAL RESERVE BANK OF SAN FRANCISCO">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BUSINESSES" target="FED(&quot;ENTITY&quot;">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BUSINESSES" target="BUSINESS SPENDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUSINESSES" target="FIRM">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BUSINESSES" target="CUSTOMERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUSINESSES" target="LONG-TERM INVESTMENT DECISIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUSINESSES" target="LOAN DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BOARD" target="FEDERAL RESERVE BANK">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BOARD" target="STATISTICAL RELEASES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SURVEYS" target="HOUSEHOLDS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="SURVEYS" target="EMPLOYMENT">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="SURVEYS" target="WAGE GROWTH">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK" target="SEATTLE BRANCH">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK" target="BRANCH DIRECTORS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK" target="BANK DIRECTORS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="RETAIL GOODS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="AUTO SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="LEISURE AND HOSPITALITY SERVICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="LOWER- AND MIDDLE-INCOME HOUSEHOLDS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="PRICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="MID- TO UPPER-INCOME HOUSEHOLDS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="A DEPARTMENT STORE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="DEPARTMENT STORE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="RETAIL">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="FOOD AND HOSPITALITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="TOURISM">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="AUTO DEALERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="RETAIL INDUSTRY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="RESTAURANTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="CORPORATE CLIENTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="UPPER-INCOME HOUSEHOLDS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="MIDDLE-INCOME CONSUMERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="CREDIT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMER SPENDING" target="MARKDOWNS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING ACTIVITY" target="TARIFFS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING ACTIVITY" target="LABOR MARKETS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING ACTIVITY" target="THIRD DISTRICT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING ACTIVITY" target="FULL-TIME EMPLOYMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="LABOR MARKETS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="CHINA">
+      <data key="d0">15.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="AGRICULTURE CONDITIONS">
+      <data key="d0">18.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="FARMERS">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="SOUTH GEORGIA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="IMMIGRATION POLICY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="TRADE POLICY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="DAIRY FARMERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="RICE">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="CORN">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="SOYBEAN">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="CATTLE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="HOG">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="MILK">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="EGG">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="FRUIT AND VEGETABLE PRODUCTION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="FERTILIZER PRICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="NET FARM INCOME">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="CROP PRODUCERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="FARMER IN ARKANSAS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="PROTEIN BUSINESS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="INPUT COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="COMMODITY PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="GOVERNMENT SUPPORT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="2025">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="CROP CONDITIONS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="SOYBEANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="GRAIN PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="GOVERNMENT PRICE SUPPORT PROGRAMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="CROP INSURANCE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="WARMER, DRYER WEATHER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE" target="FEDERAL RESERVE BANK OF SAN FRANCISCO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ENERGY" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ENERGY" target="GULF OF MEXICO">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ENERGY" target="LIQUEFIED NATURAL GAS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ENERGY" target="CARBON CAPTURE AND STORAGE">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="ENERGY" target="SOLAR DEVELOPMENT">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="ENERGY" target="ELECTRICITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ENERGY" target="CRUDE OIL PRODUCTION">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="ENERGY" target="REFINED PRODUCTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TRANSPORTATION" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FINANCIAL SERVICES SECTOR" target="BUSINESS LENDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="GOVERNMENT SHUTDOWN" target="THIRD DISTRICT">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="GOVERNMENT SHUTDOWN" target="DOWNSIDE RISKS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="EMPLOYMENT LEVELS">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="ARTIFICIAL INTELLIGENCE TECHNOLOGIES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="TEMPORARY AND PART-TIME WORKERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="FULL-TIME EMPLOYMENT">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="HOSPITALITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="CONSTRUCTION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="IMMIGRATION POLICIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="WAGES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="LABOR COST PRESSURES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="HIRING CHILL">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="HEAD COUNT REDUCTIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="TURNOVER">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="WELCOMED ATTRITION">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="HEAD COUNT ADDITIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="SOFTENING DEMAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="FORMER FEDERAL WORKERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKETS" target="FEDERAL RESERVE BANK OF SAN FRANCISCO">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="PRICES" target="INPUT COSTS">
+      <data key="d0">16.0</data>
+    </edge>
+    <edge source="PRICES" target="INFLATION">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="PRICES" target="MANUFACTURING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PRICES" target="RETAIL TRADE">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="PRICES" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PRICES" target="THIRD DISTRICT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PRICES" target="TARIFFS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="PRICES" target="FUEL SURCHARGES">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="PRICES" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="PRICES" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PRICES" target="GROCERY FOOD PRICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PRICES" target="INPUT PRICES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="PRICES" target="CUSTOMERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PRICES" target="SEPTEMBER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PRICES" target="FEDERAL RESERVE BANK OF SAN FRANCISCO">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="AUTO SALES" target="ELECTRIC VEHICLES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTO SALES" target="NEW HAMPSHIRE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTO SALES" target="TOURISM">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="AUTO SALES" target="TAX CREDITS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LEISURE AND HOSPITALITY SERVICES" target="INTERNATIONAL TRAVELERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LEISURE AND HOSPITALITY SERVICES" target="DOMESTIC CONSUMERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LEISURE AND HOSPITALITY SERVICES" target="HIGHER-INCOME INDIVIDUALS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ELECTRIC VEHICLES" target="FEDERAL TAX CREDIT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="TARIFFS" target="INPUT COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="IMPORT COSTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="TARIFFS" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TARIFFS" target="MANUFACTURING">
+      <data key="d0">32.0</data>
+    </edge>
+    <edge source="TARIFFS" target="COST INCREASES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="MANUFACTURERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="COST PRESSURES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="PRICES PAID INDEX">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="PRICES RECEIVED INDEX">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TARIFFS" target="INVENTORIES OF PRE-TARIFF GOODS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="SUPPLIERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="FEDERAL GOVERNMENT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="TARIFFS" target="SELLING PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="NONLABOR COST PRESSURES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="TARIFFS" target="RETAIL">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="FOOD AND HOSPITALITY">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="TARIFFS" target="RAW MATERIALS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="TARIFFS" target="IMPORTED COMPONENTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="TARIFFS" target="CHEMICAL INPUTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="TARIFFS" target="VEHICLES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="BEEF">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="COFFEE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="CHOCOLATE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="FOREIGN PRODUCERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="FURNITURE MANUFACTURER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="RETAIL HOLIDAY ORDERING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TARIFFS" target="CONSTRUCTION INDUSTRY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TARIFFS" target="FURNITURE INDUSTRY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TARIFFS" target="AUTO MANUFACTURERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFFS" target="STEEL PRODUCERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TARIFFS" target="RETAILERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TARIFFS" target="FEDERAL RESERVE BANK OF MINNEAPOLIS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TARIFFS" target="RETAIL SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUSINESS LENDING" target="INTEREST RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INTEREST RATE-SENSITIVE SECTORS" target="INTEREST RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INTEREST RATE-SENSITIVE SECTORS" target="RESIDENTIAL REAL ESTATE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INTEREST RATE-SENSITIVE SECTORS" target="COMMERCIAL REAL ESTATE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INTEREST RATES" target="COMMERCIAL CONSTRUCTION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INTEREST RATES" target="FINANCIAL SERVICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INTEREST RATES" target="BANKING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INTEREST RATES" target="FINANCIAL INSTITUTIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INTEREST RATES" target="COMMERCIAL LOANS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INTEREST RATES" target="LOAN DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="HOME SALES">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="HOUSING INVENTORY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="FIRST DISTRICT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="SINGLE-FAMILY HOMES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="(&quot;ENTITY&quot;">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="CONDOMINIUMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="RESIDENTIAL REAL ESTATE ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="SINGLE-FAMILY MARKET">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="REAL ESTATE AGENT IN MISSISSIPPI">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="CONSTRUCTION">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="COMMERCIAL REAL ESTATE">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="RESIDENTIAL REAL ESTATE" target="FEDERAL RESERVE BANK OF SAN FRANCISCO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="CONSTRUCTION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="OPERATING COSTS">
+      <data key="d0">24.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="OFFICE RENTS">
+      <data key="d0">16.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="LEASING ACTIVITY">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="RETAIL SECTOR">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="INDUSTRIAL LEASING AND SALES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="RECEIVERSHIP">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="UPFITTING COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="MULTIFAMILY VACANCIES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="OFFICE VACANCY RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="INDUSTRIAL VACANCY RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="COMMERCIAL REAL ESTATE ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="RETAIL">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="INDUSTRIAL SPACE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="OFFICE BUILDINGS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="SHORT-TERM LEASES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="INVESTMENT SALES ACTIVITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="FEDERAL RESERVE BANK OF SAN FRANCISCO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="BUILDER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="PUBLIC INFRASTRUCTURE PROJECTS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="PRIVATE INFRASTRUCTURE PROJECTS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="MANUFACTURING">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="LOGISTICS">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="SOUTHERN CALIFORNIA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="UTAH">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="RENT">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="DATA CENTERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE" target="HEALTH FACILITIES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="THIRD DISTRICT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="STAFFING CONTACTS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="LABOR DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="CONSUMER DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="LABOR SUPPLY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="HEAD COUNT REDUCTIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="TURNOVER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="HEAD COUNT ADDITIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="EMPLOYMENT LEVELS" target="EMPLOYMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FULL-TIME EMPLOYMENT" target="NONMANUFACTURING ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FULL-TIME EMPLOYMENT" target="EMPLOYMENT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="HOSPITALITY" target="SOUTH GEORGIA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOSPITALITY" target="IMMIGRATION POLICY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOSPITALITY" target="HOLIDAY TRAVEL SEASON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="COMMERCIAL CONSTRUCTION">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="CONSTRUCTION AND REAL ESTATE">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="FABRICATED METALS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="DEVELOPER IN MEMPHIS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="CONTRACTORS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="INSTITUTIONAL CONSTRUCTION">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="HEALTH-CARE CONSTRUCTION">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="UNIVERSITY-RELATED CONSTRUCTION">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="MULTIFAMILY PROJECTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="OFFICE PROJECTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="INDUSTRIAL PROJECTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="MICHIGAN'S UPPER PENINSULA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="ROCHESTER, MINNESOTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="NORTH DAKOTA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="LABOR DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="CONSTRUCTION PERMITS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="ALTERATIONS AND REPAIRS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="INFRASTRUCTURE PROJECTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="BACKLOGS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="INPUT COSTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="REQUIREMENTS TO BUILD AND ASSEMBLE PRODUCTS IN THE U.S.">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="CONSTRUCTION EMPLOYMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="RESIDENTIAL DEVELOPMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION" target="FEDERAL RESERVE BANK OF SAN FRANCISCO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="IMMIGRATION POLICIES" target="LABOR SHORTAGES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="IMMIGRATION POLICIES" target="LABOR MARKET">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="IMMIGRATION POLICIES" target="CONSTRUCTION INDUSTRY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="IMMIGRATION POLICIES" target="FEDERAL GOVERNMENT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="WAGES" target="LABOR COST PRESSURES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGES" target="EMPLOYMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGES" target="LABOR SHORTAGES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGES" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGES" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGES" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LABOR COST PRESSURES" target="EMPLOYER-SPONSORED HEALTH INSURANCE EXPENSES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYER-SPONSORED HEALTH INSURANCE EXPENSES" target="OUTSIZED INCREASES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INPUT COSTS" target="IMPORT COSTS">
+      <data key="d0">16.0</data>
+    </edge>
+    <edge source="INPUT COSTS" target="INSURANCE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INPUT COSTS" target="HEALTH CARE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INPUT COSTS" target="TECHNOLOGY SOLUTIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INPUT COSTS" target="MANUFACTURING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INPUT COSTS" target="RETAIL TRADE">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="INPUT COSTS" target="DRILLING AND WELL COMPLETION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INSURANCE" target="NONPROFITS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INSURANCE" target="PRICES PAID INDEX">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INSURANCE" target="LIABILITY INSURANCE POLICY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INSURANCE" target="NONLABOR COST PRESSURES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INSURANCE" target="INSURANCE PREMIUMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HEALTH CARE" target="PRICES PAID INDEX">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HEALTH CARE" target="HEALTH-CARE COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HEALTH CARE" target="NONFINANCIAL SERVICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ADVISORY COUNCILS" target="NONPROFIT ORGANIZATIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ADVISORY COUNCILS" target="COMMUNITY GROUPS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ADVISORY COUNCILS" target="ADVISORY COUNCIL MEMBERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONPROFIT ORGANIZATIONS" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONPROFIT ORGANIZATIONS" target="NONFINANCIAL SERVICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOUSEHOLDS" target="LOAN DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="TWELFTH DISTRICT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="COMMUNITY SUPPORT ORGANIZATIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="SMALL BUSINESSES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="RETAIL">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="MANUFACTURING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="PACIFIC NORTHWEST">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="ALASKA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="UTAH">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="HAWAII">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="NORTHERN CALIFORNIA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="CHINA">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="CONTACTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="FINANCIAL INSTITUTIONS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF SAN FRANCISCO" target="DISTRICT ECONOMIC CONDITIONS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BOSTON" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BOSTON" target="TOURISM">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PHILADELPHIA" target="FEDERAL RESERVE BANK OF PHILADELPHIA">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="PHILADELPHIA" target="PENNSYLVANIA">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="ATLANTA" target="SIXTH DISTRICT">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="SAN FRANCISCO" target="TWELFTH DISTRICT">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="DISTRICT" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="DISTRICT" target="FLORIDA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DISTRICT" target="SOUTH GEORGIA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DISTRICT" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DISTRICT" target="FEDERAL RESERVE BANK OF ST. LOUIS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DISTRICT" target="FEDERAL RESERVE BANK OF MINNEAPOLIS">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="SIXTH DISTRICT" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="JOB SEEKERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="FEDERAL RESERVE BANK OF PHILADELPHIA">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="MANUFACTURERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="NONMANUFACTURERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="LABOR MARKET">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="PART-TIME EMPLOYMENT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="WORKFORCE">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="EMPLOYMENT" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INFLATION" target="INFLATION-ERODED PURCHASING POWER">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="INFLATION" target="CONSUMER PURCHASING POWER">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="INFLATION" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INFLATION" target="MANUFACTURING">
+      <data key="d0">15.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="REVENUES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="COST PRESSURES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="OUTPUT PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="MEDICAL MARKET SEGMENT">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="RETAIL MARKET SEGMENT">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="WHOLESALE MARKET SEGMENT">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="RESTAURANT MARKET SEGMENT">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="TRADE POLICY">
+      <data key="d0">16.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="MANUFACTURERS">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="IMPORT TARIFFS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="INDUSTRIAL EQUIPMENT PRODUCTION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="AGRICULTURAL EQUIPMENT PRODUCTION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="STEEL">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="FABRICATED METALS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="MACHINERY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="AUTOMOTIVE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="APPAREL COMPANY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="EQUIPMENT MANUFACTURER IN KENTUCKY">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="MANUFACTURER IN TENNESSEE">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="SHIPPING AND LOGISTICS COSTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="MICHIGAN'S UPPER PENINSULA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="NORTH DAKOTA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="SOUTH DAKOTA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="LABOR DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="MARKET EXPECTATIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="DOMESTIC POLICY UNCERTAINTY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="OUTLOOKS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURING" target="LEASING DEMAND">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="RETAIL TRADE" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL TRADE" target="MAINE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL TRADE" target="CAPE COD">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL TRADE" target="COASTAL NEW HAMPSHIRE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL TRADE" target="WORKER AVAILABILITY">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="CHINA" target="SOYBEAN PURCHASES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CHINA" target="BRAZIL">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CHINA" target="SOYBEAN">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="CHINA" target="SOYBEANS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CHINA" target="U.S. PRODUCERS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="AGRICULTURE CONDITIONS" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="FEDERAL RESERVE BANK OF MINNEAPOLIS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="CORN">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="SOYBEANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="AUGUST">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FARMERS" target="SUGAR BEETS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="POTATOES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="CANOLA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="SUNFLOWERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="CATTLE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="HOGS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="TURKEYS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="WHEAT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="PULSE CROPS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="HAY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="CHICKENS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="EGGS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FARMERS" target="MILK">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FINANCIAL SERVICES" target="LOAN DEMAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FINANCIAL SERVICES" target="FINANCIAL CONDITIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FINANCIAL SERVICES" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LOAN DEMAND" target="LOAN QUALITY">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="LOAN DEMAND" target="BANKING">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="LOAN DEMAND" target="BANKERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LOAN DEMAND" target="BORROWERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL CONSTRUCTION" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMERCIAL CONSTRUCTION" target="DATA CENTER CONSTRUCTION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING" target="CREDIT CONDITIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKING" target="BANKER IN MEMPHIS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BANKING" target="EQUITY REQUIREMENTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING" target="SMALL BUSINESS LOANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKING" target="CONSUMER DELINQUENCY RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKING" target="CREDIT COUNSELING AGENCIES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING" target="COMMERCIAL LOAN DEMAND">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BANKING" target="PAST-DUE LOANS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BANKING" target="LENDING STANDARDS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BANKING" target="ACCESS TO CREDIT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CREDIT CONDITIONS" target="BANKING ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="POLICY UNCERTAINTY" target="POLICY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="OUTLOOK" target="OUTLOOKS">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="OUTLOOK" target="2025">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="OUTLOOK" target="2026">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="HOME SALES" target="FEDERAL RESERVE BANK OF ATLANTA">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="HOME SALES" target="STARTER HOMES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOME SALES" target="LUXURY NEW HOME MARKET">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSUMER LOAN PORTFOLIOS" target="BANKERS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BANKERS" target="FEDERAL RESERVE BANK OF KANSAS CITY">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BANKERS" target="GENERAL BUSINESS ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKERS" target="BUSINESS ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COST PRESSURES" target="COST GROWTH">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COST PRESSURES" target="FEDERAL RESERVE BANK OF BOSTON">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COST PRESSURES" target="ACCELERATED DEPRECIATION SCHEDULE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COST GROWTH" target="FIRMS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BUSINESS SPENDING" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUSINESS SPENDING" target="CAPITAL EXPENDITURES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NONMANUFACTURERS" target="MANUFACTURERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NONMANUFACTURERS" target="FEDERAL RESERVE BANK OF PHILADELPHIA">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NONMANUFACTURERS" target="LABOR MARKET">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONMANUFACTURERS" target="PRICES PAID INDEX">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NONMANUFACTURERS" target="PRICES RECEIVED INDEX">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NONMANUFACTURERS" target="SALES/REVENUES INDEX">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="FEDERAL RESERVE BANK OF NEW YORK">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="ELECTRICAL EQUIPMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="MACHINERY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="INSTRUMENTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="KEGS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="OVERSEAS DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="SUPPLY AVAILABILITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="DELIVERY TIMES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="CAPITAL SPENDING PLANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="NEW ORDERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="SHIPMENTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="INVENTORIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="FEDERAL RESERVE BANK OF PHILADELPHIA">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="LABOR MARKET">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="PRICES PAID INDEX">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="PRICES RECEIVED INDEX">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="NEW ORDERS INDEX">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="SHIPMENTS INDEX">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="CAPACITY UTILIZATION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="FUTURE PRICES PAID INDEX">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="FUTURE PRICES RECEIVED INDEX">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="THIRD QUARTER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="PROFITABILITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="LAYOFFS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANUFACTURERS" target="MANUFACTURING INVENTORY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FIRM" target="CLIENTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FIRM" target="CUSTOMERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FIRM" target="COMPETITORS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CLIENTS" target="COMMERCIAL BANKER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CUSTOMERS" target="FUSE BOX MANUFACTURER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CUSTOMERS" target="ENGINE-PARTS MANUFACTURER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CUSTOMERS" target="OFFICE EQUIPMENT MANUFACTURER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CUSTOMERS" target="OPERATING COSTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="SOFTWARE AND IT SERVICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="TOURISM">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="MAINE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="VERMONT">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="NEW HAMPSHIRE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="CAPE COD">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="COASTAL NEW HAMPSHIRE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="LAYOFFS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="FEDERAL GRANT FUNDING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="SEASONAL VISAS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="TAX CREDITS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="FIRST DISTRICT">
+      <data key="d0">20.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="BUSINESS CONTACTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF BOSTON" target="NON-BUSINESS CONTACTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="UNITED STATES" target="FEDERAL RESERVE BANK OF PHILADELPHIA">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="UNITED STATES" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="SOFTWARE AND IT SERVICES" target="IT FIRMS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="SOFTWARE AND IT SERVICES" target="CAPITAL AND TECHNOLOGY SPENDING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TOURISM" target="MAINE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TOURISM" target="CAPE COD">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TOURISM" target="CANADA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TOURISM" target="NEW ENGLAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TOURISM" target="HOTELS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TOURISM" target="DAY TRIPS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="TOURISM" target="LUXURY ACCOMMODATIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TOURISM" target="BUDGET-FRIENDLY ACCOMMODATIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TOURISM" target="WORKER AVAILABILITY">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="TOURISM" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="TOURISM" target="CANADIANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MAINE" target="LABOR MARKET SLACK">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="VERMONT" target="LABOR MARKET SLACK">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LAYOFFS" target="INDUSTRIAL PRODUCTION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LAYOFFS" target="AI CAPABILITIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LAYOFFS" target="RIGHT-SIZE STAFFING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LAYOFFS" target="STAFF LEVELS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL GRANT FUNDING" target="EDUCATION SECTOR">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL GRANT FUNDING" target="HEALTH-CARE SECTOR">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FIRST DISTRICT" target="MAN(&quot;ENTITY&quot;">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="FIRST DISTRICT" target="CONDOMINIUMS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BUSINESS CONTACTS" target="FEDERAL RESERVE BANK OF PHILADELPHIA">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="OPERATING COSTS" target="TARIFF IMPACTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="OPERATING COSTS" target="SUPPLIERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="REVENUES" target="FUEL SURCHARGES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="REVENUES" target="HOTELS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REVENUES" target="OCCUPANCY RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="IT FIRMS" target="SALES POSITIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="IT FIRMS" target="TECHNICAL POSITIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RESTAURANTS" target="COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESTAURANTS" target="PROFITABILITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESTAURANTS" target="MENU PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESTAURANTS" target="BEEF">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESTAURANTS" target="IMPORTED WINE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESTAURANTS" target="CONSUMER DEMAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PROFITABILITY" target="RIGHT-SIZE STAFFING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOTELS" target="DISCOUNTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOTELS" target="LEISURE AND SPORTS-RELATED TRAVEL">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOTELS" target="BUSINESS TRAVEL">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOTELS" target="OCCUPANCY LEVELS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOTELS" target="HOTEL OWNER IN MISSOURI">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="HOTELS" target="SELECT-SERVICE HOTELS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="SALARIES" target="ANNUAL INCREASES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL SECTOR" target="NEW YORK CITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL SECTOR" target="VACANCY RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="A DEPARTMENT STORE" target="APPAREL">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SINGLE-FAMILY HOMES" target="NORTHERN NEW ENGLAND STATES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INDIA" target="A LONG ISLAND IMPORTER AND WHOLESALER OF AUTO PARTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BRAZIL" target="A COFFEE ROASTER AND SUPPLIER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="UPSTATE NEW YORK" target="A SPECIALTY APPLIANCE MANUFACTURER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="UPSTATE NEW YORK" target="A BREWING COMPANY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="UPSTATE NEW YORK" target="FEDERAL RESERVE BANK OF NEW YORK">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="UPSTATE NEW YORK" target="AUTO DEALERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="UPSTATE NEW YORK" target="ROCHESTER">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="A SPECIALTY CONTRACTOR">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="FEDERAL RESERVE BANK OF NEW YORK">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="SECURITY SERVICES FIRM">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="BROADWAY SHOWS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="HOTEL ROOMS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="LEISURE AND HOSPITALITY SECTOR">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="BUSINESS SERVICES SECTOR">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="INFORMATION SECTOR">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="HOUSING MARKETS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="COMMERCIAL REAL ESTATE MARKETS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="MANHATTAN">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="INDUSTRIAL SECTOR">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="CONSTRUCTION ACTIVITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NEW YORK CITY" target="CONGESTION PRICING">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="A SPECIALTY CONTRACTOR" target="CONGESTION PRICING">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="CONGESTION PRICING" target="SPECIALTY CONTRACTOR">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FOREIGN MANUFACTURERS" target="A PHARMACEUTICAL COMPANY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BEEF" target="DOMESTIC DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BEEF" target="GROCERY FOOD PRICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INPUT PRICES" target="A MAJOR RETAILER">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="INPUT PRICES" target="MANUFACTURING FIRMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="A MAJOR RETAILER" target="SELLING PRICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="SELLING PRICES" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="SELLING PRICES" target="SELLING PRICE INCREASES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="SELLING PRICES" target="SURCHARGES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF NEW YORK" target="LONG ISLAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF NEW YORK" target="WHOLESALE AND DISTRIBUTION FIRMS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF NEW YORK" target="BANKS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LONG ISLAND" target="FOOD STORE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="RESIDENTIAL MORTGAGES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="BUSINESS LOANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="CREDIT STANDARDS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="COMMERCIAL MORTGAGES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="CONSUMER LOANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="CORPORATE BORROWERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="CONSUMER LENDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="HELOC APPLICATIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKS" target="CREDIT QUALITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="DELINQUENCIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKS" target="DA(&quot;ENTITY&quot;">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BANKS" target="BANK MERGERS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="HOUSING MARKETS" target="RENTAL DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL REAL ESTATE MARKETS" target="RETAIL SPACE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MANHATTAN" target="LUXURY RETAIL MARKET">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="INDUSTRIAL SECTOR" target="ELECTRICITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION ACTIVITY" target="CONTRACTOR">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION ACTIVITY" target="CONSTRUCTION MATERIALS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FOOD STORE" target="PRODUCE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FOOD STORE" target="MEAT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FOOD STORE" target="COSTS FOR PRODUCE AND MEAT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTO DEALERS" target="USED CAR SALES">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="AUTO DEALERS" target="INVENTORY LEVELS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTO DEALERS" target="TARIFF-RELATED VOLATILITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTO DEALERS" target="ELECTRIC VEHICLES (EVS)">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTO DEALERS" target="FEDERAL RESERVE BANK OF CLEVELAND">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="AUTO DEALERS" target="RETAIL SALES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AUTO DEALERS" target="MARGINS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DEPARTMENT STORE" target="MID- TO UPPER-INCOME CONSUMERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MACHINERY" target="MACHINERY ORDERS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="KEGS" target="STEEL PRICES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="OVERSEAS DEMAND" target="INTERNATIONAL TRADE DYNAMICS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INVENTORIES" target="PRICES (REAL ESTATE)">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INVENTORIES" target="RETAIL SALES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INVENTORIES" target="HOUSING MARKET">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RENTAL DEMAND" target="MORTGAGE RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL SPACE" target="UTAH">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BUSINESS LOANS" target="DELINQUENCY RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CREDIT STANDARDS" target="CREDIT TERMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONPROFITS" target="FEDERAL BENEFIT PROGRAMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONPROFITS" target="COMMUNITY HEALTH-CARE CENTER">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NONPROFITS" target="SOCIAL SERVICES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NONPROFITS" target="FUNDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONPROFITS" target="REVENUE STREAMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMUNITY HEALTH-CARE CENTER" target="MEDICAID PATIENTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="THIRD DISTRICT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="NON-AUTO RETAILERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="LABOR MARKET">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="PRICES PAID INDEX">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="PRICES RECEIVED INDEX">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="WAGE INFLATION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="BANK LENDING">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="SEPTEMBER SURVEY">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="COMMERCIAL AND INDUSTRIAL LENDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="COMMERCIAL REAL ESTATE LOANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="CONSUMER LENDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="HOME EQUITY LINES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="AUTO LOANS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="MORTGAGES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="CREDIT CARD VOLUMES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="CREDIT QUALITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="DELINQUENCIES AND DEFAULTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="DISTRICT BANKS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF PHILADELPHIA" target="BANKING CONTACTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="THIRD DISTRICT" target="NONMANUFACTURING ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="THIRD DISTRICT" target="AUTO DEALERS (PHILADELPHIA)">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="THIRD DISTRICT" target="WAGE GROWTH">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONMANUFACTURING ACTIVITY" target="PART-TIME EMPLOYMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGE GROWTH" target="WAGE PRESSURES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGE GROWTH" target="HOSPITALITY AND TOURISM">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGE GROWTH" target="FEDERAL RESERVE BANK OF MINNEAPOLIS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="WAGE GROWTH" target="MEDIAN WAGES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="STAFFING CONTACTS" target="LABOR MARKET">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="STAFFING CONTACTS" target="PROJECT-BASED ROLES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PRICING PRESSURES" target="BUSINESS COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUSINESS COSTS" target="COMMUNITY SERVICE PROVIDERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUSINESS EXPENSES" target="FIRMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FIRMS" target="EMPLOYERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FIRMS" target="STAFFING HOURS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR MARKET" target="WAGE INFLATION">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="LABOR MARKET" target="CONSTRUCTION INDUSTRY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LABOR MARKET" target="EMPLOYEE TURNOVER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PRICES PAID INDEX" target="UTILITIES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PRICES PAID INDEX" target="HISTORICAL AVERAGE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PRICES RECEIVED INDEX" target="HISTORICAL AVERAGE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CONSTRUCTION INDUSTRY" target="NONRESIDENTIAL CONSTRUCTION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION INDUSTRY" target="JOB SITE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION INDUSTRY" target="FOREIGN-BORN WORKERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION INDUSTRY" target="REPLACEMENT WINDOW COMPANY">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="CONSTRUCTION INDUSTRY" target="CONSTRUCTION INDUSTRY SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL GOVERNMENT" target="FEDERAL FUNDING">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="NONRESIDENTIAL CONSTRUCTION" target="FEDERAL FUNDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONRESIDENTIAL CONSTRUCTION" target="DATA CENTERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NONRESIDENTIAL CONSTRUCTION" target="NONRESIDENTIAL CONSTRUCTION DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAILERS" target="DISCOUNTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAILERS" target="AUGUST">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAILERS" target="CONSUMERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAILERS" target="RETAIL">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="RETAILERS" target="TRANSPORTATION CARRIERS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="RETAILERS" target="SAME-STORE SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAILERS" target="HOLIDAY SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAILERS" target="RETAIL INVENTORY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DISCOUNTS" target="CONSUMER-FACING BUSINESSES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DISCOUNTS" target="RETAIL">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSUMERS" target="SUMMER MONTHS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="CONSUMERS" target="VACATION SPENDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ELECTRIC VEHICLES (EVS)" target="FEDERAL EV TAX CREDIT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL EV TAX CREDIT" target="END OF SEPTEMBER">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="TOURISM SECTOR" target="LUXURY LEISURE TRAVEL">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REAL ESTATE INDUSTRY" target="REALTORS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REAL ESTATE INDUSTRY" target="RENTAL MARKET">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REAL ESTATE INDUSTRY" target="NEW-HOME BUILDERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REAL ESTATE INDUSTRY" target="HOMES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="REAL ESTATE INDUSTRY" target="REALTOR">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="REALTORS" target="CREDIT PROFILES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RENTAL MARKET" target="LOCAL RENTAL MARKET">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NEW-HOME BUILDERS" target="BUYERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL FUNDING" target="PLANNED PROJECTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="DATA CENTERS" target="DATA CENTER CONSTRUCTION">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="DATA CENTERS" target="INFRASTRUCTURE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DATA CENTERS" target="SKILLED WORKERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMPANIES" target="EMPLOYEES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EMPLOYEES" target="PREVIOUS EMPLOYEES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CREDIT QUALITY" target="FINANCIAL INSTITUTIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKING CONTACTS" target="COMMERCIAL CLIENTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKING CONTACTS" target="LOAN ORIGINATORS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="BUSINESS ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="WAGE PRESSURES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="NONLABOR COST PRESSURES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="RETAIL">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="FOOD AND HOSPITALITY">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="FOSSIL FUEL INDUSTRY">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="ELECTRICITY GENERATION">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="DATA CENTER CONSTRUCTION">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="REAL ESTATE BROKER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="HOMEBUILDER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="REAL ESTATE DEVELOPERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="COMMERCIAL BUILDER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="COMMERCIAL BANKER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="SOFTWARE FIRM">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="ACCOUNTING FIRM">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="LEGAL SERVICES FIRM">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="FREIGHT CONTACTS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="AIRPORT">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="NONPROFIT SECTOR">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CLEVELAND" target="SURVEY OF NONPROFITS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WAGE PRESSURES" target="PROFESSIONAL AND BUSINESS SERVICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONLABOR COST PRESSURES" target="TECHNOLOGY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONLABOR COST PRESSURES" target="UTILITIES COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="PRICE SENSITIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="UNIT SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="IN-STORE TRAFFIC">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="ONLINE TRAFFIC">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="CUSTOMER SENTIMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="MALL">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL" target="FOOT TRAFFIC">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="REVENUE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="PROFITS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL" target="MARGINS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FOOD AND HOSPITALITY" target="RESTAURATEUR">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FOSSIL FUEL INDUSTRY" target="DATA CENTER CONSTRUCTION">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="ELECTRICITY GENERATION" target="DATA CENTER CONSTRUCTION">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="LABOR DEMAND" target="MINING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LABOR DEMAND" target="TEMP AND TEMP-TO-HIRE WORK">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LABOR DEMAND" target="HEAD COUNTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PROFESSIONAL AND BUSINESS SERVICES" target="NONFINANCIAL SERVICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SELLING PRICE INCREASES" target="WHOLESALERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RESTAURATEUR" target="MINIMUM WAGE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COMMERCIAL CLIENTS" target="LENDER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ORDERS" target="PRODUCERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LEGAL SERVICES FIRM" target="RETAIL CLIENTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FREIGHT CONTACTS" target="PRE-TARIFF IMPORT SURGE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AIRPORT" target="PASSENGER VOLUMES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="AIRPORT" target="CARGO VOLUMES">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="NONPROFIT SECTOR" target="FEDERAL GRANTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONPROFIT SECTOR" target="FORMERLY INCARCERATED JOBSEEKERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NONPROFIT SECTOR" target="OPERATING EXPENSES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NONPROFIT SECTOR" target="FUNDING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONPROFIT SECTOR" target="OPEN POSITIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NONPROFIT SECTOR" target="RESERVE FUND (NONPROFIT)">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF RICHMOND" target="FIFTH DISTRICT">
+      <data key="d0">20.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF RICHMOND" target="HOME BUILDER">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF RICHMOND" target="JEWELRY STORE">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF RICHMOND" target="CONCRETE MANUFACTURER">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF RICHMOND" target="MARITIME PORTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOME BUILDER" target="SOUTH CAROLINA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONCRETE MANUFACTURER" target="SOCIAL MEDIA RECRUITMENT CAMPAIGN">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FURNITURE MANUFACTURER" target="HOUSING MARKET">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL CLIENTS" target="CAPITAL INVESTMENTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL CLIENTS" target="ACQUISITIONS (RETAIL)">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SOUTH CAROLINA" target="SOUTH CAROLINA BROKER">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FUSE BOX MANUFACTURER" target="RETAIL INDUSTRY">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="ENGINE-PARTS MANUFACTURER" target="RETAIL INDUSTRY">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="OFFICE EQUIPMENT MANUFACTURER" target="RETAIL INDUSTRY">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="HOUSING MARKET" target="HOME STARTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOUSING MARKET" target="VACANT DEVELOPED LOT SUPPLY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MARITIME PORTS" target="AUTO IMPORTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AUTO IMPORTS" target="INVENTORY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="INVENTORY" target="HOME BUILDERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CARRIER CAPACITY" target="SPOT RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FUEL SURCHARGES" target="HOUSEHOLD BUDGET">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FUEL SURCHARGES" target="DEMAND">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="DEMAND" target="SALES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="DEMAND" target="AFFORDABILITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DEMAND" target="CATTLE PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FURNITURE INDUSTRY" target="FURNITURE STORE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FURNITURE INDUSTRY" target="OPERATIONAL CHALLENGES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL INDUSTRY" target="NORTH CAROLINA">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="NORTH CAROLINA" target="REAL ESTATE AGENT">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="VIRGINIA" target="VIRGINIA AGENT">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="VIRGINIA" target="VIRGINIA BROKER">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="MARYLAND" target="MARYLAND DEVELOPER">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="MARYLAND" target="MARYLAND BROKER">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="BUSINESS TRAVEL" target="WORKER TRAININGS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ATLANTA" target="LEISURE TRAVEL">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ATLANTA" target="LOAN GROWTH">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ATLANTA" target="ENERGY ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ATLANTA" target="RETAIL SALES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ATLANTA" target="CRUDE OIL PRODUCTION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ATLANTA" target="SOUTHEAST">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ATLANTA" target="DISTRICT ECONOMIC CONDITIONS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="LEISURE TRAVEL" target="INTERNATIONAL VISITORS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LEISURE TRAVEL" target="DOMESTIC TRAVEL">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="UPFITTING COSTS" target="MATH DOESN'T WORK">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HIRING CHILL" target="GENERATIVE AI">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="HEAD COUNT REDUCTIONS" target="GENERATIVE AI">
+      <data key="d0">15.0</data>
+    </edge>
+    <edge source="TURNOVER" target="HOSPITALITY AND TOURISM">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="LOAN DELINQUENCIES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="DEPOSIT LEVELS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="LOAN TYPES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="FEDERAL RESERVE BANK OF CHICAGO">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="BOND VALUES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="EQUITY VALUES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="BUSINESS LOAN DEMAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="BUSINESS LOAN QUALITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="BUSINESS LOAN RATES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKING AND FINANCE" target="CONSUMER SECTOR">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="LOAN DELINQUENCIES" target="SMALL BUSINESSES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DEPOSIT LEVELS" target="COMPETITION FOR BALANCES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LOAN TYPES" target="BORROWERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="STAFFING FIRMS" target="POOL OF POTENTIAL APPLICANTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="STAFFING FIRMS" target="APPLICANTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="APPLICANTS" target="TECHNICAL ROLES">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="COMPETITORS" target="PROFESSIONAL SERVICES FIRM">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUSINESS LEVELS" target="PRICING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FREIGHT" target="OVER THE ROAD FREIGHT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FREIGHT" target="FREIGHT RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SALES" target="TRAFFIC">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SALES" target="YOUTH-FOCUSED GAMING FACILITIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LISTINGS" target="PRICE REDUCTIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INCENTIVES" target="NEW CONSTRUCTION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="NEW CONSTRUCTION" target="PROJECTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="UNCERTAINTY" target="EXPANSION PLANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL SALES" target="DAIRY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="RETAIL SALES" target="FEDERAL RESERVE BANK OF DALLAS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="RETAIL SALES" target="BUILDING MATERIAL AND GARDEN EQUIPMENT STORES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL SALES" target="FURNITURE STORES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL SALES" target="ELECTRONIC AND APPLIANCE STORES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL SALES" target="HEALTH CARE RETAILERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RETAIL SALES" target="FOOD AND BEVERAGE RETAILERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CRUDE OIL PRODUCTION" target="ENERGY INDUSTRY SEGMENTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CRUDE OIL PRODUCTION" target="GULF OF MEXICO">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CRUDE OIL PRODUCTION" target="REFINED PRODUCTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ONE BIG BEAUTIFUL BILL ACT" target="ACCELERATED DEPRECIATION SCHEDULE">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="AUTO MANUFACTURERS" target="AUTO SHIPMENTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AUTOMOBILE DEALERS" target="ELECTRIC VEHICLE (EV) SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ELECTRIC VEHICLE (EV) SALES" target="EV TAX CREDIT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="PORTS" target="CRUISING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PORTS" target="CONTAINER VOLUMES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PORTS" target="BREAKBULK ACTIVITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOME BUILDERS" target="SPECULATIVE INVENTORY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOME BUILDERS" target="COST INFLATION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CREDIT PROFILES" target="MORTGAGE QUALIFICATION">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="TRUCKING FIRMS" target="TRUCKING CAPACITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TRUCKING FIRMS" target="SHIPMENTS OF CONSUMER GOODS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TRUCKING FIRMS" target="PACE OF DECLINES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CHEMICAL MANUFACTURERS" target="PAPER AND PULP SALES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CHEMICAL MANUFACTURERS" target="ORDERS FOR COMPONENTS USED IN TIRES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PACKAGED SNACK PRODUCERS" target="PRODUCER-DRIVEN PRICE INCREASES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="PACKAGED SNACK PRODUCERS" target="SALES VOLUMES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANK MERGERS" target="BANKING LANDSCAPE">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BANK MERGERS" target="SOUTHEAST">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ENERGY INDUSTRY SEGMENTS" target="LIQUEFIED NATURAL GAS DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ENERGY INDUSTRY SEGMENTS" target="ELECTRICITY DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ENERGY INDUSTRY SEGMENTS" target="CARBON CAPTURE AND STORAGE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="ENERGY INDUSTRY SEGMENTS" target="REFINED PRODUCTS DEMAND">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LIQUEFIED NATURAL GAS DEMAND" target="U.S. EXPORTS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="U.S. EXPORTS" target="LIQUEFIED NATURAL GAS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TARIFF IMPACTS" target="PRICE PASS-THROUGH">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INDUSTRIAL VACANCY RATES" target="INDUSTRIAL SPACE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INDUSTRIAL VACANCY RATES" target="WAREHOUSE INVENTORY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="DISTRICT ECONOMIC CONDITIONS" target="FEDERAL RESERVE BANK OF DALLAS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="ELECTRICITY" target="COMMERCIAL SECTOR">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REFINED PRODUCTS" target="SOFTENING DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CHICAGO" target="SEVENTH DISTRICT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF CHICAGO" target="REAL ESTATE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REAL ESTATE" target="CONSTRUCTION AND REAL ESTATE">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="REAL ESTATE" target="ASKING PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REAL ESTATE" target="VACANCY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REAL ESTATE" target="SUBLEASE AVAILABILITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DAIRY FARMERS" target="FOOD SERVICES PROVIDERS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="RICE" target="OVERSEAS SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTOMOTIVE INDUSTRY" target="AUTOMOTIVE INDUSTRY SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="STEEL" target="RESHORING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FABRICATED METALS" target="FABRICATED METALS SALES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FABRICATED METALS" target="AUTOMOTIVE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FABRICATED METALS" target="SALES TO A RANGE OF SECTORS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FABRICATED METALS" target="SALES TO THE CONSTRUCTION INDUSTRY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FABRICATED METALS" target="SALES TO THE AUTOMOTIVE INDUSTRY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TRUCK TRANSPORTATION" target="TRUCK TRANSPORTATION DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="VEHICLE DEALERSHIPS" target="VEHICLE STOCKS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MULTIFAMILY SECTOR" target="MULTIFAMILY RENT CONCESSIONS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="OFFICE SECTOR" target="OFFICE LEASING ACTIVITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="INDUSTRIAL SPACE" target="UTAH">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="WAREHOUSE INVENTORY" target="WAREHOUSE SPACE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="OVERSEAS SALES" target="OVERSEAS BUYERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DOMESTIC DEMAND" target="POULTRY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DOMESTIC DEMAND" target="PEANUTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DOMESTIC DEMAND" target="TOBACCO">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DAIRY" target="FOOD SERVICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTOMOTIVE" target="HEAVY TRUCK PRODUCTION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BUSINESS LOAN DEMAND" target="BUSINESS LOAN ACQUISITION ACTIVITY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BUSINESS LOAN DEMAND" target="BUSINESS LOAN TERMS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="BUSINESS LOAN QUALITY" target="SUPPLIERS IN THE AUTO INDUSTRY">
+      <data key="d0">14.0</data>
+    </edge>
+    <edge source="CONSUMER SECTOR" target="MORTGAGE REFINANCING">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="CORN" target="EXPORT V(&quot;ENTITY&quot;">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="CROP PRODUCERS" target="EQUIPMENT PURCHASES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CROP PRODUCERS" target="EQUIPMENT REPAIRS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ST. LOUIS" target="MISSOURI">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ST. LOUIS" target="MISSISSIPPI">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ST. LOUIS" target="NORTHWEST ARKANSAS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ST. LOUIS" target="TENNESSEE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ST. LOUIS" target="KENTUCKY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ST. LOUIS" target="MEMPHIS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ST. LOUIS" target="ARKANSAS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF ST. LOUIS" target="WEST TENNESSEE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MIDDLE-INCOME CONSUMERS" target="HOTEL OWNER IN MISSOURI">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MIDDLE-INCOME CONSUMERS" target="CREDIT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FOOD PANTRY USAGE" target="LOW-INCOME HOUSEHOLDS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FOOD PANTRY USAGE" target="MIDDLE-INCOME HOUSEHOLDS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="MIDDLE-CLASS RECESSION" target="SELECT-SERVICE HOTELS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="MIDDLE-CLASS RECESSION" target="HOTEL OWNER IN MISSOURI">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="SELECT-SERVICE HOTELS" target="HOTEL OWNER IN MISSOURI">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SALES TAX REVENUE" target="SALES TAX">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SOCIAL SERVICE CONTACTS" target="OPERATING COSTS FOR SOCIAL SERVICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WORKFORCE DEVELOPMENT CONTACTS" target="WORKFORCE DEVELOPMENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="APPAREL RETAILER" target="COMPENSATION GROWTH">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="APPAREL FIRM" target="UNIFORMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TECHNOLOGY FIRM" target="PRICE GUARANTEE PERIODS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOTEL OWNER" target="TRAVEL DEMAND">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TRAVEL DEMAND" target="HOTEL OWNER IN MISSOURI">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="REGIONAL AIRPORT" target="EMPLOYER CONTRIBUTIONS TO HEALTH INSURANCE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION FIRM" target="LABOR COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONSTRUCTION FIRM" target="PROJECT DELAYS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PROJECT DELAYS" target="OIL FIELD SERVICE FIRMS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MANUFACTURER" target="DOMESTIC SUPPLY CHAIN">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DONATIONS" target="DONATIONS TO SOCIAL SERVICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="LOAN QUALITY" target="LOAN RATES">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="LOAN RATES" target="LOAN TERMS">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="EMPLOYERS" target="HEAD COUNTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CARIBBEAN" target="APPAREL COMPANY">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="APPAREL COMPANY" target="LABOR CHALLENGES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF MINNEAPOLIS" target="MICHIGAN'S UPPER PENINSULA">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF MINNEAPOLIS" target="UNEMPLOYMENT CLAIMS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF MINNEAPOLIS" target="ELECTRICITY RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF MINNEAPOLIS" target="EMPLOYEE HEALTH CARE PREMIUMS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF MINNEAPOLIS" target="RETAIL FUEL PRICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF MINNEAPOLIS" target="GRAND FORKS, NORTH DAKOTA">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF MINNEAPOLIS" target="MINORITY- AND WOMEN-OWNED BUSINESS ENTERPRISES (MWBE)">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF MINNEAPOLIS" target="MINORITY- AND WOMEN-OWNED BUSINESS ENTERPRISES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MICHIGAN'S UPPER PENINSULA" target="MINING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="HOSPITAL CEO" target="HOSPITAL IN MISSISSIPPI">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="HOSPITAL IN MISSISSIPPI" target="FEDERAL PROGRAM">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOSPITAL IN MISSISSIPPI" target="GRANT FUNDING">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="BANKER" target="SMALL BUSINESS LOANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BANKER" target="CONSUMER DELINQUENCY RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SMALL BUSINESS LOANS" target="SMALL BUSINESS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="FARMER IN ARKANSAS" target="BANKRUPTCY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONFINANCIAL SERVICES" target="FEDERAL RESERVE BANK OF DALLAS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="NONFINANCIAL SERVICES" target="TRANSPORTATION AND WAREHOUSING">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONFINANCIAL SERVICES" target="INFORMATION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="NONFINANCIAL SERVICES" target="LEISURE AND HOSPITALITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LOGISTICS FIRM IN NORTHWEST ARKANSAS" target="TRANSPORTATION AND LOGISTICS COMPANIES">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="PROTEIN BUSINESS" target="PROTEIN DEMAND">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="PROTEIN BUSINESS" target="LABOR">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CROP CONDITIONS" target="NON-IRRIGATED FIELDS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EVENT CENTER IN NORTHWEST ARKANSAS" target="ROOM RENTALS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EVENT CENTER IN NORTHWEST ARKANSAS" target="GATHERINGS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="YOUTH-FOCUSED GAMING FACILITIES" target="YOUTH">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CREDIT COUNSELING AGENCIES" target="CREDIT COUNSELING">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="CREDIT CARD DELINQUENCY RATES" target="CREDIT CARD">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="AIRPORT PROJECT IN NORTHWEST ARKANSAS" target="AIRPORT PROJECT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="AIRPORT PROJECT" target="BIDS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="BUY NOW, PAY LATER SERVICES" target="BUY NOW, PAY LATER">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="BUY NOW, PAY LATER" target="MIDDLE-INCOME HOUSEHOLDS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOSPITALITY AND TOURISM" target="FULL-TIME EMPLOYEES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOSPITALITY AND TOURISM" target="BOOKINGS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOSPITALITY AND TOURISM" target="HOTEL OCCUPANCY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="HOSPITALITY AND TOURISM" target="AVERAGE REVENUE PER ROOM">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MONTANA" target="VACANCIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="VACANCIES" target="RENT">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ARTIFICIAL INTELLIGENCE" target="ENTRY-LEVEL FOLKS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="MINNESOTA" target="GROCERY STORES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MINNESOTA" target="INFRASTRUCTURE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="GROCERY STORES" target="SKELETON CREWS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="GROCERY STORES" target="HOURS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PAYROLL CONTACTS" target="PAYROLL">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="GRAND FORKS, NORTH DAKOTA" target="JOB FAIR">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="SOYBEANS" target="U.S. PRODUCERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="METAL FABRICATORS" target="EQUIPMENT MANUFACTURERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="OIL AND GAS EXPLORATION" target="CRUDE OIL">
+      <data key="d0">16.0</data>
+    </edge>
+    <edge source="OIL AND GAS EXPLORATION" target="METALS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CAREER SERVICES PROFESSIONALS" target="WORKERS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WORKERS" target="TERMINATIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MINORITY- AND WOMEN-OWNED BUSINESS ENTERPRISES" target="WISCONSIN">
+      <data key="d0">5.0</data>
+    </edge>
+    <edge source="MINORITY- AND WOMEN-OWNED BUSINESS ENTERPRISES" target="FINAL PRICES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="MINORITY- AND WOMEN-OWNED BUSINESS ENTERPRISES" target="AVERAGE COMPENSATION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FEDERAL RESERVE BANK OF KANSAS CITY" target="TENTH DISTRICT">
+      <data key="d0">10.0</data>
+    </edge>
+    <edge source="MANUFACTURING FIRMS" target="RAW MATERIAL COSTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CHILDCARE" target="NONLABOR COSTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CHILDCARE" target="PRESCHOOL SEATS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="CHILDCARE" target="INFANT AND TODDLER SLOTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="UNIVERSITY OF NEBRASKA-LINCOLN" target="IN-STATE TUITION">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="DOMESTIC MANUFACTURERS" target="CAPITALIZED FIRMS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="DOMESTIC MANUFACTURERS" target="FOREIGN IMPORTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DOMESTIC MANUFACTURERS" target="MARKET SHARE">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="PROFESSIONAL SERVICE COMPANIES" target="AI CAPABILITIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AUTOMOTIVE GOODS" target="SALES OF GOODS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SALES OF GOODS" target="SPORTING GOODS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="EXPENSES" target="PRODUCER INCOMES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="TRANSPORTATION AND WAREHOUSING" target="PORT TRAFFIC">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="TRANSPORTATION AND WAREHOUSING" target="SMALL PARCEL SHIPMENTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="AIRLINES" target="TRANSPORTATION AND W(&quot;ENTITY&quot;">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BUILDERS" target="MARKETING AND INCENTIVES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="MARKETING AND INCENTIVES" target="MORTGAGE RATE BUYDOWNS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="APARTMENT DEMAND" target="SUPPLY OF NEW UNITS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SUPPLY OF NEW UNITS" target="RENTAL RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PIPELINE FIRMS" target="PROJECT PIPELINES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PIPELINE FIRMS" target="REGULATORY RELIEF">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="PIPELINE FIRMS" target="FAVORABLE TAX POLICIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="WARMER, DRYER WEATHER" target="LA NI&#209;A CLIMATE PATTERN">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="SPRING ROW CROPS" target="PRODUCTION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SPRING ROW CROPS" target="YIELDS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COTTON GROWERS" target="DOWNSTREAM INDUSTRIES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COTTON GROWERS" target="COTTON PRICES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CATTLE PRICES" target="SUPPLY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CATTLE IMPORTS FROM MEXICO" target="SUSPENSION OF CATTLE IMPORTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="SUSPENSION OF CATTLE IMPORTS" target="SPREAD OF NEW WORLD SCREWWORM">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="MANUFACTURING (LABOR)" target="STAFF LEVELS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="STAFF LEVELS" target="HEALTH CARE (LABOR)">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="STAFF LEVELS" target="ATTRITION">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="STAFF LEVELS" target="EARLY RETIREMENTS">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="AGRICULTURE NONPROFIT" target="LIVE WEBINARS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="AGRICULTURE NONPROFIT" target="NOMINAL FEE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LARGE NONPROFIT ORGANIZATION" target="HIGH-VALUE PRODUCTS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LARGE NONPROFIT ORGANIZATION" target="E-COMMERCE SITE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LARGE NONPROFIT ORGANIZATION" target="BRICK-AND-MORTAR STORES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMUNITY SUPPORT ORGANIZATIONS" target="SMALL BUSINESSES">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="COMMUNITY SUPPORT ORGANIZATIONS" target="GRANT CUTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="COMMUNITY SUPPORT ORGANIZATIONS" target="FUNDING CUTS">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="SMALL BUSINESSES" target="BUSINESS CLOSURES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="SMALL BUSINESSES" target="OPERATING HOURS CUTS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="SMALL BUSINESSES" target="SAVINGS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="UTAH" target="FINANCIAL INSTITUTIONS">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="UTAH" target="OFFICE SPACE">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="UTAH" target="LOSSES RELATED TO FRAUD">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="CONTRACTOR" target="BUILDER">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="BUILDER" target="DOMESTIC LUMBER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="DOMESTIC LUMBER" target="CONSTRUCTION MATERIALS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="LOGISTICS" target="LEASING DEMAND">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="FINANCIAL INSTITUTIONS" target="DEPOSIT RATES">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FINANCIAL INSTITUTIONS" target="ASSET QUALITY">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="FINANCIAL INSTITUTIONS" target="FRAUD">
+      <data key="d0">7.0</data>
+    </edge>
+    <edge source="FINANCIAL INSTITUTIONS" target="LOSSES RELATED TO FRAUD">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ARIZONA" target="COMMERCIAL LOANS">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="ARIZONA" target="SEMICONDUCTOR MANUFACTURING PROJECTS">
+      <data key="d0">8.0</data>
+    </edge>
+  </graph>
+</graphml>

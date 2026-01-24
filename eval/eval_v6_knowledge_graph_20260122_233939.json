@@ -1,0 +1,1036 @@
+{
+  "metadata": {
+    "system_name": "v6_knowledge_graph",
+    "timestamp": "2026-01-22T23:39:39.472289",
+    "config": {
+      "system": "v6_knowledge_graph",
+      "embedding_model": "text-embedding-3-large",
+      "synthesis_model": "gpt-5.1",
+      "group_id": "default",
+      "threshold": 0.65,
+      "enable_drilldown": true,
+      "enable_refinement": true,
+      "qa_file": "eval/Biege_OA.json"
+    }
+  },
+  "summary": {
+    "total_questions": 5,
+    "correct": 5,
+    "partially_correct": 0,
+    "abstained": 0,
+    "incorrect": 0,
+    "correct_pct": 100.0,
+    "partially_correct_pct": 0.0,
+    "abstained_pct": 0.0,
+    "incorrect_pct": 0.0,
+    "accuracy_pct": 100.0,
+    "avg_time_ms": 235788.8
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+      "expected_answer": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+      "system_answer": "Mid‑August to September 2025\n- Over the reporting period from **mid‑August through September 2025**, overall economic activity in the **Twelfth District (San Francisco)** **edged down slightly**.\n- **Employment**: Firms generally kept staffing levels steady, so overall employment was **little changed** during this time.\n- **Wages and prices**: \n  - **Wages** increased **slightly**.\n  - **Prices** rose **modestly**, indicating mild inflationary pressure.\n\nSectoral changes over this period\n- **Retail trade**: \n  - Activity **decreased somewhat** between mid‑August and late September 2025, contributing to the slight overall decline in activity.  \n- **Residential real estate**:\n  - Also **decreased somewhat** over this same period, showing a cooling in housing market activity.\n- **Commercial real estate**:\n  - Activity was **largely unchanged** from mid‑August through September 2025.\n- **Manufacturing**:\n  - Conditions were **largely stable/unchanged** during the period.\n- **Lending/financial activity**:\n  - **Largely unchanged**, indicating no major tightening or expansion of credit compared with the prior period.\n- **Agriculture and resource‑related sectors**:\n  - **Weakened modestly/slightly** over the mid‑August to September 2025 interval.\n- **Consumer and business services**:\n  - Showed **mixed conditions** during this time, with no clear, uniform direction of change across all services.\n- **Small businesses and community support organizations**:\n  - Experienced **modest weakening** over this period, reflecting some deterioration in demand and financial conditions.\n\nChange in outlook relative to the prior period\n- Compared with the **prior reporting period** (the weeks before mid‑August 2025), contacts in the Twelfth District reported that:\n  - The **overall economic outlook deteriorated somewhat** by late September 2025.\n  - This deterioration reflects the combination of: a slight overall decline in economic activity, modest weakening in agriculture/resource sectors, retail and residential real estate softness, and pressures felt by small businesses and community organizations.\n\nIn summary, from **mid‑August to the end of September 2025**, the Twelfth District saw a **slight downward shift** in overall economic activity, with some sectors (retail, residential real estate, agriculture, small businesses, community organizations) softening, while others (manufacturing, lending, commercial real estate, employment) remained broadly stable, and the **forward-looking outlook became somewhat more pessimistic** than in the preceding period. [BeigeBook_20251015, 2025‑10‑15]",
+      "verdict": "correct",
+      "judge_reasoning": "Key facts in the expected answer:\n1) Overall economic activity in the Twelfth District edged down slightly.\n2) Activity in retail trade either decreased or remained stable.\n3) Activity in agriculture either decreased or remained stable.\n4) Activity in residential real estate either decreased or remained stable.\n\nComparison with system answer:\n- The system explicitly states that overall economic activity \"edged down slightly\" in the Twelfth District over the period → matches fact (1).\n- Retail trade: system says activity \"decreased somewhat\" → consistent with \"either decreased or remained stable\" → matches fact (2).\n- Agriculture: system says agriculture and resource‑related sectors \"weakened modestly/slightly\" → consistent with \"either decreased or remained stable\" → matches fact (3).\n- Residential real estate: system says it \"also decreased somewhat\" → consistent with \"either decreased or remained stable\" → matches fact (4).\n- The rest of the answer adds sectoral detail and outlook information, but nothing contradicts the ground truth.\n\nAll key facts are present and accurate; no contradictions or factual errors relative to the expected answer. Additional details are aligned with and elaborative of the expected content, not in conflict with it.\n\nVerdict: correct.",
+      "retrieved_chunks": [
+        {
+          "fact_id": "ad3696ce-a228-576c-8454-a5ab7ea72eda",
+          "content": "Economic activity in the Twelfth District edged down slightly during the mid-August to September reporting period.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "EDGED_DOWN_SLIGHTLY_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.1395156860351563
+        },
+        {
+          "fact_id": "0a51d7b9-64ce-51e3-ae9b-c766f754cba1",
+          "content": "Contacts' economic outlook in the Twelfth District weakened somewhat during the mid-August to September reporting period.",
+          "subject": "Economic Outlook",
+          "edge_type": "WEAKENED_SOMEWHAT_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.1223023414611817
+        },
+        {
+          "fact_id": "f500bcf7-a5b7-5213-a7d4-6264709137e6",
+          "content": "In the San Francisco District, overall economic activity edged down slightly.",
+          "subject": "San Francisco",
+          "edge_type": "EXPERIENCED_A_SLIGHT_DECLINE_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.1029532432556153
+        },
+        {
+          "fact_id": "f9325fee-37fa-51fe-bbf6-f9b2f21801ea",
+          "content": "The Federal Reserve Bank of Minneapolis issued a Summary of Economic Activity describing recent conditions in the Ninth District economy.",
+          "subject": "Federal Reserve Bank Of Minneapolis",
+          "edge_type": "ISSUED",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.0995305061340332
+        },
+        {
+          "fact_id": "fc9930cb-d371-5cb3-ae0f-e8a403eefba4",
+          "content": "Each Federal Reserve Bank gathers information on current economic conditions in its District.",
+          "subject": "Federal Reserve Bank",
+          "edge_type": "GATHERS_INFORMATION_ON_IN_ITS_DISTRICT",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.0790403366088868
+        },
+        {
+          "fact_id": "56b02858-214f-5131-aa1b-9b28a98de8e4",
+          "content": "The web page \"San Francisco Fed Twelfth District Beige Book\" provides more information about District economic conditions.",
+          "subject": "San Francisco Fed Twelfth District Beige Book",
+          "edge_type": "PROVIDES_MORE_INFORMATION_ABOUT",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9911731719970703
+        },
+        {
+          "fact_id": "88950363-014f-5975-870b-5624d6d790e0",
+          "content": "Economic activity in the Twelfth District edged down slightly during the mid-August to September reporting period.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "CHANGED_DURING",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9894489288330078
+        },
+        {
+          "fact_id": "81fa91e9-b018-5bd5-8b1f-f20178b5563d",
+          "content": "The Federal Reserve Bank of San Francisco provides a web link for information about District economic conditions.",
+          "subject": "Federal Reserve Bank Of San Francisco",
+          "edge_type": "PROVIDES_WEB_LINK_FOR_INFORMATION_ABOUT",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9803475379943848
+        },
+        {
+          "fact_id": "0c24abe5-0e3d-584b-89ca-57bc80b3c1fb",
+          "content": "Construction activity slowed over the reporting period in the Federal Reserve Bank of San Francisco district.",
+          "subject": "Construction Activity",
+          "edge_type": "SLOWED_DURING",
+          "object": "Financial Reporting",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9376243591308594
+        },
+        {
+          "fact_id": "d077a2cb-7d15-521f-be16-ffb807ea88fb",
+          "content": "Residential real estate activity decreased somewhat over the reporting period in the Federal Reserve Bank of San Francisco district.",
+          "subject": "Housing Market",
+          "edge_type": "DECREASED_DURING",
+          "object": "Financial Reporting",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.937144660949707
+        },
+        {
+          "fact_id": "c1ea2c31-9c73-5e3f-b2d0-853d40afa936",
+          "content": "Commercial real estate activity in the Twelfth District was unchanged on balance during the mid-August to September reporting period.",
+          "subject": "Commercial Real Estate",
+          "edge_type": "WAS_UNCHANGED_ON_BALANCE_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9343694686889649
+        },
+        {
+          "fact_id": "40fdaa63-3a6a-5f52-b32b-1eec5c11d798",
+          "content": "Lending activity in the Twelfth District remained largely stable during the mid-August to September reporting period.",
+          "subject": "Bank Lending",
+          "edge_type": "REMAINED_LARGELY_STABLE_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9333003997802735
+        },
+        {
+          "fact_id": "8f5829bf-c732-50dd-a8fe-2c5622d98c3f",
+          "content": "Conditions in resource-related sectors in the Twelfth District weakened slightly during the mid-August to September reporting period.",
+          "subject": "Agriculture",
+          "edge_type": "CONDITIONS_WEAKENED_SLIGHTLY_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9312743186950684
+        },
+        {
+          "fact_id": "10801ff4-3a06-5b90-80dd-a9d9d9832897",
+          "content": "Activity in residential real estate in the Twelfth District decreased somewhat during the mid-August to September reporting period.",
+          "subject": "Housing Market",
+          "edge_type": "DECREASED_SOMEWHAT_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9270566940307617
+        },
+        {
+          "fact_id": "b7e011ba-47a6-5c17-b739-682b1206ad91",
+          "content": "Ninth District economic activity was slightly down since the previous report.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "EXPERIENCED_CHANGE_IN",
+          "object": "Ninth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9239133834838867
+        },
+        {
+          "fact_id": "e9ad0f93-07c8-5e25-981c-c2cbdd80e336",
+          "content": "Conditions for small businesses in the Twelfth District weakened modestly during the mid-August to September reporting period.",
+          "subject": "Business Activity",
+          "edge_type": "CONDITIONS_WEAKENED_MODESTLY_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9221223831176758
+        },
+        {
+          "fact_id": "40091b88-cb94-5938-bc04-8234641d573b",
+          "content": "Conditions in the business services sector in the Twelfth District were mixed during the mid-August to September reporting period.",
+          "subject": "Services Industry",
+          "edge_type": "CONDITIONS_WERE_MIXED_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9215592384338379
+        },
+        {
+          "fact_id": "52232df8-eb31-5542-ad4f-664ed62bcc6f",
+          "content": "The Federal Reserve Bank of St. Louis provides a Regional Economic Data and Reports page for more information about District economic conditions.",
+          "subject": "Federal Reserve Bank Of St. Louis",
+          "edge_type": "PROVIDES_RESOURCE",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9209732055664063
+        },
+        {
+          "fact_id": "898410ac-8ce2-55f4-8429-48cde4caae5e",
+          "content": "Conditions in the consumer services sector in the Twelfth District were mixed during the mid-August to September reporting period.",
+          "subject": "Diversified Consumer Services",
+          "edge_type": "CONDITIONS_WERE_MIXED_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9170540809631348
+        },
+        {
+          "fact_id": "d78dd2a4-5c61-59c7-a49a-9f1c837447b5",
+          "content": "The Federal Reserve Bank of Chicago issued the Summary of Economic Activity for the Seventh District.",
+          "subject": "Federal Reserve Bank of Chicago / Seventh District",
+          "edge_type": "ISSUED",
+          "object": "Summary Of Economic Activity",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9148544311523438
+        }
+      ],
+      "timing_ms": 302863
+    },
+    {
+      "question_id": 2,
+      "question": "What is the Beige Book?",
+      "expected_answer": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+      "system_answer": "The Beige Book is a report published by the U.S. Federal Reserve System that summarizes current economic conditions in each of the 12 Federal Reserve Districts. It relies primarily on qualitative information gathered from local business contacts, economists, market experts, and other regional sources, and focuses on how conditions have changed since the previous report. The Beige Book is released eight times per year. [Source: BeigeBook_20251015, 2025-10-15]",
+      "verdict": "correct",
+      "judge_reasoning": "Key facts in the expected answer:\n1) Beige Book is a Federal Reserve System publication/report.\n2) It covers current economic conditions across the 12 Federal Reserve Districts.\n3) It characterizes regional economic conditions and prospects.\n4) It is based on mostly qualitative information gathered directly from each District's sources.\n\nSystem answer:\n- States it is \"a report published by the U.S. Federal Reserve System\" → matches (1).\n- Says it summarizes current economic conditions in each of the 12 Federal Reserve Districts → matches (2).\n- Mentions it relies primarily on qualitative information gathered from local business contacts, economists, market experts, and other regional sources → consistent with (4), just more detailed sourcing.\n- While it doesn’t explicitly say \"prospects,\" describing how conditions have changed since the previous report implicitly touches on prospects and is not contradictory.\n- Adds extra correct details (released eight times per year, focuses on changes since previous report) that do not conflict with the ground truth.\n\nThere are no factual errors or contradictions relative to the expected answer, and all key aspects are covered, with some accurate elaboration.\n",
+      "retrieved_chunks": [
+        {
+          "fact_id": "c028d3d0-30f4-5015-998c-01e544da942e",
+          "content": "The Beige Book reports are published eight times per year.",
+          "subject": "Beige Book",
+          "edge_type": "IS_PUBLISHED_EIGHT_TIMES_PER_YEAR_AS",
+          "object": "Beige Book reports",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.4656520843505858
+        },
+        {
+          "fact_id": "cfa7ec34-40cc-5f43-bb3f-d764adb7efe8",
+          "content": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "edge_type": "IS_A_PUBLICATION_OF",
+          "object": "Federal Reserve System (The Federal Reserve)",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.348977756500244
+        },
+        {
+          "fact_id": "3f9cf40a-1cb6-53bf-a7de-3ddf40c1348e",
+          "content": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "edge_type": "COVERS_ECONOMIC_CONDITIONS_ACROSS",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.3489300727844238
+        },
+        {
+          "fact_id": "b318215c-76d8-587c-a50f-a8636a4952a9",
+          "content": "The Beige Book characterizes regional economic conditions.",
+          "subject": "Beige Book",
+          "edge_type": "CHARACTERIZES",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.3091790199279785
+        },
+        {
+          "fact_id": "ba3a502a-4cc0-5cf0-b028-f8851a74faf7",
+          "content": "The Beige Book characterizes economic prospects.",
+          "subject": "Beige Book",
+          "edge_type": "CHARACTERIZES",
+          "object": "Economic Outlook",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.2976309776306152
+        },
+        {
+          "fact_id": "8a9e1fd9-07fb-52ff-8260-4a0613f96f02",
+          "content": "The Beige Book is intended to characterize changes in economic conditions since the last report.",
+          "subject": "Beige Book",
+          "edge_type": "CHARACTERIZES_CHANGES_IN_SINCE_THE_LAST_REPORT",
+          "object": "Economic Outlook",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.1501620292663575
+        },
+        {
+          "fact_id": "a18bf398-a2d9-5f2e-bc88-8126014939b7",
+          "content": "The Beige Book is not a commentary on the views of Federal Reserve officials.",
+          "subject": "Beige Book",
+          "edge_type": "IS_NOT_A_COMMENTARY_ON_THE_VIEWS_OF",
+          "object": "Federal Reserve Officials",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.1320517539978028
+        },
+        {
+          "fact_id": "95f2db34-10c1-5a87-99ab-e5ad5cd65aff",
+          "content": "The Beige Book can complement other forms of regional information gathering.",
+          "subject": "Beige Book",
+          "edge_type": "COMPLEMENTS_OTHER_FORMS_OF",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.102668571472168
+        },
+        {
+          "fact_id": "9af4e91d-39ea-581d-a9a5-59fbe5229ba5",
+          "content": "Information for the Beige Book is collected from a wide range of contacts.",
+          "subject": "Energy Sector",
+          "edge_type": "PROVIDE_INFORMATION_FOR_AS_A_WIDE_RANGE_OF",
+          "object": "Beige Book",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.0958345413208008
+        },
+        {
+          "fact_id": "6122e3d5-81c6-54ec-aad9-63b567178c58",
+          "content": "Economic developments that are discussed through outreach for the Beige Book occur in local communities.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "OCCUR_IN",
+          "object": "Communities",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9231947898864746
+        },
+        {
+          "fact_id": "1ff64c4a-e809-50fa-b050-7c4cf07d1c33",
+          "content": "The dynamics and emerging trends in the economy that are characterized and identified through the qualitative nature of the Beige Book may not be readily apparent in the available economic data.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "MAY_NOT_BE_READILY_APPARENT_IN_WHEN_IDENTIFIED",
+          "object": "Economic Activity",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.770148754119873
+        }
+      ],
+      "timing_ms": 278408
+    },
+    {
+      "question_id": 3,
+      "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+      "expected_answer": "12 Federal Reserve Districts are covered in the Beige Book.",
+      "system_answer": "The Beige Book covers economic conditions across 12 Federal Reserve Districts.\n\nThis is stated explicitly in the Beige Book documentation, which notes that it summarizes information from all 12 Federal Reserve Districts. [Source: BeigeBook_20251015, 2025-10-15]",
+      "verdict": "correct",
+      "judge_reasoning": "The expected answer is that 12 Federal Reserve Districts are covered in the Beige Book. The system answer states that the Beige Book covers economic conditions across 12 Federal Reserve Districts and reiterates that it summarizes information from all 12 districts. This matches the key fact exactly, with no contradictions or errors. Additional mention of documentation and a source does not introduce any incorrect information.",
+      "retrieved_chunks": [
+        {
+          "fact_id": "3f9cf40a-1cb6-53bf-a7de-3ddf40c1348e",
+          "content": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "edge_type": "COVERS_ECONOMIC_CONDITIONS_ACROSS",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.2792102813720703
+        }
+      ],
+      "timing_ms": 239370
+    },
+    {
+      "question_id": 4,
+      "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+      "expected_answer": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+      "system_answer": "According to the October 15, 2025 Beige Book, overall U.S. economic activity showed very little net change over the most recent reporting period compared with the prior one.\n\n**Time reference and comparison period**  \n- The Beige Book released on **October 15, 2025** assessed conditions **“since the previous report”** (i.e., over the several weeks leading up to mid‑October 2025, relative to the prior Beige Book period).  \n- Over that interval, the Federal Reserve described overall economic activity as having **“changed little on balance since the previous report.”** [BeigeBook_20251015]\n\n**Distribution across Federal Reserve Districts during this period**  \nWithin that latest reporting window (from the prior Beige Book up to October 15, 2025), conditions varied by District:\n- **3 Districts** reported **slight to modest growth** in activity.  \n- **5 Districts** reported **no change** in activity.  \n- **4 Districts** reported a **slight softening** in activity.  \n\nTaken together, this mix of slight gains in some areas, flat activity in many, and slight softening in others led the Federal Reserve to conclude that, over the period covered up to **October 15, 2025**, overall U.S. economic activity had **essentially remained stable, changing little in aggregate compared with the prior reporting period**. [BeigeBook_20251015]",
+      "verdict": "correct",
+      "judge_reasoning": "The expected answer states: economic activity \"changed little on balance\" since the previous report, with 3 Districts reporting slight to modest growth, 5 reporting no change, and 4 noting a slight softening. The system answer says the Beige Book described overall activity as having \"changed little on balance since the previous report\" and explicitly lists 3 Districts with slight to modest growth, 5 with no change, and 4 with slight softening, then summarizes that this means activity essentially remained stable. All key facts match the ground truth and there are no contradictions or errors. The extra framing details are consistent, not misleading.",
+      "retrieved_chunks": [
+        {
+          "fact_id": "8a9e1fd9-07fb-52ff-8260-4a0613f96f02",
+          "content": "The Beige Book is intended to characterize changes in economic conditions since the last report.",
+          "subject": "Beige Book",
+          "edge_type": "CHARACTERIZES_CHANGES_IN_SINCE_THE_LAST_REPORT",
+          "object": "Economic Outlook",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.1018479347229004
+        },
+        {
+          "fact_id": "ba3a502a-4cc0-5cf0-b028-f8851a74faf7",
+          "content": "The Beige Book characterizes economic prospects.",
+          "subject": "Beige Book",
+          "edge_type": "CHARACTERIZES",
+          "object": "Economic Outlook",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9861964225769043
+        },
+        {
+          "fact_id": "b318215c-76d8-587c-a50f-a8636a4952a9",
+          "content": "The Beige Book characterizes regional economic conditions.",
+          "subject": "Beige Book",
+          "edge_type": "CHARACTERIZES",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9756602287292481
+        },
+        {
+          "fact_id": "3f9cf40a-1cb6-53bf-a7de-3ddf40c1348e",
+          "content": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "edge_type": "COVERS_ECONOMIC_CONDITIONS_ACROSS",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9477051734924317
+        },
+        {
+          "fact_id": "cfa7ec34-40cc-5f43-bb3f-d764adb7efe8",
+          "content": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts.",
+          "subject": "Beige Book",
+          "edge_type": "IS_A_PUBLICATION_OF",
+          "object": "Federal Reserve System (The Federal Reserve)",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9476746559143067
+        },
+        {
+          "fact_id": "2832a28b-566f-505c-8a48-7517b226aae9",
+          "content": "Overall economic activity in the region ticked up, indicating a modest improvement in conditions.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "TICKED_UP_OVERALL",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9380067825317383
+        },
+        {
+          "fact_id": "c028d3d0-30f4-5015-998c-01e544da942e",
+          "content": "The Beige Book reports are published eight times per year.",
+          "subject": "Beige Book",
+          "edge_type": "IS_PUBLISHED_EIGHT_TIMES_PER_YEAR_AS",
+          "object": "Beige Book reports",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9086541175842285
+        },
+        {
+          "fact_id": "a18bf398-a2d9-5f2e-bc88-8126014939b7",
+          "content": "The Beige Book is not a commentary on the views of Federal Reserve officials.",
+          "subject": "Beige Book",
+          "edge_type": "IS_NOT_A_COMMENTARY_ON_THE_VIEWS_OF",
+          "object": "Federal Reserve Officials",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9027308464050293
+        },
+        {
+          "fact_id": "95f2db34-10c1-5a87-99ab-e5ad5cd65aff",
+          "content": "The Beige Book can complement other forms of regional information gathering.",
+          "subject": "Beige Book",
+          "edge_type": "COMPLEMENTS_OTHER_FORMS_OF",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.8927778244018555
+        },
+        {
+          "fact_id": "1e13cdfa-394f-52ef-aff3-589377522f7e",
+          "content": "The current report compares economic activity to the previous report when noting that activity changed little on balance.",
+          "subject": "Financial Reporting",
+          "edge_type": "SERVED_AS_THE_COMPARISON_POINT_FOR_ASSESSING_CHANGES",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7962384223937988
+        },
+        {
+          "fact_id": "31fe0db8-621b-592b-bb75-028a62f2b739",
+          "content": "Economic activity changed little on balance since the previous report across the Federal Reserve Districts.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "CHANGED_LITTLE_ON_BALANCE_ACROSS",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7893128395080566
+        },
+        {
+          "fact_id": "918f01e1-8f29-55f7-b7c6-ec47505bdbe4",
+          "content": "Three Districts reported slight to modest growth in economic activity since the previous report.",
+          "subject": "Four Districts (group of Federal Reserve Districts)",
+          "edge_type": "REPORTED_SLIGHT_TO_MODEST_GROWTH_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7775654792785645
+        },
+        {
+          "fact_id": "b052f94f-dfef-532b-aa28-314d56f61038",
+          "content": "Four Districts noted a slight softening in economic activity since the previous report.",
+          "subject": "Four Districts (group of Federal Reserve Districts)",
+          "edge_type": "NOTED_A_SLIGHT_SOFTENING_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7771258354187012
+        },
+        {
+          "fact_id": "88950363-014f-5975-870b-5624d6d790e0",
+          "content": "Economic activity in the Twelfth District edged down slightly during the mid-August to September reporting period.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "CHANGED_DURING",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7741689682006836
+        },
+        {
+          "fact_id": "ad3696ce-a228-576c-8454-a5ab7ea72eda",
+          "content": "Economic activity in the Twelfth District edged down slightly during the mid-August to September reporting period.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "EDGED_DOWN_SLIGHTLY_IN",
+          "object": "Twelfth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7741632461547852
+        },
+        {
+          "fact_id": "38a8b684-a043-5b04-b34a-f2011fe4fbf8",
+          "content": "Economic activity in the Eleventh District was little changed over the reporting period.",
+          "subject": "Dallas Eleventh District",
+          "edge_type": "HAD_LITTLE_CHANGED",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7737903594970703
+        },
+        {
+          "fact_id": "bc4a2933-4a02-5d5d-b46e-e9cdecab0fe2",
+          "content": "Activity in the remaining sectors of the Fifth District economy was generally flat during this cycle.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "HAD_ACTIVITY_THAT_WAS_GENERALLY_FLAT_IN",
+          "object": "Fifth District (Federal Reserve Bank of Richmond)",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7691483497619629
+        },
+        {
+          "fact_id": "b7e011ba-47a6-5c17-b739-682b1206ad91",
+          "content": "Ninth District economic activity was slightly down since the previous report.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "EXPERIENCED_CHANGE_IN",
+          "object": "Ninth District",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7684907913208008
+        },
+        {
+          "fact_id": "f196b344-43d2-5a4c-b24e-ccc3c2c71b24",
+          "content": "Economic activity in the Tenth District fell slightly during the most recent reporting period.",
+          "subject": "Tenth District",
+          "edge_type": "EXPERIENCED_DECLINE_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.7674288749694824
+        }
+      ],
+      "timing_ms": 165678
+    },
+    {
+      "question_id": 5,
+      "question": "Which districts reported slight to modest economic growth?",
+      "expected_answer": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+      "system_answer": "The districts that reported slight to modest economic growth are:\n\n- **Boston (First District)** – Economic activity \"expanded slightly, with modest growth in consumer spending.\" [BeigeBook_20251015, 2025-10-15]\n- **Philadelphia (Third District)** – Economic activity \"increased slightly\" / \"business activity increased slightly\" following modest growth in the prior period. [BeigeBook_20251015, 2025-10-15]\n- **Richmond (Fifth District)** – The Fifth District economy \"continued to grow modestly.\" [BeigeBook_20251015, 2025-10-15]\n",
+      "verdict": "correct",
+      "judge_reasoning": "The expected answer lists three districts with slight to modest growth: Boston (First), Philadelphia (Third), and Richmond (Fifth). The system answer lists exactly these same three districts, correctly naming each and describing their growth as slight/modest. There are no contradictions or extraneous incorrect information; added quotations are consistent with the characterization. Therefore it fully matches the ground truth.",
+      "retrieved_chunks": [
+        {
+          "fact_id": "918f01e1-8f29-55f7-b7c6-ec47505bdbe4",
+          "content": "Three Districts reported slight to modest growth in economic activity since the previous report.",
+          "subject": "Four Districts (group of Federal Reserve Districts)",
+          "edge_type": "REPORTED_SLIGHT_TO_MODEST_GROWTH_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.3275157928466796
+        },
+        {
+          "fact_id": "b052f94f-dfef-532b-aa28-314d56f61038",
+          "content": "Four Districts noted a slight softening in economic activity since the previous report.",
+          "subject": "Four Districts (group of Federal Reserve Districts)",
+          "edge_type": "NOTED_A_SLIGHT_SOFTENING_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.2843925476074218
+        },
+        {
+          "fact_id": "2a824aac-143f-5868-8f74-616f60fffe3b",
+          "content": "Consumer spending in the Boston area grew modestly, contributing to the slight expansion in economic activity.",
+          "subject": "Consumer Spending",
+          "edge_type": "INCREASED_MODESTLY_IN",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.2096149444580078
+        },
+        {
+          "fact_id": "f1eaddb3-cd73-556c-9216-2e2551d5f671",
+          "content": "In the Boston District, economic activity expanded slightly, indicating modest overall growth in the regional economy.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "EXPANDED_SLIGHTLY_IN",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.1480863571166993
+        },
+        {
+          "fact_id": "e82fc619-bbf1-5201-a2a1-e6fdeb8f0c1e",
+          "content": "The Fifth District economy continued to grow modestly during this cycle.",
+          "subject": "Fifth District (Federal Reserve Bank of Richmond)",
+          "edge_type": "EXPERIENCED_MODEST",
+          "object": "GDP",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.1262410163879395
+        },
+        {
+          "fact_id": "a9c46eef-13e0-5af3-ab73-ec1e4fb13fdf",
+          "content": "Five Districts reported no change in economic activity since the previous report.",
+          "subject": "Four Districts (group of Federal Reserve Districts)",
+          "edge_type": "REPORTED_NO_CHANGE_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 1.0912187576293946
+        },
+        {
+          "fact_id": "a9fbb9d4-3f25-5bb3-87d5-c2d90671748b",
+          "content": "Economic activity in the Third District increased slightly in the current period after having risen modestly in the prior period.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "INCREASED_SLIGHTLY_IN_AFTER_HAVING_RISEN_MODESTLY_IN",
+          "object": "Federal Reserve Bank Of Philadelphia",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9777983665466309
+        },
+        {
+          "fact_id": "4aa8e1d3-46ef-5b79-8523-7bd0a020d0ef",
+          "content": "Retail and tourism activity in the First District saw modest increases on balance, as reported by contacts.",
+          "subject": "First District",
+          "edge_type": "SAW_MODEST_INCREASES_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.9509934425354004
+        },
+        {
+          "fact_id": "2832a28b-566f-505c-8a48-7517b226aae9",
+          "content": "Overall economic activity in the region ticked up, indicating a modest improvement in conditions.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "TICKED_UP_OVERALL",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.946208381652832
+        },
+        {
+          "fact_id": "f23d6ae1-4824-560d-afd7-6ceec66a1434",
+          "content": "The Federal Reserve Bank of Boston reported on conditions in the Manufacturing and Related Services sector in its Beige Book style commentary dated October 15, 2025.",
+          "subject": "Federal Reserve Bank",
+          "edge_type": "REPORTED_ON",
+          "object": "Manufacturing",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6617774963378906
+        },
+        {
+          "fact_id": "be58570e-e156-5a7f-bd3a-f7071797281b",
+          "content": "Commercial real estate activity in the Federal Reserve Bank of Richmond District experienced a slight uptick despite ongoing challenges.",
+          "subject": "Commercial Real Estate",
+          "edge_type": "HAD_SLIGHTLY_INCREASED_IN",
+          "object": "Federal Reserve Bank Of New York",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6572399139404297
+        },
+        {
+          "fact_id": "664d92fc-b217-5792-bacd-74514d1c48c6",
+          "content": "In the Richmond District, the regional economy grew modestly in recent weeks.",
+          "subject": "Fifth District (Federal Reserve Bank of Richmond)",
+          "edge_type": "HAD_A_REGIONAL_ECONOMY_THAT_GREW_MODESTLY_IN",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.656960678100586
+        },
+        {
+          "fact_id": "eb6c4140-f63b-5205-b38d-7ac3025022be",
+          "content": "Year-over-year price growth in the Fifth District remained within a moderate range during this cycle.",
+          "subject": "Prices",
+          "edge_type": "REMAINED_WITHIN_A_MODERATE_RANGE_IN",
+          "object": "Fifth District (Federal Reserve Bank of Richmond)",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.653050994873047
+        },
+        {
+          "fact_id": "79bdb569-e3af-51e0-b58e-34877bdb9d78",
+          "content": "Consumer spending in the Fifth District grew modestly for retail purchases during this cycle.",
+          "subject": "Consumer Spending",
+          "edge_type": "GREW_MODESTLY_IN",
+          "object": "Retail Trade",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6429916381835938
+        },
+        {
+          "fact_id": "c922a1e7-959e-5240-ba36-0d3a4eb882a3",
+          "content": "In the Richmond District, consumer spending continued to grow modestly in recent weeks.",
+          "subject": "Fifth District (Federal Reserve Bank of Richmond)",
+          "edge_type": "HAD_CONSUMER_SPENDING_THAT_CONTINUED_TO_GROW_MODESTLY",
+          "object": "Consumer Spending",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6427177429199219
+        },
+        {
+          "fact_id": "dfda4af7-ed62-556a-b8e7-00639684177c",
+          "content": "Wage growth in the Fifth District remained moderate during this cycle.",
+          "subject": "Wage Growth",
+          "edge_type": "REMAINED_MODERATE_IN",
+          "object": "Fifth District (Federal Reserve Bank of Richmond)",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6394981384277344
+        },
+        {
+          "fact_id": "9978f7a7-8d47-5e6d-9916-274365611e1a",
+          "content": "Wage growth in the Fifth District remained moderate in the most recent period.",
+          "subject": "Wage Growth",
+          "edge_type": "REMAINED_MODERATE_IN",
+          "object": "Fifth District (Federal Reserve Bank of Richmond)",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6387035369873048
+        },
+        {
+          "fact_id": "92965b98-314b-5930-b154-226a696664a7",
+          "content": "Price growth in the manufacturing sector of the Fifth District picked up somewhat during this cycle.",
+          "subject": "Inflation",
+          "edge_type": "PICKED_UP_SOMEWHAT_IN",
+          "object": "Manufacturing",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6374176025390625
+        },
+        {
+          "fact_id": "9b00c6d3-4c35-5d6c-b3c5-d77406293631",
+          "content": "In the Richmond District, wage growth remained moderate in recent weeks.",
+          "subject": "Fifth District (Federal Reserve Bank of Richmond)",
+          "edge_type": "HAD_WAGE_GROWTH_THAT_REMAINED_MODERATE_IN_RECENT",
+          "object": "Wage Growth",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6355194091796875
+        },
+        {
+          "fact_id": "d8016966-1271-5035-82dd-4500dc5c1dcf",
+          "content": "Consumer spending in the Fifth District grew modestly for restaurant purchases during this cycle.",
+          "subject": "Consumer Spending",
+          "edge_type": "GREW_MODESTLY_IN",
+          "object": "Hotels, Restaurants & Leisure",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6348960876464844
+        },
+        {
+          "fact_id": "e81f538c-a7fe-5cb8-9176-db162ee990fa",
+          "content": "Agents throughout the Federal Reserve Bank of Richmond District stated that retail space was performing well.",
+          "subject": "Agents and Brokers Across the District",
+          "edge_type": "REPORTED_WAS_PERFORMING_WELL",
+          "object": "Retail Space",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6329971313476563
+        },
+        {
+          "fact_id": "a2cae9a9-9af5-5ad6-ba57-cfed561f82b4",
+          "content": "A Virginia broker described commercial real estate conditions in the Federal Reserve Bank of Richmond District as murky, despite a slight uptick in activity.",
+          "subject": "Virginia Broker",
+          "edge_type": "DESCRIBED_AS_MURKY",
+          "object": "Commercial Real Estate",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6329044342041016
+        },
+        {
+          "fact_id": "c47abbd6-9d56-516a-a661-68e0192a1d3d",
+          "content": "A few firms in the Fifth District grew their total head count in the most recent period.",
+          "subject": "A Few Firms",
+          "edge_type": "GREW",
+          "object": "Workforce Reduction",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6322490692138673
+        },
+        {
+          "fact_id": "70f3d1c0-97d6-5cab-a383-9298057cc06f",
+          "content": "Maritime port volumes at Fifth District maritime ports increased slightly in this cycle according to the Federal Reserve Bank of Richmond report section.",
+          "subject": "Freight Activity",
+          "edge_type": "INCREASED_SLIGHTLY_AT",
+          "object": "Fifth District Maritime Ports",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6322204589843751
+        },
+        {
+          "fact_id": "bc4a2933-4a02-5d5d-b46e-e9cdecab0fe2",
+          "content": "Activity in the remaining sectors of the Fifth District economy was generally flat during this cycle.",
+          "subject": "Regional Economic Conditions",
+          "edge_type": "HAD_ACTIVITY_THAT_WAS_GENERALLY_FLAT_IN",
+          "object": "Fifth District (Federal Reserve Bank of Richmond)",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.629836654663086
+        },
+        {
+          "fact_id": "3afe8a83-1baf-5095-a894-c6365514137e",
+          "content": "In the Richmond District, growth in the remaining industries was largely flat in recent weeks.",
+          "subject": "Fifth District (Federal Reserve Bank of Richmond)",
+          "edge_type": "HAD_GROWTH_IN_THE_REMAINING_INDUSTRIES_THAT_WAS",
+          "object": "Services Industry",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6292129516601563
+        },
+        {
+          "fact_id": "2aaee494-4f37-555c-a370-81ffa7307104",
+          "content": "The economic outlook for the Boston area was characterized as neutral to cautiously optimistic.",
+          "subject": "Economic Outlook",
+          "edge_type": "WAS_NEUTRAL_TO_CAUTIOUSLY_OPTIMISTIC_FOR",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6283283233642578
+        },
+        {
+          "fact_id": "6f7b11a6-868e-59b9-9f29-20cdc0eee734",
+          "content": "The Federal Reserve Bank of Boston reported on residential real estate conditions in its First District in this section.",
+          "subject": "Federal Reserve Bank",
+          "edge_type": "REPORTED_ON_CONDITIONS_IN",
+          "object": "Housing Market",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6270362854003907
+        },
+        {
+          "fact_id": "bd25f98d-bd70-59ac-9a35-121c2946ba11",
+          "content": "In the Richmond District, overall price growth remained moderate in recent weeks.",
+          "subject": "Fifth District (Federal Reserve Bank of Richmond)",
+          "edge_type": "HAD_OVERALL_PRICE_GROWTH_THAT_REMAINED_MODERATE_IN",
+          "object": "Inflation",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6269489288330079
+        },
+        {
+          "fact_id": "b5e47ceb-68f8-58d6-b619-ed2d699ceaae",
+          "content": "During the current Beige Book period, business activity in the Philadelphia Federal Reserve District increased slightly.",
+          "subject": "Business Activity",
+          "edge_type": "INCREASED_SLIGHTLY_IN",
+          "object": "Federal Reserve Bank Of Philadelphia",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6254142761230469
+        },
+        {
+          "fact_id": "bd1eef84-63d0-5838-a6b2-d114c245ce49",
+          "content": "Agents throughout the Federal Reserve Bank of Richmond District reported that office spaces were encountering difficulties.",
+          "subject": "Agents and Brokers Across the District",
+          "edge_type": "STATED_WERE_ENCOUNTERING_DIFFICULTIES",
+          "object": "Office Spaces",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6253330230712891
+        },
+        {
+          "fact_id": "8adfcb63-58ab-597f-87cb-adc305fd106b",
+          "content": "Commercial real estate activity in Boston was up slightly after adjusting for seasonal factors as of the document date.",
+          "subject": "Commercial Real Estate",
+          "edge_type": "WAS_UP_SLIGHTLY_AFTER_ADJUSTING_FOR",
+          "object": "Consumer Behavior",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6201484680175782
+        },
+        {
+          "fact_id": "68fb207d-50d7-54f4-965b-2209d62cb592",
+          "content": "The Federal Reserve Bank of Boston reported on commercial real estate conditions under the Commercial Real Estate section.",
+          "subject": "Federal Reserve Bank",
+          "edge_type": "PROVIDED_QUALITATIVE_ANALYSIS_IN_THE_SECTION",
+          "object": "Commercial Real Estate",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6157188415527344
+        },
+        {
+          "fact_id": "392452b1-bf64-5909-9255-a9c457b850d2",
+          "content": "Prices in the Boston area increased at a moderate pace, indicating ongoing inflationary pressure.",
+          "subject": "Housing Market",
+          "edge_type": "INCREASED_AT_A_MODERATE_PACE_IN",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6135986328125
+        },
+        {
+          "fact_id": "9929be8c-1664-5bc2-bc86-b4910f6febb1",
+          "content": "Prices rose moderately on average in the Federal Reserve Bank of Boston District.",
+          "subject": "Housing Market",
+          "edge_type": "ROSE_MODERATELY_ON_AVERAGE_IN_THE_DISTRICT_OF",
+          "object": "Federal Reserve Bank",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.61048583984375
+        },
+        {
+          "fact_id": "958ab77f-a418-570e-9950-451549fee09a",
+          "content": "Construction costs increased by at least moderate margins in the Federal Reserve Bank of Boston District.",
+          "subject": "Cost Structure",
+          "edge_type": "INCREASED_BY_AT_LEAST_MODERATE_MARGINS_IN_THE",
+          "object": "Federal Reserve Bank",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6091503143310547
+        },
+        {
+          "fact_id": "4535b7e4-1d35-577f-8665-bf58522cd39f",
+          "content": "The Boston market was buoyed by some large office deals.",
+          "subject": "Commercial Real Estate",
+          "edge_type": "WAS_BUOYED_BY",
+          "object": "Commercial Real Estate",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6084320068359376
+        },
+        {
+          "fact_id": "ba3a502a-4cc0-5cf0-b028-f8851a74faf7",
+          "content": "The Beige Book characterizes economic prospects.",
+          "subject": "Beige Book",
+          "edge_type": "CHARACTERIZES",
+          "object": "Economic Outlook",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6081344604492188
+        },
+        {
+          "fact_id": "c2550210-8cec-5b76-8ae4-f2c8c8e414a7",
+          "content": "Some contacts in the Federal Reserve Bank of Boston District were concerned about a possible acceleration of prices in 2026.",
+          "subject": "Inflation",
+          "edge_type": "WAS_A_CONCERN_WITHIN_THE_DISTRICT_OF",
+          "object": "Federal Reserve Bank",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6067497253417969
+        },
+        {
+          "fact_id": "cec8d394-8e52-5152-af5c-a3dc35f68ed2",
+          "content": "Certain cost pressures in the Boston area intensified, suggesting rising input costs for firms.",
+          "subject": "Cost Structure",
+          "edge_type": "INTENSIFIED_IN",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6060115814208985
+        },
+        {
+          "fact_id": "6eb7385f-85fb-572a-b6a4-d7c0655206bb",
+          "content": "Hiring activity in the Boston area increased modestly, despite overall flat employment.",
+          "subject": "Labor Demand",
+          "edge_type": "INCREASED_MODESTLY_IN",
+          "object": "Federal Reserve Districts",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6044673919677734
+        },
+        {
+          "fact_id": "9c0b3b52-362b-5e07-a68d-ea2cf6719ed2",
+          "content": "The outlook for Boston commercial real estate was cautiously optimistic on balance, indicating generally positive but guarded market sentiment.",
+          "subject": "Commercial Real Estate",
+          "edge_type": "WAS_CAUTIOUSLY_OPTIMISTIC_ON_BALANCE_FOR",
+          "object": "Commercial Real Estate",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6041343688964844
+        },
+        {
+          "fact_id": "9786f448-b99c-5e2a-aaba-f38ff4d67863",
+          "content": "The webpage at https://www.bostonfed.org/in-the-region.aspx provides more information about District economic conditions, as indicated by the directive to visit this URL.",
+          "subject": "Https://Www.Bostonfed.Org/In-The-Region.Aspx",
+          "edge_type": "PROVIDES_MORE_INFORMATION_ABOUT",
+          "object": "Regional Economic Conditions",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6038543701171876
+        },
+        {
+          "fact_id": "536ee6de-fd91-53a2-8bd2-a878b458b8fd",
+          "content": "Energy prices increased by at least moderate margins in the Federal Reserve Bank of Boston District.",
+          "subject": "Energy Prices",
+          "edge_type": "INCREASED_BY_AT_LEAST_MODERATE_MARGINS_IN_THE",
+          "object": "Federal Reserve Bank",
+          "source_doc": "BeigeBook_20251015",
+          "document_date": "2025-10-15",
+          "score": 0.6036872863769531
+        }
+      ],
+      "timing_ms": 192625
+    }
+  ]
+}

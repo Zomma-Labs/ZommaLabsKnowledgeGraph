@@ -189,8 +189,10 @@ class Researcher:
         log(f"Resolved {len(resolved.entities)} entities, {len(resolved.topics)} topics in {resolution_time}ms")
 
         # Step 2: Retrieve facts (scoped + global in parallel)
+        # Cache query embedding for reuse in drilldown/expansion
         retrieval_start = time.time()
-        raw_facts = await self._retrieve_dual_path(resolved, sub_query.query_text)
+        query_embedding = await self.graph_store.embed_text(sub_query.query_text)
+        raw_facts = await self._retrieve_dual_path(resolved, sub_query.query_text, query_embedding)
         retrieval_time = int((time.time() - retrieval_start) * 1000)
         log(f"Retrieved {len(raw_facts)} facts in {retrieval_time}ms")
 
@@ -215,7 +217,8 @@ class Researcher:
         if (question_type == QuestionType.ENUMERATION and
             self.config.enable_entity_drilldown):
             drilldown_start = time.time()
-            drilldown_facts = await self._entity_drilldown(scored_facts, question_context)
+            # Pass cached embedding to avoid re-computing
+            drilldown_facts = await self._entity_drilldown(scored_facts, question_context, query_embedding)
             scored_facts = self._merge_and_rescore(scored_facts, drilldown_facts)
             expansion_time += int((time.time() - drilldown_start) * 1000)
             log(f"Drill-down complete, now have {len(scored_facts)} facts")
@@ -272,14 +275,17 @@ class Researcher:
         self,
         resolved,
         query_text: str,
+        query_embedding: list[float] | None = None,
     ) -> list[RawFact]:
         """
         Always runs BOTH scoped and global search in parallel.
 
         This ensures we don't miss relevant facts even if resolution fails.
+        Accepts pre-computed query_embedding to avoid duplicate embed calls.
         """
-        # Embed query once
-        query_embedding = await self.graph_store.embed_text(query_text)
+        # Use provided embedding or compute (should be cached by caller)
+        if query_embedding is None:
+            query_embedding = await self.graph_store.embed_text(query_text)
 
         tasks = []
 
@@ -497,11 +503,13 @@ class Researcher:
         self,
         scored_facts: list[ScoredFact],
         question_context: str,
+        query_embedding: list[float] | None = None,
     ) -> list[RawFact]:
         """
         Entity drill-down for ENUMERATION questions.
 
         Identifies entities in current facts that might have more relevant info.
+        Accepts pre-computed query_embedding to avoid duplicate embed calls.
         """
         if not scored_facts:
             return []
@@ -516,6 +524,10 @@ class Researcher:
 
         if not entities:
             return []
+
+        # Pre-compute embedding if not provided (cache for reuse)
+        if query_embedding is None:
+            query_embedding = await self.graph_store.embed_text(question_context)
 
         # Use LLM to select which entities to drill down on
         entities_text = "\n".join(f"- {e}" for e in list(entities)[:30])
@@ -550,8 +562,7 @@ class Researcher:
 
             log(f"Drilling down on {len(selected_entities)} entities")
 
-            # Expand from selected entities
-            query_embedding = await self.graph_store.embed_text(question_context)
+            # Expand from selected entities (reuse cached embedding)
             tasks = [
                 self.graph_store.expand_from_entity(entity, query_embedding, max_facts=3)
                 for entity in selected_entities
@@ -588,7 +599,7 @@ class Researcher:
                     return []
 
                 log(f"Drilling down on {len(selected_entities)} entities (fallback)")
-                query_embedding = await self.graph_store.embed_text(question_context)
+                # Reuse cached embedding instead of re-computing
                 tasks = [
                     self.graph_store.expand_from_entity(entity, query_embedding, max_facts=3)
                     for entity in selected_entities

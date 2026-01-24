@@ -26,6 +26,12 @@ VERBOSE=true uv run src/pipeline.py           # Verbose mode
 uv run src/pipeline.py --resume                # Resume from last checkpoint
 uv run src/pipeline.py --fresh                 # Force fresh start
 uv run src/pipeline.py --batch-size 100        # Smaller batches for unstable connections
+
+# Performance tuning options
+uv run src/pipeline.py --resolve-concurrency 100   # Max concurrent entity resolutions (default: 100)
+uv run src/pipeline.py --dedup-concurrency 40      # Max concurrent LLM dedup calls (default: 40)
+uv run src/pipeline.py --embedding-concurrency 10  # Max concurrent embedding batches (default: 10)
+uv run src/pipeline.py --embedding-batch-size 100  # Texts per embedding batch (default: 100)
 ```
 
 ## Architecture
