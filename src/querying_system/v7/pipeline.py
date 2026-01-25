@@ -136,6 +136,9 @@ class V7Pipeline:
         synthesis_time_ms = int((time.time() - synthesis_start) * 1000)
         log(f"Synthesis complete in {synthesis_time_ms}ms")
 
+        # Note: Removed hard abstention cutoff - let confidence speak for itself
+        # The simplified synthesis prompt handles uncertainty more gracefully
+
         return PipelineResult(
             question=question,
             answer=final_answer,

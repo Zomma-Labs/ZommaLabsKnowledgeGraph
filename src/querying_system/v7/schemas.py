@@ -47,6 +47,9 @@ class V7Config:
     resolution_model: str = "gemini-3-flash-preview"     # Entity/topic resolution (fast)
     synthesis_model: str = "gpt-5.2"                     # Final answer synthesis (accurate)
 
+    # Abstention
+    abstention_threshold: float = 0.3  # Abstain if confidence below this
+
     # Multi-tenant
     group_id: str = "default"
 

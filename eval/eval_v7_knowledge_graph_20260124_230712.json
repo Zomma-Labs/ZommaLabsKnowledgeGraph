@@ -1,0 +1,95 @@
+{
+  "timestamp": "2026-01-24T23:07:12.956023",
+  "system": "v7_knowledge_graph",
+  "total_questions": 3,
+  "summary": {
+    "correct": 0,
+    "partially_correct": 0,
+    "incorrect": 3,
+    "abstain": 0,
+    "strict_accuracy": 0.0,
+    "lenient_accuracy": 0.0,
+    "avg_time_sec": 18.65023120244344,
+    "avg_confidence": 0.0
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "What is Alphabet Inc.?",
+      "expected": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+      "answer": "I don't have enough information to answer this question confidently.",
+      "verdict": "incorrect",
+      "reasoning": "Judge error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "confidence": 0.0,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. company overview",
+          "high_relevance": [],
+          "topic_chunks": [],
+          "entities_found": []
+        },
+        {
+          "sub_query": "Alphabet Inc. corporate structure",
+          "high_relevance": [],
+          "topic_chunks": [],
+          "entities_found": []
+        }
+      ],
+      "agent_time_sec": 31.86177897453308,
+      "decomposition_time_ms": 15594,
+      "resolution_time_ms": 0,
+      "retrieval_time_ms": 0,
+      "synthesis_time_ms": 0,
+      "judge_time_sec": 1.9248955249786377
+    },
+    {
+      "question_id": 2,
+      "question": "When was Alphabet Inc. created?",
+      "expected": "Alphabet Inc. was created on October 2, 2015.",
+      "answer": "I don't have enough information to answer this question confidently.",
+      "verdict": "incorrect",
+      "reasoning": "Judge error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "confidence": 0.0,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. creation date",
+          "high_relevance": [],
+          "topic_chunks": [],
+          "entities_found": []
+        }
+      ],
+      "agent_time_sec": 16.078670024871826,
+      "decomposition_time_ms": 7994,
+      "resolution_time_ms": 0,
+      "retrieval_time_ms": 0,
+      "synthesis_time_ms": 0,
+      "judge_time_sec": 1.7043540477752686
+    },
+    {
+      "question_id": 3,
+      "question": "Where is Alphabet Inc. headquartered?",
+      "expected": "Mountain View, California",
+      "answer": "I don't have enough information to answer this question confidently.",
+      "verdict": "incorrect",
+      "reasoning": "Judge error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "confidence": 0.0,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. headquarters location",
+          "high_relevance": [],
+          "topic_chunks": [],
+          "entities_found": []
+        }
+      ],
+      "agent_time_sec": 8.010244607925415,
+      "decomposition_time_ms": 4252,
+      "resolution_time_ms": 0,
+      "retrieval_time_ms": 0,
+      "synthesis_time_ms": 0,
+      "judge_time_sec": 1.71091890335083
+    }
+  ]
+}

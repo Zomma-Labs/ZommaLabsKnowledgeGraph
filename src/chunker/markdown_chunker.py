@@ -62,8 +62,8 @@ def parse_markdown_to_chunks(
             current_paragraph_lines.clear()
             return
 
-        # Skip if it's just a horizontal rule or list items (table of contents)
-        if paragraph_text.startswith('---') or paragraph_text.startswith('* '):
+        # Skip if it's just a horizontal rule
+        if paragraph_text.startswith('---'):
             current_paragraph_lines.clear()
             return
 
@@ -179,35 +179,42 @@ def chunks_to_jsonl(chunks: list[Chunk], output_path: str | Path) -> None:
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
 
-    # Test with the beige book markdown
-    test_file = Path(__file__).parent / "test_pdfs" / "biege.md"
+    parser = argparse.ArgumentParser(description="Chunk markdown files into JSONL format")
+    parser.add_argument("input", help="Path to markdown file to chunk")
+    parser.add_argument("--output", "-o", help="Output JSONL path (default: SAVED/<doc_id>.jsonl)")
+    parser.add_argument("--doc-id", help="Document ID (default: input filename stem)")
+    parser.add_argument("--min-length", type=int, default=50, help="Minimum paragraph length (default: 50)")
+    parser.add_argument("--preview", action="store_true", help="Show sample chunks after processing")
+    args = parser.parse_args()
 
-    if test_file.exists():
-        chunks = chunk_markdown_file(test_file, doc_id="beigebook_nov2025")
+    input_path = Path(args.input)
+    if not input_path.exists():
+        print(f"Error: Input file not found: {input_path}")
+        raise SystemExit(1)
 
-        print(f"Generated {len(chunks)} chunks\n")
+    doc_id = args.doc_id or input_path.stem.replace(" ", "_").lower()
+    chunks = chunk_markdown_file(input_path, doc_id=doc_id, skip_short_paragraphs=args.min_length)
 
-        # Show some example chunks
-        print("=" * 80)
+    print(f"Generated {len(chunks)} chunks")
+
+    # Determine output path
+    if args.output:
+        output_path = Path(args.output)
+    else:
+        output_path = Path(__file__).parent / "SAVED" / f"{doc_id}.jsonl"
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    chunks_to_jsonl(chunks, output_path)
+    print(f"Saved to: {output_path}")
+
+    # Show preview if requested
+    if args.preview and chunks:
+        print("\n" + "=" * 80)
         print("SAMPLE CHUNKS:")
         print("=" * 80)
-
-        # Show chunks from different sections
-        samples = [
-            ("National Summary", 3),
-            ("Highlights", 5),
-            ("Federal Reserve Bank of Cleveland", 3),
-        ]
-
-        for section_keyword, count in samples:
-            print(f"\n--- {section_keyword} chunks ---")
-            matching = [c for c in chunks if section_keyword in c.header_path]
-            for chunk in matching[:count]:
-                print(f"\nHeader path: {chunk.header_path}")
-                print(f"Body preview: {chunk.body[:200]}...")
-                print("-" * 40)
-    else:
-        print(f"Test file not found: {test_file}")
-        sys.exit(1)
+        for chunk in chunks[:5]:
+            print(f"\nHeader path: {chunk.header_path}")
+            print(f"Body preview: {chunk.body[:200]}...")
+            print("-" * 40)

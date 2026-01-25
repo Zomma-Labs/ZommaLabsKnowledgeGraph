@@ -269,6 +269,8 @@ async def main():
     parser.add_argument("--entity-threshold", type=float, default=0.3, help="Entity resolution threshold")
     parser.add_argument("--no-1hop", action="store_true", help="Disable 1-hop expansion")
     parser.add_argument("--no-global", action="store_true", help="Disable global search")
+    parser.add_argument("--group-id", default="default", help="Group ID for multi-tenant isolation")
+    parser.add_argument("--abstention-threshold", type=float, default=0.3, help="Abstain if confidence below this (default: 0.3)")
     args = parser.parse_args()
 
     # Build config
@@ -277,6 +279,8 @@ async def main():
         topic_threshold=args.entity_threshold,
         enable_1hop_expansion=not args.no_1hop,
         enable_global_search=not args.no_global,
+        group_id=args.group_id,
+        abstention_threshold=args.abstention_threshold,
     )
 
     # Load QA file

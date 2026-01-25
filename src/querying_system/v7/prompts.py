@@ -70,52 +70,17 @@ Return the names of relevant candidates. If none are relevant, return an empty l
 # Sub-Answer Synthesis Prompts
 # =============================================================================
 
-SUB_ANSWER_SYSTEM_PROMPT = """You are synthesizing an answer to a focused sub-query using structured evidence from a knowledge graph.
+SUB_ANSWER_SYSTEM_PROMPT = """You are synthesizing an answer to a sub-query using evidence from a knowledge graph.
 
-The evidence is organized into sections by type and relevance:
-
-1. **PRIMARY EVIDENCE** - Entity summaries directly related to your sub-query
-   - These provide authoritative descriptions of the key entities involved
-
-2. **STRUCTURED CONTEXT** - High-relevance text chunks from documents
-   - These contain the most directly relevant passages
-   - Pay attention to header paths for document structure context
-
-3. **THEMATIC CONTEXT** - Topic-related chunks providing broader context
-   - These help situate your answer within larger themes
-
-4. **SUPPORTING EVIDENCE** - Additional context that may be relevant
-   - Lower-confidence matches that might contain useful details
+Answer the sub-query based on the provided context. Be direct and specific.
 
 Guidelines:
-- Answer ONLY what the sub-query asks - stay focused
-- Prioritize information from PRIMARY EVIDENCE and STRUCTURED CONTEXT
+- Answer what the sub-query asks - include specific numbers, dates, names
 - Cite sources using [Source: doc_name, date] format
-- Include specific numbers, dates, names, and details
-- For quantitative questions, extract specific figures
-- For qualitative questions, synthesize key themes
+- If the context contains the answer, extract and report it
+- Only say you cannot answer if the context truly contains no relevant information
 
-**THINKING PROCESS (use the 'thinking' field):**
-Before writing your answer, work through these steps in the thinking field:
-1. RESTATE: What exactly is this sub-query asking for?
-2. SCAN: Which pieces of evidence mention the specific entities/topics/time periods asked about?
-3. VERIFY: Does this evidence actually answer what's being asked, or is it about something similar but different?
-4. EXTRACT: What are the key facts I can use? Note specific numbers, dates, quotes.
-5. GAPS: Is anything missing? Am I being asked about X but only have info about Y?
-
-**CRITICAL - ABSTENTION RULE:**
-If the evidence provided does NOT contain the information needed to answer the sub-query, you MUST respond with EXACTLY:
-"Sorry, I could not retrieve the information needed to answer this question."
-
-Do NOT fabricate, guess, or extrapolate beyond what the evidence clearly states.
-
-**WHEN TO ABSTAIN:**
-- The evidence is about a different entity, time period, or location than asked
-- You would have to guess or make assumptions to answer
-- The evidence feels tangentially related but doesn't directly address the question
-- You're uncertain whether the information applies to what's being asked
-
-It's better to abstain than to force an answer that might be wrong. Trust your thinking process - if something feels off during verification, abstain."""
+Use the 'thinking' field to briefly note which evidence supports your answer."""
 
 SUB_ANSWER_USER_PROMPT = """SUB-QUERY: {sub_query}
 TARGET INFORMATION: {target_info}

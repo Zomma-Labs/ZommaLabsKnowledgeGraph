@@ -1,0 +1,480 @@
+# Alphabet Inc.
+
+**Alphabet Inc.**
+
+
+![Alphabet logo](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Alphabet_Inc._logo.svg/1200px-Alphabet_Inc._logo.svg.png)
+
+
+
+![Photo of the Googleplex campus](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Googleplex_HQ_%28cropped%29.jpg/1024px-Googleplex_HQ_%28cropped%29.jpg)
+
+*Googleplex, home to Alphabet Inc. in Mountain View, California*
+
+<table>
+<tbody>
+<tr>
+<th>Company type</th>
+<td>Public</td>
+</tr>
+<tr>
+<th>Traded as</th>
+<td>
+Nasdaq: GOOGL (https://www.nasdaq.com/market-activity/stocks/googl) (Class A)<br>
+Nasdaq: GOOG (https://www.nasdaq.com/market-activity/stocks/goog) (Class C)<br>
+Nasdaq-100 components (A & C)<br>
+S&P 100 components (A & C)<br>
+S&P 500 components (A & C)
+</td>
+</tr>
+<tr>
+<th>ISIN</th>
+<td>
+US02079K3059 (https://isin.toolforge.org/?language=en&isin=US02079K3059)<br>
+US02079K1079 (https://isin.toolforge.org/?language=en&isin=US02079K1079)
+</td>
+</tr>
+<tr>
+<th>Industry</th>
+<td>Information technology</td>
+</tr>
+<tr>
+<th>Founded</th>
+<td>October 2, 2015</td>
+</tr>
+<tr>
+<th>Founders</th>
+<td>
+Larry Page<br>
+Sergey Brin
+</td>
+</tr>
+<tr>
+<th>Headquarters</th>
+<td>Googleplex, Mountain View, California, United States</td>
+</tr>
+<tr>
+<th>Area served</th>
+<td>Worldwide</td>
+</tr>
+<tr>
+<th>Key people</th>
+<td>
+John L. Hennessy (Chairman)<br>
+Sundar Pichai (CEO)<br>
+Ruth Porat (President and CIO)<br>
+Anat Ashkenazi (CFO)
+</td>
+</tr>
+<tr>
+<th>Revenue</th>
+<td>▲ US$350.02 billion (2024)</td>
+</tr>
+<tr>
+<th>Operating income</th>
+<td>▲ US$112.39 billion (2024)</td>
+</tr>
+<tr>
+<th>Net income</th>
+<td>▲ US$100.12 billion (2024)</td>
+</tr>
+<tr>
+<th>Total assets</th>
+<td>▲ US$450.26 billion (2024)</td>
+</tr>
+<tr>
+<th>Total equity</th>
+<td>▲ US$325.08 billion (2024)</td>
+</tr>
+<tr>
+<th>Number of employees</th>
+<td>190,167 (Sept. 2025)</td>
+</tr>
+<tr>
+<th>Subsidiaries</th>
+<td>
+Calico<br>
+CapitalG<br>
+Google<br>
+Google Fiber<br>
+GV<br>
+Isomorphic Labs<br>
+Verily<br>
+Waymo<br>
+Wing<br>
+YouTube
+</td>
+</tr>
+<tr>
+<th>Website</th>
+<td>abc.xyz (https://abc.xyz/)</td>
+</tr>
+</tbody>
+</table>
+
+**Footnotes / references**
+[1]
+
+**Alphabet Inc.** is an American multinational technology conglomerate holding company headquartered in Mountain View, California. Alphabet is the world's third-largest technology company by revenue, after Amazon and Apple, the largest technology company by profit, and one of the world's most valuable companies.[2][3] It was created through a restructuring of Google on October 2, 2015,[4] and became the parent holding company of Google and several former Google subsidiaries.[5][6][7] Alphabet is listed on the large-cap section of the Nasdaq under the ticker symbols GOOGL and GOOG; both classes of stock are components of major stock market indices such as the S&P 500 and Nasdaq-100. Alphabet has been described as a Big Tech company.
+
+The establishment of Alphabet Inc. was prompted by a desire to make the core Google business "cleaner and more accountable" while allowing greater autonomy to group companies that operate in businesses other than Internet services.[6][8] Founders Larry Page and Sergey Brin announced their resignation from their executive posts in December 2019, with the CEO role to be filled by Sundar Pichai, who is also the CEO of Google. Page and Brin remain employees, board members, and controlling shareholders of Alphabet Inc.[9]
+
+Alphabet Inc. has faced numerous legal and ethical controversies, including a 2017 lawsuit against Uber over stolen self-driving technology, a 2020 privacy settlement over Google+ data exposure, and multiple antitrust actions from the United States, France, and Japan. It has also been accused of labor law violations related to worker organizing and was forced to file for bankruptcy in Russia after its bank account was seized in 2022. In 2023, the company was widely criticized for mass layoffs that impacted 12,000 employees, many of whom discovered their termination only upon losing account access.
+
+## History
+
+On August 10, 2015, Google announced plans to create a new public holding company, Alphabet Inc. Google co-founder and CEO Larry Page made this announcement in a blog post on Google's official blog.[10] Alphabet was created to restructure Google by moving subsidiaries from Google to Alphabet, thus narrowing Google's scope. The new holding company would consist of Google as well as other businesses including X Development, Calico, Nest, Verily, Fiber, CapitalG, and GV.[11][12][13] Sundar Pichai, the company's Product Chief, became the new chief executive officer of Google, replacing Page, who transitioned to the role of running Alphabet, along with co-founder Sergey Brin.[14][15]
+
+In his announcement, Page stated that the planned holding company would allow for "more management scale, as we can run things independently that aren't very related" to Google. He clarified that, as a result of the new holding company, Google would be "a bit slimmed down, with the companies that are pretty far afield of our main internet products contained in Alphabet instead".[16] He further stated that the motivation behind the reorganization is to make Google "cleaner and more accountable and better" and that he wanted to improve "the transparency and oversight of what we're doing".[6][8]
+
+Former executive Eric Schmidt revealed in the conference in 2017 the inspiration for this structure came from Warren Buffett and his management structure of Berkshire Hathaway a decade ago.[17] Schmidt said he encouraged Page and Brin to meet with Buffett in Omaha to see how Berkshire Hathaway was a holding company made of subsidiaries with strong CEOs who were trusted to run their businesses.[17]
+
+Before it became a subsidiary of Alphabet, Google Inc. was first structured as the owner of Alphabet.[18] The roles were reversed after a placeholder subsidiary was created for the ownership of Alphabet, at which point the newly formed subsidiary was merged with Google. Google's stock was then converted to Alphabet's stock. Under the Delaware General Corporation Law (where Alphabet is incorporated), a holding company reorganization such as this can be done without a vote of shareholders, as this reorganization was.[19] The restructuring process was completed on October 2, 2015.[4] Alphabet retains Google Inc.'s stock price history and continues to trade under Google Inc.'s former ticker symbols "GOOG" and "GOOGL".[20]
+
+On December 3, 2019, Page and Brin jointly announced that they would step down from their respective roles, remaining as employees and still the majority vote on the board of directors. Sundar Pichai, the CEO of Google, assumed the CEO role at Alphabet while retaining the same at Google.[21] The firm completed a stock split in mid-2022.[22] On January 20, 2023, Pichai wrote a letter to all employees announcing that the company would be laying off about 12,000 jobs, or 6% of its global workforce. In the letter, Pichai wrote, "Over the past two years we've seen periods of dramatic growth. To match and fuel that growth, we hired for a different economic reality than the one we face today."[23]
+
+In January 2024, Waymo, the autonomous driving division of Alphabet Inc., which operates extensively in San Francisco, filed an application with the California Public Utilities Commission to expand service in Los Angeles. Such a license would allow the company to make full use of its fleet in the city instead of test drives by invitation.[24] In August 2024, following the lawsuit filed by the United States Department of Justice in 2020, a United States district court found Alphabet guilty of violating antitrust law. This marked the first antitrust ruling against a U.S. company in 24 years. Alphabet has appealed the ruling.[25]
+
+On 10 December 2024, Alphabet's shares rose about 5% after the company unveiled its new quantum computing chip, Willow. The chip solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe. Willow reduces error rates in quantum computing and can correct them in real time, which could lead to breakthroughs in science, medicine, and finance. Alphabet's stock was up 25% for the year, marking its best day since April 2024.[26] On 15 September 2025, Alphabet became the fourth company—trailing Nvidia, Microsoft, and Apple—to top $3 trillion in market cap.[27] At the time, shares were up more than 32% for the year amid optimism for AI adoption and a more-favorable-than-expected antitrust ruling that did not require the company to divest its Chrome browser platform.[28]
+
+## Structure
+
+Alphabet Inc. is the parent of a diverse set of subsidiaries.[29][30][31]
+
+<table>
+<thead>
+<tr>
+<th>Subsidiary</th>
+<th>Business</th>
+<th>Executive Leader</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calico</td>
+<td>Human health (by overcoming aging)</td>
+<td>Arthur D. Levinson</td>
+</tr>
+<tr>
+<td>CapitalG</td>
+<td>Private equity for growth-stage technology companies</td>
+<td>David Lawee</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>Internet services, largest subsidiary and prior corporate entity name</td>
+<td>Sundar Pichai</td>
+</tr>
+<tr>
+<td>Google Fiber</td>
+<td>Internet access: via fiber</td>
+<td>Dinesh Jain</td>
+</tr>
+<tr>
+<td>GV</td>
+<td>Venture capital for technology companies</td>
+<td>David Krane</td>
+</tr>
+<tr>
+<td>Intrinsic</td>
+<td>Robotics software</td>
+<td>Wendy Tan White[32]</td>
+</tr>
+<tr>
+<td>Isomorphic Labs</td>
+<td>Drug discovery</td>
+<td>Demis Hassabis</td>
+</tr>
+<tr>
+<td>Mineral</td>
+<td>Sustainable agriculture</td>
+<td>Elliott Grant[33]</td>
+</tr>
+<tr>
+<td>Verily</td>
+<td>Human health</td>
+<td>Stephen Gillett</td>
+</tr>
+<tr>
+<td>Waymo</td>
+<td>Autonomous driving</td>
+<td>Dmitri Dolgov<br>Tekedra Mawakana</td>
+</tr>
+<tr>
+<td>Wing</td>
+<td>Drone-based delivery of freight</td>
+<td>Adam Woodworth</td>
+</tr>
+<tr>
+<td>X Development</td>
+<td>Research and development for "moonshot" technologies</td>
+<td>Astro Teller</td>
+</tr>
+</tbody>
+</table>
+
+As of September 1, 2017, their equity is held by a subsidiary known as **XXVI Holdings, Inc.** (referring to the Roman numeral of 26, the number of letters in the alphabet), so that they can be valued and legally separated from Google. At the same time, it was announced that Google would be reorganized as a limited liability company, Google LLC.[34][35] Eric Schmidt said at an Internet Association event in 2015 that there may eventually be more than 26 Alphabet subsidiaries. He also said that he was currently meeting with the CEOs of the current and proposed Alphabet subsidiaries. He said, "You'll see a lot coming."[36] While many companies or divisions formerly a part of Google became subsidiaries of Alphabet, Google remains the umbrella company for Alphabet's Internet-related businesses. These include widely used products and services long associated with Google, such as the Android operating system, YouTube, and Google Search, which remain direct components of Google.[11][37]
+
+Former subsidiaries include Nest Labs, which was merged into Google in February 2018,[38] and Chronicle Security, which was merged with Google Cloud in June 2019.[39] Sidewalk Labs was absorbed into Google in 2021 following CEO Daniel L. Doctoroff's departure from the company due to a suspected ALS diagnosis.[40] In January 2021, Loon LLC CEO Alastair Westgarth mentioned in a blog post[41] that the company would be shutting down, citing lack of a scalable and sustainable business model. In July 2021, Alphabet announced Intrinsic, a new robotics software company spun out of X.[42] In November 2021, Alphabet announced a new company named Isomorphic Labs, using artificial intelligence for drug discovery and headed by DeepMind CEO Demis Hassabis.[43]
+
+## Ownership
+
+Alphabet is mainly owned by institutional investors, who own over 60% of shares. The founders Larry Page and Sergey Brin each control around 3% of all shares, but control with other insiders the majority of voting shares. The largest shareholders in December 2023 were:[44]
+
+*   The Vanguard Group (7.25%)
+*   BlackRock (6.27%)
+*   State Street Corporation (3.36%)
+*   Sergey Brin (3.0%)[45]
+*   Larry Page (3.0%)[45]
+*   Fidelity Investments (2.07%)
+*   Geode Capital Management (1.76%)
+*   T. Rowe Price (1.73%)
+*   JPMorgan Chase (1.42%)
+*   Capital International Investors (1.42%)
+*   Morgan Stanley (1.30%)
+*   Northern Trust (0.95%)
+
+## Senior leadership
+
+*   **Chair**: John L. Hennessy (since February 2018)
+*   **Chief Executive**: Sundar Pichai (since December 2019)
+*   **President and Chief Investment Officer**: Ruth Porat
+*   **Chief Financial Officer**: Anat Ashkenazi
+*   **Chief Accounting Officer**: Amie Thuener O'Toole
+
+**Sources:**[46][47]
+
+### List of former board chairs
+
+1.  Eric Schmidt (2015–2017)
+
+### List of former chief executives
+
+1.  Larry Page (2015–2018)
+
+## Corporate identity
+
+Page explained the origin of the company's name, stating: "We liked the name Alphabet because it means a collection of letters that represent language, one of humanity's most important innovations, and is the core of how we index with Google search! We also like that it means alpha-bet (Alpha is investment return above benchmark), which we strive for!"[16] In a 2018 talk, Schmidt disclosed that the original inspiration for the name came from the location of the then Google Hamburg office's street address: ABC-Straße.[48]
+
+Alphabet uses the domain abc.xyz (https://abc.xyz) with the .xyz top-level domain (TLD), which was introduced in 2014. It does not own the domain alphabet.com (https://www.alphabet.com/), which is owned by a fleet management division of BMW. Following the announcement, BMW said it would be "necessary to examine the legal trademark implications" of the proposals. Additionally, it does not own the domain abc.com (https://abc.com/), which is the domain of the Disney-owned American Broadcasting Company.[49][50] Google's mission statement, from the outset, was "to organize the world's information and make it universally accessible and useful",[51] and its unofficial slogan is "Don't be evil".[52] In October 2015, a related motto was adopted in the Alphabet corporate code of conduct: "Do the right thing".[53] The original motto was retained in the code of conduct of Google, now a subsidiary of Alphabet.[54]
+
+## Finances
+
+The key trends of Alphabet Inc. are (as at the financial year ending December 31):[55]
+
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Revenue (bn. USD)</th>
+<th>Net income (bn. USD)</th>
+<th>Total assets (bn. USD)</th>
+<th>Employees (k)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2016[56]</td>
+<td>90.2</td>
+<td>19.4</td>
+<td>167</td>
+<td>72.0</td>
+</tr>
+<tr>
+<td>2017[57]</td>
+<td>110</td>
+<td>12.6</td>
+<td>197</td>
+<td>80.1</td>
+</tr>
+<tr>
+<td>2018[58]</td>
+<td>136</td>
+<td>30.7</td>
+<td>232</td>
+<td>98.7</td>
+</tr>
+<tr>
+<td>2019[59]</td>
+<td>161</td>
+<td>34.3</td>
+<td>275</td>
+<td>118</td>
+</tr>
+<tr>
+<td>2020[60]</td>
+<td>182</td>
+<td>40.2</td>
+<td>319</td>
+<td>135</td>
+</tr>
+<tr>
+<td>2021[61]</td>
+<td>257</td>
+<td>76.0</td>
+<td>359</td>
+<td>156</td>
+</tr>
+<tr>
+<td>2022[62]</td>
+<td>282</td>
+<td>59.9</td>
+<td>365</td>
+<td>190</td>
+</tr>
+<tr>
+<td>2023[63]</td>
+<td>307</td>
+<td>73.7</td>
+<td>402</td>
+<td>182</td>
+</tr>
+<tr>
+<td>2024[1]</td>
+<td>350</td>
+<td>100</td>
+<td>450</td>
+<td>183</td>
+</tr>
+</tbody>
+</table>
+
+As per its 2017 annual report, 86% of Alphabet's revenues came from performance advertising (through user clicks using AdSense and Google Ads) and brand advertising.[64] Of these, 53% came from its international operations. This translated to a total revenue of US$110,855 million in 2017 and a net income of US$12,662 million. On February 1, 2016, Alphabet Inc. surpassed Apple to become the world's most valuable publicly traded company until February 3, 2016, when Apple surged back over Alphabet to retake the position. Experts cited Apple's lack of innovation as well as increasing Chinese competition as reasons for the poor performance.[65][66] As of 2019, Alphabet is ranked No. 15 on the Fortune 500 rankings of the largest United States corporations by total revenue.[67]
+
+On January 16, 2020, Alphabet became the fourth U.S. company to reach a $1 trillion market value[68] entering the trillion dollar companies club for the first time. In October 2022, Alphabet recorded the weakest quarterly growth, with fewer sales in nearly a decade. The possible global recession, the strong U.S. dollar, and the pandemics all contributed to the slowed economy.[69] In 2022, Alphabet was the company with the second-highest expenditure on research and development worldwide, with R&D expenditure amounting to US$39.5 billion.[70] In 2023, Alphabet was ranked 7th in the Global 2000 (World's Largest Public Companies).[71]
+
+On April 26, 2024, Alphabet surpassed a market valuation of $2 trillion for the first time. This surge follows the announcement of the company's first-ever dividend payout and a significant $70 billion stock buyback program. The company's first-quarter earnings also exceeded analyst expectations, further contributing to the positive investor sentiment.[72] As of June 2024, the company is one of the 10 largest components of the MSCI KLD 400 Social Index.[73] On September 15, 2025, Alphabet became the fourth company to reach a $3 trillion market valuation.[74]
+
+## Investments and acquisitions
+
+### Investments
+
+In November 2017, Alphabet Inc. led a Series A round of $71 million along with Andreessen Horowitz and 20th Century Studios in music startup UnitedMasters, founded by Steve Stoute.[75] In addition to funding startups, Alphabet also invests in more mature companies, including publicly traded companies like Uber and privately held companies like Medium.[76]
+
+### Acquisitions
+
+An analysis of the company's investments in 2017 suggested that it was the most active investor in that period, outdoing the capital arm of Intel and also its own best customer. Alphabet, Inc. acquired seven of its own capital-backed startups in the 2017 financial year, with Cisco second having acquired six of the company's previous investments.[77]
+
+## Lawsuits and controversies
+
+In 2017, Alphabet Inc. sued Uber over technology similar to Alphabet's proprietary self-driving car technology. Alphabet's autonomous vehicle technology had been under development for a decade by Alphabet's Waymo (self-driving vehicle division). The proprietary technology is related to 14,000 documents believed to have been downloaded and stolen by a former Waymo engineer, subsequently employed by Uber.[78][79] The lawsuit was settled in February 2018, with Uber agreeing not to use the self-driving technology in dispute and also agreed to provide Waymo with an equity stake of 0.34%, equating to around $245 million at the firm's early 2018 value.[80]
+
+In October 2018, a class action lawsuit was filed against Google and Alphabet due to "non-public" Google+ account data being exposed as a result of a privacy bug that allowed app developers to gain access to the private information of users. The litigation was settled in July 2020 for $7.5 million with a payout to claimants of at least $5 each, with a maximum of $12 each.[81][82][83] In October 2020, the United States Department of Justice filed an antitrust lawsuit against Alphabet, alleging anti-competitive practices.[84] On 2 December 2020, the National Labor Relations Board filed a complaint that claimed Alphabet Inc conducted unlawful monitoring and questioning of several workers at Google. The employees in question were fired for unionization attempts and protesting company policies. The board also alleges that Google unlawfully placed employees on administrative leave in retribution. Alphabet Inc has denied any wrongdoing and said it acted legally.[85]
+
+On June 7, 2021, Alphabet Inc. announced it had settled an antitrust suit with the French Autorité de la concurrence with a payment of $270 million. The settlement amounted to less than 0.7% of Alphabet Inc.'s yearly earnings.[86] On June 12, 2021, it was announced that Japan would launch an antitrust probe into Alphabet Inc. and Apple Inc. to determine whether their dealings with Japanese smartphone makers violate current antitrust measures or could necessitate new ones.[87] In May 2022, Russian authorities seized Google's Russian bank account,[88] forcing them to file for bankruptcy one month later due to the inability to pay vendors and staff. However, free services such as Google Search, YouTube, Gmail, Maps, Android and Play were to remain available.[89] In 2023, the company was criticized for conducting mass lay-offs without informing employees before they arrived to work, including many long-tenured and recently promoted employees. Around 12,000 jobs were cut, which reduced the company's workforce by 6%.[90] According to various posts on social media, several Google employees discovered they had been terminated after they were unable to access their accounts and confirming it through news articles discussing the mass layoffs.[91][92][93]
+
+On September 23, 2025, Alphabet announced that it would reinstate YouTube creators that were banned for spreading misinformation about COVID-19 and the 2020 U.S. presidential election.[94] Within the context of the suspension of Jimmy Kimmel and debates about free speech in the United States, Vice President JD Vance defended Kimmel's suspension and instead cited a letter sent by Alphabet legal counsel Daniel F. Donovan to U.S. House Judiciary Committee chairman Jim Jordan, claiming the Biden administration pressured YouTube to remove "non-violative user-generated content" containing misinformation about the COVID-19 pandemic and the 2020 election, and announced that it would reinstate content creators previously banned due to the cited content;[95][96] however, such claims have not formally been proven, and the U.S. Supreme Court dismissed in 2024 the First Amendment case *Murthy v. Missouri* (which claimed the Biden administration had pressured social media companies to censor conservative views, government criticism, and COVID-19 misinformation), ruling 6–3 that neither the attorneys general of Missouri and Louisiana nor other respondents had standing to bring the case. The decision of Alphabet to bring back YouTube creators who engaged in misinformation was criticized for prioritizing "free expression" over accurate information.[97]
+
+## References
+
+1.  ["Alphabet Inc. 2024 Annual Form 10-K Report" (https://www.sec.gov/ix?doc=/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm). U.S. Securities and Exchange Commission. February 5, 2024. Retrieved February 5, 2025.](https://www.sec.gov/ix?doc=/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm)
+2.  ["Top 50 Global Technology Companies" (https://web.archive.org/web/20170126084151/http://beta.fortune.com/global500/list/filtered?sector=Technology). *Fortune Global 500*. Archived from the original (http://beta.fortune.com/global500/list/filtered?sector=Technology) on January 26, 2017. Retrieved June 4, 2019.](https://web.archive.org/web/20170126084151/http://beta.fortune.com/global500/list/filtered?sector=Technology)
+3.  ["Alphabet" (https://www.forbes.com/companies/alphabet/). *Forbes*. Archived (https://web.archive.org/web/20220824084429/https://www.forbes.com/companies/alphabet/) from the original on August 24, 2022. Retrieved June 6, 2011.](https://www.forbes.com/companies/alphabet/)
+4.  ["SEC Filing (Form 8-K) by Alphabet Inc" (https://www.sec.gov/Archives/edgar/data/1652044/000119312515336577/d82837d8k12b.htm). U.S. Securities and Exchange Commission. October 2, 2015. Archived (https://web.archive.org/web/20170709163139/https://www.sec.gov/Archives/edgar/data/1652044/000119312515336577/d82837d8k12b.htm) from the original on July 9, 2017. Retrieved August 27, 2017.](https://www.sec.gov/Archives/edgar/data/1652044/000119312515336577/d82837d8k12b.htm)
+5.  ["Google to be part of new holding company, 'Alphabet' " (https://web.archive.org/web/20210102151323/https://www.aol.com/article/2015/08/10/google-to-be-part-of-new-holding-company-alphabet/21220854/). Archived from the original (https://www.aol.com/article/2015/08/10/google-to-be-part-of-new-holding-company-alphabet/21220854/) on January 2, 2021. Retrieved August 11, 2015.](https://web.archive.org/web/20210102151323/https://www.aol.com/article/2015/08/10/google-to-be-part-of-new-holding-company-alphabet/21220854/)
+6.  Page, Larry (August 10, 2015). ["G is for Google" (https://googleblog.blogspot.com/2015/08/google-alphabet.html). *Google Official Blog*. Archived (https://web.archive.org/web/20180409234154/https://googleblog.blogspot.com/2015/08/google-alphabet.html) from the original on April 9, 2018. Retrieved August 11, 2015.](https://googleblog.blogspot.com/2015/08/google-alphabet.html)
+7.  ["Google creates new parent company called Alphabet" (https://www.cnet.com/news/google-restructures-into-alphabet-soup-of-businesses/). *CNET*. August 10, 2015. Archived (https://web.archive.org/web/20150917083700/https://www.cnet.com/news/google-restructures-into-alphabet-soup-of-businesses/) from the original on September 17, 2015. Retrieved September 19, 2015.](https://www.cnet.com/news/google-restructures-into-alphabet-soup-of-businesses/)
+8.  Metz, Cade (August 10, 2015). ["A New Company Called Alphabet Now Owns Google" (https://www.wired.com/2015/08/new-company-called-alphabet-owns-google/). *Wired*. Archived (https://web.archive.org/web/20171122143410/https://www.wired.com/2015/08/new-company-called-alphabet-owns-google/) from the original on November 22, 2017. Retrieved August 13, 2015.](https://www.wired.com/2015/08/new-company-called-alphabet-owns-google/)
+9.  Donfro, Jillian (December 3, 2019). ["Larry Page Steps Down As CEO Of Alphabet" (https://www.forbes.com/sites/jilliandonfro/2019/12/03/larry-page-steps-down-as-ceo-of-google-parent-alphabet/). *Forbes*. Archived (https://web.archive.org/web/20201210083501/https://www.forbes.com/sites/jilliandonfro/2019/12/03/larry-page-steps-down-as-ceo-of-google-parent-alphabet/) from the original on December 10, 2020. Retrieved December 3, 2019.](https://www.forbes.com/sites/jilliandonfro/2019/12/03/larry-page-steps-down-as-ceo-of-google-parent-alphabet/)
+10. Kelly, Heather (August 10, 2015). ["Meet Google Alphabet – Google's new parent company" (https://money.cnn.com/2015/08/10/technology/alphabet-google/index.html). *CNNMoney*. Archived (https://web.archive.org/web/20201008043001/https://money.cnn.com/2015/08/10/technology/alphabet-google/index.html) from the original on October 8, 2020. Retrieved May 1, 2019.](https://money.cnn.com/2015/08/10/technology/alphabet-google/index.html)
+11. Womack, Brian (August 10, 2015). ["Google Creates New Company Called Alphabet, Restructures Stock" (https://www.bloomberg.com/news/articles/2015-08-10/google-to-adopt-new-holding-structure-under-name-alphabet-). *Bloomberg*. Archived (https://web.archive.org/web/20161123054841/https://www.bloomberg.com/news/articles/2015-08-10/google-to-adopt-new-holding-structure-under-name-alphabet-) from the original on November 23, 2016. Retrieved August 10, 2015.](https://www.bloomberg.com/news/articles/2015-08-10/google-to-adopt-new-holding-structure-under-name-alphabet-)
+12. Greenberg, Julia (August 10, 2015). ["What Google, I Mean Alphabet, Looks Like Now" (https://www.wired.com/2015/08/google-mean-alphabet-looks-like-now/). *Wired*. Archived (https://web.archive.org/web/20150811102137/http://www.wired.com/2015/08/google-mean-alphabet-looks-like-now/) from the original on August 11, 2015. Retrieved August 10, 2015.](https://www.wired.com/2015/08/google-mean-alphabet-looks-like-now/)
+13. ["What is Alphabet, Google's new company?" (https://www.businessinsider.com/what-is-alphabet-googles-new-company-2015-8). *Business Insider*. Archived (https://web.archive.org/web/20190505215715/https://www.businessinsider.com/what-is-alphabet-googles-new-company-2015-8) from the original on May 5, 2019. Retrieved August 10, 2015.](https://www.businessinsider.com/what-is-alphabet-googles-new-company-2015-8)
+14. Chen, Angela (August 10, 2015). ["Google Creates Parent Company Called Alphabet in Restructuring" (https://www.wsj.com/articles/google-creates-new-company-alphabet-1439240645). *The Wall Street Journal*. Archived (https://web.archive.org/web/20161128112043/http://www.wsj.com/articles/google-creates-new-company-alphabet-1439240645) from the original on November 28, 2016. Retrieved August 10, 2015.](https://www.wsj.com/articles/google-creates-new-company-alphabet-1439240645)
+15. Dougherty, Conor (August 10, 2015). ["Google to Reorganize in Move to Keep Its Lead as an Innovator" (https://www.nytimes.com/2015/08/11/technology/google-alphabet-restructuring.html). *The New York Times*. Archived (https://web.archive.org/web/20161019164806/http://www.nytimes.com/2015/08/11/technology/google-alphabet-restructuring.html) from the original on October 19, 2016. Retrieved August 10, 2015.](https://www.nytimes.com/2015/08/11/technology/google-alphabet-restructuring.html)
+16. ["Google's Larry Page explains the new Alphabet" (https://www.cnet.com/news/googles-larry-page-explains-the-new-alphabet/). *CNET*. Archived (https://web.archive.org/web/20200812125314/https://www.cnet.com/news/googles-larry-page-explains-the-new-alphabet/) from the original on August 12, 2020. Retrieved September 19, 2015.](https://www.cnet.com/news/googles-larry-page-explains-the-new-alphabet/)
+17. GmbH, finanzen net. ["Google's founders came up with the Alphabet model after meeting Warren Buffett | Markets Insider" (https://markets.businessinsider.com/news/stocks/google-founders-modeled-alphabet-warren-buffett-berkshire-hathaway-2019-12-1028737463). *Business Insider*. Archived (https://web.archive.org/web/20191205132550/https://markets.businessinsider.com/news/stocks/google-founders-modeled-alphabet-warren-buffett-berkshire-hathaway-2019-12-1028737463) from the original on December 5, 2019. Retrieved December 5, 2019.](https://markets.businessinsider.com/news/stocks/google-founders-modeled-alphabet-warren-buffett-berkshire-hathaway-2019-12-1028737463)
+18. ["Britannica Money" (https://www.britannica.com/money/Alphabet-Inc). www.britannica.com. May 18, 2024. Retrieved May 22, 2024.](https://www.britannica.com/money/Alphabet-Inc)
+19. ["Google Inc. filing with the SEC, Form 8-K" (https://www.sec.gov/Archives/edgar/data/1288776/000128877615000039/a20150810form8-k.htm). United States Securities and Exchange Commission. August 10, 2015. Archived (https://web.archive.org/web/20150810231636/http://www.sec.gov/Archives/edgar/data/1288776/000128877615000039/a20150810form8-k.htm) from the original on August 10, 2015. Retrieved August 11, 2015.](https://www.sec.gov/Archives/edgar/data/1288776/000128877615000039/a20150810form8-k.htm)
+20. ["GOOGL : Summary for Alphabet Inc" (https://finance.yahoo.com/quote/GOOGL/). *Yahoo! Finance*. Archived (https://web.archive.org/web/20171204114836/https://finance.yahoo.com/quote/GOOGL/) from the original on December 4, 2017. Retrieved December 4, 2017.](https://finance.yahoo.com/quote/GOOGL/)
+21. Feiner, Lauren (December 3, 2019). ["Larry Page steps down as CEO of Alphabet, Sundar Pichai to take over" (https://www.cnbc.com/2019/12/03/larry-page-steps-down-as-ceo-of-alphabet.html). *CNBC*. Archived (https://web.archive.org/web/20200824015937/https://www.cnbc.com/2019/12/03/larry-page-steps-down-as-ceo-of-alphabet.html) from the original on August 24, 2020. Retrieved December 3, 2019.](https://www.cnbc.com/2019/12/03/larry-page-steps-down-as-ceo-of-alphabet.html)
+22. Wittenstein, Jennan (July 22, 2022). ["Alphabet Stock Split Lands With a Thud in Worry-Filled Market" (https://www.bloomberg.com/news/articles/2022-07-22/alphabet-stock-split-lands-with-a-thud-in-worry-filled-market?srnd=premium&sref=ClpmV6x8). *Bloomberg*. Retrieved July 22, 2022.](https://www.bloomberg.com/news/articles/2022-07-22/alphabet-stock-split-lands-with-a-thud-in-worry-filled-market?srnd=premium&sref=ClpmV6x8)
+23. Pichai, Sundar (January 20, 2023). ["A difficult decision to set us up for the future" (https://blog.google/inside-google/message-ceo/january-update/?tpcc=nldatasheet). Archived (https://web.archive.org/web/20230120191924/https://blog.google/inside-google/message-ceo/january-update/?tpcc=nldatasheet) from the original on January 20, 2023. Retrieved January 20, 2023.](https://blog.google/inside-google/message-ceo/january-update/?tpcc=nldatasheet)
+24. ["Alphabet's Waymo seeks to expand driverless service to Los Angeles" (https://web.archive.org/web/20240120061945/https://economictimes.indiatimes.com/tech/technology/alphabets-waymo-seeks-to-expand-driverless-service-to-los-angeles/articleshow/107005807.cms). *The Economic Times*. January 20, 2024. Archived from the original (https://economictimes.indiatimes.com/tech/technology/alphabets-waymo-seeks-to-expand-driverless-service-to-los-angeles/articleshow/107005807.cms) on January 20, 2024. Retrieved January 29, 2024.](https://web.archive.org/web/20240120061945/https://economictimes.indiatimes.com/tech/technology/alphabets-waymo-seeks-to-expand-driverless-service-to-los-angeles/articleshow/107005807.cms)
+25. ["What Does Google's Antitrust Case Mean for Big Tech?" (https://www.europeanbusinessreview.com/what-does-googles-antitrust-case-mean-for-big-tech/). *The European Business Review*. August 25, 2024. Retrieved September 5, 2024.](https://www.europeanbusinessreview.com/what-does-googles-antitrust-case-mean-for-big-tech/)
+26. ["Google parent Alphabet jumps on quantum chip breakthrough" (https://www.reuters.com/technology/google-parent-alphabet-jumps-quantum-chip-breakthrough-2024-12-10/). December 10, 2024. Retrieved December 11, 2024.](https://www.reuters.com/technology/google-parent-alphabet-jumps-quantum-chip-breakthrough-2024-12-10/)
+27. Cherian, Johann M.; Chauhan, Shashwat (September 15, 2025). ["Alphabet enters $3 trillion market cap club as Big Tech's AI momentum builds" (https://www.reuters.com/business/alphabet-enters-3-trillion-market-cap-club-big-techs-ai-momentum-builds-2025-09-15/). *Reuters*. Retrieved September 16, 2025.](https://www.reuters.com/business/alphabet-enters-3-trillion-market-cap-club-big-techs-ai-momentum-builds-2025-09-15/)
+28. Tatananni, Mackenzie. ["Alphabet Stock Rises After $3 Trillion Market Cap Milestone. Why It Can Keep Going" (https://www.barrons.com/articles/alphabet-stock-3-trillion-google-ai-bb0a3efc). *barrons*. Retrieved September 16, 2025.](https://www.barrons.com/articles/alphabet-stock-3-trillion-google-ai-bb0a3efc)
+29. ["Google's Loon brings internet-by-balloon to Kenya" (https://web.archive.org/web/20180719182259/https://www.bbc.co.uk/news/technology-44886803). *BBC News*. July 19, 2018. Archived from the original (https://www.bbc.co.uk/news/technology-44886803) on July 19, 2018. Retrieved May 1, 2019.](https://web.archive.org/web/20180719182259/https://www.bbc.co.uk/news/technology-44886803)
+30. Hartmans, Avery. ["All the companies and divisions under Google's parent company, Alphabet" (https://www.businessinsider.com/alphabet-google-company-list-2017-4). *Business Insider*. Archived (https://web.archive.org/web/20190501163115/https://www.businessinsider.com/alphabet-google-company-list-2017-4) from the original on May 1, 2019. Retrieved May 1, 2019.](https://www.businessinsider.com/alphabet-google-company-list-2017-4)
+31. ["Alphabet has moved technology incubator Jigsaw under Google management" (https://www.theverge.com/2020/2/11/21133398/google-jigsaw-waymo-nest-brin-page-alphabet). *The Verge*. February 11, 2020. Archived (https://web.archive.org/web/20200220221631/https://www.theverge.com/2020/2/11/21133398/google-jigsaw-waymo-nest-brin-page-alphabet) from the original on February 20, 2020. Retrieved February 20, 2020.](https://www.theverge.com/2020/2/11/21133398/google-jigsaw-waymo-nest-brin-page-alphabet)
+32. Ridden, Paul (July 23, 2021). ["Alphabet launches Intrinsic to make industrial robots easier to use" (https://newatlas.com/robotics/alphabet-intrinsic-software-industrial-robots/). *New Atlas*. Archived (https://web.archive.org/web/20210725052818/https://newatlas.com/robotics/alphabet-intrinsic-software-industrial-robots/) from the original on July 25, 2021. Retrieved July 27, 2021.](https://newatlas.com/robotics/alphabet-intrinsic-software-industrial-robots/)
+33. Heater, Brian (January 10, 2023). ["Alphabet X graduates robotic agtech firm Mineral" (https://techcrunch.com/2023/01/10/alphabet-x-graduates-robotic-agtech-firm-mineral/). *TechCrunch*. Archived (https://web.archive.org/web/20230111062902/https://techcrunch.com/2023/01/10/alphabet-x-graduates-robotic-agtech-firm-mineral/) from the original on January 11, 2023. Retrieved January 11, 2023.](https://techcrunch.com/2023/01/10/alphabet-x-graduates-robotic-agtech-firm-mineral/)
+34. ["Alphabet Finishes Reorganization With New XXVI Company" (https://www.bloomberg.com/news/articles/2017-09-01/alphabet-wraps-up-reorganization-with-a-new-company-called-xxvi). *Bloomberg L.P.* September 1, 2017. Archived (https://web.archive.org/web/20171019145337/https://www.bloomberg.com/news/articles/2017-09-01/alphabet-wraps-up-reorganization-with-a-new-company-called-xxvi) from the original on October 19, 2017. Retrieved September 2, 2017.](https://www.bloomberg.com/news/articles/2017-09-01/alphabet-wraps-up-reorganization-with-a-new-company-called-xxvi)
+35. ["Google parent Alphabet forms holding company, XXVI, to complete 2015 corporate reorganization" (https://techcrunch.com/2017/09/04/google-parent-alphabet-forms-holding-company-xxvi-to-complete-2015-corporate-reorganization/). *TechCrunch*. September 4, 2017. Archived (https://web.archive.org/web/20190501163126/https://techcrunch.com/2017/09/04/google-parent-alphabet-forms-holding-company-xxvi-to-complete-2015-corporate-reorganization/) from the original on May 1, 2019. Retrieved May 1, 2019.](https://techcrunch.com/2017/09/04/google-parent-alphabet-forms-holding-company-xxvi-to-complete-2015-corporate-reorganization/)
+36. Bergen, Mark (October 13, 2015). ["Eric Schmidt: Get Ready for 'a Lot' More Alphabet Companies" (https://www.vox.com/2015/10/13/11619552/eric-schmidt-get-ready-for-a-lot-more-alphabet-companies). *Vox*. Re/code. Archived (https://web.archive.org/web/20201108091912/https://www.vox.com/2015/10/13/11619552/eric-schmidt-get-ready-for-a-lot-more-alphabet-companies) from the original on November 8, 2020. Retrieved October 19, 2015.](https://www.vox.com/2015/10/13/11619552/eric-schmidt-get-ready-for-a-lot-more-alphabet-companies)
+37. ["Google's new Alphabet, from A to Z (pictures)" (https://www.cnet.com/pictures/googles-new-alphabet-from-a-to-z/). *CNET*. Archived (https://web.archive.org/web/20200928033538/https://www.cnet.com/pictures/googles-new-alphabet-from-a-to-z/) from the original on September 28, 2020. Retrieved August 12, 2015.](https://www.cnet.com/pictures/googles-new-alphabet-from-a-to-z/)
+38. Amadeo, Ron (February 7, 2018). ["Nest is done as a standalone Alphabet company, merges with Google" (https://arstechnica.com/gadgets/2018/02/nest-is-done-as-a-standalone-alphabet-company-merges-with-google/). *Ars Technica*. Archived (https://web.archive.org/web/20201109115045/https://arstechnica.com/gadgets/2018/02/nest-is-done-as-a-standalone-alphabet-company-merges-with-google/) from the original on November 9, 2020. Retrieved July 24, 2018.](https://arstechnica.com/gadgets/2018/02/nest-is-done-as-a-standalone-alphabet-company-merges-with-google/)
+39. Kurian, Thomas (June 27, 2019). ["Google Cloud + Chronicle: The security moonshot joins Google Cloud" (https://cloud.google.com/blog/topics/inside-google-cloud/the-security-moonshot-joins-google-cloud). *Inside Google Cloud*. Archived (https://web.archive.org/web/20190727120911/https://cloud.google.com/blog/topics/inside-google-cloud/the-security-moonshot-joins-google-cloud) from the original on July 27, 2019. Retrieved July 27, 2019.](https://cloud.google.com/blog/topics/inside-google-cloud/the-security-moonshot-joins-google-cloud)
+40. Lyons, Kim (December 16, 2021). ["Sidewalk Labs will be folded into Google as CEO steps down for health reasons" (https://www.theverge.com/2021/12/16/22840028/sidewalk-labs-google-doctoroff-health-toronto-quayside). *The Verge*. Archived (https://web.archive.org/web/20211217011820/https://www.theverge.com/2021/12/16/22840028/sidewalk-labs-google-doctoroff-health-toronto-quayside) from the original on December 17, 2021. Retrieved December 17, 2021.](https://www.theverge.com/2021/12/16/22840028/sidewalk-labs-google-doctoroff-health-toronto-quayside)
+41. ["Alastair Westgarth" (https://medium.com/@awestgarthloon). Archived (https://web.archive.org/web/20210122194829/https://medium.com/@awestgarthloon) from the original on January 22, 2021. Retrieved January 22, 2021.](https://medium.com/@awestgarthloon)
+42. Bursztynsky, Jessica (July 23, 2021). ["Alphabet launches new robotics software company Intrinsic" (https://www.cnbc.com/2021/07/23/alphabet-intrinsic-robotics-software-company.html). *CNBC*. Archived (https://web.archive.org/web/20210723171417/https://www.cnbc.com/2021/07/23/alphabet-intrinsic-robotics-software-company.html) from the original on July 23, 2021. Retrieved July 23, 2021.](https://www.cnbc.com/2021/07/23/alphabet-intrinsic-robotics-software-company.html)
+43. Shead, Sam (November 5, 2021). ["Google-parent Alphabet has set up a new lab that will use A.I. to try to discover new drugs" (https://www.cnbc.com/2021/11/05/isomorphic-labs-deepmind-ceo-to-lead-new-alphabet-drug-discovery-lab.html). *CNBC*. Archived (https://web.archive.org/web/20211105102034/https://www.cnbc.com/2021/11/05/isomorphic-labs-deepmind-ceo-to-lead-new-alphabet-drug-discovery-lab.html) from the original on November 5, 2021. Retrieved November 9, 2021.](https://www.cnbc.com/2021/11/05/isomorphic-labs-deepmind-ceo-to-lead-new-alphabet-drug-discovery-lab.html)
+44. ["Alphabet Inc. (GOOG) Stock Major Holders - Yahoo Finance" (https://finance.yahoo.com/quote/GOOG/holders/). finance.yahoo.com. Retrieved March 8, 2024.](https://finance.yahoo.com/quote/GOOG/holders/)
+45. Pereira, Daniel (May 25, 2023). ["Who Owns Google?" (https://businessmodelanalyst.com/who-owns-google/). businessmodelanalyst.com. Retrieved March 8, 2024.](https://businessmodelanalyst.com/who-owns-google/)
+46. ["ANNUAL REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934" (https://abc.xyz/investor/static/pdf/20220202_alphabet_10K.pdf?cache=fc81690) (PDF). Archived (https://web.archive.org/web/20220203053409/https://abc.xyz/investor/static/pdf/20220202_alphabet_10K.pdf?cache=fc81690) (PDF) from the original on February 3, 2022. Retrieved February 3, 2022.](https://abc.xyz/investor/static/pdf/20220202_alphabet_10K.pdf?cache=fc81690)
+47. Estrada, Sheryl (July 24, 2024). ["Google CFO Ruth Porat just did her last earnings call—and she had a message about the future of tech" (https://fortune.com/2024/07/24/google-cfo-ruth-porat-last-earnings-call-message-future-of-tech/). *Fortune*.](https://fortune.com/2024/07/24/google-cfo-ruth-porat-last-earnings-call-message-future-of-tech/)
+48. ["Wie die Hamburger ABC-Straße Google prägte" (https://www.abendblatt.de/hamburg/hamburg-mitte/article215905959/Wie-die-Hamburger-ABC-Strasse-Google-praegte.html). abendblatt.de. November 29, 2018. Archived (https://web.archive.org/web/20200725035847/https://www.abendblatt.de/hamburg/hamburg-mitte/article215905959/Wie-die-Hamburger-ABC-Strasse-Google-praegte.html) from the original on July 25, 2020. Retrieved November 30, 2018.](https://www.abendblatt.de/hamburg/hamburg-mitte/article215905959/Wie-die-Hamburger-ABC-Strasse-Google-praegte.html)
+49. Davidson, Lauren (August 11, 2015). ["Google unveils Alphabet... but that's already trademarked by BMW" (https://www.telegraph.co.uk/finance/newsbysector/mediatechnologyandtelecoms/11797616/Google-unveils-Alphabet...-but-thats-already-trademarked-by-BMW.html). *The Daily Telegraph*. Archived (https://ghostarchive.org/archive/20220111/https://www.telegraph.co.uk/finance/newsbysector/mediatechnologyandtelecoms/11797616/Google-unveils-Alphabet...-but-thats-already-trademarked-by-BMW.html) from the original on January 11, 2022. Retrieved August 12, 2015.](https://www.telegraph.co.uk/finance/newsbysector/mediatechnologyandtelecoms/11797616/Google-unveils-Alphabet...-but-thats-already-trademarked-by-BMW.html)
+50. Lardinois, Frederic (August 10, 2015). ["Google Is Now Alphabet, But It Doesn't Own Alphabet.com" (https://techcrunch.com/2015/08/10/google-is-now-alphabet-but-it-doesnt-own-alphabet-com/). *TechCrunch*. AOL Inc. Archived (https://web.archive.org/web/20150811164757/http://techcrunch.com/2015/08/10/google-is-now-alphabet-but-it-doesnt-own-alphabet-com/) from the original on August 11, 2015. Retrieved August 11, 2015.](https://techcrunch.com/2015/08/10/google-is-now-alphabet-but-it-doesnt-own-alphabet-com/)
+51. Gibbs, Samuel (November 3, 2014). ["Google has 'outgrown' its 14-year old mission statement, says Larry Page" (https://www.theguardian.com/technology/2014/nov/03/larry-page-google-dont-be-evil-sergey-brin). *The Guardian*. Archived (https://web.archive.org/web/20170326053031/https://www.theguardian.com/technology/2014/nov/03/larry-page-google-dont-be-evil-sergey-brin) from the original on March 26, 2017. Retrieved March 25, 2017.](https://www.theguardian.com/technology/2014/nov/03/larry-page-google-dont-be-evil-sergey-brin)
+52. ["Google Code of Conduct" (https://abc.xyz/investor/other/google-code-of-conduct.html). *Alphabet Investor Relations*. Alphabet Inc. April 11, 2012. Archived (https://web.archive.org/web/20170211223917/https://abc.xyz/investor/other/google-code-of-conduct.html) from the original on February 11, 2017. Retrieved March 25, 2017.](https://abc.xyz/investor/other/google-code-of-conduct.html)
+53. Lawler, Richard (October 2, 2015). ["Alphabet replaces Google's 'Don't be evil' with 'Do the right thing'" (https://www.engadget.com/2015/10/02/alphabet-do-the-right-thing/). *Engadget*. AOL. Archived (https://web.archive.org/web/20170701225925/https://www.engadget.com/2015/10/02/alphabet-do-the-right-thing/) from the original on July 1, 2017. Retrieved March 25, 2017.](https://www.engadget.com/2015/10/02/alphabet-do-the-right-thing/)
+54. ["Happy Birthday Google!" (http://www.ndtv.com/photos/news/happy-birthday-google--8267#photo-99345). ndtv.com. NDTV Convergence Limited. Archived (https://web.archive.org/web/20190407042748/https://www.ndtv.com/photos/news/happy-birthday-google--8267#photo-99345) from the original on April 7, 2019. Retrieved April 28, 2016.](http://www.ndtv.com/photos/news/happy-birthday-google--8267#photo-99345)
+55. ["Alphabet Financial Statements yearly | GOOGL" (https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/financial-statements). www.macrotrends.net. Retrieved August 9, 2024.](https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/financial-statements)
+56. ["Annual Report 2016" (https://abc.xyz/investor/static/pdf/2016Q4_alphabet_earnings_release.pdf) (PDF). Archived (https://web.archive.org/web/20190320190757/https://abc.xyz/investor/static/pdf/2016Q4_alphabet_earnings_release.pdf) (PDF) from the original on March 20, 2019.](https://abc.xyz/investor/static/pdf/2016Q4_alphabet_earnings_release.pdf)
+57. ["Annual Report 2017" (https://abc.xyz/investor/static/pdf/20171231_alphabet_10K.pdf) (PDF). Archived (https://web.archive.org/web/20190531180003/https://abc.xyz/investor/static/pdf/20171231_alphabet_10K.pdf) (PDF) from the original on May 31, 2019.](https://abc.xyz/investor/static/pdf/20171231_alphabet_10K.pdf)
+58. ["Annual Report 2018" (https://abc.xyz/investor/static/pdf/2018Q4_alphabet_earnings_release.pdf?cache=adc3b38) (PDF). Archived (https://web.archive.org/web/20190204213105/https://abc.xyz/investor/static/pdf/2018Q4_alphabet_earnings_release.pdf?cache=adc3b38) (PDF) from the original on February 4, 2019.](https://abc.xyz/investor/static/pdf/2018Q4_alphabet_earnings_release.pdf?cache=adc3b38)
+59. ["Annual Report 2019" (https://abc.xyz/investor/static/pdf/2019Q4_alphabet_earnings_release.pdf) (PDF). Archived (https://web.archive.org/web/20200203212145/https://abc.xyz/investor/static/pdf/2019Q4_alphabet_earnings_release.pdf) (PDF) from the original on February 3, 2020.](https://abc.xyz/investor/static/pdf/2019Q4_alphabet_earnings_release.pdf)
+60. ["Annual report 2020" (https://abc.xyz/investor/static/pdf/20210203_alphabet_10K.pdf?cache=b44182d) (PDF). Archived (https://web.archive.org/web/20210207152806/https://abc.xyz/investor/static/pdf/20210203_alphabet_10K.pdf?cache=b44182d) (PDF) from the original on February 7, 2021.](https://abc.xyz/investor/static/pdf/20210203_alphabet_10K.pdf?cache=b44182d)
+61. ["Alphabet Inc. 2021 Annual Form 10-K Report" (https://abc.xyz/investor/static/pdf/20220202_alphabet_10K.pdf?cache=fc81690) (PDF). abc.xyz. December 31, 2021. Archived (https://web.archive.org/web/20220203053409/https://abc.xyz/investor/static/pdf/20220202_alphabet_10K.pdf?cache=fc81690) (PDF) from the original on February 3, 2022. Retrieved February 3, 2022.](https://abc.xyz/investor/static/pdf/20220202_alphabet_10K.pdf?cache=fc81690)
+62. ["Alphabet Inc. 2022 Annual Form 10-K Report" (https://www.sec.gov/ix?doc=%2FArchives%2Fedgar%2Fdata%2F1652044%2F000165204423000016%2Fgoog-20221231.htm). U.S. Securities and Exchange Commission. February 3, 2023. Archived (https://web.archive.org/web/20230317154148/https://www.sec.gov/ix?doc=%2FArchives%2Fedgar%2Fdata%2F1652044%2F000165204423000016%2Fgoog-20221231.htm) from the original on March 17, 2023. Retrieved April 3, 2023.](https://www.sec.gov/ix?doc=%2FArchives%2Fedgar%2Fdata%2F1652044%2F000165204423000016%2Fgoog-20221231.htm)
+63. ["Alphabet Inc. 2023 Annual Form 10-K Report" (https://www.sec.gov/ixviewer/ix.html?doc=/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm). U.S. Securities and Exchange Commission. January 31, 2024. Retrieved February 1, 2024.](https://www.sec.gov/ixviewer/ix.html?doc=/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm)
+64. Annual report 2017 (https://abc.xyz/investor). Alphabet investor relations. March 2, 2018. pp. 2, 3, 5, 6. Archived (https://web.archive.org/web/20160203091612/https://abc.xyz/investor/) from the original on February 3, 2016. Retrieved December 3, 2018.
+65. Levy, Ari. ["Google passes Apple as most valuable company" (https://www.cnbc.com/2016/02/01/google-passes-apple-as-most-valuable-company.html). *CNBC.com*. NBCUniversal. Archived (https://web.archive.org/web/20201108123512/https://www.cnbc.com/2016/02/01/google-passes-apple-as-most-valuable-company.html) from the original on November 8, 2020. Retrieved February 1, 2016.](https://www.cnbc.com/2016/02/01/google-passes-apple-as-most-valuable-company.html)
+66. Krantz, Matt. ["Apple not going down easy as it overtakes Google parent Alphabet" (https://www.usatoday.com/story/money/markets/2016/02/03/apple-not-going-down-easy/79763410/). *USA Today*. Archived (https://web.archive.org/web/20200725035315/https://www.usatoday.com/story/money/markets/2016/02/03/apple-not-going-down-easy/79763410/) from the original on July 25, 2020. Retrieved February 3, 2016.](https://www.usatoday.com/story/money/markets/2016/02/03/apple-not-going-down-easy/79763410/)
+67. ["Fortune 500" (https://fortune.com/fortune500/2019/search/). *Fortune*. Archived (https://web.archive.org/web/20191031060432/https://fortune.com/fortune500/2019/search/) from the original on October 31, 2019. Retrieved November 9, 2018.](https://fortune.com/fortune500/2019/search/)
+68. Ramkumar, Amrith (January 16, 2020). ["Alphabet Becomes Fourth U.S. Company to Reach $1 Trillion Market Value" (https://www.wsj.com/articles/alphabet-becomes-fourth-u-s-company-to-ever-reach-1-trillion-market-value-11579208802). *The Wall Street Journal*. Archived (https://web.archive.org/web/20200120065645/https://www.wsj.com/articles/alphabet-becomes-fourth-u-s-company-to-ever-reach-1-trillion-market-value-11579208802) from the original on January 20, 2020. Retrieved January 19, 2020.](https://www.wsj.com/articles/alphabet-becomes-fourth-u-s-company-to-ever-reach-1-trillion-market-value-11579208802)
+69. ["Google and Microsoft hit by slowing economy" (https://www.bbc.com/news/business-63394516). *BBC News*. October 25, 2022. Archived (https://web.archive.org/web/20221026001358/https://www.bbc.com/news/business-63394516) from the original on October 26, 2022. Retrieved October 26, 2022.](https://www.bbc.com/news/business-63394516)
+70. Irwin-Hunt, Alex (June 19, 2023). ["Top 100 global innovation leaders" (https://www.fdiintelligence.com/content/feature/global-innovation-leaders-2022-edition-82527). *fDi Intelligence*. Retrieved June 16, 2024.](https://www.fdiintelligence.com/content/feature/global-innovation-leaders-2022-edition-82527)
+71. ["The Global 2000" (https://web.archive.org/web/20240125234015/https://gum.criteo.com/syncframe?origin=publishertag&topUrl=www.forbes.com). *Forbes*. Archived from the original (https://www.forbes.com/lists/global2000/?sh=51d599675ac0) on January 25, 2024. Retrieved January 29, 2024.](https://web.archive.org/web/20240125234015/https://gum.criteo.com/syncframe?origin=publishertag&topUrl=www.forbes.com)
+72. Waters, Richard; Morris, Stephen (April 26, 2024). ["Alphabet surges past $2tn valuation as search giant announces first dividend" (https://www.ft.com/content/23b4b384-5971-4f91-a9c9-8a779d10b6bc). www.ft.com. Retrieved April 26, 2024.](https://www.ft.com/content/23b4b384-5971-4f91-a9c9-8a779d10b6bc)
+73. ["iShares MSCI KLD 400 Social ETF | DSI" (https://www.blackrock.com/us/individual/products/239667/ishares-msci-kld-400-social-etf). *BlackRock*. Retrieved June 20, 2024.](https://www.blackrock.com/us/individual/products/239667/ishares-msci-kld-400-social-etf)
+74. ["Alphabet becomes fourth company to reach $3 trillion market cap" (https://www.cnbc.com/2025/09/15/alphabet-3-trillion-market-cap.html). *CNN*. September 15, 2025. Retrieved September 16, 2025.](https://www.cnbc.com/2025/09/15/alphabet-3-trillion-market-cap.html)
+75. Constine, Josh. ["With $70M from Alphabet, UnitedMasters replaces record labels" (https://techcrunch.com/2017/11/15/united-masters/). *TechCrunch*. Archived (https://web.archive.org/web/20171204171220/https://techcrunch.com/2017/11/15/united-masters/) from the original on December 4, 2017. Retrieved December 4, 2017.](https://techcrunch.com/2017/11/15/united-masters/)
+76. ["GV / Portfolio" (https://www.gv.com/portfolio/). Archived (https://web.archive.org/web/20210927144555/https://www.gv.com/portfolio/) from the original on September 27, 2021. Retrieved September 25, 2021.](https://www.gv.com/portfolio/)
+77. ["A peek inside Alphabet's investing universe" (https://techcrunch.com/2018/02/17/a-peek-inside-alphabets-investing-universe/). *Techcrunch*. February 17, 2018. Archived (https://web.archive.org/web/20180218162155/https://techcrunch.com/2018/02/17/a-peek-inside-alphabets-investing-universe/) from the original on February 18, 2018. Retrieved February 18, 2018.](https://techcrunch.com/2018/02/17/a-peek-inside-alphabets-investing-universe/)
+78. Sage, Alexandria (May 30, 2017). ["Uber fires self-driving car chief at center of court case" (https://www.reuters.com/article/us-uber-alphabet-lawsuit-idUSKBN18Q2CW). *Reuters*. Archived (https://web.archive.org/web/20201112021214/https://www.reuters.com/article/us-uber-alphabet-lawsuit-idUSKBN18Q2CW) from the original on November 12, 2020. Retrieved May 30, 2017.](https://www.reuters.com/article/us-uber-alphabet-lawsuit-idUSKBN18Q2CW)
+79. Isaac, Mike; Wakabayashi, Daisuke (May 30, 2017). ["Uber Fires Former Google Engineer at Heart of Self-Driving Dispute" (https://www.nytimes.com/2017/05/30/technology/uber-anthony-levandowski.html). *The New York Times*. Archived (https://web.archive.org/web/20201209151954/https://www.nytimes.com/2017/05/30/technology/uber-anthony-levandowski.html) from the original on December 9, 2020. Retrieved May 30, 2017.](https://www.nytimes.com/2017/05/30/technology/uber-anthony-levandowski.html)
+80. Balakrishnan, Anita; D'Onfro, Jillian; Bosa, Deirdre; Zaveri, Paayal (February 9, 2018). ["Uber settles dispute with Alphabet's self driving car unit" (https://web.archive.org/web/20180219031254/https://www.cnbc.com/2018/02/09/uber-waymo-lawsuit-settlement.html). *CNBC*. Archived from the original (https://www.cnbc.com/2018/02/09/uber-waymo-lawsuit-settlement.html) on February 19, 2018. Retrieved February 18, 2018.](https://web.archive.org/web/20180219031254/https://www.cnbc.com/2018/02/09/uber-waymo-lawsuit-settlement.html)
+81. Murdock, Jason (August 5, 2020). ["Google+ Settlement: How to Submit a Claim over Privacy Bug and Get a Payout" (https://web.archive.org/web/20200806061226/https://www.newsweek.com/google-plus-privacy-bug-settlement-claim-money-1522967). *Newsweek*. Archived from the original (https://www.newsweek.com/google-plus-privacy-bug-settlement-claim-money-1522967) on August 6, 2020. Retrieved August 5, 2020.](https://web.archive.org/web/20200806061226/https://www.newsweek.com/google-plus-privacy-bug-settlement-claim-money-1522967)
+82. Graham, Jefferson (August 4, 2020). ["Did you use Google+? You may be owed some money from class-action privacy settlement" (https://web.archive.org/web/20200806014134/https://www.usatoday.com/story/tech/2020/08/04/google-privacy-settlement-how-much-money-how-to-get/3290508001/). *USA Today*. Archived from the original (https://www.usatoday.com/story/tech/2020/08/04/google-privacy-settlement-how-much-money-how-to-get/3290508001/) on August 6, 2020. Retrieved August 5, 2020.](https://web.archive.org/web/20200806014134/https://www.usatoday.com/story/tech/2020/08/04/google-privacy-settlement-how-much-money-how-to-get/3290508001/)
+83. *In re Google Plus Profile Litigation* (https://web.archive.org/web/20200806003928/https://www.courtlistener.com/docket/7999009/in-re-google-plus-profile-litigation/) (Court case). July 22, 2020. Archived from the original (https://www.courtlistener.com/docket/7999009/in-re-google-plus-profile-litigation/) on August 6, 2020. Retrieved August 5, 2020 – via CourtListener.
+84. Copeland, Brent Kendall and Rob (October 21, 2020). ["Justice Department Hits Google With Antitrust Lawsuit" (https://www.wsj.com/articles/justice-department-to-file-long-awaited-antitrust-suit-against-google-11603195203). *The Wall Street Journal*. ISSN 0099-9660 (https://search.worldcat.org/issn/0099-9660). Archived (https://web.archive.org/web/20210103214414/https://www.wsj.com/articles/justice-department-to-file-long-awaited-antitrust-suit-against-google-11603195203) from the original on January 3, 2021. Retrieved November 11, 2020.](https://www.wsj.com/articles/justice-department-to-file-long-awaited-antitrust-suit-against-google-11603195203)
+85. Paresh, Dave (December 2, 2020). ["Google violated U.S. labor laws in clampdown on worker organizing, regulator says" (https://web.archive.org/web/20201203142334/https://uk.reuters.com/article/us-alphabet-google-labor/google-violated-u-s-labor-laws-in-clampdown-on-worker-organizing-regulator-says-idUKKBN28C35V). *Reuters*. Archived from the original (https://uk.reuters.com/article/us-alphabet-google-labor/google-violated-u-s-labor-laws-in-clampdown-on-worker-organizing-regulator-says-idUKKBN28C35V) on December 3, 2020. Retrieved December 3, 2020.](https://web.archive.org/web/20201203142334/https://uk.reuters.com/article/us-alphabet-google-labor/google-violated-u-s-labor-laws-in-clampdown-on-worker-organizing-regulator-says-idUKKBN28C35V)
+86. ["Google will pay $270 million to settle antitrust charges in France over its ad technology" (https://www.nytimes.com/live/2021/06/07/business/economy-stock-market-news). *The New York Times*. June 7, 2021. Archived (https://web.archive.org/web/20210607162017/https://www.nytimes.com/live/2021/06/07/business/economy-stock-market-news) from the original on June 7, 2021. Retrieved June 7, 2021.](https://www.nytimes.com/live/2021/06/07/business/economy-stock-market-news)
+87. ["Japan to start antitrust probe on Apple, Google, Nikkei says" (https://www.mercurynews.com/2021/06/12/japan-to-start-antitrust-probe-on-apple-google-nikkei-says/). *Mercury News*. June 12, 2021. Archived (https://web.archive.org/web/20210613162929/https://www.mercurynews.com/2021/06/12/japan-to-start-antitrust-probe-on-apple-google-nikkei-says/) from the original on June 13, 2021. Retrieved June 12, 2021.](https://www.mercurynews.com/2021/06/12/japan-to-start-antitrust-probe-on-apple-google-nikkei-says/)
+88. ["Google's Russian subsidiary to file for bankruptcy after bank account seized" (https://www.reuters.com/markets/europe/googles-russian-subsidiary-files-bankruptcy-document-2022-05-18/). *Reuters*. May 18, 2022. Archived (https://web.archive.org/web/20220530204701/https://www.reuters.com/markets/europe/googles-russian-subsidiary-files-bankruptcy-document-2022-05-18/) from the original on May 30, 2022. Retrieved June 17, 2022.](https://www.reuters.com/markets/europe/googles-russian-subsidiary-files-bankruptcy-document-2022-05-18/)
+89. ["Google's Russian subsidiary submits bankruptcy declaration - Ifax" (https://www.reuters.com/technology/googles-russian-subsidiary-submits-bankruptcy-declaration-ifax-2022-06-17/). *Reuters*. June 17, 2022. Archived (https://web.archive.org/web/20220617101140/https://www.reuters.com/technology/googles-russian-subsidiary-submits-bankruptcy-declaration-ifax-2022-06-17/) from the original on June 17, 2022. Retrieved June 17, 2022.](https://www.reuters.com/technology/googles-russian-subsidiary-submits-bankruptcy-declaration-ifax-2022-06-17/)
+90. ["Alphabet lays off hundreds from global recruitment team" (https://www.reuters.com/technology/alphabet-lays-off-hundreds-global-recruitment-team-2023-09-13/). *Reuters*. September 13, 2023.](https://www.reuters.com/technology/alphabet-lays-off-hundreds-global-recruitment-team-2023-09-13/)
+91. ["Fired Google employees say getting sacked without an 'element of humanity' " (https://www.businesstoday.in/technology/news/story/fired-google-employees-say-getting-sacked-without-an-element-of-humanity-366998-2023-01-21). *Business Today*. January 21, 2023. Archived (https://web.archive.org/web/20230123091834/https://www.businesstoday.in/technology/news/story/fired-google-employees-say-getting-sacked-without-an-element-of-humanity-366998-2023-01-21) from the original on January 23, 2023. Retrieved January 23, 2023.](https://www.businesstoday.in/technology/news/story/fired-google-employees-say-getting-sacked-without-an-element-of-humanity-366998-2023-01-21)
+92. ["After 16 years of service, Google fires employee by deactivating his account in the middle of the night" (https://www.indiatoday.in/technology/news/story/after-16-years-of-service-google-fires-employee-by-deactivating-his-account-in-the-middle-of-the-night-2324588-2023-01-21). *India Today*. January 21, 2023. Archived (https://web.archive.org/web/20230123091840/https://www.indiatoday.in/technology/news/story/after-16-years-of-service-google-fires-employee-by-deactivating-his-account-in-the-middle-of-the-night-2324588-2023-01-21) from the original on January 23, 2023. Retrieved January 23, 2023.](https://www.indiatoday.in/technology/news/story/after-16-years-of-service-google-fires-employee-by-deactivating-his-account-in-the-middle-of-the-night-2324588-2023-01-21)
+93. Elias, Jennifer (January 21, 2023). ["Google employees scramble for answers after layoffs hit long-tenured and recently promoted employees" (https://www.cnbc.com/2023/01/21/google-employees-scramble-for-answers-after-layoffs-hit-long-tenured.html). *CNBC*. Archived (https://web.archive.org/web/20230123104052/https://www.cnbc.com/2023/01/21/google-employees-scramble-for-answers-after-layoffs-hit-long-tenured.html) from the original on January 23, 2023. Retrieved January 23, 2023.](https://www.cnbc.com/2023/01/21/google-employees-scramble-for-answers-after-layoffs-hit-long-tenured.html)
+94. Fields, Ashleigh (September 23, 2025). ["YouTube reinstating creators banned for COVID-19, election content" (https://thehill.com/policy/technology/5517922-youtube-reinstates-banned-creators/). *The Hill*. Retrieved September 30, 2025.](https://thehill.com/policy/technology/5517922-youtube-reinstates-banned-creators/)
+95. Samuels, Brett (September 24, 2025). ["Vance: Kimmel monologue 'kind of kind-hearted' but lacked apology" (https://thehill.com/homenews/administration/5520203-kimmel-apology-charlie-kirk-comments/). *The Hill*. Retrieved September 30, 2025.](https://thehill.com/homenews/administration/5520203-kimmel-apology-charlie-kirk-comments/)
+96. Johnson, Ted (September 24, 2025). ["JD Vance Suggests That FCC Chairman's Warning To ABC Stations Over Jimmy Kimmel Was Merely 'A Joke' " (https://deadline.com/2025/09/jimmy-kimmel-jd-vance-fcc-joke-1236554834/). *Hollywood Deadline*. Retrieved September 30, 2025.](https://deadline.com/2025/09/jimmy-kimmel-jd-vance-fcc-joke-1236554834/)
+97. Elias, Jennifer (September 26, 2025). ["How Google shifted from a bastion of accurate information to a steward of free expression" (https://www.cnbc.com/2025/09/26/how-google-abandoned-facts-for-free-expression.html). *CNBC*. Retrieved September 20, 2025.](https://www.cnbc.com/2025/09/26/how-google-abandoned-facts-for-free-expression.html)
+
+## Further reading
+
+*   Yeo, ShinJoung. (2023) *Behind the Search Box: Google and the Global Internet Industry* (U of Illinois Press, 2023) ISBN 0-252-08712-7 JSTOR 4116455 (https://www.jstor.org/stable/4116455)
+
+## External links
+
+*   [Official website (https://abc.xyz/)](https://abc.xyz/)
+*   [Alphabet Inc. (https://www.opensecrets.org/orgs/summary?id=d000067823) on OpenSecrets, a website that tracks and publishes data on campaign finance and lobbying](https://www.opensecrets.org/orgs/summary?id=d000067823)
+*   [Alphabet Inc. (https://www.LittleSis.org/org/223501) on LittleSis, a website that publishes data on who-knows-who between government, donors and business](https://www.LittleSis.org/org/223501)
+*   Business data for Alphabet Inc. (Class A): [Google (https://www.google.com/finance/quote/GOOGL:NASDAQ)](https://www.google.com/finance/quote/GOOGL:NASDAQ) ・ [Reuters (https://www.reuters.com/markets/companies/GOOGL.O)](https://www.reuters.com/markets/companies/GOOGL.O) • [SEC filings (https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1652044)](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1652044) ・ [Yahoo! (https://finance.yahoo.com/quote/GOOGL)](https://finance.yahoo.com/quote/GOOGL)
+*   Business data for Alphabet Inc. (Class C): [Google (https://www.google.com/finance/quote/GOOG:NASDAQ)](https://www.google.com/finance/quote/GOOG:NASDAQ) ・ [Reuters (https://www.reuters.com/markets/companies/GOOG.O)](https://www.reuters.com/markets/companies/GOOG.O) • [SEC filings (https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1652044)](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1652044) ・ [Yahoo! (https://finance.yahoo.com/quote/GOOG)](https://finance.yahoo.com/quote/GOOG)
+
+Retrieved from "[https://en.wikipedia.org/w/index.php?title=Alphabet_Inc.&oldid=1331750570](https://en.wikipedia.org/w/index.php?title=Alphabet_Inc.&oldid=1331750570)"
