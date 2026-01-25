@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "system_name": "graphrag_local",
+    "timestamp": "2026-01-22T15:09:52.633220",
+    "config": {
+      "system": "graphrag",
+      "search_type": "local",
+      "community_level": 2,
+      "index_path": "./graphrag_beige",
+      "llm_model": "gpt-5.1",
+      "embedding_model": "text-embedding-3-large",
+      "qa_file": "eval/Biege_OA.json"
+    }
+  },
+  "summary": {
+    "total_questions": 5,
+    "correct": 4,
+    "partially_correct": 0,
+    "abstained": 0,
+    "incorrect": 1,
+    "correct_pct": 80.0,
+    "partially_correct_pct": 0.0,
+    "abstained_pct": 0.0,
+    "incorrect_pct": 20.0,
+    "accuracy_pct": 80.0,
+    "avg_time_ms": 13764.6
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+      "expected_answer": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+      "system_answer": "Economic activity in the Twelfth District, overseen by the Federal Reserve Bank of San Francisco, edged down slightly during the most recent reporting period. Employment levels were little changed overall, with most employers maintaining steady head counts and only hiring to replace departing workers; however, some reductions in staff occurred in manufacturing and health care through attrition, layoffs, and early retirements. Wages grew slightly, and prices rose modestly. Sectoral trends included decreased activity in retail trade and residential real estate, while commercial real estate activity remained unchanged. Manufacturing and lending activity were largely stable, but agriculture and resource-related sectors weakened somewhat. The consumer and business services sector experienced mixed conditions. Notably, small businesses and community support organizations faced weakened conditions, with small businesses reporting reduced demand, financial strain, and increased closures, while community organizations struggled with higher demand for services amid funding cuts. Overall, the economic outlook in the Twelfth District weakened somewhat compared to the prior period, reflecting heightened uncertainty and modest downside risks [Data: Sources (16, 18); Reports (5); Entities (64, 102, 8, 250, 1220, 1221); Relationships (1012, 1080, 1013, 1033, 1034, 1037, 1040, 1041, 1042, 1036, 1035, 1039, 1043, 1044, 1046, 1047, +more)].",
+      "verdict": "correct",
+      "judge_reasoning": "Key facts in the ground truth:\n1) Overall economic activity in the Twelfth District (San Francisco) edged down slightly.\n2) Activity in retail trade, agriculture, and residential real estate either decreased or remained stable (i.e., did not increase).\n\nCheck against the system answer:\n1) The system states: “Economic activity … edged down slightly during the most recent reporting period.” This matches the first key fact.\n2) Retail trade: system says “decreased activity in retail trade” – consistent with “decreased or remained stable.”\n3) Residential real estate: system says “decreased activity in … residential real estate” – again consistent.\n4) Agriculture: system says “agriculture and resource-related sectors weakened somewhat” – consistent with decreased activity.\n\nThe system adds extra sectoral detail (employment, wages, prices, small businesses, etc.), but none of this contradicts the ground truth. All required points are present and correct, with no factual conflicts relative to the expected answer.\n\nThus the answer is complete with respect to the expected content and not misleading or incorrect.",
+      "retrieved_chunks": [],
+      "timing_ms": 16978
+    },
+    {
+      "question_id": 2,
+      "question": "What is the Beige Book?",
+      "expected_answer": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+      "system_answer": "The Beige Book is a publication of the Federal Reserve System that provides a summary of current economic conditions across the twelve Federal Reserve Districts, released eight times per year. It is based primarily on qualitative information gathered directly from a wide range of sources within each District, including businesses, community organizations, economists, and market experts, through interviews, surveys, and outreach efforts. The Beige Book is intended to characterize changes in economic conditions since the previous report, offering insights into regional economic trends and emerging dynamics that may not be immediately apparent in quantitative data. This information supplements the data and analysis used by Federal Reserve economists and staff to assess economic conditions and inform monetary policy decisions. The Beige Book is not an official commentary on the views of Federal Reserve officials but serves as a regular public summary of economic information collected from diverse contacts, enabling comparisons of economic conditions across different parts of the country [Data: Reports (5); Entities (0, 53, 54, 120); Relationships (0, 1, 2, 3, 4, 5, 6, 79, 80, +more); Sources (0)].",
+      "verdict": "correct",
+      "judge_reasoning": "Key facts in the ground truth:\n1) It is a Federal Reserve System publication.\n2) It covers current economic conditions.\n3) It covers all 12 Federal Reserve Districts.\n4) It characterizes regional economic conditions and prospects.\n5) It is based on mostly qualitative information gathered directly from each District’s sources.\n\nSystem answer:\n- States it is a publication of the Federal Reserve System (matches 1).\n- States it provides a summary of current economic conditions (matches 2).\n- Explicitly mentions \"across the twelve Federal Reserve Districts\" (matches 3).\n- Describes characterizing changes in economic conditions, insights into regional economic trends and emerging dynamics (captures 4).\n- States it is based primarily on qualitative information gathered directly from a wide range of sources within each District (matches 5) and gives examples, which are consistent.\n- Adds extra correct details: frequency (eight times per year), methods (interviews, surveys, outreach), role in informing policy, that it’s not official commentary. These do not contradict the ground truth and are accurate.\n\nAll key facts are present, no contradictions or errors. The additional details are consistent with known facts about the Beige Book. Therefore, the answer is fully correct.",
+      "retrieved_chunks": [],
+      "timing_ms": 15423
+    },
+    {
+      "question_id": 3,
+      "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+      "expected_answer": "12 Federal Reserve Districts are covered in the Beige Book.",
+      "system_answer": "The Beige Book covers all 12 Federal Reserve Districts, providing a summary of current economic conditions across each district as part of its regular reporting on the U.S. economy [Data: Entities (0, 2); Relationships (1, 10, 0, 80); Sources (0)].",
+      "verdict": "correct",
+      "judge_reasoning": "The expected answer states that 12 Federal Reserve Districts are covered. The system answer explicitly says \"The Beige Book covers all 12 Federal Reserve Districts,\" which matches exactly. There are no contradictions or extraneous incorrect details; the extra description about summarizing economic conditions is accurate and does not conflict with the ground truth. Therefore the answer is fully correct.",
+      "retrieved_chunks": [],
+      "timing_ms": 9841
+    },
+    {
+      "question_id": 4,
+      "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+      "expected_answer": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+      "system_answer": "According to the October 2025 Beige Book, overall economic activity changed little on balance since the previous report, with three Federal Reserve Districts reporting slight to modest growth, five reporting no change, and four noting a slight softening. Consumer spending, particularly on retail goods, inched down in recent weeks, while auto sales were boosted in some Districts by strong demand for electric vehicles ahead of the expiration of a federal tax credit. Demand for leisure and hospitality services by international travelers fell further, but domestic demand remained largely unchanged, with higher-income individuals continuing to spend on luxury travel and accommodation. Manufacturing activity varied by District, with most reports noting challenging conditions due to higher tariffs and waning demand. Activity in agriculture, energy, and transportation was generally down, and conditions in financial services and other interest rate-sensitive sectors, such as residential and commercial real estate, were mixed. The outlook for future economic growth varied, with some contacts expecting an uptick in demand over the next 6 to 12 months, while many others anticipated that elevated uncertainty would continue to weigh on activity. Additionally, the risk of a prolonged government shutdown was highlighted as a potential downside to growth [Data: Sources (0); Reports (8); Entities (8, 250); Relationships (2, 1012, 1080, 642, +more)].",
+      "verdict": "correct",
+      "judge_reasoning": "The key fact in the expected answer is the description of how overall economic activity changed: it \"changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.\" The system answer reproduces this characterization almost verbatim, including the counts of districts in each category and the overall assessment that activity changed little on balance. Additional details about consumer spending, autos, travel, manufacturing, etc., are extra but do not contradict the core statement and are not factually at odds with the expected answer (we are only judging against the provided ground truth). Therefore all key facts are present and there are no contradictions relative to the expected answer.",
+      "retrieved_chunks": [],
+      "timing_ms": 13152
+    },
+    {
+      "question_id": 5,
+      "question": "Which districts reported slight to modest economic growth?",
+      "expected_answer": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+      "system_answer": "Several Federal Reserve Districts reported slight to modest economic growth in recent periods. The Third District (Philadelphia) noted that economic activity increased slightly, with nonmanufacturing activity up slightly and manufacturing rising moderately, while employment and wage growth were also described as slight and modest, respectively [Data: Sources (5); Entities (291, 320, 31, 195); Relationships (277, 280, 281)]. The Fifth District (Richmond) reported that the economy continued to grow modestly, with consumer spending at retail and restaurants growing modestly and overall activity in other sectors generally flat; employment was unchanged, and wage growth remained moderate [Data: Sources (8); Entities (250, 31, 195); Relationships (250, 31, 195)]. The Sixth District (Atlanta) described district economic conditions as generally flat, but with some sectors experiencing modest growth, and wage growth in the one-to-three percent range, indicating modest expansion [Data: Entities (250, 31, 195); Relationships (642, 526)]. Overall, these districts characterized their recent economic growth as slight to modest, reflecting a period of stability with limited but positive momentum.",
+      "verdict": "incorrect",
+      "judge_reasoning": "Ground truth: exactly three districts with slight to modest growth – Boston (First), Philadelphia (Third), Richmond (Fifth).\n\nSystem answer: \n- Correctly mentions Third District (Philadelphia) and Fifth District (Richmond) as having slight/modest growth.\n- Does NOT mention Boston/First District at all.\n- Instead adds the Sixth District (Atlanta) as characterized by slight/modest growth, which contradicts the ground truth list and overstates what is given (ground truth says only those three, and Atlanta is not among them).\n\nThus, the answer is both incomplete (missing Boston) and contains incorrect information (adding Atlanta as one of the districts with slight to modest growth). That makes it not just partial, but factually wrong relative to the expected answer.\n\nTherefore, the appropriate verdict is INCORRECT.",
+      "retrieved_chunks": [],
+      "timing_ms": 13429
+    }
+  ]
+}

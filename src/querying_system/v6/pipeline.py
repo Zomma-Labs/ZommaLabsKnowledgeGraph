@@ -63,7 +63,7 @@ class V6Pipeline:
         self,
         group_id: str = "default",
         config: Optional[ResearcherConfig] = None,
-        max_concurrent: int = 5,
+        max_concurrent: int = 10,  # Increased from 5 - LLM APIs handle high parallelism well
     ):
         self.group_id = group_id
         self.config = config or ResearcherConfig()
@@ -318,15 +318,22 @@ async def query_v6(
     question: str,
     group_id: str = "default",
     config: Optional[ResearcherConfig] = None,
+    max_concurrent: int = 10,
 ) -> PipelineResult:
     """
     Convenience function to run a single query through V6 pipeline.
 
     V6 uses threshold-only retrieval (no LLM scoring) for ~5-10x faster queries.
 
+    Args:
+        question: The question to answer
+        group_id: Neo4j tenant/group ID
+        config: ResearcherConfig for feature toggles
+        max_concurrent: Max parallel sub-query researchers (default: 10)
+
     Example:
         result = await query_v6("What economic conditions did Boston report?")
         print(result.answer)
     """
-    pipeline = V6Pipeline(group_id=group_id, config=config)
+    pipeline = V6Pipeline(group_id=group_id, config=config, max_concurrent=max_concurrent)
     return await pipeline.query(question)

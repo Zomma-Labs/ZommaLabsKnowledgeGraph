@@ -27,3 +27,6 @@ package-lock.json
 
 # Cache files
 *.npz
+
+# Git worktrees
+.worktrees/

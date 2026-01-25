@@ -1,0 +1,4612 @@
+{
+  "timestamp": "2026-01-24T21:56:21.779450",
+  "system": "v7_knowledge_graph",
+  "total_questions": 50,
+  "summary": {
+    "correct": 45,
+    "partially_correct": 3,
+    "incorrect": 2,
+    "abstain": 0,
+    "strict_accuracy": 0.9,
+    "lenient_accuracy": 0.96,
+    "avg_time_sec": 85.97673120975494,
+    "avg_confidence": 0.8197999999999998
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "What is Alphabet Inc.?",
+      "expected": "Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California.",
+      "answer": "Alphabet Inc. is an American multinational technology conglomerate and **holding company**\u2014the publicly traded parent company of **Google** and a range of other subsidiaries. It was **created on October 2, 2015** through a corporate restructuring of Google, after which Alphabet became \u201cthe parent holding company of Google and several former Google subsidiaries.\u201d Alphabet is headquartered at the **Googleplex in Mountain View, California**, and its shares trade on **Nasdaq** under **GOOGL** and **GOOG**. [Source: alphabet, 2024-12-31]\n\nAlphabet\u2019s structure is intended to make Google\u2019s core business \u201ccleaner and more accountable\u201d while giving other, non-internet-focused \u201cgroup companies\u201d more autonomy. [Source: alphabet, 2024-12-31]\n\n**What Alphabet owns/oversees (examples):**\n- **Google (largest subsidiary):** umbrella for Alphabet\u2019s internet-related businesses, including **Google Search, Android, and YouTube**. [Source: alphabet, 2024-12-31]\n- Other subsidiaries across technology and innovation areas, including **Waymo** (autonomous driving), **Verily** and **Calico** (health/life sciences), **Wing** (drone delivery), **Google Fiber** (connectivity), **X Development** (R&D \u201cmoonshots\u201d), and investment arms **GV** and **CapitalG**; it also includes companies such as **Isomorphic Labs** and **Intrinsic**. [Source: alphabet, 2024-12-31]\n\n**Corporate structure note:** Following internal reorganizations, Alphabet\u2019s equity has been held through a subsidiary called **XXVI Holdings, Inc.** (noted as of **September 1, 2017**), and Google was reorganized as **Google LLC** around the same time. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The expected answer is that Alphabet Inc. is an American multinational technology conglomerate holding company headquartered in Mountain View, California. The agent\u2019s answer states that Alphabet is an American multinational technology conglomerate and holding company, notes it is the parent of Google and other subsidiaries, and explicitly says it is headquartered at the Googleplex in Mountain View, California. These match all key elements of the expected answer. The additional history, stock details, and subsidiary list are accurate elaborations and do not contradict the expected answer, so the response is correct.",
+      "confidence": 0.9,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. company overview",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "f473e1e4-513f-5811-9259-cf29c6828429",
+              "header": "Alphabet Inc. > Corporate identity"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Google",
+            "Googleplex",
+            "Mountain View, California",
+            "United States",
+            "Nasdaq",
+            "GOOGL",
+            "GOOG",
+            "Calico",
+            "Verily",
+            "Waymo",
+            "Google Fiber",
+            "Wing",
+            "X Development",
+            "GV",
+            "CapitalG",
+            "Isomorphic Labs",
+            "Intrinsic",
+            "Android",
+            "YouTube",
+            "Google Search"
+          ]
+        },
+        {
+          "sub_query": "Alphabet Inc. corporate structure",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "f473e1e4-513f-5811-9259-cf29c6828429",
+              "header": "Alphabet Inc. > Corporate identity"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Google",
+            "Google Inc.",
+            "Google LLC",
+            "XXVI Holdings, Inc.",
+            "Calico",
+            "GV",
+            "CapitalG",
+            "Verily",
+            "Waymo",
+            "Wing",
+            "Android",
+            "YouTube",
+            "Google Search"
+          ]
+        }
+      ],
+      "agent_time_sec": 74.03270697593689,
+      "decomposition_time_ms": 7152,
+      "resolution_time_ms": 47834,
+      "retrieval_time_ms": 5050,
+      "synthesis_time_ms": 7398,
+      "judge_time_sec": 9.330318689346313
+    },
+    {
+      "question_id": 2,
+      "question": "When was Alphabet Inc. created?",
+      "expected": "Alphabet Inc. was created on October 2, 2015.",
+      "answer": "Alphabet Inc. was created on **October 2, 2015**, when it was established as Google\u2019s new holding company. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer states that Alphabet Inc. was created on October 2, 2015, which exactly matches the expected answer. Additional contextual detail about it being Google's holding company does not conflict and is accurate. Therefore, the answer is correct.",
+      "confidence": 0.95,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. creation date",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Google"
+          ]
+        }
+      ],
+      "agent_time_sec": 46.92733550071716,
+      "decomposition_time_ms": 5261,
+      "resolution_time_ms": 16667,
+      "retrieval_time_ms": 4960,
+      "synthesis_time_ms": 1011,
+      "judge_time_sec": 1.5552113056182861
+    },
+    {
+      "question_id": 3,
+      "question": "Where is Alphabet Inc. headquartered?",
+      "expected": "Mountain View, California",
+      "answer": "Alphabet Inc. is headquartered in **Mountain View, California (United States)**. This location is identified as the company\u2019s headquarters in Alphabet\u2019s corporate information (dated **2024-12-31**). [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer states that Alphabet Inc. is headquartered in Mountain View, California, which exactly matches the expected answer. Adding \u201cUnited States\u201d and a date/source does not conflict and is accurate, so the answer is correct.",
+      "confidence": 0.98,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. headquarters location",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Mountain View",
+            "California"
+          ]
+        }
+      ],
+      "agent_time_sec": 61.55321907997131,
+      "decomposition_time_ms": 6274,
+      "resolution_time_ms": 26993,
+      "retrieval_time_ms": 1308,
+      "synthesis_time_ms": 10127,
+      "judge_time_sec": 1.609156608581543
+    },
+    {
+      "question_id": 4,
+      "question": "Who is the current CEO of Alphabet Inc.?",
+      "expected": "Sundar Pichai",
+      "answer": "The current CEO of Alphabet Inc. is **Sundar Pichai**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identified Sundar Pichai as the current CEO of Alphabet Inc., which matches the expected answer. The added source note does not conflict with the required information.",
+      "confidence": 0.95,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "current CEO Alphabet Inc.",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "f473e1e4-513f-5811-9259-cf29c6828429",
+              "header": "Alphabet Inc. > Corporate identity"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Sundar Pichai"
+          ]
+        }
+      ],
+      "agent_time_sec": 46.01142382621765,
+      "decomposition_time_ms": 7436,
+      "resolution_time_ms": 25773,
+      "retrieval_time_ms": 2210,
+      "synthesis_time_ms": 887,
+      "judge_time_sec": 2.1022696495056152
+    },
+    {
+      "question_id": 5,
+      "question": "Who are the founders of Google (and later Alphabet)?",
+      "expected": "Larry Page and Sergey Brin",
+      "answer": "- **Google (co-founders):**\n  - **Larry Page** [Source: alphabet, 2024-12-31]\n  - **Sergey Brin** [Source: alphabet, 2024-12-31]\n\n- **Alphabet Inc. (founders):**\n  - **Larry Page** [Source: alphabet, 2024-12-31]\n  - **Sergey Brin** [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Larry Page and Sergey Brin as the co-founders of Google and also as the founders of Alphabet Inc., which matches the expected answer. The added structuring and repetition do not introduce any errors.",
+      "confidence": 0.95,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "founders of Google",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances"
+            },
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Google",
+            "Larry Page",
+            "Sergey Brin"
+          ]
+        },
+        {
+          "sub_query": "founders of Alphabet",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Larry Page",
+            "Sergey Brin"
+          ]
+        }
+      ],
+      "agent_time_sec": 47.55648350715637,
+      "decomposition_time_ms": 8208,
+      "resolution_time_ms": 57559,
+      "retrieval_time_ms": 2789,
+      "synthesis_time_ms": 1377,
+      "judge_time_sec": 2.068486452102661
+    },
+    {
+      "question_id": 6,
+      "question": "What is the domain name used by Alphabet Inc.?",
+      "expected": "abc.xyz",
+      "answer": "Alphabet Inc. uses the domain name **abc.xyz** (official website: **https://abc.xyz/**). [Source: alphabet, 2024-12-31]\n\nSupporting details: Alphabet\u2019s primary official web presence is **abc.xyz**. [Source: alphabet, 2024-12-31] It specifically does **not** use **alphabet.com** (owned by a BMW fleet management division) or **abc.com** (owned by the Disney-owned American Broadcasting Company). [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer correctly identifies Alphabet Inc.'s domain name as abc.xyz and even provides the full URL. This matches the expected answer exactly, with additional accurate context that does not contradict anything. Therefore the answer is correct.",
+      "confidence": 0.98,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. domain name",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "abc.xyz"
+          ]
+        },
+        {
+          "sub_query": "Alphabet Inc. official website",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "abc.xyz",
+            "alphabet.com",
+            "abc.com",
+            "BMW",
+            "American Broadcasting Company (ABC)"
+          ]
+        }
+      ],
+      "agent_time_sec": 37.41287112236023,
+      "decomposition_time_ms": 7112,
+      "resolution_time_ms": 38546,
+      "retrieval_time_ms": 2871,
+      "synthesis_time_ms": 2315,
+      "judge_time_sec": 10.461143493652344
+    },
+    {
+      "question_id": 7,
+      "question": "What are the ticker symbols for Alphabet on Nasdaq?",
+      "expected": "GOOGL and GOOG",
+      "answer": "Alphabet Inc. trades on the Nasdaq under two ticker symbols: **GOOGL** (Class A shares) and **GOOG** (Class C shares). [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent listed both ticker symbols, GOOGL and GOOG, and correctly identified that they are Alphabet\u2019s Nasdaq listings. This fully matches the expected answer, with minor extra detail about share classes that is accurate.",
+      "confidence": 0.95,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet ticker symbols Nasdaq",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Nasdaq",
+            "GOOGL",
+            "GOOG"
+          ]
+        }
+      ],
+      "agent_time_sec": 53.490314960479736,
+      "decomposition_time_ms": 7701,
+      "resolution_time_ms": 40040,
+      "retrieval_time_ms": 1787,
+      "synthesis_time_ms": 1155,
+      "judge_time_sec": 344.1379566192627
+    },
+    {
+      "question_id": 8,
+      "question": "Who is the Chairman of Alphabet Inc.?",
+      "expected": "John L. Hennessy",
+      "answer": "The Chairman of Alphabet Inc. is **John L. Hennessy**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer matches the expected answer exactly: it correctly identifies John L. Hennessy as the Chairman of Alphabet Inc.",
+      "confidence": 0.93,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Chairman of Alphabet Inc.",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "John L. Hennessy"
+          ]
+        }
+      ],
+      "agent_time_sec": 44.577611207962036,
+      "decomposition_time_ms": 5443,
+      "resolution_time_ms": 34571,
+      "retrieval_time_ms": 1622,
+      "synthesis_time_ms": 797,
+      "judge_time_sec": 1.2827777862548828
+    },
+    {
+      "question_id": 9,
+      "question": "Who is the CFO of Alphabet Inc.?",
+      "expected": "Anat Ashkenazi",
+      "answer": "The CFO of Alphabet Inc. is **Anat Ashkenazi**. **Alphabet identified Anat Ashkenazi as its Chief Financial Officer in its reporting dated 2024-12-31**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Anat Ashkenazi as the CFO of Alphabet Inc., which matches the expected answer. The additional contextual detail about reporting dated 2024-12-31 does not contradict the expected answer and is acceptable.",
+      "confidence": 0.9,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. CFO",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Anat Ashkenazi"
+          ]
+        }
+      ],
+      "agent_time_sec": 389.2570185661316,
+      "decomposition_time_ms": 9449,
+      "resolution_time_ms": 372376,
+      "retrieval_time_ms": 3138,
+      "synthesis_time_ms": 1201,
+      "judge_time_sec": 1.4831159114837646
+    },
+    {
+      "question_id": 10,
+      "question": "Who is the President and Chief Investment Officer of Alphabet?",
+      "expected": "Ruth Porat",
+      "answer": "The **President and Chief Investment Officer (CIO) of Alphabet Inc. is Ruth Porat**. **As of 2024-12-31**, Alphabet lists **Ruth Porat** with the executive titles **President** and **Chief Investment Officer**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Ruth Porat as the President and Chief Investment Officer of Alphabet, matching the expected answer. Additional context about timing and titles is consistent and does not contradict the expected answer.",
+      "confidence": 0.9,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet President and Chief Investment Officer",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Ruth Porat"
+          ]
+        }
+      ],
+      "agent_time_sec": 380.56315660476685,
+      "decomposition_time_ms": 8611,
+      "resolution_time_ms": 363737,
+      "retrieval_time_ms": 3179,
+      "synthesis_time_ms": 1482,
+      "judge_time_sec": 8.55223536491394
+    },
+    {
+      "question_id": 11,
+      "question": "When did Larry Page and Sergey Brin step down from their executive roles?",
+      "expected": "December 2019",
+      "answer": "Larry Page and Sergey Brin stepped down from their executive roles on **December 3, 2019**, when they announced they were resigning from their respective executive posts at **Alphabet Inc.** and **Sundar Pichai** would become **CEO of Alphabet** (while also remaining **CEO of Google**). [Source: alphabet, 2024-12-31]\n\nSupporting details: Although they left day-to-day executive management, Page and Brin remained **employees, board members, and controlling shareholders** with **majority voting power**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The expected answer is simply \"December 2019.\" The agent answered with the more specific date \"December 3, 2019,\" which is consistent with and refines the expected answer rather than contradicting it. Therefore, it is correct.",
+      "confidence": 0.93,
+      "num_sub_answers": 3,
+      "chunks_summary": [
+        {
+          "sub_query": "Larry Page step down executive roles date",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Larry Page",
+            "Alphabet Inc.",
+            "Sergey Brin",
+            "Sundar Pichai"
+          ]
+        },
+        {
+          "sub_query": "Sergey Brin step down executive roles date",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "108254d8-26d6-5f5a-99b5-432488b94527",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Sergey Brin",
+            "Alphabet Inc.",
+            "Larry Page",
+            "Sundar Pichai"
+          ]
+        },
+        {
+          "sub_query": "Alphabet Inc leadership transition founders departure",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Larry Page",
+            "Sergey Brin",
+            "Sundar Pichai",
+            "Google",
+            "Google LLC",
+            "XXVI Holdings, Inc.",
+            "Delaware General Corporation Law",
+            "X Development",
+            "Calico",
+            "Nest",
+            "Verily",
+            "Fiber",
+            "CapitalG",
+            "GV",
+            "Alphabet Inc. Board Of Directors"
+          ]
+        }
+      ],
+      "agent_time_sec": 406.0669221878052,
+      "decomposition_time_ms": 344017,
+      "resolution_time_ms": 120806,
+      "retrieval_time_ms": 7711,
+      "synthesis_time_ms": 2288,
+      "judge_time_sec": 1.669968843460083
+    },
+    {
+      "question_id": 12,
+      "question": "When did Sundar Pichai become CEO of Alphabet?",
+      "expected": "December 2019",
+      "answer": "Sundar Pichai became CEO of Alphabet on **December 3, 2019**, when Alphabet co-founders **Larry Page** and **Sergey Brin** announced they were stepping down and Pichai (already **CEO of Google**) would assume the role. [alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The expected answer is December 2019. The agent answered December 3, 2019, which is a more specific and accurate date within the same month and year, and does not contradict the expected answer. Therefore it is correct.",
+      "confidence": 0.84,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Sundar Pichai become CEO Alphabet date",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "108254d8-26d6-5f5a-99b5-432488b94527",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Sundar Pichai",
+            "Alphabet Inc.",
+            "Larry Page",
+            "Sergey Brin",
+            "Google"
+          ]
+        }
+      ],
+      "agent_time_sec": 49.73899173736572,
+      "decomposition_time_ms": 13844,
+      "resolution_time_ms": 26393,
+      "retrieval_time_ms": 2562,
+      "synthesis_time_ms": 1333,
+      "judge_time_sec": 1.6081185340881348
+    },
+    {
+      "question_id": 13,
+      "question": "What was the primary reason for creating Alphabet Inc. as stated by the founders?",
+      "expected": "To make the core Google business cleaner and more accountable while allowing greater autonomy to group companies that operate in businesses other than Internet services.",
+      "answer": "The founders\u2019 primary stated reason for creating **Alphabet Inc.** was to make the core **Google** business **\u201ccleaner and more accountable,\u201d** improving **\u201ctransparency and oversight\u201d** through a new holding-company structure. [Source: alphabet, 2024-12-31]\n\n**Supporting details (founders\u2019 statement):**\n- In Larry Page\u2019s official announcement **\u201cG is for Google\u201d** published on **August 10, 2015**, he explained that reorganizing under Alphabet would increase accountability and transparency for Google\u2019s main business. [Source: alphabet, 2024-12-31]\n- Page also said the structure would let businesses that were **\u201cpretty far afield\u201d** from Google\u2019s core products operate **more independently**, providing **\u201cmore management scale\u201d** by running less-related units separately under Alphabet. [Source: alphabet, 2024-12-31]\n- The cited official explanation is Page\u2019s post; the provided evidence does not identify a separate founder letter by **Sergey Brin** explaining the creation rationale (though Brin is referenced as co-running Alphabet after the reorganization). [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer includes the key elements of the expected answer: (1) that Alphabet was created to make the core Google business \u201ccleaner and more accountable,\u201d and (2) that the new structure would allow the non-core, farther-afield businesses to operate more independently (i.e., with greater autonomy). Although the agent uses slightly different wording (\u201cmore independently\u201d and mentions management scale) rather than the exact phrase \u201cgreater autonomy to group companies that operate in businesses other than Internet services,\u201d it clearly conveys the same substantive point. It also correctly attributes the rationale to Larry Page\u2019s \u201cG is for Google\u201d letter. Therefore the response matches all key facts and is correct.",
+      "confidence": 0.82,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc. creation reason founders statement",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Larry Page",
+            "Google",
+            "Sergey Brin"
+          ]
+        },
+        {
+          "sub_query": "Larry Page Sergey Brin letter Alphabet Inc. formation",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Larry Page",
+            "Sergey Brin",
+            "Alphabet Inc.",
+            "Google",
+            "Sundar Pichai",
+            "X Development",
+            "Calico",
+            "Nest",
+            "Verily",
+            "Fiber",
+            "CapitalG",
+            "GV"
+          ]
+        }
+      ],
+      "agent_time_sec": 368.36175870895386,
+      "decomposition_time_ms": 7824,
+      "resolution_time_ms": 685595,
+      "retrieval_time_ms": 2253,
+      "synthesis_time_ms": 3663,
+      "judge_time_sec": 3.2606589794158936
+    },
+    {
+      "question_id": 14,
+      "question": "What company's management structure inspired Alphabet's organizational design?",
+      "expected": "Berkshire Hathaway",
+      "answer": "**Alphabet\u2019s management/holding-company structure was inspired by Warren Buffett\u2019s Berkshire Hathaway.** Former Google executive Eric Schmidt said the reorganization drew on Buffett\u2019s model of a holding company composed of subsidiaries led by strong, trusted CEOs, and that he urged Larry Page and Sergey Brin to visit Buffett in Omaha to see Berkshire Hathaway\u2019s management structure firsthand. [Source: alphabet, 2024-12-31]\n\nFor context, when Larry Page announced the Alphabet reorganization in **2015**, he explained it as a way to create **more management scale**, let less-related businesses operate more **independently**, keep **Google slimmer**, and improve **accountability, transparency, and oversight**\u2014but Schmidt specifically identified **Berkshire Hathaway** as the structural inspiration. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer explicitly identifies Berkshire Hathaway as the company whose management structure inspired Alphabet\u2019s organizational design and provides consistent supporting detail. This matches the expected answer with no contradictions, so it is correct.",
+      "confidence": 0.86,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet organizational design inspiration",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc.",
+            "Berkshire Hathaway",
+            "Warren Buffett",
+            "Eric Schmidt",
+            "Larry Page",
+            "Sergey Brin"
+          ]
+        },
+        {
+          "sub_query": "Larry Page Alphabet structure model company",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Larry Page",
+            "Eric Schmidt",
+            "Warren Buffett",
+            "Berkshire Hathaway",
+            "Google"
+          ]
+        }
+      ],
+      "agent_time_sec": 85.09657835960388,
+      "decomposition_time_ms": 9626,
+      "resolution_time_ms": 99747,
+      "retrieval_time_ms": 2917,
+      "synthesis_time_ms": 8399,
+      "judge_time_sec": 1.6046440601348877
+    },
+    {
+      "question_id": 15,
+      "question": "Who revealed that Warren Buffett's Berkshire Hathaway inspired Alphabet's structure?",
+      "expected": "Eric Schmidt",
+      "answer": "**Former Google/Alphabet executive Eric Schmidt** revealed that Warren Buffett\u2019s **Berkshire Hathaway** inspired Alphabet\u2019s holding-company structure. **Schmidt said in 2017 (at a conference)** that Alphabet\u2019s design drew on Buffett\u2019s Berkshire model, and he described urging **Larry Page and Sergey Brin** to meet Buffett in **Omaha** to see how Berkshire runs subsidiaries led by trusted CEOs. [Source: alphabet, 2024-12-31]\n\nLater media coverage (e.g., a **Business Insider/Markets Insider** piece dated **Dec. 5, 2019**) echoed Schmidt\u2019s disclosure by reporting that Google\u2019s founders modeled Alphabet after meeting Buffett/Berkshire. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Eric Schmidt as the person who revealed that Berkshire Hathaway inspired Alphabet's structure. The additional contextual details do not contradict the expected answer, so the response is correct.",
+      "confidence": 0.86,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Who revealed Warren Buffett Berkshire Hathaway inspired Alphabet structure",
+          "high_relevance": [
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "f473e1e4-513f-5811-9259-cf29c6828429",
+              "header": "Alphabet Inc. > Corporate identity",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Eric Schmidt",
+            "Alphabet",
+            "Warren Buffett",
+            "Berkshire Hathaway"
+          ]
+        },
+        {
+          "sub_query": "Alphabet corporate structure modeled after Berkshire Hathaway source",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc.",
+            "Berkshire Hathaway",
+            "Eric Schmidt",
+            "Warren Buffett",
+            "Larry Page",
+            "Sergey Brin",
+            "Omaha",
+            "Business Insider",
+            "Markets Insider"
+          ]
+        }
+      ],
+      "agent_time_sec": 46.46018314361572,
+      "decomposition_time_ms": 6724,
+      "resolution_time_ms": 55206,
+      "retrieval_time_ms": 4046,
+      "synthesis_time_ms": 2163,
+      "judge_time_sec": 1.7170007228851318
+    },
+    {
+      "question_id": 16,
+      "question": "List the major subsidiaries of Alphabet mentioned in the article.",
+      "expected": "Google, X Development, Calico, Verily, Waymo, Google Fiber, CapitalG, GV, DeepMind, Intrinsic, Isomorphic Labs",
+      "answer": "- **Core / main operating subsidiaries**\n  - Google [Source: alphabet, 2024-12-31]\n  - YouTube [Source: alphabet, 2024-12-31]\n\n- **\u201cOther Bets\u201d and related operating subsidiaries**\n  - Waymo [Source: alphabet, 2024-12-31]\n  - Verily [Source: alphabet, 2024-12-31]\n  - Calico [Source: alphabet, 2024-12-31]\n  - X Development (moonshot R&D) [Source: alphabet, 2024-12-31]\n  - Wing [Source: alphabet, 2024-12-31]\n  - Google Fiber [Source: alphabet, 2024-12-31]\n  - Isomorphic Labs [Source: alphabet, 2024-12-31]\n  - Intrinsic [Source: alphabet, 2024-12-31]\n  - Mineral [Source: alphabet, 2024-12-31]\n\n- **Investment arms (Alphabet subsidiaries)**\n  - GV [Source: alphabet, 2024-12-31]\n  - CapitalG [Source: alphabet, 2024-12-31]\n\n- **Former subsidiaries mentioned (no longer standalone Alphabet subsidiaries)**\n  - Nest Labs (merged into Google in February 2018) [Source: alphabet, 2024-12-31]\n  - Chronicle Security (merged with Google Cloud in June 2019) [Source: alphabet, 2024-12-31]\n  - Sidewalk Labs (absorbed into Google in 2021) [Source: alphabet, 2024-12-31]\n  - Loon LLC (shut down; announced January 2021) [Source: alphabet, 2024-12-31]\n\n*Note: This list reflects the subsidiaries explicitly mentioned in the provided article/evidence and may be incomplete relative to Alphabet\u2019s full corporate structure.*",
+      "verdict": "partially_correct",
+      "reasoning": "The expected answer lists: Google, X Development, Calico, Verily, Waymo, Google Fiber, CapitalG, GV, DeepMind, Intrinsic, Isomorphic Labs. The agent\u2019s answer includes all of these except DeepMind, so it is missing a key item. Although it adds extra subsidiaries (e.g., YouTube, Wing, Mineral, etc.), the omission of DeepMind means it is only partially correct, not fully correct.",
+      "confidence": 0.85,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet major subsidiaries",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc.",
+            "Google",
+            "YouTube",
+            "Waymo",
+            "Verily",
+            "Calico",
+            "X Development",
+            "Wing",
+            "Google Fiber",
+            "GV",
+            "CapitalG",
+            "Isomorphic Labs",
+            "Intrinsic",
+            "Mineral",
+            "Nest Labs",
+            "Chronicle Security",
+            "Sidewalk Labs",
+            "Loon LLC"
+          ]
+        }
+      ],
+      "agent_time_sec": 43.61664080619812,
+      "decomposition_time_ms": 8068,
+      "resolution_time_ms": 15679,
+      "retrieval_time_ms": 561,
+      "synthesis_time_ms": 9379,
+      "judge_time_sec": 1.8195476531982422
+    },
+    {
+      "question_id": 17,
+      "question": "What does XXVI Holdings refer to?",
+      "expected": "XXVI Holdings, Inc. (referring to the Roman numeral of 26, the number of letters in the alphabet) is a subsidiary that holds the equity of certain Alphabet companies so they can be valued and legally separated from Google.",
+      "answer": "**XXVI Holdings (XXVI Holdings, Inc.) refers to a holding-company subsidiary of Alphabet Inc.** created as part of Alphabet/Google\u2019s corporate reorganization. **As of September 1, 2017, Alphabet\u2019s equity is held by XXVI Holdings, Inc.** so those equity interests \u201ccan be valued and legally separated from Google.\u201d [Source: alphabet, 2024-12-31]\n\n**What the name means:** \u201cXXVI\u201d is the Roman numeral for **26**, referencing the **26 letters of the alphabet**. [Source: alphabet, 2024-12-31]\n\n**Organizational context:** XXVI Holdings sits beneath **Alphabet Inc.** (the public parent holding company formed in the 2015 restructuring) and functions as an **equity-holding subsidiary** within Alphabet\u2019s holding-company structure. The same set of changes disclosed around that time also included reorganizing Google as **Google LLC**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer correctly identifies XXVI Holdings, Inc. as an Alphabet subsidiary that holds equity interests so they can be valued and legally separated from Google, and correctly explains that \u201cXXVI\u201d refers to the Roman numeral for 26, the number of letters in the alphabet. It includes all key elements from the expected answer and adds consistent contextual detail without contradiction.",
+      "confidence": 0.84,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "XXVI Holdings definition identity",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "dca6da26-5537-5741-a4c1-80489b8a74f4",
+              "header": "Alphabet Inc. > Corporate identity"
+            }
+          ],
+          "entities_found": [
+            "XXVI Holdings, Inc.",
+            "Alphabet Inc.",
+            "Google"
+          ]
+        },
+        {
+          "sub_query": "XXVI Holdings corporate structure",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "3d2a0b84-6de0-5229-8787-59eb41f499c3",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "XXVI Holdings, Inc.",
+            "Alphabet Inc.",
+            "Google",
+            "Google LLC",
+            "X Development",
+            "Calico",
+            "Nest",
+            "Verily",
+            "Fiber",
+            "CapitalG",
+            "GV"
+          ]
+        }
+      ],
+      "agent_time_sec": 54.87040376663208,
+      "decomposition_time_ms": 7761,
+      "resolution_time_ms": 45625,
+      "retrieval_time_ms": 1639,
+      "synthesis_time_ms": 3254,
+      "judge_time_sec": 2.107696771621704
+    },
+    {
+      "question_id": 18,
+      "question": "When was Google reorganized as a limited liability company (LLC)?",
+      "expected": "September 1, 2017",
+      "answer": "Google was reorganized as a limited liability company on **September 1, 2017**, when it became **Google LLC**. [Source: alphabet, 2024-12-31]\n\nSupporting context: Alphabet reported that, as of **Sept. 1, 2017**, it used a subsidiary (**XXVI Holdings, Inc.**) to hold Alphabet\u2019s equity, and **at the same time** Google was reorganized from its prior corporate form into **Google LLC**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer gives the same date as the expected answer\u2014September 1, 2017\u2014and correctly notes that this is when Google became Google LLC. The additional contextual detail about XXVI Holdings, Inc. does not contradict the expected answer and is accurate, so the response is fully correct.",
+      "confidence": 0.83,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Google reorganization as LLC date",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": []
+        },
+        {
+          "sub_query": "Google corporate structure change history",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Google Inc.",
+            "Alphabet Inc.",
+            "Google LLC",
+            "XXVI Holdings, Inc.",
+            "Larry Page",
+            "Sundar Pichai",
+            "Sergey Brin",
+            "Google\u2019s official blog"
+          ]
+        }
+      ],
+      "agent_time_sec": 32.82873511314392,
+      "decomposition_time_ms": 6556,
+      "resolution_time_ms": 23478,
+      "retrieval_time_ms": 1993,
+      "synthesis_time_ms": 2281,
+      "judge_time_sec": 1.7432959079742432
+    },
+    {
+      "question_id": 19,
+      "question": "What subsidiaries were merged back into Google?",
+      "expected": "Nest Labs (merged in February 2018), Chronicle Security (merged in June 2019), and Sidewalk Labs (absorbed in 2021)",
+      "answer": "Subsidiaries/business units reported as merged back into Google (or into a Google division)\n\n- **Nest Labs** \u2014 merged into **Google** in **February 2018**. [Source: alphabet, 2024-12-31]\n- **Chronicle Security** \u2014 merged with **Google Cloud** (i.e., reintegrated under Google via the Cloud division) in **June 2019**. [Source: alphabet, 2024-12-31]\n- **Sidewalk Labs** \u2014 absorbed/folded into **Google** in **2021**. [Source: alphabet, 2024-12-31]\n- **Jigsaw** (Alphabet technology incubator) \u2014 moved under **Google management** (management reintegration under Google). [Source: a2819315-1fa7-4d49-b89e-97aad8eea7ff, date unknown; Source: alphabet, 2024-12-31]\n\nNote: This list reflects only reintegrations explicitly mentioned in the provided sub-answers/sources and may be incomplete.",
+      "verdict": "correct",
+      "reasoning": "The expected answer lists three subsidiaries: Nest Labs, Chronicle Security, and Sidewalk Labs, with their respective reintegration dates. The agent\u2019s answer correctly includes all three with matching descriptions and dates. The agent also adds Jigsaw as an additional example of a unit moved under Google management; adding extra accurate detail is allowed and not penalized. Therefore, the answer fully contains the key expected facts and is correct.",
+      "confidence": 0.78,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "subsidiaries merged back into Google",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "3d2a0b84-6de0-5229-8787-59eb41f499c3",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Nest Labs",
+            "Google",
+            "Chronicle Security",
+            "Google Cloud",
+            "Sidewalk Labs",
+            "Jigsaw",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "Google corporate restructuring subsidiary reintegration",
+          "high_relevance": [
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Google",
+            "Google Inc.",
+            "Alphabet Inc.",
+            "Google LLC",
+            "XXVI Holdings, Inc.",
+            "Nest Labs",
+            "Chronicle Security",
+            "Google Cloud",
+            "Sidewalk Labs",
+            "X Development",
+            "Calico",
+            "Verily",
+            "Google Fiber",
+            "CapitalG",
+            "GV"
+          ]
+        }
+      ],
+      "agent_time_sec": 53.55681538581848,
+      "decomposition_time_ms": 5880,
+      "resolution_time_ms": 57918,
+      "retrieval_time_ms": 2006,
+      "synthesis_time_ms": 3467,
+      "judge_time_sec": 2.3675029277801514
+    },
+    {
+      "question_id": 20,
+      "question": "What subsidiary was shut down in January 2021?",
+      "expected": "Loon LLC",
+      "answer": "The subsidiary that was shut down in January 2021 was **Loon LLC** (an Alphabet subsidiary). Alphabet announced in **January 2021** that it would be winding down and shutting Loon LLC. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Loon LLC as the subsidiary that was shut down in January 2021 and is fully consistent with the expected answer.",
+      "confidence": 0.9,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "subsidiary shut down January 2021",
+          "high_relevance": [
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Loon LLC",
+            "Alphabet Inc.",
+            "Alastair Westgarth"
+          ]
+        }
+      ],
+      "agent_time_sec": 37.38310432434082,
+      "decomposition_time_ms": 7414,
+      "resolution_time_ms": 19129,
+      "retrieval_time_ms": 1329,
+      "synthesis_time_ms": 512,
+      "judge_time_sec": 1.1758663654327393
+    },
+    {
+      "question_id": 21,
+      "question": "What is the name of Alphabet's autonomous vehicle division?",
+      "expected": "Waymo",
+      "answer": "Alphabet\u2019s autonomous vehicle division is **Waymo**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly identifies Alphabet's autonomous vehicle division as Waymo, which matches the expected answer. The extra citation does not conflict with the required information.",
+      "confidence": 0.98,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet autonomous vehicle division name",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Waymo"
+          ]
+        }
+      ],
+      "agent_time_sec": 35.728705644607544,
+      "decomposition_time_ms": 6681,
+      "resolution_time_ms": 17366,
+      "retrieval_time_ms": 580,
+      "synthesis_time_ms": 1011,
+      "judge_time_sec": 1.439361810684204
+    },
+    {
+      "question_id": 22,
+      "question": "Who are the largest institutional shareholders of Alphabet?",
+      "expected": "The Vanguard Group (7.25%), BlackRock (6.27%), and State Street Corporation (3.36%)",
+      "answer": "- **No institutional shareholders identified from the provided sub-answers**\n  - Both sub-queries reported they **could not retrieve the information needed** to identify Alphabet\u2019s largest institutional shareholders (e.g., by share count or ownership percentage). \n\n- **Entities mentioned (not an answer to \u201clargest institutional shareholders\u201d)**\n  - **Alphabet Inc.** (company referenced)\n  - **U.S. Securities and Exchange Commission (SEC)** (data source referenced)\n  - **Larry Page** and **Sergey Brin** (individual founders mentioned, but they are **not institutional shareholders**)\n\n**Note:** This list is **incomplete** with respect to the question. The sub-answers did not provide any actual names of institutional investors (e.g., Vanguard, BlackRock, etc.) or any holdings figures/percentages.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer clearly lists the largest institutional shareholders as The Vanguard Group, BlackRock, and State Street Corporation with their respective percentages. The agent\u2019s answer instead claims that no institutional shareholders were identified and explicitly notes that the list is incomplete and lacks those names. This directly fails to provide the correct shareholders and contradicts the expected information, so the answer is incorrect.",
+      "confidence": 0.12,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "largest institutional shareholders Alphabet",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Larry Page",
+            "Sergey Brin"
+          ]
+        },
+        {
+          "sub_query": "Alphabet top institutional investors SEC filings",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "U.S. Securities and Exchange Commission"
+          ]
+        }
+      ],
+      "agent_time_sec": 36.34116506576538,
+      "decomposition_time_ms": 7309,
+      "resolution_time_ms": 37235,
+      "retrieval_time_ms": 2994,
+      "synthesis_time_ms": 3076,
+      "judge_time_sec": 2.3489413261413574
+    },
+    {
+      "question_id": 23,
+      "question": "What percentage of shares do Larry Page and Sergey Brin each control?",
+      "expected": "Approximately 3% each",
+      "answer": "Each of Alphabet\u2019s founders\u2014**Larry Page** and **Sergey Brin**\u2014controls **around 3% of all Alphabet shares** (each). [Source: alphabet, 2024-12-31]\n\nSupporting detail: Even though their economic ownership is relatively small, **Page and Brin (together with other insiders) control a majority of Alphabet\u2019s voting shares**, giving them controlling influence. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer matches the expected answer, stating that each of Larry Page and Sergey Brin controls around 3% of Alphabet\u2019s shares. The extra contextual detail about voting control does not contradict the expected answer and is accurate, so the response is correct.",
+      "confidence": 0.74,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Larry Page percentage of shares and voting control",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "dca6da26-5537-5741-a4c1-80489b8a74f4",
+              "header": "Alphabet Inc. > Corporate identity"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "3d2a0b84-6de0-5229-8787-59eb41f499c3",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Larry Page",
+            "Alphabet Inc.",
+            "Sergey Brin",
+            "Other insiders",
+            "Alphabet Inc. Board of Directors"
+          ]
+        },
+        {
+          "sub_query": "Sergey Brin percentage of shares and voting control",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "108254d8-26d6-5f5a-99b5-432488b94527",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "dca6da26-5537-5741-a4c1-80489b8a74f4",
+              "header": "Alphabet Inc. > Corporate identity"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "3d2a0b84-6de0-5229-8787-59eb41f499c3",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Sergey Brin",
+            "Alphabet Inc.",
+            "Larry Page",
+            "Alphabet Inc. Board Of Directors",
+            "Other Insiders"
+          ]
+        }
+      ],
+      "agent_time_sec": 36.29620838165283,
+      "decomposition_time_ms": 8932,
+      "resolution_time_ms": 25890,
+      "retrieval_time_ms": 1634,
+      "synthesis_time_ms": 6760,
+      "judge_time_sec": 1.6485376358032227
+    },
+    {
+      "question_id": 24,
+      "question": "What is Alphabet's company motto?",
+      "expected": "Do the right thing",
+      "answer": "Alphabet\u2019s company motto is **\u201cDo the right thing.\u201d** It was adopted as the motto in **October 2015** and appears in **Alphabet Inc.\u2019s corporate code of conduct**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The expected answer is that Alphabet's company motto is \"Do the right thing.\" The agent explicitly states that Alphabet\u2019s company motto is \u201cDo the right thing,\u201d matching the expected answer exactly. The extra details about adoption date and code of conduct do not contradict anything, so the answer is fully correct.",
+      "confidence": 0.86,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet company motto slogan",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Alphabet",
+            "Google"
+          ]
+        }
+      ],
+      "agent_time_sec": 44.38213276863098,
+      "decomposition_time_ms": 5493,
+      "resolution_time_ms": 32053,
+      "retrieval_time_ms": 1537,
+      "synthesis_time_ms": 1233,
+      "judge_time_sec": 1.5972774028778076
+    },
+    {
+      "question_id": 25,
+      "question": "What was Google's original motto that is still retained in Google's code of conduct?",
+      "expected": "Don't be evil",
+      "answer": "Google\u2019s original motto\u2014still retained in Google\u2019s code of conduct\u2014is **\u201cDon\u2019t be evil.\u201d** [Source: alphabet, 2024-12-31]\n\n**Supporting details:**\n- Google\u2019s early/unofficial original motto is identified as **\u201cDon\u2019t be evil,\u201d** and it is described as being retained in Google\u2019s code of conduct. [Source: alphabet, 2024-12-31]\n- After the creation of Alphabet (October **2015**), Alphabet\u2019s corporate code of conduct adopted the motto **\u201cDo the right thing,\u201d** but **Google\u2019s own code of conduct kept (\u201cretained\u201d) its original motto, \u201cDon\u2019t be evil,\u201d** once Google became an Alphabet subsidiary. [Source: alphabet, 2024-12-31]\n\n**Note on related wording:** Google\u2019s long-standing mission statement, **\u201cto organize the world's information and make it universally accessible and useful,\u201d** is also described as a guiding principle \u201cfrom the outset,\u201d but it is distinct from the \u201coriginal motto\u201d referenced in the code-of-conduct context. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent explicitly states that Google\u2019s original motto, still retained in Google\u2019s code of conduct, is \u201cDon\u2019t be evil,\u201d which matches the expected answer exactly. Additional contextual details about Alphabet and other slogans do not contradict this and are accurate, so the answer is correct.",
+      "confidence": 0.83,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Google original motto",
+          "high_relevance": [
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances"
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances"
+            }
+          ],
+          "entities_found": [
+            "Google",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "Google code of conduct motto retained",
+          "high_relevance": [
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances"
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances"
+            },
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Google",
+            "Alphabet Inc.",
+            "Google (code of conduct motto \"Don\u2019t be evil\")",
+            "Alphabet corporate code of conduct motto \"Do the right thing\""
+          ]
+        }
+      ],
+      "agent_time_sec": 68.63135433197021,
+      "decomposition_time_ms": 6602,
+      "resolution_time_ms": 62644,
+      "retrieval_time_ms": 1892,
+      "synthesis_time_ms": 3715,
+      "judge_time_sec": 2.1892457008361816
+    },
+    {
+      "question_id": 26,
+      "question": "Why did Larry Page say they chose the name 'Alphabet'?",
+      "expected": "Because it means a collection of letters that represent language, one of humanity's most important innovations, and is the core of how they index with Google search. Also because it means alpha-bet (Alpha is investment return above benchmark).",
+      "answer": "Larry Page said they chose the name **\u201cAlphabet\u201d** for two main, explicitly stated reasons:\n\n1) **Because it signals \u201clanguage,\u201d which aligns with Google Search\u2019s core function.**\n- They picked \u201cAlphabet\u201d **because it conveys \u201ca collection of letters that represent language,\u201d** which Page described as **\u201cone of humanity\u2019s most important innovations.\u201d** This choice was **caused by** the company\u2019s connection to organizing information through language; **as a result**, the name reflects that **language is \u201cthe core of how we index with Google search.\u201d** [Source: alphabet, 2024-12-31]\n\n2) **Because it also works as a performance-oriented pun: \u201calpha-bet.\u201d**\n- Page added a secondary rationale: they liked the wordplay **\u201calpha-bet.\u201d** This was **caused by** an intended association with the investing term **\u201calpha,\u201d** which he defined as **\u201cinvestment return above benchmark,\u201d** and said they **\u201cstrive for.\u201d** [Source: alphabet, 2024-12-31]\n- **Gap/limit:** In the announcement text, Page did **not** give any additional explicit meaning for the **\u201cbet\u201d** part beyond it being part of the pun. [Source: alphabet, 2024-12-31]\n\nThese reasons are **directly asserted by Page** (i.e., established causation from the source), rather than inferred correlations. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer includes both key elements from the expected answer: (1) that Alphabet refers to a collection of letters representing language, one of humanity\u2019s most important innovations and core to how Google indexes information via search, and (2) that it is also a play on \u201calpha-bet,\u201d where alpha refers to investment returns above a benchmark. The additional explanatory phrasing and minor commentary do not contradict anything, so the answer is fully correct.",
+      "confidence": 0.88,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Larry Page explanation for choosing name Alphabet",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Larry Page",
+            "Alphabet",
+            "Google Search"
+          ]
+        },
+        {
+          "sub_query": "Larry Page Alphabet name meaning alpha-bet",
+          "high_relevance": [
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Larry Page",
+            "Alphabet",
+            "Google",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 46.60595512390137,
+      "decomposition_time_ms": 11011,
+      "resolution_time_ms": 42446,
+      "retrieval_time_ms": 2206,
+      "synthesis_time_ms": 5914,
+      "judge_time_sec": 2.305436134338379
+    },
+    {
+      "question_id": 27,
+      "question": "What was the actual inspiration for the name Alphabet according to Eric Schmidt's 2018 talk?",
+      "expected": "The location of the then Google Hamburg office's street address: ABC-Stra\u00dfe",
+      "answer": "Eric Schmidt said the actual inspiration for the name **Alphabet** was **Google\u2019s Hamburg office being located on \u201cABC-Stra\u00dfe\u201d (ABC Street)**\u2014i.e., the name was inspired by that street/address connection rather than a more abstract branding concept. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer correctly states that, according to Eric Schmidt\u2019s 2018 talk, the inspiration for the name Alphabet was the street address of Google\u2019s Hamburg office: ABC-Stra\u00dfe. This matches the expected answer exactly, with only minor rephrasing and added clarification, and contains no contradictions or omissions of the key fact.",
+      "confidence": 0.74,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Eric Schmidt 2018 talk Alphabet name inspiration",
+          "high_relevance": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "f473e1e4-513f-5811-9259-cf29c6828429",
+              "header": "Alphabet Inc. > Corporate identity",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Eric Schmidt",
+            "Alphabet",
+            "Google Hamburg office",
+            "Abc-Stra\u00dfe (ABC-Stra\u00dfe)"
+          ]
+        }
+      ],
+      "agent_time_sec": 59.08570861816406,
+      "decomposition_time_ms": 6202,
+      "resolution_time_ms": 30969,
+      "retrieval_time_ms": 2257,
+      "synthesis_time_ms": 1820,
+      "judge_time_sec": 3.1411445140838623
+    },
+    {
+      "question_id": 28,
+      "question": "Does Alphabet own the domain alphabet.com?",
+      "expected": "No, alphabet.com is owned by a fleet management division of BMW",
+      "answer": "No. Alphabet Inc. does **not** own the domain **alphabet.com**. \n\nInstead, **alphabet.com is owned/controlled by a fleet management division of BMW (Bayerische Motoren Werke AG)**, according to the provided evidence. Alphabet Inc. has used **abc.xyz** as its corporate domain rather than alphabet.com. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that Alphabet Inc. does not own alphabet.com and that the domain is owned by a fleet management division of BMW. This matches the expected answer, with some additional accurate context about Alphabet using abc.xyz as its corporate domain. Therefore, the answer is correct.",
+      "confidence": 0.84,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "who owns the domain alphabet.com",
+          "high_relevance": [
+            {
+              "chunk_id": "dca6da26-5537-5741-a4c1-80489b8a74f4",
+              "header": "Alphabet Inc. > Corporate identity",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c22c9545-6cce-52e1-9f0a-0d4823c7efde",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "alphabet.com",
+            "Bayerische Motoren Werke AG (BMW)",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "Alphabet Inc ownership of alphabet.com domain",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "alphabet.com",
+            "abc.xyz",
+            "Bayerische Motoren Werke AG (BMW)"
+          ]
+        }
+      ],
+      "agent_time_sec": 40.36523795127869,
+      "decomposition_time_ms": 7703,
+      "resolution_time_ms": 43896,
+      "retrieval_time_ms": 2009,
+      "synthesis_time_ms": 1424,
+      "judge_time_sec": 2.093320608139038
+    },
+    {
+      "question_id": 29,
+      "question": "When did Alphabet reach a $1 trillion market value?",
+      "expected": "January 16, 2020",
+      "answer": "Alphabet reached a **$1 trillion market value on January 16, 2020**, when it became the **fourth U.S. company** to hit the $1 trillion market-cap milestone. [Source: alphabet, 2024-12-31]\n\nFor context, Alphabet later crossed **$2 trillion** for the first time on **April 26, 2024** following strong Q1 earnings and announcements including its **first-ever dividend** and a **$70 billion stock buyback**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that Alphabet reached a $1 trillion market value on January 16, 2020, which matches the expected answer exactly. Additional contextual details about being the fourth U.S. company and later reaching $2 trillion do not conflict with the required information and are accurate, so the answer is correct.",
+      "confidence": 0.9,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet $1 trillion market value date",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "Alphabet market capitalization history",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc.",
+            "Apple",
+            "Nvidia",
+            "Microsoft"
+          ]
+        }
+      ],
+      "agent_time_sec": 62.52528262138367,
+      "decomposition_time_ms": 14140,
+      "resolution_time_ms": 51684,
+      "retrieval_time_ms": 2985,
+      "synthesis_time_ms": 2983,
+      "judge_time_sec": 1.9655308723449707
+    },
+    {
+      "question_id": 30,
+      "question": "When did Alphabet reach a $2 trillion market valuation?",
+      "expected": "April 26, 2024",
+      "answer": "Alphabet reached a **$2 trillion market valuation on April 26, 2024**, when its market capitalization first surpassed the $2 trillion threshold. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer states that Alphabet reached a $2 trillion market valuation on April 26, 2024, which exactly matches the expected answer. Additional wording about surpassing the threshold does not contradict this and is consistent. Therefore, the answer is correct.",
+      "confidence": 0.92,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet $2 trillion market valuation date",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 28.052273511886597,
+      "decomposition_time_ms": 6157,
+      "resolution_time_ms": 15294,
+      "retrieval_time_ms": 1224,
+      "synthesis_time_ms": 1009,
+      "judge_time_sec": 1.789186716079712
+    },
+    {
+      "question_id": 31,
+      "question": "When did Alphabet reach a $3 trillion market valuation?",
+      "expected": "September 15, 2025",
+      "answer": "Alphabet reached a **$3 trillion market valuation on September 15, 2025**. [Source: alphabet, 2024-12-31]\n\nSupporting context: On that date, Alphabet became the **fourth company**\u2014after **Nvidia, Microsoft, and Apple**\u2014to surpass **$3 trillion** in market capitalization. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer matches the expected answer exactly, stating that Alphabet reached a $3 trillion market valuation on September 15, 2025. Additional contextual details about other companies are accurate and do not contradict the core fact.",
+      "confidence": 0.89,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet $3 trillion market valuation date",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "Alphabet market capitalization history milestones",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc.",
+            "Apple",
+            "Nvidia",
+            "Microsoft"
+          ]
+        }
+      ],
+      "agent_time_sec": 347.803772687912,
+      "decomposition_time_ms": 11155,
+      "resolution_time_ms": 648414,
+      "retrieval_time_ms": 2131,
+      "synthesis_time_ms": 1628,
+      "judge_time_sec": 1.4074428081512451
+    },
+    {
+      "question_id": 32,
+      "question": "How many companies reached $3 trillion market cap before Alphabet?",
+      "expected": "Three companies: Nvidia, Microsoft, and Apple",
+      "answer": "- **Number of companies that reached a $3 trillion market cap before Alphabet: 3** \u2014 **Apple, Microsoft, and Nvidia**. [Source: alphabet, 2024-12-31]\n\n- **Companies (and known milestone context) from the provided evidence**:\n  1. **Apple** \u2014 reached **$3T** *before* Alphabet (specific date not provided in the supplied material). [Source: alphabet, 2024-12-31]\n  2. **Microsoft** \u2014 reached **$3T** *before* Alphabet (specific date not provided in the supplied material). [Source: alphabet, 2024-12-31]\n  3. **Nvidia** \u2014 reached **$3T** *before* Alphabet (specific date not provided in the supplied material). [Source: alphabet, 2024-12-31]\n  4. **Alphabet** \u2014 first reached **$3T** on **September 15, 2025**, described as the **fourth** company to do so. [Source: alphabet, 2024-12-31]\n\n- **Completeness note**: This answer is limited to what\u2019s explicitly stated in the provided evidence, which identifies only these three companies as reaching $3T before Alphabet and does not provide their exact $3T dates. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that three companies reached a $3 trillion market cap before Alphabet, and it identifies them as Apple, Microsoft, and Nvidia, which matches the expected answer exactly. The extra contextual details do not contradict anything, so the answer is fully correct.",
+      "confidence": 0.74,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet $3 trillion market cap date",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "companies reached $3 trillion market cap list and dates",
+          "high_relevance": [
+            {
+              "chunk_id": "32f4e539-2096-5d3f-826c-8fe590932831",
+              "header": "Alphabet Inc. > Investments and acquisitions > Acquisitions",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "dca6da26-5537-5741-a4c1-80489b8a74f4",
+              "header": "Alphabet Inc. > Corporate identity",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "4a39ffcc-2afb-58ca-a57b-93887970c1be",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "108254d8-26d6-5f5a-99b5-432488b94527",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Nvidia",
+            "Microsoft",
+            "Apple"
+          ]
+        }
+      ],
+      "agent_time_sec": 70.1668848991394,
+      "decomposition_time_ms": 10549,
+      "resolution_time_ms": 71329,
+      "retrieval_time_ms": 3173,
+      "synthesis_time_ms": 10217,
+      "judge_time_sec": 2.03551983833313
+    },
+    {
+      "question_id": 33,
+      "question": "How many employees did Alphabet lay off in January 2023?",
+      "expected": "Approximately 12,000 jobs, which was 6% of its global workforce",
+      "answer": "Alphabet laid off **about 12,000 employees** in **January 2023** (announced **Jan. 20, 2023** by CEO **Sundar Pichai**). [Source: alphabet, 2024-12-31]",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly stated the approximate number of employees Alphabet laid off (about 12,000) and the timing (January 2023). However, it omitted the detail that this represented about 6% of Alphabet\u2019s global workforce, which is part of the expected answer\u2019s key information. Therefore it is only partially correct.",
+      "confidence": 0.9,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet layoffs January 2023 number of employees",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc.",
+            "Sundar Pichai"
+          ]
+        }
+      ],
+      "agent_time_sec": 28.319887399673462,
+      "decomposition_time_ms": 8873,
+      "resolution_time_ms": 12760,
+      "retrieval_time_ms": 1701,
+      "synthesis_time_ms": 1339,
+      "judge_time_sec": 2.1233620643615723
+    },
+    {
+      "question_id": 34,
+      "question": "What percentage of Alphabet's 2017 revenues came from performance and brand advertising?",
+      "expected": "86%",
+      "answer": "**86%** of Alphabet\u2019s **2017** revenues came from **performance advertising (through user clicks using AdSense and Google Ads) and brand advertising combined**. [Source: alphabet, 2024-12-31]\n\nSupporting details:\n- Alphabet\u2019s **total revenue in 2017** was **US$110,855 million** (about **US$110.9 billion**). [Source: alphabet, 2024-12-31]\n- The cited information **does not provide a separate percentage split** between performance advertising vs. brand advertising\u2014only the **combined 86%** figure is available from the evidence provided. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that 86% of Alphabet\u2019s 2017 revenues came from performance and brand advertising, which matches the expected answer exactly. Additional contextual details about total revenue and the lack of further breakdown do not contradict the required fact, so the answer is fully correct.",
+      "confidence": 0.76,
+      "num_sub_answers": 3,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet 2017 total revenue",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "Alphabet 2017 performance advertising revenue",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc.",
+            "AdSense",
+            "Google Ads"
+          ]
+        },
+        {
+          "sub_query": "Alphabet 2017 brand advertising revenue",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 39.651484966278076,
+      "decomposition_time_ms": 9753,
+      "resolution_time_ms": 43279,
+      "retrieval_time_ms": 4733,
+      "synthesis_time_ms": 3686,
+      "judge_time_sec": 1.8387141227722168
+    },
+    {
+      "question_id": 35,
+      "question": "What was Alphabet's R&D expenditure in 2022?",
+      "expected": "US$39.5 billion",
+      "answer": "Alphabet\u2019s research and development (R&D) expenditure in **2022** was **US$39.5 billion**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer matches the expected value exactly: Alphabet's R&D expenditure in 2022 was stated as US$39.5 billion, which is the same as the expected answer.",
+      "confidence": 0.74,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet R&D expenditure 2022",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 48.29107451438904,
+      "decomposition_time_ms": 7475,
+      "resolution_time_ms": 31802,
+      "retrieval_time_ms": 2272,
+      "synthesis_time_ms": 1943,
+      "judge_time_sec": 2.1823039054870605
+    },
+    {
+      "question_id": 36,
+      "question": "What was Alphabet's ranking in R&D expenditure worldwide in 2022?",
+      "expected": "Second-highest expenditure on research and development worldwide",
+      "answer": "Alphabet ranked **2nd worldwide** in **R&D expenditure in 2022**. [Source: alphabet, 2024-12-31]\n\nAs supporting detail, Alphabet\u2019s total **2022 R&D spending was US$39.5 billion**, which aligns with its top-tier global ranking. [Source: alphabet, 2024-12-31]\n\nNote: A full independent worldwide ranking list for 2022 was not retrieved in the sub-queries, so the response relies on the cited source above for the ranking claim. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The expected answer states that Alphabet had the second-highest (i.e., ranked 2nd) R&D expenditure worldwide in 2022. The agent\u2019s answer explicitly says Alphabet ranked 2nd worldwide in R&D expenditure in 2022, which matches the expected answer. Additional spending details do not contradict anything. Therefore, the answer is correct.",
+      "confidence": 0.72,
+      "num_sub_answers": 3,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet R&D expenditure 2022",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "worldwide R&D expenditure ranking 2022",
+          "high_relevance": [],
+          "topic_chunks": [
+            {
+              "chunk_id": "32f4e539-2096-5d3f-826c-8fe590932831",
+              "header": "Alphabet Inc. > Investments and acquisitions > Acquisitions"
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": []
+        },
+        {
+          "sub_query": "Alphabet ranking R&D expenditure worldwide 2022",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 40.51637005805969,
+      "decomposition_time_ms": 9703,
+      "resolution_time_ms": 60117,
+      "retrieval_time_ms": 6328,
+      "synthesis_time_ms": 3393,
+      "judge_time_sec": 8.333244562149048
+    },
+    {
+      "question_id": 37,
+      "question": "What lawsuit did Alphabet file against Uber in 2017?",
+      "expected": "Alphabet sued Uber over technology similar to Alphabet's proprietary self-driving car technology, related to 14,000 documents believed to have been downloaded and stolen by a former Waymo engineer employed by Uber",
+      "answer": "Alphabet, through its self-driving unit **Waymo**, filed a **trade-secrets lawsuit against Uber in 2017** alleging Uber had improperly acquired and used Waymo\u2019s proprietary autonomous-vehicle (self-driving) technology. The suit centered on claims that a **former Waymo engineer (Anthony Levandowski)** downloaded roughly **14,000 confidential files** before leaving and later brought that information to Uber. The case later **settled in February 2018**, with Uber agreeing not to use the disputed technology and providing Waymo a **0.34% equity stake** (valued at about **$245 million** at the time). [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that Alphabet (via Waymo) filed a trade-secrets lawsuit against Uber in 2017 over Uber\u2019s alleged use of Waymo\u2019s proprietary self-driving technology, and it accurately notes that the case centered on a former Waymo engineer downloading about 14,000 confidential files and bringing them to Uber. This fully matches the expected answer and adds accurate, non-contradictory details about the engineer\u2019s name and the settlement, so the response is correct.",
+      "confidence": 0.66,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet lawsuit against Uber 2017",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Uber",
+            "Waymo",
+            "Anthony Levandowski"
+          ]
+        }
+      ],
+      "agent_time_sec": 49.56902074813843,
+      "decomposition_time_ms": 14489,
+      "resolution_time_ms": 25436,
+      "retrieval_time_ms": 1763,
+      "synthesis_time_ms": 2619,
+      "judge_time_sec": 2.5464675426483154
+    },
+    {
+      "question_id": 38,
+      "question": "How was the Uber-Waymo lawsuit settled?",
+      "expected": "Uber agreed not to use the self-driving technology in dispute and provided Waymo with an equity stake of 0.34%, equating to around $245 million at the firm's early 2018 value",
+      "answer": "The Uber\u2013Waymo lawsuit was settled in **February 2018** with a deal in which **Uber granted Waymo (Alphabet) a 0.34% equity stake in Uber**, described as worth **about $245 million** based on Uber\u2019s valuation at the time, and **Uber agreed not to use the disputed self-driving technology** going forward. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer includes all key elements from the expected answer: it states that the lawsuit was settled in early 2018, that Uber granted Waymo a 0.34% equity stake in Uber valued at about $245 million at the time, and that Uber agreed not to use the disputed self-driving technology. The added detail of the specific month (February 2018) is correct and does not contradict anything, so the answer is fully correct.",
+      "confidence": 0.86,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Uber Waymo lawsuit settlement terms",
+          "high_relevance": [
+            {
+              "chunk_id": "4a39ffcc-2afb-58ca-a57b-93887970c1be",
+              "header": "Alphabet Inc. > Lawsuits and controversies",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d4751491-a981-5f67-ab8d-8a0a94811a02",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "dca6da26-5537-5741-a4c1-80489b8a74f4",
+              "header": "Alphabet Inc. > Corporate identity"
+            }
+          ],
+          "entities_found": [
+            "Uber",
+            "Waymo",
+            "Alphabet Inc.",
+            "Equity Stake Of 0.34% In Uber"
+          ]
+        },
+        {
+          "sub_query": "Uber Waymo legal dispute resolution",
+          "high_relevance": [
+            {
+              "chunk_id": "4a39ffcc-2afb-58ca-a57b-93887970c1be",
+              "header": "Alphabet Inc. > Lawsuits and controversies",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d4751491-a981-5f67-ab8d-8a0a94811a02",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "dca6da26-5537-5741-a4c1-80489b8a74f4",
+              "header": "Alphabet Inc. > Corporate identity"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Waymo",
+            "Uber",
+            "Waymo autonomous vehicle technology",
+            "Equity Stake Of 0.34% In Uber"
+          ]
+        }
+      ],
+      "agent_time_sec": 52.04850387573242,
+      "decomposition_time_ms": 7885,
+      "resolution_time_ms": 58262,
+      "retrieval_time_ms": 3101,
+      "synthesis_time_ms": 7414,
+      "judge_time_sec": 2.5148723125457764
+    },
+    {
+      "question_id": 39,
+      "question": "What was the settlement amount for the Google+ privacy bug class action lawsuit?",
+      "expected": "$7.5 million in July 2020, with a payout to claimants of at least $5 each, with a maximum of $12 each",
+      "answer": "The settlement amount for the Google+ privacy bug class action lawsuit was **$7.5 million** (settled in **July 2020**). [Source: alphabet, 2024-12-31]",
+      "verdict": "partially_correct",
+      "reasoning": "The agent correctly stated the overall settlement amount ($7.5 million) and the timing (July 2020), but it omitted key details from the expected answer about the payout range to claimants (at least $5 each, with a maximum of $12 each). Since not all key facts are included, the answer is only partially correct.",
+      "confidence": 0.93,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Google+ privacy bug class action lawsuit settlement amount",
+          "high_relevance": [
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4751491-a981-5f67-ab8d-8a0a94811a02",
+              "header": "Alphabet Inc. > Lawsuits and controversies",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "4a39ffcc-2afb-58ca-a57b-93887970c1be",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            }
+          ],
+          "entities_found": [
+            "Google+",
+            "Alphabet Inc.",
+            "Google",
+            "Class Action Lawsuit"
+          ]
+        }
+      ],
+      "agent_time_sec": 35.23272895812988,
+      "decomposition_time_ms": 6327,
+      "resolution_time_ms": 12154,
+      "retrieval_time_ms": 11804,
+      "synthesis_time_ms": 1583,
+      "judge_time_sec": 1.9244301319122314
+    },
+    {
+      "question_id": 40,
+      "question": "When did the United States Department of Justice file an antitrust lawsuit against Alphabet?",
+      "expected": "October 2020",
+      "answer": "The United States Department of Justice filed its antitrust lawsuit against Alphabet in **October 2020**. [alphabet, 2024-12-31]\n\nSupporting detail: Alphabet\u2019s disclosure indicates that the **U.S. Department of Justice** brought (filed) the antitrust suit against **Alphabet** during **October 2020**. [alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer matches the expected answer exactly: it states that the DOJ filed the antitrust lawsuit against Alphabet in October 2020. There are no contradictions or missing key facts.",
+      "confidence": 0.72,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "United States Department of Justice antitrust lawsuit Alphabet filing date",
+          "high_relevance": [
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4751491-a981-5f67-ab8d-8a0a94811a02",
+              "header": "Alphabet Inc. > Lawsuits and controversies",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "United States Department of Justice",
+            "Alphabet"
+          ]
+        }
+      ],
+      "agent_time_sec": 41.717448472976685,
+      "decomposition_time_ms": 10584,
+      "resolution_time_ms": 23949,
+      "retrieval_time_ms": 1155,
+      "synthesis_time_ms": 1430,
+      "judge_time_sec": 1.5456125736236572
+    },
+    {
+      "question_id": 41,
+      "question": "When was Alphabet found guilty of violating antitrust law by a U.S. district court?",
+      "expected": "August 2024",
+      "answer": "Alphabet was found guilty of violating U.S. antitrust law by a U.S. district court **in August 2024**. The provided source does not specify a more exact day within that month. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer correctly states that Alphabet was found guilty of violating U.S. antitrust law by a U.S. district court in August 2024, which matches the expected answer. Additional note about lack of exact day does not contradict anything, so the answer is fully correct.",
+      "confidence": 0.72,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet found guilty antitrust law U.S. district court date",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc.",
+            "United States district court"
+          ]
+        }
+      ],
+      "agent_time_sec": 34.102941036224365,
+      "decomposition_time_ms": 6956,
+      "resolution_time_ms": 14002,
+      "retrieval_time_ms": 1055,
+      "synthesis_time_ms": 382,
+      "judge_time_sec": 1.4592945575714111
+    },
+    {
+      "question_id": 42,
+      "question": "What was the settlement amount for Alphabet's antitrust case with France in June 2021?",
+      "expected": "$270 million",
+      "answer": "Alphabet\u2019s antitrust settlement with France in June 2021 was **$270 million** (with France\u2019s competition authority, the **Autorit\u00e9 de la concurrence**). [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that Alphabet\u2019s antitrust settlement with France in June 2021 was $270 million, matching the expected answer. Additional contextual detail about the French competition authority does not conflict with the required information.",
+      "confidence": 0.92,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet antitrust case France settlement amount June 2021",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "79689f69-badc-5a5a-96ee-e98a57edd245",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Autorit\u00e9 de la concurrence (French Competition Authority)",
+            "France"
+          ]
+        }
+      ],
+      "agent_time_sec": 36.38921236991882,
+      "decomposition_time_ms": 6402,
+      "resolution_time_ms": 17798,
+      "retrieval_time_ms": -18,
+      "synthesis_time_ms": 1320,
+      "judge_time_sec": 1.5979816913604736
+    },
+    {
+      "question_id": 43,
+      "question": "What happened to Google's Russian subsidiary in 2022?",
+      "expected": "Russian authorities seized Google's Russian bank account in May 2022, forcing them to file for bankruptcy one month later due to the inability to pay vendors and staff",
+      "answer": "In 2022, Google\u2019s Russian subsidiary (commonly referred to as **Google Russia LLC**) was pushed into insolvency after **Russian authorities seized Google\u2019s local bank account in Russia in May 2022**, cutting the subsidiary off from funds needed to operate. This left the entity unable to meet key obligations\u2014specifically, it could not **pay staff or vendors**\u2014and it therefore moved toward bankruptcy. [Source: alphabet, 2024-12-31]\n\n**What happened, with dates:**\n- **May 2022:** Russian authorities **seized Google\u2019s Russian bank account**, creating an operational cash crunch for Google Russia LLC. [Source: alphabet, 2024-12-31]\n- **May 18, 2022 (reported):** Reuters reported the subsidiary would file for bankruptcy following the account seizure. [Source: alphabet, 2024-12-31]\n- **June 2022:** The subsidiary **filed for bankruptcy about a month later**; Reuters (via Interfax) also reported it **submitted a bankruptcy declaration** (noted as **June 17, 2022** in Reuters-referenced reporting). [Source: alphabet, 2024-12-31]\n\n**Service impact:**\n- Even as the **local Russian legal entity entered bankruptcy proceedings**, Google said its **free consumer services** were intended to remain available in Russia, including **Google Search, YouTube, Gmail, Google Maps, Android, and Google Play**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer accurately states that Russian authorities seized Google's Russian bank account in May 2022, which left the subsidiary unable to pay staff and vendors and led it to file for bankruptcy about a month later. These are precisely the key facts in the expected answer. The additional detail on dates, Reuters reporting, and service impact does not contradict anything and is consistent, so the response is correct.",
+      "confidence": 0.76,
+      "num_sub_answers": 3,
+      "chunks_summary": [
+        {
+          "sub_query": "Google Russian subsidiary 2022 status and events",
+          "high_relevance": [
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "3d2a0b84-6de0-5229-8787-59eb41f499c3",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Google\u2019s Russian subsidiary (Google Russia LLC)",
+            "Russian authorities",
+            "Google\u2019s Russian bank account",
+            "Reuters",
+            "Interfax",
+            "Russia",
+            "Google Search",
+            "YouTube",
+            "Gmail",
+            "Google Maps",
+            "Android",
+            "Google Play",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "Google Russia bankruptcy filing 2022",
+          "high_relevance": [
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "3283e665-3093-5c80-a3cb-61f60debecf2",
+              "header": "Alphabet Inc. > Lawsuits and controversies",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "8b02e71f-f7ef-5a10-968e-ddc993af64bc",
+              "header": "Alphabet Inc."
+            },
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "65547fb9-bf4e-5ace-b7a3-141a7677eaac",
+              "header": "Alphabet Inc. > Structure"
+            }
+          ],
+          "entities_found": [
+            "Google\u2019s Russian subsidiary (Google Russia LLC)",
+            "Russian authorities",
+            "Google\u2019s Russian bank account",
+            "Staff",
+            "Vendors",
+            "Google Search",
+            "YouTube",
+            "Gmail",
+            "Google Maps",
+            "Android",
+            "Google Play",
+            "Russia",
+            "Alphabet Inc.",
+            "Reuters"
+          ]
+        },
+        {
+          "sub_query": "Google Russia bank account seizure 2022",
+          "high_relevance": [
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "5ae6256c-d2e1-5f3a-95b3-25033143d649",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "3283e665-3093-5c80-a3cb-61f60debecf2",
+              "header": "Alphabet Inc. > Lawsuits and controversies",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "1dd3a119-6842-5744-82f4-87806abfd15c",
+              "header": "Alphabet Inc. > Finances"
+            },
+            {
+              "chunk_id": "b398ac2d-d05b-5bde-a218-431ce456eb62",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "4a39ffcc-2afb-58ca-a57b-93887970c1be",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            }
+          ],
+          "entities_found": [
+            "Google\u2019s Russian subsidiary (Google Russia LLC)",
+            "Russian authorities",
+            "Google\u2019s Russian bank account",
+            "Russia",
+            "Alphabet Inc.",
+            "Staff",
+            "Vendors"
+          ]
+        }
+      ],
+      "agent_time_sec": 76.61033606529236,
+      "decomposition_time_ms": 9071,
+      "resolution_time_ms": 140576,
+      "retrieval_time_ms": 4937,
+      "synthesis_time_ms": 9359,
+      "judge_time_sec": 2.996124505996704
+    },
+    {
+      "question_id": 44,
+      "question": "What is the name of Alphabet's quantum computing chip unveiled in December 2024?",
+      "expected": "Willow",
+      "answer": "Alphabet\u2019s quantum computing chip unveiled in December 2024 was named **Willow**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent's answer correctly identifies Alphabet's quantum computing chip unveiled in December 2024 as 'Willow,' which matches the expected answer.",
+      "confidence": 0.93,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet quantum computing chip December 2024 name",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Willow"
+          ]
+        }
+      ],
+      "agent_time_sec": 34.6096625328064,
+      "decomposition_time_ms": 8977,
+      "resolution_time_ms": 19851,
+      "retrieval_time_ms": 1349,
+      "synthesis_time_ms": 922,
+      "judge_time_sec": 1.6417992115020752
+    },
+    {
+      "question_id": 45,
+      "question": "What notable achievement did the Willow quantum chip accomplish?",
+      "expected": "It solved a complex problem in five minutes, a task that would take a classical computer longer than the age of the universe",
+      "answer": "The Willow quantum chip\u2019s notable achievement was demonstrating a major quantum-performance breakthrough by **solving a complex problem in about five minutes**\u2014a task Alphabet said would take a **classical computer longer than the age of the universe**. [Source: alphabet, 2024-12-31]\n\nIn the same announcement, Alphabet also highlighted Willow for **significantly reducing quantum error rates** and being able to **correct errors in real time** (though no specific error-rate numbers were provided in the cited text). [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer exactly matches the key fact from the expected answer: it states that the Willow quantum chip solved a complex problem in about five minutes, which would take a classical computer longer than the age of the universe. The additional details about error rates are extra but do not contradict or omit the required information.",
+      "confidence": 0.8,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Willow quantum chip notable achievement",
+          "high_relevance": [
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "5b8ced3e-360e-501f-83a6-c05d44b55b63",
+              "header": "Alphabet Inc. > Structure"
+            },
+            {
+              "chunk_id": "4a39ffcc-2afb-58ca-a57b-93887970c1be",
+              "header": "Alphabet Inc. > Lawsuits and controversies"
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References"
+            }
+          ],
+          "entities_found": [
+            "Willow",
+            "Alphabet Inc."
+          ]
+        },
+        {
+          "sub_query": "Willow quantum chip performance metrics breakthrough",
+          "high_relevance": [
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "d4b15145-1014-5350-9cd4-c9b2173ae1d4",
+              "header": "Alphabet Inc. > References"
+            },
+            {
+              "chunk_id": "108254d8-26d6-5f5a-99b5-432488b94527",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Willow",
+            "Alphabet Inc.",
+            "Alphabet"
+          ]
+        }
+      ],
+      "agent_time_sec": 46.423171520233154,
+      "decomposition_time_ms": 11731,
+      "resolution_time_ms": 46218,
+      "retrieval_time_ms": 2062,
+      "synthesis_time_ms": 2229,
+      "judge_time_sec": 2.0381791591644287
+    },
+    {
+      "question_id": 46,
+      "question": "When did Alphabet announce its first-ever dividend payout?",
+      "expected": "April 2024 (announced alongside the $2 trillion market cap milestone)",
+      "answer": "Alphabet announced its first-ever dividend payout on **April 26, 2024**. [Source: alphabet, 2024-12-31]\n\nThis first dividend announcement was made alongside the company\u2019s **Q1 2024 earnings release** and coincided with a broader capital-return update, including authorization of a **$70 billion stock buyback program**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The expected answer is April 2024. The agent specifies April 26, 2024, which is consistent with and more precise than the expected month/year. There is no contradiction, so the answer is correct.",
+      "confidence": 0.73,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet first-ever dividend payout announcement date",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Alphabet"
+          ]
+        },
+        {
+          "sub_query": "Alphabet earnings report first dividend declaration",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 350.6335549354553,
+      "decomposition_time_ms": 8739,
+      "resolution_time_ms": 656969,
+      "retrieval_time_ms": 3004,
+      "synthesis_time_ms": 1576,
+      "judge_time_sec": 1.7205398082733154
+    },
+    {
+      "question_id": 47,
+      "question": "What was the size of Alphabet's stock buyback program announced in April 2024?",
+      "expected": "$70 billion",
+      "answer": "Alphabet\u2019s stock buyback program announced in April 2024 was **$70 billion** in authorized share repurchases. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent correctly states that Alphabet\u2019s stock buyback program announced in April 2024 was $70 billion, which matches the expected answer exactly.",
+      "confidence": 0.78,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet stock buyback program size April 2024",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 28.727434396743774,
+      "decomposition_time_ms": 5266,
+      "resolution_time_ms": 17700,
+      "retrieval_time_ms": 910,
+      "synthesis_time_ms": 1113,
+      "judge_time_sec": 1.2476918697357178
+    },
+    {
+      "question_id": 48,
+      "question": "What is Alphabet's ranking among the world's largest technology companies by revenue?",
+      "expected": "Third-largest, after Amazon and Apple",
+      "answer": "Alphabet ranks **3rd** among the world\u2019s largest technology companies by revenue\u2014**behind Amazon (1st) and Apple (2nd)**. Alphabet is described as the \u201cworld\u2019s third-largest technology company by revenue, after Amazon and Apple,\u201d with **2024 revenue of US$350.02 billion**. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The agent accurately states that Alphabet ranks third among the world\u2019s largest technology companies by revenue, behind Amazon and Apple, which matches the expected answer. The additional revenue figure does not contradict anything and is extra context, so the answer is correct.",
+      "confidence": 0.84,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet revenue ranking technology companies",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Amazon",
+            "Apple"
+          ]
+        },
+        {
+          "sub_query": "largest technology companies by revenue",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Amazon",
+            "Apple",
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 50.119569540023804,
+      "decomposition_time_ms": 14113,
+      "resolution_time_ms": 50351,
+      "retrieval_time_ms": 2968,
+      "synthesis_time_ms": 1580,
+      "judge_time_sec": 1.7355358600616455
+    },
+    {
+      "question_id": 49,
+      "question": "When did Alphabet conduct a stock split?",
+      "expected": "Mid-2022",
+      "answer": "I don\u2019t have enough information from the provided sub-query results to state when Alphabet conducted a stock split. The only sub-answer reports it could not retrieve the relevant dates and provides no supporting evidence or citations.\n\nIf you share a source link (e.g., Alphabet investor relations, an SEC filing, or a reputable financial data page), I can extract the exact split date(s) and split ratio(s) and summarize them with citations.",
+      "verdict": "incorrect",
+      "reasoning": "The expected answer is that Alphabet conducted its stock split in mid-2022. The agent instead claims it cannot state when Alphabet conducted a stock split and does not provide this information. This is not a partial answer; it directly fails to give the correct time frame, so the response is incorrect.",
+      "confidence": 0.14,
+      "num_sub_answers": 1,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet stock split date",
+          "high_relevance": [
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "cb240e12-d2db-5dd2-96e4-1bb766f9aecc",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "675c1870-fcda-58a1-aa28-fcc7b46e4f5e",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "e49d7eee-bd73-596e-a1cb-a680e2634705",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "1823eb75-4446-5657-b08d-266cec6756cd",
+              "header": "Alphabet Inc. > Finances",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet",
+            "Alphabet Inc."
+          ]
+        }
+      ],
+      "agent_time_sec": 36.16497039794922,
+      "decomposition_time_ms": 8957,
+      "resolution_time_ms": 14948,
+      "retrieval_time_ms": 847,
+      "synthesis_time_ms": 7345,
+      "judge_time_sec": 2.18891978263855
+    },
+    {
+      "question_id": 50,
+      "question": "What are the main products/services that remain direct components of Google under Alphabet?",
+      "expected": "Android operating system, YouTube, and Google Search",
+      "answer": "Main products/services that remain direct components of **Google (the Google segment) under Alphabet** include:\n\n- **Core consumer platforms**\n  - **Google Search** [Source: alphabet, 2024-12-31]\n  - **YouTube** [Source: alphabet, 2024-12-31]\n\n- **Operating system / platform**\n  - **Android (operating system)** [Source: alphabet, 2024-12-31]\n\n- **Other Google consumer services explicitly mentioned**\n  - **Gmail** [Source: alphabet, 2024-12-31]\n  - **Google Maps** [Source: alphabet, 2024-12-31]\n  - **Google Play** [Source: alphabet, 2024-12-31]\n\nNote: This list reflects only the items explicitly identified in the provided sub-answers and may be incomplete relative to Google\u2019s full set of products/services under Alphabet. [Source: alphabet, 2024-12-31]",
+      "verdict": "correct",
+      "reasoning": "The expected key items are Android, YouTube, and Google Search. The agent\u2019s answer includes all three of these and thus fulfills the required core content. The agent also adds other Google services (Gmail, Maps, Play), which does not contradict the expected answer and is allowed as additional detail. Therefore, the answer is correct.",
+      "confidence": 0.74,
+      "num_sub_answers": 2,
+      "chunks_summary": [
+        {
+          "sub_query": "Alphabet Inc corporate structure Google subsidiary products services",
+          "high_relevance": [
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Alphabet Inc.",
+            "Google",
+            "Google Search",
+            "YouTube",
+            "Android",
+            "Gmail",
+            "Google Maps",
+            "Google Play"
+          ]
+        },
+        {
+          "sub_query": "Google direct components under Alphabet reorganization",
+          "high_relevance": [
+            {
+              "chunk_id": "9af3ccfa-1fe6-514d-8133-5b52aed9eeb6",
+              "header": "Alphabet Inc. > Structure",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "829d34f7-583e-575d-8ca2-5684ca337cf8",
+              "header": "Alphabet Inc.",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "c64dd32c-8556-5a65-b294-68734e9a11da",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "45cf2373-3714-5e19-bd72-59323ad37b9f",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            },
+            {
+              "chunk_id": "49cb9a7c-79b7-516e-bb9b-c6c75b900ecf",
+              "header": "Alphabet Inc. > History",
+              "score": 0.5
+            }
+          ],
+          "topic_chunks": [
+            {
+              "chunk_id": "d88bb292-f7a5-576a-a1ec-d310e8b5c017",
+              "header": "Alphabet Inc. > Ownership"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            },
+            {
+              "chunk_id": "a9f05721-c9c5-59e6-aa6b-67c936129ad9",
+              "header": "Alphabet Inc. > History"
+            }
+          ],
+          "entities_found": [
+            "Google",
+            "Alphabet Inc.",
+            "Google Search",
+            "YouTube",
+            "Android"
+          ]
+        }
+      ],
+      "agent_time_sec": 34.36223220825195,
+      "decomposition_time_ms": 5972,
+      "resolution_time_ms": 30474,
+      "retrieval_time_ms": 4354,
+      "synthesis_time_ms": 2584,
+      "judge_time_sec": 2.161665916442871
+    }
+  ]
+}

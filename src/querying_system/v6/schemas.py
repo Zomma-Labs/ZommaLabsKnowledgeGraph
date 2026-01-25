@@ -30,7 +30,7 @@ class ResearcherConfig:
     enable_entity_drilldown: bool = True   # Extra retrieval for ENUMERATION questions
     enable_refinement_loop: bool = True    # Refine vague answers with targeted searches
     enable_llm_fact_filter: bool = True    # LLM-based fact filtering for precision
-    enable_fact_filter_critique: bool = True  # Critique loop for fact filter
+    enable_fact_filter_critique: bool = True   # Critique pass for fact filter
 
     # V6: Threshold-only retrieval (no LLM scoring)
     use_llm_scoring: bool = False          # Disabled by default in V6

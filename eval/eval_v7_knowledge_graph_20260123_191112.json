@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-01-23T19:11:12.901994",
+  "system": "v7_knowledge_graph",
+  "total_questions": 2,
+  "summary": {
+    "correct": 0,
+    "partially_correct": 0,
+    "incorrect": 2,
+    "strict_accuracy": 0.0,
+    "lenient_accuracy": 0.0,
+    "avg_time_sec": 104.05083394050598,
+    "avg_confidence": 0.0
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+      "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+      "answer": "All research attempts failed. Please try again.",
+      "verdict": "incorrect",
+      "reasoning": "The agent\u2019s answer is incorrect. The question is answerable and the expected answer states that economic activity in the Twelfth District edged down slightly, with retail trade, agriculture, and residential real estate decreasing or remaining stable. The agent instead claimed all research attempts failed and provided no relevant information, so it does not match any of the required content.",
+      "confidence": 0.0,
+      "num_sub_answers": 2,
+      "agent_time_sec": 88.82020616531372,
+      "decomposition_time_ms": 8250,
+      "resolution_time_ms": 57995,
+      "retrieval_time_ms": 19342,
+      "synthesis_time_ms": 0,
+      "judge_time_sec": 2.5709235668182373
+    },
+    {
+      "question_id": 2,
+      "question": "What is the Beige Book?",
+      "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+      "answer": "All research attempts failed. Please try again.",
+      "verdict": "incorrect",
+      "reasoning": "The agent's answer does not address the question at all. It says that all research attempts failed and asks to try again, providing no information about what the Beige Book is. Therefore it is incorrect compared to the expected answer, which defines the Beige Book as a Federal Reserve publication describing current economic conditions in the 12 Federal Reserve Districts based on mostly qualitative information.",
+      "confidence": 0.0,
+      "num_sub_answers": 2,
+      "agent_time_sec": 119.28146171569824,
+      "decomposition_time_ms": 8497,
+      "resolution_time_ms": 142915,
+      "retrieval_time_ms": 10128,
+      "synthesis_time_ms": 0,
+      "judge_time_sec": 1.9410662651062012
+    }
+  ]
+}

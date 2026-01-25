@@ -1,0 +1,72 @@
+[
+  {
+    "question_id": 1,
+    "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+    "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+    "graphrag_answer": "Economic activity in the Twelfth District (San Francisco) has faced significant challenges, particularly for small businesses and community support organizations. Reports indicate that small businesses are experiencing reduced demand, leading to increased loan delinquencies, business closures, and a depletion of savings. Specifically, small businesses have seen a rise in loan delinquencies, reflecting their difficulties in meeting debt obligations as revenues decline, and many are reducing operating hours to cope with financial strain (Data: Entities 1219, 554; Relationships 1053, 1054).\n\nCommunity support organizations are also under severe stress, facing increased demand for services while experiencing funding cuts, which limit their ability to assist vulnerable populations (Data: Entities 1218, 1301, 1302; Relationships 1051, 1052). This situation creates a feedback loop where the struggles of small businesses increase the demand for social support, while the financial constraints on community organizations hinder their capacity to provide necessary assistance.\n\nOverall, the economic conditions in the Twelfth District are characterized by heightened vulnerability among small businesses and community support organizations, threatening both economic and social stability in the region (Data: Entities 1218, 1219; Relationships 1050).",
+    "time_ms": 7870
+  },
+  {
+    "question_id": 2,
+    "question": "What is the Beige Book?",
+    "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+    "graphrag_answer": "The Beige Book is a foundational publication of the Federal Reserve System, released eight times per year, that summarizes current economic conditions across the twelve Federal Reserve Districts. It aggregates qualitative information from various sources, including economists, market experts, and community organizations, to provide insights into regional economic trends and developments. The Beige Book plays a critical role in informing the Federal Reserve's monetary policy decisions, making it an essential tool for policymakers and market participants (Community Reports, \"The Beige Book as a Central Economic Reporting Tool\").",
+    "time_ms": 2925
+  },
+  {
+    "question_id": 3,
+    "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+    "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+    "graphrag_answer": "The Beige Book covers economic activity across the twelve Federal Reserve Districts. Each district is served by a corresponding Federal Reserve Bank, which contributes to the report by providing insights into regional economic trends and developments.",
+    "time_ms": 3220
+  },
+  {
+    "question_id": 4,
+    "question": "How did overall economic activity change according to the October 2025 Beige Book?",
+    "expected": "Economic activity changed little on balance since the previous report, with three Districts reporting slight to modest growth in activity, five reporting no change, and four noting a slight softening.",
+    "graphrag_answer": "According to the October 2025 Beige Book, overall economic activity showed signs of a slight decline, particularly within the Twelfth District, where there were modest decreases in production, trade, and consumption. This decline is attributed to significant downside risks, including the potential impact of a government shutdown, which could disrupt federal operations and undermine consumer and business confidence. Additionally, while some regions reported stability or slight increases in employment, the overall sentiment indicated cautious optimism about future economic conditions, with expectations of modest growth in certain sectors despite current challenges.",
+    "time_ms": 2837
+  },
+  {
+    "question_id": 5,
+    "question": "Which districts reported slight to modest economic growth?",
+    "expected": "Three districts reported slight to modest growth: Boston (First District), Philadelphia (Third District), and Richmond (Fifth District).",
+    "graphrag_answer": "The districts that reported slight to modest economic growth include:\n\n1. **Federal Reserve Bank of Atlanta (Sixth District)**: The energy sector is experiencing moderate expansion, particularly in crude oil production and liquefied natural gas exports, which contributes positively to the regional economy. Additionally, there are sector-specific variations in retail sales, with some segments showing slight increases.\n\n2. **Federal Reserve Bank of Cleveland**: Overall business activity remains flat, but there is a general expectation of modest growth in the coming months, indicating cautious optimism among businesses.\n\n3. **Third District (Federal Reserve Bank of Philadelphia)**: Employment levels have shown stability or slight increases, particularly in full-time positions among nonmanufacturing firms, suggesting modest job growth.\n\nThese observations reflect a mix of slight to modest growth across different sectors and regions, highlighting the varied economic conditions within the districts.",
+    "time_ms": 5398
+  },
+  {
+    "question_id": 6,
+    "question": "Which districts reported no change in economic activity?",
+    "expected": "Five districts reported no change: Cleveland (Fourth District), Atlanta (Sixth District), Chicago (Seventh District), St. Louis (Eighth District), and Dallas (Eleventh District).",
+    "graphrag_answer": "The districts that reported no change in economic activity are the Federal Reserve Bank of Cleveland and the Federal Reserve Bank of Atlanta. Both districts indicated stability in their economic conditions, with the Cleveland district noting that overall business activity remained flat, and the Atlanta district reporting flat loan growth, suggesting a period of stability in lending activity.",
+    "time_ms": 2596
+  },
+  {
+    "question_id": 7,
+    "question": "Which districts reported a slight softening or decline in economic activity?",
+    "expected": "Four districts reported slight softening or decline: New York (Second District), Minneapolis (Ninth District), Kansas City (Tenth District), and San Francisco (Twelfth District).",
+    "graphrag_answer": "The districts that reported a slight softening or decline in economic activity include:\n\n1. **Sixth District (Federal Reserve Bank of Atlanta)**: The transportation sector has experienced a modest decline, indicating reduced demand for goods movement and broader economic headwinds. Additionally, there is softening demand for certain refined products and retail segments, contributing to the overall economic challenges in the region.\n\n2. **Twelfth District**: Small businesses are facing significant financial strain, characterized by increased loan delinquencies, business closures, and reduced operating hours. This indicates a weakening economic condition for small businesses in the district.\n\n3. **Third District**: Auto dealers reported a slight decline in activity, which may reflect broader consumer sentiment and economic confidence issues.\n\nThese reports highlight the varying degrees of economic softening across different sectors and districts.",
+    "time_ms": 6096
+  },
+  {
+    "question_id": 8,
+    "question": "What was the economic activity in the Seventh District (Chicago)?",
+    "expected": "Economic activity in the Seventh District was little changed over the reporting period. Consumer spending increased modestly; construction and real estate activity increased slightly; employment was flat; business spending declined slightly; and manufacturing demand declined modestly.",
+    "graphrag_answer": "Economic activity in the Seventh District (Chicago) has been characterized by a diverse and interconnected landscape, with the Federal Reserve Bank of Chicago playing a central role in monitoring and reporting on various sectors. Key observations include:\n\n1. **Diverse Economic Conditions**: The Seventh District encompasses parts of Illinois, Indiana, Michigan, Wisconsin, and Iowa, requiring nuanced monitoring to address the varying needs of its constituent states and sectors.\n\n2. **Nonprofit Sector Challenges**: Nonprofit organizations in the district are facing increased demand for their services, particularly in the nonfinancial services sector, which is straining their limited resources. This highlights the need for sustainable funding models and supportive policy frameworks.\n\n3. **Advisory Councils**: The involvement of advisory councils, which include members from businesses, nonprofits, and community groups, ensures that policy decisions are informed by a broad spectrum of perspectives, enhancing the relevance and responsiveness of economic interventions.\n\n4. **Economic and Social Integration**: The Federal Reserve Bank of Chicago's approach integrates both economic and social perspectives into policy formulation, addressing complex challenges related to financial stability, community development, and social equity.\n\nOverall, the Seventh District's economic activity reflects a complex interplay of growth, challenges, and the critical role of community organizations in shaping policy responses.",
+    "time_ms": 7695
+  },
+  {
+    "question_id": 9,
+    "question": "How did the Second District (New York) economy perform?",
+    "expected": "Economic activity in the Second District continued to decline slightly. Employment held steady, and wage growth remained modest. The pace of price increases remained elevated but was little changed.",
+    "graphrag_answer": "The Second District (New York) economy has shown resilience and modest growth, particularly in the retail sector. Department stores have experienced strengthening sales, especially in apparel, cosmetics, and fragrances, driven by robust spending patterns from mid- to upper-income consumers. This demographic has been crucial in sustaining retail growth, reflecting their financial stability and purchasing power.\n\nConsumer spending overall has increased modestly, with department stores benefiting from this trend, indicating a direct link between their sales and broader consumer behavior. The retail sector, particularly in Manhattan, has seen strong demand for retail space, declining vacancy rates, and stable or modestly increasing rents, especially in the luxury market.\n\nHowever, the construction sector faces challenges, with declining activity and heightened competition, while the industrial sector has experienced muted activity due to economic uncertainties. Additionally, the hospitality sector has benefited from increased domestic tourism, despite a decline in international visitors.\n\nOverall, the New York District's economy is characterized by a mix of strong retail performance and challenges in other sectors, reflecting a complex economic landscape influenced by consumer demographics and broader economic conditions.",
+    "time_ms": 8415
+  },
+  {
+    "question_id": 10,
+    "question": "What happened to overall consumer spending in the October 2025 report?",
+    "expected": "Overall consumer spending, particularly on retail goods, inched down in recent weeks.",
+    "graphrag_answer": "In the October 2025 Beige Book report, overall consumer spending showed regional variations, with modest increases in the Second and Fifth Districts, while the Cleveland and Sixth Districts experienced slight declines. This indicates that while consumer spending remained robust in some areas, there were pockets of caution and economic uncertainty affecting overall trends. The report emphasized that consumer spending is a critical driver of economic activity, influenced by factors such as credit usage and income segmentation among households. Specifically, increased reliance on credit, particularly among middle-income consumers, was noted as a key factor in maintaining spending levels despite economic pressures (Data: Entities (9); Relationships (200, 241, 847, +more)).",
+    "time_ms": 3342
+  }
+]

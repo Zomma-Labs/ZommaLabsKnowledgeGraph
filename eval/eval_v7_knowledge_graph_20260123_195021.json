@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-01-23T19:50:21.674780",
+  "system": "v7_knowledge_graph",
+  "total_questions": 2,
+  "summary": {
+    "correct": 2,
+    "partially_correct": 0,
+    "incorrect": 0,
+    "strict_accuracy": 1.0,
+    "lenient_accuracy": 1.0,
+    "avg_time_sec": 108.68301379680634,
+    "avg_confidence": 1.0
+  },
+  "results": [
+    {
+      "question_id": 1,
+      "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+      "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+      "answer": "Economic activity in the Twelfth District (San Francisco) experienced a slight downward shift during the mid-August to September 2025 reporting period, marking a weakening in the overall outlook compared to the previous period [Source: BeigeBook_20251015, 2025-10-15]. The progression of economic conditions during this timeframe is detailed below:\n\n*   **Overall Economic Momentum**: Activity edged down slightly from mid-August through September 2025. While employment levels remained largely unchanged as employers held head counts steady, wages and prices continued to rise modestly [Source: BeigeBook_20251015, 2025-10-15].\n\n*   **Sectoral Declines**: Several sectors transitioned into a period of decreased activity:\n    *   **Retail Trade**: Activity decreased due to a combination of seasonal factors and price increases induced by tariffs [Source: BeigeBook_20251015, 2025-10-15].\n    *   **Residential Real Estate**: This sector saw a decline characterized by rising inventories and easing prices, particularly in Northern California [Source: BeigeBook_20251015, 2025-10-15].\n    *   **Agriculture and Resources**: These sectors weakened slightly as they faced falling international demand from China and labor shortages linked to immigration policy [Source: BeigeBook_20251015, 2025-10-15].\n    *   **Small Businesses and Community Support**: These entities saw a moderate weakening as they grappled with funding cuts and strained finances while facing higher demand for assistance [Source: BeigeBook_20251015, 2025-10-15].\n\n*   **Areas of Stability**: Despite the general downturn, manufacturing and lending activity remained stable throughout the period. Commercial real estate also remained unchanged on balance, bolstered by ongoing infrastructure and health facility projects [Source: BeigeBook_20251015, 2025-10-15].\n\n*   **Outlook Transition**: By the end of the September reporting period, the economic outlook for regional contacts had weakened somewhat relative to the start of the period, reflecting broader concerns over demand and policy impacts [Source: BeigeBook_20251015, 2025-10-15].",
+      "verdict": "correct",
+      "reasoning": "The key required points are: (1) overall economic activity in the Twelfth District edged down slightly, and (2) activity in retail trade, agriculture, and residential real estate either decreased or remained stable. The agent states that activity 'edged down slightly', and explicitly notes decreased activity in retail trade, residential real estate, and slight weakening in agriculture and resources. This matches the expected direction and sectors, with some additional detail that does not contradict the expected answer. Therefore the answer is correct on all key facts.",
+      "confidence": 1.0,
+      "num_sub_answers": 2,
+      "agent_time_sec": 93.6381356716156,
+      "decomposition_time_ms": 9293,
+      "resolution_time_ms": 60390,
+      "retrieval_time_ms": 46986,
+      "synthesis_time_ms": 10447,
+      "judge_time_sec": 2.8715779781341553
+    },
+    {
+      "question_id": 2,
+      "question": "What is the Beige Book?",
+      "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+      "answer": "The Beige Book is a Federal Reserve System publication that provides a qualitative summary of current economic conditions and prospects across the 12 Federal Reserve Districts [Source: BeigeBook_20251015, 2025-10-15]. Published eight times per year, the report is designed to characterize changes in economic conditions since the previous release and identify emerging trends that may not be immediately apparent in quantitative economic data [Source: BeigeBook_20251015, 2025-10-15]. The primary purpose of the Beige Book is to supplement the quantitative data and analysis used by Federal Reserve economists and staff to assess regional and national economic dynamics [Source: BeigeBook_20251015, 2025-10-15]. The information is gathered directly from each District's external contacts, including interviews and questionnaires with businesses, community organizations, and market experts [Source: BeigeBook_20251015, 2025-10-15]. This qualitative approach allows for a comparison of conditions across different parts of the country, aiding in the assessment of the national economic outlook [Source: BeigeBook_20251015, 2025-10-15]. Notably, the Beige Book serves as a supplement to other regional data and is explicitly not a commentary on the views of Federal Reserve officials [Source: BeigeBook_20251015, 2025-10-15].",
+      "verdict": "correct",
+      "reasoning": "The agent\u2019s answer accurately describes the Beige Book as a Federal Reserve System publication summarizing current economic conditions across the 12 Federal Reserve Districts, based on mostly qualitative information collected from district sources. It includes all key elements from the expected answer and adds correct extra details (such as publication frequency and purpose), without introducing contradictions. Therefore it is correct.",
+      "confidence": 1.0,
+      "num_sub_answers": 2,
+      "agent_time_sec": 123.72789192199707,
+      "decomposition_time_ms": 8846,
+      "resolution_time_ms": 154938,
+      "retrieval_time_ms": 21212,
+      "synthesis_time_ms": 7985,
+      "judge_time_sec": 1.9536399841308594
+    }
+  ]
+}

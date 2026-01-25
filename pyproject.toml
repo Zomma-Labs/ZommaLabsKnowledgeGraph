@@ -28,11 +28,6 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Database :: Database Engines/Servers",
 ]
-
-[project.urls]
-Homepage = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph"
-Repository = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph"
-Issues = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph/issues"
 dependencies = [
     "langchain>=1.1.0",
     "langchain-openai>=1.1.0",
@@ -59,6 +54,11 @@ dependencies = [
     "scikit-learn>=1.8.0",
     "evaluate>=0.4.6",
 ]
+
+[project.urls]
+Homepage = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph"
+Repository = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph"
+Issues = "https://github.com/Zomma-Labs/ZommaLabsKnowledgeGraph/issues"
 
 [dependency-groups]
 dev = [

@@ -40,6 +40,7 @@ from src.agents.topic_librarian import TopicLibrarian
 from src.agents.temporal_extractor import TemporalExtractor
 from src.util.entity_dedup import DeferredDeduplicationManager
 from src.util.fact_vector_store import get_fact_store
+from src.util.checkpoint import CheckpointManager
 from src.schemas.extraction import ChainOfThoughtResult, TopicResolution, EnumeratedEntity
 
 # =============================================================================
@@ -96,6 +97,56 @@ def _prepend_header_if_missing(text: str, header_path: str) -> str:
     # Prepend missing headers
     prefix = "\n".join(missing_headers)
     return f"{prefix}\n{text}"
+
+
+async def embed_in_batches_async(
+    texts: List[str],
+    embed_fn,
+    batch_sz: int,
+    sem: asyncio.Semaphore
+) -> List[List[float]]:
+    """
+    Embed texts in parallel batches with concurrency control.
+
+    Args:
+        texts: List of strings to embed
+        embed_fn: Embedding function with embed_documents method
+        batch_sz: Number of texts per batch
+        sem: Semaphore for concurrency control
+
+    Returns:
+        List of embeddings in same order as input texts
+    """
+    if not texts:
+        return []
+
+    async def embed_batch(batch: List[str], batch_idx: int) -> tuple:
+        async with sem:
+            try:
+                result = await asyncio.to_thread(embed_fn.embed_documents, batch)
+                return batch_idx, result
+            except Exception as e:
+                if "rate limit" in str(e).lower():
+                    log(f"Rate limited on batch {batch_idx}, waiting 30s...")
+                    await asyncio.sleep(30)
+                    result = await asyncio.to_thread(embed_fn.embed_documents, batch)
+                    return batch_idx, result
+                raise
+
+    # Create all batch tasks
+    batches = [(texts[i:i + batch_sz], i // batch_sz) for i in range(0, len(texts), batch_sz)]
+    tasks = [embed_batch(batch, idx) for batch, idx in batches]
+
+    # Run all batches concurrently (limited by semaphore)
+    results = await asyncio.gather(*tasks)
+
+    # Sort by batch index and flatten
+    results.sort(key=lambda x: x[0])
+    all_embeddings = []
+    for _, batch_embeddings in results:
+        all_embeddings.extend(batch_embeddings)
+
+    return all_embeddings
 
 
 def _ensure_vector_indexes(neo4j) -> None:
@@ -362,7 +413,7 @@ class BulkWriteBuffer:
     _created_topics: Dict[str, str] = field(default_factory=dict)  # label -> uuid
 
 
-def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str, int]:
+def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm, batch_size: int = 250) -> Dict[str, int]:
     """Execute all buffered operations in batched queries."""
     counts = {"entities": 0, "facts": 0, "relationships": 0, "topics": 0}
 
@@ -380,62 +431,77 @@ def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str,
         "document_date": buffer.document_date
     })
 
-    # 2. Bulk create EpisodicNodes
+    # 2. Bulk create EpisodicNodes (batched)
     if buffer.episodic_nodes:
-        neo4j.query("""
-            UNWIND $nodes AS n
-            MATCH (d:DocumentNode {uuid: $doc_uuid, group_id: $group_id})
-            MERGE (e:EpisodicNode {uuid: n.uuid, group_id: $group_id})
-            ON CREATE SET
-                e.content = n.content,
-                e.header_path = n.header_path,
-                e.document_date = $document_date,
-                e.created_at = datetime()
-            ON MATCH SET
-                e.content = n.content,
-                e.header_path = n.header_path
-            MERGE (d)-[:CONTAINS_CHUNK]->(e)
-        """, {
-            "nodes": buffer.episodic_nodes,
-            "doc_uuid": buffer.document_uuid,
-            "group_id": buffer.group_id,
-            "document_date": buffer.document_date
-        })
-
-    # 3. Bulk create new EntityNodes
-    if buffer.entity_nodes:
-        neo4j.query("""
-            UNWIND $nodes AS n
-            CREATE (e:EntityNode {
-                uuid: n.uuid,
-                name: n.name,
-                summary: n.summary,
-                group_id: n.group_id,
-                name_embedding: n.embedding,
-                name_only_embedding: n.name_only_embedding,
-                created_at: datetime()
+        total = len(buffer.episodic_nodes)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = buffer.episodic_nodes[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $nodes AS n
+                MATCH (d:DocumentNode {uuid: $doc_uuid, group_id: $group_id})
+                MERGE (e:EpisodicNode {uuid: n.uuid, group_id: $group_id})
+                ON CREATE SET
+                    e.content = n.content,
+                    e.header_path = n.header_path,
+                    e.document_date = $document_date,
+                    e.created_at = datetime()
+                ON MATCH SET
+                    e.content = n.content,
+                    e.header_path = n.header_path
+                MERGE (d)-[:CONTAINS_CHUNK]->(e)
+            """, {
+                "nodes": batch,
+                "doc_uuid": buffer.document_uuid,
+                "group_id": buffer.group_id,
+                "document_date": buffer.document_date
             })
-        """, {"nodes": buffer.entity_nodes})
-        counts["entities"] = len(buffer.entity_nodes)
+        log(f"  Episodic nodes: {total}/{total} ({num_batches} batches)")
+
+    # 3. Bulk create new EntityNodes (batched)
+    if buffer.entity_nodes:
+        total = len(buffer.entity_nodes)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = buffer.entity_nodes[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $nodes AS n
+                CREATE (e:EntityNode {
+                    uuid: n.uuid,
+                    name: n.name,
+                    summary: n.summary,
+                    group_id: n.group_id,
+                    name_embedding: n.embedding,
+                    name_only_embedding: n.name_only_embedding,
+                    created_at: datetime()
+                })
+            """, {"nodes": batch})
+        counts["entities"] = total
+        log(f"  Entities: {total}/{total} ({num_batches} batches)")
 
     # 4. Update existing entity summaries (requires LLM merge)
     if buffer.entity_updates:
-        _bulk_update_entity_summaries(buffer.entity_updates, buffer.group_id, neo4j, llm)
+        _bulk_update_entity_summaries(buffer.entity_updates, buffer.group_id, neo4j, llm, batch_size=batch_size)
 
-    # 5. Bulk create FactNodes
+    # 5. Bulk create FactNodes (batched)
     if buffer.fact_nodes:
-        neo4j.query("""
-            UNWIND $nodes AS n
-            MERGE (f:FactNode {uuid: n.uuid, group_id: n.group_id})
-            ON CREATE SET
-                f.content = n.content,
-                f.embedding = n.embedding,
-                f.created_at = datetime()
-            ON MATCH SET
-                f.content = n.content,
-                f.embedding = n.embedding
-        """, {"nodes": buffer.fact_nodes})
-        counts["facts"] = len(buffer.fact_nodes)
+        total = len(buffer.fact_nodes)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = buffer.fact_nodes[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $nodes AS n
+                MERGE (f:FactNode {uuid: n.uuid, group_id: n.group_id})
+                ON CREATE SET
+                    f.content = n.content,
+                    f.embedding = n.embedding,
+                    f.created_at = datetime()
+                ON MATCH SET
+                    f.content = n.content,
+                    f.embedding = n.embedding
+            """, {"nodes": batch})
+        counts["facts"] = total
+        log(f"  Facts: {total}/{total} ({num_batches} batches)")
 
         # Also index facts to Qdrant for semantic search
         fact_store = get_fact_store()
@@ -452,28 +518,36 @@ def bulk_write_all(buffer: BulkWriteBuffer, neo4j, embeddings, llm) -> Dict[str,
             for f in buffer.fact_nodes
         ]
         fact_store.index_facts_batch(qdrant_facts)
-        log(f"Indexed {len(qdrant_facts)} facts to Qdrant")
+        log(f"  Indexed {len(qdrant_facts)} facts to Qdrant")
 
-    # 6. Bulk create TopicNodes
+    # 6. Bulk create TopicNodes (batched)
     if buffer.topic_nodes:
-        neo4j.query("""
-            UNWIND $nodes AS n
-            MERGE (t:TopicNode {name: n.name, group_id: n.group_id})
-            ON CREATE SET
-                t.uuid = n.uuid,
-                t.embedding = n.embedding,
-                t.created_at = datetime()
-        """, {"nodes": buffer.topic_nodes})
-        counts["topics"] = len(buffer.topic_nodes)
+        total = len(buffer.topic_nodes)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = buffer.topic_nodes[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $nodes AS n
+                MERGE (t:TopicNode {name: n.name, group_id: n.group_id})
+                ON CREATE SET
+                    t.uuid = n.uuid,
+                    t.definition = n.definition,
+                    t.embedding = n.embedding,
+                    t.created_at = datetime()
+                ON MATCH SET
+                    t.definition = COALESCE(n.definition, t.definition)
+            """, {"nodes": batch})
+        counts["topics"] = total
+        log(f"  Topics: {total}/{total} ({num_batches} batches)")
 
     # 7. Bulk create relationships (grouped by type)
     if buffer.relationships:
-        counts["relationships"] = _bulk_create_relationships(buffer.relationships, neo4j)
+        counts["relationships"] = _bulk_create_relationships(buffer.relationships, neo4j, batch_size=batch_size)
 
     return counts
 
 
-def _bulk_update_entity_summaries(updates: List[Dict], group_id: str, neo4j, llm) -> None:
+def _bulk_update_entity_summaries(updates: List[Dict], group_id: str, neo4j, llm, batch_size: int = 250) -> None:
     """Batch read existing summaries, LLM merge, batch write."""
     if not updates:
         return
@@ -502,14 +576,19 @@ def _bulk_update_entity_summaries(updates: List[Dict], group_id: str, neo4j, llm
 
     # Batch write merged summaries
     if merged_updates:
-        neo4j.query("""
-            UNWIND $updates AS u
-            MATCH (e:EntityNode {uuid: u.uuid, group_id: $group_id})
-            SET e.summary = u.summary
-        """, {"updates": merged_updates, "group_id": group_id})
+        total = len(merged_updates)
+        num_batches = (total + batch_size - 1) // batch_size
+        for i in range(0, total, batch_size):
+            batch = merged_updates[i:i + batch_size]
+            neo4j.query("""
+                UNWIND $updates AS u
+                MATCH (e:EntityNode {uuid: u.uuid, group_id: $group_id})
+                SET e.summary = u.summary
+            """, {"updates": batch, "group_id": group_id})
+        log(f"  Entity summary updates: {total}/{total} ({num_batches} batches)")
 
 
-def _bulk_create_relationships(relationships: List[Dict], neo4j) -> int:
+def _bulk_create_relationships(relationships: List[Dict], neo4j, batch_size: int = 250) -> int:
     """Create relationships in batches grouped by type."""
     # Group by relationship type
     by_type = defaultdict(list)
@@ -517,18 +596,22 @@ def _bulk_create_relationships(relationships: List[Dict], neo4j) -> int:
         by_type[rel["rel_type"]].append(rel)
 
     total = 0
+    total_batches = 0
     for rel_type, rels in by_type.items():
         # Separate rels with properties vs without
         with_props = [r for r in rels if r.get("properties")]
         without_props = [r for r in rels if not r.get("properties")]
 
-        # Simple relationships (no properties)
+        # Simple relationships (no properties) - batched
         if without_props:
-            neo4j.query(f"""
-                UNWIND $rels AS r
-                MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
-                MERGE (a)-[:{rel_type}]->(b)
-            """, {"rels": without_props})
+            for i in range(0, len(without_props), batch_size):
+                batch = without_props[i:i + batch_size]
+                neo4j.query(f"""
+                    UNWIND $rels AS r
+                    MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
+                    MERGE (a)-[:{rel_type}]->(b)
+                """, {"rels": batch})
+                total_batches += 1
             total += len(without_props)
 
         # Relationships with properties - use CREATE to ensure each fact gets its own edge
@@ -539,23 +622,30 @@ def _bulk_create_relationships(relationships: List[Dict], neo4j) -> int:
             without_fact_id = [r for r in with_props if r not in with_fact_id]
 
             if with_fact_id:
-                neo4j.query(f"""
-                    UNWIND $rels AS r
-                    MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
-                    MERGE (a)-[rel:{rel_type} {{fact_id: r.properties.fact_id}}]->(b)
-                    SET rel += r.properties
-                """, {"rels": with_fact_id})
+                for i in range(0, len(with_fact_id), batch_size):
+                    batch = with_fact_id[i:i + batch_size]
+                    neo4j.query(f"""
+                        UNWIND $rels AS r
+                        MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
+                        MERGE (a)-[rel:{rel_type} {{fact_id: r.properties.fact_id}}]->(b)
+                        SET rel += r.properties
+                    """, {"rels": batch})
+                    total_batches += 1
                 total += len(with_fact_id)
 
             if without_fact_id:
-                neo4j.query(f"""
-                    UNWIND $rels AS r
-                    MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
-                    CREATE (a)-[rel:{rel_type}]->(b)
-                    SET rel = r.properties
-                """, {"rels": without_fact_id})
+                for i in range(0, len(without_fact_id), batch_size):
+                    batch = without_fact_id[i:i + batch_size]
+                    neo4j.query(f"""
+                        UNWIND $rels AS r
+                        MATCH (a {{uuid: r.from_uuid}}), (b {{uuid: r.to_uuid}})
+                        CREATE (a)-[rel:{rel_type}]->(b)
+                        SET rel = r.properties
+                    """, {"rels": batch})
+                    total_batches += 1
                 total += len(without_fact_id)
 
+    log(f"  Relationships: {total}/{total} ({total_batches} batches)")
     return total
 
 
@@ -729,6 +819,7 @@ def collect_chunk(
             buffer.topic_nodes.append({
                 "uuid": topic_res.uuid,
                 "name": topic_label,
+                "definition": topic_res.definition,  # From Qdrant ontology
                 "group_id": buffer.group_id,
                 "embedding": None  # Will be filled by batch_generate_embeddings
             })
@@ -827,6 +918,7 @@ def collect_chunk(
                     buffer.topic_nodes.append({
                         "uuid": topic_uuid,
                         "name": topic_label,
+                        "definition": topic_res.definition,  # From Qdrant ontology
                         "group_id": buffer.group_id,
                         "embedding": None  # Will be filled by batch_generate_embeddings
                     })
@@ -844,14 +936,15 @@ def collect_chunk(
     return {"entities": entity_count, "facts": fact_count, "relationships": rel_count}
 
 
-def batch_generate_embeddings(buffer: BulkWriteBuffer, embeddings, dedup_embeddings, batch_size: int = 128) -> None:
-    """Generate all embeddings in batches to avoid rate limits.
+async def batch_generate_embeddings(buffer: BulkWriteBuffer, embeddings, dedup_embeddings, batch_size: int = 128, concurrency: int = 10) -> None:
+    """Generate all embeddings in parallel batches.
 
     Args:
         buffer: The bulk write buffer containing nodes that need embeddings
         embeddings: voyage-finance-2 embeddings client (for entities/topics)
         dedup_embeddings: voyage-3-large embeddings client (for facts)
         batch_size: Max texts per embedding API call (Voyage limit is ~128)
+        concurrency: Max concurrent embedding API calls per embedding type
     """
     import time
 
@@ -886,46 +979,48 @@ def batch_generate_embeddings(buffer: BulkWriteBuffer, embeddings, dedup_embeddi
 
     log(f"Generating embeddings: {len(entity_texts)} entities, {len(topic_texts)} topics, {len(fact_texts)} facts")
 
-    def embed_in_batches(texts: List[str], embed_fn, batch_sz: int) -> List[List[float]]:
-        """Embed texts in batches with rate limit handling."""
-        all_embeddings = []
-        for i in range(0, len(texts), batch_sz):
-            batch = texts[i:i + batch_sz]
-            try:
-                batch_embeddings = embed_fn.embed_documents(batch)
-                all_embeddings.extend(batch_embeddings)
-            except Exception as e:
-                if "rate limit" in str(e).lower():
-                    log(f"Rate limited, waiting 60s...")
-                    time.sleep(60)
-                    batch_embeddings = embed_fn.embed_documents(batch)
-                    all_embeddings.extend(batch_embeddings)
-                else:
-                    raise
-            # Small delay between batches to stay under rate limits
-            if i + batch_sz < len(texts):
-                time.sleep(0.5)
-        return all_embeddings
+    # Create semaphores for concurrency control (separate per embedding client to avoid conflicts)
+    sem_main = asyncio.Semaphore(concurrency)
+    sem_dedup = asyncio.Semaphore(concurrency)
 
-    # Generate entity embeddings (voyage-finance-2)
-    if entity_texts:
-        entity_embeddings = embed_in_batches(entity_texts, embeddings, batch_size)
-        entity_name_embeddings = embed_in_batches(entity_name_texts, embeddings, batch_size)
-        for j, idx in enumerate(entity_indices):
-            buffer.entity_nodes[idx]['embedding'] = entity_embeddings[j]
-            buffer.entity_nodes[idx]['name_only_embedding'] = entity_name_embeddings[j]
+    # Run all 4 embedding types in parallel
+    async def embed_entities():
+        if not entity_texts:
+            return [], []
+        # Run entity text and entity name embeddings in parallel
+        entity_emb, entity_name_emb = await asyncio.gather(
+            embed_in_batches_async(entity_texts, embeddings, batch_size, sem_main),
+            embed_in_batches_async(entity_name_texts, embeddings, batch_size, sem_main)
+        )
+        return entity_emb, entity_name_emb
 
-    # Generate topic embeddings (voyage-finance-2)
-    if topic_texts:
-        topic_embeddings = embed_in_batches(topic_texts, embeddings, batch_size)
-        for j, idx in enumerate(topic_indices):
-            buffer.topic_nodes[idx]['embedding'] = topic_embeddings[j]
+    async def embed_topics():
+        if not topic_texts:
+            return []
+        return await embed_in_batches_async(topic_texts, embeddings, batch_size, sem_main)
 
-    # Generate fact embeddings (voyage-3-large for Qdrant)
-    if fact_texts:
-        fact_embeddings = embed_in_batches(fact_texts, dedup_embeddings, batch_size)
-        for j, idx in enumerate(fact_indices):
-            buffer.fact_nodes[idx]['embedding'] = fact_embeddings[j]
+    async def embed_facts():
+        if not fact_texts:
+            return []
+        return await embed_in_batches_async(fact_texts, dedup_embeddings, batch_size, sem_dedup)
+
+    # Execute all embedding tasks in parallel
+    (entity_embeddings, entity_name_embeddings), topic_embeddings, fact_embeddings = await asyncio.gather(
+        embed_entities(),
+        embed_topics(),
+        embed_facts()
+    )
+
+    # Map embeddings back to buffer
+    for j, idx in enumerate(entity_indices):
+        buffer.entity_nodes[idx]['embedding'] = entity_embeddings[j]
+        buffer.entity_nodes[idx]['name_only_embedding'] = entity_name_embeddings[j]
+
+    for j, idx in enumerate(topic_indices):
+        buffer.topic_nodes[idx]['embedding'] = topic_embeddings[j]
+
+    for j, idx in enumerate(fact_indices):
+        buffer.fact_nodes[idx]['embedding'] = fact_embeddings[j]
 
     log(f"Embeddings generated successfully")
 
@@ -1132,7 +1227,11 @@ async def process_file(
     dedup_concurrency: int,
     neo4j, embeddings, dedup_embeddings, llm,
     entity_registry: EntityRegistry,
-    topic_librarian: TopicLibrarian
+    topic_librarian: TopicLibrarian,
+    batch_size: int = 250,
+    embedding_concurrency: int = 10,
+    embedding_batch_size: int = 100,
+    checkpoint_mgr: Optional[CheckpointManager] = None
 ) -> Dict[str, Any]:
     """Process all chunks in a JSONL file."""
     filename = os.path.basename(filepath)
@@ -1191,180 +1290,233 @@ async def process_file(
 
     print(f"  {len(chunks)} chunks loaded")
 
+    # ===== CHECK FOR RESUME =====
+    resume_phase = 1  # Default: start from Phase 1
+    extractions = None
+    entity_lookup_global = None
+    topic_lookup_global = None
+    uuid_by_name = {}
+    buffer = None
+    embeddings_done = False
+    document_date_str = None
+
+    if checkpoint_mgr:
+        resume_phase = checkpoint_mgr.get_resume_phase()
+
+        if resume_phase > 1:
+            # Load Phase 1 data
+            phase1_data = checkpoint_mgr.load_phase1()
+            if phase1_data:
+                extractions = phase1_data["extractions"]
+                document_date_str = phase1_data.get("document_date_str")
+                # Note: document_uuid, document_name, chunks were saved
+                # but we already loaded them from the file, so just use extractions
+                print(f"  Resuming: Loaded Phase 1 ({len(extractions)} extractions)")
+            else:
+                print("  Warning: Could not load Phase 1 checkpoint, starting from scratch")
+                resume_phase = 1
+
+        if resume_phase > 2:
+            # Load Phase 2 data
+            phase2_data = checkpoint_mgr.load_phase2()
+            if phase2_data:
+                entity_lookup_global = phase2_data["entity_lookup"]
+                topic_lookup_global = phase2_data["topic_lookup"]
+                uuid_by_name = phase2_data["uuid_by_name"]
+                print(f"  Resuming: Loaded Phase 2 ({len(entity_lookup_global)} entities, {len(topic_lookup_global)} topics)")
+            else:
+                print("  Warning: Could not load Phase 2 checkpoint, restarting from Phase 2")
+                resume_phase = 2
+
+        if resume_phase > 3:
+            # Load Phase 3 data
+            phase3_data = checkpoint_mgr.load_phase3()
+            if phase3_data:
+                buffer = phase3_data["buffer"]
+                embeddings_done = phase3_data["embeddings_done"]
+                print(f"  Resuming: Loaded Phase 3 (embeddings_done={embeddings_done})")
+            else:
+                print("  Warning: Could not load Phase 3 checkpoint, restarting from Phase 3")
+                resume_phase = 3
+
     # ===== EXTRACT DOCUMENT DATE =====
-    print("  Extracting document date...")
-    temporal_extractor = TemporalExtractor()
-    first_chunks = [c["text"] for c in chunks[:6]]
-    last_chunks = [c["text"] for c in chunks[-6:]] if len(chunks) > 6 else []
-    document_date_str = temporal_extractor.extract_date(first_chunks, last_chunks, document_name)
-    if not document_date_str:
-        # Fall back to metadata date if available
-        for c in chunks:
-            if c["document_date"]:
-                document_date_str = c["document_date"].date().isoformat()
-                break
-    print(f"    Document date: {document_date_str or 'Unknown'}")
+    if document_date_str is None:
+        print("  Extracting document date...")
+        temporal_extractor = TemporalExtractor()
+        first_chunks = [c["text"] for c in chunks[:6]]
+        last_chunks = [c["text"] for c in chunks[-6:]] if len(chunks) > 6 else []
+        document_date_str = temporal_extractor.extract_date(first_chunks, last_chunks, document_name)
+        if not document_date_str:
+            # Fall back to metadata date if available
+            for c in chunks:
+                if c["document_date"]:
+                    document_date_str = c["document_date"].date().isoformat()
+                    break
+        print(f"    Document date: {document_date_str or 'Unknown'}")
 
     # ===== PHASE 1: PARALLEL EXTRACTION =====
-    print(f"  Phase 1: Extracting (concurrency={concurrency})...")
-    t1 = time.time()
+    if resume_phase <= 1:
+        print(f"  Phase 1: Extracting (concurrency={concurrency})...")
+        t1 = time.time()
 
-    extractor = ExtractorV2()
-    sem = asyncio.Semaphore(concurrency)
+        extractor = ExtractorV2()
+        sem = asyncio.Semaphore(concurrency)
 
-    document_date_for_prompt = document_date_str or "Unknown"
-    tasks = [
-        extract_chunk(
-            extractor,
-            c["idx"],
-            c["text"],
-            c["header_path"],
-            document_date_for_prompt,
-            c["chunk_uuid"],
-            sem,
-        )
-        for c in chunks
-    ]
-    extractions = await asyncio.gather(*tasks)
+        document_date_for_prompt = document_date_str or "Unknown"
+        tasks = [
+            extract_chunk(
+                extractor,
+                c["idx"],
+                c["text"],
+                c["header_path"],
+                document_date_for_prompt,
+                c["chunk_uuid"],
+                sem,
+            )
+            for c in chunks
+        ]
+        extractions = await asyncio.gather(*tasks)
 
-    phase1_time = time.time() - t1
-    ok = sum(1 for e in extractions if e["success"])
-    print(f"  Phase 1: {ok}/{len(chunks)} extracted ({phase1_time:.1f}s)")
+        phase1_time = time.time() - t1
+        ok = sum(1 for e in extractions if e["success"])
+        print(f"  Phase 1: {ok}/{len(chunks)} extracted ({phase1_time:.1f}s)")
+        if checkpoint_mgr:
+            checkpoint_mgr.save_phase1(extractions, document_uuid, document_name, document_date_str, chunks)
+    else:
+        phase1_time = 0.0
 
     # ===== PHASE 2a: COLLECT ALL ENTITIES =====
-    # Derive entities from fact subjects/objects (not from entity list)
-    # The entity list was for CoT extraction help; relationships define what matters
-    print("  Phase 2a: Collecting entities...")
-    entities_by_name: Dict[str, List[Dict]] = {}
-    for ext in extractions:
-        if not ext["success"]:
-            continue
-        for fact in ext["extraction"].facts:
-            # Collect subjects that are entities (not topics)
-            if fact.subject_type.lower() != "topic":
-                entities_by_name.setdefault(fact.subject, []).append({
-                    "chunk_idx": ext["chunk_idx"],
-                    "entity": EnumeratedEntity(
-                        name=fact.subject,
-                        entity_type=fact.subject_type,
-                        summary=fact.subject_summary
-                    )
-                })
-            # Collect objects that are entities (not topics)
-            if fact.object_type.lower() != "topic":
-                entities_by_name.setdefault(fact.object, []).append({
-                    "chunk_idx": ext["chunk_idx"],
-                    "entity": EnumeratedEntity(
-                        name=fact.object,
-                        entity_type=fact.object_type,
-                        summary=fact.object_summary
-                    )
-                })
-    print(f"    Found {len(entities_by_name)} unique entity names")
+    if resume_phase <= 2:
+        # Derive entities from fact subjects/objects (not from entity list)
+        # The entity list was for CoT extraction help; relationships define what matters
+        print("  Phase 2a: Collecting entities...")
+        entities_by_name: Dict[str, List[Dict]] = {}
+        for ext in extractions:
+            if not ext["success"]:
+                continue
+            for fact in ext["extraction"].facts:
+                # Collect subjects that are entities (not topics)
+                if fact.subject_type.lower() != "topic":
+                    entities_by_name.setdefault(fact.subject, []).append({
+                        "chunk_idx": ext["chunk_idx"],
+                        "entity": EnumeratedEntity(
+                            name=fact.subject,
+                            entity_type=fact.subject_type,
+                            summary=fact.subject_summary
+                        )
+                    })
+                # Collect objects that are entities (not topics)
+                if fact.object_type.lower() != "topic":
+                    entities_by_name.setdefault(fact.object, []).append({
+                        "chunk_idx": ext["chunk_idx"],
+                        "entity": EnumeratedEntity(
+                            name=fact.object,
+                            entity_type=fact.object_type,
+                            summary=fact.object_summary
+                        )
+                    })
+        print(f"    Found {len(entities_by_name)} unique entity names")
 
-    # ===== PHASE 2b: HYBRID DEDUPLICATION (Embedding + LLM) =====
-    t2 = time.time()
-    dedup_manager = DeferredDeduplicationManager.get_instance()
-    dedup_manager.reset()  # Clear any previous state
+        # ===== PHASE 2b: HYBRID DEDUPLICATION (Embedding + LLM) =====
+        t2 = time.time()
+        dedup_manager = DeferredDeduplicationManager.get_instance()
+        dedup_manager.reset()  # Clear any previous state
 
-    if entities_by_name:
-        print(f"  Phase 2b: Generating embeddings and registering entities...")
+        if entities_by_name:
+            print(f"  Phase 2b: Generating embeddings and registering entities (concurrency={embedding_concurrency}, batch={embedding_batch_size})...")
 
-        # Generate embeddings for all entities
-        entity_names = list(entities_by_name.keys())
-        entity_texts = []
-        for name in entity_names:
-            first_entity = entities_by_name[name][0]["entity"]
-            summary = first_entity.summary if hasattr(first_entity, 'summary') else ""
-            entity_texts.append(f"{name}: {summary}" if summary else name)
+            # Generate embeddings for all entities
+            entity_names = list(entities_by_name.keys())
+            entity_texts = []
+            for name in entity_names:
+                first_entity = entities_by_name[name][0]["entity"]
+                summary = first_entity.summary if hasattr(first_entity, 'summary') else ""
+                entity_texts.append(f"{name}: {summary}" if summary else name)
 
-        entity_embeddings = dedup_embeddings.embed_documents(entity_texts)
-
-        # Register entities with dedup manager
-        uuid_by_name: Dict[str, str] = {}
-        for i, name in enumerate(entity_names):
-            first_entity = entities_by_name[name][0]["entity"]
-            entity_uuid = str(uuid4())
-            uuid_by_name[name] = entity_uuid
-
-            dedup_manager.register_entity(
-                uuid=entity_uuid,
-                name=name,
-                node_type="Entity",
-                summary=first_entity.summary if hasattr(first_entity, 'summary') else "",
-                embedding=entity_embeddings[i],
-                group_id=group_id
+            # Parallel batch embedding with rate limit handling
+            sem_dedup_embed = asyncio.Semaphore(embedding_concurrency)
+            entity_embeddings = await embed_in_batches_async(
+                entity_texts,
+                dedup_embeddings,
+                batch_sz=embedding_batch_size,
+                sem=sem_dedup_embed
             )
 
-        print(f"  Phase 2c: Clustering and deduplicating (threshold={similarity_threshold}, concurrency={dedup_concurrency})...")
-        dedup_stats = await dedup_manager.cluster_and_remap_async(
-            similarity_threshold=similarity_threshold,
-            concurrency=dedup_concurrency
-        )
-        print(f"    {len(entity_names)} entities → {dedup_stats['distinct_entities']} canonical ({dedup_stats['duplicates_merged']} merged)")
-    else:
-        uuid_by_name = {}
-        dedup_stats = {"distinct_entities": 0, "duplicates_merged": 0}
+            # Register entities with dedup manager
+            uuid_by_name = {}
+            for i, name in enumerate(entity_names):
+                first_entity = entities_by_name[name][0]["entity"]
+                entity_uuid = str(uuid4())
+                uuid_by_name[name] = entity_uuid
 
-    dedup_time = time.time() - t2
+                dedup_manager.register_entity(
+                    uuid=entity_uuid,
+                    name=name,
+                    node_type="Entity",
+                    summary=first_entity.summary if hasattr(first_entity, 'summary') else "",
+                    embedding=entity_embeddings[i],
+                    group_id=group_id
+                )
 
-    # ===== PHASE 2d-e: RESOLVE ENTITIES AND TOPICS (Parallel) =====
-    # Both run concurrently for maximum throughput
-    t3 = time.time()
+            print(f"  Phase 2c: Clustering and deduplicating (threshold={similarity_threshold}, concurrency={dedup_concurrency})...")
+            dedup_stats = await dedup_manager.cluster_and_remap_async(
+                similarity_threshold=similarity_threshold,
+                concurrency=dedup_concurrency
+            )
+            print(f"    {len(entity_names)} entities → {dedup_stats['distinct_entities']} canonical ({dedup_stats['duplicates_merged']} merged)")
+        else:
+            uuid_by_name = {}
+            dedup_stats = {"distinct_entities": 0, "duplicates_merged": 0}
 
-    # Collect topics from extractions (needed before parallel resolution)
-    # Also collect definitions from extracted topic entities for better resolution
-    topic_names_from_facts: set[str] = set()
-    topic_definitions: Dict[str, str] = {}  # topic_name -> definition/summary
-    for ext in extractions:
-        if not ext["success"]:
-            continue
-        # Collect topic definitions from entities
-        for entity in ext["extraction"].entities:
-            if entity.entity_type.lower() == "topic" and entity.summary:
-                topic_definitions[entity.name] = entity.summary
-        # Collect topic names from facts
-        for fact in ext["extraction"].facts:
-            if fact.subject_type.lower() == "topic":
-                topic_names_from_facts.add(fact.subject)
-            if fact.object_type.lower() == "topic":
-                topic_names_from_facts.add(fact.object)
-            for t in fact.topics:
-                topic_names_from_facts.add(t)
+        dedup_time = time.time() - t2
 
-    # Get unique canonical entity UUIDs
-    canonical_uuids = list(set(
-        dedup_manager.get_remapped_uuid(uuid_by_name[name])
-        for name in uuid_by_name
-    ))
+        # ===== PHASE 2d-e: RESOLVE ENTITIES AND TOPICS (Parallel) =====
+        # Both run concurrently for maximum throughput
+        t3 = time.time()
 
-    print(f"  Phase 2d: Pre-computing embeddings for resolution...")
+        # Collect topics from extractions (needed before parallel resolution)
+        # Also collect definitions from extracted topic entities for better resolution
+        topic_names_from_facts: set[str] = set()
+        topic_definitions: Dict[str, str] = {}  # topic_name -> definition/summary
+        for ext in extractions:
+            if not ext["success"]:
+                continue
+            # Collect topic definitions from entities
+            for entity in ext["extraction"].entities:
+                if entity.entity_type.lower() == "topic" and entity.summary:
+                    topic_definitions[entity.name] = entity.summary
+            # Collect topic names from facts
+            for fact in ext["extraction"].facts:
+                if fact.subject_type.lower() == "topic":
+                    topic_names_from_facts.add(fact.subject)
+                if fact.object_type.lower() == "topic":
+                    topic_names_from_facts.add(fact.object)
+                for t in fact.topics:
+                    topic_names_from_facts.add(t)
 
-    # Pre-compute entity embeddings in batch (avoids rate limits during resolution)
-    entity_embeddings_map: Dict[str, List[float]] = {}
-    if canonical_uuids:
-        entity_texts = []
+        # Get unique canonical entity UUIDs
+        canonical_uuids = list(set(
+            dedup_manager.get_remapped_uuid(uuid_by_name[name])
+            for name in uuid_by_name
+        ))
+
+        print(f"  Phase 2d: Pre-computing embeddings for resolution (concurrency={embedding_concurrency}, batch={embedding_batch_size})...")
+
+        # Prepare entity texts for embedding
+        entity_texts_2d = []
         valid_uuids = []
-        for canonical_uuid in canonical_uuids:
-            canonical_entity = dedup_manager._pending_entities[canonical_uuid]
-            text = f"{canonical_entity.name}: {canonical_entity.summary}"
-            if text.strip():  # Skip empty texts
-                entity_texts.append(text)
-                valid_uuids.append(canonical_uuid)
-        # Batch embed all entities
-        if entity_texts:
-            entity_embeddings_list = dedup_embeddings.embed_documents(entity_texts)
-            for i, canonical_uuid in enumerate(valid_uuids):
-                entity_embeddings_map[canonical_uuid] = entity_embeddings_list[i]
-        print(f"    Pre-computed {len(entity_embeddings_map)} entity embeddings")
+        if canonical_uuids:
+            for canonical_uuid in canonical_uuids:
+                canonical_entity = dedup_manager._pending_entities[canonical_uuid]
+                text = f"{canonical_entity.name}: {canonical_entity.summary}"
+                if text.strip():  # Skip empty texts
+                    entity_texts_2d.append(text)
+                    valid_uuids.append(canonical_uuid)
 
-    # Pre-compute topic embeddings in batch using enriched text (topic: definition)
-    topic_embeddings_map: Dict[str, List[float]] = {}
-    topic_enriched_texts: Dict[str, str] = {}  # topic_name -> enriched text for resolution
-    topic_names_list = [t for t in topic_names_from_facts if t and t.strip()]
-    if topic_names_list:
-        # Build enriched texts for embedding (use definition if available)
-        texts_to_embed = []
+        # Prepare topic texts for embedding (use definition if available)
+        topic_enriched_texts: Dict[str, str] = {}  # topic_name -> enriched text for resolution
+        topic_names_list = [t for t in topic_names_from_facts if t and t.strip()]
+        topic_texts_2d = []
         for topic_name in topic_names_list:
             definition = topic_definitions.get(topic_name, "")
             if definition:
@@ -1372,213 +1524,265 @@ async def process_file(
             else:
                 enriched = topic_name
             topic_enriched_texts[topic_name] = enriched
-            texts_to_embed.append(enriched)
-        topic_embeddings_list = embeddings.embed_documents(texts_to_embed)
-        for i, topic_name in enumerate(topic_names_list):
-            topic_embeddings_map[topic_name] = topic_embeddings_list[i]
-        print(f"    Pre-computed {len(topic_embeddings_map)} topic embeddings (with definitions)")
+            topic_texts_2d.append(enriched)
 
-    print(f"  Phase 2e: Resolving {len(canonical_uuids)} entities + {len(topic_names_from_facts)} topics in parallel...")
+        # Run entity and topic embedding in PARALLEL (major speedup)
+        # Use separate semaphores per embedding client to avoid rate limit conflicts
+        sem_entity_embed = asyncio.Semaphore(embedding_concurrency)
+        sem_topic_embed = asyncio.Semaphore(embedding_concurrency)
 
-    # Semaphore for concurrency control (shared across both)
-    resolve_sem = asyncio.Semaphore(resolve_concurrency)
-
-    # ----- Entity Resolution (parallel) -----
-    async def resolve_all_entities() -> Dict[str, Any]:
-        """Resolve all canonical entities against Neo4j."""
-        if not canonical_uuids:
-            return {}
-
-        async def resolve_canonical(canonical_uuid: str):
-            async with resolve_sem:
-                canonical_entity = dedup_manager._pending_entities[canonical_uuid]
-                chunk_uuid = str(uuid4())
-                # Pass pre-computed embedding to avoid API call
-                precomputed_emb = entity_embeddings_map.get(canonical_uuid)
-                resolution = await asyncio.to_thread(
-                    entity_registry.resolve,
-                    entity_name=canonical_entity.name,
-                    entity_type="Entity",
-                    entity_summary=canonical_entity.summary,
-                    chunk_uuid=chunk_uuid,
-                    precomputed_embedding=precomputed_emb
-                )
-                return canonical_uuid, resolution
-
-        tasks = [resolve_canonical(c) for c in canonical_uuids]
-        results = dict(await asyncio.gather(*tasks))
-
-        # Build entity_lookup: original_name -> resolution
-        lookup = {}
-        for original_name, entity_uuid in uuid_by_name.items():
-            canonical_uuid = dedup_manager.get_remapped_uuid(entity_uuid)
-            lookup[original_name] = results[canonical_uuid]
-        return lookup
-
-    # ----- Topic Resolution (parallel) -----
-    async def resolve_all_topics() -> Dict[str, TopicResolution]:
-        """Resolve all topics against ontology, reusing existing UUIDs from Neo4j."""
-        if not topic_names_from_facts:
-            return {}
-
-        # Step 1: Resolve all topic names to canonical labels (using definitions for better matching)
-        async def resolve_topic_name(topic_name: str):
-            async with resolve_sem:
-                try:
-                    enriched_text = topic_enriched_texts.get(topic_name, topic_name)
-                    resolution = await asyncio.to_thread(
-                        topic_librarian.resolve,
-                        text=topic_name,
-                        enriched_text=enriched_text,
-                        context="",  # Context not available in batch mode
-                        top_k=10,
-                        candidate_threshold=0.4
-                    )
-                    if resolution:
-                        return topic_name, resolution["label"], resolution.get("definition", "")
-                    else:
-                        log(f"Topic '{topic_name}' not in ontology - will be skipped")
-                        return topic_name, None, None
-                except Exception as e:
-                    log(f"Warning: Failed to resolve topic '{topic_name}': {e}")
-                    return topic_name, None, None
-
-        tasks = [resolve_topic_name(t) for t in topic_names_from_facts]
-        raw_results = await asyncio.gather(*tasks)
-
-        # Step 2: Group by canonical label and collect definitions
-        canonical_to_names: Dict[str, List[str]] = {}
-        canonical_definitions: Dict[str, str] = {}
-        for topic_name, canonical_label, definition in raw_results:
-            if canonical_label is None:
-                continue
-            if canonical_label not in canonical_to_names:
-                canonical_to_names[canonical_label] = []
-                canonical_definitions[canonical_label] = definition or ""
-            canonical_to_names[canonical_label].append(topic_name)
-
-        if not canonical_to_names:
-            return {}
-
-        # Step 3: Check Neo4j for existing TopicNodes with these canonical labels
-        existing_topics = neo4j.query('''
-            MATCH (t:TopicNode {group_id: $gid})
-            WHERE t.name IN $labels
-            RETURN t.name as name, t.uuid as uuid
-        ''', {"gid": group_id, "labels": list(canonical_to_names.keys())})
-
-        existing_uuid_map = {t['name']: t['uuid'] for t in existing_topics}
-        log(f"Found {len(existing_uuid_map)} existing TopicNodes in graph")
-
-        # Step 4: Create TopicResolution for each canonical label (reuse UUID if exists)
-        canonical_resolutions: Dict[str, TopicResolution] = {}
-        for canonical_label in canonical_to_names:
-            if canonical_label in existing_uuid_map:
-                # Reuse existing UUID from graph
-                topic_uuid = existing_uuid_map[canonical_label]
-                is_new = False
-            else:
-                # New topic - create UUID
-                topic_uuid = str(uuid4())
-                is_new = True
-
-            canonical_resolutions[canonical_label] = TopicResolution(
-                uuid=topic_uuid,
-                canonical_label=canonical_label,
-                is_new=is_new,
-                definition=canonical_definitions[canonical_label]
+        async def compute_entity_embeddings():
+            if not entity_texts_2d:
+                return []
+            return await embed_in_batches_async(
+                entity_texts_2d, dedup_embeddings, batch_sz=embedding_batch_size, sem=sem_entity_embed
             )
 
-        # Step 5: Map each original topic name to its canonical resolution
-        result: Dict[str, TopicResolution] = {}
-        for canonical_label, topic_names in canonical_to_names.items():
-            resolution = canonical_resolutions[canonical_label]
-            for topic_name in topic_names:
-                result[topic_name] = resolution
+        async def compute_topic_embeddings():
+            if not topic_texts_2d:
+                return []
+            return await embed_in_batches_async(
+                topic_texts_2d, embeddings, batch_sz=embedding_batch_size, sem=sem_topic_embed
+            )
 
-        return result
+        entity_embeddings_list, topic_embeddings_list = await asyncio.gather(
+            compute_entity_embeddings(),
+            compute_topic_embeddings()
+        )
 
-    # Run BOTH resolutions concurrently
-    entity_lookup_global, topic_lookup_global = await asyncio.gather(
-        resolve_all_entities(),
-        resolve_all_topics()
-    )
+        # Build entity embeddings map
+        entity_embeddings_map: Dict[str, List[float]] = {}
+        for i, canonical_uuid in enumerate(valid_uuids):
+            entity_embeddings_map[canonical_uuid] = entity_embeddings_list[i]
+        if entity_embeddings_map:
+            print(f"    Pre-computed {len(entity_embeddings_map)} entity embeddings")
+
+        # Build topic embeddings map
+        topic_embeddings_map: Dict[str, List[float]] = {}
+        for i, topic_name in enumerate(topic_names_list):
+            topic_embeddings_map[topic_name] = topic_embeddings_list[i]
+        if topic_embeddings_map:
+            print(f"    Pre-computed {len(topic_embeddings_map)} topic embeddings (with definitions)")
+
+        print(f"  Phase 2e: Resolving {len(canonical_uuids)} entities + {len(topic_names_from_facts)} topics in parallel...")
+
+        # Semaphore for concurrency control (shared across both)
+        resolve_sem = asyncio.Semaphore(resolve_concurrency)
+
+        # ----- Entity Resolution (parallel) -----
+        async def resolve_all_entities() -> Dict[str, Any]:
+            """Resolve all canonical entities against Neo4j."""
+            if not canonical_uuids:
+                return {}
+
+            async def resolve_canonical(canonical_uuid: str):
+                async with resolve_sem:
+                    canonical_entity = dedup_manager._pending_entities[canonical_uuid]
+                    chunk_uuid = str(uuid4())
+                    # Pass pre-computed embedding to avoid API call
+                    precomputed_emb = entity_embeddings_map.get(canonical_uuid)
+                    resolution = await asyncio.to_thread(
+                        entity_registry.resolve,
+                        entity_name=canonical_entity.name,
+                        entity_type="Entity",
+                        entity_summary=canonical_entity.summary,
+                        chunk_uuid=chunk_uuid,
+                        precomputed_embedding=precomputed_emb
+                    )
+                    return canonical_uuid, resolution
+
+            tasks = [resolve_canonical(c) for c in canonical_uuids]
+            results = dict(await asyncio.gather(*tasks))
+
+            # Build entity_lookup: original_name -> resolution
+            lookup = {}
+            for original_name, entity_uuid in uuid_by_name.items():
+                canonical_uuid = dedup_manager.get_remapped_uuid(entity_uuid)
+                lookup[original_name] = results[canonical_uuid]
+            return lookup
+
+        # ----- Topic Resolution (parallel) -----
+        async def resolve_all_topics() -> Dict[str, TopicResolution]:
+            """Resolve all topics against ontology, reusing existing UUIDs from Neo4j."""
+            if not topic_names_from_facts:
+                return {}
+
+            # Step 1: Resolve all topic names to canonical labels (using definitions for better matching)
+            async def resolve_topic_name(topic_name: str):
+                async with resolve_sem:
+                    try:
+                        enriched_text = topic_enriched_texts.get(topic_name, topic_name)
+                        resolution = await asyncio.to_thread(
+                            topic_librarian.resolve,
+                            text=topic_name,
+                            enriched_text=enriched_text,
+                            context="",  # Context not available in batch mode
+                            top_k=10,
+                            candidate_threshold=0.4
+                        )
+                        if resolution:
+                            return topic_name, resolution["label"], resolution.get("definition", "")
+                        else:
+                            log(f"Topic '{topic_name}' not in ontology - will be skipped")
+                            return topic_name, None, None
+                    except Exception as e:
+                        log(f"Warning: Failed to resolve topic '{topic_name}': {e}")
+                        return topic_name, None, None
+
+            tasks = [resolve_topic_name(t) for t in topic_names_from_facts]
+            raw_results = await asyncio.gather(*tasks)
+
+            # Step 2: Group by canonical label and collect definitions
+            canonical_to_names: Dict[str, List[str]] = {}
+            canonical_definitions: Dict[str, str] = {}
+            for topic_name, canonical_label, definition in raw_results:
+                if canonical_label is None:
+                    continue
+                if canonical_label not in canonical_to_names:
+                    canonical_to_names[canonical_label] = []
+                    canonical_definitions[canonical_label] = definition or ""
+                canonical_to_names[canonical_label].append(topic_name)
+
+            if not canonical_to_names:
+                return {}
+
+            # Step 3: Check Neo4j for existing TopicNodes with these canonical labels
+            existing_topics = neo4j.query('''
+                MATCH (t:TopicNode {group_id: $gid})
+                WHERE t.name IN $labels
+                RETURN t.name as name, t.uuid as uuid
+            ''', {"gid": group_id, "labels": list(canonical_to_names.keys())})
+
+            existing_uuid_map = {t['name']: t['uuid'] for t in existing_topics}
+            log(f"Found {len(existing_uuid_map)} existing TopicNodes in graph")
+
+            # Step 4: Create TopicResolution for each canonical label (reuse UUID if exists)
+            canonical_resolutions: Dict[str, TopicResolution] = {}
+            for canonical_label in canonical_to_names:
+                if canonical_label in existing_uuid_map:
+                    # Reuse existing UUID from graph
+                    topic_uuid = existing_uuid_map[canonical_label]
+                    is_new = False
+                else:
+                    # New topic - create UUID
+                    topic_uuid = str(uuid4())
+                    is_new = True
+
+                canonical_resolutions[canonical_label] = TopicResolution(
+                    uuid=topic_uuid,
+                    canonical_label=canonical_label,
+                    is_new=is_new,
+                    definition=canonical_definitions[canonical_label]
+                )
+
+            # Step 5: Map each original topic name to its canonical resolution
+            result: Dict[str, TopicResolution] = {}
+            for canonical_label, topic_names in canonical_to_names.items():
+                resolution = canonical_resolutions[canonical_label]
+                for topic_name in topic_names:
+                    result[topic_name] = resolution
+
+            return result
+
+        # Run BOTH resolutions concurrently
+        entity_lookup_global, topic_lookup_global = await asyncio.gather(
+            resolve_all_entities(),
+            resolve_all_topics()
+        )
+
+        resolve_time = time.time() - t3
+        # Count topics that didn't match ontology
+        skipped_topics = len(topic_names_from_facts) - len(topic_lookup_global)
+        print(f"    Resolved {len(entity_lookup_global)} entities + {len(topic_lookup_global)} topics ({skipped_topics} skipped - not in ontology) in {resolve_time:.1f}s")
+        if checkpoint_mgr:
+            checkpoint_mgr.save_phase2(entity_lookup_global, topic_lookup_global, {}, uuid_by_name)
+    else:
+        dedup_time = 0.0
+        resolve_time = 0.0
 
     # Build case-insensitive lookup maps (lowercase key -> original resolution)
     # This fixes issues where "Inflation Expectations" vs "Inflation expectations" fail to match
     entity_lookup_lower: Dict[str, Any] = {k.lower(): v for k, v in entity_lookup_global.items()}
     topic_lookup_lower: Dict[str, TopicResolution] = {k.lower(): v for k, v in topic_lookup_global.items()}
 
-    resolve_time = time.time() - t3
-    # Count topics that didn't match ontology
-    skipped_topics = len(topic_names_from_facts) - len(topic_lookup_global)
-    print(f"    Resolved {len(entity_lookup_global)} entities + {len(topic_lookup_global)} topics ({skipped_topics} skipped - not in ontology) in {resolve_time:.1f}s")
-
     # ===== PHASE 3: ASSEMBLY (Bulk Write) =====
-    print("  Phase 3: Collecting operations...")
-    t4 = time.time()
+    # Phase 3 collection (if buffer is None)
+    if buffer is None:
+        print("  Phase 3: Collecting operations...")
+        t4 = time.time()
 
-    # Use the LLM-extracted document date
-    # Initialize bulk write buffer
-    buffer = BulkWriteBuffer(
-        document_uuid=document_uuid,
-        document_name=document_name,
-        document_date=document_date_str,  # LLM/metadata date (or None)
-        group_id=group_id
-    )
+        # Use the LLM-extracted document date
+        # Initialize bulk write buffer
+        buffer = BulkWriteBuffer(
+            document_uuid=document_uuid,
+            document_name=document_name,
+            document_date=document_date_str,  # LLM/metadata date (or None)
+            group_id=group_id
+        )
 
-    # Collect all operations into buffer
-    results = []
-    for i, ext in enumerate(extractions):
-        chunk_idx = ext["chunk_idx"]
-        extraction = ext["extraction"]
-        chunk_text = ext["chunk_text"]
-        header_path = ext["header_path"]
+        # Collect all operations into buffer
+        results = []
+        for i, ext in enumerate(extractions):
+            chunk_idx = ext["chunk_idx"]
+            extraction = ext["extraction"]
+            chunk_text = ext["chunk_text"]
+            header_path = ext["header_path"]
 
-        if not ext["success"] or not extraction.facts:
-            results.append({
-                "success": ext["success"],
-                "chunk_idx": chunk_idx,
-                "facts": 0, "entities": 0, "relationships": 0,
-                "error": ext.get("error")
-            })
-            continue
+            if not ext["success"] or not extraction.facts:
+                results.append({
+                    "success": ext["success"],
+                    "chunk_idx": chunk_idx,
+                    "facts": 0, "entities": 0, "relationships": 0,
+                    "error": ext.get("error")
+                })
+                continue
 
-        try:
-            episodic_uuid = ext.get("chunk_uuid") or str(uuid4())
+            try:
+                episodic_uuid = ext.get("chunk_uuid") or str(uuid4())
 
-            # Use global lookups directly with lowercase keys for case-insensitive matching
-            # Collect into buffer (no Neo4j writes or embeddings yet)
-            counts = collect_chunk(
-                extraction, entity_lookup_lower, topic_lookup_lower,
-                episodic_uuid, chunk_text, header_path,
-                buffer
-            )
-            results.append({"success": True, "chunk_idx": chunk_idx, **counts})
+                # Use global lookups directly with lowercase keys for case-insensitive matching
+                # Collect into buffer (no Neo4j writes or embeddings yet)
+                counts = collect_chunk(
+                    extraction, entity_lookup_lower, topic_lookup_lower,
+                    episodic_uuid, chunk_text, header_path,
+                    buffer
+                )
+                results.append({"success": True, "chunk_idx": chunk_idx, **counts})
 
-        except Exception as e:
-            print(f"  [Chunk {chunk_idx}] ERROR: {e}")
-            results.append({"success": False, "chunk_idx": chunk_idx, "error": str(e)})
+            except Exception as e:
+                print(f"  [Chunk {chunk_idx}] ERROR: {e}")
+                results.append({"success": False, "chunk_idx": chunk_idx, "error": str(e)})
 
-        if (i + 1) % 10 == 0:
-            log(f"    Collected {i+1}/{len(extractions)} chunks...")
+            if (i + 1) % 10 == 0:
+                log(f"    Collected {i+1}/{len(extractions)} chunks...")
 
-    collect_time = time.time() - t4
-    print(f"    Collected {len(buffer.episodic_nodes)} episodic, {len(buffer.entity_nodes)} entities, {len(buffer.fact_nodes)} facts, {len(buffer.relationships)} rels ({collect_time:.1f}s)")
+        collect_time = time.time() - t4
+        print(f"    Collected {len(buffer.episodic_nodes)} episodic, {len(buffer.entity_nodes)} entities, {len(buffer.fact_nodes)} facts, {len(buffer.relationships)} rels ({collect_time:.1f}s)")
+        if checkpoint_mgr:
+            checkpoint_mgr.save_phase3(buffer, embeddings_done=False)
+    else:
+        collect_time = 0.0
+        # Build results from resumed buffer for summary stats
+        results = [{"success": True, "chunk_idx": i, "facts": 0, "entities": 0, "relationships": 0} for i in range(len(chunks))]
 
-    # Generate all embeddings in batches (avoids rate limits)
-    print("  Phase 3b: Generating embeddings (batched)...")
-    t_embed = time.time()
-    batch_generate_embeddings(buffer, embeddings, dedup_embeddings, batch_size=128)
-    embed_time = time.time() - t_embed
-    print(f"    Generated embeddings in {embed_time:.1f}s")
+    # Phase 3b embeddings (if not done)
+    if not embeddings_done:
+        print("  Phase 3b: Generating embeddings (parallel)...")
+        t_embed = time.time()
+        await batch_generate_embeddings(buffer, embeddings, dedup_embeddings, batch_size=embedding_batch_size, concurrency=embedding_concurrency)
+        embed_time = time.time() - t_embed
+        print(f"    Generated embeddings in {embed_time:.1f}s")
+        if checkpoint_mgr:
+            checkpoint_mgr.save_phase3(buffer, embeddings_done=True)
+    else:
+        embed_time = 0.0
 
-    # Execute bulk write
+    # Phase 3c write (always runs if we got here)
     print("  Phase 3c: Writing to Neo4j...")
     # Warmup connection - Aura may have gone to sleep during embedding generation
     neo4j.warmup()
     t5 = time.time()
-    write_counts = bulk_write_all(buffer, neo4j, embeddings, llm)
+    write_counts = bulk_write_all(buffer, neo4j, embeddings, llm, batch_size)
     write_time = time.time() - t5
     print(f"    Wrote in {write_time:.1f}s")
 
@@ -1618,9 +1822,23 @@ async def main():
     parser.add_argument("--filter", "-f", help="Filter files by name substring")
     parser.add_argument("--concurrency", "-c", type=int, default=DEFAULT_CONCURRENCY, help="Max concurrent extractions")
     parser.add_argument("--similarity-threshold", "-s", type=float, default=0.70, help="Similarity threshold for entity deduplication (0.0-1.0)")
-    parser.add_argument("--resolve-concurrency", "-r", type=int, default=50, help="Max concurrent entity resolutions")
-    parser.add_argument("--dedup-concurrency", "-d", type=int, default=20, help="Max concurrent LLM deduplication calls")
+    parser.add_argument("--resolve-concurrency", "-r", type=int, default=100, help="Max concurrent entity resolutions (default: 100)")
+    parser.add_argument("--dedup-concurrency", "-d", type=int, default=40, help="Max concurrent LLM deduplication calls (default: 40)")
+    parser.add_argument("--resume", action="store_true", help="Resume from checkpoint (fail if none exists)")
+    parser.add_argument("--fresh", action="store_true", help="Force fresh start (ignore existing checkpoint)")
+    parser.add_argument("--batch-size", "-b", type=int, default=250, help="Neo4j write batch size (default: 250)")
+    parser.add_argument("--embedding-concurrency", type=int, default=10, help="Max concurrent embedding batches (default: 10)")
+    parser.add_argument("--embedding-batch-size", type=int, default=100, help="Texts per embedding batch (default: 100)")
     args = parser.parse_args()
+
+    # Validate arguments
+    if args.fresh and args.resume:
+        print("ERROR: --fresh and --resume cannot be used together")
+        sys.exit(1)
+
+    if args.batch_size <= 0:
+        print("ERROR: --batch-size must be positive")
+        sys.exit(1)
 
     print("=" * 60)
     print("KNOWLEDGE GRAPH PIPELINE")
@@ -1650,6 +1868,35 @@ async def main():
     if args.limit:
         print(f"Limiting to {args.limit} chunks/file")
 
+    # Handle checkpoint flags
+    checkpoint_managers = {}  # filepath -> CheckpointManager
+
+    for filepath in files:
+        existing = CheckpointManager.find_existing(filepath, args.group_id)
+
+        if args.fresh and existing:
+            print(f"  --fresh specified, removing checkpoint for {os.path.basename(filepath)}...")
+            existing.delete()
+            existing = None
+
+        if args.resume:
+            if not existing:
+                print(f"ERROR: --resume specified but no checkpoint found for {os.path.basename(filepath)}")
+                sys.exit(1)
+            existing.print_status()
+            checkpoint_managers[filepath] = existing
+        elif existing:
+            # Auto-resume
+            print(f"\nFound existing checkpoint:")
+            existing.print_status()
+            checkpoint_managers[filepath] = existing
+        else:
+            # Fresh run - create new checkpoint manager
+            checkpoint_managers[filepath] = CheckpointManager(
+                filepath, args.group_id,
+                cli_args={"limit": args.limit, "concurrency": args.concurrency}
+            )
+
     # Init services
     print("\nInitializing services...")
     from src.util.services import get_services
@@ -1675,9 +1922,17 @@ async def main():
         r = await process_file(
             f, args.group_id, args.limit, args.concurrency, args.similarity_threshold,
             args.resolve_concurrency, args.dedup_concurrency,
-            svc.neo4j, svc.embeddings, svc.dedup_embeddings, svc.llm, entity_registry, topic_librarian
+            svc.neo4j, svc.embeddings, svc.dedup_embeddings, svc.llm, entity_registry, topic_librarian,
+            batch_size=args.batch_size,
+            embedding_concurrency=args.embedding_concurrency,
+            embedding_batch_size=args.embedding_batch_size,
+            checkpoint_mgr=checkpoint_managers.get(f)
         )
         results.append(r)
+        # Cleanup checkpoint on success
+        if checkpoint_managers.get(f):
+            checkpoint_managers[f].cleanup()
+            print(f"  Checkpoint cleaned up")
 
     # Summary
     elapsed = time.time() - start

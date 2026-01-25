@@ -1,0 +1,32 @@
+[
+  {
+    "question_id": 1,
+    "question": "How did economic activity change in the Twelfth District (San Francisco)?",
+    "expected": "In San Francisco, economic activity edged down slightly. Activity in retail trade, agriculture, and residential real estate either decreased or remained stable.",
+    "graphrag_answer": "Economic activity in the Twelfth District (San Francisco) has faced significant challenges, with small businesses experiencing financial strain, increased loan delinquencies, and closures. Community support organizations are also under stress due to rising demand for services and funding cuts. These conditions indicate a weakening economic environment, threatening both economic and social stability in the region.",
+    "graphrag_time_ms": 5374,
+    "v7_answer": "The provided sub-query results do not contain any substantive information about how economic activity changed over time in the Twelfth District (San Francisco).\n\n## Chronological synthesis (based on available inputs)\n- **No time period identified:** Neither sub-query includes dates (e.g., months/quarters/years) or references to specific reporting windows (such as particular Beige Book rounds, annual reports, or recessions/expansions).\n- **No described trend or turning points:** Both sub-queries explicitly report **insufficient information** to characterize the direction of change (growth, slowdown, contraction, recovery) or to identify transitions/turning points.\n\n## What can be concluded\n- **Conclusion:** With only the supplied sub-query outputs, it is **not possible** to answer how economic activity changed in the Twelfth District (San Francisco) in a temporal/chronological way.\n\n## Key gap preventing a temporal answer\nTo produce the requested chronological narrative, we would need at least one source specifying:\n- the **time frame** (e.g., \u201cfrom Q1 to Q2 20XX,\u201d \u201cover the past six weeks,\u201d \u201cduring 20XX\u201d), and\n- reported changes in economic indicators or qualitative conditions (employment, consumer spending, housing, manufacturing, banking/credit, etc.) for the **Twelfth District**.\n\nIf you share the relevant excerpt(s) (e.g., a Beige Book section for the Twelfth District) or specify the time window you mean, I can synthesize a dated, turning-point-focused timeline.",
+    "v7_time_ms": 16364,
+    "v7_confidence": 0.1
+  },
+  {
+    "question_id": 2,
+    "question": "What is the Beige Book?",
+    "expected": "The Beige Book is a Federal Reserve System publication about current economic conditions across the 12 Federal Reserve Districts. It characterizes regional economic conditions and prospects based on a variety of mostly qualitative information, gathered directly from each District's sources.",
+    "graphrag_answer": "The Beige Book is a foundational publication of the Federal Reserve System, released eight times a year, that summarizes current economic conditions across the twelve Federal Reserve Districts in the United States. It compiles qualitative information from various sources, including economists, market experts, and community organizations, to provide insights into regional economic trends and developments. The Beige Book plays a critical role in informing the Federal Reserve's monetary policy decisions and is a key tool for understanding the health of the economy.",
+    "graphrag_time_ms": 3447,
+    "v7_answer": "The provided sub-query answers do not contain enough information to define or explain the purpose of the Beige Book. Both sub-queries explicitly report \u201cInsufficient information available to answer\u201d regarding (1) what the Beige Book is and (2) what it is used for in monetary policy, each with very low confidence (0.10). \n\nBecause no factual content or sources were supplied in the sub-answers, I can\u2019t produce a sourced, evidence-backed definition (with dates, responsible institution, publication frequency, or how it informs policy) without introducing unsourced information, which would conflict with your requirement to cite sources for all key claims.\n\nIf you can provide a source (e.g., a Federal Reserve page, press release, or excerpt) or allow me to use external sources, I can synthesize a complete factual answer with citations.",
+    "v7_time_ms": 15033,
+    "v7_confidence": 0.12
+  },
+  {
+    "question_id": 3,
+    "question": "How many Federal Reserve Districts are covered in the Beige Book?",
+    "expected": "12 Federal Reserve Districts are covered in the Beige Book.",
+    "graphrag_answer": "The Beige Book covers all twelve Federal Reserve Districts.",
+    "graphrag_time_ms": 2207,
+    "v7_answer": "- **Federal Reserve Districts covered in the Beige Book:** **Insufficient information available from the provided sub-answer to determine the number.**\n  - The only sub-query result explicitly states that it could not find the count of regional districts included in the report, and it mentions no districts or number.\n\n- **Completeness note:** This answer is **incomplete** because the supplied sub-query answers do not include the needed factual detail (the number of Districts).",
+    "v7_time_ms": 11197,
+    "v7_confidence": 0.1
+  }
+]
